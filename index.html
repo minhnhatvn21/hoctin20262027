@@ -110,6 +110,7 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 .modal-overlay.active{display:flex;flex-direction:column;animation:slide .3s}
 .modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:linear-gradient(90deg,var(--pink),var(--purple))}
 .modal-header h3{font-family:'Baloo 2',cursive;color:#fff;font-size:1.3em}
+.ro-badge{background:rgba(255,255,255,.25);color:#fff;font-weight:800;font-size:.85em;padding:4px 14px;border-radius:50px;margin:0 auto 0 14px}
 .modal-close{border:none;cursor:pointer;padding:8px 20px;border-radius:50px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1em;background:#fff;color:var(--pink);transition:.2s}
 .modal-close:hover{transform:scale(1.1) rotate(3deg)}
 .modal-body{flex:1}.modal-body iframe{width:100%;height:100%;border:none;background:#fff}
@@ -589,11 +590,11 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
     <!-- Modal Viewer -->
     <div class="modal-overlay" id="modal">
         <div class="modal-header">
-            <h3 id="modal-title">Xem sản phẩm</h3>
+            <h3 id="modal-title">Xem sản phẩm</h3><span class="ro-badge">🔒 Chỉ xem - không chỉnh sửa</span>
             <button class="modal-close" onclick="closeViewer()">✕ Đóng</button>
         </div>
         <div class="modal-body">
-            <iframe id="modal-iframe" src=""></iframe>
+            <iframe id="modal-iframe" src="" sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
     </div>
 
@@ -635,6 +636,32 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
         }
         document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitPw();});
         document.getElementById('pwModal').addEventListener('click',e=>{if(e.target.id==='pwModal')closePw();});
+
+
+        // Chế độ chỉ xem: khóa mọi chức năng chỉnh sửa trong bài học sinh (không đổi file gốc)
+        function lockReadOnly(doc){
+            try{
+                const apply=()=>{
+                    doc.designMode='off';
+                    doc.querySelectorAll('[contenteditable]').forEach(e=>e.setAttribute('contenteditable','false'));
+                    doc.querySelectorAll('textarea,input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=button])').forEach(e=>{
+                        if(e.type==='file'){e.disabled=true;}else{e.readOnly=true;}
+                    });
+                    doc.querySelectorAll('form').forEach(f=>{f.onsubmit=ev=>{ev.preventDefault();return false;};});
+                };
+                apply();
+                new MutationObserver(apply).observe(doc.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['contenteditable']});
+                doc.addEventListener('keydown',ev=>{
+                    const t=ev.target;
+                    if((ev.ctrlKey||ev.metaKey)&&['s','p'].includes(ev.key.toLowerCase())){ev.preventDefault();}
+                },true);
+                doc.addEventListener('drop',ev=>ev.preventDefault(),true);
+                doc.addEventListener('paste',ev=>ev.preventDefault(),true);
+            }catch(e){}
+        }
+        document.getElementById('modal-iframe').addEventListener('load',function(){
+            if(this.getAttribute('src'))lockReadOnly(this.contentDocument);
+        });
 
         function switchTab(tabId){requireClass(tabId,()=>doSwitch(tabId));}
         function doSwitch(tabId) {
