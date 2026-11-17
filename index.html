@@ -84,6 +84,26 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 .file-item:hover .ver{background:#fff;color:var(--c)}
 .file-item .ft{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .file-list::-webkit-scrollbar{width:6px}.file-list::-webkit-scrollbar-thumb{background:var(--c);border-radius:6px}
+.welcome{text-align:center;padding:50px 20px;margin-top:20px;background:#fff;border-radius:30px;box-shadow:0 8px 0 #e3d9fb;animation:slide .5s}
+.welcome .w-emoji{font-size:70px;animation:bounce 1.6s ease-in-out infinite;display:inline-block}
+.welcome h2{font-family:'Baloo 2',cursive;font-size:1.9em;color:var(--purple);margin:10px 0 6px}
+.welcome p{font-weight:700;color:#9a8fb8}
+.pw-overlay{display:none;position:fixed;inset:0;background:rgba(59,46,90,.65);backdrop-filter:blur(6px);z-index:4000;align-items:center;justify-content:center;padding:20px}
+.pw-overlay.active{display:flex}
+.pw-box{background:#fff;border-radius:30px;padding:30px 34px;text-align:center;max-width:380px;width:100%;box-shadow:0 10px 0 var(--pink),0 20px 50px rgba(0,0,0,.3);animation:pop .4s}
+.pw-box.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.pw-emoji{font-size:54px;display:inline-block;animation:wiggle 2s infinite}
+.pw-box h3{font-family:'Baloo 2',cursive;font-size:1.8em;color:var(--purple)}
+.pw-box p{font-weight:700;color:#9a8fb8;margin:4px 0 14px}
+.pw-box input{width:100%;padding:12px 18px;border-radius:50px;border:3px solid #e3d9fb;font-size:1.1em;font-family:'Nunito',sans-serif;font-weight:700;text-align:center;outline:none;transition:.2s}
+.pw-box input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,126,182,.2)}
+.pw-err{min-height:22px;margin:8px 0;color:#ff5a7a;font-weight:800}
+.pw-actions{display:flex;gap:10px;justify-content:center}
+.pw-actions button{border:none;cursor:pointer;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05em;padding:10px 24px;border-radius:50px;transition:.2s}
+.pw-ok{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.pw-cancel{background:#f1ecfc;color:#7a6aa8}
+.pw-actions button:hover{transform:scale(1.08)}
 .empty-state{text-align:center;padding:30px;background:#fff;border-radius:22px;font-weight:700;color:#a99fcb;border:3px dashed #d9d0f5}
 /* modal */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(59,46,90,.75);backdrop-filter:blur(6px);z-index:2000}
@@ -111,7 +131,7 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
     </div>
 
     <nav class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('12A10')">🌸 12A10</button>
+        <button class="tab-btn" onclick="switchTab('12A10')">🌸 12A10</button>
         <button class="tab-btn" onclick="switchTab('12A11')">🌊 12A11</button>
         <button class="tab-btn" onclick="switchTab('12A12')">🍀 12A12</button>
         <button class="tab-btn" onclick="switchTab('12A13')">🔥 12A13</button>
@@ -119,8 +139,14 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 
     <div class="content-area">
 
+        <div class="welcome" id="welcome">
+            <div class="w-emoji">🔐</div>
+            <h2>Chọn lớp của em ở phía trên nhé!</h2>
+            <p>Mỗi lớp có một mật khẩu riêng do thầy/cô cung cấp 💌</p>
+        </div>
+
         <!-- ==================== LỚP 12A10 ==================== -->
-        <div class="tab-content active" id="tab-12A10">
+        <div class="tab-content" id="tab-12A10">
             <div class="stats-bar">
                 <div class="stat-item"><span class="stat-num">7</span> Nhóm (Giới thiệu)</div>
                 <div class="stat-item"><span class="stat-num">0</span> Nhóm (Cá nhân)</div>
@@ -546,6 +572,20 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 
     </div>
 
+        <div class="pw-overlay" id="pwModal">
+        <div class="pw-box" id="pwBox">
+            <div class="pw-emoji">🔑</div>
+            <h3>Lớp <span id="pwClass"></span></h3>
+            <p>Nhập mật khẩu để vào xem bài nhé!</p>
+            <input type="password" id="pwInput" placeholder="Mật khẩu..." autocomplete="off">
+            <div class="pw-err" id="pwErr"></div>
+            <div class="pw-actions">
+                <button class="pw-ok" onclick="submitPw()">Vào lớp 🚀</button>
+                <button class="pw-cancel" onclick="closePw()">Hủy</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Viewer -->
     <div class="modal-overlay" id="modal">
         <div class="modal-header">
@@ -563,13 +603,48 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
     </div>
 
     <script>
-        function switchTab(tabId) {
+
+        const PW_HASH={"12A10": "6776d5dcb2e30add56e4bf237ff8fb28a4a4dfb54cea3735f309c433dff71377", "12A11": "d23488fae163e3ae0dac3d8e7721dd2ace3a83750ec2b983c99141440dd6c3cc", "12A12": "0b669a97311e4627fefd4809f8b9b16b04be36d9cfa301ee8954719b4b6e03f6", "12A13": "d729b1fd566b2dde143cbe3540fe6022f4e2e26ec234a6371dea59e6cdd41f69"};
+        const unlocked=JSON.parse(sessionStorage.getItem('unlocked')||'[]');
+        let pendingClass=null,pendingAction=null;
+        async function sha(t){
+            const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
+            return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+        }
+        function requireClass(cls,action){
+            if(unlocked.includes(cls)){action();return;}
+            pendingClass=cls;pendingAction=action;
+            document.getElementById('pwClass').textContent=cls;
+            document.getElementById('pwInput').value='';
+            document.getElementById('pwErr').textContent='';
+            document.getElementById('pwModal').classList.add('active');
+            setTimeout(()=>document.getElementById('pwInput').focus(),50);
+        }
+        function closePw(){document.getElementById('pwModal').classList.remove('active');pendingClass=null;pendingAction=null;}
+        async function submitPw(){
+            const v=document.getElementById('pwInput').value.trim().toLowerCase();
+            const h=await sha('hoctin2026:'+v);
+            if(h===PW_HASH[pendingClass]){
+                unlocked.push(pendingClass);
+                sessionStorage.setItem('unlocked',JSON.stringify(unlocked));
+                const act=pendingAction;closePw();confetti();act&&act();
+            }else{
+                document.getElementById('pwErr').textContent='Sai mật khẩu rồi, thử lại nhé 🙈';
+                const bx=document.getElementById('pwBox');bx.classList.remove('shake');void bx.offsetWidth;bx.classList.add('shake');
+            }
+        }
+        document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitPw();});
+        document.getElementById('pwModal').addEventListener('click',e=>{if(e.target.id==='pwModal')closePw();});
+
+        function switchTab(tabId){requireClass(tabId,()=>doSwitch(tabId));}
+        function doSwitch(tabId) {
             // Remove active from all tabs and contents
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
             // Activate selected tab
             document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('welcome').style.display='none';
             
             // Activate button
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -612,9 +687,10 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
                 setTimeout(()=>c.remove(),2800);
             }
         }
-        document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',confetti));
+        
 
-        function openViewer(url, title) {
+        function openViewer(url, title){const m=url.match(/12A1\d/);const cls=m?m[0]:null;const go=()=>doOpen(url,title);cls?requireClass(cls,go):go();}
+        function doOpen(url, title) {
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-iframe').src = url;
             document.getElementById('modal').classList.add('active');
@@ -629,7 +705,7 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 
         // ESC key to close
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeViewer();
+            if (e.key === 'Escape'){closeViewer();closePw();}
         });
     </script>
 </body>
