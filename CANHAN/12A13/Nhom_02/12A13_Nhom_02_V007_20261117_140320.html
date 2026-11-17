@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng xử trên không gian mạng - Đinh Thị Minh Châu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff6b8b;
+            --secondary-pink: #ff8fab;
+            --light-pink: #fff0f3;
+            --accent-pink: #ff477e;
+            --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 50%, #fbcfe8 100%);
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --text-main: #2b2d42;
+            --text-muted: #6c757d;
+            --border-color: rgba(255, 143, 171, 0.3);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+        }
+
+        body { 
+            background: var(--bg-gradient); 
+            color: var(--text-main); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .container { 
+            width: 100%;
+            max-width: 850px; 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 50px; 
+            border-radius: 28px; 
+            box-shadow: 0 20px 40px rgba(255, 107, 139, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+
+        header { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            border-bottom: 2px dashed var(--border-color); 
+            padding-bottom: 20px; 
+        }
+
+        header h1 { 
+            color: #b5179e; 
+            font-size: 24px; 
+            font-weight: 800;
+            margin-bottom: 8px; 
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #b5179e, #ff477e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p { 
+            color: var(--text-muted); 
+            font-size: 14px; 
+            font-weight: 600;
+        }
+
+        /* PHẦN PROFILE CỐ ĐỊNH (LUÔN HIỂN THỊ Ở TRÊN) */
+        .profile-section { 
+            display: flex; 
+            align-items: center; 
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%); 
+            padding: 18px 25px; 
+            border-radius: 18px; 
+            margin-bottom: 25px; 
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(255, 143, 171, 0.08);
+        }
+
+        .profile-info h3 { 
+            color: #b5179e; 
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 4px; 
+        }
+
+        .profile-info p { 
+            color: #4a4e69; 
+            font-size: 14px; 
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        /* Thanh Tab Điều Hướng 1-2-3-4 */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #fff;
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-pink);
+            color: var(--accent-pink);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-pink));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 15px rgba(255, 71, 126, 0.35);
+        }
+
+        /* Khu vực nội dung thay đổi theo Tab */
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content h2 { 
+            color: #b5179e; 
+            font-size: 18px; 
+            font-weight: 700;
+            margin-bottom: 12px; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 18px;
+            background: linear-gradient(to bottom, var(--primary-pink), var(--accent-pink));
+            border-radius: 4px;
+        }
+
+        .content p { 
+            margin-bottom: 14px; 
+            color: #3d3a45;
+            font-size: 15px;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        /* Grid giải pháp */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.15);
+            border-color: var(--primary-pink);
+        }
+
+        .solution-card h3 {
+            font-size: 15px;
+            color: #b5179e;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .solution-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+            color: #5c5963;
+        }
+
+        .img-box { 
+            text-align: center; 
+            margin: 20px 0; 
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px dashed var(--secondary-pink);
+        }
+
+        .img-box img { 
+            max-width: 100%; 
+            height: auto; 
+            max-height: 280px;
+            border-radius: 12px; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+        }
+
+        .img-caption { 
+            font-size: 13px; 
+            color: var(--text-muted); 
+            font-style: italic; 
+            margin-top: 8px; 
+        }
+
+        /* Nút chuyển qua lại (Next / Prev) */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .nav-btn {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--light-pink);
+            color: var(--accent-pink);
+        }
+
+        footer { 
+            text-align: center; 
+            margin-top: 30px; 
+            font-size: 13px; 
+            color: var(--text-muted); 
+            border-top: 1px dashed var(--border-color); 
+            padding-top: 15px; 
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 25px 20px; }
+            .tab-btn { padding: 8px 12px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER CHUNG -->
+        <header>
+            <h1>BÀI TẬP SẢN PHẨM CÁ NHÂN - MÔN TIN HỌC</h1>
+            <p>Đề tài: Văn hóa ứng xử trên không gian mạng</p>
+        </header>
+
+        <!-- THÔNG TIN CÁ NHÂN CỐ ĐỊNH (LUÔN HIỆN Ở MỌI TAB) -->
+        <div class="profile-section">
+            <div class="profile-info">
+                <h3>Họ và tên: Đinh Thị Minh Châu</h3>
+                <p>Lớp: 12A13 - Trường THPT Đăk Mil</p>
+                <p>Sở thích: Nghe nhạc, xem phim, đọc truyện và khám phá những điều mới mẻ. </p>
+            </div>
+        </div>
+
+        <!-- THANH ĐIỀU HƯỚNG TAB -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab(0)">01. Đặt vấn đề</button>
+            <button class="tab-btn" onclick="switchTab(1)">02. Thực trạng</button>
+            <button class="tab-btn" onclick="switchTab(2)">03. Giải pháp</button>
+            <button class="tab-btn" onclick="switchTab(3)">04. Lời kết</button>
+        </div>
+
+        <!-- TAB 1: Đặt vấn đề -->
+        <div class="tab-pane active" id="tab-0">
+            <div class="content">
+                <h2>1. Đặt vấn đề: Khi không gian ảo tạo ra hệ quả thật</h2>
+                <p>Lướt mạng xã hội mỗi ngày, chúng ta dường như bước vào một thế giới thu nhỏ không giới hạn: nơi khoảng cách thu hẹp chỉ bằng một cú click và thông tin lan truyền với tốc độ chóng mặt. Thế nên, đằng sau sự tiện lợi ấy, không gian mạng đang dần trở thành "bãi chiến trường" độc hại với bạo lực ngôn từ và tin giả.</p>
+                
+                <div class="img-box">
+                    <a href=https://ibb.co/nN17pgbw><img src="https://i.ibb.co/C39bL1zw/V-n-minh-v-t-nh-t-o-tr-n-m-ng.png" alt="V-n-minh-v-t-nh-t-o-tr-n-m-ng" border="0"></a>
+                    <div class="img-caption">Không gian mạng cần sự văn minh và tỉnh táo từ mỗi cá nhân</div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <div></div>
+                <button class="nav-btn" onclick="switchTab(1)">Tiếp theo ➔</button>
+            </div>
+        </div>
+
+        <!-- TAB 2: Thực trạng -->
+        <div class="tab-pane" id="tab-1">
+            <div class="content">
+                <h2>2. Thực trạng đáng báo động về văn hóa mạng hiện nay</h2>
+                <p>Không khó để bắt gặp những "cơn bão mạng" hay các hội nhóm lập ra chỉ để miệt thị ngoại hình (body shaming), tấn công cá nhân hoặc hùa vào chửi bới người khác khi chưa rõ đầu đuôi câu chuyện.</p>
+                <p>Nhiều bạn trẻ vì muốn câu tương tác, săn lùng sự nổi tiếng ảo mà bất chấp chia sẻ những tin giả (fake news), video cắt ghép sai sự thật gây hoang mang dư luận. Hệ quả để lại không chỉ là những tổn thương tinh thần sâu sắc, sự sụp đổ danh dự ngoài đời thực, mà đôi khi còn đẩy nạn nhân đến những bước đường cùng bi kịch.</p>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="switchTab(0)">⬅ Quay lại</button>
+                <button class="nav-btn" onclick="switchTab(2)">Tiếp theo ➔</button>
+            </div>
+        </div>
+
+        <!-- TAB 3: Giải pháp -->
+        <div class="tab-pane" id="tab-2">
+            <div class="content">
+                <h2>3. Giải pháp cốt lõi để xây dựng không gian mạng lành mạnh</h2>
+                <div class="solutions-grid">
+                    <div class="solution-card">
+                        <h3>🌸 1. "Uống lưỡi bảy lần trước khi gõ"</h3>
+                        <p>Luôn đặt bản thân vào vị trí của người nhận trước khi bình luận, tự hỏi xem lời sắp gõ có làm tổn thương ai không.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>🌸 2. Tư duy phản biện & Tin giả</h3>
+                        <p>Không vội vàng tin tưởng hay hùa theo đám đông khi chưa kiểm chứng thông tin từ các cơ quan báo chí chính thống.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>🌸 3. Tôn trọng sự khác biệt</h3>
+                        <p>Chấp nhận quan điểm trái chiều thay vì dùng lời lẽ thô tục, miệt thị cá nhân để hạ bệ đối phương trong các tranh luận.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>🌸 4. Báo cáo và chặn</h3>
+                        <p>Dũng cảm sử dụng tính năng report, block để loại bỏ các nội dung độc hại thay vì đứng ngoài xem và tiếp tay.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="switchTab(1)">⬅ Quay lại</button>
+                <button class="nav-btn" onclick="switchTab(3)">Tiếp theo ➔</button>
+            </div>
+        </div>
+
+        <!-- TAB 4: Lời kết -->
+        <div class="tab-pane" id="tab-3">
+            <div class="content">
+                <h2>4. Lời kết: Trách nhiệm thật sau màn hình ảo</h2>
+                <p>Mạng xã hội có thể ảo, ẩn danh và cho phép chúng ta tự do sáng tạo, nhưng nhân cách, đạo đức và hậu quả pháp lý hay tinh thần ngoài đời thực là hoàn toàn có thật.</p>
+                <p>Mỗi dòng trạng thái, mỗi cú click chuột hay một nút chia sẻ đều phản ánh phông văn hóa của chính bạn. Hãy chọn trở thành một công dân số thông minh, tử tế và giữ vững sự tỉnh táo trước mọi luồng xoáy thông tin!</p>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="switchTab(2)">⬅ Quay lại</button>
+                <div></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 - Sản phẩm học tập môn Tin học lớp 12 | Thiết kế bởi Đinh Thị Minh Châu</p>
+        </footer>
+    </div>
+
+    <script>
+        function switchTab(index) {
+            const panes = document.querySelectorAll('.tab-pane');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            panes.forEach((pane, idx) => {
+                pane.classList.remove('active');
+                buttons[idx].classList.remove('active');
+            });
+
+            panes[index].classList.add('active');
+            buttons[index].classList.add('active');
+        }
+    </script>
+</body>
+</html>
