@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản Phẩm Cá Nhân - Nguyễn Đăng Hạnh - 12A13</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0f19;
+      --bg-card: rgba(17, 24, 39, 0.85);
+      --bg-card-hover: rgba(24, 34, 53, 0.95);
+      --cyan-neon: #00f0ff;
+      --green-neon: #00ff88;
+      --blue-accent: #3b82f6;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-glow: rgba(0, 240, 255, 0.25);
+      --border-light: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.55;
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(0, 240, 255, 0.06) 0%, transparent 35%),
+        radial-gradient(circle at 90% 60%, rgba(0, 255, 136, 0.05) 0%, transparent 35%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 15, 25, 0.9);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--cyan-neon);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan-neon);
+    }
+
+    .btn-print {
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid var(--cyan-neon);
+      color: var(--cyan-neon);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-print:hover {
+      background: var(--cyan-neon);
+      color: #0b0f19;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 45px 0 35px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--cyan-neon);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--cyan-neon) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .meta-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .meta-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      padding: 6px 14px;
+      border-radius: 8px;
+    }
+
+    .meta-item span {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .meta-item strong {
+      font-size: 0.92rem;
+      color: var(--cyan-neon);
+    }
+
+    .hero-img {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-glow);
+      aspect-ratio: 16/11;
+    }
+
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Section Global */
+    section {
+      padding: 40px 0;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 22px;
+      background: var(--cyan-neon);
+      border-radius: 2px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    /* Section 1: About */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+    }
+
+    .profile-sidebar {
+      text-align: center;
+    }
+
+    .avatar-wrap {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 14px;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--cyan-neon);
+    }
+
+    .profile-info {
+      text-align: left;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.88rem;
+      border-top: 1px solid var(--border-light);
+      padding-top: 14px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+    }
+
+    .info-row strong {
+      color: #fff;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      color: var(--cyan-neon);
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    /* Section 2: Theme */
+    .theme-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .theme-img-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      aspect-ratio: 16/10;
+    }
+
+    .theme-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Section 3: Career Plan */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .pillar-box h4 {
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .pillar-box p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .goal-card {
+      border-top: 3px solid var(--cyan-neon);
+    }
+
+    .goal-card.mid { border-color: var(--blue-accent); }
+    .goal-card.long { border-color: var(--green-neon); }
+
+    .goal-card h4 {
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .goal-card ul {
+      list-style-type: disc;
+      padding-left: 18px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Section 4: Roadmap */
+    .roadmap-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .roadmap-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--cyan-neon);
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+    }
+
+    .gallery-thumb {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-thumb img {
+      transform: scale(1.06);
+    }
+
+    .gallery-item p {
+      padding: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 28px 0;
+      margin-top: 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero, .about-layout, .theme-layout {
+        grid-template-columns: 1fr;
+      }
+      .pillars-grid, .goals-grid, .roadmap-list {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      header, .btn-print {
+        display: none !important;
+      }
+      .card, .roadmap-step, .gallery-item {
+        border: 1px solid #ddd !important;
+        background: #fff !important;
+        box-shadow: none !important;
+      }
+      .hero-title, .section-title, strong, h4 {
+        color: #000 !important;
+        -webkit-text-fill-color: #000 !important;
+      }
+      .text-muted, p, ul {
+        color: #444 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="brand">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          CYBERSECURITY_PORTFOLIO
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#about">Bản Thân</a></li>
+          <li><a href="#theme">Chủ Đề</a></li>
+          <li><a href="#career">Định Hướng Nghề</a></li>
+          <li><a href="#roadmap">Lộ Trình</a></li>
+          <li><a href="#gallery">Hình Ảnh</a></li>
+        </ul>
+
+        <button class="btn-print" onclick="window.print()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          In / PDF
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <div class="hero-badge">BÁO CÁO SẢN PHẨM CÁ NHÂN</div>
+        <h1 class="hero-title">Định Hướng Nghề Nghiệp: An Ninh Mạng</h1>
+        <p class="hero-subtitle">
+          Khát vọng trở thành chuyên gia bảo mật thông tin, bảo vệ hệ thống dữ liệu số trong thời kỳ chuyển đổi số.
+        </p>
+
+        <div class="meta-box">
+          <div class="meta-item">
+            <span>Học sinh</span>
+            <strong>Nguyễn Đăng Hạnh</strong>
+          </div>
+          <div class="meta-item">
+            <span>Lớp</span>
+            <strong>12A13</strong>
+          </div>
+          <div class="meta-item">
+            <span>Trường</span>
+            <strong>THPT Đắk Mil</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-img">
+        <img src="images/hero_cyber.jpg" alt="An ninh mạng" onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80'">
+      </div>
+    </section>
+
+    <!-- Section 1: Giới thiệu bản thân -->
+    <section id="about">
+      <h2 class="section-title">Giới Thiệu Về Bản Thân</h2>
+      <p class="section-desc">Thông tin cá nhân, tính cách và sở thích công nghệ.</p>
+
+      <div class="about-layout">
+        <!-- Sidebar profile -->
+        <div class="card profile-sidebar">
+          <div class="avatar-wrap">
+            <img src="images/avatar.jpg" alt="Nguyễn Đăng Hạnh">
+          </div>
+          <h3 style="font-size: 1.2rem; color: #fff;">Nguyễn Đăng Hạnh</h3>
+          <p style="font-family: 'Fira Code', monospace; color: var(--cyan-neon); font-size: 0.85rem; margin-top: 2px;">Lớp 12A13</p>
+
+          <div class="profile-info">
+            <div class="info-row">
+              <span>Đơn vị trường:</span>
+              <strong>THPT Đắk Mil</strong>
+            </div>
+            <div class="info-row">
+              <span>Ngoại ngữ:</span>
+              <strong>Tiếng Anh</strong>
+            </div>
+            <div class="info-row">
+              <span>Nghề chọn:</span>
+              <strong style="color: var(--cyan-neon);">An ninh mạng</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="card">
+            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;">Đặc điểm cá nhân & Niềm đam mê</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">
+              Em có niềm yêu thích đặc biệt với công nghệ thông tin và cách thức vận hành an toàn của mạng máy tính. 
+              Em rèn luyện cho mình tính kiên trì, tư duy phân tích logic và tinh thần trách nhiệm, luôn hướng tới mục tiêu trở thành một chuyên gia bảo mật có đạo đức (White Hat Hacker).
+            </p>
+            <div class="skill-tags">
+              <span class="tag">Mạng máy tính cơ bản</span>
+              <span class="tag">Hệ điều hành Linux</span>
+              <span class="tag">Lập trình Python</span>
+              <span class="tag">Tư duy phản biện</span>
+            </div>
+          </div>
+
+          <div class="card" style="border-left: 3px solid var(--cyan-neon);">
+            <p style="font-style: italic; color: #e5e7eb; font-size: 0.92rem;">
+              "Bảo mật không phải là đích đến, mà là một hành trình rèn luyện và nâng cấp liên tục."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Chủ đề -->
+    <section id="theme">
+      <h2 class="section-title">Chủ Đề: Vì Sao Chọn An Ninh Mạng?</h2>
+      <p class="section-desc">Ý nghĩa và vai trò của an ninh mạng trong bối cảnh số hóa hiện nay.</p>
+
+      <div class="theme-layout">
+        <div class="card">
+          <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 10px;">Bảo Vệ Tài Sản Dữ Liệu Thời Kỳ Số</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">
+            Khi các hệ thống tài chính, y tế, giáo dục và dữ liệu cá nhân đều đưa lên không gian mạng, nguy cơ bị tấn công bởi mã độc tống tiền (Ransomware), lừa đảo và rò rỉ dữ liệu ngày càng gia tăng.
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Lựa chọn ngành An ninh mạng giúp em thỏa mãn đam mê khám phá công nghệ, đồng thời gánh vác sứ mệnh bảo vệ an toàn thông tin cho cộng đồng và doanh nghiệp.
+          </p>
+        </div>
+
+        <div class="theme-img-wrap">
+          <img src="images/cyber_shield.jpg" alt="Lá chắn an ninh mạng" onerror="this.src='https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=700&q=80'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Kế hoạch định hướng nghề nghiệp -->
+    <section id="career">
+      <h2 class="section-title">Kế Hoạch Định Hướng Nghề Nghiệp</h2>
+      <p class="section-desc">Các hướng đi chuyên môn và mục tiêu cụ thể theo từng giai đoạn.</p>
+
+      <!-- 3 Hướng đi -->
+      <div class="pillars-grid">
+        <div class="card pillar-box">
+          <h4 style="color: #60a5fa;">1. Blue Team (Phòng thủ)</h4>
+          <p>Làm việc tại trung tâm điều hành an ninh mạng (SOC), giám sát lưu lượng mạng, phát hiện và ngăn chặn kịp thời các cuộc xâm nhập trái phép.</p>
+        </div>
+
+        <div class="card pillar-box">
+          <h4 style="color: #f87171;">2. Red Team (Tấn công đạo đức)</h4>
+          <p>Đóng vai trò kẻ tấn công (Pentester) để chủ động kiểm tra, rà quét và phát hiện các lỗ hổng bảo mật trước khi tin tặc thật sự khai thác.</p>
+        </div>
+
+        <div class="card pillar-box">
+          <h4 style="color: #c084fc;">3. Ứng Cứu & Điều Tra (DFIR)</h4>
+          <p>Điều tra các vụ việc rò rỉ thông tin, phân tích mã độc virus và phục hồi chứng cứ số phục vụ khắc phục sự cố an ninh mạng.</p>
+        </div>
+      </div>
+
+      <!-- Mục tiêu 3 giai đoạn -->
+      <div class="goals-grid">
+        <div class="card goal-card">
+          <h4>Ngắn hạn (1 - 2 năm)</h4>
+          <ul>
+            <li>Thi tốt nghiệp THPT đạt kết quả tốt tại trường THPT Đắk Mil.</li>
+            <li>Trúng tuyển đại học chuyên ngành An toàn Thông tin / CNTT.</li>
+            <li>Nắm chắc kiến thức mạng TCP/IP và hệ điều hành Linux.</li>
+            <li>Trau dồi vốn Tiếng Anh chuyên ngành.</li>
+          </ul>
+        </div>
+
+        <div class="card goal-card mid">
+          <h4>Trung hạn (3 - 5 năm)</h4>
+          <ul>
+            <li>Đạt các chứng chỉ nền tảng: CompTIA Security+, CEH / eJPT.</li>
+            <li>Thực hành giải các thử thách bảo mật CTF (Capture The Flag).</li>
+            <li>Thực tập vị trí SOC Analyst hoặc Junior Pentester tại doanh nghiệp.</li>
+          </ul>
+        </div>
+
+        <div class="card goal-card long">
+          <h4>Dài hạn (5 - 10 năm)</h4>
+          <ul>
+            <li>Chinh phục các chứng chỉ chuyên sâu: OSCP, CISSP.</li>
+            <li>Trở thành Kỹ sư an ninh mạng cấp cao (Senior Security Engineer).</li>
+            <li>Đóng góp tích cực cho cộng đồng an toàn thông tin Việt Nam.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Lộ trình phát triển -->
+    <section id="roadmap">
+      <h2 class="section-title">Lộ Trình Từng Bước (Roadmap)</h2>
+      <p class="section-desc">Kế hoạch rèn luyện 4 năm đại học.</p>
+
+      <div class="roadmap-list">
+        <div class="roadmap-step">
+          <div class="step-num">GIAI ĐOẠN 1</div>
+          <div class="step-title">Kiến Thức Nền Tảng</div>
+          <div class="step-desc">Học mạng máy tính, hệ điều hành Linux/Windows và lập trình Python cơ bản.</div>
+        </div>
+
+        <div class="roadmap-step">
+          <div class="step-num">GIAI ĐOẠN 2</div>
+          <div class="step-title">An Toàn Hệ Thống</div>
+          <div class="step-desc">Nghiên cứu mật mã học, các lỗ hổng Web OWASP và rèn luyện lab thực hành.</div>
+        </div>
+
+        <div class="roadmap-step">
+          <div class="step-num">GIAI ĐOẠN 3</div>
+          <div class="step-title">Thực Chiến & Chứng Chỉ</div>
+          <div class="step-desc">Tham gia thi đấu CTF sinh viên và ôn thi chứng chỉ CompTIA Security+.</div>
+        </div>
+
+        <div class="roadmap-step">
+          <div class="step-num">GIAI ĐOẠN 4</div>
+          <div class="step-title">Thực Tập & Đi Làm</div>
+          <div class="step-desc">Thực tập chính thức tại doanh nghiệp an ninh mạng, tốt nghiệp và đi làm.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Thư viện hình ảnh minh họa -->
+    <section id="gallery">
+      <h2 class="section-title">Hình Ảnh Minh Họa Ngành Nghề</h2>
+      <p class="section-desc">Môi trường làm việc và công việc thực tế của chuyên viên An ninh mạng.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-thumb">
+            <img src="images/soc_center.jpg" alt="Trung tâm SOC" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=500&q=80'">
+          </div>
+          <p>Trung Tâm Giám Sát SOC</p>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-thumb">
+            <img src="images/ethical_hacking.jpg" alt="Ethical Hacker" onerror="this.src='https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=500&q=80'">
+          </div>
+          <p>Kiểm Thử Xâm Nhập (Pentest)</p>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-thumb">
+            <img src="images/cyber_shield.jpg" alt="Khiên bảo vệ mạng" onerror="this.src='https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=500&q=80'">
+          </div>
+          <p>Bảo Vệ Dữ Liệu Đám Mây</p>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-thumb">
+            <img src="images/network_code.jpg" alt="Phân tích mã độc" onerror="this.src='https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=500&q=80'">
+          </div>
+          <p>Phân Tích Dữ Liệu Mạng</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Sản phẩm cá nhân: <strong>Định hướng nghề nghiệp An ninh mạng</strong></p>
+      <p style="margin-top: 4px; font-size: 0.8rem; color: #6b7280;">Học sinh: Nguyễn Đăng Hạnh &bull; Lớp 12A13 &bull; Trường THPT Đắk Mil</p>
+    </div>
+  </footer>
+
+</body>
+</html>

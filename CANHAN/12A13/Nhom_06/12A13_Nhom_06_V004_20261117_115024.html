@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Định Hướng Nghề Nghiệp - Hoàng Kỳ Ngân</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --text: #334155;
+            --muted: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+        }
+
+        /* Banner / Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0ea5e9 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            opacity: 0.95;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1040px;
+            margin: -45px auto 50px;
+            padding: 0 20px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 32px;
+            align-items: center;
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+        }
+
+        /* Interactive Image Uploader Box */
+        .img-upload-box {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #e2e8f0;
+            border: 3px dashed #93c5fd;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .img-upload-box:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .avatar-box {
+            width: 240px;
+            height: 270px;
+        }
+
+        .banner-img-box {
+            width: 100%;
+            height: 210px;
+            margin-bottom: 16px;
+        }
+
+        .img-upload-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .upload-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            text-align: center;
+            padding: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .img-upload-box:hover .upload-overlay {
+            opacity: 1;
+        }
+
+        .upload-hint-pill {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(15, 23, 42, 0.78);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        input[type="file"].hidden-input {
+            display: none;
+        }
+
+        .profile-info h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-weight: 600;
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .info-item {
+            background: var(--primary-light);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-item span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .info-item strong {
+            font-size: 1.05rem;
+            color: var(--dark);
+        }
+
+        .bio-text {
+            background: #f8fafc;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 0.98rem;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+            margin-bottom: 28px;
+            border: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .section-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .section-header h3 {
+            font-size: 1.35rem;
+        }
+
+        /* Career Cards Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .career-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            background: #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .career-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .career-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        /* SWOT Grid */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .swot-box {
+            padding: 20px;
+            border-radius: 14px;
+        }
+
+        .swot-s { background: #ecfdf5; border-left: 5px solid #10b981; }
+        .swot-w { background: #fffbeb; border-left: 5px solid #f59e0b; }
+        .swot-o { background: #eff6ff; border-left: 5px solid #3b82f6; }
+        .swot-t { background: #fef2f2; border-left: 5px solid #ef4444; }
+
+        .swot-box h4 { margin-bottom: 8px; font-size: 1.05rem; }
+        .swot-box ul { padding-left: 20px; font-size: 0.95rem; }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 28px;
+            border-left: 3px solid #bfdbfe;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .timeline-item {
+            position: relative;
+            background: #f8fafc;
+            padding: 18px 22px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -37px;
+            top: 22px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #bfdbfe;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 999px;
+            margin-bottom: 6px;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .toolbar span {
+            font-size: 0.9rem;
+        }
+
+        .btn-reset {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-reset:hover {
+            background: #dc2626;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 820px) {
+            .profile-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .avatar-box {
+                margin: 0 auto;
+            }
+            .grid-3, .swot-grid, .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="badge">HỒ SƠ ĐỊNH HƯỚNG NGHỀ NGHIỆP CÁ NHÂN</div>
+        <h1>KẾ HOẠCH ĐỊNH HƯỚNG NGHỀ NGHIỆP BẢN THÂN</h1>
+        <p>Hành trình khám phá năng lực tổ hợp khối A00 (Toán – Vật Lí – Hóa Học) và chinh phục ước mơ giảng đường đại học</p>
+    </header>
+
+    <div class="container">
+        <!-- Thanh hướng dẫn đổi ảnh -->
+        <div class="toolbar">
+            <span>💡 <strong>Mẹo sử dụng:</strong> Nhấp trực tiếp vào bất kỳ hình ảnh nào bên dưới để tải lên và thay đổi ảnh cá nhân/ảnh minh họa của bạn (tự động lưu trên trình duyệt).</span>
+            <button class="btn-reset" onclick="resetAllImages()">Khôi phục ảnh mặc định</button>
+        </div>
+
+        <!-- Phần 1: Giới thiệu bản thân -->
+        <section class="profile-card">
+            <div>
+                <div class="img-upload-box avatar-box" onclick="triggerUpload('avatarInput')" title="Nhấp để đổi ảnh đại diện">
+                    <img id="avatarImg" data-default="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='450' viewBox='0 0 400 450'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23dbeafe'/%3E%3Cstop offset='100%25' stop-color='%2393c5fd'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='450' fill='url(%23g1)'/%3E%3Ccircle cx='200' cy='165' r='68' fill='%232563eb' opacity='0.85'/%3E%3Cpath d='M90 385 C90 295 310 295 310 385 Z' fill='%232563eb' opacity='0.85'/%3E%3Ctext x='200' y='425' font-family='sans-serif' font-size='18' font-weight='bold' fill='%231e3a8a' text-anchor='middle'%3EẢNH CHÂN DUNG CÁ NHÂN%3C/text%3E%3C/svg%3E" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='450' viewBox='0 0 400 450'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23dbeafe'/%3E%3Cstop offset='100%25' stop-color='%2393c5fd'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='450' fill='url(%23g1)'/%3E%3Ccircle cx='200' cy='165' r='68' fill='%232563eb' opacity='0.85'/%3E%3Cpath d='M90 385 C90 295 310 295 310 385 Z' fill='%232563eb' opacity='0.85'/%3E%3Ctext x='200' y='425' font-family='sans-serif' font-size='18' font-weight='bold' fill='%231e3a8a' text-anchor='middle'%3EẢNH CHÂN DUNG CÁ NHÂN%3C/text%3E%3C/svg%3E" alt="Ảnh đại diện Hoàng Kỳ Ngân">
+                    <div class="upload-overlay">📷 Nhấp để chọn ảnh đại diện mới</div>
+                    <span class="upload-hint-pill">Đổi ảnh</span>
+                </div>
+                <input type="file" id="avatarInput" class="hidden-input" accept="image/*" onchange="handleImageChange(event, 'avatarImg', 'ngan_avatar')">
+            </div>
+
+            <div class="profile-info">
+                <h2>Hoàng Kỳ Ngân</h2>
+                <div class="subtitle">Học sinh lớp 12A13 • Trường THPT Đắk Mil</div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span>Họ và tên</span>
+                        <strong>Hoàng Kỳ Ngân</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Lớp</span>
+                        <strong>12A13</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Đơn vị học tập</span>
+                        <strong>Trường THPT Đắk Mil</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Tổ hợp xét tuyển</span>
+                        <strong>Khối A00 (Toán - Lí - Hóa)</strong>
+                    </div>
+                </div>
+
+                <div class="bio-text">
+                    <strong>Giới thiệu bản thân:</strong> Xin chào! Mình là Hoàng Kỳ Ngân, học sinh lớp 12A13 tại Trường THPT Đắk Mil. Với niềm yêu thích các môn khoa học tự nhiên thuộc tổ hợp <strong>A00 (Toán học, Vật lí, Hóa học)</strong>, mình có thế mạnh về tư duy logic, phân tích số liệu và giải quyết vấn đề có hệ thống. Mục tiêu của mình trong năm học cuối cấp là bứt phá điểm số kỳ thi Tốt nghiệp THPT và Đánh giá năng lực để trúng tuyển vào ngành học đúng với đam mê.
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần 2: Phân tích bản thân (SWOT) -->
+        <section class="section-card">
+            <div class="section-header">
+                <div class="section-icon">1</div>
+                <h3>Nhận Diện Năng Lực & Phân Tích SWOT Cá Nhân</h3>
+            </div>
+            <div class="swot-grid">
+                <div class="swot-box swot-s">
+                    <h4>💪 Điểm mạnh (Strengths)</h4>
+                    <ul>
+                        <li>Tư duy logic, khả năng tính toán và suy luận khoa học tốt ở tổ hợp A00.</li>
+                        <li>Tinh thần tự giác cao, có kế hoạch học tập rõ ràng theo từng giai đoạn.</li>
+                        <li>Kiên trì, cẩn thận khi xử lý các bài toán thực nghiệm và dữ liệu.</li>
+                    </ul>
+                </div>
+                <div class="swot-box swot-w">
+                    <h4>🎯 Điểm cần cải thiện (Weaknesses)</h4>
+                    <ul>
+                        <li>Đôi khi còn áp lực tâm lý trước các kỳ thi thử quan trọng.</li>
+                        <li>Cần trau dồi thêm kỹ năng giao tiếp tiếng Anh chuyên ngành và thuyết trình.</li>
+                    </ul>
+                </div>
+                <div class="swot-box swot-o">
+                    <h4>🚀 Cơ hội (Opportunities)</h4>
+                    <ul>
+                        <li>Khối A00 mở rộng cánh cửa vào nhiều ngành mũi nhọn (Công nghệ, Kỹ thuật, Kinh tế - Tài chính).</li>
+                        <li>Sự đồng hành tận tâm của thầy cô Trường THPT Đắk Mil và nguồn tài liệu học trực tuyến phong phú.</li>
+                    </ul>
+                </div>
+                <div class="swot-box swot-t">
+                    <h4>⚡ Thách thức (Threats)</h4>
+                    <ul>
+                        <li>Tỷ lệ cạnh tranh cao ở các trường đại học top đầu.</li>
+                        <li>Sự thay đổi nhanh chóng của công nghệ đòi hỏi khả năng thích ứng liên tục.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần 3: Định hướng nhóm ngành nghề khối A00 (Có hình ảnh minh họa đổi được) -->
+        <section class="section-card">
+            <div class="section-header">
+                <div class="section-icon">2</div>
+                <h3>Nhóm Ngành Nghề Mục Tiêu Phù Hợp Tổ Hợp A00</h3>
+            </div>
+
+            <div class="grid-3">
+                <!-- Ngành 1 -->
+                <div class="career-card">
+                    <div class="img-upload-box banner-img-box" onclick="triggerUpload('careerInput1')" title="Nhấp để đổi ảnh minh họa">
+                        <img id="careerImg1" data-default="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='c1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%231e3a8a'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c1)'/%3E%3Crect x='150' y='90' width='300' height='180' rx='14' fill='%23ffffff' opacity='0.18'/%3E%3Ctext x='300' y='190' font-family='monospace' font-size='44' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3E%26lt;AI / CODE /%26gt;%3C/text%3E%3Ctext x='300' y='320' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23e0f2fe' text-anchor='middle'%3ECÔNG NGHỆ THÔNG TIN %26amp; AI%3C/text%3E%3C/svg%3E" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='c1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%231e3a8a'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c1)'/%3E%3Crect x='150' y='90' width='300' height='180' rx='14' fill='%23ffffff' opacity='0.18'/%3E%3Ctext x='300' y='190' font-family='monospace' font-size='44' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3E%26lt;AI / CODE /%26gt;%3C/text%3E%3Ctext x='300' y='320' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23e0f2fe' text-anchor='middle'%3ECÔNG NGHỆ THÔNG TIN %26amp; AI%3C/text%3E%3C/svg%3E" alt="Công nghệ thông tin">
+                        <div class="upload-overlay">📷 Nhấp để đổi ảnh minh họa</div>
+                        <span class="upload-hint-pill">Đổi ảnh</span>
+                    </div>
+                    <input type="file" id="careerInput1" class="hidden-input" accept="image/*" onchange="handleImageChange(event, 'careerImg1', 'ngan_career1')">
+
+                    <h4>Công Nghệ Thông Tin & Khoa Học Dữ Liệu</h4>
+                    <p>Phát huy tối đa nền tảng Toán học và tư duy thuật toán để phát triển phần mềm, trí tuệ nhân tạo (AI) và phân tích dữ liệu lớn.</p>
+                    <div class="tag-group">
+                        <span class="tag">Kỹ thuật phần mềm</span>
+                        <span class="tag">Khoa học dữ liệu</span>
+                    </div>
+                </div>
+
+                <!-- Ngành 2 -->
+                <div class="career-card">
+                    <div class="img-upload-box banner-img-box" onclick="triggerUpload('careerInput2')" title="Nhấp để đổi ảnh minh họa">
+                        <img id="careerImg2" data-default="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='c2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%230f766e'/%3E%3Cstop offset='100%25' stop-color='%2310b981'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c2)'/%3E%3Ccircle cx='300' cy='175' r='70' fill='none' stroke='%23ffffff' stroke-width='12' stroke-dasharray='26 14'/%3E%3Ccircle cx='300' cy='175' r='28' fill='%23ffffff' opacity='0.85'/%3E%3Ctext x='300' y='320' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23ecfdf5' text-anchor='middle'%3EKỸ THUẬT %26amp; TỰ ĐỘNG HÓA%3C/text%3E%3C/svg%3E" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='c2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%230f766e'/%3E%3Cstop offset='100%25' stop-color='%2310b981'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c2)'/%3E%3Ccircle cx='300' cy='175' r='70' fill='none' stroke='%23ffffff' stroke-width='12' stroke-dasharray='26 14'/%3E%3Ccircle cx='300' cy='175' r='28' fill='%23ffffff' opacity='0.85'/%3E%3Ctext x='300' y='320' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23ecfdf5' text-anchor='middle'%3EKỸ THUẬT %26amp; TỰ ĐỘNG HÓA%3C/text%3E%3C/svg%3E" alt="Kỹ thuật và Tự động hóa">
+                        <div class="upload-overlay">📷 Nhấp để đổi ảnh minh họa</div>
+                        <span class="upload-hint-pill">Đổi ảnh</span>
+                    </div>
+                    <input type="file" id="careerInput2" class="hidden-input" accept="image/*" onchange="handleImageChange(event, 'careerImg2', 'ngan_career2')">
+
+                    <h4>Kỹ Thuật Điều Khiển & Công Nghệ Hóa Học</h4>
+                    <p>Ứng dụng kiến thức Vật lí và Hóa học vào thiết kế hệ thống tự động hóa, bán dẫn, vật liệu mới và công nghệ sản xuất hiện đại.</p>
+                    <div class="tag-group">
+                        <span class="tag">Tự động hóa</span>
+                        <span class="tag">Kỹ thuật hóa học</span>
+                    </div>
+                </div>
+
+                <!-- Ngành 3 -->
+                <div class="career-card">
+                    <div class="img-upload-box banner-img-box" onclick="triggerUpload('careerInput3')" title="Nhấp để đổi ảnh minh họa">
+                        <img id="careerImg3" data-default="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='c3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23b45309'/%3E%3Cstop offset='100%25' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c3)'/%3E%3Crect x='180' y='190' width='45' height='80' rx='6' fill='%23ffffff' opacity='0.85'/%3E%3Crect x='250' y='145' width='45' height='125' rx='6' fill='%23ffffff' opacity='0.9'/%3E%3Crect x='320' y='105' width='45' height='165' rx='6' fill='%23ffffff'/%3E%3Ctext x='300' y='320' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23fef3c7' text-anchor='middle'%3EKINH TẾ %26amp; TÀI CHÍNH SỐ%3C/text%3E%3C/svg%3E" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='c3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23b45309'/%3E%3Cstop offset='100%25' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23c3)'/%3E%3Crect x='180' y='190' width='45' height='80' rx='6' fill='%23ffffff' opacity='0.85'/%3E%3Crect x='250' y='145' width='45' height='125' rx='6' fill='%23ffffff' opacity='0.9'/%3E%3Crect x='320' y='105' width='45' height='165' rx='6' fill='%23ffffff'/%3E%3Ctext x='300' y='320' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23fef3c7' text-anchor='middle'%3EKINH TẾ %26amp; TÀI CHÍNH SỐ%3C/text%3E%3C/svg%3E" alt="Kinh tế và Tài chính">
+                        <div class="upload-overlay">📷 Nhấp để đổi ảnh minh họa</div>
+                        <span class="upload-hint-pill">Đổi ảnh</span>
+                    </div>
+                    <input type="file" id="careerInput3" class="hidden-input" accept="image/*" onchange="handleImageChange(event, 'careerImg3', 'ngan_career3')">
+
+                    <h4>Tài Chính – Ngân Hàng & Kinh Tế Lượng</h4>
+                    <p>Kết hợp tư duy định lượng của khối A00 với kiến thức kinh tế hiện đại để phân tích đầu tư, quản trị rủi ro và công nghệ tài chính (Fintech).</p>
+                    <div class="tag-group">
+                        <span class="tag">Fintech</span>
+                        <span class="tag">Tài chính doanh nghiệp</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần 4: Lộ trình hành động cụ thể -->
+        <section class="section-card">
+            <div class="section-header">
+                <div class="section-icon">3</div>
+                <h3>Lộ Trình Hành Động & Mục Tiêu Từng Giai Đoạn</h3>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="time-badge">Giai đoạn 1: Học kỳ I & II Lớp 12 (2026 - 2027)</span>
+                    <h4>Tổng ôn kiến thức trọng tâm & Luyện đề tổ hợp A00</h4>
+                    <p>Hệ thống hóa toàn bộ chuyên đề Toán, Vật lí, Hóa học theo cấu trúc đề thi mới; duy trì điểm trung bình học tập trên 8.5 và tham gia các đợt thi thử để rèn tâm lý phòng thi.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">Giai đoạn 2: Tháng 3 - Tháng 7/2027</span>
+                    <h4>Chinh phục kỳ thi Đánh giá năng lực & Tốt nghiệp THPT</h4>
+                    <p>Hoàn thành xuất sắc kỳ thi Tốt nghiệp THPT tại điểm thi Đắk Mil với mục tiêu đạt từ 25.5+ điểm khối A00; đăng ký nguyện vọng xét tuyển thông minh vào các trường đại học mục tiêu.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">Giai đoạn 3: Năm 1 - Năm 2 Đại học</span>
+                    <h4>Xây dựng nền tảng chuyên ngành & Ngoại ngữ</h4>
+                    <p>Nhanh chóng thích nghi với môi trường đại học, đạt chứng chỉ tiếng Anh (IELTS 6.5+ hoặc TOEIC 750+), tham gia câu lạc bộ học thuật và nghiên cứu khoa học sinh viên.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">Giai đoạn 4: Năm 3 - Năm 4 Đại học & Ra trường</span>
+                    <h4>Thực tập doanh nghiệp & Khởi đầu sự nghiệp</h4>
+                    <p>Thực tập tại các doanh nghiệp công nghệ/kỹ thuật hoặc tài chính uy tín để tích lũy kinh nghiệm thực chiến, tốt nghiệp loại Giỏi và sẵn sàng đảm nhận vị trí chuyên viên chính thức.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        Sản phẩm cá nhân môn Hoạt động trải nghiệm, hướng nghiệp • Thiết kế bởi <strong>Hoàng Kỳ Ngân - Lớp 12A13 - Trường THPT Đắk Mil</strong>
+    </footer>
+
+    <script>
+        function triggerUpload(inputId) {
+            document.getElementById(inputId).click();
+        }
+
+        function handleImageChange(event, imgId, storageKey) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Data = e.target.result;
+                document.getElementById(imgId).src = base64Data;
+                try {
+                    localStorage.setItem(storageKey, base64Data);
+                } catch (err) {
+                    console.warn("Ảnh dung lượng lớn nên chỉ hiển thị trong phiên hiện tại:", err);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetAllImages() {
+            const items = [
+                { imgId: 'avatarImg', key: 'ngan_avatar' },
+                { imgId: 'careerImg1', key: 'ngan_career1' },
+                { imgId: 'careerImg2', key: 'ngan_career2' },
+                { imgId: 'careerImg3', key: 'ngan_career3' }
+            ];
+            items.forEach(item => {
+                const imgEl = document.getElementById(item.imgId);
+                imgEl.src = imgEl.getAttribute('data-default');
+                localStorage.removeItem(item.key);
+            });
+        }
+
+        // Khôi phục ảnh đã lưu khi mở lại trang
+        window.addEventListener('DOMContentLoaded', () => {
+            const items = [
+                { imgId: 'avatarImg', key: 'ngan_avatar' },
+                { imgId: 'careerImg1', key: 'ngan_career1' },
+                { imgId: 'careerImg2', key: 'ngan_career2' },
+                { imgId: 'careerImg3', key: 'ngan_career3' }
+            ];
+            items.forEach(item => {
+                const saved = localStorage.getItem(item.key);
+                if (saved) {
+                    document.getElementById(item.imgId).src = saved;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
