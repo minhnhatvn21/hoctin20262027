@@ -76,6 +76,14 @@ box-shadow:0 8px 0 var(--c),0 14px 24px rgba(0,0,0,.08);transition:transform .25
 box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 .view-btn:hover{transform:scale(1.08) rotate(-2deg)}
 .view-btn:active{transform:translateY(3px);box-shadow:none}
+.cards-grid.wide{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+.file-list{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;padding:4px 6px 8px 2px}
+.file-item{display:flex;align-items:center;gap:10px;text-align:left;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9em;padding:8px 12px;border-radius:14px;background:#fff;color:var(--ink);box-shadow:0 3px 0 rgba(0,0,0,.08);transition:.2s}
+.file-item:hover{transform:translateX(5px);background:var(--c);color:#fff}
+.file-item .ver{background:var(--c);color:#fff;font-family:'Baloo 2',cursive;font-size:.85em;padding:2px 9px;border-radius:50px;flex-shrink:0}
+.file-item:hover .ver{background:#fff;color:var(--c)}
+.file-item .ft{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.file-list::-webkit-scrollbar{width:6px}.file-list::-webkit-scrollbar-thumb{background:var(--c);border-radius:6px}
 .empty-state{text-align:center;padding:30px;background:#fff;border-radius:22px;font-weight:700;color:#a99fcb;border:3px dashed #d9d0f5}
 /* modal */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(59,46,90,.75);backdrop-filter:blur(6px);z-index:2000}
@@ -257,75 +265,131 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
             </div>
 
             <h2 class="section-title canhan"><span class="icon">👤</span> Bài Cá Nhân</h2>
-            <div class="cards-grid">
+            <div class="cards-grid wide">
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 01</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 01</h3><span class="badge">7 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_01_V008</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V008_20261117_000238.html', '12A11 - Nhóm 01 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_01_V008_20261117_000238.html" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V008_20261117_000238.html', '12A11 - Nhóm 01 · Định Hướng Nghề Nghiệp &amp; Văn Hóa Số | Đặng Thị Thanh Uyên - 12A11')"><span class="ver">V008</span><span class="ft">Định Hướng Nghề Nghiệp &amp; Văn Hóa Số | Đặng Thị Thanh Uyên - 12A11</span></button>
+                        <button class="file-item" title="12A11_Nhom_01_V007_20261116_232047.html" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V007_20261116_232047.html', '12A11 - Nhóm 01 · CAREER INSIGHT - Khám phá và định hướng nghề nghiệp')"><span class="ver">V007</span><span class="ft">CAREER INSIGHT - Khám phá và định hướng nghề nghiệp</span></button>
+                        <button class="file-item" title="12A11_Nhom_01_V006_20261116_225504.html" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V006_20261116_225504.html', '12A11 - Nhóm 01 · Kế hoạch Định hướng Nghề nghiệp | Nguyễn Văn Gia Huy - 12A11')"><span class="ver">V006</span><span class="ft">Kế hoạch Định hướng Nghề nghiệp | Nguyễn Văn Gia Huy - 12A11</span></button>
+                        <button class="file-item" title="12A11_Nhom_01_V005_20261116_210455.html" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V005_20261116_210455.html', '12A11 - Nhóm 01 · Hồ sơ cá nhân - Võ Thị Quỳnh Anh')"><span class="ver">V005</span><span class="ft">Hồ sơ cá nhân - Võ Thị Quỳnh Anh</span></button>
+                        <button class="file-item" title="12A11_Nhom_01_V004_20261116_204548.html" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V004_20261116_204548.html', '12A11 - Nhóm 01 · Hồ Sơ &amp; Bài Viết - Nguyễn Thị Thuỳ Anh')"><span class="ver">V004</span><span class="ft">Hồ Sơ &amp; Bài Viết - Nguyễn Thị Thuỳ Anh</span></button>
+                        <button class="file-item" title="12A11_Nhom_01_V003_20261116_000814.html" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V003_20261116_000814.html', '12A11 - Nhóm 01 · Bài V003')"><span class="ver">V003</span><span class="ft">Bài V003</span></button>
+                        <button class="file-item" title="12A11_Nhom_01_V002_20261115_211330.html" onclick="openViewer('CANHAN/12A11/Nhom_01/12A11_Nhom_01_V002_20261115_211330.html', '12A11 - Nhóm 01 · Kế Hoạch Định Hướng Nghề Nghiệp | Phân Tích Thị Trường &amp; Bán Hàng O...')"><span class="ver">V002</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp | Phân Tích Thị Trường &amp; Bán Hàng O...</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 02</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 02</h3><span class="badge">4 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_02_V005</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_02/12A11_Nhom_02_V005_20261116_225052.html', '12A11 - Nhóm 02 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_02_V005_20261116_225052.html" onclick="openViewer('CANHAN/12A11/Nhom_02/12A11_Nhom_02_V005_20261116_225052.html', '12A11 - Nhóm 02 · Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Thị Thùy Chi - 12A11 (Khối...')"><span class="ver">V005</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Thị Thùy Chi - 12A11 (Khối...</span></button>
+                        <button class="file-item" title="12A11_Nhom_02_V004_20261116_202612.html" onclick="openViewer('CANHAN/12A11/Nhom_02/12A11_Nhom_02_V004_20261116_202612.html', '12A11 - Nhóm 02 · Văn Hóa Ứng Xử Trên Không Gian Mạng - Huỳnh Gia Băng')"><span class="ver">V004</span><span class="ft">Văn Hóa Ứng Xử Trên Không Gian Mạng - Huỳnh Gia Băng</span></button>
+                        <button class="file-item" title="12A11_Nhom_02_V003_20261116_200450.html" onclick="openViewer('CANHAN/12A11/Nhom_02/12A11_Nhom_02_V003_20261116_200450.html', '12A11 - Nhóm 02 · Sản phẩm cá nhân - Lớp 12A11 | Ứng xử văn minh trên không gian mạng')"><span class="ver">V003</span><span class="ft">Sản phẩm cá nhân - Lớp 12A11 | Ứng xử văn minh trên không gian mạng</span></button>
+                        <button class="file-item" title="12A11_Nhom_02_V002_20261112_000101.html" onclick="openViewer('CANHAN/12A11/Nhom_02/12A11_Nhom_02_V002_20261112_000101.html', '12A11 - Nhóm 02 · Hồ Sơ Cá Nhân &amp; Định Hướng Tương Lai')"><span class="ver">V002</span><span class="ft">Hồ Sơ Cá Nhân &amp; Định Hướng Tương Lai</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 03</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 03</h3><span class="badge">6 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_03_V007</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_03/12A11_Nhom_03_V007_20261117_002142.html', '12A11 - Nhóm 03 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_03_V007_20261117_002142.html" onclick="openViewer('CANHAN/12A11/Nhom_03/12A11_Nhom_03_V007_20261117_002142.html', '12A11 - Nhóm 03 · Ứng xử văn minh trên không gian mạng')"><span class="ver">V007</span><span class="ft">Ứng xử văn minh trên không gian mạng</span></button>
+                        <button class="file-item" title="12A11_Nhom_03_V006_20261116_220538.html" onclick="openViewer('CANHAN/12A11/Nhom_03/12A11_Nhom_03_V006_20261116_220538.html', '12A11 - Nhóm 03 · Kế Hoạch Định Hướng Nghề Nghiệp Tương Lai | Trần Thảo Nguyên')"><span class="ver">V006</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp Tương Lai | Trần Thảo Nguyên</span></button>
+                        <button class="file-item" title="12A11_Nhom_03_V005_20261116_215230.html" onclick="openViewer('CANHAN/12A11/Nhom_03/12A11_Nhom_03_V005_20261116_215230.html', '12A11 - Nhóm 03 · Nguyễn Thị Bảo Ngọc | Hành trình tuổi 18')"><span class="ver">V005</span><span class="ft">Nguyễn Thị Bảo Ngọc | Hành trình tuổi 18</span></button>
+                        <button class="file-item" title="12A11_Nhom_03_V004_20261116_212107.html" onclick="openViewer('CANHAN/12A11/Nhom_03/12A11_Nhom_03_V004_20261116_212107.html', '12A11 - Nhóm 03 · Nguyễn Thị Bảo Ngọc | Hành trình tuổi 18')"><span class="ver">V004</span><span class="ft">Nguyễn Thị Bảo Ngọc | Hành trình tuổi 18</span></button>
+                        <button class="file-item" title="12A11_Nhom_03_V003_20261116_210432.html" onclick="openViewer('CANHAN/12A11/Nhom_03/12A11_Nhom_03_V003_20261116_210432.html', '12A11 - Nhóm 03 · Kế Hoạch Định Hướng Nghề Nghiệp | Vũ Minh Thanh - Logistics &amp; Suppl...')"><span class="ver">V003</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp | Vũ Minh Thanh - Logistics &amp; Suppl...</span></button>
+                        <button class="file-item" title="12A11_Nhom_03_V002_20261112_203334.html" onclick="openViewer('CANHAN/12A11/Nhom_03/12A11_Nhom_03_V002_20261112_203334.html', '12A11 - Nhóm 03 · Le_Thuy_12A11_html | Hồ Sơ Cá Nhân &amp; Định Hướng Nghề Nghiệp')"><span class="ver">V002</span><span class="ft">Le_Thuy_12A11_html | Hồ Sơ Cá Nhân &amp; Định Hướng Nghề Nghiệp</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 04</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 04</h3><span class="badge">6 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_04_V007</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_04/12A11_Nhom_04_V007_20261117_002301.html', '12A11 - Nhóm 04 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_04_V007_20261117_002301.html" onclick="openViewer('CANHAN/12A11/Nhom_04/12A11_Nhom_04_V007_20261117_002301.html', '12A11 - Nhóm 04 · Ứng xử văn minh trên không gian mạng')"><span class="ver">V007</span><span class="ft">Ứng xử văn minh trên không gian mạng</span></button>
+                        <button class="file-item" title="12A11_Nhom_04_V006_20261116_224733.html" onclick="openViewer('CANHAN/12A11/Nhom_04/12A11_Nhom_04_V006_20261116_224733.html', '12A11 - Nhóm 04 · Nguyễn Trần Hà Nhi | Dấu ấn số')"><span class="ver">V006</span><span class="ft">Nguyễn Trần Hà Nhi | Dấu ấn số</span></button>
+                        <button class="file-item" title="12A11_Nhom_04_V005_20261116_223652.html" onclick="openViewer('CANHAN/12A11/Nhom_04/12A11_Nhom_04_V005_20261116_223652.html', '12A11 - Nhóm 04 · Hồ Sơ Cá Nhân - Phạm Thị Thái Hòa | 12A11 THPT Đắk Mil')"><span class="ver">V005</span><span class="ft">Hồ Sơ Cá Nhân - Phạm Thị Thái Hòa | 12A11 THPT Đắk Mil</span></button>
+                        <button class="file-item" title="12A11_Nhom_04_V004_20261116_215522.html" onclick="openViewer('CANHAN/12A11/Nhom_04/12A11_Nhom_04_V004_20261116_215522.html', '12A11 - Nhóm 04 · Hồ Phương Anh - 12A11 | Personal Portfolio')"><span class="ver">V004</span><span class="ft">Hồ Phương Anh - 12A11 | Personal Portfolio</span></button>
+                        <button class="file-item" title="12A11_Nhom_04_V003_20261116_211208.html" onclick="openViewer('CANHAN/12A11/Nhom_04/12A11_Nhom_04_V003_20261116_211208.html', '12A11 - Nhóm 04 · Bùi Bình Nguyên | 12A11 — Future Mobility')"><span class="ver">V003</span><span class="ft">Bùi Bình Nguyên | 12A11 — Future Mobility</span></button>
+                        <button class="file-item" title="12A11_Nhom_04_V002_20261115_195150.html" onclick="openViewer('CANHAN/12A11/Nhom_04/12A11_Nhom_04_V002_20261115_195150.html', '12A11 - Nhóm 04 · Bùi Bình Nguyên | 12A11 — Future Mobility')"><span class="ver">V002</span><span class="ft">Bùi Bình Nguyên | 12A11 — Future Mobility</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 05</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 05</h3><span class="badge">8 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_05_V009</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V009_20261116_224706.html', '12A11 - Nhóm 05 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_05_V009_20261116_224706.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V009_20261116_224706.html', '12A11 - Nhóm 05 · Hồ Sơ Cá Nhân &amp; Văn Hóa Ứng Xử Không Gian Mạng')"><span class="ver">V009</span><span class="ft">Hồ Sơ Cá Nhân &amp; Văn Hóa Ứng Xử Không Gian Mạng</span></button>
+                        <button class="file-item" title="12A11_Nhom_05_V008_20261116_224014.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V008_20261116_224014.html', '12A11 - Nhóm 05 · VĂN THỊ ANH THƯ - Lớp 12A11 (Bầu Trời Đêm Tuyết Rơi)')"><span class="ver">V008</span><span class="ft">VĂN THỊ ANH THƯ - Lớp 12A11 (Bầu Trời Đêm Tuyết Rơi)</span></button>
+                        <button class="file-item" title="12A11_Nhom_05_V007_20261116_222845.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V007_20261116_222845.html', '12A11 - Nhóm 05 · VĂN THỊ ANH THƯ - Lớp 12A11 (Bầu Trời Đêm Tuyết Rơi)')"><span class="ver">V007</span><span class="ft">VĂN THỊ ANH THƯ - Lớp 12A11 (Bầu Trời Đêm Tuyết Rơi)</span></button>
+                        <button class="file-item" title="12A11_Nhom_05_V006_20261116_221158.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V006_20261116_221158.html', '12A11 - Nhóm 05 · La Bàn Nghề Nghiệp | Khám phá con đường của bạn')"><span class="ver">V006</span><span class="ft">La Bàn Nghề Nghiệp | Khám phá con đường của bạn</span></button>
+                        <button class="file-item" title="12A11_Nhom_05_V005_20261116_213903.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V005_20261116_213903.html', '12A11 - Nhóm 05 · Ứng xử văn minh trên không gian mạng')"><span class="ver">V005</span><span class="ft">Ứng xử văn minh trên không gian mạng</span></button>
+                        <button class="file-item" title="12A11_Nhom_05_V004_20261116_211553.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V004_20261116_211553.html', '12A11 - Nhóm 05 · Đức Hoàng 12A11 - Hành Trình Chạm Tay Đến Y Khoa (UMP &amp; HMU)')"><span class="ver">V004</span><span class="ft">Đức Hoàng 12A11 - Hành Trình Chạm Tay Đến Y Khoa (UMP &amp; HMU)</span></button>
+                        <button class="file-item" title="12A11_Nhom_05_V003_20261116_210124.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V003_20261116_210124.html', '12A11 - Nhóm 05 · Thiết kế tương lai | Lộ trình chinh phục sự nghiệp')"><span class="ver">V003</span><span class="ft">Thiết kế tương lai | Lộ trình chinh phục sự nghiệp</span></button>
+                        <button class="file-item" title="12A11_Nhom_05_V002_20261116_195044.html" onclick="openViewer('CANHAN/12A11/Nhom_05/12A11_Nhom_05_V002_20261116_195044.html', '12A11 - Nhóm 05 · Hồ Sơ &amp; Định Hướng - Nguyễn Sao Ánh Tường')"><span class="ver">V002</span><span class="ft">Hồ Sơ &amp; Định Hướng - Nguyễn Sao Ánh Tường</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 06</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 06</h3><span class="badge">5 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_06_V007</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_06/12A11_Nhom_06_V007_20261116_220715.html', '12A11 - Nhóm 06 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_06_V007_20261116_220715.html" onclick="openViewer('CANHAN/12A11/Nhom_06/12A11_Nhom_06_V007_20261116_220715.html', '12A11 - Nhóm 06 · Thuc _Quyen_12a11 - Kế Hoạch Định Hướng Nghề Nghiệp')"><span class="ver">V007</span><span class="ft">Thuc _Quyen_12a11 - Kế Hoạch Định Hướng Nghề Nghiệp</span></button>
+                        <button class="file-item" title="12A11_Nhom_06_V006_20261116_214726.html" onclick="openViewer('CANHAN/12A11/Nhom_06/12A11_Nhom_06_V006_20261116_214726.html', '12A11 - Nhóm 06 · Nguyễn Thị Phương Thảo — Personal Journal')"><span class="ver">V006</span><span class="ft">Nguyễn Thị Phương Thảo — Personal Journal</span></button>
+                        <button class="file-item" title="12A11_Nhom_06_V004_20261116_213500.html" onclick="openViewer('CANHAN/12A11/Nhom_06/12A11_Nhom_06_V004_20261116_213500.html', '12A11 - Nhóm 06 · Giới thiệu bản thân - Trần Thùy Linh')"><span class="ver">V004</span><span class="ft">Giới thiệu bản thân - Trần Thùy Linh</span></button>
+                        <button class="file-item" title="12A11_Nhom_06_V003_20261116_205021.html" onclick="openViewer('CANHAN/12A11/Nhom_06/12A11_Nhom_06_V003_20261116_205021.html', '12A11 - Nhóm 06 · Nguyễn Phan Hà Nhật Linh | Ứng Xử Văn Minh Trên Không Gian Mạng')"><span class="ver">V003</span><span class="ft">Nguyễn Phan Hà Nhật Linh | Ứng Xử Văn Minh Trên Không Gian Mạng</span></button>
+                        <button class="file-item" title="12A11_Nhom_06_V002_20261116_173425.html" onclick="openViewer('CANHAN/12A11/Nhom_06/12A11_Nhom_06_V002_20261116_173425.html', '12A11 - Nhóm 06 · Sản phẩm cá nhân - Bùi Nguyễn Trâm Anh (12A11)')"><span class="ver">V002</span><span class="ft">Sản phẩm cá nhân - Bùi Nguyễn Trâm Anh (12A11)</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 07</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 07</h3><span class="badge">4 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_07_V005</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_07/12A11_Nhom_07_V005_20261116_224745.html', '12A11 - Nhóm 07 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_07_V005_20261116_224745.html" onclick="openViewer('CANHAN/12A11/Nhom_07/12A11_Nhom_07_V005_20261116_224745.html', '12A11 - Nhóm 07 · Đậu Huy Vũ | Định hướng nghề nghiệp tương lai')"><span class="ver">V005</span><span class="ft">Đậu Huy Vũ | Định hướng nghề nghiệp tương lai</span></button>
+                        <button class="file-item" title="12A11_Nhom_07_V004_20261116_200516.html" onclick="openViewer('CANHAN/12A11/Nhom_07/12A11_Nhom_07_V004_20261116_200516.html', '12A11 - Nhóm 07 · Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Quốc Việt - Sư Phạm Hóa Học')"><span class="ver">V004</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Quốc Việt - Sư Phạm Hóa Học</span></button>
+                        <button class="file-item" title="12A11_Nhom_07_V003_20261116_193613.html" onclick="openViewer('CANHAN/12A11/Nhom_07/12A11_Nhom_07_V003_20261116_193613.html', '12A11 - Nhóm 07 · Báo Cáo Định Hướng Nghề Nghiệp Tương Lai')"><span class="ver">V003</span><span class="ft">Báo Cáo Định Hướng Nghề Nghiệp Tương Lai</span></button>
+                        <button class="file-item" title="12A11_Nhom_07_V002_20261115_213111.html" onclick="openViewer('CANHAN/12A11/Nhom_07/12A11_Nhom_07_V002_20261115_213111.html', '12A11 - Nhóm 07 · Hồ Sơ Cá Nhân &amp; Ứng Xử Văn Minh Trên Không Gian Mạng')"><span class="ver">V002</span><span class="ft">Hồ Sơ Cá Nhân &amp; Ứng Xử Văn Minh Trên Không Gian Mạng</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 08</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 08</h3><span class="badge">8 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_08_V010</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V010_20261116_221557.html', '12A11 - Nhóm 08 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_08_V010_20261116_221557.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V010_20261116_221557.html', '12A11 - Nhóm 08 · Thiết kế tương lai | Lộ trình chinh phục sự nghiệp')"><span class="ver">V010</span><span class="ft">Thiết kế tương lai | Lộ trình chinh phục sự nghiệp</span></button>
+                        <button class="file-item" title="12A11_Nhom_08_V009_20261116_221401.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V009_20261116_221401.html', '12A11 - Nhóm 08 · Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen')"><span class="ver">V009</span><span class="ft">Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen</span></button>
+                        <button class="file-item" title="12A11_Nhom_08_V008_20261116_221311.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V008_20261116_221311.html', '12A11 - Nhóm 08 · Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen')"><span class="ver">V008</span><span class="ft">Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen</span></button>
+                        <button class="file-item" title="12A11_Nhom_08_V007_20261116_221057.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V007_20261116_221057.html', '12A11 - Nhóm 08 · Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen')"><span class="ver">V007</span><span class="ft">Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen</span></button>
+                        <button class="file-item" title="12A11_Nhom_08_V006_20261116_220950.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V006_20261116_220950.html', '12A11 - Nhóm 08 · Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen')"><span class="ver">V006</span><span class="ft">Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen</span></button>
+                        <button class="file-item" title="12A11_Nhom_08_V005_20261116_220933.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V005_20261116_220933.html', '12A11 - Nhóm 08 · Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen')"><span class="ver">V005</span><span class="ft">Future Graphic Designer | Hồ Sơ Định Hướng Nghề Nghiệp Tuổi Teen</span></button>
+                        <button class="file-item" title="12A11_Nhom_08_V004_20261116_202843.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V004_20261116_202843.html', '12A11 - Nhóm 08 · Gia Như | Ứng xử văn minh trên không gian mạng')"><span class="ver">V004</span><span class="ft">Gia Như | Ứng xử văn minh trên không gian mạng</span></button>
+                        <button class="file-item" title="12A11_Nhom_08_V003_20261116_194855.html" onclick="openViewer('CANHAN/12A11/Nhom_08/12A11_Nhom_08_V003_20261116_194855.html', '12A11 - Nhóm 08 · Kế Hoạch Định Hướng Nghề Nghiệp - Giáo Viên Hóa Học')"><span class="ver">V003</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp - Giáo Viên Hóa Học</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 09</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 09</h3><span class="badge">5 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_09_V006</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_09/12A11_Nhom_09_V006_20261117_070756.html', '12A11 - Nhóm 09 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_09_V006_20261117_070756.html" onclick="openViewer('CANHAN/12A11/Nhom_09/12A11_Nhom_09_V006_20261117_070756.html', '12A11 - Nhóm 09 · Le_Thi_Thu_Nhan_12a11')"><span class="ver">V006</span><span class="ft">Le_Thi_Thu_Nhan_12a11</span></button>
+                        <button class="file-item" title="12A11_Nhom_09_V005_20261117_063858.html" onclick="openViewer('CANHAN/12A11/Nhom_09/12A11_Nhom_09_V005_20261117_063858.html', '12A11 - Nhóm 09 · Kế hoạch định hướng nghề nghiệp | Kim Văn Tuấn Anh')"><span class="ver">V005</span><span class="ft">Kế hoạch định hướng nghề nghiệp | Kim Văn Tuấn Anh</span></button>
+                        <button class="file-item" title="12A11_Nhom_09_V004_20261116_222447.html" onclick="openViewer('CANHAN/12A11/Nhom_09/12A11_Nhom_09_V004_20261116_222447.html', '12A11 - Nhóm 09 · Chủ đề định hướng nghề nghiệp | Lê Trần Uyên Trang')"><span class="ver">V004</span><span class="ft">Chủ đề định hướng nghề nghiệp | Lê Trần Uyên Trang</span></button>
+                        <button class="file-item" title="12A11_Nhom_09_V003_20261116_205228.html" onclick="openViewer('CANHAN/12A11/Nhom_09/12A11_Nhom_09_V003_20261116_205228.html', '12A11 - Nhóm 09 · Ứng Xử Văn Minh Trên Không Gian Mạng - Nguyễn Nữ Thục Uyên 12A11')"><span class="ver">V003</span><span class="ft">Ứng Xử Văn Minh Trên Không Gian Mạng - Nguyễn Nữ Thục Uyên 12A11</span></button>
+                        <button class="file-item" title="12A11_Nhom_09_V002_20261116_194949.html" onclick="openViewer('CANHAN/12A11/Nhom_09/12A11_Nhom_09_V002_20261116_194949.html', '12A11 - Nhóm 09 · Kế Hoạch Định Hướng Nghề Nghiệp | Kỹ Thuật Xét Nghiệm Y Học - Y TP.HCM')"><span class="ver">V002</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp | Kỹ Thuật Xét Nghiệm Y Học - Y TP.HCM</span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card canhan-card">
-                    <div class="card-header"><h3>Nhóm 10</h3><span class="badge">Cá nhân</span></div>
+                    <div class="card-header"><h3>Nhóm 10</h3><span class="badge">3 bài</span></div>
                     <div class="card-body">
-                        <p class="file-name">12A11_Nhom_10_V004</p>
-                        <button class="view-btn" onclick="openViewer('CANHAN/12A11/Nhom_10/12A11_Nhom_10_V004_20261116_212939.html', '12A11 - Nhóm 10 (Cá nhân)')">🚀 Xem ngay</button>
+                        <div class="file-list">
+                        <button class="file-item" title="12A11_Nhom_10_V004_20261116_212939.html" onclick="openViewer('CANHAN/12A11/Nhom_10/12A11_Nhom_10_V004_20261116_212939.html', '12A11 - Nhóm 10 · Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Huy Hoàng - Kinh Doanh Quố...')"><span class="ver">V004</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Huy Hoàng - Kinh Doanh Quố...</span></button>
+                        <button class="file-item" title="12A11_Nhom_10_V003_20261116_203450.html" onclick="openViewer('CANHAN/12A11/Nhom_10/12A11_Nhom_10_V003_20261116_203450.html', '12A11 - Nhóm 10 · MY FUTURE – MY JOURNEY | Hồ Sơ Định Hướng Nghề Nghiệp')"><span class="ver">V003</span><span class="ft">MY FUTURE – MY JOURNEY | Hồ Sơ Định Hướng Nghề Nghiệp</span></button>
+                        <button class="file-item" title="12A11_Nhom_10_V002_20261116_195051.html" onclick="openViewer('CANHAN/12A11/Nhom_10/12A11_Nhom_10_V002_20261116_195051.html', '12A11 - Nhóm 10 · Kế Hoạch Định Hướng Nghề Nghiệp | Kỹ Thuật Điều Khiển &amp; Tự Động Hóa')"><span class="ver">V002</span><span class="ft">Kế Hoạch Định Hướng Nghề Nghiệp | Kỹ Thuật Điều Khiển &amp; Tự Động Hóa</span></button>
+                        </div>
                     </div>
                 </div>
             </div>
