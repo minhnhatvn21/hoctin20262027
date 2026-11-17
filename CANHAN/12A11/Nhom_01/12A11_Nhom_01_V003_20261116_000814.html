@@ -1,0 +1,991 @@
+<!-- Nhúng Google Fonts hỗ trợ tiếng Việt mượt mà: Be Vietnam Pro & Lora -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<!-- Nhúng Tailwind CSS qua CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Nhúng FontAwesome cho biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Cấu hình Tailwind & Biến màu sắc (Theme Switcher) -->
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    serif: ['"Lora"', 'serif'],
+                },
+                colors: {
+                    primary: 'var(--color-primary)',
+                    primaryDark: 'var(--color-primary-dark)',
+                    primaryLight: 'var(--color-primary-light)',
+                    bgSoft: 'var(--color-bg-soft)',
+                    accent: 'var(--color-accent)',
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    /* HỆ THỐNG MÀU CHỦ ĐẠO (MẶC ĐỊNH: XANH BẠC HÀ THƯ GIÃN) */
+    :root {
+        --color-primary: #2A9D8F;
+        --color-primary-dark: #21867A;
+        --color-primary-light: #E6F5F3;
+        --color-bg-soft: #F7FBF9;
+        --color-accent: #E76F51;
+    }
+
+    /* Chủ đề 2: Vàng Nắng Ấm Áp */
+    [data-theme="warm"] {
+        --color-primary: #D97706;
+        --color-primary-dark: #B45309;
+        --color-primary-light: #FEF3C7;
+        --color-bg-soft: #FFFDF7;
+        --color-accent: #059669;
+    }
+
+    /* Chủ đề 3: Xanh Da Trời Bình Yên */
+    [data-theme="sky"] {
+        --color-primary: #0284C7;
+        --color-primary-dark: #0369A1;
+        --color-primary-light: #E0F2FE;
+        --color-bg-soft: #F5FAFF;
+        --color-accent: #F59E0B;
+    }
+
+    /* Chủ đề 4: Hồng Phấn Dịu Dàng */
+    [data-theme="blush"] {
+        --color-primary: #DB2777;
+        --color-primary-dark: #BE185D;
+        --color-primary-light: #FCE7F3;
+        --color-bg-soft: #FFF8FA;
+        --color-accent: #0D9488;
+    }
+
+    body {
+        background-color: var(--color-bg-soft);
+        color: #334155;
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .theme-transition {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .healing-card {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .healing-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+    }
+
+    @keyframes soundWave {
+        0%, 100% { height: 6px; }
+        50% { height: 18px; }
+    }
+    .music-bar {
+        width: 3px;
+        background-color: var(--color-primary);
+        border-radius: 99px;
+        animation: soundWave 1s infinite ease-in-out;
+    }
+    .music-bar:nth-child(2) { animation-delay: 0.2s; }
+    .music-bar:nth-child(3) { animation-delay: 0.4s; }
+    .paused .music-bar {
+        animation-play-state: paused;
+        height: 6px !important;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--color-bg-soft); }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+</style>
+
+
+<!-- THANH ĐIỀU HƯỚNG CỐ ĐỊNH (RESPONSIVE NAVBAR) -->
+<header class="fixed top-0 left-0 right-0 z-40 bg-white/85 backdrop-blur-md border-b border-slate-100 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2.5 group">
+            <div class="w-9 h-9 rounded-xl bg-primaryLight text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white theme-transition">
+                <i class="fa-solid fa-seedling text-lg"></i>
+            </div>
+            <span class="font-bold text-slate-800 tracking-tight text-lg">Tử Tế Số</span>
+        </a>
+
+        <!-- Menu trên máy tính -->
+        <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600">
+            <a href="#hai-mat" class="hover:text-primary transition">Góc nhìn đa chiều</a>
+            <a href="#dan-chung" class="hover:text-primary transition">Dẫn chứng thực tế</a>
+            <a href="#chua-lanh" class="hover:text-primary transition">Góc chữa lành</a>
+            <a href="#cam-ket" class="hover:text-primary transition">Quy tắc THINK</a>
+            <a href="#trac-nghiem" class="hover:text-primary transition">Trắc nghiệm</a>
+            <a href="#tac-gia" class="hover:text-primary transition">Về tác giả</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <a href="#cam-ket" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-primary hover:bg-primaryDark text-white text-sm font-medium shadow-sm theme-transition">
+                Cam kết văn minh
+            </a>
+            <!-- Nút mở Menu trên điện thoại -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Menu thả xuống trên điện thoại -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-6 py-4 space-y-3 shadow-lg">
+        <a href="#hai-mat" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-1.5">Góc nhìn đa chiều</a>
+        <a href="#dan-chung" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-1.5">Dẫn chứng thực tế</a>
+        <a href="#chua-lanh" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-1.5">Góc chữa lành</a>
+        <a href="#cam-ket" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-1.5">Quy tắc THINK</a>
+        <a href="#trac-nghiem" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-1.5">Trắc nghiệm</a>
+        <a href="#tac-gia" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium py-1.5">Về tác giả</a>
+    </div>
+</header>
+
+<!-- 1. HERO SECTION (ĐẦU TRANG) -->
+<section class="pt-28 pb-16 md:pt-36 md:pb-24 px-4 sm:px-6 relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primaryLight/70 blur-3xl -z-10"></div>
+    <div class="absolute top-40 -left-24 w-80 h-80 rounded-full bg-amber-100/50 blur-3xl -z-10"></div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primaryLight text-primary text-xs font-semibold tracking-wide uppercase">
+                <i class="fa-solid fa-heart-pulse"></i> Không gian số nhân văn & chữa lành
+            </div>
+
+            <!-- TIÊU ĐỀ CHÍNH ĐẦU TRANG -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-[1.15] tracking-tight">
+                Ứng xử trên <br class="hidden sm:block">
+                <span class="text-primary theme-transition">không gian mạng</span>
+            </h1>
+
+            <!-- TRÍCH DẪN TRIẾT HỌC MỞ ĐẦU -->
+            <blockquote class="relative p-5 rounded-2xl bg-white/80 border-l-4 border-primary shadow-sm text-left">
+                <p class="font-serif italic text-slate-700 text-lg sm:text-xl leading-relaxed">
+                    “Lời nói tử tế có thể ngắn gọn và dễ thốt ra, nhưng tiếng vọng của chúng thì thực sự vô tận.”
+                </p>
+                <footer class="mt-2 text-sm font-semibold text-primary flex items-center gap-2">
+                    <span>— Mẹ Teresa (Nhà hoạt động nhân đạo, Giải Nobel Hòa bình)</span>
+                </footer>
+            </blockquote>
+
+            <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Xây dựng một không gian số tích cực nhằm phân tích chuyên sâu về văn hóa ứng xử trên mạng xã hội, xoa dịu tâm lý cho nạn nhân của bạo lực mạng và lan tỏa thông điệp sống tử tế trên môi trường số.
+            </p>
+
+            <!-- CTA BUTTON -->
+            <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                <a href="#hai-mat" class="px-7 py-3.5 rounded-full bg-primary hover:bg-primaryDark text-white font-semibold shadow-lg shadow-primary/20 flex items-center gap-2.5 theme-transition">
+                    <span>Bắt đầu khám phá</span>
+                    <i class="fa-solid fa-arrow-down text-sm"></i>
+                </a>
+                <a href="#chua-lanh" class="px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-medium border border-slate-200 flex items-center gap-2 transition">
+                    <i class="fa-solid fa-hand-holding-heart text-primary"></i>
+                    <span>Góc chữa lành</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- HÌNH ẢNH MINH HỌA HERO -->
+        <div class="lg:col-span-5">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+                <!-- [CHÚ THÍCH THAY ẢNH HERO]: Thay đổi đường dẫn ảnh trong src="..." bên dưới -->
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80" 
+                     alt="Kết nối tích cực và bình yên trên không gian mạng" 
+                     class="w-full h-[380px] sm:h-[420px] object-cover hover:scale-105 transition duration-700">
+                
+                <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md shadow-md flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-primaryLight text-primary flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-comments text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-medium">Thông điệp hôm nay</p>
+                        <p class="text-sm font-semibold text-slate-800">Một bình luận ấm áp có thể cứu rỗi một ngày tồi tệ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. KHAI THÁC CHUYÊN SÂU: HAI MẶT CỦA TẤM GƯƠNG SỐ -->
+<section id="hai-mat" class="py-20 px-4 sm:px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Phân tích chuyên sâu</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Hai mặt của tấm gương số</h2>
+            <p class="text-slate-600 text-base sm:text-lg">
+                Không gian mạng phóng đại bản chất ứng xử của con người. Mỗi cú nhấp chuột đều tạo ra hệ quả thực tế đối với tâm lý và cuộc sống.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Cột 1: Ứng xử thiếu chuẩn mực (Tác hại) -->
+            <div class="rounded-3xl p-6 sm:p-8 bg-rose-50/60 border border-rose-100 space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-cloud-bolt"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-rose-600">Mặt tối đáng báo động</span>
+                        <h3 class="text-2xl font-bold text-slate-900">Ứng xử thiếu chuẩn mực</h3>
+                    </div>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Sự ẩn danh sau màn hình khiến nhiều người đánh mất ranh giới đạo đức, biến bàn phím thành vũ khí gây tổn thương sâu sắc.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="p-4 rounded-2xl bg-white border border-rose-100/80 shadow-sm">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-circle-exclamation text-rose-500 text-sm"></i>
+                            Bạo lực ngôn từ (Cyberbullying)
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Lăng mạ, miệt thị ngoại hình, xúc phạm danh dự diễn ra liên tục, khiến nạn nhân rơi vào trầm cảm, tự ti và khủng hoảng tinh thần.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white border border-rose-100/80 shadow-sm">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-circle-exclamation text-rose-500 text-sm"></i>
+                            Tin giả (Fake News) & Giật tít câu view
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Thông tin sai sự thật lan truyền chóng mặt, gây hoang mang dư luận và hủy hoại uy tín cá nhân, tổ chức chỉ sau một đêm.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white border border-rose-100/80 shadow-sm">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-circle-exclamation text-rose-500 text-sm"></i>
+                            Hiệu ứng đám đông & Tẩy chay cực đoan
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Tâm lý "bầy đàn" hùa theo chỉ trích mà không cần kiểm chứng, tước đi cơ hội sửa sai và đẩy người khác vào đường cùng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột 2: Ứng xử văn minh (Giá trị tích cực) -->
+            <div class="rounded-3xl p-6 sm:p-8 bg-primaryLight/50 border border-primary/20 space-y-6 theme-transition">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-primaryLight text-primary flex items-center justify-center text-2xl shrink-0 theme-transition">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-primary">Giá trị bền vững</span>
+                        <h3 class="text-2xl font-bold text-slate-900">Ứng xử văn minh & Nhân ái</h3>
+                    </div>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Khi mỗi cá nhân ý thức được sức nặng của ngôn từ, không gian mạng trở thành cầu nối tri thức, sự thấu cảm và sẻ chia kỳ diệu.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="p-4 rounded-2xl bg-white border border-primary/10 shadow-sm">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-circle-check text-primary text-sm"></i>
+                            Sự thấu cảm số (Digital Empathy)
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Đặt mình vào vị trí của người khác trước khi bình luận. Tôn trọng sự khác biệt về quan điểm, ngoại hình và hoàn cảnh sống.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white border border-primary/10 shadow-sm">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-circle-check text-primary text-sm"></i>
+                            Tư duy phản biện & Kiểm chứng thông tin
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Tiếp nhận thông tin tỉnh táo từ các nguồn báo chí chính thống. Không chia sẻ tin đồn thất thiệt, làm sạch dòng chảy thông tin.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white border border-primary/10 shadow-sm">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-circle-check text-primary text-sm"></i>
+                            Lan tỏa năng lượng tích cực & Thiện nguyện
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Dùng sức mạnh kết nối để khích lệ tinh thần, hỗ trợ cộng đồng và lan tỏa những câu chuyện nhân ái, tốt đẹp.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. DẪN CHỨNG THỰC TẾ & HỆ THỐNG XEM CHI TIẾT (MODAL) -->
+<section id="dan-chung" class="py-20 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Góc nhìn thực tiễn</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Những câu chuyện & Dẫn chứng thực tế</h2>
+            <p class="text-slate-600 text-base sm:text-lg">
+                Nhấp vào từng tình huống bên dưới để phân tích sâu nguyên nhân, bài học và đọc thêm các bài báo chính thống tại Việt Nam.
+            </p>
+        </div>
+
+        <!-- Lưới 4 thẻ dẫn chứng thực tế -->
+        <div id="case-studies-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Được render động bằng JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- 4. GÓC CHỮA LÀNH (DÀNH CHO NẠN NHÂN) -->
+<section id="chua-lanh" class="py-20 px-4 sm:px-6 bg-gradient-to-b from-primaryLight/60 to-white">
+    <div class="max-w-5xl mx-auto">
+        <div class="rounded-[2.5rem] bg-white p-6 sm:p-12 shadow-xl border border-primary/15 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-primaryLight/50 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl"></div>
+
+            <div class="relative z-10 text-center max-w-2xl mx-auto mb-12 space-y-4">
+                <div class="w-16 h-16 rounded-full bg-primaryLight text-primary flex items-center justify-center text-2xl mx-auto shadow-sm">
+                    <i class="fa-solid fa-spa"></i>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Góc Chữa Lành Tâm Hồn</h2>
+                <p class="font-serif italic text-xl text-primary font-medium">
+                    “Bạn không đơn độc. Giá trị của bạn không bao giờ nằm ở những bình luận ác ý từ những người xa lạ.”
+                </p>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Nếu bạn đang cảm thấy ngột ngạt, tổn thương hay mất niềm tin vì những lời công kích trên mạng xã hội, hãy hít một hơi thật sâu. Chúng tôi ở đây để đồng hành cùng bạn.
+                </p>
+            </div>
+
+            <!-- 4 Bước sơ cứu tâm lý -->
+            <div class="mb-12">
+                <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-kit-medical text-primary"></i>
+                    4 Bước "Sơ cứu tâm lý" ngay khi bị công kích trên mạng:
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="p-5 rounded-2xl bg-bgSoft border border-slate-100 space-y-2">
+                        <span class="inline-block px-3 py-1 rounded-full bg-primary text-white text-xs font-bold">Bước 1</span>
+                        <h4 class="font-bold text-slate-800">Ngắt kết nối tạm thời</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Tắt thông báo, khóa bình luận hoặc tạm rời mạng xã hội 24-48 giờ.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-bgSoft border border-slate-100 space-y-2">
+                        <span class="inline-block px-3 py-1 rounded-full bg-primary text-white text-xs font-bold">Bước 2</span>
+                        <h4 class="font-bold text-slate-800">Lưu giữ bằng chứng</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Chụp màn hình các bình luận xúc phạm để bảo vệ quyền lợi pháp lý.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-bgSoft border border-slate-100 space-y-2">
+                        <span class="inline-block px-3 py-1 rounded-full bg-primary text-white text-xs font-bold">Bước 3</span>
+                        <h4 class="font-bold text-slate-800">Chia sẻ với người tin cậy</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Trò chuyện cùng gia đình, bạn bè hoặc thầy cô. Đừng chịu đựng một mình.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-bgSoft border border-slate-100 space-y-2">
+                        <span class="inline-block px-3 py-1 rounded-full bg-primary text-white text-xs font-bold">Bước 4</span>
+                        <h4 class="font-bold text-slate-800">Tìm chuyên gia hỗ trợ</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Liên hệ các đường dây nóng tâm lý uy tín để được tư vấn chuyên sâu.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Đường dây nóng hỗ trợ tại Việt Nam -->
+            <div class="p-6 rounded-2xl bg-amber-50/80 border border-amber-200/70">
+                <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-phone-volume text-amber-600"></i>
+                    Các kênh hỗ trợ tâm lý & bảo vệ uy tín tại Việt Nam (Miễn phí & Bảo mật):
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white p-4 rounded-xl shadow-sm">
+                        <p class="font-bold text-slate-800">Tổng đài Quốc gia Bảo vệ Trẻ em</p>
+                        <p class="text-2xl font-bold text-primary my-1">111</p>
+                        <p class="text-slate-500 text-xs">Hoạt động 24/7, hỗ trợ trẻ em và thanh thiếu niên bị bắt nạt mạng.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm">
+                        <p class="font-bold text-slate-800">Đường dây nóng Ngày Mai</p>
+                        <p class="text-xl font-bold text-primary my-1">096 306 1414</p>
+                        <p class="text-slate-500 text-xs">Hỗ trợ tâm lý miễn phí cho người trẻ gặp khủng hoảng tinh thần.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm">
+                        <p class="font-bold text-slate-800">Cục An toàn thông tin</p>
+                        <p class="text-base font-bold text-primary my-1">khonggianmang.vn</p>
+                        <p class="text-slate-500 text-xs">Cổng thông tin tiếp nhận phản ánh tin giả và lừa đảo trực tuyến.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. QUY TẮC THINK & CAM KẾT SỐ -->
+<section id="cam-ket" class="py-20 px-4 sm:px-6 bg-white">
+    <div class="max-w-5xl mx-auto text-center space-y-12">
+        <div class="space-y-3 max-w-2xl mx-auto">
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Bộ lọc trước khi nhấn gửi</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Quy tắc vàng T.H.I.N.K</h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Trước khi đăng tải hay để lại bình luận, hãy tự hỏi bản thân 5 câu hỏi sau:
+            </p>
+        </div>
+
+        <!-- 5 Chữ cái THINK -->
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <div class="p-6 rounded-3xl bg-bgSoft border border-slate-100 hover:border-primary/40 theme-transition">
+                <div class="w-12 h-12 rounded-2xl bg-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-3 shadow-md">T</div>
+                <h3 class="font-bold text-slate-900 text-lg">True</h3>
+                <p class="text-xs font-semibold text-primary uppercase mb-2">Đúng sự thật?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Thông tin này đã được kiểm chứng chưa?</p>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-bgSoft border border-slate-100 hover:border-primary/40 theme-transition">
+                <div class="w-12 h-12 rounded-2xl bg-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-3 shadow-md">H</div>
+                <h3 class="font-bold text-slate-900 text-lg">Helpful</h3>
+                <p class="text-xs font-semibold text-primary uppercase mb-2">Hữu ích không?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Lời nói này có mang lại giá trị cho người đọc?</p>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-bgSoft border border-slate-100 hover:border-primary/40 theme-transition">
+                <div class="w-12 h-12 rounded-2xl bg-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-3 shadow-md">I</div>
+                <h3 class="font-bold text-slate-900 text-lg">Inspiring</h3>
+                <p class="text-xs font-semibold text-primary uppercase mb-2">Truyền cảm hứng?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Nội dung có lan tỏa điều tích cực, thiện lành?</p>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-bgSoft border border-slate-100 hover:border-primary/40 theme-transition">
+                <div class="w-12 h-12 rounded-2xl bg-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-3 shadow-md">N</div>
+                <h3 class="font-bold text-slate-900 text-lg">Necessary</h3>
+                <p class="text-xs font-semibold text-primary uppercase mb-2">Cần thiết không?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Nếu không nói thì có ảnh hưởng gì không?</p>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-bgSoft border border-slate-100 hover:border-primary/40 theme-transition">
+                <div class="w-12 h-12 rounded-2xl bg-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-3 shadow-md">K</div>
+                <h3 class="font-bold text-slate-900 text-lg">Kind</h3>
+                <p class="text-xs font-semibold text-primary uppercase mb-2">Tử tế không?</p>
+                <p class="text-xs text-slate-600 leading-relaxed">Có làm tổn thương lòng tự trọng của ai đó không?</p>
+            </div>
+        </div>
+
+        <!-- Nút cam kết tương tác -->
+        <div class="p-8 sm:p-10 rounded-3xl bg-primaryLight/70 border border-primary/20 max-w-3xl mx-auto space-y-5">
+            <h3 class="text-2xl font-bold text-slate-900">Cùng chung tay xây dựng không gian mạng văn minh</h3>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Mỗi lượt nhấn nút bên dưới là một lời hứa với chính bản thân: Sống trách nhiệm, suy nghĩ thấu đáo và dùng ngôn từ để nâng đỡ nhau.
+            </p>
+            
+            <div class="pt-2 flex flex-col items-center gap-4">
+                <button id="pledge-btn" onclick="handlePledge()" class="px-8 py-4 rounded-full bg-primary hover:bg-primaryDark text-white font-bold text-base sm:text-lg shadow-lg shadow-primary/25 flex items-center gap-3 transform active:scale-95 theme-transition">
+                    <i class="fa-solid fa-hand-holding-heart text-xl"></i>
+                    <span id="pledge-btn-text">Tôi cam kết ứng xử văn minh</span>
+                </button>
+                
+                <div class="flex items-center gap-2 text-slate-700 font-medium bg-white px-5 py-2 rounded-full shadow-sm border border-slate-100">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span>Đã có <strong id="pledge-count" class="text-primary text-lg font-bold">12,486</strong> người cùng cam kết tử tế</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. TRẮC NGHIỆM TƯƠNG TÁC (MINI QUIZ - 5 CÂU HỎI) -->
+<section id="trac-nghiem" class="py-20 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10 space-y-3">
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Tự đánh giá bản thân</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Đo lường "Chỉ số Văn minh Số"</h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Trả lời nhanh 5 tình huống thực tế trên mạng xã hội để khám phá phong cách ứng xử số của bạn.
+            </p>
+        </div>
+
+        <div class="healing-card rounded-3xl p-6 sm:p-10">
+            <div id="quiz-container">
+                <div class="flex items-center justify-between text-sm font-medium text-slate-500 mb-4">
+                    <span id="quiz-progress-text">Câu hỏi 1 / 5</span>
+                    <span id="quiz-percent" class="text-primary font-bold">20%</span>
+                </div>
+                <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-8">
+                    <div id="quiz-progress-bar" class="h-full bg-primary transition-all duration-300" style="width: 20%;"></div>
+                </div>
+
+                <h3 id="quiz-question" class="text-lg sm:text-xl font-bold text-slate-900 mb-6 leading-snug"></h3>
+
+                <div id="quiz-options" class="space-y-3"></div>
+            </div>
+
+            <div id="quiz-result" class="hidden text-center space-y-6 py-4">
+                <div id="result-badge" class="w-20 h-20 rounded-full bg-primaryLight text-primary flex items-center justify-center text-4xl mx-auto shadow-inner">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-wider text-primary">Kết quả của bạn</p>
+                    <h3 id="result-title" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Đại sứ Tử tế Số</h3>
+                    <p class="text-slate-500 mt-1">Điểm số: <strong id="result-score" class="text-slate-800">50/50</strong> điểm</p>
+                </div>
+                <p id="result-desc" class="text-slate-600 leading-relaxed max-w-xl mx-auto bg-bgSoft p-5 rounded-2xl border border-slate-100 text-sm sm:text-base"></p>
+                <button onclick="restartQuiz()" class="px-6 py-3 rounded-full bg-primary hover:bg-primaryDark text-white font-semibold shadow-md transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Làm lại bài trắc nghiệm</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. GIỚI THIỆU TÁC GIẢ & FOOTER -->
+<footer id="tac-gia" class="pt-20 pb-28 px-4 sm:px-6 bg-white border-t border-slate-100">
+    <div class="max-w-5xl mx-auto">
+        <div class="rounded-3xl bg-bgSoft p-6 sm:p-10 border border-slate-200/60 flex flex-col md:flex-row items-center gap-8">
+            <!-- [CHÚ THÍCH THAY ẢNH ĐẠI DIỆN TÁC GIẢ]: Sửa đường dẫn ảnh chân dung của bạn bên dưới -->
+            <div class="shrink-0 relative">
+                <img src="https://i.pinimg.com/736x/a6/e8/cb/a6e8cbbacb6015a0ea4f4a5905b2c94f.jpg" 
+                     alt="Ảnh đại diện tác giả" 
+                     class="w-32 h-32 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-white shadow-lg">
+                <div class="absolute bottom-1 right-1 w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center border-2 border-white shadow-sm" title="Người sáng lập dự án">
+                    <i class="fa-solid fa-feather-pointed text-sm"></i>
+                </div>
+            </div>
+
+            <div class="text-center md:text-left space-y-3">
+                <div class="inline-block px-3 py-1 rounded-full bg-primaryLight text-primary text-xs font-bold uppercase tracking-wider">
+                    Về tác giả dự án
+                </div>
+                <!-- [CHÚ THÍCH THAY TÊN TÁC GIẢ]: Sửa tên và giới thiệu bản thân -->
+                <h3 class="text-2xl font-bold text-slate-900">Xin chào, mình là Nguyễn Ngọc Bảo Thư</h3>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Là một người trẻ lớn lên cùng sự bùng nổ của mạng xã hội, mình tạo ra trang web này như một trạm dừng chân bình yên để nhắc nhở cộng đồng rằng: <strong>Công nghệ càng hiện đại, tình người càng cần được giữ gìn.</strong>
+                </p>
+                
+                <div class="pt-2 flex items-center justify-center md:justify-start gap-3">
+                    <a href="#tac-gia" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-primary hover:border-primary flex items-center justify-center transition" title="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#tac-gia" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-primary hover:border-primary flex items-center justify-center transition" title="Email liên hệ">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                    <span class="text-xs text-slate-400 ml-2">© 2026 Dự án Cộng đồng Tử Tế Số.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- MODAL XEM CHI TIẾT DẪN CHỨNG (ẨN MẶC ĐỊNH) -->
+<div id="case-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-sm transition-opacity">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[88vh] overflow-y-auto shadow-2xl border border-slate-100">
+        <div class="relative h-52 sm:h-64">
+            <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-800 flex items-center justify-center shadow-md transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="absolute bottom-4 left-6">
+                <span id="modal-tag" class="px-3.5 py-1 rounded-full bg-primary text-white text-xs font-bold shadow-sm"></span>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-8 space-y-6">
+            <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-slate-900 leading-tight"></h3>
+            
+            <div class="space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+                <div class="p-4 rounded-2xl bg-bgSoft border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-1.5 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass-chart text-primary"></i>
+                        Diễn biến & Phân tích nguyên nhân:
+                    </h4>
+                    <p id="modal-analysis"></p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-primaryLight/40 border border-primary/15">
+                    <h4 class="font-bold text-slate-900 mb-1.5 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-primary"></i>
+                        Bài học & Thông điệp rút ra:
+                    </h4>
+                    <p id="modal-lesson"></p>
+                </div>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100">
+                <h4 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper text-primary"></i>
+                    Nguồn báo chí chính thống tham khảo:
+                </h4>
+                <ul id="modal-links" class="space-y-2.5 text-sm"></ul>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeModal()" class="px-6 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
+                    Đóng cửa sổ
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- THANH CÔNG CỤ NỔI: THEME SWITCHER & TRÌNH PHÁT NHẠC THƯ GIÃN -->
+<div class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 z-40 flex flex-col sm:flex-row items-end sm:items-center gap-3 pointer-events-none">
+    
+    <!-- Bộ chuyển màu chủ đề -->
+    <div class="pointer-events-auto bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-full shadow-lg border border-slate-200/80 flex items-center gap-2.5" title="Đổi màu giao diện chữa lành">
+        <span class="text-xs font-semibold text-slate-500 pl-1 hidden md:inline">Giao diện:</span>
+        <button onclick="setTheme('default')" class="w-6 h-6 rounded-full bg-[#2A9D8F] border-2 border-white shadow-sm hover:scale-110 transition" title="Xanh Bạc Hà Thư Giãn"></button>
+        <button onclick="setTheme('warm')" class="w-6 h-6 rounded-full bg-[#D97706] border-2 border-white shadow-sm hover:scale-110 transition" title="Vàng Nắng Ấm Áp"></button>
+        <button onclick="setTheme('sky')" class="w-6 h-6 rounded-full bg-[#0284C7] border-2 border-white shadow-sm hover:scale-110 transition" title="Xanh Da Trời Bình Yên"></button>
+        <button onclick="setTheme('blush')" class="w-6 h-6 rounded-full bg-[#DB2777] border-2 border-white shadow-sm hover:scale-110 transition" title="Hồng Phấn Dịu Dàng"></button>
+    </div>
+
+    <!-- Trình phát nhạc nền thư giãn -->
+    <div class="pointer-events-auto bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-full shadow-lg border border-slate-200/80 flex items-center gap-3">
+        <button id="music-toggle-btn" onclick="toggleMusic()" class="w-9 h-9 rounded-full bg-primary hover:bg-primaryDark text-white flex items-center justify-center shadow-sm transition shrink-0" title="Bật/Tắt nhạc thư giãn">
+            <i id="music-icon" class="fa-solid fa-play text-xs ml-0.5"></i>
+        </button>
+
+        <div class="flex items-center gap-2.5">
+            <div id="sound-wave" class="flex items-end gap-0.5 h-4 paused">
+                <span class="music-bar"></span>
+                <span class="music-bar"></span>
+                <span class="music-bar"></span>
+            </div>
+            <!-- [CHÚ THÍCH THAY BÀI NHẠC]: Sửa tên bài hát trong playlist bên dưới code -->
+            <select id="music-select" onchange="changeTrack()" class="text-xs font-semibold text-slate-700 bg-transparent focus:outline-none cursor-pointer max-w-[120px] truncate">
+                <option value="0">1. Piano Bình Yên</option>
+                <option value="1">2. Tiếng Mưa Rơi Nhẹ</option>
+                <option value="2">3. Lo-fi Chữa Lành</option>
+            </select>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-1.5 pl-2 border-l border-slate-200">
+            <i class="fa-solid fa-volume-low text-slate-400 text-xs"></i>
+            <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="0.4" oninput="changeVolume(this.value)" class="w-14 accent-primary cursor-pointer h-1 bg-slate-200 rounded-lg">
+        </div>
+    </div>
+</div>
+
+<!-- Thẻ Audio ẩn phát nhạc -->
+<audio id="bg-audio" loop preload="none"></audio>
+
+<!-- JAVASCRIPT XỬ LÝ TƯƠNG TÁC TOÀN TRANG -->
+<script>
+    // 1. Điều khiển Menu trên điện thoại (Responsive Mobile Menu)
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    }
+
+    // 2. Dữ liệu 4 thẻ dẫn chứng thực tế (Có thể thay đổi hình ảnh, tiêu đề, bài báo)
+    const caseStudies = [
+        {
+            id: 1,
+            tag: "Miệt thị ngoại hình",
+            tagColor: "bg-rose-100 text-rose-700",
+            title: "Vấn nạn Body Shaming: Khi lời đùa cợt trở thành vết sẹo tâm lý",
+            summary: "Nhiều người trẻ phải đối mặt với hàng ngàn bình luận chê bai cân nặng, ngoại hình mỗi ngày trên TikTok và Facebook.",
+            image: "https://images.unsplash.com/photo-1517677129300-07b130802f46?auto=format&fit=crop&w=800&q=80",
+            analysis: "Xuất phát từ tâm lý phán xét dựa trên quy chuẩn cái đẹp phiến diện và sự thiếu thấu cảm. Hậu quả là nạn nhân rơi vào rối loạn lo âu, biếng ăn, tự cô lập bản thân và tổn thương lòng tự trọng kéo dài.",
+            lesson: "Cơ thể mỗi người là độc bản và đáng được tôn trọng. Đừng bao giờ bình phẩm về ngoại hình của người khác nếu điều đó không thể thay đổi trong 5 giây.",
+            links: [
+                { title: "Báo VnExpress: Tổn thương sâu sắc vì bị miệt thị ngoại hình trên mạng", url: "https://vnexpress.net" },
+                { title: "Báo Tuổi Trẻ: Đừng biến mạng xã hội thành nơi phán xét ngoại hình", url: "https://tuoitre.vn" }
+            ]
+        },
+        {
+            id: 2,
+            tag: "Tin giả & Đám đông",
+            tagColor: "bg-amber-100 text-amber-800",
+            title: "Hệ lụy của tin giả (Fake News): 'Tòa án mạng' kết tội trước khi sự thật lên tiếng",
+            summary: "Chỉ từ một bài đăng cắt ghép thiếu kiểm chứng, nhiều cá nhân vô tội bị cộng đồng mạng tấn công, tẩy chay oan uổng.",
+            image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80",
+            analysis: "Các đối tượng xấu lợi dụng sự nhạy cảm của dư luận để tung tin giả câu tương tác. Đám đông phẫn nộ lập tức tràn vào trang cá nhân chửi bới, gây thiệt hại nặng nề trước khi cơ quan chức năng vào cuộc.",
+            lesson: "Hãy giữ một cái đầu lạnh. Nguyên tắc vàng: Dừng lại 30 giây, kiểm tra nguồn tin từ báo chí chính thống trước khi nhấn nút Chia sẻ (Share).",
+            links: [
+                { title: "Báo Thanh Niên: Xử lý nghiêm hành vi tung tin giả trên mạng xã hội", url: "https://thanhnien.vn" },
+                { title: "Cổng thông tin Bộ TT&TT: Cẩm nang phòng chống tin giả", url: "https://mic.gov.vn" }
+            ]
+        },
+        {
+            id: 3,
+            tag: "Sức mạnh thiện nguyện",
+            tagColor: "bg-emerald-100 text-emerald-700",
+            title: "Chiến dịch cứu trợ bão lũ: Khi mạng xã hội ngập tràn tình người",
+            summary: "Trong những đợt thiên tai, hàng triệu người dùng mạng đã biến Facebook, Zalo thành cầu nối cứu trợ thần tốc.",
+            image: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
+            analysis: "Cộng đồng mạng phát huy tinh thần tương thân tương ái, chia sẻ thông tin cứu hộ thời gian thực để lực lượng chức năng tiếp cận người dân kịp thời.",
+            lesson: "Mạng xã hội là công cụ tuyệt vời nếu được dẫn dắt bởi lòng trắc ẩn. Mỗi lượt chia sẻ hữu ích có thể trở thành phao cứu sinh.",
+            links: [
+                { title: "Báo Tuổi Trẻ: Sức mạnh kết nối yêu thương trên không gian mạng", url: "https://tuoitre.vn" }
+            ]
+        },
+        {
+            id: 4,
+            tag: "Hiệu ứng đám đông",
+            tagColor: "bg-sky-100 text-sky-700",
+            title: "Trào lưu 'Chữa lành' và chia sẻ tri thức tích cực của giới trẻ",
+            summary: "Hàng loạt kênh nội dung sạch về tâm lý học, đọc sách và kỹ năng sống thu hút hàng triệu lượt theo dõi.",
+            image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
+            analysis: "Đối lập với nội dung độc hại, nhiều nhà sáng tạo trẻ đã chọn lan tỏa tri thức, dạy học miễn phí và hướng dẫn kỹ năng sống lành mạnh.",
+            lesson: "Thuật toán ưu tiên những gì bạn quan tâm. Hãy chủ động theo dõi các trang tích cực để nuôi dưỡng môi trường số lành mạnh.",
+            links: [
+                { title: "Báo Nhân Dân: Xây dựng văn hóa ứng xử lành mạnh trên không gian mạng", url: "https://nhandan.vn" }
+            ]
+        }
+    ];
+
+    // Render 4 thẻ dẫn chứng ra giao diện
+    function renderCaseStudies() {
+        const grid = document.getElementById('case-studies-grid');
+        grid.innerHTML = caseStudies.map(item => `
+            <article class="healing-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+                <div>
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-bold shadow-sm ${item.tagColor}">
+                            ${item.tag}
+                        </span>
+                    </div>
+                    <div class="p-6 sm:p-7 space-y-3">
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition leading-snug">
+                            ${item.title}
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            ${item.summary}
+                        </p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 sm:px-7 sm:pb-7 pt-2">
+                    <button onclick="openModal(${item.id})" class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all">
+                        <span>Tìm hiểu chi tiết</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </article>
+        `).join('');
+    }
+
+    // Mở Modal chi tiết
+    function openModal(id) {
+        const item = caseStudies.find(c => c.id === id);
+        if (!item) return;
+
+        document.getElementById('modal-img').src = item.image;
+        document.getElementById('modal-tag').textContent = item.tag;
+        document.getElementById('modal-title').textContent = item.title;
+        document.getElementById('modal-analysis').textContent = item.analysis;
+        document.getElementById('modal-lesson').textContent = item.lesson;
+
+        const linksContainer = document.getElementById('modal-links');
+        linksContainer.innerHTML = item.links.map(link => `
+            <li>
+                <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-primary hover:underline font-medium">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <span>${link.title}</span>
+                </a>
+            </li>
+        `).join('');
+
+        const modal = document.getElementById('case-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Đóng Modal
+    function closeModal() {
+        const modal = document.getElementById('case-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('case-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // 3. Xử lý nút Cam kết văn minh & Bộ đếm thời gian thực
+    let hasPledged = false;
+    let currentCount = 12486;
+
+    function handlePledge() {
+        if (hasPledged) return;
+        hasPledged = true;
+        currentCount++;
+
+        document.getElementById('pledge-count').textContent = currentCount.toLocaleString('en-US');
+        const btnEl = document.getElementById('pledge-btn');
+        btnEl.classList.remove('bg-primary', 'hover:bg-primaryDark');
+        btnEl.classList.add('bg-emerald-600', 'cursor-default');
+        document.getElementById('pledge-btn-text').textContent = "Cảm ơn bạn đã cam kết lan tỏa sự tử tế!";
+    }
+
+    // 4. Trắc nghiệm tương tác (Mini Quiz - 5 câu hỏi)
+    const quizData = [
+        {
+            question: "1. Bạn vô tình thấy một bài đăng bóc phốt kèm hình ảnh cá nhân đang nhận hàng ngàn bình luận chửi bới. Bạn sẽ làm gì?",
+            options: [
+                { text: "Chia sẻ ngay về trang cá nhân để cảnh báo mọi người.", score: 0 },
+                { text: "Vào bình luận chê bai theo số đông cho vui.", score: 0 },
+                { text: "Giữ bình tĩnh, không hùa theo công kích khi thông tin chưa kiểm chứng.", score: 10 }
+            ]
+        },
+        {
+            question: "2. Một người bạn đăng ảnh mới nhưng ngoại hình có phần tăng cân. Bạn muốn nhắn nhủ điều gì?",
+            options: [
+                { text: "Bình luận công khai: 'Dạo này béo thế, giảm cân đi!'", score: 0 },
+                { text: "Khen ngợi thần thái tươi tắn hoặc nhắn tin hỏi thăm riêng tư tinh tế.", score: 10 },
+                { text: "Chụp màn hình gửi vào nhóm chat khác để bàn tán.", score: 0 }
+            ]
+        },
+        {
+            question: "3. Khi đọc được một tin giật gân trên mạng xã hội về thiên tai, phản ứng đầu tiên của bạn là?",
+            options: [
+                { text: "Kiểm tra trên các trang báo chính thống xem có thông tin này không.", score: 10 },
+                { text: "Gửi ngay vào nhóm gia đình và bạn bè để mọi người hoang mang.", score: 2 },
+                { text: "Bình luận hoang mang khiến tin đồn càng lan rộng.", score: 0 }
+            ]
+        },
+        {
+            question: "4. Trong một cuộc tranh luận về quan điểm sống, có người không đồng ý với ý kiến của bạn. Bạn sẽ ứng xử thế nào?",
+            options: [
+                { text: "Lập luận lịch sự, tôn trọng góc nhìn của họ hoặc dừng tranh luận.", score: 10 },
+                { text: "Công kích cá nhân, soi mói ảnh đại diện để hạ bệ.", score: 0 },
+                { text: "Kêu gọi bạn bè vào report tài khoản của người đó.", score: 0 }
+            ]
+        },
+        {
+            question: "5. Nếu phát hiện bạn của mình đang suy sụp vì bị bắt nạt trên mạng, bạn sẽ làm gì?",
+            options: [
+                { text: "Khuyên bạn ấy 'kệ đi' rồi bỏ qua.", score: 3 },
+                { text: "Chủ động nhắn tin lắng nghe, động viên và tìm sự hỗ trợ cùng bạn.", score: 10 },
+                { text: "Lên mạng chửi nhau tay đôi với những kẻ công kích.", score: 4 }
+            ]
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let totalScore = 0;
+
+    function loadQuizQuestion() {
+        const q = quizData[currentQuestionIndex];
+        document.getElementById('quiz-progress-text').textContent = `Câu hỏi ${currentQuestionIndex + 1} / ${quizData.length}`;
+        const percent = ((currentQuestionIndex + 1) / quizData.length) * 100;
+        document.getElementById('quiz-percent').textContent = `${percent}%`;
+        document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+
+        document.getElementById('quiz-question').textContent = q.question;
+        const optionsEl = document.getElementById('quiz-options');
+        optionsEl.innerHTML = q.options.map((opt) => `
+            <button onclick="selectQuizOption(${opt.score})" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-primary hover:bg-primaryLight/40 text-slate-700 font-medium text-sm sm:text-base transition flex items-center justify-between group">
+                <span>${opt.text}</span>
+                <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-primary transition"></i>
+            </button>
+        `).join('');
+    }
+
+    function selectQuizOption(score) {
+        totalScore += score;
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < quizData.length) {
+            loadQuizQuestion();
+        } else {
+            showQuizResult();
+        }
+    }
+
+    function showQuizResult() {
+        document.getElementById('quiz-container').classList.add('hidden');
+        const resultEl = document.getElementById('quiz-result');
+        resultEl.classList.remove('hidden');
+
+        document.getElementById('result-score').textContent = `${totalScore} / 50`;
+        const titleEl = document.getElementById('result-title');
+        const descEl = document.getElementById('result-desc');
+
+        if (totalScore >= 45) {
+            titleEl.textContent = "Đại Sứ Tử Tế Số 🌟";
+            descEl.textContent = "Tuyệt vời! Bạn sở hữu chỉ số thấu cảm và tư duy phản biện rất cao. Bạn biết cách bảo vệ bản thân và lan tỏa năng lượng tích cực.";
+        } else if (totalScore >= 30) {
+            titleEl.textContent = "Công Dân Số Văn Minh 🌱";
+            descEl.textContent = "Bạn có ý thức tốt trong việc giữ gìn văn hóa ứng xử trên mạng. Hãy tiếp tục phát huy quy tắc T.H.I.N.K nhé!";
+        } else {
+            titleEl.textContent = "Người Bạn Cần Chậm Lại Một Nhịp 🌿";
+            descEl.textContent = "Có vẻ đôi lúc bạn dễ bị cuốn theo cảm xúc đám đông. Chỉ cần chậm lại 10 giây trước khi bình luận, bạn sẽ thấy không gian mạng bình yên hơn!";
+        }
+    }
+
+    function restartQuiz() {
+        currentQuestionIndex = 0;
+        totalScore = 0;
+        document.getElementById('quiz-result').classList.add('hidden');
+        document.getElementById('quiz-container').classList.remove('hidden');
+        loadQuizQuestion();
+    }
+
+    // 5. Bộ chuyển đổi màu chủ đề (Theme Switcher)
+    function setTheme(themeName) {
+        if (themeName === 'default') {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', themeName);
+        }
+    }
+
+    // 6. Trình phát nhạc nền thư giãn (Ambient Music Player)
+    const playlist = [
+        { name: "1. Piano Bình Yên", url: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" },
+        { name: "2. Tiếng Mưa Rơi Nhẹ", url: "https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8c8a73467.mp3?filename=soft-rain-ambient-111154.mp3" },
+        { name: "3. Lo-fi Chữa Lành", url: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=chill-abstract-intention-12099.mp3" }
+    ];
+
+    const audioEl = document.getElementById('bg-audio');
+    const musicIcon = document.getElementById('music-icon');
+    const soundWave = document.getElementById('sound-wave');
+    let isPlaying = false;
+
+    audioEl.src = playlist[0].url;
+    audioEl.volume = 0.4;
+
+    function toggleMusic() {
+        if (isPlaying) {
+            audioEl.pause();
+            isPlaying = false;
+            musicIcon.classList.remove('fa-pause');
+            musicIcon.classList.add('fa-play', 'ml-0.5');
+            soundWave.classList.add('paused');
+        } else {
+            audioEl.play().then(() => {
+                isPlaying = true;
+                musicIcon.classList.remove('fa-play', 'ml-0.5');
+                musicIcon.classList.add('fa-pause');
+                soundWave.classList.remove('paused');
+            }).catch(err => {
+                alert("Trình duyệt đang chặn tự động phát âm thanh, vui lòng nhấn lại nút Play nhé!");
+            });
+        }
+    }
+
+    function changeTrack() {
+        const index = document.getElementById('music-select').value;
+        audioEl.src = playlist[index].url;
+        if (isPlaying) audioEl.play();
+    }
+
+    function changeVolume(val) {
+        audioEl.volume = val;
+    }
+
+    // Khởi chạy khi tải trang
+    renderCaseStudies();
+    loadQuizQuestion();
+</script>

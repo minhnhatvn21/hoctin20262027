@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERSAFE • NHÓM 44 | Chuyên San Tri Thức & Văn Hóa Không Gian Mạng</title>
+    <style>
+        :root {
+            --desk-bg: #e5d8c1;
+            --paper-cream: #fffdf8;
+            --paper-warm: #f6eedc;
+            --ink-black: #091326;
+            --ink-navy: #0f2547;
+            --ink-blue: #1d4ed8;
+            --ink-body: #182232;
+            --ink-muted: #475569;
+            --gold-deep: #9a6b13;
+            --gold-bright: #d97706;
+            --gold-light: #e2c07d;
+            --crimson: #881337;
+            --crimson-bright: #be123c;
+            --roster-pink: #f8d7da;
+            --roster-border: #0f172a;
+            --shadow-crisp: 0 14px 34px rgba(9, 19, 38, 0.16);
+            --shadow-card: 0 8px 20px rgba(9, 19, 38, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Georgia", "Cambria", "Times New Roman", serif;
+            background-color: var(--desk-bg);
+            color: var(--ink-body);
+            line-height: 1.78;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            background-image: 
+                linear-gradient(rgba(15, 37, 71, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 37, 71, 0.055) 1px, transparent 1px),
+                url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f2547' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round' opacity='0.15'%3E%3Cg transform='rotate(-25 60 50)'%3E%3Crect x='15' y='38' width='95' height='22' rx='2' fill='%23f6eedc'/%3E%3Cline x1='25' y1='38' x2='25' y2='47'/%3E%3Cline x1='35' y1='38' x2='35' y2='44'/%3E%3Cline x1='45' y1='38' x2='45' y2='47'/%3E%3Cline x1='55' y1='38' x2='55' y2='44'/%3E%3Cline x1='65' y1='38' x2='65' y2='47'/%3E%3Cline x1='75' y1='38' x2='75' y2='44'/%3E%3Cline x1='85' y1='38' x2='85' y2='47'/%3E%3Cline x1='95' y1='38' x2='95' y2='44'/%3E%3Ccircle cx='102' cy='49' r='3'/%3E%3C/g%3E%3Cpath d='M145 30 C157 26, 172 26, 182 34 C192 26, 207 26, 219 30 L219 72 C207 68, 192 68, 182 76 C172 68, 157 68, 145 72 Z' fill='%23fffdf8'/%3E%3Cline x1='182' y1='34' x2='182' y2='76'/%3E%3Cline x1='153' y1='42' x2='174' y2='42' stroke='%23881337'/%3E%3Cline x1='153' y1='50' x2='174' y2='50'/%3E%3Cline x1='153' y1='58' x2='174' y2='58'/%3E%3Cline x1='190' y1='42' x2='211' y2='42' stroke='%23881337'/%3E%3Cline x1='190' y1='50' x2='211' y2='50'/%3E%3Cline x1='190' y1='58' x2='211' y2='58'/%3E%3Cpolygon points='25,130 25,205 100,205' fill='%23f6eedc'/%3E%3Cpolygon points='38,160 38,192 70,192' fill='%23e5d8c1'/%3E%3Cline x1='25' y1='145' x2='32' y2='145'/%3E%3Cline x1='25' y1='160' x2='32' y2='160'/%3E%3Cline x1='25' y1='175' x2='32' y2='175'/%3E%3Cline x1='25' y1='190' x2='32' y2='190'/%3E%3Cg transform='rotate(35 175 165)'%3E%3Crect x='168' y='120' width='12' height='75' fill='%23f6eedc'/%3E%3Cpolygon points='168,195 180,195 174,210' fill='%23881337'/%3E%3Cline x1='168' y1='130' x2='180' y2='130'/%3E%3C/g%3E%3Cg transform='rotate(-30 175 165)'%3E%3Cpath d='M170 120 L180 120 L182 185 L175 205 L168 185 Z' fill='%23fffdf8'/%3E%3Ccircle cx='175' cy='188' r='2'/%3E%3Cline x1='175' y1='205' x2='175' y2='190'/%3E%3C/g%3E%3Cpath d='M85 125 A32 32 0 0 1 149 125 Z' fill='%23fffdf8'/%3E%3Cpath d='M98 125 A19 19 0 0 1 136 125 Z' fill='%23e5d8c1'/%3E%3Cline x1='117' y1='125' x2='117' y2='118'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 28px 28px, 28px 28px, 240px 240px;
+        }
+
+        .sans {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .margin-art {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.22;
+            color: var(--ink-navy);
+            filter: drop-shadow(0 4px 8px rgba(9, 19, 38, 0.08));
+        }
+
+        .art-top-left {
+            top: 82px;
+            left: 14px;
+            width: 195px;
+            height: 195px;
+        }
+
+        .art-bottom-right {
+            bottom: 26px;
+            right: 14px;
+            width: 215px;
+            height: 215px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #091832;
+            color: #ffffff;
+            padding: 16px 20px 20px;
+            box-shadow: 0 8px 24px rgba(9, 19, 38, 0.32);
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 7px;
+            background-color: #d97706;
+            background-image: repeating-linear-gradient(
+                90deg,
+                #091832 0px,
+                #091832 2px,
+                transparent 2px,
+                transparent 8px,
+                #091832 8px,
+                #091832 9.5px,
+                transparent 9.5px,
+                transparent 16px,
+                #091832 16px,
+                #091832 18px,
+                transparent 18px,
+                transparent 32px
+            );
+        }
+
+        .header-inner {
+            max-width: 1020px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            font-size: 1.15rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+        }
+
+        .brand .highlight {
+            color: #38bdf8;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #f8fafc;
+            text-decoration: none;
+            font-size: 0.98rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            padding: 4px 2px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #fde047;
+            border-bottom-color: #fde047;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 1020px;
+            margin: 30px auto 64px;
+            padding: 0 16px;
+        }
+
+        .manuscript-frame {
+            background: var(--paper-cream);
+            border: 3px solid var(--ink-navy);
+            border-radius: 18px;
+            padding: 44px 38px;
+            box-shadow: var(--shadow-crisp), inset 0 0 0 6px var(--paper-cream), inset 0 0 0 8.5px var(--gold-deep);
+            position: relative;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            color: var(--gold-deep);
+            pointer-events: none;
+        }
+        .co-tl { top: 12px; left: 12px; }
+        .co-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+        .co-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+        .co-br { bottom: 12px; right: 12px; transform: scale(-1, -1); }
+
+        section {
+            margin-bottom: 52px;
+        }
+
+        section:last-child {
+            margin-bottom: 10px;
+        }
+
+        /* =========================================================
+           TABLE OF CONTENTS (MỤC LỤC - ĐẶT Ở PHẦN THỨ 2, SIÊU XỊN XÒ)
+           ========================================================= */
+        .toc-container {
+            background: linear-gradient(135deg, #0f2547 0%, #091832 100%);
+            border: 2px solid var(--gold-bright);
+            border-radius: 16px;
+            padding: 26px 30px;
+            margin-bottom: 36px;
+            box-shadow: 0 10px 28px rgba(9, 19, 38, 0.25);
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .toc-container::before {
+            content: "";
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .toc-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid rgba(250, 204, 21, 0.35);
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        .toc-header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #d97706;
+            color: #091326;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .toc-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #fde047;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 14px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #f8fafc;
+            transition: all 0.25s ease;
+        }
+
+        .toc-item:hover {
+            background: rgba(217, 119, 6, 0.25);
+            border-color: #fde047;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+        }
+
+        .toc-num {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: #fde047;
+            background: rgba(250, 204, 21, 0.18);
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(250, 204, 21, 0.4);
+        }
+
+        .toc-label {
+            font-size: 0.96rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .ruler-divider {
+            margin: 40px 0;
+            height: 24px;
+            background: linear-gradient(180deg, #eab308 0%, #ca8a04 100%);
+            border: 2px solid var(--ink-navy);
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(9, 19, 38, 0.14);
+            display: flex;
+            align-items: flex-start;
+            overflow: hidden;
+        }
+
+        .ruler-divider::before {
+            content: "";
+            width: 100%;
+            height: 11px;
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 9px,
+                #091326 9px,
+                #091326 11px,
+                transparent 11px,
+                transparent 19px,
+                #091326 19px,
+                #091326 21px
+            );
+        }
+
+        .ruler-label {
+            position: absolute;
+            right: 14px;
+            bottom: 1px;
+            font-size: 0.68rem;
+            font-weight: 900;
+            color: #091326;
+            letter-spacing: 0.1em;
+        }
+
+        .top-help-card {
+            background: #ffffff;
+            border: 2px solid var(--ink-navy);
+            border-left: 8px solid var(--crimson);
+            border-radius: 16px;
+            padding: 20px 26px;
+            margin-bottom: 34px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .top-help-card p {
+            font-size: 1.08rem;
+            color: var(--ink-black);
+            font-weight: 600;
+            line-height: 1.55;
+        }
+
+        .top-help-card strong {
+            color: var(--crimson);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-right: 4px;
+        }
+
+        .stationery-cluster {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            color: var(--ink-navy);
+            background: var(--paper-warm);
+            padding: 8px;
+            border-radius: 12px;
+            border: 1.5px solid var(--gold-deep);
+        }
+
+        .scholarly-banner {
+            background: linear-gradient(135deg, #fffdf9 0%, #f5ebd6 100%);
+            border: 2px solid var(--ink-navy);
+            border-radius: 16px;
+            padding: 34px 30px;
+            position: relative;
+            box-shadow: var(--shadow-card);
+        }
+
+        .banner-header-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold-deep);
+            padding-bottom: 12px;
+            margin-bottom: 22px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--crimson);
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+        }
+
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.25fr 0.95fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .scholarly-banner h1 {
+            font-size: 2.3rem;
+            line-height: 1.22;
+            color: var(--ink-black);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .scholarly-banner h1 .title-highlight {
+            color: var(--crimson);
+            text-decoration: underline;
+            text-decoration-color: var(--gold-bright);
+            text-decoration-thickness: 3px;
+            text-underline-offset: 6px;
+        }
+
+        .scholarly-banner p.lead {
+            font-size: 1.08rem;
+            color: var(--ink-black);
+            font-weight: 500;
+            text-align: justify;
+        }
+
+        .scholarly-banner p.lead::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.82;
+            padding-right: 12px;
+            padding-top: 4px;
+            color: var(--crimson);
+            font-weight: 900;
+        }
+
+        .ink-highlight {
+            background: linear-gradient(180deg, transparent 58%, rgba(250, 204, 21, 0.55) 58%);
+            font-weight: 800;
+            color: var(--ink-black);
+            padding: 0 3px;
+        }
+
+        .illustration-frame {
+            background: #ffffff;
+            border: 2px solid var(--ink-navy);
+            border-radius: 14px;
+            padding: 12px;
+            box-shadow: 0 8px 20px rgba(9, 19, 38, 0.1);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .illustration-frame svg {
+            width: 100%;
+            height: auto;
+            max-height: 215px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            border: 1px solid #e2d5be;
+        }
+
+        .img-caption {
+            display: block;
+            margin-top: 9px;
+            font-size: 0.85rem;
+            color: var(--ink-navy);
+            font-weight: 700;
+        }
+
+        .section-heading-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .heading-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--ink-navy);
+            border: 2px solid var(--gold-bright);
+            color: #fde047;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(9, 19, 38, 0.22);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--ink-black);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            color: var(--ink-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-left: 12px;
+            border-left: 4px solid var(--gold-bright);
+        }
+
+        .framed-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+            margin-top: 22px;
+        }
+
+        .framed-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+            gap: 20px;
+        }
+
+        .scholar-frame-card {
+            background: #ffffff;
+            border: 2px solid var(--ink-navy);
+            border-top: 6px solid var(--ink-navy);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+            position: relative;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .scholar-frame-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(9, 19, 38, 0.16);
+            border-top-color: var(--crimson);
+        }
+
+        .notebook-lined {
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 31px,
+                rgba(15, 37, 71, 0.09) 31px,
+                rgba(15, 37, 71, 0.09) 32px
+            );
+            background-position: 0 14px;
+        }
+
+        .card-split-concept {
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .card-tool-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--ink-navy);
+        }
+
+        .card-tool-header h3 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--ink-black);
+            letter-spacing: -0.01em;
+        }
+
+        .tool-svg-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--ink-navy);
+            border: 1.5px solid var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fde047;
+            flex-shrink: 0;
+        }
+
+        .scholar-frame-card p {
+            color: var(--ink-black);
+            font-size: 1.01rem;
+            font-weight: 500;
+        }
+
+        .pen-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pen-list li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 1rem;
+            color: var(--ink-black);
+            font-weight: 500;
+        }
+
+        .pen-list li strong {
+            color: var(--crimson);
+            font-weight: 800;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .pen-list li::before {
+            content: "✒";
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: var(--ink-navy);
+            font-size: 1.05rem;
+            font-weight: bold;
+        }
+
+        .chapter-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--ink-navy);
+            color: #fde047;
+            padding: 5px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .mini-art-box {
+            background: var(--paper-warm);
+            border: 1.5px solid var(--ink-navy);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .mini-art-box svg {
+            width: 100%;
+            height: 115px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .study-box {
+            margin-top: 28px;
+            background: var(--paper-warm);
+            border: 2px solid var(--ink-navy);
+            border-radius: 16px;
+            padding: 26px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .case-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .case-tab {
+            background: #ffffff;
+            color: var(--ink-black);
+            border: 2px solid var(--ink-navy);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .case-tab.active, .case-tab:hover {
+            background: var(--crimson);
+            color: #ffffff;
+            border-color: var(--crimson);
+            box-shadow: 0 4px 12px rgba(136, 19, 55, 0.28);
+        }
+
+        .case-panel {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px 22px;
+            border: 1.5px solid var(--ink-navy);
+            border-left: 6px solid var(--ink-navy);
+        }
+
+        .case-panel h4 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--crimson);
+            margin-bottom: 8px;
+            font-size: 1.12rem;
+            font-weight: 900;
+        }
+
+        .team-intro-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 24px;
+            align-items: start;
+            margin-bottom: 26px;
+        }
+
+        .roster-wrapper {
+            background: var(--roster-pink);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 22px rgba(9, 19, 38, 0.12);
+            border: 2px solid var(--roster-border);
+            margin-bottom: 10px;
+        }
+
+        table.roster-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.15rem;
+            color: #091326;
+        }
+
+        table.roster-table tr {
+            border-bottom: 1.8px solid var(--roster-border);
+        }
+
+        table.roster-table tr:last-child {
+            border-bottom: none;
+        }
+
+        table.roster-table td {
+            padding: 11px 18px;
+        }
+
+        table.roster-table td.stt {
+            width: 76px;
+            text-align: center;
+            font-weight: 800;
+            border-right: 1.8px solid var(--roster-border);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        table.roster-table td.name {
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .roster-caption {
+            font-size: 0.94rem;
+            color: var(--ink-navy);
+            font-weight: 600;
+        }
+
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .member-card {
+            background: #ffffff;
+            border: 2px solid var(--ink-navy);
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .member-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ink-navy), var(--crimson), var(--gold-bright));
+            border-radius: 4px 4px 0 0;
+        }
+
+        .member-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(9, 19, 38, 0.15);
+        }
+
+        .member-number {
+            font-size: 0.86rem;
+            font-weight: 900;
+            color: var(--ink-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 5px;
+        }
+
+        .member-name {
+            font-size: 1.18rem;
+            font-weight: 900;
+            color: var(--ink-black);
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        .member-role {
+            font-size: 0.92rem;
+            color: var(--ink-body);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .member-tool-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: var(--ink-navy);
+            border: 1.5px solid var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fde047;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(9, 19, 38, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 28px 20px;
+            color: var(--ink-black);
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-top: 3px solid var(--ink-navy);
+            background: var(--paper-warm);
+        }
+
+        @media (max-width: 780px) {
+            .hero-split,
+            .card-split-concept,
+            .team-intro-grid {
+                grid-template-columns: 1fr;
+            }
+            .manuscript-frame {
+                padding: 26px 18px;
+            }
+            .scholarly-banner h1 {
+                font-size: 1.75rem;
+            }
+            .top-help-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .member-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .member-card {
+                padding: 14px;
+            }
+            .member-name {
+                font-size: 1rem;
+            }
+            .member-tool-icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <svg class="margin-art art-top-left" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.4">
+        <polygon points="20,20 20,170 170,170" fill="rgba(246, 238, 220, 0.5)" stroke-linejoin="round"/>
+        <polygon points="45,80 45,145 110,145" fill="rgba(229, 216, 193, 0.6)" stroke-linejoin="round"/>
+        <line x1="20" y1="40" x2="34" y2="40"/><line x1="20" y1="60" x2="30" y2="60"/>
+        <line x1="20" y1="80" x2="34" y2="80"/><line x1="20" y1="100" x2="30" y2="100"/>
+        <line x1="20" y1="120" x2="34" y2="120"/><line x1="20" y1="140" x2="30" y2="140"/>
+        <path d="M135 20 L165 50 L85 130 L50 135 L55 100 Z" fill="rgba(255, 253, 248, 0.7)"/>
+        <circle cx="82" cy="103" r="4" fill="currentColor"/>
+    </svg>
+
+    <svg class="margin-art art-bottom-right" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.4">
+        <path d="M20 70 C50 58, 82 62, 100 76 C118 62, 150 58, 180 70 L180 165 C150 153, 118 157, 100 171 C82 157, 50 153, 20 165 Z" fill="rgba(255, 253, 248, 0.7)"/>
+        <line x1="100" y1="76" x2="100" y2="171"/>
+        <path d="M55 55 A45 45 0 0 1 145 55 Z" fill="rgba(246, 238, 220, 0.6)"/>
+        <path d="M72 55 A28 28 0 0 1 128 55 Z"/>
+    </svg>
+
+    <header class="sans">
+        <div class="header-inner">
+            <div class="brand">
+                <span><span class="highlight">CYBERSAFE</span> • NHÓM 44</span>
+            </div>
+            <nav>
+                <a href="#tong-quan">Tổng quan</a>
+                <a href="#bai-viet">Bài viết</a>
+                <a href="#cach-bao-ve">Cách bảo vệ</a>
+                <a href="#thanh-vien">Thành viên</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="manuscript-frame">
+            <svg class="corner-ornament co-tl" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 46 L4 12 C4 7, 7 4, 12 4 L46 4"/><path d="M10 34 L10 14 C10 11, 11 10, 14 10 L34 10"/><circle cx="16" cy="16" r="3" fill="currentColor"/>
+            </svg>
+            <svg class="corner-ornament co-tr" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 46 L4 12 C4 7, 7 4, 12 4 L46 4"/><path d="M10 34 L10 14 C10 11, 11 10, 14 10 L34 10"/><circle cx="16" cy="16" r="3" fill="currentColor"/>
+            </svg>
+            <svg class="corner-ornament co-bl" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 46 L4 12 C4 7, 7 4, 12 4 L46 4"/><path d="M10 34 L10 14 C10 11, 11 10, 14 10 L34 10"/><circle cx="16" cy="16" r="3" fill="currentColor"/>
+            </svg>
+            <svg class="corner-ornament co-br" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 46 L4 12 C4 7, 7 4, 12 4 L46 4"/><path d="M10 34 L10 14 C10 11, 11 10, 14 10 L34 10"/><circle cx="16" cy="16" r="3" fill="currentColor"/>
+            </svg>
+
+            <!-- Hộp thông điệp đầu trang -->
+            <div class="top-help-card sans">
+                <p>
+                    <strong>Trợ giúp:</strong> Khi bị đe dọa, lừa đảo hoặc bắt nạt, hãy chặn, báo cáo và trao đổi với người lớn đáng tin cậy.
+                </p>
+                <div class="stationery-cluster" title="Bút & Thước Tri Thức">
+                    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/>
+                        <path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/>
+                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- PHẦN 1: TỔNG QUAN -->
+            <section id="tong-quan">
+                <div class="scholarly-banner">
+                    <div class="banner-header-strip sans">
+                        <span>📐 Chuyên Đề Tri Thức Học Đường • Nhóm 44</span>
+                        <span>✒ Cây Bút Văn Minh – Thước Đo Chuẩn Mực</span>
+                    </div>
+                    <div class="hero-split">
+                        <div>
+                            <h1 class="sans">
+                                Bạo Lực Trên Không Gian Mạng &amp; <span class="title-highlight">Giải Pháp Giảm Thiểu</span>
+                            </h1>
+                            <p class="lead">
+                                Trong học tập, cây thước giúp ta kẻ những đường thẳng ngay ngắn, còn ngòi bút giúp ta viết nên tri thức. Trên không gian mạng cũng vậy: mỗi người cần một <span class="ink-highlight">"thước đo chuẩn mực"</span> trong lời nói và một <span class="ink-highlight">"ngòi bút nhân ái"</span> khi gõ bàn phím. Cùng <strong>CYBERSAFE • NHÓM 44</strong> nhận diện sâu sắc thực trạng bạo lực mạng và lan tỏa giải pháp xây dựng môi trường Internet an toàn, văn minh.
+                            </p>
+                        </div>
+
+                        <div class="illustration-frame" style="margin-bottom: 0;">
+                            <svg viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="shieldGrad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#091326"/>
+                                        <stop offset="100%" stop-color="#1e40af"/>
+                                    </linearGradient>
+                                    <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#facc15"/>
+                                        <stop offset="100%" stop-color="#ca8a04"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect width="360" height="230" fill="#faf3e3"/>
+                                <g stroke="#d6c7ae" stroke-width="1">
+                                    <line x1="0" y1="40" x2="360" y2="40"/><line x1="0" y1="80" x2="360" y2="80"/>
+                                    <line x1="0" y1="120" x2="360" y2="120"/><line x1="0" y1="160" x2="360" y2="160"/>
+                                    <line x1="0" y1="200" x2="360" y2="200"/>
+                                    <line x1="60" y1="0" x2="60" y2="230"/><line x1="120" y1="0" x2="120" y2="230"/>
+                                    <line x1="180" y1="0" x2="180" y2="230"/><line x1="240" y1="0" x2="240" y2="230"/>
+                                    <line x1="300" y1="0" x2="300" y2="230"/>
+                                </g>
+                                <g transform="rotate(-18 180 115)">
+                                    <rect x="35" y="98" width="290" height="28" rx="4" fill="url(#goldGrad)" stroke="#091326" stroke-width="2.2"/>
+                                    <g stroke="#091326" stroke-width="1.8">
+                                        <line x1="55" y1="98" x2="55" y2="110"/><line x1="75" y1="98" x2="75" y2="106"/>
+                                        <line x1="95" y1="98" x2="95" y2="110"/><line x1="115" y1="98" x2="115" y2="106"/>
+                                        <line x1="135" y1="98" x2="135" y2="110"/><line x1="155" y1="98" x2="155" y2="106"/>
+                                        <line x1="205" y1="98" x2="205" y2="110"/><line x1="225" y1="98" x2="225" y2="106"/>
+                                        <line x1="245" y1="98" x2="245" y2="110"/><line x1="265" y1="98" x2="265" y2="106"/>
+                                        <line x1="285" y1="98" x2="285" y2="110"/><line x1="305" y1="98" x2="305" y2="106"/>
+                                    </g>
+                                </g>
+                                <g transform="rotate(22 180 115)">
+                                    <rect x="60" y="106" width="210" height="14" rx="3" fill="#881337" stroke="#091326" stroke-width="2.2"/>
+                                    <polygon points="270,106 305,113 270,120" fill="#fde047" stroke="#091326" stroke-width="2"/>
+                                    <line x1="285" y1="113" x2="305" y2="113" stroke="#091326" stroke-width="1.6"/>
+                                    <rect x="90" y="106" width="12" height="14" fill="#fde047"/>
+                                </g>
+                                <path d="M75 145 C115 132, 155 138, 180 152 C205 138, 245 132, 285 145 L285 198 C245 185, 205 190, 180 204 C155 190, 115 185, 75 198 Z" fill="#ffffff" stroke="#091326" stroke-width="2.8"/>
+                                <path d="M75 198 C115 185, 155 190, 180 204 C205 190, 245 185, 285 198" fill="none" stroke="#d97706" stroke-width="4.5"/>
+                                <line x1="180" y1="152" x2="180" y2="204" stroke="#091326" stroke-width="2.5"/>
+                                <line x1="95" y1="160" x2="160" y2="156" stroke="#475569" stroke-width="2.2"/>
+                                <line x1="95" y1="172" x2="155" y2="168" stroke="#475569" stroke-width="2.2"/>
+                                <line x1="200" y1="156" x2="265" y2="160" stroke="#475569" stroke-width="2.2"/>
+                                <line x1="205" y1="168" x2="265" y2="172" stroke="#475569" stroke-width="2.2"/>
+                                <path d="M180 28 L235 48 L235 102 C235 138, 180 162, 180 162 C180 162, 125 138, 125 102 L125 48 Z" fill="url(#shieldGrad)" stroke="#fde047" stroke-width="3.2"/>
+                                <path d="M162 95 L175 108 L202 78" fill="none" stroke="#fde047" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polygon points="18,175 18,215 65,215" fill="#eab308" stroke="#091326" stroke-width="2"/>
+                            </svg>
+                            <span class="img-caption sans">Hình 1: Lá chắn tri thức kết hợp thước đo chuẩn mực và ngòi bút văn minh.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+               BẢNG MỤC LỤC TRANG (ĐẶT Ở PHẦN THỨ 2, SIÊU XỊN XÒ)
+               ========================================================= -->
+            <div class="toc-container sans">
+                <div class="toc-header">
+                    <div class="toc-header-icon">§</div>
+                    <div class="toc-title">Mục Lục Chuyên San • Nhóm 44</div>
+                </div>
+                <div class="toc-grid">
+                    <a href="#tong-quan" class="toc-item">
+                        <span class="toc-num">01</span>
+                        <span class="toc-label">Tổng Quan &amp; Ý Nghĩa Dự Án</span>
+                    </a>
+                    <a href="#bai-viet" class="toc-item">
+                        <span class="toc-num">02</span>
+                        <span class="toc-label">Bài Viết Chuyên Đề: Nhận Diện &amp; Hệ Lụy</span>
+                    </a>
+                    <a href="#cach-bao-ve" class="toc-item">
+                        <span class="toc-num">03</span>
+                        <span class="toc-label">Cẩm Nang 5 Không &amp; Kỹ Năng Tự Vệ Số</span>
+                    </a>
+                    <a href="#thanh-vien" class="toc-item">
+                        <span class="toc-num">04</span>
+                        <span class="toc-label">Danh Sách Thành Viên &amp; Sơ Đồ Gắn Kết</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ruler-divider" aria-hidden="true">
+                <span class="ruler-label sans">THƯỚC ĐO VĂN MINH SỐ • NHÓM 44</span>
+            </div>
+
+            <!-- PHẦN 2: BÀI VIẾT CHUYÊN ĐỀ -->
+            <section id="bai-viet">
+                <div class="section-heading-wrap">
+                    <div class="heading-badge">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title sans">Bài viết chuyên đề</h2>
+                    </div>
+                </div>
+                <p class="section-subtitle sans">
+                    Nhận diện bản chất, các hình thức tấn công và hậu quả của bạo lực mạng (Cyberbullying).
+                </p>
+
+                <div class="scholar-frame-card notebook-lined">
+                    <div class="card-tool-header">
+                        <h3>1. Bạo lực trên không gian mạng là gì?</h3>
+                        <div class="tool-svg-icon" title="Sách tri thức">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="card-split-concept">
+                        <div>
+                            <p>
+                                <span class="ink-highlight">Bạo lực trên không gian mạng (Cyberbullying)</span> là hành vi sử dụng các thiết bị số, mạng xã hội, ứng dụng nhắn tin hoặc diễn đàn trực tuyến để cố ý quấy rối, đe dọa, làm nhục, tung tin sai sự thật hoặc cô lập một cá nhân hay tập thể.
+                            </p>
+                            <p style="margin-top: 12px;">
+                                Khác với va chạm ngoài đời thực, bạo lực mạng diễn ra âm thầm suốt <strong>24/7</strong>, tốc độ lan truyền theo cấp số nhân và để lại những <strong>"vết mực đen"</strong> khó xóa nhòa trong tâm hồn nạn nhân.
+                            </p>
+                        </div>
+
+                        <div class="illustration-frame" style="margin-bottom: 0;">
+                            <svg viewBox="0 0 320 185" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="320" height="185" fill="#faf3e3"/>
+                                <rect x="85" y="25" width="150" height="100" rx="8" fill="#091326" stroke="#d97706" stroke-width="2.8"/>
+                                <rect x="93" y="33" width="134" height="84" rx="4" fill="#ffffff"/>
+                                <path d="M65 125 L255 125 L270 140 L50 140 Z" fill="#94a3b8" stroke="#091326" stroke-width="2.2"/>
+                                <g>
+                                    <rect x="16" y="32" width="80" height="34" rx="8" fill="#ffe4e6" stroke="#881337" stroke-width="2.2"/>
+                                    <polygon points="80,66 92,76 90,66" fill="#ffe4e6" stroke="#881337" stroke-width="1.8"/>
+                                    <text x="56" y="54" font-family="sans-serif" font-size="13" font-weight="900" fill="#881337" text-anchor="middle">#@!*%</text>
+                                </g>
+                                <g>
+                                    <rect x="216" y="36" width="88" height="36" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="2.2"/>
+                                    <text x="260" y="59" font-family="sans-serif" font-size="11" font-weight="900" fill="#166534" text-anchor="middle">TỬ TẾ &amp; VĂN MINH</text>
+                                </g>
+                                <path d="M160 95 C160 95, 136 78, 136 62 C136 52, 146 46, 155 52 C158 54, 160 57, 160 57 C160 57, 162 54, 165 52 C174 46, 184 52, 184 62 C184 78, 160 95, 160 95 Z" fill="#e11d48" stroke="#091326" stroke-width="2"/>
+                                <rect x="95" y="150" width="130" height="18" rx="3" fill="#eab308" stroke="#091326" stroke-width="1.8"/>
+                                <line x1="110" y1="150" x2="110" y2="159" stroke="#091326" stroke-width="1.8"/>
+                                <line x1="130" y1="150" x2="130" y2="159" stroke="#091326" stroke-width="1.8"/>
+                                <line x1="150" y1="150" x2="150" y2="159" stroke="#091326" stroke-width="1.8"/>
+                                <line x1="170" y1="150" x2="170" y2="159" stroke="#091326" stroke-width="1.8"/>
+                                <line x1="190" y1="150" x2="190" y2="159" stroke="#091326" stroke-width="1.8"/>
+                                <line x1="210" y1="150" x2="210" y2="159" stroke="#091326" stroke-width="1.8"/>
+                            </svg>
+                            <span class="img-caption sans">Hình 2: Ranh giới giữa ngôn từ công kích độc hại và văn hóa ứng xử tử tế.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="framed-grid-2">
+                    <div class="scholar-frame-card">
+                        <div class="card-tool-header">
+                            <h3>2. Các hình thức phổ biến</h3>
+                            <div class="tool-svg-icon" title="Bút máy">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg>
+                            </div>
+                        </div>
+
+                        <div class="illustration-frame">
+                            <svg viewBox="0 0 340 165" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="340" height="165" fill="#faf3e3"/>
+                                <g transform="translate(15, 14)">
+                                    <rect width="145" height="62" rx="8" fill="#ffffff" stroke="#091326" stroke-width="1.8"/>
+                                    <circle cx="28" cy="31" r="16" fill="#ffe4e6" stroke="#881337" stroke-width="1.8"/>
+                                    <path d="M21 28 L35 28 M21 35 L31 35" stroke="#881337" stroke-width="2.2" stroke-linecap="round"/>
+                                    <text x="52" y="28" font-family="sans-serif" font-size="10.5" font-weight="900" fill="#091326">Miệt thị &amp; Xúc phạm</text>
+                                    <text x="52" y="43" font-family="sans-serif" font-size="9.5" font-weight="600" fill="#334155">Body shaming, Hate</text>
+                                </g>
+                                <g transform="translate(180, 14)">
+                                    <rect width="145" height="62" rx="8" fill="#ffffff" stroke="#091326" stroke-width="1.8"/>
+                                    <circle cx="28" cy="31" r="16" fill="#fef3c7" stroke="#b45309" stroke-width="1.8"/>
+                                    <rect x="20" y="23" width="16" height="16" rx="2" fill="none" stroke="#b45309" stroke-width="2"/>
+                                    <line x1="18" y1="41" x2="38" y2="21" stroke="#881337" stroke-width="2"/>
+                                    <text x="52" y="28" font-family="sans-serif" font-size="10.5" font-weight="900" fill="#091326">Cắt ghép &amp; Vu khống</text>
+                                    <text x="52" y="43" font-family="sans-serif" font-size="9.5" font-weight="600" fill="#334155">Tin giả, bôi nhọ uy tín</text>
+                                </g>
+                                <g transform="translate(15, 88)">
+                                    <rect width="145" height="62" rx="8" fill="#ffffff" stroke="#091326" stroke-width="1.8"/>
+                                    <circle cx="28" cy="31" r="16" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+                                    <rect x="22" y="27" width="12" height="10" rx="2" fill="none" stroke="#1d4ed8" stroke-width="2"/>
+                                    <path d="M24 27 V23 A4 4 0 0 1 32 23 V27" fill="none" stroke="#1d4ed8" stroke-width="2"/>
+                                    <text x="52" y="28" font-family="sans-serif" font-size="10.5" font-weight="900" fill="#091326">Lộ thông tin (Doxxing)</text>
+                                    <text x="52" y="43" font-family="sans-serif" font-size="9.5" font-weight="600" fill="#334155">SĐT, địa chỉ, tin nhắn</text>
+                                </g>
+                                <g transform="translate(180, 88)">
+                                    <rect width="145" height="62" rx="8" fill="#ffffff" stroke="#091326" stroke-width="1.8"/>
+                                    <circle cx="28" cy="31" r="16" fill="#f3e8ff" stroke="#6b21a8" stroke-width="1.8"/>
+                                    <circle cx="28" cy="27" r="4" fill="none" stroke="#6b21a8" stroke-width="2"/>
+                                    <path d="M20 39 C20 34, 36 34, 36 39" fill="none" stroke="#6b21a8" stroke-width="2"/>
+                                    <text x="52" y="28" font-family="sans-serif" font-size="10.5" font-weight="900" fill="#091326">Giả mạo &amp; Cô lập</text>
+                                    <text x="52" y="43" font-family="sans-serif" font-size="9.5" font-weight="600" fill="#334155">Tẩy chay hội đồng</text>
+                                </g>
+                            </svg>
+                            <span class="img-caption sans">Hình 3: Sơ đồ 4 nhóm hành vi bạo lực mạng phổ biến trong học đường.</span>
+                        </div>
+
+                        <ul class="pen-list">
+                            <li><strong>Công kích &amp; Miệt thị (Body shaming, Hate speech):</strong> Bình luận chê bai ngoại hình, xúc phạm danh dự, nhân phẩm người khác.</li>
+                            <li><strong>Vu khống &amp; Cắt ghép:</strong> Bịa đặt tin đồn thất thiệt, chỉnh sửa hình ảnh/video nhằm bôi nhọ uy tín cá nhân.</li>
+                            <li><strong>Công khai dữ liệu riêng tư (Doxxing):</strong> Tự ý đăng tải số điện thoại, địa chỉ nhà, tin nhắn riêng tư lên mạng.</li>
+                            <li><strong>Giả mạo &amp; Tẩy chay hội đồng:</strong> Lập tài khoản mạo danh hoặc lập nhóm cô lập bạn bè trong lớp, trong trường.</li>
+                        </ul>
+                    </div>
+
+                    <div class="scholar-frame-card">
+                        <div class="card-tool-header">
+                            <h3>3. Hậu quả nghiêm trọng</h3>
+                            <div class="tool-svg-icon" title="Thước kẻ chuẩn mực">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="illustration-frame">
+                            <svg viewBox="0 0 340 165" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="340" height="165" fill="#faf3e3"/>
+                                <line x1="170" y1="22" x2="170" y2="140" stroke="#091326" stroke-width="4"/>
+                                <rect x="130" y="140" width="80" height="10" rx="3" fill="#d97706" stroke="#091326" stroke-width="2.2"/>
+                                <line x1="75" y1="52" x2="265" y2="52" stroke="#d97706" stroke-width="3.5"/>
+                                <circle cx="170" cy="52" r="6.5" fill="#881337" stroke="#091326" stroke-width="1.5"/>
+                                <line x1="75" y1="52" x2="55" y2="95" stroke="#091326" stroke-width="2"/>
+                                <line x1="75" y1="52" x2="95" y2="95" stroke="#091326" stroke-width="2"/>
+                                <rect x="26" y="95" width="98" height="44" rx="8" fill="#ffe4e6" stroke="#881337" stroke-width="2"/>
+                                <text x="75" y="113" font-family="sans-serif" font-size="10" font-weight="900" fill="#881337" text-anchor="middle">TÂM LÝ &amp; HỌC TẬP</text>
+                                <text x="75" y="129" font-family="sans-serif" font-size="9.5" font-weight="700" fill="#091326" text-anchor="middle">Lo âu, trầm cảm, sợ lớp</text>
+                                <line x1="265" y1="52" x2="245" y2="95" stroke="#091326" stroke-width="2"/>
+                                <line x1="265" y1="52" x2="285" y2="95" stroke="#091326" stroke-width="2"/>
+                                <rect x="216" y="95" width="98" height="44" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+                                <text x="265" y="113" font-family="sans-serif" font-size="10" font-weight="900" fill="#78350f" text-anchor="middle">XÃ HỘI &amp; PHÁP LÝ</text>
+                                <text x="265" y="129" font-family="sans-serif" font-size="9.5" font-weight="700" fill="#091326" text-anchor="middle">Môi trường độc hại, xử phạt</text>
+                            </svg>
+                            <span class="img-caption sans">Hình 4: Gánh nặng hệ lụy từ những hành vi thiếu chuẩn mực trên không gian mạng.</span>
+                        </div>
+
+                        <ul class="pen-list">
+                            <li><strong>Suy sụp tâm lý:</strong> Gây lo âu kéo dài, mất ngủ, trầm cảm, tự ti và cảm giác sợ hãi đám đông.</li>
+                            <li><strong>Ảnh hưởng học tập:</strong> Học sinh sợ đến trường, mất tập trung, suy giảm kết quả học tập và ngại giao tiếp.</li>
+                            <li><strong>Môi trường mạng độc hại:</strong> Xói mòn sự tin tưởng giữa con người, cổ xúy lối sống vô cảm và tâm lý bầy đàn.</li>
+                            <li><strong>Trách nhiệm pháp lý:</strong> Hành vi làm nhục, vu khống người khác trên mạng có thể bị xử phạt hành chính hoặc hình sự.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="ruler-divider" aria-hidden="true">
+                <span class="ruler-label sans">CẨM NANG GIẢM THIỂU &amp; BẢO VỆ</span>
+            </div>
+
+            <!-- PHẦN 3: CÁCH BẢO VỆ & GIẢM THIỂU -->
+            <section id="cach-bao-ve">
+                <div class="section-heading-wrap">
+                    <div class="heading-badge">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title sans">Cách bảo vệ &amp; Giảm thiểu bạo lực mạng</h2>
+                    </div>
+                </div>
+                <p class="section-subtitle sans">
+                    Mỗi học sinh là một tuyên truyền viên tích cực góp phần làm sạch không gian mạng.
+                </p>
+
+                <div class="framed-grid-3">
+                    <div class="scholar-frame-card">
+                        <div class="mini-art-box">
+                            <svg viewBox="0 0 220 115" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="110" cy="57" r="46" fill="#fef3c7" stroke="#b45309" stroke-width="2.2" stroke-dasharray="4 3"/>
+                                <path d="M110 20 L145 34 L145 64 C145 86, 110 100, 110 100 C110 100, 75 86, 75 64 L75 34 Z" fill="#091326" stroke="#eab308" stroke-width="2.2"/>
+                                <text x="110" y="66" font-family="Georgia, serif" font-size="22" font-weight="900" fill="#fde047" text-anchor="middle">5K</text>
+                                <rect x="55" y="94" width="110" height="12" rx="2" fill="#eab308" stroke="#091326" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <span class="chapter-badge sans">📐 Nguyên tắc 01</span>
+                        <h3 class="sans" style="font-weight: 900; color: var(--ink-black); margin-bottom: 8px;">Quy tắc "5 Không"</h3>
+                        <p>
+                            <strong>Không</strong> bình luận ác ý; <strong>Không</strong> chia sẻ thông tin chưa kiểm chứng; <strong>Không</strong> hùa theo đám đông bắt nạt; <strong>Không</strong> tiết lộ thông tin riêng tư; <strong>Không</strong> im lặng chịu đựng một mình.
+                        </p>
+                    </div>
+
+                    <div class="scholar-frame-card">
+                        <div class="mini-art-box">
+                            <svg viewBox="0 0 220 115" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="50" y="22" width="75" height="75" rx="6" fill="#ffffff" stroke="#091326" stroke-width="2.2"/>
+                                <line x1="62" y1="38" x2="112" y2="38" stroke="#475569" stroke-width="2.2"/>
+                                <line x1="62" y1="52" x2="112" y2="52" stroke="#475569" stroke-width="2.2"/>
+                                <line x1="62" y1="66" x2="98" y2="66" stroke="#475569" stroke-width="2.2"/>
+                                <rect x="115" y="52" width="52" height="42" rx="6" fill="#166534" stroke="#091326" stroke-width="2.2"/>
+                                <path d="M127 52 V40 A14 14 0 0 1 155 40 V52" fill="none" stroke="#eab308" stroke-width="4.2"/>
+                                <circle cx="141" cy="70" r="4" fill="#fde047"/>
+                                <line x1="141" y1="74" x2="141" y2="83" stroke="#fde047" stroke-width="2.5"/>
+                            </svg>
+                        </div>
+                        <span class="chapter-badge sans">✒️ Nguyên tắc 02</span>
+                        <h3 class="sans" style="font-weight: 900; color: var(--ink-black); margin-bottom: 8px;">Bảo mật &amp; Lưu bằng chứng</h3>
+                        <p>
+                            Cài đặt quyền riêng tư cho tài khoản cá nhân. Khi bị công kích, tuyệt đối <strong>không đôi co nóng vội</strong> mà hãy chụp màn hình tin nhắn, bài đăng để lưu giữ bằng chứng.
+                        </p>
+                    </div>
+
+                    <div class="scholar-frame-card">
+                        <div class="mini-art-box">
+                            <svg viewBox="0 0 220 115" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M45 75 C75 65, 95 70, 110 80 C125 70, 145 65, 175 75 L175 98 C145 88, 125 93, 110 103 C95 93, 75 88, 45 98 Z" fill="#ffffff" stroke="#091326" stroke-width="2.2"/>
+                                <circle cx="88" cy="42" r="11" fill="#eab308" stroke="#091326" stroke-width="2"/>
+                                <path d="M70 68 C70 54, 106 54, 106 68" fill="#091326"/>
+                                <circle cx="132" cy="36" r="13" fill="#d97706" stroke="#091326" stroke-width="2"/>
+                                <path d="M110 68 C110 50, 154 50, 154 68" fill="#881337"/>
+                            </svg>
+                        </div>
+                        <span class="chapter-badge sans">📖 Nguyên tắc 03</span>
+                        <h3 class="sans" style="font-weight: 900; color: var(--ink-black); margin-bottom: 8px;">Chặn, Báo cáo &amp; Sẻ chia</h3>
+                        <p>
+                            Sử dụng tính năng <strong>Chặn (Block)</strong> và <strong>Báo cáo (Report)</strong> trên mạng xã hội, đồng thời tâm sự ngay với cha mẹ, thầy cô giáo hoặc người lớn đáng tin cậy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="study-box">
+                    <div class="sans" style="font-size: 0.84rem; font-weight: 900; color: var(--crimson); text-transform: uppercase; letter-spacing: 0.08em;">
+                        📏 Góc Thực Hành Ứng Xử Học Đường
+                    </div>
+                    <h3 class="sans" style="color: var(--ink-black); font-weight: 900; font-size: 1.35rem; margin-top: 4px;">Xử lý tình huống trên không gian mạng</h3>
+                    <div class="case-tabs sans">
+                        <button class="case-tab active" onclick="switchCase(0, this)">📖 Tình huống 1: Bị cắt ghép ảnh trêu chọc</button>
+                        <button class="case-tab" onclick="switchCase(1, this)">✒️ Tình huống 2: Thấy bạn bị lập nhóm tẩy chay</button>
+                        <button class="case-tab" onclick="switchCase(2, this)">📐 Tình huống 3: Bị tài khoản lạ đe dọa</button>
+                    </div>
+                    <div class="case-panel" id="caseDisplay">
+                        <h4>Cách xử lý khi bị cắt ghép ảnh hoặc tung tin đồn thất thiệt:</h4>
+                        <p>Giữ bình tĩnh, không trả đũa bằng lời lẽ xúc phạm. Hãy <strong>chụp màn hình bài đăng và đường link tài khoản</strong> làm bằng chứng, bấm <strong>Báo cáo (Report)</strong> bài viết, sau đó nhờ thầy cô chủ nhiệm hoặc cha mẹ can thiệp bảo vệ.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="ruler-divider" aria-hidden="true">
+                <span class="ruler-label sans">DANH SÁCH THÀNH VIÊN NHÓM 44</span>
+            </div>
+
+            <!-- PHẦN 4: THÀNH VIÊN NHÓM -->
+            <section id="thanh-vien">
+                <div class="section-heading-wrap">
+                    <div class="heading-badge">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title sans">Thành viên nhóm</h2>
+                    </div>
+                </div>
+                <p class="section-subtitle sans">
+                    Những thành viên cùng tìm hiểu và lan tỏa thông điệp sử dụng Internet an toàn, văn minh.
+                </p>
+
+                <div class="team-intro-grid">
+                    <div>
+                        <div class="roster-wrapper sans">
+                            <table class="roster-table">
+                                <tbody>
+                                    <tr>
+                                        <td class="stt">40</td>
+                                        <td class="name">Hồ Ngọc Khánh Đan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stt">41</td>
+                                        <td class="name">Phạm Tất Đạt</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stt">42</td>
+                                        <td class="name">Trần Hoàng Gia</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stt">43</td>
+                                        <td class="name">Phan Đăng Minh</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stt">44</td>
+                                        <td class="name">Võ Thị Minh Thịnh</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stt">45</td>
+                                        <td class="name">Trần Đức Trọng</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="roster-caption sans">Ảnh danh sách ban đầu do nhóm cung cấp.</p>
+                    </div>
+
+                    <div class="illustration-frame" style="margin-bottom: 0;">
+                        <svg viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="320" height="210" fill="#faf3e3"/>
+                            <circle cx="160" cy="95" r="56" fill="#ffffff" stroke="#091326" stroke-width="3"/>
+                            <circle cx="160" cy="95" r="48" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="5 3"/>
+                            <path d="M126 98 C140 90, 152 93, 160 100 C168 93, 180 90, 194 98 L194 124 C180 116, 168 119, 160 126 C152 119, 140 116, 126 124 Z" fill="#fef3c7" stroke="#091326" stroke-width="2.2"/>
+                            <line x1="160" y1="100" x2="160" y2="126" stroke="#091326" stroke-width="2.2"/>
+                            <text x="160" y="82" font-family="Georgia, serif" font-size="22" font-weight="900" fill="#881337" text-anchor="middle">NHÓM 44</text>
+                            <g font-family="sans-serif" font-size="10" font-weight="900" text-anchor="middle">
+                                <circle cx="65" cy="50" r="15" fill="#091326" stroke="#eab308" stroke-width="2"/><text x="65" y="54" fill="#fde047">40</text>
+                                <circle cx="50" cy="95" r="15" fill="#091326" stroke="#eab308" stroke-width="2"/><text x="50" y="99" fill="#fde047">41</text>
+                                <circle cx="65" cy="140" r="15" fill="#091326" stroke="#eab308" stroke-width="2"/><text x="65" y="144" fill="#fde047">42</text>
+                                <circle cx="255" cy="50" r="15" fill="#091326" stroke="#eab308" stroke-width="2"/><text x="255" y="54" fill="#fde047">43</text>
+                                <circle cx="270" cy="95" r="15" fill="#091326" stroke="#eab308" stroke-width="2"/><text x="270" y="99" fill="#fde047">44</text>
+                                <circle cx="255" cy="140" r="15" fill="#091326" stroke="#eab308" stroke-width="2"/><text x="255" y="144" fill="#fde047">45</text>
+                            </g>
+                            <rect x="60" y="168" width="200" height="26" rx="6" fill="#091326"/>
+                            <text x="160" y="185" font-family="sans-serif" font-size="11" font-weight="900" fill="#fde047" text-anchor="middle">6 THÀNH VIÊN • CHUNG MỘT SỨ MỆNH</text>
+                        </svg>
+                        <span class="img-caption sans">Hình 5: Biểu trưng gắn kết 6 thành viên Nhóm 44 (STT 40 – 45) lan tỏa tri thức số.</span>
+                    </div>
+                </div>
+
+                <div class="member-grid">
+                    <div class="member-card">
+                        <div>
+                            <div class="member-number sans">THÀNH VIÊN 40</div>
+                            <div class="member-name sans">Hồ Ngọc Khánh Đan</div>
+                            <div class="member-role">Biên soạn nội dung &amp; Tổng quan</div>
+                        </div>
+                        <div class="member-tool-icon" title="Bút máy tri thức">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div>
+                            <div class="member-number sans">THÀNH VIÊN 41</div>
+                            <div class="member-name sans">Phạm Tất Đạt</div>
+                            <div class="member-role">Nghiên cứu thực trạng bạo lực mạng</div>
+                        </div>
+                        <div class="member-tool-icon" title="Trang sách mở">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div>
+                            <div class="member-number sans">THÀNH VIÊN 42</div>
+                            <div class="member-name sans">Trần Hoàng Gia</div>
+                            <div class="member-role">Phân tích nguyên nhân &amp; hậu quả</div>
+                        </div>
+                        <div class="member-tool-icon" title="Thước kẻ chuẩn mực">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div>
+                            <div class="member-number sans">THÀNH VIÊN 43</div>
+                            <div class="member-name sans">Phan Đăng Minh</div>
+                            <div class="member-role">Đề xuất giải pháp giảm thiểu</div>
+                        </div>
+                        <div class="member-tool-icon" title="Thước Ê-ke">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="3,3 3,21 21,21"/><polygon points="7,11 7,17 13,17"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div>
+                            <div class="member-number sans">THÀNH VIÊN 44</div>
+                            <div class="member-name sans">Võ Thị Minh Thịnh</div>
+                            <div class="member-role">Thiết kế khung &amp; Mỹ thuật</div>
+                        </div>
+                        <div class="member-tool-icon" title="Bút chì sáng tạo">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div>
+                            <div class="member-number sans">THÀNH VIÊN 45</div>
+                            <div class="member-name sans">Trần Đức Trọng</div>
+                            <div class="member-role">Xây dựng mã HTML &amp; Hoàn thiện</div>
+                        </div>
+                        <div class="member-tool-icon" title="Sổ tay tri thức">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="sans">
+        <p><strong>CYBERSAFE • NHÓM 44</strong> — Chung tay xây dựng không gian mạng an toàn, văn minh và giàu tri thức.</p>
+    </footer>
+
+    <script>
+        const caseData = [
+            {
+                title: "Cách xử lý khi bị cắt ghép ảnh hoặc tung tin đồn thất thiệt:",
+                body: "Giữ bình tĩnh, không trả đũa bằng lời lẽ xúc phạm. Hãy <strong>chụp màn hình bài đăng và đường link tài khoản</strong> làm bằng chứng, bấm <strong>Báo cáo (Report)</strong> bài viết, sau đó nhờ thầy cô chủ nhiệm hoặc cha mẹ can thiệp bảo vệ."
+            },
+            {
+                title: "Cách xử lý khi thấy bạn cùng lớp bị lập nhóm tẩy chay trên mạng:",
+                body: "Tuyệt đối không bấm Like, thả cảm xúc trêu chọc hay chia sẻ bài viết đó. Hãy <strong>nhắn tin riêng động viên bạn</strong> và báo tin kín đáo cho giáo viên chủ nhiệm hoặc bộ phận tư vấn học đường để kịp thời tháo gỡ."
+            },
+            {
+                title: "Cách xử lý khi bị tài khoản lạ nhắn tin đe dọa:",
+                body: "Không làm theo yêu cầu của kẻ xấu và không gửi thêm bất kỳ thông tin cá nhân nào. Hãy <strong>lưu lại bằng chứng tin nhắn, chặn tài khoản</strong> và báo ngay cho phụ huynh hoặc người lớn đáng tin cậy."
+            }
+        ];
+
+        function switchCase(idx, btn) {
+            document.querySelectorAll('.case-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('caseDisplay').innerHTML = `<h4>${caseData[idx].title}</h4><p>${caseData[idx].body}</p>`;
+        }
+    </script>
+</body>
+</html>

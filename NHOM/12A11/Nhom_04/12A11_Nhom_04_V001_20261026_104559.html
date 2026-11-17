@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhóm 4-12a11♡</title>
+<style>
+:root{--navy:#243b59;--blue:#dceeff;--blue2:#b9dcff;--pink:#f5cbd4;--pink2:#ffe8ed;--cream:#fffaf7;--ink:#26364c;--muted:#78869a;--line:#eadfe2;--shadow:0 8px 28px #324b6812}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#eaf5ff,#fff0f4 55%,#e9f4ff);font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);min-height:100vh}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+.topbar{height:62px;position:sticky;top:0;z-index:10;background:#ffffffdf;backdrop-filter:blur(14px);border-bottom:1px solid #e6e8f0;display:flex;align-items:center;gap:28px;padding:0 24px 0 310px}
+.brand-mini{display:none;font-family:Georgia,serif;font-style:italic;color:var(--navy);font-size:20px}
+.nav{display:flex;align-items:center;gap:34px;flex:1}.nav a{color:#596579;text-decoration:none;font-size:14px;padding:22px 0;border-bottom:2px solid transparent}.nav a.active,.nav a:hover{color:var(--navy);border-color:#eaa9bd}
+.search{display:flex;align-items:center;gap:8px;border:1px solid #e6e8ef;border-radius:30px;background:white;padding:8px 14px;max-width:235px;width:100%}.search input{border:0;outline:0;min-width:0;width:100%;background:transparent;font-size:13px}
+.top-icon{border:0;background:transparent;font-size:20px;color:#53627a}.avatar-small{width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid white;box-shadow:0 0 0 1px #e5c9d2}
+.sidebar{position:fixed;z-index:12;left:18px;top:14px;bottom:14px;width:270px;border-radius:22px;background:linear-gradient(160deg,#243c5a,#2d4969 58%,#314f70);color:white;padding:22px 16px;box-shadow:0 12px 35px #233b5930;display:flex;flex-direction:column;overflow:auto}
+.logo{font-family:"Brush Script MT","Segoe Script",cursive;font-size:37px;line-height:1.1;font-style:italic;text-align:center;color:#fff0f4;text-shadow:0 2px 12px #ffffff25;margin:4px 0 8px}.logo small{display:block;font-family:Georgia,serif;font-size:14px;letter-spacing:1px;margin-top:5px;color:#dbeeff}
+.group-avatar{width:132px;height:132px;object-fit:cover;border-radius:50%;border:4px solid #f8d9e2;margin:22px auto 12px;box-shadow:0 5px 20px #101f333b}
+.group-name{font-family:Georgia,serif;font-size:25px;font-style:italic;text-align:center;margin:4px 0 8px;color:#fff7f8}.tagline{text-align:center;color:#d8e9fb;font-family:Georgia,serif;font-style:italic;font-size:13px;margin:0 0 26px}
+.side-links{display:grid;gap:7px}.side-links button{display:flex;gap:14px;align-items:center;border:0;background:transparent;color:#eef5ff;border-radius:30px;text-align:left;padding:12px 15px;font-size:14px}.side-links button.active,.side-links button:hover{background:linear-gradient(90deg,#f5cbd4,#dceeff);color:#263b55}.side-links .ico{font-size:19px;width:20px;text-align:center}
+.side-note{margin:auto auto 0;padding:24px 12px 4px;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:22px;line-height:1.25;color:#f6d7e0}.side-note span{display:block;font-size:12px;color:#d9e9fa;margin-top:9px}
+main{margin-left:306px;padding:0 20px 24px 0}.hero{height:258px;border-radius:0 0 22px 22px;overflow:hidden;position:relative;background:linear-gradient(90deg,#b8d9f2aa,#f7d7e0aa),url('https://i.postimg.cc/5NtFqpkt/1792906514210-1964713666866436959-1964713666866436959-aabeeea13916ce1afeffe2c32df21d96.jpg') center 48%/cover;box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#e7f2ff25,#fff0f455,#20395810)}
+.hero-note{position:absolute;z-index:1;left:34px;top:28px;max-width:330px;background:#fffaf0ed;border:1px solid #f0d9c6;padding:20px 25px 18px;transform:rotate(-3deg);box-shadow:0 8px 20px #293c4a20;border-radius:4px}
+.hero-note h1{font-family:"Brush Script MT","Segoe Script",cursive;font-size:36px;font-weight:500;line-height:1.05;margin:0 0 10px;color:#243a56}.hero-note p{font-size:14px;margin:0;color:#5b6573}
+.hero-scribble{position:absolute;right:34px;top:50px;color:#fff;font-family:Georgia,serif;font-style:italic;font-size:23px;text-shadow:0 2px 8px #2d405c;transform:rotate(7deg);max-width:180px;text-align:center}
+.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:18px;margin-top:16px}.panel{background:#fffaf7ed;border:1px solid #eee2e3;border-radius:22px;box-shadow:var(--shadow);padding:20px}
+.post{padding:22px 25px}.pill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#ffe3ea,#dceeff);border-radius:30px;padding:8px 13px;font-size:13px;color:#384d66}.post h2{font-family:Georgia,serif;font-size:34px;line-height:1.2;margin:15px 0 2px;color:#233a57}.subtitle{font-family:"Brush Script MT","Segoe Script",cursive;font-size:34px;font-style:italic;color:#425673;margin:0 0 22px}.post-copy{font-size:15.5px;line-height:1.8;color:#354258;white-space:pre-line}.post-image{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-top:17px;border:1px solid #f0e0e3}.post-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;color:#7c8796;font-size:13px;margin-top:13px}.post-actions button{border:0;background:transparent;color:inherit;padding:3px}.post-actions button:hover{color:#d66d91}.post-date{margin-left:auto}
+.right-column{display:grid;gap:14px;align-content:start}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 14px;font-size:17px;color:#263a54}.icon-btn{border:1px solid #e8dfe4;background:#fff;border-radius:9px;width:30px;height:30px;color:#536b84}.member-list{display:grid;gap:12px}.member{display:flex;align-items:center;gap:12px;min-width:0}.member img{width:49px;height:49px;border-radius:50%;object-fit:cover;border:2px solid white;box-shadow:0 0 0 1px #eadde2}.member-info{flex:1;min-width:0}.member-info strong{display:block;font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.member-info span{font-size:12px;color:#8992a0;display:block;margin-top:4px}.member-menu{border:0;background:transparent;color:#9aa1ad;font-size:19px;padding:4px}
+.primary-btn{border:0;background:linear-gradient(90deg,#f5cbd4,#dceeff);color:#2d4057;border-radius:30px;padding:9px 17px;font-size:13px;box-shadow:0 3px 8px #e3cbd333}.add-wrap{text-align:center;margin-top:14px}.info-list{display:grid;grid-template-columns:100px 1fr;gap:10px 12px;font-size:13px}.info-list span:nth-child(odd){color:#8a929e}.info-list span:nth-child(even){color:#3d4a5d}.info-footer{font-family:Georgia,serif;font-style:italic;color:#526782;text-align:right;margin:24px 0 0;line-height:1.5}.footer{margin:16px 0 0;text-align:center;padding:13px;color:#728197;font-family:Georgia,serif;font-style:italic}
+.edit-hint{font-size:12px;color:#8490a0;margin:12px 0 0;text-align:center}
+.modal-backdrop{display:none;position:fixed;inset:0;z-index:30;background:#15263e66;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex}.modal{width:min(480px,100%);background:#fffaf9;border-radius:20px;padding:23px;box-shadow:0 20px 70px #182a4040;max-height:90vh;overflow:auto}.modal h3{margin:0 0 17px;color:#263e5b}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:13px;color:#69778b}.field input,.field textarea,.field select{width:100%;border:1px solid #e5dce3;border-radius:10px;padding:11px;background:white;outline-color:#9fcaf0}.field textarea{min-height:100px;resize:vertical}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.secondary-btn{border:1px solid #e4dce2;background:white;border-radius:25px;padding:9px 15px;color:#526078}.danger-btn{border:0;background:#f9dfe4;color:#8b4357;border-radius:25px;padding:9px 15px}
+@media(max-width:1150px){.sidebar{width:225px;left:10px}.topbar{padding-left:250px;gap:15px}.nav{gap:18px}main{margin-left:250px;padding-right:10px}.content-grid{grid-template-columns:minmax(0,1fr) 300px}.post h2{font-size:29px}.subtitle{font-size:29px}}
+@media(max-width:850px){.sidebar{position:relative;left:auto;top:auto;bottom:auto;width:auto;margin:10px;height:auto;padding:14px;border-radius:18px}.logo{font-size:30px}.group-avatar{width:82px;height:82px;margin:10px auto}.group-name{font-size:21px}.tagline{margin-bottom:12px}.side-links{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}.side-links button{justify-content:center;padding:10px 4px;font-size:11px;gap:4px;flex-direction:column}.side-note{display:none}.topbar{position:relative;padding:8px 14px;height:auto;flex-wrap:wrap;gap:12px}.brand-mini{display:block}.nav{order:3;flex-basis:100%;justify-content:space-between;gap:8px}.nav a{padding:8px 0;font-size:12px}.search{margin-left:auto;max-width:180px}.top-icon,.avatar-small{display:none}main{margin:0;padding:0 10px 20px}.hero{height:220px;border-radius:18px}.hero-note{left:18px;top:20px;max-width:280px;padding:16px}.hero-note h1{font-size:30px}.hero-scribble{right:12px;font-size:17px;max-width:120px}.content-grid{grid-template-columns:1fr}.right-column{grid-template-columns:1fr 1fr}.panel{padding:16px}.post{padding:18px}.post h2{font-size:29px}.subtitle{font-size:28px}.post-image{height:220px}}
+@media(max-width:560px){.right-column{grid-template-columns:1fr}.search{max-width:145px}.hero{height:190px}.hero-note{max-width:235px}.hero-note h1{font-size:26px}.hero-note p{font-size:12px}.hero-scribble{display:none}.post h2{font-size:25px}.subtitle{font-size:25px}.post-copy{font-size:14px}.post-image{height:180px}.post-date{margin-left:0}.info-list{grid-template-columns:95px 1fr}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">Thanh xuân ♡<small>có các cậu, thật đẹp!</small></div>
+  <img id="groupAvatar" class="group-avatar" src="https://i.postimg.cc/5NtFqpkt/1792906514210-1964713666866436959-1964713666866436959-aabeeea13916ce1afeffe2c32df21d96.jpg" alt="Ảnh nhóm">
+  <div class="group-name" id="sideGroupName">Nhóm 4-12a11</div>
+  <p class="tagline" id="sideTagline">“Tuổi học trò cái tuổi đẹp nhất...” ♡</p>
+  <div class="side-links">
+    <button class="active" data-target="home"><span class="ico">⌂</span>Trang chủ</button>
+    <button data-target="members"><span class="ico">♧</span>Thành viên</button>
+    <button data-target="post"><span class="ico">▤</span>Bài viết</button>
+    <button data-target="album"><span class="ico">▧</span>Album</button>
+    <button id="settingsBtn"><span class="ico">⚙</span>Cài đặt</button>
+  </div>
+  <div class="side-note">Good Friends<br>Better Future ♡<span>Cùng nhau lưu giữ thanh xuân</span></div>
+</aside>
+<header class="topbar">
+  <div class="brand-mini">Thanh xuân ♡</div>
+  <nav class="nav"><a class="active" href="#home">Trang chủ</a><a href="#members">Thành viên</a><a href="#post">Bài viết</a><a href="#album">Album</a><a href="#settings">Cài đặt</a></nav>
+  <label class="search"><span>⌕</span><input id="searchInput" placeholder="Tìm thành viên..."></label>
+  <button class="top-icon" aria-label="Thông báo">♧</button>
+  <img class="avatar-small" id="profileAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Tài khoản">
+</header>
+<main id="home">
+  <section class="hero">
+    <div class="hero-note"><h1 id="heroTitle">💙 THANH XUÂN 12A11 – THPT TRẦN HƯNG ĐẠO 🌷
+</h1><p id="heroDescription">Những năm tháng rực rỡ nhất của chúng ta...</p></div>
+    <div class="hero-scribble">Cùng nhau viết tiếp<br>thanh xuân! ♡</div>
+  </section>
+  <div class="content-grid">
+    <section class="panel post" id="post">
+      <span class="pill">☆ &nbsp;Bài viết nổi bật</span>
+      <h2 id="postTitle">💙 THANH XUÂN 12A11 – THPT TRẦN HƯNG ĐẠO 🌷
+</h2>
+      <div class="subtitle" id="postSubtitle">— Những điều đáng nhớ —</div>
+      <div class="post-copy" id="postCopy">Thanh xuân của chúng ta không hoàn hảo, nhưng lại là những năm tháng đáng nhớ nhất. 12A11 đã cùng nhau trải qua biết bao niềm vui, tiếng cười và cả những kỷ niệm chẳng thể nào quên. Dù đã có những thành viên chuyển đi, không còn cùng nhau ngồi chung một lớp, nhưng những dấu ấn mà mỗi người để lại vẫn luôn là một phần thanh xuân của tập thể.
+
+Có thể chúng ta không còn đông đủ như những ngày đầu, nhưng mong rằng tình cảm và những kỷ niệm của 12A11 sẽ mãi được giữ gìn. Cảm ơn vì đã từng xuất hiện trong thanh xuân của nhau, dù ở lại hay rời đi, mỗi người đều là một mảnh ghép đặc biệt của tuổi học trò này. 🫶🏻
+
+12A11 – THPT Trần Hưng Đạo: Dù mai này mỗi người một hướng, mong rằng khi nhớ về nhau, chúng ta vẫn mỉm cười vì đã từng có một thời thanh xuân cùng nhau. 💐
+
+Lớp có thể vắng đi vài người, nhưng kỷ niệm sẽ mãi còn ở lại. ❤️‍🩹... ♡</div>
+      <img class="post-image" id="postImage" src="https://i.postimg.cc/9FcB3GgH/1792906671664-1964713666866436959-1964713666866436959-6da8987b140335a352f169057f1e38f2.jpg" alt="Lớp học">
+      <div class="post-actions"><button id="likeBtn">💗 <span id="likeCount">1.2M</span></button><button id="commentBtn">☏ &nbsp;256</button><button id="saveBtn">♧ Lưu</button><span class="post-date">▦ &nbsp;<span id="postDate">25/10/2026</span></span><button class="primary-btn" id="editPostBtn">✎ Sửa bài viết</button></div>
+    </section>
+    <aside class="right-column">
+      <section class="panel" id="members">
+        <h3 class="panel-heading">Danh sách thành viên <button class="icon-btn" id="addMemberTop" title="Thêm thành viên">＋</button></h3>
+        <div class="member-list" id="memberList"></div>
+        <div class="add-wrap"><button class="primary-btn" id="addMemberBtn">＋ Thêm thành viên</button></div>
+        <p class="edit-hint">Bấm dấu ⋮ cạnh tên để chỉnh sửa thông tin và ảnh.</p>
+      </section>
+      <section class="panel" id="settings">
+        <h3 class="panel-heading">Thông tin nhóm <button class="icon-btn" id="editGroupBtn" title="Sửa thông tin">✎</button></h3>
+        <div class="info-list"><span>Tên nhóm</span><span id="infoName">Nhóm Thanh Xuân</span><span>Số thành viên</span><span id="infoCount">5</span><span>Chủ đề</span><span id="infoTopic">Thanh xuân học đường</span><span>Thành lập</span><span id="infoDate">22/04/2025</span></div>
+        <p class="info-footer">Cùng nhau lan tỏa năng lượng tích cực! ♡</p>
+      </section>
+    </aside>
+  </div>
+  <div class="footer">♡ Thanh xuân có nhau là đủ! ♡ &nbsp; · &nbsp; Made with 💗 for our youth</div>
+</main>
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal" role="dialog" aria-modal="true"><h3 id="modalTitle">Chỉnh sửa</h3><div id="modalBody"></div><div class="modal-actions" id="modalActions"></div></div></div>
+<script>
+const defaultMembers=[
+ {name:"Võ Thảo Nhi",role:"Quản trị viên",image:"https://i.postimg.cc/QN42Vx2n/tt.jpg"},
+ {name:"Bùi Bình Nguyên",role:"Thành viên",image:"https://i.postimg.cc/dVMST74x/1792903619319-1964713666866436959-1964713666866436959-88e83e9faa1b2b114f8f3bd377fcdbba.jpg"},
+ {name:"Phạm Thị Thái Hòa",role:"Thành viên",image:"https://i.postimg.cc/TwPkXn3h/1792903694026-1964713666866436959-1964713666866436959-9dbdfc4ab4ed2500f3e908ba79eae2cf.jpg"},
+ {name:"Hồ Phương Anh",role:"Thành viên",image:"https://i.postimg.cc/PJgKZcbc/1792904848340-1964713666866436959-1964713666866436959-4a25e50680f4a4411306d566515a132f.jpg"},
+ {name:"Nguyễn Trần Hà Nhi",role:"Thành viên",image:"https://i.postimg.cc/vZtFYLbV/1792906025732-1964713666866436959-1964713666866436959-27e99a24872cf00a24eef567f0b2c711.jpg"}
+];
+let members=JSON.parse(localStorage.getItem("thanhxuan_members")||"null")||defaultMembers;
+let group={name:"Nhóm Thanh Xuân",topic:"Thanh xuân học đường",date:"22/04/2025",tagline:"“Tuổi trẻ là để đi và để nhớ...” ♡"};
+let post={title:"Thanh xuân học đường",subtitle:"— Những điều đáng nhớ —",description:"Những năm tháng rực rỡ nhất của chúng ta...",copy:document.getElementById("postCopy").textContent,image:document.getElementById("postImage").src,date:"22/04/2025"};
+const $=id=>document.getElementById(id);
+function persist(){localStorage.setItem("thanhxuan_members",JSON.stringify(members));localStorage.setItem("thanhxuan_group",JSON.stringify(group));localStorage.setItem("thanhxuan_post",JSON.stringify(post))}
+try{group={...group,...JSON.parse(localStorage.getItem("thanhxuan_group")||"{}")};post={...post,...JSON.parse(localStorage.getItem("thanhxuan_post")||"{}")}}catch(e){}
+function renderMembers(filter=""){
+ const list=$("memberList");list.innerHTML="";
+ members.forEach((m,i)=>{if(!m.name.toLowerCase().includes(filter.toLowerCase()))return;
+ const row=document.createElement("div");row.className="member";
+ const img=document.createElement("img");img.src=m.image||"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80";img.alt=m.name;img.onerror=()=>img.src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80";
+ const info=document.createElement("div");info.className="member-info";const strong=document.createElement("strong");strong.textContent=m.name;const role=document.createElement("span");role.textContent=(i===0&&m.role==="Quản trị viên"?"👑 ":"")+m.role;info.append(strong,role);
+ const menu=document.createElement("button");menu.className="member-menu";menu.textContent="⋮";menu.title="Chỉnh sửa thành viên";menu.onclick=()=>openMemberModal(i);
+ row.append(img,info,menu);list.append(row);
+ });$("infoCount").textContent=members.length;
+}
+function syncGroup(){$("sideGroupName").textContent=group.name;$("infoName").textContent=group.name;$("infoTopic").textContent=group.topic;$("infoDate").textContent=group.date;$("sideTagline").textContent=group.tagline;$("heroTitle").textContent=post.title;$("heroDescription").textContent=post.description;$("postTitle").textContent=post.title;$("postSubtitle").textContent=post.subtitle;$("postCopy").textContent=post.copy;$("postImage").src=post.image;$("postDate").textContent=post.date;document.title=group.name+" ♡"}
+function openModal(title,fields,onSave,onDelete){
+ $("modalTitle").textContent=title;$("modalBody").innerHTML="";
+ fields.forEach(f=>{const wrap=document.createElement("div");wrap.className="field";const label=document.createElement("label");label.textContent=f.label;label.htmlFor="field_"+f.key;let input;
+ if(f.type==="textarea"){input=document.createElement("textarea");input.value=f.value||""}
+ else if(f.type==="select"){input=document.createElement("select");(f.options||[]).forEach(o=>{let op=document.createElement("option");op.value=o;op.textContent=o;input.append(op)});input.value=f.value||""}
+ else{input=document.createElement("input");input.type=f.type||"text";input.value=f.value||"";input.placeholder=f.placeholder||""}
+ input.id="field_"+f.key;input.required=!!f.required;wrap.append(label,input);$("modalBody").append(wrap)});
+ $("modalActions").innerHTML="";if(onDelete){const del=document.createElement("button");del.className="danger-btn";del.textContent="Xóa";del.onclick=()=>{closeModal();onDelete()};$("modalActions").append(del)}
+ const cancel=document.createElement("button");cancel.className="secondary-btn";cancel.textContent="Hủy";cancel.onclick=closeModal;
+ const save=document.createElement("button");save.className="primary-btn";save.textContent="Lưu thay đổi";save.onclick=()=>{const values={};fields.forEach(f=>values[f.key]=$( "field_"+f.key).value.trim());if(fields.some(f=>f.required&&!values[f.key])){alert("Vui lòng điền các mục bắt buộc.");return}onSave(values);closeModal()};
+ $("modalActions").append(cancel,save);$("modalBackdrop").classList.add("open");
+}
+function closeModal(){$("modalBackdrop").classList.remove("open")}
+$("modalBackdrop").addEventListener("click",e=>{if(e.target===$("modalBackdrop"))closeModal()});
+function openMemberModal(i){const m=i===null?{name:"",role:"Thành viên",image:""}:members[i];openModal(i===null?"Thêm thành viên":"Chỉnh sửa thành viên",[
+ {key:"name",label:"Tên thành viên",value:m.name,required:true},
+ {key:"role",label:"Vai trò",type:"select",options:["Quản trị viên","Thành viên"],value:m.role},
+ {key:"image",label:"Đường dẫn ảnh (URL)",value:m.image,placeholder:"https://..."}
+ ],v=>{if(i===null)members.push(v);else members[i]=v;persist();renderMembers($("searchInput").value)},i===null?null:()=>{members.splice(i,1);persist();renderMembers($("searchInput").value)})}
+function openGroupModal(){openModal("Chỉnh sửa thông tin nhóm",[
+ {key:"name",label:"Tên nhóm",value:group.name,required:true},{key:"topic",label:"Chủ đề",value:group.topic,required:true},{key:"date",label:"Ngày thành lập",value:group.date},{key:"tagline",label:"Câu giới thiệu",value:group.tagline}
+ ],v=>{group={...group,...v};persist();syncGroup()})}
+function openPostModal(){openModal("Chỉnh sửa bài viết",[
+ {key:"title",label:"Tiêu đề bài viết",value:post.title,required:true},{key:"subtitle",label:"Dòng tiêu đề phụ",value:post.subtitle},{key:"description",label:"Mô tả trên ảnh bìa",value:post.description},{key:"copy",label:"Nội dung bài viết",type:"textarea",value:post.copy,required:true},{key:"image",label:"Đường dẫn ảnh bài viết (URL)",value:post.image},{key:"date",label:"Ngày đăng",value:post.date}
+ ],v=>{post={...post,...v};persist();syncGroup()})}
+$("addMemberBtn").onclick=$("addMemberTop").onclick=()=>openMemberModal(null);$("editGroupBtn").onclick=$("settingsBtn").onclick=openGroupModal;$("editPostBtn").onclick=openPostModal;
+$("searchInput").addEventListener("input",e=>renderMembers(e.target.value));
+$("likeBtn").onclick=()=>{let n=$("likeCount");if(n.textContent==="1.2k")n.textContent="1.3k";else n.textContent=(parseInt(n.textContent)||0)+1};
+$("saveBtn").onclick=e=>{e.currentTarget.textContent=e.currentTarget.textContent.includes("Đã lưu")?"♧ Lưu":"✓ Đã lưu"};
+$("commentBtn").onclick=()=>alert("Khu vực bình luận mẫu — bạn có thể bổ sung chức năng bình luận sau.");
+document.querySelectorAll(".side-links button[data-target]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".side-links button").forEach(x=>x.classList.remove("active"));b.classList.add("active");const target=b.dataset.target;if(target==="home")window.scrollTo({top:0,behavior:"smooth"});else if(target==="members")$("members").scrollIntoView({behavior:"smooth",block:"center"});else if(target==="post")$("post").scrollIntoView({behavior:"smooth",block:"start"});else if(target==="album")alert("Album ảnh có thể được bổ sung theo nhu cầu.")});
+document.querySelectorAll(".nav a").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll(".nav a").forEach(x=>x.classList.remove("active"));a.classList.add("active")}));
+syncGroup();renderMembers();
+</script>
+</body>
+</html>

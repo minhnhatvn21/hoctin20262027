@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-Squad 12 | Trạm Thanh Xuân & Góc Học Tập Tuổi 18</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans, Inter & Patrick Hand (chữ viết tay lưu bút) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        hand: ['Patrick Hand', 'cursive'],
+                    },
+                    colors: {
+                        youth: {
+                            sky: '#0ea5e9',
+                            sun: '#f59e0b',
+                            phoenix: '#f43f5e',
+                            paper: '#fffbeb',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 5s ease-in-out infinite',
+                        'plane': 'planeFly 8s ease-in-out infinite',
+                        'wiggle': 'wiggle 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        planeFly: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) rotate(0deg)' },
+                            '50%': { transform: 'translate(12px, -12px) rotate(-5deg)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-2deg)' },
+                            '50%': { transform: 'rotate(2deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f43f5e;
+        }
+
+        /* Notebook Grid Pattern */
+        .bg-notebook {
+            background-size: 28px 28px;
+            background-image: 
+                linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+        }
+        .dark .bg-notebook {
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+        }
+
+        /* Glass Card */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .dark .glass-panel {
+            background: rgba(30, 41, 59, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        /* Text Gradient Youth */
+        .text-youth-gradient {
+            background: linear-gradient(135deg, #0284c7 0%, #f43f5e 55%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .text-youth-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #fb7185 55%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Student Card Hover */
+        .student-card {
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .student-card:hover {
+            transform: translateY(-8px) rotate(0.5deg);
+        }
+
+        /* Sticky Note Pin */
+        .sticky-note {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .sticky-note:hover {
+            transform: scale(1.04) rotate(0deg) !important;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body class="bg-amber-50/40 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans selection:bg-rose-500 selection:text-white overflow-x-hidden bg-notebook">
+
+    <!-- Decorative Floating Elements -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-sky-400/15 dark:bg-sky-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-24 w-96 h-96 bg-rose-400/15 dark:bg-rose-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 left-1/4 w-96 h-96 bg-amber-400/15 dark:bg-amber-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-sky-200/70 dark:border-slate-800 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 via-rose-500 to-amber-500 flex items-center justify-center text-white font-display font-extrabold text-xl shadow-md shadow-rose-500/20 group-hover:rotate-6 transition-transform">
+                    H<span class="text-xs font-bold -mt-2">12</span>
+                </div>
+                <div>
+                    <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight block leading-none text-slate-900 dark:text-white">
+                        H-Squad <span class="text-rose-500">12</span>
+                    </span>
+                    <span class="text-[11px] text-sky-600 dark:text-sky-400 font-semibold tracking-wide">
+                        <i class="fa-solid fa-paper-plane mr-1"></i>Trạm Thanh Xuân • Hạnh - Hùng - Huy
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-1">
+                <a href="#hero" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800/70 transition-all">Sân Trường</a>
+                <a href="#members" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800/70 transition-all">Biệt Đội 5 Chữ H</a>
+                <a href="#articles" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800/70 transition-all">Báo Tường & Bí Kíp Thi</a>
+                <a href="#schedule" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800/70 transition-all">Góc Ôn Luyện</a>
+                <a href="#yearbook" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800/70 transition-all">Bảng Lưu Bút</a>
+            </nav>
+
+            <!-- Right Controls -->
+            <div class="flex items-center gap-2.5">
+                <!-- Mode Switcher: Nắng Sân Trường / Đêm Ôn Bài -->
+                <button id="themeToggle" class="px-3.5 py-2 rounded-xl bg-amber-100/90 dark:bg-slate-800 text-amber-700 dark:text-sky-300 border border-amber-300/60 dark:border-slate-700 flex items-center gap-2 text-xs font-bold hover:scale-105 transition-all shadow-sm">
+                    <i class="fa-solid fa-sun text-amber-500 block dark:hidden text-sm"></i>
+                    <span class="block dark:hidden">Nắng Sân Trường</span>
+                    <i class="fa-solid fa-moon text-sky-400 hidden dark:block text-sm"></i>
+                    <span class="hidden dark:block">Đêm Ôn Bài</span>
+                </button>
+
+                <!-- Quick CTA -->
+                <a href="#yearbook" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-rose-500/20 transition-all">
+                    <i class="fa-solid fa-pen-fancy"></i>
+                    <span>Viết Lưu Bút</span>
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" aria-label="Menu" class="lg:hidden w-10 h-10 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-4 pt-3 pb-6 space-y-2">
+            <a href="#hero" class="mobile-nav-link block px-4 py-2.5 rounded-xl font-semibold hover:bg-rose-500/10 hover:text-rose-500">🏫 Sân Trường Tuổi 18</a>
+            <a href="#members" class="mobile-nav-link block px-4 py-2.5 rounded-xl font-semibold hover:bg-rose-500/10 hover:text-rose-500">🎒 Biệt Đội 5 Thành Viên</a>
+            <a href="#articles" class="mobile-nav-link block px-4 py-2.5 rounded-xl font-semibold hover:bg-rose-500/10 hover:text-rose-500">📖 Báo Tường & Bí Quyết Ôn Thi</a>
+            <a href="#schedule" class="mobile-nav-link block px-4 py-2.5 rounded-xl font-semibold hover:bg-rose-500/10 hover:text-rose-500">⏰ Góc Học Tập Nhóm</a>
+            <a href="#yearbook" class="mobile-nav-link block px-4 py-2.5 rounded-xl font-semibold hover:bg-rose-500/10 hover:text-rose-500">💌 Bảng Lưu Bút Thanh Xuân</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="relative z-10 pt-24">
+
+        <!-- HERO SECTION: TRẠM THANH XUÂN TUỔI 18 -->
+        <section id="hero" class="py-10 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs sm:text-sm font-bold">
+                        <span class="animate-bounce">🌸</span>
+                        <span>Niên khóa Thanh Xuân • Chào đón Tuổi 18 Rực Rỡ</span>
+                    </div>
+
+                    <!-- Main Heading -->
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.15]">
+                        Chuyến Tàu Cuối Cấp <br class="hidden sm:inline" />
+                        <span class="text-youth-gradient">& Ước Mơ Bay Xa</span>
+                    </h1>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Chào mừng bạn ghé thăm <strong>Trạm Thanh Xuân H-Squad 12</strong> — cuốn nhật ký chung của 5 chàng trai lớp 12 mang chữ cái <strong>H</strong>: 
+                        <span class="font-bold text-sky-600 dark:text-sky-400">Đăng Hạnh</span>, 
+                        <span class="font-bold text-rose-600 dark:text-rose-400">Lâm Hùng</span>, 
+                        <span class="font-bold text-indigo-600 dark:text-indigo-400">Anh Hùng</span>, 
+                        <span class="font-bold text-emerald-600 dark:text-emerald-400">Chí Huy</span> và 
+                        <span class="font-bold text-amber-600 dark:text-amber-400">Bảo Huy</span>. 
+                        Nơi chúng mình lưu giữ những trưa hè hoa phượng đỏ, chia sẻ bí kíp phá đảo kỳ thi THPT Quốc gia và viết tiếp hoài bão ngưỡng cửa đại học!
+                    </p>
+
+                    <!-- Countdown Box to National High School Exam -->
+                    <div class="glass-panel rounded-3xl p-5 sm:p-6 border-2 border-dashed border-sky-300 dark:border-slate-700 max-w-xl mx-auto lg:mx-0 shadow-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-2">
+                                <i class="fa-solid fa-hourglass-half animate-spin" style="animation-duration: 6s;"></i>
+                                Đếm ngược Kỳ thi Tốt nghiệp THPT
+                            </span>
+                            <span class="text-xs font-hand text-base text-rose-500 font-bold">Quyết tâm đỗ NV1! 🔥</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-3 text-center">
+                            <div class="bg-sky-500/10 dark:bg-slate-800 rounded-2xl py-3 px-2 border border-sky-200 dark:border-slate-700">
+                                <div id="cd-days" class="font-display font-extrabold text-2xl sm:text-3xl text-sky-600 dark:text-sky-400">128</div>
+                                <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Ngày</div>
+                            </div>
+                            <div class="bg-rose-500/10 dark:bg-slate-800 rounded-2xl py-3 px-2 border border-rose-200 dark:border-slate-700">
+                                <div id="cd-hours" class="font-display font-extrabold text-2xl sm:text-3xl text-rose-500">08</div>
+                                <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Giờ</div>
+                            </div>
+                            <div class="bg-amber-500/10 dark:bg-slate-800 rounded-2xl py-3 px-2 border border-amber-200 dark:border-slate-700">
+                                <div id="cd-minutes" class="font-display font-extrabold text-2xl sm:text-3xl text-amber-500">45</div>
+                                <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Phút</div>
+                            </div>
+                            <div class="bg-emerald-500/10 dark:bg-slate-800 rounded-2xl py-3 px-2 border border-emerald-200 dark:border-slate-700">
+                                <div id="cd-seconds" class="font-display font-extrabold text-2xl sm:text-3xl text-emerald-500">30</div>
+                                <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Giây</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#members" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-display font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 hover:scale-105 transition-all flex items-center gap-2.5">
+                            <i class="fa-solid fa-id-card-clip"></i>
+                            <span>Xem Hồ Sơ Kỷ Yếu (5)</span>
+                        </a>
+                        <a href="#articles" class="px-6 py-3.5 rounded-2xl glass-panel border border-slate-300 dark:border-slate-700 hover:border-rose-500 dark:hover:border-rose-400 font-display font-bold text-sm sm:text-base transition-all flex items-center gap-2.5">
+                            <i class="fa-solid fa-book-open text-rose-500"></i>
+                            <span>Đọc Báo Tường & Bí Kíp Thi</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Yearbook Polaroid Board -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md">
+                        <!-- Paper Plane SVG Floating -->
+                        <div class="absolute -top-8 -right-4 z-20 animate-plane pointer-events-none">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <path d="M58 6L6 28L26 36L48 16L32 40L46 54L58 6Z" fill="#0ea5e9" fill-opacity="0.2" stroke="#0284c7" stroke-width="2.5" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        <!-- Polaroid Card Container -->
+                        <div class="glass-panel rounded-3xl p-6 sm:p-7 border-2 border-white dark:border-slate-800 shadow-2xl relative">
+                            <!-- Top Tape Decoration -->
+                            <div class="w-28 h-7 bg-amber-300/70 dark:bg-amber-500/40 -mt-10 mx-auto mb-4 rotate-[-2deg] rounded shadow-sm flex items-center justify-center font-hand text-xs text-amber-950 dark:text-amber-100 font-bold">
+                                Kỷ Niệm Lớp 12 ❤️
+                            </div>
+
+                            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 mb-4">
+                                <div>
+                                    <h3 class="font-display font-extrabold text-base sm:text-lg text-slate-900 dark:text-white">
+                                        📸 Sổ Đầu Bài "Biệt Đội 5H"
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">1000+ ngày cùng nhau trưởng thành</p>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-500 font-hand font-bold text-sm">
+                                    Sĩ số: 5/5 Vắng: 0
+                                </span>
+                            </div>
+
+                            <!-- 5 Members Quick Roster -->
+                            <div class="space-y-2.5">
+                                <div onclick="openMemberModal(1)" class="cursor-pointer group p-3 rounded-2xl bg-sky-50/90 dark:bg-slate-800/70 hover:bg-sky-500 hover:text-white transition-all flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-9 h-9 rounded-xl bg-sky-500/20 group-hover:bg-white/20 text-sky-600 dark:text-sky-300 group-hover:text-white font-bold text-xs flex items-center justify-center">👨‍🎓</span>
+                                        <div>
+                                            <p class="font-bold text-sm">Nguyễn Đăng Hạnh</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 group-hover:text-sky-100">Lớp trưởng • Chiến lược gia Toán - Lý</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-sky-500/10 group-hover:bg-white/20">Khối A00</span>
+                                </div>
+
+                                <div onclick="openMemberModal(2)" class="cursor-pointer group p-3 rounded-2xl bg-rose-50/90 dark:bg-slate-800/70 hover:bg-rose-500 hover:text-white transition-all flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-9 h-9 rounded-xl bg-rose-500/20 group-hover:bg-white/20 text-rose-600 dark:text-rose-300 group-hover:text-white font-bold text-xs flex items-center justify-center">📸</span>
+                                        <div>
+                                            <p class="font-bold text-sm">Trần Lâm Hùng</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 group-hover:text-rose-100">Nhiếp ảnh Kỷ yếu • Cây văn nghệ</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-rose-500/10 group-hover:bg-white/20">Khối D01</span>
+                                </div>
+
+                                <div onclick="openMemberModal(3)" class="cursor-pointer group p-3 rounded-2xl bg-indigo-50/90 dark:bg-slate-800/70 hover:bg-indigo-500 hover:text-white transition-all flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-9 h-9 rounded-xl bg-indigo-500/20 group-hover:bg-white/20 text-indigo-600 dark:text-indigo-300 group-hover:text-white font-bold text-xs flex items-center justify-center">🧮</span>
+                                        <div>
+                                            <p class="font-bold text-sm">Hoàng Anh Hùng</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 group-hover:text-indigo-100">Chiến thần giải đề • Bậc thầy Casio</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/10 group-hover:bg-white/20">Khối A01</span>
+                                </div>
+
+                                <div onclick="openMemberModal(4)" class="cursor-pointer group p-3 rounded-2xl bg-emerald-50/90 dark:bg-slate-800/70 hover:bg-emerald-500 hover:text-white transition-all flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-9 h-9 rounded-xl bg-emerald-500/20 group-hover:bg-white/20 text-emerald-600 dark:text-emerald-300 group-hover:text-white font-bold text-xs flex items-center justify-center">🏀</span>
+                                        <div>
+                                            <p class="font-bold text-sm">Phạm Phan Chí Huy</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 group-hover:text-emerald-100">Thủ lĩnh thể thao • Cân bằng ngoại khóa</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 group-hover:bg-white/20">Năng động</span>
+                                </div>
+
+                                <div onclick="openMemberModal(5)" class="cursor-pointer group p-3 rounded-2xl bg-amber-50/90 dark:bg-slate-800/70 hover:bg-amber-500 hover:text-white transition-all flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-9 h-9 rounded-xl bg-amber-500/20 group-hover:bg-white/20 text-amber-600 dark:text-amber-300 group-hover:text-white font-bold text-xs flex items-center justify-center">🧭</span>
+                                        <div>
+                                            <p class="font-bold text-sm">Hoàng Bảo Huy</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 group-hover:text-amber-100">Cố vấn tâm lý • Định hướng chọn trường</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/10 group-hover:bg-white/20">Hướng nghiệp</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-center">
+                                <p class="font-hand text-base text-slate-600 dark:text-slate-300">
+                                    "Thanh xuân giống như một cơn mưa rào, dù cảm lạnh vẫn muốn tắm thêm lần nữa..."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: GIỚI THIỆU 5 THÀNH VIÊN (HỒ SƠ KỶ YẾU) -->
+        <section id="members" class="py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-graduation-cap"></i> Hồ Sơ Kỷ Yếu Lớp 12
+                </div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl">
+                    5 Mảnh Ghép Của <span class="text-youth-gradient">H-Squad 12</span>
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+                    Cùng mang tên bắt đầu bằng chữ <strong>H</strong>, mỗi người một cá tính, một thế mạnh riêng nhưng luôn sát cánh bên nhau từ những tiết học căng thẳng đến sân bóng chiều tà.
+                </p>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-2 pt-3">
+                    <button onclick="filterMembers('all')" data-filter="all" class="member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-sky-500 text-white shadow-md shadow-sky-500/20 transition-all">
+                        Tất cả 5 thành viên
+                    </button>
+                    <button onclick="filterMembers('academic')" data-filter="academic" class="member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-500 transition-all">
+                        Học thuật & Giải đề
+                    </button>
+                    <button onclick="filterMembers('creative-life')" data-filter="creative-life" class="member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-500 transition-all">
+                        Văn nghệ & Phong trào
+                    </button>
+                    <button onclick="filterMembers('orientation')" data-filter="orientation" class="member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-500 transition-all">
+                        Tâm lý & Định hướng
+                    </button>
+                </div>
+            </div>
+
+            <!-- Student Cards Grid -->
+            <div id="membersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: CHUYÊN ĐỀ BÀI VIẾT ("GÓC HỌC TẬP & NHẬT KÝ THANH XUÂN") -->
+        <section id="articles" class="py-16 md:py-24 bg-white/70 dark:bg-slate-900/60 border-y border-sky-200/60 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header + Search + Filter -->
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+                    <div class="space-y-3 max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 text-rose-500 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-feather-pointed"></i> Báo Tường Điện Tử H-Squad
+                        </div>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl">
+                            Góc Học Tập & <span class="text-youth-gradient">Nhật Ký Thanh Xuân</span>
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-base">
+                            Những bài viết tâm huyết do chính 5 thành viên trong nhóm chấp bút: từ phương pháp ôn thi THPT Quốc gia hiệu quả, tản văn mùa phượng đỏ đến cẩm nang chọn trường tuổi 18.
+                        </p>
+                    </div>
+
+                    <!-- Search Box -->
+                    <div class="relative w-full lg:w-72">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="articleSearchInput" oninput="filterArticles()" placeholder="Tìm bài viết, tên tác giả..." class="w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+                </div>
+
+                <!-- Category Pills -->
+                <div class="flex flex-wrap items-center gap-2 mb-10">
+                    <button onclick="setArticleCategory('all')" data-cat="all" class="article-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-rose-500 text-white shadow-md shadow-rose-500/20 transition-all">
+                        📚 Tất cả bài viết (5)
+                    </button>
+                    <button onclick="setArticleCategory('Bí quyết học tập')" data-cat="Bí quyết học tập" class="article-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-500/10 transition-all">
+                        🎯 Bí quyết học tập
+                    </button>
+                    <button onclick="setArticleCategory('Tản văn thanh xuân')" data-cat="Tản văn thanh xuân" class="article-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-500/10 transition-all">
+                        🌸 Tản văn thanh xuân
+                    </button>
+                    <button onclick="setArticleCategory('Định hướng tuổi 18')" data-cat="Định hướng tuổi 18" class="article-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-500/10 transition-all">
+                        🧭 Định hướng tuổi 18
+                    </button>
+                    <button onclick="setArticleCategory('Kỹ năng mềm')" data-cat="Kỹ năng mềm" class="article-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-500/10 transition-all">
+                        ⚡ Kỹ năng mềm & Đời sống
+                    </button>
+                </div>
+
+                <!-- Featured Highlight Article Banner -->
+                <div class="mb-12 rounded-3xl bg-gradient-to-r from-sky-900 via-indigo-900 to-rose-900 text-white p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-sky-400/30">
+                    <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-amber-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                        <div class="lg:col-span-8 space-y-4">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs font-bold">
+                                <i class="fa-solid fa-star"></i> Bài viết Tiêu điểm Mùa Thi
+                            </div>
+                            <h3 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight">
+                                Bí Kíp Chinh Phục Kỳ Thi THPT Quốc Gia Mà Không Bị "Burnout"
+                            </h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-relaxed">
+                                Làm sao để giải hàng trăm đề Toán - Lý - Anh trong giai đoạn nước rút mà vẫn ngủ đủ giấc, giữ tinh thần tỉnh táo và không rơi vào trạng thái kiệt sức? Cùng khám phá lộ trình ôn tập khoa học được đúc kết bởi Lớp trưởng Đăng Hạnh và "Chiến thần giải đề" Anh Hùng!
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 pt-1 text-xs sm:text-sm text-sky-200">
+                                <span><i class="fa-solid fa-user-pen mr-1.5 text-amber-400"></i>Tác giả: <strong>Nguyễn Đăng Hạnh & Hoàng Anh Hùng</strong></span>
+                                <span>•</span>
+                                <span><i class="fa-regular fa-clock mr-1.5"></i>8 phút đọc</span>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-4 flex lg:justify-end">
+                            <button onclick="openArticleModal(1)" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-sm sm:text-base shadow-xl transition-all flex items-center justify-center gap-2.5">
+                                <span>Mở Đọc Báo Tường</span>
+                                <i class="fa-solid fa-book-open-reader"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles List Grid -->
+                <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: GÓC ÔN LUYỆN & THỜI KHÓA BIỂU NHÓM -->
+        <section id="schedule" class="py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-award"></i> Công Thức Thành Công Của H-Squad
+                </div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl">
+                    5 Nguyên Tắc Vàng <span class="text-youth-gradient">Cùng Nhau Tiến Bộ</span>
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Muốn đi nhanh hãy đi một mình, muốn đỗ đại học điểm cao hãy học nhóm cùng nhau!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+                <div class="glass-panel p-5 rounded-3xl border border-sky-200 dark:border-slate-800 hover:border-sky-500 transition-all">
+                    <div class="w-11 h-11 rounded-2xl bg-sky-500/15 text-sky-500 flex items-center justify-center font-bold text-lg mb-3">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-base mb-1">Lập Kế Hoạch Rõ Ràng</h3>
+                    <p class="text-xs font-bold text-sky-600 dark:text-sky-400 mb-2">Nguyễn Đăng Hạnh</p>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Chia mục tiêu ôn thi theo từng tuần, dùng Checklist kiểm soát tiến độ từng chuyên đề Toán - Lý.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-5 rounded-3xl border border-indigo-200 dark:border-slate-800 hover:border-indigo-500 transition-all">
+                    <div class="w-11 h-11 rounded-2xl bg-indigo-500/15 text-indigo-500 flex items-center justify-center font-bold text-lg mb-3">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-base mb-1">Active Recall & Mindmap</h3>
+                    <p class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-2">Hoàng Anh Hùng</p>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Không học vẹt! Tóm tắt công thức bằng sơ đồ tư duy và giải đề bấm giờ Pomodoro 50/10.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-5 rounded-3xl border border-rose-200 dark:border-slate-800 hover:border-rose-500 transition-all">
+                    <div class="w-11 h-11 rounded-2xl bg-rose-500/15 text-rose-500 flex items-center justify-center font-bold text-lg mb-3">
+                        <i class="fa-solid fa-camera-retro"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-base mb-1">Cảm Hứng Văn - Anh</h3>
+                    <p class="text-xs font-bold text-rose-600 dark:text-rose-400 mb-2">Trần Lâm Hùng</p>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Học từ vựng Tiếng Anh qua âm nhạc, nuôi dưỡng cảm xúc văn học từ những khoảnh khắc đời thường.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-5 rounded-3xl border border-emerald-200 dark:border-slate-800 hover:border-emerald-500 transition-all">
+                    <div class="w-11 h-11 rounded-2xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-bold text-lg mb-3">
+                        <i class="fa-solid fa-basketball"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-base mb-1">Nạp Năng Lượng Thể Thao</h3>
+                    <p class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-2">Phạm Phan Chí Huy</p>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Dành 45 phút mỗi chiều chơi bóng rổ hoặc chạy bộ để giải phóng hormone giảm căng thẳng mùa thi.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-5 rounded-3xl border border-amber-200 dark:border-slate-800 hover:border-amber-500 transition-all">
+                    <div class="w-11 h-11 rounded-2xl bg-amber-500/15 text-amber-500 flex items-center justify-center font-bold text-lg mb-3">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-base mb-1">Thấu Hiểu Bản Thân</h3>
+                    <p class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2">Hoàng Bảo Huy</p>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Lắng nghe thế mạnh thật sự để chọn đúng ngành, đúng trường đại học phù hợp với tương lai.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: BẢNG LƯU BÚT ĐIỆN TỬ (STICKY NOTES TƯƠNG TÁC) -->
+        <section id="yearbook" class="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass-panel rounded-3xl border-2 border-amber-200 dark:border-slate-800 p-6 sm:p-10 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- Left Column: Form Viết Lưu Bút -->
+                    <div class="lg:col-span-5 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 text-rose-500 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-heart"></i> Góc Lưu Bút Tuổi 18
+                        </div>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl">
+                            Dán Lời Nhắn Lên <span class="text-youth-gradient">Bảng Tin Lớp Học</span>
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                            Hãy để lại một lời chúc thi tốt, một kỷ niệm đáng nhớ hoặc lời nhắn gửi tới 5 thành viên <strong>H-Squad 12</strong>. Tờ giấy nhớ của bạn sẽ được ghim trực tiếp lên bảng lưu bút bên cạnh!
+                        </p>
+
+                        <form id="noteForm" onsubmit="addStickyNote(event)" class="space-y-4 bg-amber-50/70 dark:bg-slate-900/80 p-5 sm:p-6 rounded-2xl border border-amber-200/80 dark:border-slate-800">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Tên hoặc Biệt danh của bạn *</label>
+                                <input type="text" id="noteAuthor" required placeholder="VD: Bạn cùng bàn, Một người bạn lớp 12A..." class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Gửi đến ai?</label>
+                                    <select id="noteTarget" class="w-full px-3 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                                        <option value="Cả nhóm H-Squad 12">Cả nhóm H-Squad 12</option>
+                                        <option value="Nguyễn Đăng Hạnh">Nguyễn Đăng Hạnh</option>
+                                        <option value="Trần Lâm Hùng">Trần Lâm Hùng</option>
+                                        <option value="Hoàng Anh Hùng">Hoàng Anh Hùng</option>
+                                        <option value="Phạm Phan Chí Huy">Phạm Phan Chí Huy</option>
+                                        <option value="Hoàng Bảo Huy">Hoàng Bảo Huy</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Màu giấy nhớ</label>
+                                    <select id="noteColor" class="w-full px-3 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                                        <option value="amber">💛 Vàng Nắng Hạ</option>
+                                        <option value="rose">🌸 Hồng Hoa Phượng</option>
+                                        <option value="sky">💙 Xanh Bầu Trời</option>
+                                        <option value="emerald">💚 Xanh Lá Cây</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Lời nhắn lưu bút *</label>
+                                <textarea id="noteContent" rows="3" required placeholder="Chúc 5 chàng trai chữ H đỗ Nguyện vọng 1 rực rỡ nhé!..." class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-display font-bold text-sm shadow-lg shadow-rose-500/20 transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-thumbtack"></i>
+                                <span>Ghim Lưu Bút Lên Bảng</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Bảng Ghim Giấy Nhớ (Corkboard) -->
+                    <div class="lg:col-span-7 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                📌 Bảng Tin Lưu Bút Lớp Học (<span id="noteCount">4</span> lời nhắn)
+                            </span>
+                            <span class="text-xs text-rose-500 font-hand text-base">Chạm vào từng tờ giấy để xem rõ hơn ✨</span>
+                        </div>
+
+                        <div id="stickyBoard" class="grid grid-cols-1 sm:grid-cols-2 gap-5 p-5 sm:p-6 rounded-3xl bg-amber-100/60 dark:bg-slate-900/90 border-4 border-amber-300/70 dark:border-slate-800 min-h-[380px]">
+                            <!-- Dynamic Sticky Notes Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-sky-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-950 py-10 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-sky-500 via-rose-500 to-amber-500 flex items-center justify-center text-white font-display font-extrabold text-sm">
+                    H12
+                </div>
+                <div>
+                    <p class="font-display font-bold text-sm text-slate-900 dark:text-white">Trạm Thanh Xuân H-Squad 12</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                        Nguyễn Đăng Hạnh • Trần Lâm Hùng • Hoàng Anh Hùng • Phạm Phan Chí Huy • Hoàng Bảo Huy
+                    </p>
+                </div>
+            </div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 text-center sm:text-right font-hand text-base">
+                "Dù mai sau mỗi người một phương trời, chúng ta mãi là bạn cùng lớp!" 🌸✈️
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL XEM HỒ SƠ KỶ YẾU & ĐỌC BÁO TƯỜNG -->
+    <div id="universalModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-md">
+        <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-slate-900 border-2 border-sky-200 dark:border-slate-700 shadow-2xl p-6 sm:p-10">
+            <button onclick="closeModal()" aria-label="Đóng" class="sticky top-2 float-right w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-500 hover:text-white transition-colors flex items-center justify-center text-slate-600 dark:text-slate-300 z-20">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modalBodyContent"></div>
+        </div>
+    </div>
+
+    <!-- TOAST THÔNG BÁO -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 px-5 py-3.5 rounded-2xl bg-slate-900 dark:bg-rose-500 text-white font-bold text-sm shadow-2xl transition-all">
+        <i class="fa-solid fa-paper-plane"></i>
+        <span id="toastMessage">Đã ghim lưu bút thành công!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // =====================================================
+        // 1. DỮ LIỆU 5 THÀNH VIÊN NHÓM HỌC SINH CẤP 3 (H-SQUAD 12)
+        // =====================================================
+        const teamMembers = [
+            {
+                id: 1,
+                name: "Nguyễn Đăng Hạnh",
+                nickname: "Hạnh 'Lớp Trưởng'",
+                role: "Trưởng nhóm • Chiến lược gia Lập kế hoạch & Ôn thi Toán - Lý",
+                category: "academic",
+                block: "Khối A00 (Toán - Lý - Hóa)",
+                dreamUni: "Đại học Bách Khoa (Ngành Khoa học Máy tính / CNTT)",
+                color: "sky",
+                gradient: "from-sky-500 to-blue-600",
+                quote: "Đề khó không sợ, chỉ sợ hôm nay mình chưa cố gắng hết 100% sức lực!",
+                bio: "Là người cầmịch của H-Squad 12 và cũng là lớp trưởng gương mẫu suốt 3 năm cấp 3. Đăng Hạnh nổi tiếng với cuốn sổ tay lập kế hoạch ôn thi chi tiết đến từng khung giờ, luôn sẵn sàng giảng lại những câu Hình học không gian hay Dao động cơ khó nhằn cho cả nhóm.",
+                strengths: ["Giải Toán 9+", "Vật Lý đại cương", "Lập Study Planner", "Quản lý thời gian", "Thuyết trình"],
+                memory: "Kỷ niệm nhớ nhất là những buổi chiều mưa cả nhóm ở lại lớp, vừa ăn bánh mì vừa cùng nhau giải xong đề thi thử Toán 50 câu dưới ánh đèn huỳnh quang.",
+                hobbies: "Lập trình cơ bản, cờ vua, sưu tầm đề thi thử các trường chuyên.",
+                avatarSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><defs><linearGradient id="av1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0ea5e9"/><stop offset="100%" stop-color="#2563eb"/></linearGradient></defs><rect width="120" height="120" rx="28" fill="url(#av1)"/><circle cx="60" cy="44" r="21" fill="#f0f9ff"/><path d="M24 106c0-20 16-34 36-34s36 14 36 34" fill="#f0f9ff"/><path d="M56 72 L60 95 L64 72 Z" fill="#ef4444"/><rect x="44" y="38" width="12" height="8" rx="2" fill="none" stroke="#0284c7" stroke-width="2.5"/><rect x="64" y="38" width="12" height="8" rx="2" fill="none" stroke="#0284c7" stroke-width="2.5"/><line x1="56" y1="42" x2="64" y2="42" stroke="#0284c7" stroke-width="2.5"/></svg>`
+            },
+            {
+                id: 2,
+                name: "Trần Lâm Hùng",
+                nickname: "Hùng 'Nghệ Sĩ'",
+                role: "Cây văn nghệ & Nhiếp ảnh gia Kỷ yếu • Chuyên Anh - Văn",
+                category: "creative-life",
+                block: "Khối D01 (Toán - Văn - Anh)",
+                dreamUni: "Đại học Ngoại Thương / Học viện Báo chí & Tuyên truyền",
+                color: "rose",
+                gradient: "from-rose-500 to-pink-600",
+                quote: "Mỗi bức ảnh chụp vội trên hành lang lớp học hôm nay sẽ là báu vật vô giá của 10 năm sau.",
+                bio: "Trần Lâm Hùng là tâm hồn nghệ sĩ của cả nhóm. Chiếc máy ảnh của Hùng đã lưu giữ hàng ngàn khoảnh khắc dở khóc dở cười của tập thể lớp 12. Không chỉ đàn hay, thiết kế báo tường đẹp, Lâm Hùng còn sở hữu điểm số Ngữ Văn và Tiếng Anh cực kỳ ấn tượng.",
+                strengths: ["Nhiếp ảnh Kỷ yếu", "IELTS / Tiếng Anh", "Viết tản văn", "Thiết kế Báo tường", "Guitar Acoustic"],
+                memory: "Buổi biểu diễn văn nghệ 20/11 cuối cùng của thời học sinh, khi cả lớp cùng khoác vai nhau hát vang bài 'Mình cùng nhau đóng băng' dưới sân trường.",
+                hobbies: "Chụp ảnh phim, chơi đàn guitar, viết blog tản văn, thiết kế poster.",
+                avatarSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><defs><linearGradient id="av2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#db2777"/></linearGradient></defs><rect width="120" height="120" rx="28" fill="url(#av2)"/><circle cx="60" cy="44" r="21" fill="#fff1f2"/><path d="M24 106c0-20 16-34 36-34s36 14 36 34" fill="#fff1f2"/><rect x="46" y="76" width="28" height="20" rx="4" fill="#fb7185"/><circle cx="60" cy="86" r="6" fill="#fff1f2"/></svg>`
+            },
+            {
+                id: 3,
+                name: "Hoàng Anh Hùng",
+                nickname: "Hùng 'Casio'",
+                role: "Chiến thần giải đề • Bậc thầy bấm máy Casio & Mindmap",
+                category: "academic",
+                block: "Khối A01 (Toán - Lý - Anh)",
+                dreamUni: "Đại học Công nghệ - ĐHQGHN (Ngành Trí tuệ Nhân tạo)",
+                color: "indigo",
+                gradient: "from-indigo-500 to-purple-600",
+                quote: "Không có bài toán nào quá 3 dòng nháp nếu bạn nắm chắc bản chất và bấm Casio đủ nhanh!",
+                bio: "Được mệnh danh là 'cỗ máy giải đề' của H-Squad 12. Hoàng Anh Hùng có khả năng biến những trang lý thuyết Vật Lý, Hóa Học dài ngoằng thành một trang sơ đồ tư duy (Mindmap) cực kỳ dễ nhớ, cùng những tuyệt chiêu bấm máy tính Casio Fx-580VNX thần tốc.",
+                strengths: ["Thủ thuật Casio", "Sơ đồ Mindmap", "Phương pháp Pomodoro", "Active Recall", "Tư duy Logic"],
+                memory: "Lần cả nhóm thi đua bấm máy tính giải nhanh 20 câu tích phân và số phức trong vòng 15 phút ngay giờ ra chơi.",
+                hobbies: "Giải Rubik tốc độ, tìm tòi mẹo giải nhanh trắc nghiệm, đọc sách khoa học.",
+                avatarSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><defs><linearGradient id="av3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#9333ea"/></linearGradient></defs><rect width="120" height="120" rx="28" fill="url(#av3)"/><circle cx="60" cy="44" r="21" fill="#eef2ff"/><path d="M24 106c0-20 16-34 36-34s36 14 36 34" fill="#eef2ff"/><text x="50" y="95" fill="#4f46e5" font-size="18" font-weight="bold">∑π</text></svg>`
+            },
+            {
+                id: 4,
+                name: "Phạm Phan Chí Huy",
+                nickname: "Huy 'Năng Lượng'",
+                role: "Thủ lĩnh Phong trào & Thể thao • Bí quyết cân bằng học - chơi",
+                category: "creative-life",
+                block: "Khối A00 & D07",
+                dreamUni: "Đại học Kinh tế Quốc dân (Ngành Quản trị Kinh doanh)",
+                color: "emerald",
+                gradient: "from-emerald-500 to-teal-600",
+                quote: "Học hết sức trên lớp, cháy hết mình trên sân bóng — tuổi 18 chỉ đến một lần trong đời!",
+                bio: "Nguồn năng lượng tích cực bất tận của nhóm. Dù lịch học cuối cấp dày đặc, Phạm Phan Chí Huy vẫn giữ vững phong độ điểm số nhờ khả năng tập trung cao độ trên lớp và thói quen rèn luyện thể thao mỗi chiều, giúp cả nhóm xua tan áp lực đồng trang lứa (Peer Pressure).",
+                strengths: ["Đội trưởng Bóng rổ", "Hoạt động Ngoại khóa", "Quản trị Cảm xúc", "Kỹ năng Giao tiếp", "Làm việc nhóm"],
+                memory: "Trận chung kết bóng rổ hội khỏe trường năm lớp 12, khi 4 anh em còn lại trong nhóm đứng ngoài đường biên hò hét cổ vũ đến khản cả giọng.",
+                hobbies: "Bóng rổ, chạy bộ, tổ chức teambuilding dã ngoại cho lớp.",
+                avatarSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><defs><linearGradient id="av4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#0d9488"/></linearGradient></defs><rect width="120" height="120" rx="28" fill="url(#av4)"/><circle cx="60" cy="44" r="21" fill="#ecfdf5"/><path d="M24 106c0-20 16-34 36-34s36 14 36 34" fill="#ecfdf5"/><circle cx="60" cy="88" r="10" fill="#f97316"/></svg>`
+            },
+            {
+                id: 5,
+                name: "Hoàng Bảo Huy",
+                nickname: "Huy 'Cố Vấn'",
+                role: "Cố vấn Tâm lý & Định hướng Ngành nghề • Am hiểu Công nghệ",
+                category: "orientation",
+                block: "Khối A01 & D01",
+                dreamUni: "Đại học FPT / Đại học Kinh tế TP.HCM (Ngành Công nghệ & Kinh doanh số)",
+                color: "amber",
+                gradient: "from-amber-500 to-orange-600",
+                quote: "Chọn ngành không phải là chọn nơi nhiều người đổ xô vào nhất, mà là chọn nơi mình có thể tỏa sáng lâu dài nhất.",
+                bio: "Là người điềm tĩnh, sâu sắc và luôn lắng nghe tâm sự của bạn bè trong lớp. Hoàng Bảo Huy tìm hiểu rất kỹ về xu hướng nghề nghiệp tương lai, điểm chuẩn các trường đại học và các bài trắc nghiệm tính cách (MBTI, Holland), giúp các thành viên vững tâm trước ngưỡng cửa tuổi 18.",
+                strengths: ["Tư vấn Hướng nghiệp", "Trắc nghiệm Holland/MBTI", "Ứng dụng AI Học tập", "Lắng nghe & Thấu cảm", "Viết lưu bút"],
+                memory: "Những buổi tối cuối tuần mở cuộc họp online cùng cả nhóm phân tích đề án tuyển sinh và sắp xếp thứ tự nguyện vọng đại học.",
+                hobbies: "Khám phá công cụ công nghệ mới, đọc sách tâm lý học, nghe podcast định hướng bản thân.",
+                avatarSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><defs><linearGradient id="av5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ea580c"/></linearGradient></defs><rect width="120" height="120" rx="28" fill="url(#av5)"/><circle cx="60" cy="44" r="21" fill="#fffbeb"/><path d="M24 106c0-20 16-34 36-34s36 14 36 34" fill="#fffbeb"/><polygon points="60,75 64,85 74,85 66,91 69,101 60,95 51,101 54,91 46,85 56,85" fill="#f59e0b"/></svg>`
+            }
+        ];
+
+        // =====================================================
+        // 2. DỮ LIỆU 5 BÀI VIẾT BÁO TƯỜNG & BÍ QUYẾT ÔN THI
+        // =====================================================
+        const groupArticles = [
+            {
+                id: 1,
+                title: "Bí Kíp Chinh Phục Kỳ Thi THPT Quốc Gia Mà Không Bị 'Burnout'",
+                category: "Bí quyết học tập",
+                author: "Nguyễn Đăng Hạnh & Hoàng Anh Hùng",
+                date: "Tháng 5 • Mùa Hoa Phượng",
+                readTime: "8 phút đọc",
+                likes: 215,
+                liked: false,
+                summary: "Làm thế nào để giữ nhịp độ giải đề căng thẳng trong 90 ngày cuối mà không rơi vào trạng thái quá tải, mất ngủ hay học trước quên sau? Đây là lộ trình thực chiến của nhóm chúng mình.",
+                tags: ["Ôn thi THPT", "Toán - Lý", "Chống Burnout", "Study Plan"],
+                content: `
+                    <p class="lead font-medium text-lg text-slate-700 dark:text-slate-200 mb-4">
+                        Bước vào học kỳ 2 lớp 12, chắc hẳn bạn nào cũng từng trải qua cảm giác nhìn chồng đề thi thử cao ngất ngưởng trên bàn học mà lòng đầy hoang mang. Làm sao để tăng tốc điểm số mà cơ thể và tinh thần không bị vắt kiệt?
+                    </p>
+                    <h4 class="font-display font-bold text-xl text-sky-600 dark:text-sky-400 mt-6 mb-2">1. Quy tắc "Chia nhỏ mục tiêu theo Tuần" (Chia sẻ từ Nguyễn Đăng Hạnh)</h4>
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Thay vì viết một mục tiêu mơ hồ như <em>"Tháng này phải giỏi Toán"</em>, mình chia nhỏ thành từng chuyên đề cụ thể cho mỗi ngày: Thứ Hai ôn Cực trị hàm số, Thứ Ba luyện Tích phân từng phần, Thứ Tư tổng ôn Sóng cơ. Mỗi khi gạch bỏ được một dòng trong <strong>Checklist</strong>, não bộ sẽ tiết ra Dopamine giúp bạn cảm thấy tự tin và bớt lo âu hơn rất nhiều.
+                    </p>
+                    <h4 class="font-display font-bold text-xl text-sky-600 dark:text-sky-400 mt-6 mb-2">2. Sổ tay "Những lỗi sai ngớ ngẩn" (Chia sẻ từ Hoàng Anh Hùng)</h4>
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Giải 10 đề mà không chữa kỹ không bằng giải 3 đề nhưng thấm từng câu. Bọn mình luôn có một cuốn sổ nhỏ ghi lại những câu làm sai do đọc thiếu đề, quên điều kiện xác định hoặc bấm nhầm hệ Radian/Degree trên máy tính Casio. Trước ngày thi chỉ cần đọc lại cuốn sổ này là cứu được ít nhất 0.8 - 1.2 điểm!
+                    </p>
+                    <div class="my-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 font-hand text-lg text-amber-800 dark:text-amber-300">
+                        💡 Lời nhắn từ H-Squad: "Đừng thức quá 12h30 đêm! Giấc ngủ sâu từ 11h30 đêm đến 5h30 sáng chính là lúc não bộ chuyển kiến thức từ trí nhớ ngắn hạn sang trí nhớ dài hạn đấy."
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Mùa Hoa Phượng Cuối & Những Điều Chưa Kịp Nói",
+                category: "Tản văn thanh xuân",
+                author: "Trần Lâm Hùng",
+                date: "Nhật ký Lớp 12",
+                readTime: "6 phút đọc",
+                likes: 340,
+                liked: false,
+                summary: "Tản văn viết cho những buổi chiều nắng nghiêng qua khung cửa sổ lớp 12, tiếng trống trường tan tầm, dòng chữ ký vội trên lưng áo trắng và những ước hẹn tuổi 18...",
+                tags: ["Tản văn", "Hoa phượng", "Kỷ yếu", "Tuổi 18"],
+                content: `
+                    <p class="lead italic font-hand text-2xl text-rose-500 mb-4">
+                        "Chúng ta mất 3 năm để mong ngày trưởng thành, nhưng lại mất cả phần đời còn lại để ước được quay về một buổi trưa năm 17 tuổi..."
+                    </p>
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Hôm qua cầm máy ảnh đứng ở góc sân trường chụp cho cả lớp, mình chợt nhận ra chùm phượng vĩ đầu tiên nơi góc hành lang đã bắt đầu thắp lửa. Hóa ra thời gian chẳng đợi một ai. Mới ngày nào 5 thằng tên H còn bỡ ngỡ bước vào lớp 10, ngại ngùng hỏi mượn nhau từng cây bút bi, vậy mà giờ đây đã cùng nhau đếm ngược từng tờ lịch cuối cấp.
+                    </p>
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Thanh xuân của chúng mình nằm ở đâu? Nó nằm ở tiếng quạt trần quay kẽo kẹt những trưa tháng Năm oi ả, ở ngăn bàn đầy giấy nháp của <strong>Anh Hùng</strong>, ở tiếng hô điểm danh dõng dạc của lớp trưởng <strong>Đăng Hạnh</strong>, ở những pha ném bóng rổ ăn mừng của <strong>Chí Huy</strong> và những buổi chiều ngồi nghe <strong>Bảo Huy</strong> tâm sự chuyện tương lai.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Mai này khi tiếng trống bế giảng vang lên, mỗi chiếc máy bay giấy sẽ bay về một bầu trời đại học khác nhau. Chỉ mong khi mở lại trang web kỷ yếu này, chúng ta vẫn thấy nụ cười rạng rỡ nhất của tuổi 18 nguyên vẹn như ngày hôm nay.
+                    </p>
+                `
+            },
+            {
+                id: 3,
+                title: "Phương Pháp Active Recall & Spaced Repetition: Học Ít Hiểu Nhiều Cho Dân Cuối Cấp",
+                category: "Bí quyết học tập",
+                author: "Hoàng Anh Hùng",
+                date: "Góc Phương Pháp Học",
+                readTime: "7 phút đọc",
+                likes: 189,
+                liked: false,
+                summary: "Tại sao đọc đi đọc lại sách giáo khoa hay tô bút dạ quang kín trang giấy vẫn quên sạch khi vào phòng thi? Khám phá 2 phương pháp khoa học giúp ghi nhớ kiến thức gấp 3 lần.",
+                tags: ["Active Recall", "Spaced Repetition", "Mindmap", "Pomodoro"],
+                content: `
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Rất nhiều bạn học sinh cấp 3 mắc phải "ảo tưởng năng lực" khi ôn bài: mở vở ra đọc thấy quen quen liền nghĩ là mình đã thuộc, nhưng khi gấp vở lại thì không viết nổi công thức. Để khắc phục triệt để, mình áp dụng bộ đôi <strong>Active Recall (Chủ động gợi nhớ)</strong> và <strong>Spaced Repetition (Lặp lại ngắt quãng)</strong>.
+                    </p>
+                    <h4 class="font-display font-bold text-xl text-indigo-500 mt-5 mb-2">1. Active Recall áp dụng thế nào?</h4>
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Sau khi học xong một bài Lý thuyết Vật Lý hoặc từ vựng Tiếng Anh, hãy gấp hoàn toàn sách lại, lấy một tờ giấy trắng và tự vẽ lại sơ đồ tư duy (Mindmap) tất cả những gì bạn còn nhớ. Những chỗ bị khuyết chính là lỗ hổng kiến thức cần bù đắp ngay.
+                    </p>
+                    <h4 class="font-display font-bold text-xl text-indigo-500 mt-5 mb-2">2. Chu kỳ ôn tập vàng 1 - 3 - 7 - 21 ngày</h4>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Thay vì dồn 5 tiếng học một môn trong 1 ngày rồi bỏ bẵng cả tháng, hãy ôn lại kiến thức đó sau 1 ngày, 3 ngày, 7 ngày và 21 ngày. Mỗi lần ôn chỉ mất 10-15 phút nhưng giúp đường truyền thần kinh ghi nhớ bền vững đến tận ngày thi THPT Quốc gia!
+                    </p>
+                `
+            },
+            {
+                id: 4,
+                title: "Đứng Trước Ngưỡng Cửa Tuổi 18: Chọn Ngành Theo Đam Mê Hay Xu Hướng?",
+                category: "Định hướng tuổi 18",
+                author: "Hoàng Bảo Huy",
+                date: "Cẩm nang Hướng nghiệp",
+                readTime: "9 phút đọc",
+                likes: 204,
+                liked: false,
+                summary: "Giữa ngành học 'hot' dễ kiếm việc làm, mong muốn của bố mẹ và sở thích cá nhân, học sinh lớp 12 nên đặt bút đăng ký nguyện vọng như thế nào để không hối tiếc?",
+                tags: ["Chọn ngành", "Chọn trường", "Tuổi 18", "Ikigai"],
+                content: `
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Mùa làm hồ sơ xét tuyển đại học luôn là thời điểm nhiều trăn trở nhất của tuổi 18. Trong những buổi trò chuyện cùng các bạn trong lớp, mình nhận ra câu hỏi lớn nhất luôn là: <em>"Nên chạy theo ngành đang hot hay đi theo đam mê?"</em>
+                    </p>
+                    <h4 class="font-display font-bold text-xl text-amber-500 mt-5 mb-2">Mô hình 3 vòng tròn giao thoa cho học sinh lớp 12</h4>
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Để chọn được Nguyện vọng 1 chuẩn xác, hãy lấy giấy bút và liệt kê giao điểm của 3 yếu tố:
+                        <br>• <strong>Thứ bạn làm tốt:</strong> Điểm số các môn tổ hợp nào của bạn cao và ổn định nhất?
+                        <br>• <strong>Thứ bạn yêu thích:</strong> Bạn thích làm việc với máy tính (như Đăng Hạnh, Anh Hùng), thích sáng tạo ngôn từ hình ảnh (như Lâm Hùng) hay thích giao tiếp, vận động (như Chí Huy)?
+                        <br>• <strong>Nhu cầu xã hội trong 4-5 năm tới:</strong> Ngành học đó khi bạn tốt nghiệp đại học sẽ phát triển ra sao?
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Đừng chọn trường chỉ vì bạn thân cũng đăng ký trường đó. Đại học là hành trình tự lập, hãy lắng nghe bản thân mình thật kỹ nhé!
+                    </p>
+                `
+            },
+            {
+                id: 5,
+                title: "Làm Sao Để Vừa Cháy Hết Mình Với Ngoại Khóa Vừa Giữ Vững Phong Độ Điểm Số?",
+                category: "Kỹ năng mềm",
+                author: "Phạm Phan Chí Huy",
+                date: "Góc Năng Động",
+                readTime: "6 phút đọc",
+                likes: 176,
+                liked: false,
+                summary: "Nhiều người nghĩ lên lớp 12 là phải dẹp hết thể thao, câu lạc bộ để chỉ ngồi bàn học. Nhưng sự thật là vận động thể chất hợp lý lại giúp não bộ tăng tốc độ giải đề đáng kinh ngạc!",
+                tags: ["Ngoại khóa", "Bóng rổ", "Cân bằng", "Giảm stress"],
+                content: `
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Là đội trưởng đội bóng rổ của lớp, mình từng nghe không ít lời khuyên rằng lớp 12 rồi nên nghỉ chơi thể thao hoàn toàn để tập trung ôn thi. Tuy nhiên, sau 1 tuần thử chỉ ngồi lì ở bàn học, mình thấy đầu óc căng cứng, học 3 tiếng mà hiệu quả chỉ bằng 1 tiếng.
+                    </p>
+                    <h4 class="font-display font-bold text-xl text-emerald-500 mt-5 mb-2">Bí quyết "Giờ nào việc nấy" (Deep Work)</h4>
+                    <p class="mb-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Bí quyết của mình và nhóm H-Squad 12 rất đơn giản: <strong>Trong giờ học trên lớp, tuyệt đối cất điện thoại</strong> và nghe giảng 100% để hiểu bài ngay tại chỗ. Nhờ vậy, buổi chiều từ 17h00 - 17h45, bọn mình hoàn toàn thoải mái ra sân bóng rổ đổ mồ hôi.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Sau khi vận động và tắm rửa, máu lưu thông lên não tốt hơn, buổi tối ngồi vào bàn học từ 19h30 đến 23h00 trở nên cực kỳ tỉnh táo và tập trung!
+                    </p>
+                `
+            }
+        ];
+
+        // =====================================================
+        // 3. DỮ LIỆU LƯU BÚT MẶC ĐỊNH TRÊN BẢNG TIN
+        // =====================================================
+        const stickyNotesData = [
+            {
+                author: "Nguyễn Đăng Hạnh",
+                target: "Cả nhóm H-Squad 12",
+                color: "sky",
+                rotate: "-1.5deg",
+                date: "Hôm nay",
+                content: "Anh em H-Squad 12 cố lên nhé! Tháng 6 này cả 5 thằng nhất định phải cùng nhau đỗ Nguyện vọng 1 rồi đi phượt một chuyến thật hoành tráng!"
+            },
+            {
+                author: "Trần Lâm Hùng",
+                target: "Cả nhóm H-Squad 12",
+                color: "rose",
+                rotate: "1.8deg",
+                date: "Hôm qua",
+                content: "Tớ đã rửa sẵn bộ ảnh kỷ yếu của 5 anh em rồi. Dù sau này ai bận rộn thế nào, mỗi năm nhớ họp mặt ít nhất 2 lần nhé! 📸❤️"
+            },
+            {
+                author: "Hoàng Anh Hùng & Chí Huy",
+                target: "Các sĩ tử 2k8",
+                color: "amber",
+                rotate: "-1deg",
+                date: "2 ngày trước",
+                content: "Chúc tất cả các bạn ghé thăm web của nhóm luôn giữ tinh thần lạc quan, bấm máy tính bách phát bách trúng, vượt vũ môn hóa rồng! 🔥"
+            },
+            {
+                author: "Hoàng Bảo Huy",
+                target: "Tuổi 18 của chúng mình",
+                color: "emerald",
+                rotate: "1.5deg",
+                date: "3 ngày trước",
+                content: "Cảm ơn thanh xuân vì đã cho 5 chữ H gặp nhau dưới mái trường này. Chúc cho những ước mơ đại học của tất cả chúng ta đều nở hoa!"
+            }
+        ];
+
+        let currentArticleCategory = 'all';
+
+        // =====================================================
+        // 4. HIỂN THỊ DANH SÁCH 5 THÀNH VIÊN KỶ YẾU
+        // =====================================================
+        function renderMembers(filter = 'all') {
+            const grid = document.getElementById('membersGrid');
+            const list = filter === 'all' ? teamMembers : teamMembers.filter(m => m.category === filter);
+
+            grid.innerHTML = list.map(m => `
+                <div class="student-card glass-panel rounded-3xl p-6 border-2 border-white dark:border-slate-800 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+                    <!-- Top Color Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${m.gradient}"></div>
+
+                    <div>
+                        <!-- Header: Avatar + Nickname Badge -->
+                        <div class="flex items-start justify-between gap-4 mb-4 pt-1">
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
+                                ${m.avatarSvg}
+                            </div>
+                            <div class="text-right">
+                                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-${m.color}-500/15 text-${m.color}-600 dark:text-${m.color}-400 border border-${m.color}-500/20">
+                                    ${m.nickname}
+                                </span>
+                                <span class="block text-[11px] text-slate-400 mt-1 font-medium">${m.block}</span>
+                            </div>
+                        </div>
+
+                        <!-- Name & Role -->
+                        <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 dark:text-white group-hover:text-rose-500 transition-colors">
+                            ${m.name}
+                        </h3>
+                        <p class="text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 mt-1 mb-3">
+                            ${m.role}
+                        </p>
+
+                        <!-- Handwritten Quote -->
+                        <div class="p-3 rounded-2xl bg-amber-50/90 dark:bg-slate-800/80 border border-amber-200/60 dark:border-slate-700 mb-4">
+                            <p class="font-hand text-base text-slate-700 dark:text-slate-200 leading-snug">
+                                "${m.quote}"
+                            </p>
+                        </div>
+
+                        <!-- Dream University -->
+                        <div class="text-xs text-slate-600 dark:text-slate-300 mb-4 flex items-start gap-2">
+                            <i class="fa-solid fa-building-columns text-rose-500 mt-0.5"></i>
+                            <span><strong>Mục tiêu ĐH:</strong> ${m.dreamUni}</span>
+                        </div>
+
+                        <!-- Strengths Tags -->
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            ${m.strengths.map(s => `
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                                    #${s}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Footer Button -->
+                    <div class="pt-3 border-t border-slate-200/70 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-hand text-slate-500 text-sm">Kỷ yếu #0${m.id}</span>
+                        <button onclick="openMemberModal(${m.id})" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-rose-500 hover:text-sky-500 transition-colors">
+                            <span>Xem trang lưu bút</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterMembers(category) {
+            document.querySelectorAll('.member-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.className = "member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-sky-500 text-white shadow-md shadow-sky-500/20 transition-all";
+                } else {
+                    btn.className = "member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-500 transition-all";
+                }
+            });
+            renderMembers(category);
+        }
+
+        // =====================================================
+        // 5. HIỂN THỊ BÀI VIẾT BÁO TƯỜNG & BỘ LỌC
+        // =====================================================
+        function setArticleCategory(cat) {
+            currentArticleCategory = cat;
+            document.querySelectorAll('.article-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "article-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-rose-500 text-white shadow-md shadow-rose-500/20 transition-all";
+                } else {
+                    btn.className = "article-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-500/10 transition-all";
+                }
+            });
+            filterArticles();
+        }
+
+        function filterArticles() {
+            const query = document.getElementById('articleSearchInput').value.toLowerCase().trim();
+            const grid = document.getElementById('articlesGrid');
+
+            const filtered = groupArticles.filter(art => {
+                const matchCat = currentArticleCategory === 'all' || art.category === currentArticleCategory;
+                const matchSearch = !query ||
+                    art.title.toLowerCase().includes(query) ||
+                    art.summary.toLowerCase().includes(query) ||
+                    art.author.toLowerCase().includes(query) ||
+                    art.tags.some(t => t.toLowerCase().includes(query));
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 glass-panel rounded-3xl border border-slate-200 dark:border-slate-800">
+                        <i class="fa-solid fa-book-open text-3xl text-rose-400 mb-3"></i>
+                        <p class="font-bold text-lg">Chưa tìm thấy bài viết nào khớp với từ khóa của bạn</p>
+                        <p class="text-sm text-slate-400 mt-1">Hãy thử tìm tên các thành viên (Hạnh, Hùng, Huy) hoặc chọn danh mục "Tất cả bài viết".</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(art => `
+                <article class="glass-panel rounded-3xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">
+                                ${art.category}
+                            </span>
+                            <span class="text-xs text-slate-400 font-medium">
+                                <i class="fa-regular fa-clock mr-1"></i>${art.readTime}
+                            </span>
+                        </div>
+
+                        <h3 onclick="openArticleModal(${art.id})" class="cursor-pointer font-display font-extrabold text-xl sm:text-2xl mb-3 group-hover:text-rose-500 transition-colors leading-snug">
+                            ${art.title}
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            ${art.summary}
+                        </p>
+
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            ${art.tags.map(t => `
+                                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                                    #${t}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200/70 dark:border-slate-800 flex items-center justify-between gap-3">
+                        <div class="text-xs">
+                            <span class="text-slate-400 block">Góc bút mực:</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-200">${art.author}</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <button onclick="toggleLikeArticle(${art.id})" class="px-3 py-2 rounded-xl border ${art.liked ? 'bg-rose-500 text-white border-rose-500' : 'bg-slate-100 dark:bg-slate-800 border-transparent text-slate-600 dark:text-slate-300'} hover:scale-105 transition-all text-xs font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>${art.likes}</span>
+                            </button>
+                            <button onclick="openArticleModal(${art.id})" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs transition-colors flex items-center gap-1.5">
+                                <span>Đọc bài</span>
+                                <i class="fa-solid fa-book-open"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function toggleLikeArticle(id) {
+            const art = groupArticles.find(a => a.id === id);
+            if (!art) return;
+            art.liked = !art.liked;
+            art.likes += art.liked ? 1 : -1;
+            filterArticles();
+            if (art.liked) {
+                showToast(`Cảm ơn bạn đã thả tim bài viết của ${art.author}! ❤️`);
+            }
+        }
+
+        // =====================================================
+        // 6. BẢNG LƯU BÚT ĐIỆN TỬ (STICKY NOTES)
+        // =====================================================
+        function renderStickyNotes() {
+            const board = document.getElementById('stickyBoard');
+            document.getElementById('noteCount').textContent = stickyNotesData.length;
+
+            const colorClasses = {
+                amber: 'bg-amber-200/90 dark:bg-amber-900/60 text-amber-950 dark:text-amber-100 border-amber-300 dark:border-amber-700',
+                rose: 'bg-rose-200/90 dark:bg-rose-900/60 text-rose-950 dark:text-rose-100 border-rose-300 dark:border-rose-700',
+                sky: 'bg-sky-200/90 dark:bg-sky-900/60 text-sky-950 dark:text-sky-100 border-sky-300 dark:border-sky-700',
+                emerald: 'bg-emerald-200/90 dark:bg-emerald-900/60 text-emerald-950 dark:text-emerald-100 border-emerald-300 dark:border-emerald-700'
+            };
+
+            board.innerHTML = stickyNotesData.map(note => `
+                <div style="transform: rotate(${note.rotate});" class="sticky-note p-5 rounded-2xl border shadow-md flex flex-col justify-between ${colorClasses[note.color] || colorClasses.amber}">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-bold opacity-75 mb-2">
+                            <span>📌 Gửi: ${note.target}</span>
+                            <span>${note.date}</span>
+                        </div>
+                        <p class="font-hand text-lg leading-snug mb-4">
+                            "${note.content}"
+                        </p>
+                    </div>
+                    <div class="text-right text-xs font-extrabold border-t border-current/15 pt-2">
+                        — ✍️ ${note.author}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addStickyNote(e) {
+            e.preventDefault();
+            const author = document.getElementById('noteAuthor').value.trim();
+            const target = document.getElementById('noteTarget').value;
+            const color = document.getElementById('noteColor').value;
+            const content = document.getElementById('noteContent').value.trim();
+
+            if (!author || !content) return;
+
+            const angles = ['-2deg', '1.5deg', '-1.2deg', '2deg', '-0.8deg'];
+            const randomRotate = angles[Math.floor(Math.random() * angles.length)];
+
+            stickyNotesData.unshift({
+                author,
+                target,
+                color,
+                rotate: randomRotate,
+                date: 'Vừa xong',
+                content
+            });
+
+            renderStickyNotes();
+            document.getElementById('noteForm').reset();
+            showToast(`Đã ghim lưu bút của ${author} lên bảng tin lớp! 📌`);
+        }
+
+        // =====================================================
+        // 7. MODAL CHI TIẾT HỒ SƠ KỶ YẾU & ĐỌC BÁO TƯỜNG
+        // =====================================================
+        function openMemberModal(id) {
+            const m = teamMembers.find(item => item.id === id);
+            if (!m) return;
+
+            const modalBody = document.getElementById('modalBodyContent');
+            modalBody.innerHTML = `
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-slate-200 dark:border-slate-800">
+                        <div class="w-24 h-24 rounded-3xl overflow-hidden shadow-xl flex-shrink-0">
+                            ${m.avatarSvg}
+                        </div>
+                        <div class="text-center sm:text-left space-y-2">
+                            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-500">
+                                    ${m.nickname}
+                                </span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/15 text-sky-600 dark:text-sky-400">
+                                    ${m.block}
+                                </span>
+                            </div>
+                            <h3 class="font-display font-extrabold text-2xl sm:text-3xl">${m.name}</h3>
+                            <p class="text-sky-600 dark:text-sky-400 font-bold text-sm sm:text-base">${m.role}</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-amber-50 dark:bg-slate-800/80 border border-amber-200 dark:border-slate-700">
+                        <span class="text-xs font-bold uppercase text-amber-600 dark:text-amber-400 block mb-1">Châm ngôn tuổi 18:</span>
+                        <p class="font-hand text-xl text-slate-800 dark:text-slate-100">"${m.quote}"</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">📖 Giới thiệu trong Sổ Kỷ Yếu</h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">${m.bio}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+                            <h5 class="text-xs font-bold uppercase text-rose-500 mb-1.5"><i class="fa-solid fa-star mr-1"></i>Kỷ niệm cấp 3 đáng nhớ nhất</h5>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${m.memory}</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+                            <h5 class="text-xs font-bold uppercase text-sky-500 mb-1.5"><i class="fa-solid fa-graduation-cap mr-1"></i>Định hướng Đại học & Sở thích</h5>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed"><strong>Trường mơ ước:</strong> ${m.dreamUni}<br><strong>Sở thích:</strong> ${m.hobbies}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">⚡ Tổ hợp Kỹ năng & Thế mạnh</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${m.strengths.map(s => `
+                                <span class="px-3 py-1.5 rounded-xl text-xs font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                                    #${s}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('universalModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function openArticleModal(id) {
+            const art = groupArticles.find(a => a.id === id);
+            if (!art) return;
+
+            const modalBody = document.getElementById('modalBodyContent');
+            modalBody.innerHTML = `
+                <div class="space-y-6">
+                    <div class="space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="px-3 py-1 rounded-lg bg-rose-500/15 text-rose-500 text-xs font-bold">
+                                ${art.category}
+                            </span>
+                            <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i>${art.readTime}</span>
+                            <span class="text-xs text-slate-400">• ${art.date}</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-2xl sm:text-3xl leading-tight">
+                            ${art.title}
+                        </h3>
+                        <div class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                            <i class="fa-solid fa-pen-nib text-rose-500"></i>
+                            <span>Chấp bút bởi: <strong class="text-slate-800 dark:text-slate-200">${art.author}</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="prose dark:prose-invert max-w-none text-sm sm:text-base">
+                        ${art.content}
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex flex-wrap gap-1.5">
+                            ${art.tags.map(t => `
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500">
+                                    #${t}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-rose-500 text-white font-bold text-xs sm:text-sm hover:bg-rose-600 transition-colors">
+                            Đóng trang báo tường
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('universalModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('universalModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('universalModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // =====================================================
+        // 8. ĐỒNG HỒ ĐẾM NGƯỢC KỲ THI TỐT NGHIỆP THPT (27/06)
+        // =====================================================
+        function updateCountdown() {
+            const now = new Date();
+            let targetYear = now.getFullYear();
+            let examDate = new Date(targetYear, 5, 27, 7, 30, 0); // 27 tháng 6 lúc 7h30 sáng
+            if (now > examDate) {
+                examDate = new Date(targetYear + 1, 5, 27, 7, 30, 0);
+            }
+
+            const diff = examDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+            document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('cd-minutes').textContent = String(m).padStart(2, '0');
+            document.getElementById('cd-seconds').textContent = String(s).padStart(2, '0');
+        }
+
+        // =====================================================
+        // 9. TOAST & GIAO DIỆN NẮNG SÂN TRƯỜNG / ĐÊM ÔN BÀI
+        // =====================================================
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3500);
+        }
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            showToast(isDark ? '🌙 Đã bật chế độ "Đêm Ôn Bài" dịu mắt!' : '☀️ Đã bật chế độ "Nắng Sân Trường" rực rỡ!');
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Khởi chạy khi tải trang
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMembers('all');
+            filterArticles();
+            renderStickyNotes();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html>

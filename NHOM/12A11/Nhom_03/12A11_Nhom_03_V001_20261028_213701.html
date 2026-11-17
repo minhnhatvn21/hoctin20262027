@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhóm 5 người | Chúng ta trong tương lai</title>
+  <style>
+    :root {
+      --pink: #f6b8d0;
+      --pink-light: #fff1f7;
+      --pink-pale: #fff8fb;
+      --pink-deep: #d85f95;
+      --purple: #a58bd4;
+      --ink: #543d50;
+      --muted: #896f82;
+      --white: #ffffff;
+      --shadow: 0 12px 32px rgba(193, 104, 149, .13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, #ffe1ed 0, transparent 28%),
+        radial-gradient(circle at 90% 25%, #eee4ff 0, transparent 25%),
+        var(--pink-pale);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, 92%); margin: auto; }
+    header { padding: 22px 0; }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; color: var(--pink-deep); letter-spacing: .3px; }
+    .brand span { font-size: 1.35rem; margin-right: 7px; }
+    nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: var(--muted); font-size: .95rem; font-weight: 650; }
+    nav a:hover { color: var(--pink-deep); }
+    .hero {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px;
+      align-items: center; padding: 56px 0 70px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #ffe3ef; color: #b7477a; border-radius: 999px;
+      padding: 7px 14px; font-size: .88rem; font-weight: 750;
+    }
+    h1 { font-size: clamp(2.35rem, 5vw, 4.5rem); line-height: 1.08; margin: 18px 0; letter-spacing: -1.8px; }
+    h1 .accent { color: var(--pink-deep); }
+    .hero p { color: var(--muted); font-size: 1.08rem; max-width: 610px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
+    .btn {
+      display: inline-block; border-radius: 14px; padding: 12px 18px;
+      text-decoration: none; font-weight: 750; transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-main { background: var(--pink-deep); color: white; }
+    .btn-soft { background: white; color: var(--pink-deep); border: 1px solid #f6d0e0; }
+    .hero-art {
+      position: relative; min-height: 330px; display: grid; place-items: center;
+      border-radius: 36px; background: linear-gradient(145deg, #ffd8e8, #eee4ff);
+      overflow: hidden; box-shadow: var(--shadow);
+    }
+    .hero-art::before, .hero-art::after {
+      content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.42);
+    }
+    .hero-art::before { width: 230px; height: 230px; top: -65px; right: -40px; }
+    .hero-art::after { width: 160px; height: 160px; bottom: -50px; left: -20px; }
+    .sticker {
+      position: absolute; z-index: 1; display: grid; place-items: center;
+      border: 3px solid #fff; border-radius: 25px;
+      background: linear-gradient(145deg, #fff, #ffe6f1);
+      box-shadow: 0 10px 24px rgba(171, 98, 159, .2);
+      filter: drop-shadow(0 3px 0 rgba(226, 126, 172, .16));
+      user-select: none;
+    }
+    .sticker-robot { width: 132px; height: 132px; left: 25%; top: 27%; font-size: 5rem; transform: rotate(-8deg); border-radius: 38px; }
+    .sticker-laptop { width: 108px; height: 90px; right: 12%; top: 18%; font-size: 3.5rem; transform: rotate(8deg); }
+    .sticker-chip { width: 78px; height: 78px; left: 12%; bottom: 18%; font-size: 2.7rem; transform: rotate(-10deg); }
+    .sticker-cloud { width: 68px; height: 68px; right: 17%; bottom: 18%; font-size: 2.5rem; transform: rotate(7deg); }
+    .sticker-heart { top: 12%; left: 48%; font-size: 2rem; background: #fff5fa; border: 0; box-shadow: none; }
+    .sticker-sparkle { bottom: 12%; left: 48%; font-size: 2rem; background: transparent; border: 0; box-shadow: none; }
+    .sticker-caption {
+      position: absolute; z-index: 2; bottom: 8px; left: 50%;
+      transform: translateX(-50%); width: max-content; max-width: 90%;
+      padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.9);
+      color: #b7477a; font-size: .82rem; font-weight: 800; text-align: center;
+    }
+    .float {
+      position: absolute; z-index: 2; background: rgba(255,255,255,.9);
+      border-radius: 16px; padding: 10px 14px; font-weight: 750;
+      box-shadow: 0 8px 24px rgba(117, 75, 119, .12);
+    }
+    .float.one { top: 35px; left: 25px; }
+    .float.two { bottom: 35px; right: 22px; }
+    section { padding: 58px 0; }
+    .section-head { text-align: center; max-width: 720px; margin: 0 auto 30px; }
+    .section-head .mini { color: var(--pink-deep); font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; font-size: .78rem; }
+    h2 { font-size: clamp(1.8rem, 3.4vw, 2.7rem); margin: 8px 0 12px; line-height: 1.2; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .members { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .member {
+      background: rgba(255,255,255,.86); border: 1px solid #f7dce8;
+      border-radius: 22px; padding: 14px; box-shadow: var(--shadow);
+      transition: transform .2s;
+    }
+    .member:hover { transform: translateY(-5px); }
+    .photo {
+      aspect-ratio: 4 / 4.6; border-radius: 16px; overflow: hidden;
+      background: linear-gradient(135deg, #ffe2ed, #e9e1ff); margin-bottom: 13px;
+    }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .member h3 { font-size: 1.05rem; margin: 0 0 2px; }
+    .role { font-size: .82rem; color: var(--pink-deep); font-weight: 800; }
+    .member p { color: var(--muted); font-size: .88rem; margin: 9px 0 2px; }
+    .future {
+      background: linear-gradient(135deg, #ffe8f1, #f0eaff);
+      border-top: 1px solid #f7d8e7; border-bottom: 1px solid #f7d8e7;
+    }
+    .future-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+    .future-card, .vision-card {
+      background: rgba(255,255,255,.84); border: 1px solid rgba(255,255,255,.9);
+      border-radius: 26px; padding: 26px; box-shadow: var(--shadow);
+    }
+    .future-card p, .vision-card p { color: var(--muted); }
+    .dream-list { list-style: none; padding: 0; margin: 20px 0 0; }
+    .dream-list li { display: flex; gap: 12px; margin: 13px 0; align-items: flex-start; }
+    .check {
+      flex: 0 0 30px; height: 30px; display: grid; place-items: center;
+      background: #ffe1ed; border-radius: 10px; color: #bd4e82; font-weight: 900;
+    }
+    .vision-card { background: linear-gradient(145deg, #fff, #fff2f8); }
+    .vision-icon { font-size: 2.2rem; }
+    .quote { font-size: 1.25rem; font-weight: 750; line-height: 1.5; }
+    .ai-section { text-align: center; }
+    .ai-panel {
+      max-width: 850px; margin: auto; padding: 30px;
+      background: white; border: 1px solid #f6d9e7; border-radius: 28px; box-shadow: var(--shadow);
+    }
+    .ai-symbol {
+      width: 74px; height: 74px; display: grid; place-items: center; margin: 0 auto 14px;
+      color: white; font-weight: 900; font-size: 1.45rem; border-radius: 24px;
+      background: linear-gradient(145deg, #f58ab7, #9e88d8);
+    }
+    .ai-panel p { color: var(--muted); }
+    footer { padding: 28px 0; text-align: center; color: var(--muted); font-size: .9rem; }
+    footer strong { color: var(--pink-deep); }
+    @media (max-width: 900px) {
+      .members { grid-template-columns: repeat(3, 1fr); }
+      .hero { grid-template-columns: 1fr; padding-top: 35px; }
+      .hero-art { min-height: 300px; }
+      .sticker-robot { width: 112px; height: 112px; font-size: 4.2rem; left: 26%; }
+      .sticker-laptop { width: 88px; height: 76px; font-size: 2.8rem; }
+      .sticker-chip { width: 64px; height: 64px; font-size: 2.2rem; }
+    }
+    @media (max-width: 600px) {
+      nav { gap: 12px; }
+      .members { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .future-grid { grid-template-columns: 1fr; }
+      .member { padding: 10px; }
+      .hero { padding-bottom: 45px; }
+      section { padding: 42px 0; }
+      .ai-panel { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><span>✿</span> NHÓM 3 · TƯƠNG LAI</div>
+      <nav aria-label="Điều hướng chính">
+        <a href="#thanh-vien">Thành viên</a>
+        <a href="#tuong-lai">Tương lai</a>
+        <a href="#ai">AI & chúng ta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow">✧ Một nhóm nhỏ · Những ước mơ lớn</span>
+        <h1>Chúng ta sẽ như thế nào <span class="accent">trong tương lai?</span></h1>
+        <p>
+          Mỗi người có một ước mơ, một thế mạnh và một con đường riêng. Nhưng khi cùng học hỏi,
+          sáng tạo và hỗ trợ nhau, chúng ta có thể tạo nên một tương lai tốt đẹp hơn — nơi công nghệ
+          phát triển song hành với lòng nhân ái và trách nhiệm.
+        </p>
+        <div class="actions">
+          <a class="btn btn-main" href="#thanh-vien">Khám phá nhóm mình ↓</a>
+          <a class="btn btn-soft" href="#tuong-lai">Cùng nghĩ về tương lai ✨</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Nhãn dán công nghệ dễ thương">
+        <div class="sticker sticker-robot">🤖</div>
+        <div class="sticker sticker-laptop">💻</div>
+        <div class="sticker sticker-chip">🧠</div>
+        <div class="sticker sticker-cloud">☁️</div>
+        <div class="sticker sticker-heart">💗</div>
+        <div class="sticker sticker-sparkle">✨</div>
+        <div class="sticker-caption">✨ Ý tưởng nhỏ · Tương lai lớn ✨</div>
+        <div class="float one">🌸 Sáng tạo</div>
+        <div class="float two">🚀 Không ngừng học hỏi</div>
+      </div>
+    </div>
+
+    <section id="thanh-vien">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="mini">Meet our team</div>
+          <h2>4 QUEEN-1 KING 𐔌՞. .՞𐦯</h2>
+          <p>Dù mai này mỗi người một hướng, 4 bông hoa cùng chàng trai duy nhất vẫn mãi là một team đáng nhớ˖Ი𐑼⋆</p>
+        </div>
+        <div class="members">
+          <article class="member">
+            <div class="photo"><img src="https://i.postimg.cc/76Jbw6gz/1793194765353-1964713666866436959-1964713666866436959-0245a6821d402a779df558644629fa6f.jpg" alt="Ảnh thành viên 1"></div>
+            <h3>Trần Thảo Nguyên</h3><div class="role">Trưởng nhóm · Kết nối</div>
+            <p>Yêu thích lập kế hoạch, kết nối mọi người và cùng nhóm biến ý tưởng thành hành động.</p>
+          </article>
+          <article class="member">
+            <div class="photo"><img src="https://i.postimg.cc/TPmZxvpN/1793194765309-1964713666866436959-1964713666866436959-4b924ca21ab47bfc50fcd4fddb93deef.jpg" alt="Ảnh thành viên 2"></div>
+            <h3>Nguyễn Hồng Minh</h3><div class="role">Sáng tạo · Ý tưởng</div>
+            <p>Luôn tò mò về những điều mới mẻ và thích tìm cách giải quyết vấn đề theo hướng sáng tạo.</p>
+          </article>
+          <article class="member">
+            <div class="photo"><img src="https://i.postimg.cc/pTR1thNQ/1793194765331-1964713666866436959-1964713666866436959-95dda4ecd9823a0bbcb9d79d9ee15dac.jpg" alt="Ảnh thành viên 3"></div>
+            <h3>Vũ Minh Thanh</h3><div class="role">Nội dung · Truyền đạt</div>
+            <p>Yêu thích viết lách, chia sẻ thông tin và truyền tải thông điệp theo cách gần gũi.</p>
+          </article>
+          <article class="member">
+            <div class="photo"><img src="https://i.postimg.cc/W3NSHBrK/1793194765375-1964713666866436959-1964713666866436959-049ae5533baf43722057442712f67f51.jpg" alt="Ảnh thành viên 4"></div>
+            <h3>Lê Phương Thùy</h3><div class="role">Công nghệ · AI</div>
+            <p>Quan tâm đến công nghệ, trí tuệ nhân tạo và cách sử dụng công cụ số có trách nhiệm.</p>
+          </article>
+          <article class="member">
+            <div class="photo"><img src="https://i.postimg.cc/mZwWh48z/1793194765268-1964713666866436959-1964713666866436959-d627efe12f38bd33eac42c7019339046.jpg" alt="Ảnh thành viên 5"></div>
+            <h3>Nguyễn Thị Bảo Ngọc</h3><div class="role">Thiết kế · Hoàn thiện</div>
+            <p>Chú ý đến chi tiết, màu sắc và cách trình bày để sản phẩm của nhóm rõ ràng, đẹp mắt.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="future" id="tuong-lai">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="mini">Our future</div>
+          <h2>Chúng ta sẽ như thế nào trong tương lai?</h2>
+          <p>Tương lai không chỉ là điều chờ đợi — đó còn là điều chúng ta đang tạo nên từ hôm nay.</p>
+        </div>
+        <div class="future-grid">
+          <article class="future-card">
+            <h3>🌷 Những phiên bản tốt hơn của chính mình</h3>
+            <p>Chúng ta hy vọng sẽ trưởng thành, tự tin và độc lập hơn; tìm được công việc phù hợp với sở thích,
+              có thể tự chăm lo cho bản thân và đóng góp điều tích cực cho cộng đồng.</p>
+            <ul class="dream-list">
+              <li><span class="check">✓</span><span><strong>Học tập suốt đời</strong><br>Không ngừng cập nhật kiến thức và kỹ năng mới.</span></li>
+              <li><span class="check">✓</span><span><strong>Dám thử, dám thay đổi</strong><br>Biết đứng dậy sau thất bại và học từ trải nghiệm.</span></li>
+              <li><span class="check">✓</span><span><strong>Sống có trách nhiệm</strong><br>Quan tâm đến gia đình, xã hội và môi trường.</span></li>
+            </ul>
+          </article>
+          <article class="vision-card">
+            <div class="vision-icon">🌈</div>
+            <h3>Tương lai do chúng ta lựa chọn</h3>
+            <p class="quote">“Không ai biết chính xác ngày mai sẽ ra sao, nhưng chúng ta có thể chuẩn bị cho ngày mai bằng những việc tốt mình làm hôm nay.”</p>
+            <p>Chúng ta có thể theo đuổi những ngành nghề khác nhau, sống ở những nơi khác nhau, nhưng vẫn giữ tình bạn, sự tôn trọng và tinh thần đồng đội.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-section" id="ai">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="mini">Artificial intelligence</div>
+          <h2>AI — người bạn đồng hành của tương lai</h2>
+          <p>Trí tuệ nhân tạo có thể mở ra nhiều cơ hội, nhưng cách con người sử dụng AI mới là điều quan trọng.</p>
+        </div>
+        <div class="ai-panel">
+          <div class="ai-symbol" aria-label="Nhãn dán robot">🤖</div>
+          <h3>Công nghệ thông minh, con người vẫn là trung tâm</h3>
+          <p>AI có thể hỗ trợ học tập, sáng tạo, nghiên cứu và giải quyết những vấn đề phức tạp. Tuy nhiên,
+            chúng ta cần kiểm tra thông tin, bảo vệ dữ liệu cá nhân, tôn trọng bản quyền và không phụ thuộc
+            hoàn toàn vào máy móc. Hãy dùng AI như một công cụ để phát triển tư duy — không phải thay thế tư duy.</p>
+          <p><strong>Thông điệp của nhóm:</strong> Học cách sử dụng công nghệ tốt hôm nay để cùng xây dựng một tương lai tốt đẹp hơn ngày mai. 💗</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Được thực hiện bởi <strong>Nhóm 5</strong> · Học hỏi hôm nay, tỏa sáng ngày mai ✿</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Nhóm 2 - Giải Quyết Vấn Đề Với Sự Trợ Giúp Của Máy Tính</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-body: #0a0a16;
+            --bg-card: rgba(26, 27, 54, 0.75);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #06b6d4;
+            --pink-accent: #ec4899;
+            --purple-accent: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 85% 40%, rgba(236, 72, 153, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(6, 182, 212, 0.2) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* Header / Banner */
+        header {
+            background: linear-gradient(135deg, #181537 0%, #2e1065 50%, #431407 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(to right, #06b6d4, #ec4899, #8b5cf6) 1;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.15);
+            position: relative;
+        }
+
+        .badge {
+            background: linear-gradient(90deg, rgba(236, 72, 153, 0.25), rgba(6, 182, 212, 0.25));
+            color: #38bdf8;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #38bdf8, #f472b6, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px rgba(244, 114, 182, 0.3));
+        }
+
+        header p {
+            color: #cbd5e1;
+font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styling */
+        section {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 5px solid transparent;
+            border-image: linear-gradient(to bottom, #06b6d4, #ec4899) 1;
+            padding-left: 14px;
+            background: linear-gradient(90deg, rgba(236, 72, 153, 0.12) 0%, transparent 100%);
+            padding-top: 6px;
+            padding-bottom: 6px;
+            border-radius: 0 10px 10px 0;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Bố cục thành viên */
+        .team-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .leader-row {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .member-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.35s ease;
+            height: 100%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .leader-card {
+            border: 2px solid transparent;
+            background-image: linear-gradient(#181537, #181537), linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
+        }
+
+        .leader-card::before {
+            height: 4px;
+            opacity: 1;
+        }
+
+        .member-card:hover {
+            transform: translateY(-7px) scale(1.01);
+            border-color: rgba(236, 72, 153, 0.5);
+box-shadow: 0 12px 28px rgba(236, 72, 153, 0.25);
+        }
+
+        .member-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        .member-role {
+            color: #38bdf8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+        }
+
+        .leader-card .member-role {
+            color: #f472b6;
+            text-shadow: 0 0 8px rgba(244, 114, 182, 0.4);
+        }
+
+        .member-desc {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+        }
+
+        /* Article Section */
+        .article-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .article-img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .article-card h2 {
+            background: linear-gradient(90deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .article-card h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px 0;
+            color: #38bdf8;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+        }
+
+        .article-card p {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
+            border-left: 4px solid #ec4899;
+            padding: 18px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+            color: var(--text-main);
+            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.1);
+        }
+
+        /* Audio Player Section */
+        .audio-section {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 2px solid transparent;
+            border-image: linear-gradient(135deg, #06b6d4, #ec4899) 1;
+            border-radius: 16px;
+            padding: 28px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+}
+
+        .audio-section h3 {
+            margin-bottom: 8px;
+            color: #ffffff;
+            background: linear-gradient(90deg, #f472b6, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .audio-section p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="badge">Tin Học 12 • Bài Tập Nhóm 2</div>
+        <h1>GIẢI QUYẾT VẤN ĐỀ VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH</h1>
+        <p>Sức mạnh của thuật toán, phần mềm và Trí tuệ nhân tạo (AI) trong kỷ nguyên&nbsp;số</p>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. Danh sách thành viên -->
+        <section id="members">
+            <h2 class="section-title">👥 Thành Viên Trong Nhóm</h2>
+            
+            <div class="team-container">
+                <!-- Hàng trên: Nhóm trưởng đứng giữa -->
+                <div class="leader-row">
+                    <div class="member-card leader-card">
+                        <div class="member-name">Đinh Thị Minh Châu</div>
+                        <div class="member-role">Nhóm Trưởng</div>
+                        <div class="member-desc">Lên ý tưởng, xây dựng toàn bộ mã nguồn website, tổng hợp nội dung và hoàn thiện bài nộp.</div>
+                    </div>
+                </div>
+
+                <!-- Hàng dưới: 4 thành viên còn lại -->
+                <div class="members-grid">
+                    <!-- Thành viên 2 -->
+                    <div class="member-card">
+                        <div class="member-name">Nguyễn Thị Thùy Dung</div>
+                        <div class="member-role">Thành Viên</div>
+                        <div class="member-desc">Sử dụng AI tạo ảnh minh họa chủ đề công nghệ/máy tính cho trang web.<br>Sử dụng Suno.ai viết prompt sáng tác bài hát chủ đề nhóm (thời lượng ~1 phút).</div>
+                    </div>
+
+                    <!-- Thành viên 3 -->
+                    <div class="member-card">
+                        <div class="member-name">Trần Lê Dũng</div>
+                        <div class="member-role">Thành Viên</div>
+<div class="member-desc">Sử dụng AI tạo ảnh minh họa chủ đề công nghệ/máy tính cho trang web.<br>Sử dụng Suno.ai viết prompt sáng tác bài hát chủ đề nhóm (thời lượng ~1 phút).</div>
+                    </div>
+
+                    <!-- Thành viên 4 -->
+                    <div class="member-card">
+                        <div class="member-name">Trần Tiến Đạt</div>
+                        <div class="member-role">Thành Viên</div>
+                        <div class="member-desc">Sử dụng AI tạo ảnh minh họa chủ đề công nghệ/máy tính cho trang web.<br>Sử dụng Suno.ai viết prompt sáng tác bài hát chủ đề nhóm (thời lượng ~1 phút).</div>
+                    </div>
+
+                    <!-- Thành viên 5: Hải Đăng -->
+                    <div class="member-card">
+                        <div class="member-name">Phan Nguyễn Hải Đăng</div>
+                        <div class="member-role">Thành Viên</div>
+                        <div class="member-desc">Sử dụng AI tạo ảnh minh họa chủ đề công nghệ/máy tính cho trang web.<br>Sử dụng Suno.ai viết prompt sáng tác bài hát chủ đề nhóm (thời lượng ~1 phút).</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Bài viết chủ đề -->
+        <section id="article">
+            <h2 class="section-title">📝 Bài Viết Chuyên Đề</h2>
+            <div class="article-card">
+                <img src="hình ảnh/ai-cover.jpg" alt="Giải quyết vấn đề bằng máy tính" class="article-img" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000'">
+                
+                <h2>Từ Tư Duy Thuật Toán Đến Kỷ Nguyên Trí Tuệ Nhân Tạo (AI)</h2>
+                
+                <p>Trong thời đại số hóa, <strong>"Giải quyết vấn đề với sự trợ giúp của máy tính"</strong> không chỉ dừng lại ở việc gõ văn bản hay tính toán số liệu đơn thuần. Đó là cả một quy trình tư duy logic từ việc phân tích bài toán, xây dựng thuật toán, viết chương trình cho đến việc ứng dụng các mô hình AI hiện đại như ChatGPT hay Gemini để tối ưu hóa hiệu suất làm việc.</p>
+
+                <div class="highlight-box">
+                    <strong>💡 Quy trình 4 bước giải quyết vấn đề cơ bản trên máy tính:</strong>
+                    <ol style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>Xác định bài toán:</strong> Nhận diện rõ Input (dữ liệu vào) và Output (kết quả ra).</li>
+                        <li><strong>Xây dựng thuật toán:</strong> Thiết lập các bước xử lý dữ liệu chuẩn xác.</li>
+                        <li><strong>Lập trình:</strong> Chuyển đổi thuật toán thành mã lệnh (Python, C++, HTML/CSS...).</li>
+<li><strong>Thử nghiệm & Tối ưu:</strong> Chạy thử, phát hiện lỗi (debug) và hoàn thiện.</li>
+                    </ol>
+                </div>
+
+                <h3>1. Sự bùng nổ của AI - Trợ lý đắc lực cho học sinh</h3>
+                <p>Hiện nay, với sự trợ giúp của các công cụ GenAI (Trí tuệ nhân tạo tạo sinh) như ChatGPT hay Gemini, việc giải quyết bài tập, tìm kiếm tài liệu hay thậm chí là viết mã nguồn trang web đã trở nên vô cùng nhanh chóng. Máy tính không thay thế tư duy của con người, nhưng nó là "đòn bẩy" giúp con người hiện thực hóa ý tưởng một cách hiệu quả nhất.</p>
+
+                <h3>2. Sáng tạo không giới hạn với công nghệ</h3>
+                <p>Không chỉ xử lý dữ liệu thô, máy tính ngày nay còn hỗ trợ sáng tác nghệ thuật. Nhóm chúng em đã ứng dụng nền tảng AI Suno.com để tạo ra một bài hát độc đáo dành riêng cho bài báo cáo này – minh chứng cho việc công nghệ và nghệ thuật hoàn toàn có thể hòa quyện.</p>
+            </div>
+        </section>
+
+        <!-- 3. Nhúng bài hát Suno -->
+        <section id="music">
+            <div class="audio-section">
+                <h3>🎵 Sản Phẩm Âm Nhạc AI Của Nhóm</h3>
+                <p>Bài hát: <em>"Giai Điệu Máy Tính & Ước Mơ Tương Lai"</em> (Sáng tác bằng Suno.com)</p>
+                <audio controls>
+                    <source src="hình ảnh/song.mp3" type="audio/mpeg">
+                    Trình duyệt của bạn không hỗ trợ phát âm thanh.
+                </audio>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 Bài tập nhóm 2 • Tin học 12</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

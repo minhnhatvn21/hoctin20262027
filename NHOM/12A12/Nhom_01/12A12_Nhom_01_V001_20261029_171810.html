@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tương lai của chúng ta | Giới thiệu nhóm</title>
+<style>
+:root{--navy:#10234d;--blue:#2864dc;--cyan:#63e4df;--ink:#18233b;--muted:#5d6b82;--paper:#f5f8ff;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.7}
+header{background:rgba(255,255,255,.94);border-bottom:1px solid #e5ebf7;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.nav{max-width:1120px;margin:auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{font-weight:900;color:var(--navy);letter-spacing:.3px}.logo span{color:var(--blue)}
+nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-weight:650;font-size:.95rem}
+nav a:hover{color:var(--blue)}
+.hero{overflow:hidden;background:linear-gradient(125deg,#0d1c43 0%,#174ba8 58%,#238bcb 100%);color:white}
+.hero-inner{max-width:1120px;margin:auto;padding:70px 22px 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.eyebrow{display:inline-block;border:1px solid #ffffff55;border-radius:999px;padding:5px 13px;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;color:#baf9f0}
+h1{font-size:clamp(2.5rem,5.2vw,4.7rem);line-height:1.06;margin:18px 0;letter-spacing:-2px}
+.hero p{font-size:1.1rem;max-width:580px;color:#e0eaff}
+.btn{display:inline-block;margin-top:12px;background:var(--cyan);color:#0e2850;padding:12px 20px;border-radius:12px;text-decoration:none;font-weight:800}
+.hero-art{width:100%;max-width:500px;justify-self:center;filter:drop-shadow(0 22px 28px #06133855)}
+main{max-width:1120px;margin:auto;padding:0 22px}
+section{padding:62px 0}
+.section-head{text-align:center;max-width:700px;margin:0 auto 32px}
+.kicker{color:var(--blue);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;font-weight:850}
+h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.2;margin:8px 0 12px;color:var(--navy)}
+.section-head p,.intro{color:var(--muted)}
+.members{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.member{background:white;border:1px solid #e7ecf6;border-radius:18px;padding:22px 15px;text-align:center;box-shadow:0 8px 25px #193b7010;transition:transform .2s,box-shadow .2s}
+.member:hover{transform:translateY(-5px);box-shadow:0 14px 32px #193b7018}
+.avatar{width:76px;height:76px;margin:0 auto 13px;border-radius:24px;display:grid;place-items:center;background:linear-gradient(145deg,#d8f8f3,#dce7ff);color:#174ba8;font-size:1.5rem;font-weight:900}
+.member h3{font-size:1rem;line-height:1.35;margin:0;color:var(--navy)}
+.member p{margin:6px 0 0;color:#7b879b;font-size:.85rem}
+.article-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.article-image{background:#e2efff;border-radius:24px;overflow:hidden;border:1px solid #dce7f7}
+.article-image svg{display:block;width:100%;height:auto}
+.article-copy p{color:#52617a}
+.article-copy h3{color:var(--navy);font-size:1.25rem;margin:22px 0 6px}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.point{padding:22px;background:#fff;border:1px solid #e5ebf7;border-radius:17px}
+.point .icon{font-size:1.7rem}
+.point h3{margin:8px 0;color:var(--navy);font-size:1.05rem}
+.point p{margin:0;color:var(--muted);font-size:.95rem}
+.quote{background:linear-gradient(120deg,#e8f8ff,#edf0ff);border:1px solid #dce8ff;border-radius:22px;padding:30px;text-align:center;font-size:1.15rem;font-weight:700;color:#1b3974;margin:10px 0 60px}
+footer{background:#0c1b3c;color:#dce6ff;text-align:center;padding:28px 20px}
+footer strong{color:white}
+@media(max-width:800px){.hero-inner{grid-template-columns:1fr;padding-top:48px}.hero-art{max-width:400px}.members{grid-template-columns:repeat(2,1fr)}.article-grid{grid-template-columns:1fr}.points{grid-template-columns:1fr}nav a{margin-left:10px;font-size:.85rem}}
+@media(max-width:450px){.nav{align-items:flex-start;flex-direction:column}.nav nav a{margin:0 14px 0 0}.members{gap:10px}.member{padding:17px 8px}.avatar{width:64px;height:64px;border-radius:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">TƯƠNG LAI<span>.</span></div>
+    <nav aria-label="Điều hướng chính">
+      <a href="#nhom">Thành viên</a>
+      <a href="#baiviet">Bài viết</a>
+      <a href="#thongdiep">Thông điệp</a>
+    </nav>
+  </div>
+</header>
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Ý tưởng hôm nay · Thế giới ngày mai</span>
+      <h1>Tương lai bắt đầu từ chúng ta.</h1>
+      <p>Tương lai không chỉ là những điều chưa xảy ra, mà còn là hành trình chúng ta đang cùng nhau xây dựng bằng tri thức, sáng tạo và những lựa chọn có trách nhiệm.</p>
+      <a class="btn" href="#baiviet">Khám phá bài viết ↓</a>
+    </div>
+    <svg class="hero-art" viewBox="0 0 520 390" role="img" aria-label="Minh họa thành phố tương lai với nhà cao tầng, cây xanh và mặt trời">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#74e6e1"/><stop offset="1" stop-color="#b9d5ff"/></linearGradient>
+        <linearGradient id="building" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#effbff"/><stop offset="1" stop-color="#8bb5ef"/></linearGradient>
+      </defs>
+      <circle cx="390" cy="83" r="43" fill="#ffe9a6"/>
+      <circle cx="390" cy="83" r="57" fill="#ffe9a6" opacity=".18"/>
+      <path d="M0 290 Q90 220 180 278 T360 255 T520 265 V390 H0Z" fill="#2ec5b9" opacity=".55"/>
+      <path d="M0 320 Q120 260 240 315 T520 300 V390 H0Z" fill="#137c9f" opacity=".65"/>
+      <g stroke="#c6e8ff" stroke-width="3">
+        <path d="M65 180 L65 322 L125 322 L125 147 L95 126 L65 147Z" fill="url(#building)"/>
+        <path d="M143 220 L143 322 L203 322 L203 186 L173 165 L143 186Z" fill="#c3e4ff"/>
+        <path d="M224 140 L224 322 L290 322 L290 108 L257 82 L224 108Z" fill="url(#building)"/>
+        <path d="M310 205 L310 322 L366 322 L366 166 L338 145 L310 166Z" fill="#a5d2f5"/>
+        <path d="M382 220 L382 322 L438 322 L438 185 L410 165 L382 185Z" fill="url(#building)"/>
+      </g>
+      <g fill="#337ac1" opacity=".85">
+        <path d="M78 170h12v17H78zM101 170h12v17h-12zM78 203h12v17H78zM101 203h12v17h-12zM78 236h12v17H78zM101 236h12v17h-12z"/>
+        <path d="M239 132h13v19h-13zM263 132h13v19h-13zM239 168h13v19h-13zM263 168h13v19h-13zM239 204h13v19h-13zM263 204h13v19h-13zM239 240h13v19h-13zM263 240h13v19h-13z"/>
+        <path d="M324 196h12v17h-12zM347 196h12v17h-12zM324 229h12v17h-12zM347 229h12v17h-12z"/>
+      </g>
+      <g transform="translate(36 260)">
+        <path d="M0 45L18 8L36 45Z" fill="#b9f2ce"/><path d="M18 33V76" stroke="#d8f5df" stroke-width="6"/><path d="M-4 51L18 19L40 51Z" fill="#48d2a0"/>
+      </g>
+      <g transform="translate(454 265)">
+        <path d="M0 39L19 0L38 39Z" fill="#b9f2ce"/><path d="M19 28V70" stroke="#d8f5df" stroke-width="6"/><path d="M-4 47L19 12L42 47Z" fill="#48d2a0"/>
+      </g>
+      <path d="M0 337 Q130 325 260 339 T520 333" fill="none" stroke="#c4fff1" stroke-width="5" opacity=".8"/>
+      <g fill="#fff"><circle cx="60" cy="72" r="3"/><circle cx="158" cy="52" r="4"/><circle cx="320" cy="43" r="3"/><circle cx="455" cy="133" r="3"/></g>
+    </svg>
+  </div>
+</div>
+<main>
+  <section id="nhom">
+    <div class="section-head">
+      <div class="kicker">Chúng tôi là ai?</div>
+      <h2>Những thành viên của nhóm</h2>
+      <p>Mỗi thành viên là một màu sắc riêng, cùng đóng góp ý tưởng và nỗ lực để tạo nên một tập thể đoàn kết.</p>
+    </div>
+    <div class="members">
+      <article class="member"><div class="avatar">LB</div><h3>Lê Huy Bảo</h3><p>Thành viên nhóm</p></article>
+      <article class="member"><div class="avatar">PĐ</div><h3>Phạm Ngọc Diệp</h3><p>Thành viên nhóm</p></article>
+      <article class="member"><div class="avatar">NH</div><h3>Nguyễn Đăng Hậu</h3><p>Thành viên nhóm</p></article>
+      <article class="member"><div class="avatar">ĐH</div><h3>Đặng Gia Huy</h3><p>Thành viên nhóm</p></article>
+      <article class="member"><div class="avatar">NL</div><h3>Nguyễn Phan Bích Liên</h3><p>Thành viên nhóm</p></article>
+      <article class="member"><div class="avatar">PN</div><h3>Phạm Quỳnh Như</h3><p>Thành viên nhóm</p></article>
+      <article class="member"><div class="avatar">TQ</div><h3>Trương Bá Nhật Quang</h3><p>Thành viên nhóm</p></article>
+    </div>
+  </section>
+
+  <section id="baiviet">
+    <div class="section-head">
+      <div class="kicker">Góc nhìn của chúng tôi</div>
+      <h2>Tương lai – cơ hội được tạo nên từ hôm nay</h2>
+      <p>Tương lai luôn mở ra nhiều khả năng. Điều quan trọng là chúng ta chuẩn bị cho nó như thế nào.</p>
+    </div>
+    <div class="article-grid">
+      <div class="article-image">
+        <svg viewBox="0 0 600 410" role="img" aria-label="Minh họa học sinh hướng tới tương lai với sách, cây xanh và thành phố hiện đại">
+          <defs><linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7f8f3"/><stop offset="1" stop-color="#d9e4ff"/></linearGradient></defs>
+          <rect width="600" height="410" fill="url(#bg2)"/>
+          <circle cx="480" cy="80" r="42" fill="#ffd76f"/>
+          <g fill="#92b6e9">
+            <rect x="360" y="170" width="60" height="150" rx="5"/><rect x="430" y="125" width="70" height="195" rx="5"/><rect x="510" y="190" width="55" height="130" rx="5"/>
+          </g>
+          <g fill="#eaf6ff"><path d="M374 190h12v18h-12zM396 190h12v18h-12zM374 222h12v18h-12zM396 222h12v18h-12zM445 148h14v20h-14zM472 148h14v20h-14zM445 184h14v20h-14zM472 184h14v20h-14zM445 220h14v20h-14zM472 220h14v20h-14z"/></g>
+          <path d="M0 325 Q130 275 245 324 T600 310 V410 H0Z" fill="#76d7bd"/>
+          <path d="M0 355 Q170 320 300 355 T600 348 V410 H0Z" fill="#2a9d9b"/>
+          <g transform="translate(105 145)">
+            <circle cx="85" cy="38" r="32" fill="#f1bd91"/>
+            <path d="M53 36Q52 -2 88 4Q122 6 118 39L104 24L68 28Z" fill="#273a60"/>
+            <path d="M47 82Q83 58 120 82L142 175H24Z" fill="#2864dc"/>
+            <path d="M48 93L14 142L26 151L65 119M116 93L148 132L138 143L99 119" fill="none" stroke="#f1bd91" stroke-width="15" stroke-linecap="round"/>
+            <path d="M48 174L44 224M113 174L121 224" stroke="#273a60" stroke-width="19" stroke-linecap="round"/>
+            <path d="M25 226h34M104 226h35" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+            <path d="M66 99L104 99L113 132L56 132Z" fill="#fff"/>
+            <path d="M68 104h32M68 113h25M68 122h29" stroke="#8aa7d7" stroke-width="3"/>
+          </g>
+          <g transform="translate(300 280) rotate(-8)">
+            <rect x="0" y="0" width="80" height="55" rx="4" fill="#fff"/><rect x="7" y="7" width="66" height="41" rx="2" fill="#19335f"/>
+            <path d="M18 35L31 22L43 30L60 14" fill="none" stroke="#63e4df" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g transform="translate(45 285)"><path d="M0 42L23 0L46 42Z" fill="#1b9c77"/><path d="M23 31V73" stroke="#7b6549" stroke-width="7"/><path d="M-5 53L23 12L51 53Z" fill="#39c58c"/></g>
+        </svg>
+      </div>
+      <div class="article-copy">
+        <h3>1. Công nghệ sẽ thay đổi cuộc sống</h3>
+        <p>Trí tuệ nhân tạo, robot và các thiết bị thông minh đang phát triển nhanh chóng. Trong tương lai, công nghệ có thể giúp con người học tập linh hoạt hơn, chăm sóc sức khỏe tốt hơn và giải quyết nhiều công việc nguy hiểm. Tuy nhiên, chúng ta cần sử dụng công nghệ có trách nhiệm, bảo vệ thông tin cá nhân và không phụ thuộc hoàn toàn vào máy móc.</p>
+        <h3>2. Giáo dục và kỹ năng là chìa khóa</h3>
+        <p>Kiến thức hôm nay là nền tảng cho những cơ hội ngày mai. Bên cạnh kiến thức ở trường, mỗi người nên rèn luyện tư duy phản biện, khả năng giao tiếp, ngoại ngữ, kỹ năng số và tinh thần học hỏi suốt đời. Biết hợp tác và thích nghi sẽ giúp chúng ta tự tin trước những thay đổi.</p>
+        <h3>3. Một tương lai xanh và bền vững</h3>
+        <p>Phát triển không chỉ là xây dựng những thành phố hiện đại mà còn phải gìn giữ môi trường sống. Tiết kiệm năng lượng, giảm rác thải nhựa, trồng cây và ưu tiên những lựa chọn thân thiện với thiên nhiên là các hành động nhỏ có thể tạo nên khác biệt lớn.</p>
+      </div>
+    </div>
+    <div class="points">
+      <article class="point"><div class="icon">🤖</div><h3>Công nghệ vì con người</h3><p>Đổi mới để cuộc sống tiện lợi, an toàn và hiệu quả hơn.</p></article>
+      <article class="point"><div class="icon">📚</div><h3>Học tập suốt đời</h3><p>Không ngừng trau dồi kiến thức và sẵn sàng thích nghi.</p></article>
+      <article class="point"><div class="icon">🌱</div><h3>Sống xanh mỗi ngày</h3><p>Bảo vệ thiên nhiên để thế hệ sau có một hành tinh tốt đẹp.</p></article>
+    </div>
+  </section>
+  <div class="quote" id="thongdiep">“Chúng ta không thể biết chính xác tương lai sẽ ra sao, nhưng có thể bắt đầu tạo nên tương lai mình mong muốn từ những việc làm hôm nay.”</div>
+</main>
+<footer>
+  <strong>TƯƠNG LAI BẮT ĐẦU TỪ CHÚNG TA</strong><br>
+  Trang web giới thiệu nhóm và chia sẻ suy nghĩ về tương lai · 2026
+</footer>
+</body>
+</html>

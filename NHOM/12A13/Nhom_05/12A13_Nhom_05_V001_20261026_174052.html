@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The NexGen Creators | Nhóm Sáng Tạo Số & Nghiên Cứu AI</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            900: '#312e81',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar & Glassmorphism Utilities */
+        body {
+            background-color: #0b0f19;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        /* Reading Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #ec4899, #06b6d4);
+            z-index: 100;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-8px);
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.25);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #a5b4fc 0%, #c084fc 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white relative">
+
+    <!-- Thanh tiến trình đọc bài -->
+    <div id="progress-bar"></div>
+
+    <!-- Thông báo Toast (ẩn mặc định) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card bg-slate-900/90 border-indigo-500/40 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+            <span id="toast-message" class="text-sm font-medium">Đã sao chép liên kết!</span>
+        </div>
+    </div>
+
+    <!-- Hiệu ứng ánh sáng nền (Ambient Background Glows) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute top-1/3 -right-40 w-[28rem] h-[28rem] bg-fuchsia-600/15 rounded-full blur-[140px]"></div>
+        <div class="absolute bottom-10 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[130px]"></div>
+    </div>
+
+    <!-- 1. NAVBAR CỐ ĐỊNH -->
+    <header class="fixed top-0 left-0 right-0 z-40 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:rotate-6 transition-transform">
+                    <i class="fa-solid fa-sparkles text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl tracking-tight text-white block leading-none">NexGen<span class="text-indigo-400">Creators</span></span>
+                    <span class="text-[11px] text-slate-400 tracking-widest uppercase font-semibold">Digital Innovation Team</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                <a href="#home" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 transition">Trang chủ</a>
+                <a href="#members" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 transition">Thành viên (5)</a>
+                <a href="#article" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 transition">Bài viết tiêu điểm</a>
+                <a href="#about" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 transition">Về nhóm</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#article" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/25 flex items-center gap-2 transition transform hover:scale-105">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <span>Đọc Chuyên Đề</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-200 hover:text-white">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 backdrop-blur-xl border-b border-white/10 px-6 py-5 space-y-3">
+            <a href="#home" class="mobile-link block py-2 text-base font-medium text-slate-200 hover:text-indigo-400">Trang chủ</a>
+            <a href="#members" class="mobile-link block py-2 text-base font-medium text-slate-200 hover:text-indigo-400">Thành viên nhóm</a>
+            <a href="#article" class="mobile-link block py-2 text-base font-medium text-slate-200 hover:text-indigo-400">Bài viết tiêu điểm</a>
+            <a href="#about" class="mobile-link block py-2 text-base font-medium text-slate-200 hover:text-indigo-400">Về nhóm</a>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-grid-pattern overflow-hidden z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs sm:text-sm font-semibold mb-8 animate-float">
+                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-ping"></span>
+                    <span>Không Gian Sáng Tạo Số & Nghiên Cứu Công Nghệ 2026</span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] mb-6 text-white">
+                    Kiến Tạo Tri Thức Cùng <br/>
+                    <span class="text-gradient">The NexGen Creators</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
+                    Chúng mình là tập hợp của <strong class="text-white font-semibold">5 cá tính sáng tạo</strong> đam mê công nghệ, thiết kế và truyền thông số — cùng nhau giải mã những xu hướng định hình tương lai.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#members" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-slate-950 font-bold text-base hover:bg-indigo-50 transition shadow-xl shadow-white/10 flex items-center justify-center gap-3 group">
+                        <i class="fa-solid fa-users-viewfinder text-indigo-600 group-hover:scale-110 transition"></i>
+                        <span>Gặp gỡ 5 thành viên</span>
+                    </a>
+                    <a href="#article" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card text-white font-semibold text-base hover:bg-white/10 border border-white/15 transition flex items-center justify-center gap-3">
+                        <span>Đọc bài viết mới nhất</span>
+                        <i class="fa-solid fa-arrow-down-long text-indigo-400 animate-bounce"></i>
+                    </a>
+                </div>
+
+                <!-- Mini Avatars Preview -->
+                <div class="mt-14 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <div class="flex -space-x-3">
+                        <img class="w-11 h-11 rounded-full ring-2 ring-slate-900 bg-indigo-950 object-cover" src="https://api.dicebear.com/7.x/notionists/svg?seed=HaLinh&backgroundColor=c0aede" alt="Hà Linh">
+                        <img class="w-11 h-11 rounded-full ring-2 ring-slate-900 bg-indigo-950 object-cover" src="https://api.dicebear.com/7.x/notionists/svg?seed=TrucLy&backgroundColor=b6e3f4" alt="Trúc Ly">
+                        <img class="w-11 h-11 rounded-full ring-2 ring-slate-900 bg-indigo-950 object-cover" src="https://api.dicebear.com/7.x/notionists/svg?seed=CamLy&backgroundColor=ffdfbf" alt="Cẩm Ly">
+                        <img class="w-11 h-11 rounded-full ring-2 ring-slate-900 bg-indigo-950 object-cover" src="https://api.dicebear.com/7.x/notionists/svg?seed=ThaoMy&backgroundColor=ffd5dc" alt="Thảo My">
+                        <img class="w-11 h-11 rounded-full ring-2 ring-slate-900 bg-indigo-950 object-cover" src="https://api.dicebear.com/7.x/notionists/svg?seed=PhuongNam&backgroundColor=d1d4f9" alt="Phương Nam">
+                    </div>
+                    <div class="text-left text-center sm:text-left">
+                        <div class="text-sm font-bold text-white">5 Thành Viên — 1 Tầm Nhìn Chung</div>
+                        <div class="text-xs text-slate-400">Hà Linh • Trúc Ly • Cẩm Ly • Thảo My • Phương Nam</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PHẦN GIỚI THIỆU 5 THÀNH VIÊN -->
+    <section id="members" class="py-20 md:py-28 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-indigo-400 font-bold text-sm uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Đội Ngũ Của Chúng Mình</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                        Những Mảnh Ghép Tạo Nên <span class="text-gradient">NexGen</span>
+                    </h2>
+                </div>
+                <p class="text-slate-400 max-w-md text-sm sm:text-base">
+                    Mỗi thành viên đảm nhận một chuyên môn riêng biệt từ chiến lược, dữ liệu, thiết kế UI/UX, truyền thông đến kỹ thuật phần mềm. Nhấn vào từng thẻ để xem hồ sơ chi tiết!
+                </p>
+            </div>
+
+            <!-- Grid Thành Viên (Rendered via JS for clean interactivity) -->
+            <div id="members-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                <!-- Sẽ được render tự động bằng JavaScript bên dưới -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BÀI VIẾT TIÊU ĐIỂM (FEATURED BLOG POST) -->
+    <section id="article" class="py-20 md:py-28 relative z-10 border-t border-white/10 bg-slate-950/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Nhãn Chuyên mục -->
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-400 text-xs font-bold uppercase tracking-widest">
+                    <i class="fa-solid fa-fire-flame-curved mr-1.5"></i> Chuyên Đề Nghiên Cứu Của Nhóm
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+                    Kỷ Nguyên Trí Tuệ Nhân Tạo (AI) & Tương Lai Của Sáng Tạo Số
+                </h2>
+                <p class="text-slate-400 mt-4 text-base sm:text-lg">
+                    Khi thuật toán không còn là công cụ vô tri mà trở thành "người đồng sáng tạo" — Con người sẽ định vị bản thân như thế nào trong làn sóng công nghệ mới?
+                </p>
+
+                <!-- Metadata Bài viết -->
+                <div class="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-slate-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-regular fa-calendar text-indigo-400"></i>
+                        <span>Tháng 10, 2026</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-regular fa-clock text-indigo-400"></i>
+                        <span>8 phút đọc</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-regular fa-eye text-indigo-400"></i>
+                        <span id="view-counter">2,845 lượt đọc</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-pen-nib text-indigo-400"></i>
+                        <span>Thực hiện: <strong class="text-white">Nhóm 5 Thành Viên NexGen</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ảnh bìa bài báo (Hero Cover) -->
+            <div class="relative rounded-3xl overflow-hidden mb-14 border border-white/15 shadow-2xl group max-w-5xl mx-auto">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1400&q=80" 
+                     onerror="this.src='https://placehold.co/1200x600/1e1b4b/e0e7ff?text=AI+%26+Digital+Creativity'"
+                     alt="Trí tuệ nhân tạo và Sáng tạo số" 
+                     class="w-full h-[300px] sm:h-[460px] object-cover group-hover:scale-105 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div class="glass-card px-5 py-3 rounded-2xl max-w-xl">
+                        <p class="text-xs text-indigo-300 font-semibold uppercase tracking-wider mb-1">Góc nhìn đa chiều</p>
+                        <p class="text-sm text-slate-200">Sự giao thoa giữa mạng nơ-ron nhân tạo (Neural Networks) và trực giác nghệ thuật độc bản của con người.</p>
+                    </div>
+                    <button onclick="scrollToComments()" class="self-start sm:self-auto px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xs font-semibold border border-white/20 transition flex items-center gap-2">
+                        <i class="fa-regular fa-comments"></i> Thảo luận ngay (<span id="comment-count-badge">3</span>)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bố cục 2 cột: Mục lục + Nội dung chính -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-6xl mx-auto">
+                
+                <!-- Cột Trái: Mục lục & Tương tác nhanh (Sticky) -->
+                <aside class="lg:col-span-4 order-2 lg:order-1">
+                    <div class="sticky top-28 space-y-6">
+                        <!-- Mục lục bài viết -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-400 mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-list-ul"></i> Mục Lục Bài Viết
+                            </h3>
+                            <ul class="space-y-3 text-sm">
+                                <li>
+                                    <a href="#sec-1" class="flex items-center gap-2.5 text-slate-300 hover:text-white hover:translate-x-1 transition">
+                                        <span class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-300 text-xs flex items-center justify-center font-bold">01</span>
+                                        <span>Bùng nổ AI tạo sinh (Generative AI)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#sec-2" class="flex items-center gap-2.5 text-slate-300 hover:text-white hover:translate-x-1 transition">
+                                        <span class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-300 text-xs flex items-center justify-center font-bold">02</span>
+                                        <span>Những con số biết nói năm 2026</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#sec-3" class="flex items-center gap-2.5 text-slate-300 hover:text-white hover:translate-x-1 transition">
+                                        <span class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-300 text-xs flex items-center justify-center font-bold">03</span>
+                                        <span>Đồng sáng tạo thay vì thay thế</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#sec-4" class="flex items-center gap-2.5 text-slate-300 hover:text-white hover:translate-x-1 transition">
+                                        <span class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-300 text-xs flex items-center justify-center font-bold">04</span>
+                                        <span>Góc nhìn từ 5 thành viên nhóm</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Khung Tương Tác Nhanh (Like / Share) -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <h4 class="text-sm font-bold text-white mb-2">Bạn thấy bài viết hữu ích?</h4>
+                            <p class="text-xs text-slate-400 mb-5">Hãy thả tim ủng hộ công sức nghiên cứu của 5 thành viên nhóm mình nhé!</p>
+                            
+                            <div class="flex items-center gap-3">
+                                <button id="like-btn" onclick="toggleLike()" class="flex-1 py-3 px-4 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 font-bold text-sm flex items-center justify-center gap-2 transition transform active:scale-95">
+                                    <i id="like-icon" class="fa-regular fa-heart text-lg"></i>
+                                    <span>Yêu thích (<span id="like-count">128</span>)</span>
+                                </button>
+                                
+                                <button onclick="shareArticle()" class="py-3 px-4 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/30 text-indigo-300 font-bold text-sm flex items-center justify-center gap-2 transition" title="Sao chép liên kết bài viết">
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                    <span>Chia sẻ</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Đóng góp biên tập -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Đóng góp trong bài báo này</h4>
+                            <div class="space-y-3 text-xs">
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/5">
+                                    <span class="text-slate-300 font-medium">Nguyễn Hoàng Hà Linh</span>
+                                    <span class="text-indigo-400">Định hướng & Tổng duyệt</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/5">
+                                    <span class="text-slate-300 font-medium">Nguyễn Thị Trúc Ly</span>
+                                    <span class="text-cyan-400">Số liệu & Dữ liệu</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/5">
+                                    <span class="text-slate-300 font-medium">Trần Thị Cẩm Ly</span>
+                                    <span class="text-pink-400">Infographic & UI</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-white/5">
+                                    <span class="text-slate-300 font-medium">Nguyễn Thảo My</span>
+                                    <span class="text-amber-400">Chắp bút & Biên tập</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5">
+                                    <span class="text-slate-300 font-medium">Nguyễn Phương Nam</span>
+                                    <span class="text-emerald-400">Tối ưu Web & Demo AI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Cột Phải: Nội dung bài báo chi tiết -->
+                <article class="lg:col-span-8 order-1 lg:order-2 space-y-10 text-slate-200 leading-relaxed text-base sm:text-lg">
+                    
+                    <!-- Phần 1 -->
+                    <div id="sec-1" class="scroll-mt-28">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 flex items-center gap-3">
+                            <span class="text-indigo-400 font-extrabold">01.</span>
+                            Sự Bùng Nổ Của AI Tạo Sinh (Generative AI)
+                        </h3>
+                        <p class="mb-4">
+                            Chỉ trong vòng vài năm trở lại đây, thế giới đã chứng kiến một cuộc dịch chuyển địa chấn trong lĩnh vực công nghệ. Trí tuệ nhân tạo không còn giới hạn ở những bài toán phân tích dữ liệu khô khan hay tự động hóa dây chuyền sản xuất. Với sự trỗi dậy của <strong class="text-white">Generative AI (AI Tạo sinh)</strong>, máy móc giờ đây có thể viết văn bản, sáng tác nhạc, thiết kế giao diện đồ họa và lập trình phần mềm chỉ trong vài giây.
+                        </p>
+                        <p>
+                            Từ những phòng thí nghiệm công nghệ đến giảng đường đại học và các studio sáng tạo, câu hỏi lớn nhất được đặt ra không còn là <em>"Liệu AI có thông minh hơn không?"</em> mà là <em>"Làm thế nào để con người làm chủ sức mạnh đó mà không đánh mất bản sắc cá nhân?"</em>.
+                        </p>
+                    </div>
+
+                    <!-- Phần 2: Số liệu thống kê sinh động -->
+                    <div id="sec-2" class="scroll-mt-28">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="text-indigo-400 font-extrabold">02.</span>
+                            Những Con Số Biết Nói (Báo Cáo Tổng Hợp)
+                        </h3>
+                        <p class="mb-6 text-slate-300">
+                            Dựa trên quá trình thu thập và phân tích dữ liệu của thành viên <strong class="text-cyan-300">Nguyễn Thị Trúc Ly</strong>, dưới đây là 3 chỉ số nổi bật phản ánh tốc độ thâm nhập của AI vào ngành công nghiệp sáng tạo toàn cầu:
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 my-6">
+                            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-indigo-500">
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-2">83%</div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">Tối ưu quy trình</div>
+                                <p class="text-xs text-slate-400">Các nhà thiết kế & sáng tạo nội dung sử dụng AI hàng tuần để rút ngắn thời gian lên ý tưởng (Brainstorming).</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-pink-500">
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-2">2.4x</div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-pink-400 mb-1">Hiệu suất làm việc</div>
+                                <p class="text-xs text-slate-400">Tốc độ hoàn thiện bản mẫu sản phẩm số (Prototype UI/UX & Code) khi kết hợp giữa con người và AI.</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyan-500">
+                                <div class="text-3xl sm:text-4xl font-extrabold text-white mb-2">91%</div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-1">Giá trị cảm xúc</div>
+                                <p class="text-xs text-slate-400">Khán giả vẫn ưu tiên các tác phẩm có dấu ấn trải nghiệm thật, câu chuyện văn hóa và cảm xúc con người.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trích dẫn nổi bật (Blockquote) -->
+                    <blockquote class="relative p-8 rounded-3xl bg-gradient-to-br from-indigo-900/50 via-slate-900/80 to-purple-900/40 border border-indigo-500/30 shadow-xl my-8">
+                        <i class="fa-solid fa-quote-left text-4xl text-indigo-400/30 absolute top-5 left-6"></i>
+                        <p class="relative z-10 text-lg sm:text-xl font-medium italic text-indigo-100 leading-relaxed">
+                            "Trí tuệ nhân tạo có thể vẽ ra hàng triệu bức tranh trong chớp mắt từ dữ liệu quá khứ, nhưng chỉ có trái tim con người mới biết rung động trước một khoảnh khắc chưa từng xảy ra."
+                        </p>
+                        <footer class="mt-4 flex items-center gap-3">
+                            <div class="w-8 h-0.5 bg-indigo-400"></div>
+                            <span class="text-sm font-bold text-indigo-300">Tuyên ngôn sáng tạo của Nhóm NexGen Creators</span>
+                        </footer>
+                    </blockquote>
+
+                    <!-- Phần 3 -->
+                    <div id="sec-3" class="scroll-mt-28">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 flex items-center gap-3">
+                            <span class="text-indigo-400 font-extrabold">03.</span>
+                            Đồng Sáng Tạo (Co-Creation) Thay Vì Thay Thế
+                        </h3>
+                        <p class="mb-4">
+                            Thay vì nhìn nhận AI như một đối thủ cạnh tranh, thế hệ trẻ ngày nay đang chuyển dịch sang mô hình <strong class="text-white">Human-in-the-loop (Con người làm trung tâm)</strong>. Trong mô hình này, AI đóng vai trò như một trợ lý siêu việt giúp xử lý các tác vụ lặp đi lặp lại: lọc nhiễu dữ liệu, gợi ý bảng màu, kiểm tra lỗi cú pháp lập trình hay tóm tắt tài liệu.
+                        </p>
+                        <p>
+                            Nhờ đó, người làm sáng tạo có thêm không gian và thời gian cho những giá trị bậc cao: <span class="text-indigo-300 font-medium">tư duy phản biện, định hướng thẩm mỹ, thấu cảm tâm lý người dùng và đạo đức nghề nghiệp</span>.
+                        </p>
+                    </div>
+
+                    <!-- Phần 4: Góc nhìn nhanh từ 5 thành viên -->
+                    <div id="sec-4" class="scroll-mt-28">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="text-indigo-400 font-extrabold">04.</span>
+                            Đúc Kết Từ 5 Thành Viên Nhóm
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=HaLinh&backgroundColor=c0aede" class="w-12 h-12 rounded-xl flex-shrink-0" alt="Hà Linh">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Nguyễn Hoàng Hà Linh <span class="text-xs font-normal text-indigo-400 ml-2">— Trưởng nhóm</span></h4>
+                                    <p class="text-sm text-slate-300 mt-1">"AI là chiếc la bàn mạnh mẽ, nhưng người cầm lái quyết định điểm đến cuối cùng vẫn luôn là tư duy chiến lược của chúng ta."</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=TrucLy&backgroundColor=b6e3f4" class="w-12 h-12 rounded-xl flex-shrink-0" alt="Trúc Ly">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Nguyễn Thị Trúc Ly <span class="text-xs font-normal text-cyan-400 ml-2">— Nghiên cứu dữ liệu</span></h4>
+                                    <p class="text-sm text-slate-300 mt-1">"Dữ liệu sạch và khả năng đặt câu hỏi đúng (Prompting & Critical Inquiry) chính là chìa khóa để khai mở sức mạnh phân tích."</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=CamLy&backgroundColor=ffdfbf" class="w-12 h-12 rounded-xl flex-shrink-0" alt="Cẩm Ly">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Trần Thị Cẩm Ly <span class="text-xs font-normal text-pink-400 ml-2">— Thiết kế UI/UX</span></h4>
+                                    <p class="text-sm text-slate-300 mt-1">"Một giao diện đẹp không chỉ nằm ở tỷ lệ vàng mà ở sự thấu cảm với hành vi người dùng — điều mà chỉ sự tinh tế con người mới chạm tới."</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=ThaoMy&backgroundColor=ffd5dc" class="w-12 h-12 rounded-xl flex-shrink-0" alt="Thảo My">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Nguyễn Thảo My <span class="text-xs font-normal text-amber-400 ml-2">— Nội dung & Truyền thông</span></h4>
+                                    <p class="text-sm text-slate-300 mt-1">"Giữa biển thông tin do máy tạo ra, những câu chuyện chân thật (Authentic Storytelling) sẽ càng trở nên quý giá hơn bao giờ hết."</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=PhuongNam&backgroundColor=d1d4f9" class="w-12 h-12 rounded-xl flex-shrink-0" alt="Phương Nam">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Nguyễn Phương Nam <span class="text-xs font-normal text-emerald-400 ml-2">— Phát triển kỹ thuật</span></h4>
+                                    <p class="text-sm text-slate-300 mt-1">"Lập trình cùng AI giúp biến ý tưởng của cả nhóm thành sản phẩm thực tế với tốc độ vượt trội và kiến trúc vững chắc."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHẦN BÌNH LUẬN TƯƠNG TÁC -->
+                    <div id="comments-section" class="pt-10 border-t border-white/10 scroll-mt-24">
+                        <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                            <i class="fa-regular fa-comments text-indigo-400"></i>
+                            <span>Thảo Luận & Đóng Góp Ý Kiến (<span id="total-comments">3</span>)</span>
+                        </h3>
+
+                        <!-- Form nhập bình luận -->
+                        <form id="comment-form" onsubmit="handleCommentSubmit(event)" class="glass-card p-6 rounded-2xl mb-8 space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Tên của bạn *</label>
+                                    <input type="text" id="comment-name" required placeholder="Nhập họ tên..." 
+                                           class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-white/10 text-white text-sm focus:outline-none focus:border-indigo-500 transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Vai trò / Chuyên ngành</label>
+                                    <input type="text" id="comment-role" placeholder="VD: Sinh viên CNTT, Designer..." 
+                                           class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-white/10 text-white text-sm focus:outline-none focus:border-indigo-500 transition">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 uppercase mb-1.5">Nội dung bình luận *</label>
+                                <textarea id="comment-content" rows="3" required placeholder="Chia sẻ góc nhìn của bạn về bài viết của nhóm..." 
+                                          class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-white/10 text-white text-sm focus:outline-none focus:border-indigo-500 transition"></textarea>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition flex items-center gap-2">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span>Gửi bình luận</span>
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Danh sách bình luận -->
+                        <div id="comments-list" class="space-y-4">
+                            <!-- Sẽ được render tự động qua JS -->
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VỀ NHÓM (ABOUT SECTION) -->
+    <section id="about" class="py-20 relative z-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-indigo-950/60 via-slate-900/80 to-purple-950/60 border border-indigo-500/20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Giá Trị Cốt Lõi</span>
+                        <h3 class="text-2xl sm:text-4xl font-extrabold text-white">Sự Kết Hợp Hoàn Hảo Giữa Tư Duy Học Thuật & Sáng Tạo Thực Chiến</h3>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Nhóm <strong class="text-white">The NexGen Creators</strong> được thành lập với mục tiêu xây dựng những đồ án, bài nghiên cứu và sản phẩm số chỉn chu cả về chiều sâu nội dung lẫn hình thức trình bày. Sự phối hợp ăn ý giữa <span class="text-indigo-300">Hà Linh, Trúc Ly, Cẩm Ly, Thảo My và Phương Nam</span> giúp nhóm luôn tạo ra những góc nhìn mới mẻ và giàu tính ứng dụng.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900/70 p-5 rounded-2xl border border-white/10 text-center">
+                            <div class="text-3xl font-extrabold text-indigo-400">05</div>
+                            <div class="text-xs text-slate-400 mt-1">Thành viên nhiệt huyết</div>
+                        </div>
+                        <div class="bg-slate-900/70 p-5 rounded-2xl border border-white/10 text-center">
+                            <div class="text-3xl font-extrabold text-pink-400">100%</div>
+                            <div class="text-xs text-slate-400 mt-1">Tinh thần đồng đội</div>
+                        </div>
+                        <div class="bg-slate-900/70 p-5 rounded-2xl border border-white/10 text-center">
+                            <div class="text-3xl font-extrabold text-cyan-400">12+</div>
+                            <div class="text-xs text-slate-400 mt-1">Chủ đề thảo luận</div>
+                        </div>
+                        <div class="bg-slate-900/70 p-5 rounded-2xl border border-white/10 text-center">
+                            <div class="text-3xl font-extrabold text-emerald-400">24/7</div>
+                            <div class="text-xs text-slate-400 mt-1">Đổi mới & Học hỏi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="border-t border-white/10 bg-slate-950 pt-14 pb-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center">
+                            <i class="fa-solid fa-sparkles text-white text-sm"></i>
+                        </div>
+                        <span class="font-extrabold text-lg text-white">NexGen<span class="text-indigo-400">Creators</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+                        Trang web chính thức giới thiệu thành viên và lưu trữ các bài viết chuyên đề của nhóm. Thiết kế với đam mê sáng tạo và công nghệ web hiện đại.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Danh Sách Thành Viên</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="hover:text-indigo-400 cursor-pointer transition" onclick="openMemberModal(0)">• Nguyễn Hoàng Hà Linh</li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition" onclick="openMemberModal(1)">• Nguyễn Thị Trúc Ly</li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition" onclick="openMemberModal(2)">• Trần Thị Cẩm Ly</li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition" onclick="openMemberModal(3)">• Nguyễn Thảo My</li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition" onclick="openMemberModal(4)">• Nguyễn Phương Nam</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Điều Hướng Nhanh</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#home" class="hover:text-white transition">Trang chủ</a></li>
+                        <li><a href="#members" class="hover:text-white transition">Hồ sơ thành viên</a></li>
+                        <li><a href="#article" class="hover:text-white transition">Bài viết chuyên đề AI</a></li>
+                        <li><a href="#comments-section" class="hover:text-white transition">Góc thảo luận</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 The NexGen Creators. Thực hiện bởi Hà Linh, Trúc Ly, Cẩm Ly, Thảo My & Phương Nam.</p>
+                <div class="flex items-center gap-4">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-code text-indigo-400"></i> Tailwind CSS & HTML5</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CHI TIẾT THÀNH VIÊN -->
+    <div id="member-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="glass-card bg-slate-900 border border-white/15 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl transform transition-all" id="modal-content">
+            <!-- Nút đóng -->
+            <button onclick="closeMemberModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modal-body">
+                <!-- Nội dung chi tiết thành viên sẽ được inject bằng JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT XỬ LÝ DỮ LIỆU & TƯƠNG TÁC -->
+    <script>
+        // 1. Dữ liệu 5 thành viên của nhóm
+        const teamMembers = [
+            {
+                name: "Nguyễn Hoàng Hà Linh",
+                role: "Trưởng nhóm / Định hướng nội dung",
+                badge: "Team Leader",
+                badgeColor: "from-indigo-500 to-purple-500",
+                avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=HaLinh&backgroundColor=c0aede",
+                shortDesc: "Người giữ nhịp cho toàn bộ dự án của nhóm, định hình cấu trúc bài viết và điều phối tiến độ làm việc hiệu quả.",
+                fullBio: "Với tư duy hệ thống sắc bén và khả năng lãnh đạo tự nhiên, Hà Linh luôn biết cách kết nối thế mạnh riêng của từng thành viên. Linh chịu trách nhiệm lên khung ý tưởng (Concept), phân công nhiệm vụ và đảm bảo chất lượng đầu ra cuối cùng của mọi dự án nhóm.",
+                quote: "Muốn đi nhanh hãy đi một mình, muốn tạo ra kiệt tác hãy đi cùng những người đồng đội tuyệt vời.",
+                skills: ["Quản lý dự án", "Định hướng chiến lược", "Tư duy phản biện", "Thuyết trình"],
+                contribution: "Chủ biên chuyên đề AI, xây dựng đề cương nghiên cứu và tổng duyệt nội dung."
+            },
+            {
+                name: "Nguyễn Thị Trúc Ly",
+                role: "Nghiên cứu & Phân tích dữ liệu",
+                badge: "Data & Research",
+                badgeColor: "from-cyan-500 to-blue-500",
+                avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=TrucLy&backgroundColor=b6e3f4",
+                shortDesc: "Chuyên gia săn lùng tài liệu học thuật, tổng hợp số liệu thống kê và kiểm chứng độ chính xác của thông tin.",
+                fullBio: "Trúc Ly sở hữu sự tỉ mỉ và khả năng phân tích logic ấn tượng. Trước khi nhóm bắt tay vào viết bất kỳ chủ đề nào, Trúc Ly luôn là người đào sâu vào các báo cáo quốc tế, lọc ra những con số đắt giá nhất để bài viết có căn cứ khoa học vững chắc.",
+                quote: "Mọi lập luận thuyết phục đều bắt nguồn từ những dữ liệu biết nói.",
+                skills: ["Phân tích dữ liệu", "Tổng hợp tài liệu", "Fact-checking", "Tư duy logic"],
+                contribution: "Thu thập báo cáo thống kê xu hướng AI 2026 và phân tích tác động thực tiễn."
+            },
+            {
+                name: "Trần Thị Cẩm Ly",
+                role: "Thiết kế giao diện & Trải nghiệm (UI/UX)",
+                badge: "UI/UX Designer",
+                badgeColor: "from-pink-500 to-rose-500",
+                avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=CamLy&backgroundColor=ffdfbf",
+                shortDesc: "Thổi hồn thẩm mỹ vào sản phẩm của nhóm qua bố cục hiện đại, bảng màu tinh tế và trải nghiệm người dùng mượt mà.",
+                fullBio: "Cẩm Ly là tâm hồn nghệ thuật của The NexGen Creators. Không chỉ dừng lại ở việc làm cho trang web đẹp mắt, Cẩm Ly luôn đặt mình vào vị trí người đọc để sắp xếp chữ viết, khoảng trắng và hiệu ứng thị giác sao cho dễ chịu và cuốn hút nhất.",
+                quote: "Thiết kế tốt là khi cái đẹp phục vụ trọn vẹn cho cảm xúc của người trải nghiệm.",
+                skills: ["UI/UX Design", "Visual Storytelling", "Figma & Prototyping", "Thẩm mỹ thị giác"],
+                contribution: "Thiết kế hệ thống màu sắc Glassmorphism, bố cục tạp chí và minh họa trực quan."
+            },
+            {
+                name: "Nguyễn Thảo My",
+                role: "Biên tập nội dung & Truyền thông",
+                badge: "Content Creator",
+                badgeColor: "from-amber-500 to-orange-500",
+                avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=ThaoMy&backgroundColor=ffd5dc",
+                shortDesc: "Người biến những khái niệm công nghệ khô khan thành những câu chuyện lôi cuốn, giàu cảm xúc và gần gũi.",
+                fullBio: "Thảo My có biệt tài sử dụng ngôn từ linh hoạt và sắc sảo. Những thuật ngữ kỹ thuật phức tạp khi qua ngòi bút của My đều trở nên sinh động, dễ hiểu và chạm tới sự đồng cảm của người đọc ở nhiều lứa tuổi khác nhau.",
+                quote: "Ngôn từ có sức mạnh đánh thức trí tưởng tượng mà không thuật toán nào sao chép được.",
+                skills: ["Sáng tạo nội dung", "Copywriting", "Kể chuyện (Storytelling)", "Truyền thông số"],
+                contribution: "Chắp bút nội dung chính của bài báo, biên tập lời văn và thông điệp truyền thông."
+            },
+            {
+                name: "Nguyễn Phương Nam",
+                role: "Phát triển kỹ thuật & Công nghệ",
+                badge: "Tech Lead / Dev",
+                badgeColor: "from-emerald-500 to-teal-500",
+                avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=PhuongNam&backgroundColor=d1d4f9",
+                shortDesc: "Hiện thực hóa mọi ý tưởng thiết kế và nội dung của nhóm thành trang web tương tác mượt mà, tốc độ cao.",
+                fullBio: "Đảm nhận vai trò kỹ thuật cốt lõi, Phương Nam phụ trách viết mã nguồn, tối ưu hóa hiệu ứng chuyển động và đảm bảo trang web hiển thị hoàn hảo trên cả máy tính lẫn điện thoại. Nam cũng là người cập nhật những công cụ công nghệ mới nhất cho nhóm.",
+                quote: "Code không chỉ là những dòng lệnh chạy được, mà là chiếc cầu nối đưa ý tưởng ra thế giới thực.",
+                skills: ["Frontend Development", "Tailwind CSS & JS", "Tối ưu hiệu năng", "Ứng dụng AI"],
+                contribution: "Xây dựng cấu trúc HTML5, lập trình tính năng tương tác (Modal, Bình luận, Like) và Responsive."
+            }
+        ];
+
+        // 2. Render danh sách 5 thành viên ra giao diện
+        function renderMembers() {
+            const grid = document.getElementById('members-grid');
+            grid.innerHTML = teamMembers.map((member, index) => `
+                <div class="glass-card glass-card-hover rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                    <!-- Dải màu trang trí góc -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${member.badgeColor} opacity-10 rounded-bl-full pointer-events-none group-hover:opacity-25 transition"></div>
+                    
+                    <div>
+                        <!-- Header Card: Avatar + Badge -->
+                        <div class="flex items-start justify-between gap-4 mb-5">
+                            <div class="relative">
+                                <img src="${member.avatar}" alt="${member.name}" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-white/15 shadow-lg group-hover:scale-105 transition duration-300">
+                                <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-slate-900 rounded-full" title="Active Member"></span>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-gradient-to-r ${member.badgeColor} shadow-md">
+                                ${member.badge}
+                            </span>
+                        </div>
+
+                        <!-- Tên & Vai trò -->
+                        <h3 class="text-xl font-extrabold text-white group-hover:text-indigo-300 transition">${member.name}</h3>
+                        <p class="text-xs font-semibold text-indigo-400 mt-1 mb-3">${member.role}</p>
+                        
+                        <!-- Mô tả ngắn -->
+                        <p class="text-sm text-slate-300 leading-relaxed mb-5">
+                            ${member.shortDesc}
+                        </p>
+                    </div>
+
+                    <div>
+                        <!-- Kỹ năng (Tags) -->
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            ${member.skills.map(skill => `
+                                <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300">
+                                    #${skill}
+                                </span>
+                            `).join('')}
+                        </div>
+
+                        <!-- Nút xem chi tiết -->
+                        <button onclick="openMemberModal(${index})" class="w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-indigo-600 text-slate-200 hover:text-white border border-white/10 hover:border-indigo-500 text-xs font-bold uppercase tracking-wider transition flex items-center justify-center gap-2">
+                            <span>Xem hồ sơ chi tiết</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 3. Mở / Đóng Modal chi tiết thành viên
+        function openMemberModal(index) {
+            const member = teamMembers[index];
+            const modal = document.getElementById('member-modal');
+            const body = document.getElementById('modal-body');
+
+            body.innerHTML = `
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
+                    <img src="${member.avatar}" alt="${member.name}" class="w-24 h-24 rounded-2xl ring-2 ring-indigo-400/50 shadow-xl">
+                    <div class="text-center sm:text-left">
+                        <span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-gradient-to-r ${member.badgeColor} mb-2">
+                            ${member.badge}
+                        </span>
+                        <h3 class="text-2xl font-extrabold text-white">${member.name}</h3>
+                        <p class="text-sm font-medium text-indigo-400">${member.role}</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-sm text-slate-300">
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10 italic text-indigo-200">
+                        "${member.quote}"
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Giới thiệu bản thân</h4>
+                        <p class="leading-relaxed">${member.fullBio}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Đóng góp trong dự án</h4>
+                        <p class="text-emerald-300 font-medium"><i class="fa-solid fa-check-double mr-1.5"></i>${member.contribution}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Kỹ năng chuyên môn</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${member.skills.map(skill => `
+                                <span class="px-3 py-1 rounded-lg bg-indigo-500/15 border border-indigo-500/30 text-xs font-semibold text-indigo-300">
+                                    ${skill}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMemberModal() {
+            const modal = document.getElementById('member-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Đóng modal khi click ra ngoài vùng nội dung
+        document.getElementById('member-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeMemberModal();
+        });
+
+        // 4. Tính năng Thích bài viết (Like Counter)
+        let isLiked = false;
+        let likeCount = 128;
+
+        function toggleLike() {
+            isLiked = !isLiked;
+            likeCount += isLiked ? 1 : -1;
+
+            const likeBtn = document.getElementById('like-btn');
+            const likeIcon = document.getElementById('like-icon');
+            const likeCountEl = document.getElementById('like-count');
+
+            likeCountEl.textContent = likeCount;
+
+            if (isLiked) {
+                likeIcon.classList.remove('fa-regular');
+                likeIcon.classList.add('fa-solid', 'text-rose-400');
+                likeBtn.classList.add('bg-rose-500/30', 'border-rose-400');
+                showToast("Cảm ơn bạn đã thả tim cho bài viết của nhóm!", "fa-heart text-rose-400");
+            } else {
+                likeIcon.classList.remove('fa-solid', 'text-rose-400');
+                likeIcon.classList.add('fa-regular');
+                likeBtn.classList.remove('bg-rose-500/30', 'border-rose-400');
+            }
+        }
+
+        // 5. Tính năng Chia sẻ bài viết
+        function shareArticle() {
+            const dummyInput = document.createElement('input');
+            dummyInput.value = window.location.href;
+            document.body.appendChild(dummyInput);
+            dummyInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummyInput);
+
+            showToast("Đã sao chép liên kết trang web vào bộ nhớ tạm!", "fa-circle-check text-emerald-400");
+        }
+
+        // Hiển thị thông báo Toast góc dưới
+        function showToast(message, iconClasses) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+            toastIcon.className = `fa-solid ${iconClasses} text-lg`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3200);
+        }
+
+        // 6. Quản lý Bình luận tương tác
+        let comments = [
+            {
+                name: "Trần Minh Quân",
+                role: "Sinh viên Khoa học Máy tính",
+                time: "2 giờ trước",
+                content: "Bài viết của nhóm trình bày cực kỳ cuốn hút! Mình rất tâm đắc với góc nhìn 'Đồng sáng tạo thay vì thay thế' của các bạn."
+            },
+            {
+                name: "Lê Hoàng Yến",
+                role: "Graphic Designer",
+                time: "5 giờ trước",
+                content: "Giao diện web mượt và đẹp quá Cẩm Ly & Phương Nam ơi! Phần số liệu của Trúc Ly cũng rất rõ ràng, giúp mình hiểu thêm nhiều điều."
+            },
+            {
+                name: "Phạm Tuấn Kiệt",
+                role: "Giảng viên / Cố vấn",
+                time: "1 ngày trước",
+                content: "Đánh giá cao sự phối hợp làm việc nhóm của 5 bạn Hà Linh, Trúc Ly, Cẩm Ly, Thảo My và Phương Nam. Bố cục bài viết rất chuyên nghiệp."
+            }
+        ];
+
+        function renderComments() {
+            const list = document.getElementById('comments-list');
+            const totalBadge = document.getElementById('total-comments');
+            const topBadge = document.getElementById('comment-count-badge');
+
+            totalBadge.textContent = comments.length;
+            topBadge.textContent = comments.length;
+
+            list.innerHTML = comments.map(c => `
+                <div class="glass-card p-5 rounded-2xl border border-white/10">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
+                                ${c.name.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <h5 class="text-sm font-bold text-white">${c.name}</h5>
+                                <span class="text-[11px] text-indigo-400">${c.role || 'Độc giả'}</span>
+                            </div>
+                        </div>
+                        <span class="text-xs text-slate-500">${c.time}</span>
+                    </div>
+                    <p class="text-sm text-slate-300 pl-12">${c.content}</p>
+                </div>
+            `).join('');
+        }
+
+        function handleCommentSubmit(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('comment-name');
+            const roleInput = document.getElementById('comment-role');
+            const contentInput = document.getElementById('comment-content');
+
+            if (!nameInput.value.trim() || !contentInput.value.trim()) return;
+
+            comments.unshift({
+                name: nameInput.value.trim(),
+                role: roleInput.value.trim() || "Bạn đọc yêu công nghệ",
+                time: "Vừa xong",
+                content: contentInput.value.trim()
+            });
+
+            renderComments();
+            nameInput.value = '';
+            roleInput.value = '';
+            contentInput.value = '';
+
+            showToast("Bình luận của bạn đã được đăng thành công!", "fa-comment-dots text-indigo-400");
+        }
+
+        function scrollToComments() {
+            document.getElementById('comments-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 7. Thanh tiến trình đọc bài & Mobile Menu
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + "%";
+        });
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Khởi chạy khi tải trang
+        window.onload = function() {
+            renderMembers();
+            renderComments();
+        };
+    </script>
+</body>
+</html>

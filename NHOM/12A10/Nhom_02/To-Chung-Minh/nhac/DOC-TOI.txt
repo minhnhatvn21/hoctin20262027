@@ -1,0 +1,1 @@
+Bo file nhac (.mp3, .m4a) vao thu muc nay, roi them ten file vao danh sach "nhac" trong index.html.

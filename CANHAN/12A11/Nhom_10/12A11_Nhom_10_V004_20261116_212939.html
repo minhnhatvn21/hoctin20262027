@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Huy Hoàng - Kinh Doanh Quốc Tế</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Be Vietnam Pro & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Cấu hình Tailwind tùy chỉnh -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', '"Be Vietnam Pro"', 'sans-serif'],
+                    },
+                    colors: {
+                        brandGreen: {
+                            50: '#ECFDF5',
+                            100: '#D1FAE5',
+                            200: '#A7F3D0',
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065F46',
+                            900: '#064E3B',
+                        },
+                        brandOrange: {
+                            50: '#FFF7ED',
+                            100: '#FFEDD5',
+                            200: '#FED7AA',
+                            400: '#FB923C',
+                            500: '#F97316',
+                            600: '#EA580C',
+                            700: '#C2410C',
+                            800: '#9A3412',
+                            900: '#7C2D12',
+                        }
+                    },
+                    boxShadow: {
+                        'bento': '0 20px 40px -15px rgba(6, 78, 59, 0.07), 0 0 1px 1px rgba(16, 185, 129, 0.12)',
+                        'bento-hover': '0 25px 50px -12px rgba(249, 115, 22, 0.15), 0 0 1px 1px rgba(249, 115, 22, 0.3)',
+                        'glow-green': '0 10px 25px -5px rgba(16, 185, 129, 0.4)',
+                        'glow-orange': '0 10px 25px -5px rgba(249, 115, 22, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Thiết lập Biến CSS và Hiệu ứng Kính mờ (Glassmorphism) */
+        :root {
+            --green-primary: #10B981;
+            --green-dark: #064E3B;
+            --orange-primary: #F97316;
+            --orange-light: #FB923C;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F2FBF7 0%, #FFF9F4 50%, #F0FDF4 100%);
+            color: #0F172A;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Hiệu ứng khối màu chuyển động nền (Ambient Floating Blobs) */
+        .ambient-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            opacity: 0.45;
+            pointer-events: none;
+            animation: floatBlob 18s infinite alternate ease-in-out;
+        }
+        .blob-1 {
+            top: -10%;
+            left: -5%;
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.45), rgba(5, 150, 105, 0.1));
+        }
+        .blob-2 {
+            top: 25%;
+            right: -8%;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.38), rgba(251, 146, 60, 0.1));
+            animation-delay: -6s;
+        }
+        .blob-3 {
+            bottom: -10%;
+            left: 20%;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3), rgba(249, 115, 22, 0.25));
+            animation-delay: -12s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35px, -30px) scale(1.07); }
+            100% { transform: translate(-25px, 25px) scale(0.95); }
+        }
+
+        /* Bento Card Glassmorphism */
+        .bento-card {
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(16, 185, 129, 0.16);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px -12px rgba(6, 78, 59, 0.1), 0 0 0 1px rgba(249, 115, 22, 0.28);
+        }
+
+        /* Viền Gradient Cam - Xanh lá */
+        .dual-gradient-border {
+            position: relative;
+        }
+        .dual-gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #10B981, #F97316);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Text Gradient Cam - Xanh lá */
+        .text-gradient-brand {
+            background: linear-gradient(135deg, #065F46 0%, #059669 40%, #EA580C 85%, #F97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-brand {
+            background: linear-gradient(135deg, #059669 0%, #10B981 45%, #F97316 100%);
+        }
+
+        .bg-gradient-orange-green {
+            background: linear-gradient(90deg, #F97316 0%, #FB923C 45%, #10B981 100%);
+        }
+
+        /* Chế độ chỉnh sửa trực tiếp (ContentEditable) */
+        [contenteditable="true"] {
+            outline: 2px dashed #F97316 !important;
+            outline-offset: 4px;
+            background-color: rgba(255, 247, 237, 0.7);
+            border-radius: 6px;
+            cursor: text;
+            transition: all 0.2s ease;
+        }
+        [contenteditable="true"]:focus {
+            outline: 2px solid #10B981 !important;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+        }
+
+        /* Hiệu ứng thanh tiến trình (Skill Bars) */
+        .skill-bar-fill {
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Custom Range Slider */
+        input[type="range"].brand-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #10B981 0%, #F97316 100%);
+            outline: none;
+        }
+        input[type="range"].brand-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 3px solid #F97316;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+        input[type="range"].brand-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.18);
+            border-color: #059669;
+        }
+
+        /* Hiệu ứng Hover ảnh trong Gallery */
+        .gallery-card-img {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-card:hover .gallery-card-img {
+            transform: scale(1.07);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #10B981, #F97316);
+            border-radius: 999px;
+        }
+
+        /* Hiệu ứng quay nhẹ cho huy hiệu */
+        @keyframes pulseSlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+        .animate-pulse-slow {
+            animation: pulseSlow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brandOrange-500 selection:text-white min-h-screen flex flex-col">
+
+    <!-- Khối màu Ambient Nền -->
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+    <div class="ambient-blob blob-3"></div>
+
+    <!-- Thông báo Toast (Thay thế hoàn toàn alert) -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- Thanh Điều Hướng & Công Cụ Tùy Chỉnh (Sticky Header) -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/80 border-b border-brandGreen-500/15 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+            
+            <!-- Thương hiệu Cá nhân -->
+            <a href="#hero" class="flex items-center gap-3 group focus:outline-none">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-brand flex items-center justify-center text-white font-display font-extrabold text-lg shadow-glow-green group-hover:scale-105 transition-transform">
+                    HH
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-bold text-slate-900 text-base sm:text-lg tracking-tight editable-text">Nguyễn Huy Hoàng</span>
+                        <span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brandOrange-100 text-brandOrange-700 border border-brandOrange-200">
+                            Kinh Doanh Quốc Tế
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium editable-text">Hồ Sơ Định Hướng Nghề Nghiệp • 2026–2027</p>
+                </div>
+            </a>
+
+            <!-- Menu Điều Hướng Nhanh (Desktop) -->
+            <nav class="hidden xl:flex items-center gap-1 bg-slate-100/80 p-1.5 rounded-2xl border border-slate-200/70 text-sm font-medium">
+                <a href="#hero" class="px-3.5 py-1.5 rounded-xl text-slate-700 hover:text-brandGreen-700 hover:bg-white transition-all">Cá nhân</a>
+                <a href="#major-decode" class="px-3.5 py-1.5 rounded-xl text-slate-700 hover:text-brandGreen-700 hover:bg-white transition-all">Ngành học & SWOT</a>
+                <a href="#roadmap" class="px-3.5 py-1.5 rounded-xl text-slate-700 hover:text-brandGreen-700 hover:bg-white transition-all">Lộ trình 4 giai đoạn</a>
+                <a href="#gallery-section" class="px-3.5 py-1.5 rounded-xl text-brandOrange-600 font-semibold hover:bg-white transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-images text-xs"></i> Bộ sưu tập (<span id="navImageCountBadge">5</span>)
+                </a>
+            </nav>
+
+            <!-- Cụm Nút Công Cụ Tương Tác -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <!-- Nút Chế độ sửa chữ trực tiếp -->
+                <button id="toggleEditModeBtn" onclick="toggleTextEditMode()" 
+                    class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-brandGreen-200 bg-brandGreen-50/90 text-brandGreen-800 hover:bg-brandGreen-100 transition-all shadow-sm"
+                    title="Bật/Tắt chế độ bấm vào chữ bất kỳ để sửa nội dung">
+                    <i id="editModeIcon" class="fa-solid fa-pen-to-square text-brandGreen-600"></i>
+                    <span id="editModeLabel" class="hidden sm:inline">Sửa chữ trực tiếp</span>
+                </button>
+
+                <!-- Nút Mở Nhanh Quản Lý Hình Ảnh -->
+                <button onclick="scrollToGalleryAndHighlight()" 
+                    class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-brandOrange-500 hover:bg-brandOrange-600 text-white shadow-glow-orange transition-all active:scale-95">
+                    <i class="fa-solid fa-camera-retro"></i>
+                    <span class="hidden sm:inline">Tùy chỉnh Ảnh</span>
+                </button>
+
+                <!-- Nút Xuất / Tải File HTML Đã Tùy Chỉnh -->
+                <button onclick="exportCustomizedHTML()" 
+                    class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-brandGreen-900 text-white transition-all shadow-sm active:scale-95"
+                    title="Lưu toàn bộ nội dung và hình ảnh đã thêm thành file HTML">
+                    <i class="fa-solid fa-download text-brandOrange-400"></i>
+                    <span class="hidden md:inline">Lưu HTML</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Thanh trạng thái khi bật chế độ chỉnh sửa trực tiếp -->
+    <div id="editModeBanner" class="hidden bg-gradient-to-r from-brandOrange-500 via-brandOrange-600 to-brandGreen-600 text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3">
+            <span><i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> <strong>Đang bật Chế độ Chỉnh sửa Trực tiếp:</strong> Bạn có thể nhấp chuột vào bất kỳ tiêu đề hoặc đoạn văn nào có viền nét đứt để sửa nội dung theo ý muốn!</span>
+            <button onclick="toggleTextEditMode()" class="px-3 py-1 rounded-lg bg-white text-slate-900 font-bold text-xs hover:bg-brandGreen-50 transition">
+                Hoàn tất chỉnh sửa
+            </button>
+        </div>
+    </div>
+
+    <!-- NỘI DUNG CHÍNH: BENTO GRID ARCHITECTURE -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-10">
+
+        <!-- PHẦN 1: HERO BENTO CARD - HỒ SƠ CÁ NHÂN NGUYỄN HUY HOÀNG -->
+        <section id="hero" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            
+            <!-- Thẻ Chính Giới Thiệu Cá Nhân (8 Cột) -->
+            <div class="lg:col-span-8 bento-card rounded-3xl p-6 sm:p-8 lg:p-10 shadow-bento relative overflow-hidden flex flex-col justify-between">
+                <!-- Họa tiết trang trí góc -->
+                <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-gradient-to-br from-brandOrange-400/20 to-brandGreen-400/20 blur-2xl pointer-events-none"></div>
+                
+                <div>
+                    <!-- Huy hiệu Định hướng -->
+                    <div class="flex flex-wrap items-center gap-2.5 mb-6">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brandGreen-100 text-brandGreen-800 border border-brandGreen-300/70">
+                            <span class="w-2 h-2 rounded-full bg-brandGreen-500 animate-ping"></span>
+                            Kế Hoạch Định Hướng Nghề Nghiệp 2026–2027
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brandOrange-100 text-brandOrange-700 border border-brandOrange-300/70">
+                            <i class="fa-solid fa-earth-asia"></i> Mã ngành: 7340120
+                        </span>
+                    </div>
+
+                    <!-- Khối Ảnh Đại Diện + Tên & Chuyên Ngành -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-6">
+                        <!-- Khung Avatar Tương Tác (Cho phép tải ảnh chân dung cá nhân) -->
+                        <div class="relative group shrink-0">
+                            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl p-1 bg-gradient-to-tr from-brandGreen-500 via-brandOrange-400 to-brandGreen-600 shadow-glow-green">
+                                <img id="profileAvatarImg" 
+                                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+                                     alt="Chân dung Nguyễn Huy Hoàng"
+                                     onerror="this.src='https://placehold.co/400x400/059669/FFFFFF?text=Huy+Hoang'"
+                                     class="w-full h-full object-cover rounded-[20px] bg-white">
+                            </div>
+                            <!-- Nút thay đổi ảnh đại diện -->
+                            <label for="avatarUploadInput" 
+                                   class="absolute -bottom-2 -right-2 w-10 h-10 rounded-2xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white flex items-center justify-center shadow-lg cursor-pointer transition-transform group-hover:scale-110"
+                                   title="Nhấn để tải ảnh chân dung của Nguyễn Huy Hoàng">
+                                <i class="fa-solid fa-camera text-sm"></i>
+                            </label>
+                            <input type="file" id="avatarUploadInput" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+                        </div>
+
+                        <!-- Thông tin Họ Tên & Định vị bản thân -->
+                        <div class="space-y-2">
+                            <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-brandOrange-600 editable-text">
+                                Hồ Sơ Định Hướng & Phát Triển Bản Thân
+                            </p>
+                            <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight editable-text">
+                                Nguyễn Huy Hoàng
+                            </h1>
+                            <div class="flex flex-wrap items-center gap-2 pt-1">
+                                <span class="text-base sm:text-lg font-bold text-gradient-brand editable-text">
+                                    Định hướng: Chuyên gia Kinh Doanh Quốc Tế & Chuỗi Cung Ứng Toàn Cầu
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mô tả bản thân chi tiết -->
+                    <div class="bg-gradient-to-r from-brandGreen-50/90 via-white to-brandOrange-50/80 p-5 rounded-2xl border border-brandGreen-200/70 mb-6">
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-brandGreen-800 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-user-tie text-brandOrange-500"></i> Giới thiệu bản thân & Khát vọng nghề nghiệp
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-relaxed editable-text">
+                            Xin chào! Tôi là <strong>Nguyễn Huy Hoàng</strong> — một học sinh có tư duy cởi mở, nhạy bén với dòng chảy thương mại và luôn khao khát bước ra thế giới. Với niềm đam mê đặc biệt dành cho lĩnh vực <strong>Kinh doanh Quốc tế (International Business)</strong>, tôi hướng tới việc làm chủ kiến thức về giao thương xuyên biên giới, quản trị chuỗi cung ứng toàn cầu (Global Supply Chain & Logistics), đàm phán đa văn hóa và thương mại điện tử quốc tế, sẵn sàng trở thành cầu nối đưa doanh nghiệp Việt Nam vươn tầm thế giới.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4 Chỉ số Định hướng Cốt lõi (Metric Pills) -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                    <div class="p-3.5 rounded-2xl bg-white border border-brandGreen-100 shadow-sm hover:border-brandGreen-400 transition">
+                        <div class="flex items-center gap-2 text-brandGreen-600 text-xs font-bold uppercase mb-1">
+                            <i class="fa-solid fa-bullseye"></i> Ngành Mục Tiêu
+                        </div>
+                        <p class="font-display font-bold text-slate-900 text-sm sm:text-base editable-text">Kinh Doanh Quốc Tế</p>
+                        <p class="text-xs text-slate-500 editable-text">International Business</p>
+                    </div>
+
+                    <div class="p-3.5 rounded-2xl bg-white border border-brandOrange-100 shadow-sm hover:border-brandOrange-400 transition">
+                        <div class="flex items-center gap-2 text-brandOrange-600 text-xs font-bold uppercase mb-1">
+                            <i class="fa-solid fa-layer-group"></i> Tổ Hợp Xét Tuyển
+                        </div>
+                        <p class="font-display font-bold text-slate-900 text-sm sm:text-base editable-text">A01 • D01 • A00</p>
+                        <p class="text-xs text-slate-500 editable-text">Mục tiêu: 27.5+ điểm</p>
+                    </div>
+
+                    <div class="p-3.5 rounded-2xl bg-white border border-brandGreen-100 shadow-sm hover:border-brandGreen-400 transition">
+                        <div class="flex items-center gap-2 text-brandGreen-600 text-xs font-bold uppercase mb-1">
+                            <i class="fa-solid fa-language"></i> Ngoại Ngữ & Số Hóa
+                        </div>
+                        <p class="font-display font-bold text-slate-900 text-sm sm:text-base editable-text">IELTS 7.5+ & AI</p>
+                        <p class="text-xs text-slate-500 editable-text">Tiếng Anh Thương Mại</p>
+                    </div>
+
+                    <div class="p-3.5 rounded-2xl bg-white border border-brandOrange-100 shadow-sm hover:border-brandOrange-400 transition">
+                        <div class="flex items-center gap-2 text-brandOrange-600 text-xs font-bold uppercase mb-1">
+                            <i class="fa-solid fa-ship"></i> Mũi Nhọn Nghề Nghiệp
+                        </div>
+                        <p class="font-display font-bold text-slate-900 text-sm sm:text-base editable-text">Global Trade & SCM</p>
+                        <p class="text-xs text-slate-500 editable-text">Logistics & Xuất nhập khẩu</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thẻ Tuyên Ngôn Cá Nhân & Hồ Sơ Tóm Tắt (4 Cột) -->
+            <div class="lg:col-span-4 bento-card rounded-3xl p-6 sm:p-8 shadow-bento flex flex-col justify-between bg-gradient-to-b from-white/95 to-brandGreen-50/70 relative overflow-hidden">
+                <!-- Vòng tròn trang trí -->
+                <div class="w-32 h-32 rounded-full bg-brandOrange-500/10 absolute -bottom-10 -right-10 pointer-events-none"></div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-5">
+                        <span class="px-3 py-1 rounded-xl bg-brandOrange-500 text-white text-xs font-bold tracking-wide uppercase shadow-sm">
+                            Chân Dung Cá Nhân
+                        </span>
+                        <span class="text-xs font-semibold text-brandGreen-700 bg-brandGreen-100 px-2.5 py-1 rounded-lg">
+                            MBTI: ENTJ / ENFJ
+                        </span>
+                    </div>
+
+                    <!-- Khẩu hiệu hành động -->
+                    <blockquote class="p-4 rounded-2xl bg-gradient-to-br from-brandGreen-900 to-brandGreen-800 text-white shadow-md mb-6 relative">
+                        <i class="fa-solid fa-quote-left text-brandOrange-400 text-xl opacity-80 mb-2 block"></i>
+                        <p class="text-sm sm:text-base font-medium leading-relaxed italic editable-text">
+                            "Thương mại toàn cầu không chỉ là sự dịch chuyển hàng hóa, mà là nghệ thuật kết nối giá trị văn hóa, chiến lược và trí tuệ Việt Nam với năm châu."
+                        </p>
+                        <footer class="mt-2 text-xs font-bold text-brandOrange-300 editable-text">— Phương châm của Nguyễn Huy Hoàng</footer>
+                    </blockquote>
+
+                    <!-- Thông tin cá nhân cốt lõi -->
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center justify-between p-2.5 rounded-xl bg-white/80 border border-slate-100">
+                            <span class="text-slate-500 flex items-center gap-2">
+                                <i class="fa-solid fa-id-card text-brandGreen-600 w-4"></i> Họ và tên:
+                            </span>
+                            <span class="font-bold text-slate-900 editable-text">Nguyễn Huy Hoàng</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-xl bg-white/80 border border-slate-100">
+                            <span class="text-slate-500 flex items-center gap-2">
+                                <i class="fa-solid fa-compass text-brandOrange-500 w-4"></i> Khối ngành:
+                            </span>
+                            <span class="font-bold text-brandGreen-800 editable-text">Kinh tế - Kinh doanh</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-xl bg-white/80 border border-slate-100">
+                            <span class="text-slate-500 flex items-center gap-2">
+                                <i class="fa-solid fa-star text-brandGreen-600 w-4"></i> Sở trường:
+                            </span>
+                            <span class="font-bold text-slate-900 editable-text">Đàm phán, Phân tích số liệu</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-xl bg-white/80 border border-slate-100">
+                            <span class="text-slate-500 flex items-center gap-2">
+                                <i class="fa-solid fa-globe text-brandOrange-500 w-4"></i> Môi trường hướng tới:
+                            </span>
+                            <span class="font-bold text-brandOrange-600 editable-text">Tập đoàn Đa quốc gia (MNCs)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Nút hành động nhanh xuống Gallery -->
+                <div class="mt-6 pt-4 border-t border-brandGreen-200/60 flex items-center justify-between gap-2">
+                    <div class="text-xs text-slate-500">
+                        <span class="font-bold text-brandGreen-700">Mẹo:</span> Nhấn vào ảnh đại diện để đổi ảnh của bạn.
+                    </div>
+                    <a href="#gallery-section" class="inline-flex items-center gap-1.5 text-xs font-bold text-brandOrange-600 hover:text-brandOrange-700">
+                        Xem 5+ ảnh định hướng <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: GIẢI MÃ NGÀNH KINH DOANH QUỐC TẾ & PHÂN TÍCH SWOT CÁ NHÂN -->
+        <section id="major-decode" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- 4 Trụ Cột Ngành Kinh Doanh Quốc Tế & Trường Đại Học Mục Tiêu (7 Cột) -->
+            <div class="lg:col-span-7 bento-card rounded-3xl p-6 sm:p-8 shadow-bento flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-brandGreen-600 block mb-1">
+                                Bức Tranh Toàn Cảnh Ngành Học
+                            </span>
+                            <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 editable-text">
+                                Giải Mã Ngành Kinh Doanh Quốc Tế
+                            </h2>
+                        </div>
+                        <span class="px-3.5 py-1.5 rounded-2xl text-xs font-bold bg-gradient-brand text-white shadow-sm">
+                            Xu hướng Toàn cầu hóa 4.0
+                        </span>
+                    </div>
+
+                    <p class="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed editable-text">
+                        Ngành <strong>Kinh doanh Quốc tế (International Business)</strong> trang bị nền tảng quản trị kinh doanh hiện đại kết hợp chuyên sâu về vận hành thương mại toàn cầu, giúp Nguyễn Huy Hoàng làm chủ các mắt xích kinh tế xuyên quốc gia:
+                    </p>
+
+                    <!-- Lưới 4 Trụ cột chuyên môn -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        <!-- Trụ cột 1 -->
+                        <div class="p-4 rounded-2xl bg-brandGreen-50/70 border border-brandGreen-200/80 hover:bg-white hover:shadow-md transition group">
+                            <div class="w-10 h-10 rounded-xl bg-brandGreen-600 text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-ship"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-base mb-1 editable-text">
+                                1. Logistics & Chuỗi Cung Ứng Toàn Cầu
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                Tối ưu hóa luồng vận chuyển hàng hóa quốc tế bằng đường biển, hàng không, quản trị kho bãi và Incoterms 2020.
+                            </p>
+                        </div>
+
+                        <!-- Trụ cột 2 -->
+                        <div class="p-4 rounded-2xl bg-brandOrange-50/70 border border-brandOrange-200/80 hover:bg-white hover:shadow-md transition group">
+                            <div class="w-10 h-10 rounded-xl bg-brandOrange-500 text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-base mb-1 editable-text">
+                                2. Xuất Nhập Khẩu & Đàm Phán Quốc Tế
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                Thiết lập hợp đồng ngoại thương, nghiệp vụ hải quan, thanh toán quốc tế (L/C) và nghệ thuật đàm phán đa văn hóa.
+                            </p>
+                        </div>
+
+                        <!-- Trụ cột 3 -->
+                        <div class="p-4 rounded-2xl bg-brandOrange-50/70 border border-brandOrange-200/80 hover:bg-white hover:shadow-md transition group">
+                            <div class="w-10 h-10 rounded-xl bg-brandOrange-500 text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-base mb-1 editable-text">
+                                3. Thương Mại Điện Tử Xuyên Biên Giới
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                Phát triển thị trường quốc tế qua nền tảng số B2B/B2C, nghiên cứu hành vi người tiêu dùng toàn cầu và Digital Marketing.
+                            </p>
+                        </div>
+
+                        <!-- Trụ cột 4 -->
+                        <div class="p-4 rounded-2xl bg-brandGreen-50/70 border border-brandGreen-200/80 hover:bg-white hover:shadow-md transition group">
+                            <div class="w-10 h-10 rounded-xl bg-brandGreen-600 text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-base mb-1 editable-text">
+                                4. Đầu Tư Quốc Tế & Tài Chính Đa Quốc Gia
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                Phân tích dòng vốn FDI, quản trị rủi ro tỷ giá ngoại hối và xây dựng chiến lược thâm nhập thị trường mới (Market Entry).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danh sách Trường Đại Học Mục Tiêu (Nhấn vào để xem chi tiết) -->
+                <div class="pt-5 border-t border-slate-200/80">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-brandOrange-500"></i> Các Trường Đại Học Mục Tiêu Hàng Đầu (Nhấn để xem chi tiết)
+                        </h3>
+                        <span class="text-xs text-brandGreen-700 font-semibold">Nguyện vọng 2027</span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                        <button onclick="openUniversityModal('FTU')" class="p-3 rounded-2xl bg-white hover:bg-brandGreen-50 border border-slate-200 hover:border-brandGreen-400 text-left transition group shadow-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-display font-extrabold text-brandGreen-700 text-sm">FTU</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-brandOrange-500"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-800 truncate">ĐH Ngoại Thương</p>
+                        </button>
+
+                        <button onclick="openUniversityModal('UEH')" class="p-3 rounded-2xl bg-white hover:bg-brandOrange-50 border border-slate-200 hover:border-brandOrange-400 text-left transition group shadow-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-display font-extrabold text-brandOrange-600 text-sm">UEH</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-brandOrange-500"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-800 truncate">ĐH Kinh Tế TP.HCM</p>
+                        </button>
+
+                        <button onclick="openUniversityModal('NEU')" class="p-3 rounded-2xl bg-white hover:bg-brandGreen-50 border border-slate-200 hover:border-brandGreen-400 text-left transition group shadow-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-display font-extrabold text-brandGreen-700 text-sm">NEU</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-brandOrange-500"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-800 truncate">ĐH Kinh Tế Quốc Dân</p>
+                        </button>
+
+                        <button onclick="openUniversityModal('UEL')" class="p-3 rounded-2xl bg-white hover:bg-brandOrange-50 border border-slate-200 hover:border-brandOrange-400 text-left transition group shadow-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-display font-extrabold text-brandOrange-600 text-sm">UEL</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-brandOrange-500"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-800 truncate">ĐH Kinh Tế - Luật</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phân Tích SWOT Cá Nhân Của Nguyễn Huy Hoàng (5 Cột) -->
+            <div class="lg:col-span-5 bento-card rounded-3xl p-6 sm:p-8 shadow-bento flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-brandOrange-600 block mb-1">
+                                Tự Đánh Giá Năng Lực Bản Thân
+                            </span>
+                            <h2 class="font-display text-2xl font-extrabold text-slate-900 editable-text">
+                                Mô Hình SWOT Cá Nhân
+                            </h2>
+                        </div>
+                        <div class="w-11 h-11 rounded-2xl bg-brandOrange-100 text-brandOrange-600 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-compass-drafting text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- Nút chuyển Tab SWOT -->
+                    <div class="grid grid-cols-4 gap-2 p-1.5 rounded-2xl bg-slate-100 mb-5">
+                        <button onclick="switchSwotTab('S')" id="swotBtn-S" class="swot-tab-btn py-2 px-2 rounded-xl text-xs font-bold transition-all bg-brandGreen-600 text-white shadow-sm">
+                            S • Điểm mạnh
+                        </button>
+                        <button onclick="switchSwotTab('W')" id="swotBtn-W" class="swot-tab-btn py-2 px-2 rounded-xl text-xs font-bold transition-all text-slate-600 hover:bg-white">
+                            W • Điểm yếu
+                        </button>
+                        <button onclick="switchSwotTab('O')" id="swotBtn-O" class="swot-tab-btn py-2 px-2 rounded-xl text-xs font-bold transition-all text-slate-600 hover:bg-white">
+                            O • Cơ hội
+                        </button>
+                        <button onclick="switchSwotTab('T')" id="swotBtn-T" class="swot-tab-btn py-2 px-2 rounded-xl text-xs font-bold transition-all text-slate-600 hover:bg-white">
+                            T • Thách thức
+                        </button>
+                    </div>
+
+                    <!-- Nội dung các Tab SWOT -->
+                    <div id="swotContent-S" class="swot-panel space-y-3">
+                        <div class="p-4 rounded-2xl bg-brandGreen-50 border border-brandGreen-200">
+                            <h3 class="font-bold text-brandGreen-900 text-sm mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-brandGreen-600"></i> Strengths (Điểm mạnh của Nguyễn Huy Hoàng)
+                            </h3>
+                            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandGreen-600 font-bold">•</span>
+                                    <span class="editable-text">Tư duy logic, nhạy bén với các con số kinh tế và xu hướng thị trường quốc tế.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandGreen-600 font-bold">•</span>
+                                    <span class="editable-text">Khả năng giao tiếp tự tin, thuyết trình mạch lạc và thích nghi nhanh với tập thể mới.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandGreen-600 font-bold">•</span>
+                                    <span class="editable-text">Tinh thần chủ động học hỏi ngoại ngữ (Tiếng Anh) và ứng dụng công nghệ AI vào học tập.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="swotContent-W" class="swot-panel hidden space-y-3">
+                        <div class="p-4 rounded-2xl bg-brandOrange-50 border border-brandOrange-200">
+                            <h3 class="font-bold text-brandOrange-900 text-sm mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-screwdriver-wrench text-brandOrange-600"></i> Weaknesses (Điểm cần khắc phục)
+                            </h3>
+                            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandOrange-600 font-bold">•</span>
+                                    <span class="editable-text">Chưa có nhiều trải nghiệm thực chiến tại doanh nghiệp xuất nhập khẩu và cảng biển.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandOrange-600 font-bold">•</span>
+                                    <span class="editable-text">Đôi khi cầu toàn, ôm đồm nhiều mục tiêu cùng lúc dẫn đến áp lực thời gian.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandOrange-600 font-bold">•</span>
+                                    <span class="editable-text">Cần bổ sung thêm ngoại ngữ thứ 2 (Tiếng Trung hoặc Tiếng Nhật thương mại).</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="swotContent-O" class="swot-panel hidden space-y-3">
+                        <div class="p-4 rounded-2xl bg-brandGreen-50 border border-brandGreen-200">
+                            <h3 class="font-bold text-brandGreen-900 text-sm mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-rocket text-brandGreen-600"></i> Opportunities (Cơ hội từ thị trường)
+                            </h3>
+                            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandGreen-600 font-bold">•</span>
+                                    <span class="editable-text">Việt Nam tham gia sâu rộng hơn 16 Hiệp định Thương mại Tự do thế hệ mới (EVFTA, CPTPP, RCEP).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandGreen-600 font-bold">•</span>
+                                    <span class="editable-text">Làn sóng dịch chuyển chuỗi cung ứng toàn cầu và đầu tư FDI mạnh mẽ vào Việt Nam.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandGreen-600 font-bold">•</span>
+                                    <span class="editable-text">Cơ hội việc làm rộng mở với mức đãi ngộ hấp dẫn tại các tập đoàn đa quốc gia.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="swotContent-T" class="swot-panel hidden space-y-3">
+                        <div class="p-4 rounded-2xl bg-brandOrange-50 border border-brandOrange-200">
+                            <h3 class="font-bold text-brandOrange-900 text-sm mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved text-brandOrange-600"></i> Threats (Thách thức cần vượt qua)
+                            </h3>
+                            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandOrange-600 font-bold">•</span>
+                                    <span class="editable-text">Tỷ lệ chọi đầu vào ngành Kinh doanh Quốc tế tại các trường Top đầu luôn rất cao.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandOrange-600 font-bold">•</span>
+                                    <span class="editable-text">Biến động kinh tế vĩ mô, chi phí vận tải biển và tiêu chuẩn xanh (ESG) ngày càng khắt khe.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-brandOrange-600 font-bold">•</span>
+                                    <span class="editable-text">Đòi hỏi cập nhật liên tục kỹ năng phân tích dữ liệu và công nghệ số trong Logistics.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ma trận tóm tắt 4 ô nhỏ trực quan -->
+                <div class="grid grid-cols-2 gap-2.5 mt-5 pt-4 border-t border-slate-200/80">
+                    <div class="p-3 rounded-xl bg-brandGreen-500/10 border border-brandGreen-500/20">
+                        <span class="text-[11px] font-extrabold uppercase text-brandGreen-800 block">Chiến lược S-O</span>
+                        <p class="text-xs text-slate-700 mt-0.5 editable-text">Phát huy ngoại ngữ & tư duy số để săn học bổng, thực tập tại MNCs.</p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-brandOrange-500/10 border border-brandOrange-500/20">
+                        <span class="text-[11px] font-extrabold uppercase text-brandOrange-800 block">Chiến lược W-T</span>
+                        <p class="text-xs text-slate-700 mt-0.5 editable-text">Rèn kỷ luật Pomodoro, tham gia CLB học thuật từ năm nhất ĐH.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 3: BỘ SƯU TẬP HÌNH ẢNH ĐỊNH HƯỚNG NGHỀ NGHIỆP (CÓ TÙY CHỈNH SỐ LƯỢNG & THÊM ẢNH) -->
+        <section id="gallery-section" class="bento-card rounded-3xl p-6 sm:p-8 lg:p-10 shadow-bento relative overflow-hidden">
+            <!-- Trang trí đỉnh khung -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brandGreen-500 via-brandOrange-500 to-brandGreen-600"></div>
+
+            <!-- Header Bộ Sưu Tập + Bảng Điều Khiển Tùy Chỉnh Số Lượng Hình Ảnh -->
+            <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6 pb-6 mb-8 border-b border-slate-200/80">
+                <div class="space-y-2 max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandOrange-100 text-brandOrange-700 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-images"></i> Trực Quan Hóa Mục Tiêu Nghề Nghiệp
+                    </div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 editable-text">
+                        Tầm Nhìn & Hình Ảnh Định Hướng Nghề Nghiệp Của Nguyễn Huy Hoàng
+                    </h2>
+                    <p class="text-sm text-slate-600 editable-text">
+                        Bộ sưu tập gồm <strong>5 hình ảnh định hướng nghề nghiệp cốt lõi</strong> của ngành Kinh doanh Quốc tế. Bạn có thể tự do <strong>tăng/giảm số lượng hình ảnh hiển thị</strong>, tải thêm nhiều ảnh mới từ máy tính hoặc thay đổi từng bức ảnh theo ý muốn.
+                    </p>
+                </div>
+
+                <!-- BẢNG ĐIỀU KHIỂN SỐ LƯỢNG HÌNH ẢNH & THÊM ẢNH (YÊU CẦU TRỌNG TÂM) -->
+                <div id="galleryControlBox" class="bg-gradient-to-br from-brandGreen-50 via-white to-brandOrange-50 p-4 sm:p-5 rounded-2xl border-2 border-brandGreen-300/70 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0 transition-all">
+                    
+                    <!-- Bộ điều chỉnh Số lượng khung hình hiển thị -->
+                    <div class="space-y-2 min-w-[230px]">
+                        <div class="flex items-center justify-between">
+                            <label for="imageCountSlider" class="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                                <i class="fa-solid fa-sliders text-brandOrange-500"></i> Số lượng hình ảnh:
+                            </label>
+                            <span id="currentCountDisplay" class="px-2.5 py-0.5 rounded-lg bg-brandOrange-500 text-white font-display font-extrabold text-sm shadow-sm">
+                                5 ảnh
+                            </span>
+                        </div>
+                        
+                        <div class="flex items-center gap-2.5">
+                            <!-- Nút Giảm (-1) -->
+                            <button onclick="adjustImageSlotCount(-1)" 
+                                class="w-8 h-8 rounded-xl bg-white hover:bg-brandOrange-100 text-slate-700 hover:text-brandOrange-700 border border-slate-300 font-bold flex items-center justify-center transition active:scale-90"
+                                title="Giảm 1 khung hình">
+                                <i class="fa-solid fa-minus text-xs"></i>
+                            </button>
+
+                            <!-- Thanh trượt số lượng (1 đến 20) -->
+                            <input type="range" id="imageCountSlider" min="1" max="20" value="5" 
+                                   class="brand-slider w-full" 
+                                   oninput="setExactImageSlotCount(this.value)">
+
+                            <!-- Nút Tăng (+1) -->
+                            <button onclick="adjustImageSlotCount(1)" 
+                                class="w-8 h-8 rounded-xl bg-white hover:bg-brandGreen-100 text-slate-700 hover:text-brandGreen-700 border border-slate-300 font-bold flex items-center justify-center transition active:scale-90"
+                                title="Tăng thêm 1 khung hình">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+
+                            <!-- Ô nhập số trực tiếp -->
+                            <input type="number" id="imageCountInput" min="1" max="30" value="5"
+                                   onchange="setExactImageSlotCount(this.value)"
+                                   class="w-14 h-8 text-center font-bold text-sm rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-brandGreen-500"
+                                   title="Nhập số lượng ảnh muốn hiển thị">
+                        </div>
+
+                        <!-- Các mốc chọn nhanh số lượng ảnh -->
+                        <div class="flex items-center gap-1.5 pt-0.5">
+                            <span class="text-[11px] text-slate-500 font-medium">Chọn nhanh:</span>
+                            <button onclick="setExactImageSlotCount(3)" class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-white border border-slate-200 hover:border-brandGreen-500 text-slate-600">3</button>
+                            <button onclick="setExactImageSlotCount(5)" class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-brandGreen-600 text-white">5 (Chuẩn)</button>
+                            <button onclick="setExactImageSlotCount(6)" class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-white border border-slate-200 hover:border-brandGreen-500 text-slate-600">6</button>
+                            <button onclick="setExactImageSlotCount(8)" class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-white border border-slate-200 hover:border-brandGreen-500 text-slate-600">8</button>
+                            <button onclick="setExactImageSlotCount(10)" class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-white border border-slate-200 hover:border-brandGreen-500 text-slate-600">10</button>
+                        </div>
+                    </div>
+
+                    <div class="hidden sm:block w-px h-16 bg-slate-200"></div>
+
+                    <!-- Cụm nút Tải ảnh lên từ máy & Dán Link URL -->
+                    <div class="flex flex-col gap-2 justify-center">
+                        <label for="multiImageUploadInput" 
+                               class="cursor-pointer inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-brand text-white font-bold text-xs sm:text-sm shadow-glow-green hover:opacity-95 transition active:scale-95">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Tải ảnh từ thiết bị</span>
+                        </label>
+                        <input type="file" id="multiImageUploadInput" accept="image/*" multiple class="hidden" onchange="handleMultipleImagesUpload(event)">
+
+                        <button onclick="openAddImageUrlModal()" 
+                                class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-brandOrange-50 text-brandOrange-700 border border-brandOrange-300 font-bold text-xs transition">
+                            <i class="fa-solid fa-link"></i>
+                            <span>Thêm bằng Link ảnh</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thanh Tùy Chỉnh Bố Cục Hiển Thị (Layout Mode) -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                <div class="flex items-center gap-2 text-xs sm:text-sm text-slate-600">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brandGreen-500"></span>
+                    <span>Đang hiển thị <strong id="galleryStatusCount" class="text-brandGreen-700">5</strong> khung hình định hướng nghề nghiệp. Nhấn vào từng ảnh để phóng to hoặc thay ảnh mới.</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-semibold text-slate-500">Kiểu lưới:</span>
+                    <button onclick="changeGalleryGridCols('bento')" id="layoutBtn-bento" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-brandGreen-600 text-white shadow-sm transition">
+                        <i class="fa-solid fa-table-cells-large mr-1"></i> Bento Hiện Đại
+                    </button>
+                    <button onclick="changeGalleryGridCols('grid3')" id="layoutBtn-grid3" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                        <i class="fa-solid fa-grip mr-1"></i> 3 Cột Đều
+                    </button>
+                    <button onclick="changeGalleryGridCols('grid2')" id="layoutBtn-grid2" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                        <i class="fa-solid fa-table-columns mr-1"></i> 2 Cột Lớn
+                    </button>
+                    <button onclick="resetDefaultGallery()" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-500 hover:text-brandOrange-600 hover:bg-brandOrange-50 transition" title="Khôi phục 5 hình ảnh gốc">
+                        <i class="fa-solid fa-rotate-left"></i> Khôi phục gốc
+                    </button>
+                </div>
+            </div>
+
+            <!-- LƯỚI HIỂN THỊ HÌNH ẢNH ĐỘNG (RENDER BẰNG JAVASCRIPT) -->
+            <div id="careerGalleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
+                <!-- Các thẻ hình ảnh sẽ được tạo tự động tại đây -->
+            </div>
+
+            <!-- Input ẩn dùng để thay thế ảnh cho từng khung riêng lẻ -->
+            <input type="file" id="singleSlotReplaceInput" accept="image/*" class="hidden" onchange="handleSingleSlotFileChange(event)">
+        </section>
+
+        <!-- PHẦN 4: LỘ TRÌNH CHINH PHỤC 4 GIAI ĐOẠN & NĂNG LỰC CỐT LÕI -->
+        <section id="roadmap" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Lộ Trình Phát Triển 4 Giai Đoạn (7 Cột) -->
+            <div class="lg:col-span-7 bento-card rounded-3xl p-6 sm:p-8 shadow-bento flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-brandOrange-600 block mb-1">
+                                Kế Hoạch Hành Động Cụ Thể
+                            </span>
+                            <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 editable-text">
+                                Lộ Trình Chinh Phục 4 Giai Đoạn
+                            </h2>
+                        </div>
+                        <span class="px-3 py-1 rounded-xl bg-brandGreen-100 text-brandGreen-800 text-xs font-bold">
+                            2026 <i class="fa-solid fa-arrow-right mx-1 text-brandOrange-500"></i> 2032+
+                        </span>
+                    </div>
+
+                    <!-- Dòng thời gian (Interactive Vertical Timeline) -->
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-dashed border-brandGreen-400 space-y-6">
+                        
+                        <!-- Giai đoạn 1 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[33px] sm:-left-[41px] top-1 w-6 h-6 rounded-full bg-brandOrange-500 border-4 border-white shadow-md flex items-center justify-center">
+                                <span class="w-2 h-2 rounded-full bg-white"></span>
+                            </div>
+                            <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brandOrange-50/90 to-white border border-brandOrange-200/80 shadow-sm hover:shadow-md transition">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <span class="px-2.5 py-0.5 rounded-lg bg-brandOrange-500 text-white text-xs font-bold">
+                                        Giai đoạn 1: 2026 – 2027 (Lớp 12)
+                                    </span>
+                                    <span class="text-xs font-bold text-brandOrange-700">Đang thực hiện • Ưu tiên số 1</span>
+                                </div>
+                                <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-1 editable-text">
+                                    Bứt Phá Điểm Số & Đỗ Nguyện Vọng 1 Ngành Kinh Doanh Quốc Tế
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                    Hoàn thiện nền tảng kiến thức tổ hợp A01/D01, chinh phục chứng chỉ IELTS 7.0+, tìm hiểu kiến thức kinh tế vĩ mô cơ bản và trúng tuyển vào trường Đại học mơ ước.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Giai đoạn 2 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[33px] sm:-left-[41px] top-1 w-6 h-6 rounded-full bg-brandGreen-600 border-4 border-white shadow-md"></div>
+                            <div class="p-4 sm:p-5 rounded-2xl bg-white border border-brandGreen-200/80 shadow-sm hover:shadow-md transition">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <span class="px-2.5 py-0.5 rounded-lg bg-brandGreen-600 text-white text-xs font-bold">
+                                        Giai đoạn 2: 2027 – 2029 (Năm 1 & Năm 2 ĐH)
+                                    </span>
+                                    <span class="text-xs font-semibold text-brandGreen-700">Xây nền tảng học thuật</span>
+                                </div>
+                                <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-1 editable-text">
+                                    Làm Chủ Nghiệp Vụ Ngoại Thương & Tham Gia CLB Học Thuật
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                    Đạt GPA 3.6/4.0+, nắm chắc Kinh tế vi mô/vĩ mô, Luật thương mại quốc tế, Incoterms; năng nổ tham gia CLB Kinh doanh Quốc tế và các cuộc thi giải Business Case.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Giai đoạn 3 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[33px] sm:-left-[41px] top-1 w-6 h-6 rounded-full bg-brandOrange-500 border-4 border-white shadow-md"></div>
+                            <div class="p-4 sm:p-5 rounded-2xl bg-white border border-brandOrange-200/80 shadow-sm hover:shadow-md transition">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <span class="px-2.5 py-0.5 rounded-lg bg-brandOrange-500 text-white text-xs font-bold">
+                                        Giai đoạn 3: 2029 – 2031 (Năm 3 & Năm 4 ĐH)
+                                    </span>
+                                    <span class="text-xs font-semibold text-brandOrange-700">Thực chiến doanh nghiệp</span>
+                                </div>
+                                <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-1 editable-text">
+                                    Thực Tập Tại Tập Đoàn Đa Quốc Gia & Quản Trị Chuỗi Cung Ứng
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                    Thực tập vị trí Global Sourcing / Logistics Intern hoặc Management Trainee tại các tập đoàn lớn; hoàn thành khóa luận tốt nghiệp loại Xuất sắc về Chuỗi cung ứng xanh.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Giai đoạn 4 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[33px] sm:-left-[41px] top-1 w-6 h-6 rounded-full bg-brandGreen-700 border-4 border-white shadow-md"></div>
+                            <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brandGreen-50/90 to-white border border-brandGreen-300 shadow-sm hover:shadow-md transition">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <span class="px-2.5 py-0.5 rounded-lg bg-brandGreen-800 text-white text-xs font-bold">
+                                        Giai đoạn 4: Sau 2031 (Sự nghiệp)
+                                    </span>
+                                    <span class="text-xs font-bold text-brandGreen-800">Vươn tầm quốc tế</span>
+                                </div>
+                                <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-1 editable-text">
+                                    Chuyên Gia Kinh Doanh Quốc Tế & Giám Đốc Chuỗi Cung Ứng Khu Vực
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                    Trở thành chuyên gia điều phối thương mại quốc tế, dẫn dắt các thương vụ xuất nhập khẩu quy mô lớn và đóng góp vào sự phát triển bền vững của thương hiệu Việt trên thị trường toàn cầu.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Năng Lực Cốt Lõi & Bảng Kỹ Năng Tương Tác (5 Cột) -->
+            <div class="lg:col-span-5 bento-card rounded-3xl p-6 sm:p-8 shadow-bento flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-brandGreen-600 block mb-1">
+                                Hành Trang Chuyên Môn
+                            </span>
+                            <h2 class="font-display text-2xl font-extrabold text-slate-900 editable-text">
+                                Năng Lực & Kỹ Năng Trọng Tâm
+                            </h2>
+                        </div>
+                        <span class="w-11 h-11 rounded-2xl bg-brandGreen-100 text-brandGreen-700 flex items-center justify-center">
+                            <i class="fa-solid fa-chart-line text-lg"></i>
+                        </span>
+                    </div>
+
+                    <!-- Các thanh kỹ năng (Có thể kéo chỉnh % mục tiêu) -->
+                    <div class="space-y-5">
+                        <!-- Kỹ năng 1 -->
+                        <div>
+                            <div class="flex justify-between items-center text-sm mb-1.5">
+                                <span class="font-bold text-slate-800 flex items-center gap-2 editable-text">
+                                    <i class="fa-solid fa-comments text-brandOrange-500"></i> Ngoại ngữ & Đàm phán Thương mại
+                                </span>
+                                <span id="skillVal-1" class="font-display font-extrabold text-brandGreen-700">90%</span>
+                            </div>
+                            <div class="w-full h-3 rounded-full bg-slate-100 overflow-hidden p-0.5 border border-slate-200">
+                                <div id="skillBar-1" class="skill-bar-fill h-full rounded-full bg-gradient-orange-green" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Kỹ năng 2 -->
+                        <div>
+                            <div class="flex justify-between items-center text-sm mb-1.5">
+                                <span class="font-bold text-slate-800 flex items-center gap-2 editable-text">
+                                    <i class="fa-solid fa-magnifying-glass-chart text-brandGreen-600"></i> Phân tích Thị trường & Dữ liệu Số
+                                </span>
+                                <span id="skillVal-2" class="font-display font-extrabold text-brandOrange-600">85%</span>
+                            </div>
+                            <div class="w-full h-3 rounded-full bg-slate-100 overflow-hidden p-0.5 border border-slate-200">
+                                <div id="skillBar-2" class="skill-bar-fill h-full rounded-full bg-gradient-brand" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Kỹ năng 3 -->
+                        <div>
+                            <div class="flex justify-between items-center text-sm mb-1.5">
+                                <span class="font-bold text-slate-800 flex items-center gap-2 editable-text">
+                                    <i class="fa-solid fa-boxes-packing text-brandOrange-500"></i> Tư duy Logistics & Chuỗi cung ứng
+                                </span>
+                                <span id="skillVal-3" class="font-display font-extrabold text-brandGreen-700">88%</span>
+                            </div>
+                            <div class="w-full h-3 rounded-full bg-slate-100 overflow-hidden p-0.5 border border-slate-200">
+                                <div id="skillBar-3" class="skill-bar-fill h-full rounded-full bg-gradient-orange-green" style="width: 88%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Kỹ năng 4 -->
+                        <div>
+                            <div class="flex justify-between items-center text-sm mb-1.5">
+                                <span class="font-bold text-slate-800 flex items-center gap-2 editable-text">
+                                    <i class="fa-solid fa-people-group text-brandGreen-600"></i> Lãnh đạo Nhóm & Thích ứng Đa văn hóa
+                                </span>
+                                <span id="skillVal-4" class="font-display font-extrabold text-brandOrange-600">92%</span>
+                            </div>
+                            <div class="w-full h-3 rounded-full bg-slate-100 overflow-hidden p-0.5 border border-slate-200">
+                                <div id="skillBar-4" class="skill-bar-fill h-full rounded-full bg-gradient-brand" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Danh sách Vị trí Nghề nghiệp Mục tiêu -->
+                    <div class="mt-7 pt-6 border-t border-slate-200/80">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3 flex items-center gap-1.5">
+                            <i class="fa-solid fa-briefcase text-brandOrange-500"></i> Các Vị Trí Công Việc Hướng Tới Sau Tốt Nghiệp
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 rounded-xl text-xs font-bold bg-brandGreen-50 text-brandGreen-800 border border-brandGreen-200 editable-text">
+                                Chuyên viên Xuất Nhập Khẩu (Import-Export Executive)
+                            </span>
+                            <span class="px-3 py-1.5 rounded-xl text-xs font-bold bg-brandOrange-50 text-brandOrange-800 border border-brandOrange-200 editable-text">
+                                Quản trị Chuỗi Cung Ứng (Supply Chain Specialist)
+                            </span>
+                            <span class="px-3 py-1.5 rounded-xl text-xs font-bold bg-brandGreen-50 text-brandGreen-800 border border-brandGreen-200 editable-text">
+                                Chuyên viên Mua hàng Quốc tế (Global Sourcing)
+                            </span>
+                            <span class="px-3 py-1.5 rounded-xl text-xs font-bold bg-brandOrange-50 text-brandOrange-800 border border-brandOrange-200 editable-text">
+                                Phát triển Thị trường Quốc tế (Global BD)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cam kết kỷ luật bản thân -->
+                <div class="mt-6 p-4 rounded-2xl bg-gradient-to-r from-brandGreen-600 to-brandOrange-500 text-white shadow-md flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-fire-flame-curved text-lg"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm font-medium leading-snug editable-text">
+                        <strong>Cam kết của Nguyễn Huy Hoàng:</strong> Kiên trì rèn luyện mỗi ngày 1% tốt hơn để biến bản kế hoạch định hướng nghề nghiệp này thành hiện thực!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-12 border-t border-brandGreen-500/15 bg-white/75 backdrop-blur-md py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-600">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-xl bg-gradient-brand text-white font-display font-bold flex items-center justify-center text-xs">HH</span>
+                <p class="editable-text">
+                    <strong>Nguyễn Huy Hoàng</strong> • Hồ Sơ Định Hướng Nghề Nghiệp Ngành Kinh Doanh Quốc Tế
+                </p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="scrollToGalleryAndHighlight()" class="text-brandOrange-600 hover:underline font-semibold">
+                    Quản lý hình ảnh (<span id="footerImageCount">5</span>)
+                </button>
+                <span>•</span>
+                <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="text-brandGreen-700 hover:underline font-semibold flex items-center gap-1">
+                    Lên đầu trang <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         MODAL 1: XEM PHÓNG TO HÌNH ẢNH (LIGHTBOX) VỚI NÚT 'X' CỐ ĐỊNH GÓC TRÊN
+         ===================================================================== -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-slate-900/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+        <div class="relative bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-brandGreen-300/40 flex flex-col">
+            <!-- Thanh Header Sticky với nút X đóng rõ ràng -->
+            <div class="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-white/95 backdrop-blur border-b border-slate-100">
+                <div class="flex items-center gap-2.5">
+                    <span id="lightboxBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-brandOrange-100 text-brandOrange-700">
+                        Hình ảnh định hướng
+                    </span>
+                    <h3 id="lightboxTitle" class="font-display font-bold text-slate-900 text-base sm:text-lg">
+                        Tiêu đề hình ảnh
+                    </h3>
+                </div>
+                <button onclick="closeLightboxModal()" 
+                        class="w-10 h-10 rounded-full bg-slate-100 hover:bg-brandOrange-500 hover:text-white text-slate-700 flex items-center justify-center transition font-bold text-lg shadow-sm"
+                        aria-label="Đóng cửa sổ">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Khung chứa hình ảnh -->
+            <div class="p-6 bg-slate-950 flex items-center justify-center min-h-[300px] sm:min-h-[420px] relative">
+                <img id="lightboxImage" src="" alt="Hình ảnh phóng to" class="max-h-[62vh] w-auto object-contain rounded-2xl shadow-lg">
+            </div>
+
+            <!-- Mô tả & Điều hướng -->
+            <div class="p-6 bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <p id="lightboxDesc" class="text-sm text-slate-600 leading-relaxed max-w-2xl"></p>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="navigateLightbox(-1)" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-brandGreen-100 text-slate-700 font-bold text-xs transition">
+                        <i class="fa-solid fa-chevron-left mr-1"></i> Ảnh trước
+                    </button>
+                    <button onclick="navigateLightbox(1)" class="px-4 py-2 rounded-xl bg-brandGreen-600 hover:bg-brandGreen-700 text-white font-bold text-xs transition">
+                        Ảnh tiếp <i class="fa-solid fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         MODAL 2: THÊM HÌNH ẢNH BẰNG ĐƯỜNG DẪN (URL) HOẶC TẢI TỪ MÁY
+         ===================================================================== -->
+    <div id="addUrlModal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-brandGreen-200">
+            <!-- Header cố định với nút X -->
+            <div class="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-gradient-to-r from-brandGreen-50 to-brandOrange-50 border-b border-slate-200">
+                <h3 class="font-display font-bold text-slate-900 text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-folder-plus text-brandOrange-500"></i> Thêm Hình Ảnh Định Hướng Mới
+                </h3>
+                <button onclick="closeAddImageUrlModal()" class="w-9 h-9 rounded-full bg-white hover:bg-brandOrange-500 hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form onsubmit="submitNewImageByUrl(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Đường dẫn hình ảnh (URL) *</label>
+                    <input type="url" id="newImgUrlInput" required placeholder="https://images.unsplash.com/..." 
+                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-brandGreen-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Tiêu đề bức ảnh *</label>
+                    <input type="text" id="newImgTitleInput" required placeholder="Ví dụ: Tham quan Cảng Quốc tế Cát Lái..." 
+                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-brandGreen-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nhãn phân loại (Tag)</label>
+                    <input type="text" id="newImgTagInput" placeholder="Ví dụ: Hoạt động ngoại khóa / Mục tiêu" 
+                           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-brandGreen-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Mô tả ý nghĩa định hướng</label>
+                    <textarea id="newImgDescInput" rows="3" placeholder="Mô tả ngắn gọn về mục tiêu nghề nghiệp gắn với bức ảnh này..." 
+                              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-brandGreen-500 text-sm"></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2">
+                    <button type="button" onclick="closeAddImageUrlModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200 transition">
+                        Hủy
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-brand text-white font-bold text-xs shadow-glow-green hover:opacity-95 transition">
+                        <i class="fa-solid fa-plus mr-1"></i> Thêm vào bộ sưu tập
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         MODAL 3: CHI TIẾT TRƯỜNG ĐẠI HỌC MỤC TIÊU (CÓ NÚT 'X' CỐ ĐỊNH)
+         ===================================================================== -->
+    <div id="uniModal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[88vh] overflow-y-auto shadow-2xl border border-brandGreen-200">
+            <div class="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-white border-b border-slate-100">
+                <div class="flex items-center gap-2.5">
+                    <span id="uniModalCode" class="px-3 py-1 rounded-xl bg-brandGreen-600 text-white font-display font-extrabold text-sm">FTU</span>
+                    <h3 id="uniModalName" class="font-display font-bold text-slate-900 text-base sm:text-lg">Trường Đại Học Ngoại Thương</h3>
+                </div>
+                <button onclick="closeUniversityModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-brandOrange-500 hover:text-white text-slate-700 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 text-sm text-slate-700">
+                <div class="p-4 rounded-2xl bg-brandGreen-50 border border-brandGreen-200">
+                    <p class="text-xs font-bold uppercase text-brandGreen-800 mb-1">Chuyên ngành đào tạo tiêu biểu</p>
+                    <p id="uniModalProgram" class="font-bold text-slate-900 text-base"></p>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                        <span class="text-xs text-slate-500 block">Tổ hợp xét tuyển</span>
+                        <strong id="uniModalBlocks" class="text-slate-900">A00, A01, D01, D07</strong>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-brandOrange-50 border border-brandOrange-200">
+                        <span class="text-xs text-brandOrange-700 block">Điểm chuẩn tham khảo</span>
+                        <strong id="uniModalScore" class="text-brandOrange-700">28.0 - 28.5 điểm</strong>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-1">Lý do Nguyễn Huy Hoàng lựa chọn:</h4>
+                    <p id="uniModalReason" class="leading-relaxed text-slate-600"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         JAVASCRIPT LOGIC: QUẢN LÝ HÌNH ẢNH, TÙY CHỈNH SỐ LƯỢNG, CHỈNH SỬA TRỰC TIẾP
+         ===================================================================== -->
+    <script>
+        /**
+         * 1. DỮ LIỆU MẶC ĐỊNH: 5 HÌNH ẢNH LIÊN QUAN ĐẾN ĐỊNH HƯỚNG NGHỀ NGHIỆP KINH DOANH QUỐC TẾ
+         * Mỗi ảnh đều có hình ảnh chất lượng cao kèm cơ chế fallback SVG an toàn tuyệt đối.
+         */
+        const DEFAULT_CAREER_IMAGES = [
+            {
+                id: 'img-1',
+                title: 'Giao Thương & Cảng Biển Logistics Toàn Cầu',
+                tag: 'Chuỗi Cung Ứng & Vận Tải',
+                desc: 'Khát vọng làm chủ quy trình vận hành chuỗi cung ứng quốc tế, điều phối hàng hóa xuất nhập khẩu xuyên đại dương tại các cảng biển trọng điểm.',
+                url: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80',
+                fallbackText: 'Logistics+Toan+Cau'
+            },
+            {
+                id: 'img-2',
+                title: 'Đàm Phán Đa Văn Hóa & Hội Nghị Quốc Tế',
+                tag: 'Đàm Phán Ngoại Thương',
+                desc: 'Hình ảnh Nguyễn Huy Hoàng hướng tới: Tự tin sử dụng Tiếng Anh thương mại, đàm phán ký kết hợp đồng với các đối tác đa quốc gia.',
+                url: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80',
+                fallbackText: 'Dam+Phan+Quoc+Te'
+            },
+            {
+                id: 'img-3',
+                title: 'Phân Tích Dữ Liệu Thị Trường & Tài Chính Số',
+                tag: 'Chiến Lược Thị Trường',
+                desc: 'Ứng dụng công nghệ số, Business Intelligence và phân tích dữ liệu kinh tế vĩ mô để dự báo xu hướng thương mại toàn cầu.',
+                url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80',
+                fallbackText: 'Phan+Tich+Thi+Truong'
+            },
+            {
+                id: 'img-4',
+                title: 'Vận Tải Hàng Không & Thương Mại Xuyên Biên Giới',
+                tag: 'Global E-Commerce & Air Cargo',
+                desc: 'Kết nối giao thương tốc độ cao qua mạng lưới vận tải hàng không và thương mại điện tử xuyên biên giới, đưa hàng Việt vươn xa.',
+                url: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1000&q=80',
+                fallbackText: 'Chuoi+Cung+Ung+Quoc+Te'
+            },
+            {
+                id: 'img-5',
+                title: 'Khát Vọng Giảng Đường Đại Học & Tốt Nghiệp Xuất Sắc',
+                tag: 'Mục Tiêu 2026–2031',
+                desc: 'Chinh phục cánh cửa trường Đại học mơ ước ngành Kinh doanh Quốc tế, tạo tiền đề vững chắc cho sự nghiệp công dân toàn cầu.',
+                url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80',
+                fallbackText: 'Dai+Hoc+Kinh+Doanh+Quoc+Te'
+            }
+        ];
+
+        // Kho ảnh mở rộng tự động khi người dùng tăng số lượng ảnh lên trên 5
+        const EXTRA_TEMPLATE_IMAGES = [
+            {
+                title: 'Mạng Lưới Đối Tác Kinh Tế Đa Quốc Gia (FTA)',
+                tag: 'Hội Nhập Kinh Tế',
+                desc: 'Tận dụng lợi thế từ các Hiệp định Thương mại Tự do thế hệ mới như EVFTA, CPTPP, RCEP để mở rộng thị trường xuất khẩu.',
+                url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80'
+            },
+            {
+                title: 'Làm Việc Nhóm & Giải Quyết Business Case Quốc Tế',
+                tag: 'Kỹ Năng Lãnh Đạo',
+                desc: 'Rèn luyện tư duy phản biện, làm việc nhóm đa văn hóa và chinh phục các cuộc thi học thuật kinh tế lớn.',
+                url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80'
+            },
+            {
+                title: 'Chuỗi Cung Ứng Xanh & Phát Triển Bền Vững (ESG)',
+                tag: 'Xu Hướng Tương Lai',
+                desc: 'Định hướng phát triển thương mại quốc tế gắn liền với tiêu chuẩn xanh, giảm phát thải và phát triển bền vững.',
+                url: 'https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=1000&q=80'
+            }
+        ];
+
+        // Trạng thái bộ sưu tập hiện tại
+        let galleryItems = JSON.parse(JSON.stringify(DEFAULT_CAREER_IMAGES));
+        let displayedSlotCount = 5; // Mặc định hiển thị đúng 5 hình ảnh theo yêu cầu
+        let currentLayoutMode = 'bento'; // 'bento', 'grid3', 'grid2'
+        let activeReplaceIndex = null;
+        let activeLightboxIndex = 0;
+        let isTextEditMode = false;
+
+        /**
+         * 2. HÀM HIỂN THỊ THÔNG BÁO TOAST HIỆN ĐẠI (KHÔNG DÙNG ALERT)
+         */
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgClass = type === 'success' 
+                ? 'from-brandGreen-600 to-brandGreen-700 border-brandGreen-400' 
+                : 'from-brandOrange-500 to-brandOrange-600 border-brandOrange-300';
+            const iconClass = type === 'success' ? 'fa-circle-check' : 'fa-bolt';
+
+            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-gradient-to-r ${bgClass} text-white shadow-xl border text-xs sm:text-sm font-semibold transform transition-all duration-300 translate-y-2 opacity-0`;
+            toast.innerHTML = `
+                <i class="fa-solid ${iconClass} text-base shrink-0"></i>
+                <span class="flex-1 leading-snug">${message}</span>
+            `;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3400);
+        }
+
+        /**
+         * 3. HÀM RENDER BỘ SƯU TẬP HÌNH ẢNH DỰA TRÊN SỐ LƯỢNG TÙY CHỈNH
+         */
+        function renderCareerGallery() {
+            const grid = document.getElementById('careerGalleryGrid');
+            if (!grid) return;
+
+            // Đảm bảo mảng dữ liệu có đủ phần tử nếu người dùng tăng số lượng khung hình
+            while (galleryItems.length < displayedSlotCount) {
+                const nextIndex = galleryItems.length;
+                const template = EXTRA_TEMPLATE_IMAGES[(nextIndex - 5) % EXTRA_TEMPLATE_IMAGES.length];
+                galleryItems.push({
+                    id: 'img-custom-' + Date.now() + '-' + nextIndex,
+                    title: `${template.title} (#${nextIndex + 1})`,
+                    tag: template.tag,
+                    desc: template.desc,
+                    url: template.url,
+                    fallbackText: 'Kinh+Doanh+Quoc+Te+' + (nextIndex + 1)
+                });
+            }
+
+            // Cập nhật các bộ đếm trên giao diện
+            document.getElementById('currentCountDisplay').textContent = `${displayedSlotCount} ảnh`;
+            document.getElementById('imageCountSlider').value = Math.min(displayedSlotCount, 20);
+            document.getElementById('imageCountInput').value = displayedSlotCount;
+            document.getElementById('galleryStatusCount').textContent = displayedSlotCount;
+            document.getElementById('navImageCountBadge').textContent = displayedSlotCount;
+            document.getElementById('footerImageCount').textContent = displayedSlotCount;
+
+            // Thiết lập class lưới theo chế độ xem
+            if (currentLayoutMode === 'bento') {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5';
+            } else if (currentLayoutMode === 'grid3') {
+                grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5';
+            } else {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+            }
+
+            grid.innerHTML = '';
+
+            // Render đúng số lượng hình ảnh `displayedSlotCount`
+            const visibleItems = galleryItems.slice(0, displayedSlotCount);
+
+            visibleItems.forEach((item, idx) => {
+                // Tính toán độ rộng cột thông minh nếu đang ở chế độ Bento Grid (2 ảnh đầu lớn, 3 ảnh sau vừa vặn)
+                let spanClass = '';
+                if (currentLayoutMode === 'bento') {
+                    const mod = idx % 5;
+                    if (mod === 0 || mod === 1) {
+                        spanClass = 'lg:col-span-3';
+                    } else {
+                        spanClass = 'lg:col-span-2';
+                    }
+                }
+
+                const badgeColor = idx % 2 === 0 
+                    ? 'bg-brandGreen-600/90 text-white' 
+                    : 'bg-brandOrange-500/95 text-white';
+
+                const card = document.createElement('article');
+                card.className = `gallery-card ${spanClass} group rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl overflow-hidden flex flex-col justify-between transition-all duration-300`;
+
+                card.innerHTML = `
+                    <div>
+                        <!-- Khung Hình Ảnh & Nút Thao Tác Nhanh -->
+                        <div class="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900">
+                            <img src="${item.url}" 
+                                 alt="${item.title}"
+                                 onerror="this.src='https://placehold.co/800x520/065F46/FFFFFF?text=${encodeURIComponent(item.title)}'"
+                                 onclick="openLightboxModal(${idx})"
+                                 class="gallery-card-img w-full h-full object-cover cursor-pointer">
+                            
+                            <!-- Lớp phủ Gradient tinh tế -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-black/20 pointer-events-none"></div>
+
+                            <!-- Số thứ tự & Nhãn phân loại -->
+                            <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 pointer-events-none">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold ${badgeColor} backdrop-blur-md shadow-sm editable-tag"
+                                      onblur="updateGalleryItemField(${idx}, 'tag', this.innerText)">
+                                    #${idx + 1} • ${item.tag}
+                                </span>
+                                <span class="w-8 h-8 rounded-xl bg-black/45 text-white backdrop-blur-md flex items-center justify-center text-xs font-bold">
+                                    ${idx + 1}/${displayedSlotCount}
+                                </span>
+                            </div>
+
+                            <!-- Cụm nút tương tác nổi trên ảnh -->
+                            <div class="absolute bottom-3 right-3 flex items-center gap-1.5 opacity-95 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button onclick="openLightboxModal(${idx})" 
+                                        class="px-2.5 py-1.5 rounded-xl bg-white/95 hover:bg-brandGreen-600 hover:text-white text-slate-900 text-xs font-bold shadow-md transition flex items-center gap-1"
+                                        title="Phóng to hình ảnh">
+                                    <i class="fa-solid fa-expand"></i> Xem
+                                </button>
+                                <button onclick="triggerReplaceSingleSlot(${idx})" 
+                                        class="px-2.5 py-1.5 rounded-xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white text-xs font-bold shadow-md transition flex items-center gap-1"
+                                        title="Đổi bức ảnh này bằng ảnh từ máy của bạn">
+                                    <i class="fa-solid fa-upload"></i> Đổi ảnh
+                                </button>
+                                <button onclick="removeGallerySlot(${idx})" 
+                                        class="w-8 h-8 rounded-xl bg-red-500/90 hover:bg-red-600 text-white text-xs font-bold shadow-md transition flex items-center justify-center"
+                                        title="Xóa khung hình này">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Nội dung Tiêu đề & Mô tả của từng ảnh (Có thể nhấp để sửa trực tiếp) -->
+                        <div class="p-5">
+                            <h3 contenteditable="${isTextEditMode}" 
+                                onblur="updateGalleryItemField(${idx}, 'title', this.innerText)"
+                                class="font-display font-bold text-slate-900 text-base sm:text-lg mb-1.5 group-hover:text-brandGreen-700 transition editable-text">
+                                ${item.title}
+                            </h3>
+                            <p contenteditable="${isTextEditMode}" 
+                               onblur="updateGalleryItemField(${idx}, 'desc', this.innerText)"
+                               class="text-xs sm:text-sm text-slate-600 leading-relaxed editable-text">
+                                ${item.desc}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Thanh chân thẻ: Sắp xếp hoặc đổi ảnh nhanh -->
+                    <div class="px-5 py-3 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span class="font-medium text-brandGreen-700 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check text-[11px]"></i> Nguyễn Huy Hoàng • IB
+                        </span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="triggerReplaceSingleSlot(${idx})" class="text-brandOrange-600 hover:underline font-semibold">
+                                Thay ảnh khác
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        /**
+         * 4. CÁC HÀM ĐIỀU KHIỂN SỐ LƯỢNG HÌNH ẢNH VÀ TẢI ẢNH LÊN
+         */
+        function adjustImageSlotCount(delta) {
+            let nextCount = displayedSlotCount + delta;
+            if (nextCount < 1) nextCount = 1;
+            if (nextCount > 30) nextCount = 30;
+            displayedSlotCount = nextCount;
+            renderCareerGallery();
+            showToast(`Đã điều chỉnh số lượng hiển thị thành ${displayedSlotCount} hình ảnh!`);
+        }
+
+        function setExactImageSlotCount(val) {
+            let parsed = parseInt(val, 10);
+            if (isNaN(parsed) || parsed < 1) parsed = 1;
+            if (parsed > 30) parsed = 30;
+            displayedSlotCount = parsed;
+            renderCareerGallery();
+        }
+
+        // Tải một hoặc nhiều ảnh từ máy tính để thêm vào bộ sưu tập
+        function handleMultipleImagesUpload(event) {
+            const files = Array.from(event.target.files);
+            if (!files.length) return;
+
+            let loadedCount = 0;
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const cleanName = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+                    const newItem = {
+                        id: 'upload-' + Date.now() + '-' + index,
+                        title: cleanName.charAt(0).toUpperCase() + cleanName.slice(1),
+                        tag: 'Ảnh Cá Nhân Bổ Sung',
+                        desc: 'Hình ảnh định hướng nghề nghiệp và hoạt động phát triển bản thân của Nguyễn Huy Hoàng.',
+                        url: e.target.result
+                    };
+
+                    // Chèn ảnh mới vào danh sách và tự động tăng số lượng hiển thị
+                    galleryItems.splice(displayedSlotCount, 0, newItem);
+                    displayedSlotCount += 1;
+                    loadedCount++;
+
+                    if (loadedCount === files.length) {
+                        renderCareerGallery();
+                        showToast(`Đã tải lên thành công ${files.length} hình ảnh mới! Tổng số: ${displayedSlotCount} ảnh.`);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+
+            event.target.value = '';
+        }
+
+        // Thay thế 1 bức ảnh cụ thể trong khung bất kỳ
+        function triggerReplaceSingleSlot(index) {
+            activeReplaceIndex = index;
+            document.getElementById('singleSlotReplaceInput').click();
+        }
+
+        function handleSingleSlotFileChange(event) {
+            const file = event.target.files[0];
+            if (!file || activeReplaceIndex === null) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                galleryItems[activeReplaceIndex].url = e.target.result;
+                renderCareerGallery();
+                showToast(`Đã cập nhật hình ảnh mới cho khung số #${activeReplaceIndex + 1}!`);
+                activeReplaceIndex = null;
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        // Xóa 1 khung hình cụ thể
+        function removeGallerySlot(index) {
+            if (displayedSlotCount <= 1) {
+                showToast('Cần giữ lại ít nhất 1 hình ảnh trong bộ sưu tập!', 'warning');
+                return;
+            }
+            galleryItems.splice(index, 1);
+            displayedSlotCount -= 1;
+            renderCareerGallery();
+            showToast(`Đã xóa khung hình #${index + 1}. Hiện còn ${displayedSlotCount} hình ảnh.`);
+        }
+
+        // Lưu lại tiêu đề/mô tả khi người dùng sửa trực tiếp trên thẻ ảnh
+        function updateGalleryItemField(index, field, value) {
+            if (galleryItems[index]) {
+                galleryItems[index][field] = value.trim();
+            }
+        }
+
+        // Thay đổi bố cục hiển thị lưới ảnh
+        function changeGalleryGridCols(mode) {
+            currentLayoutMode = mode;
+            ['bento', 'grid3', 'grid2'].forEach(m => {
+                const btn = document.getElementById('layoutBtn-' + m);
+                if (m === mode) {
+                    btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-brandGreen-600 text-white shadow-sm transition';
+                } else {
+                    btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+                }
+            });
+            renderCareerGallery();
+        }
+
+        // Khôi phục 5 hình ảnh mặc định ban đầu
+        function resetDefaultGallery() {
+            galleryItems = JSON.parse(JSON.stringify(DEFAULT_CAREER_IMAGES));
+            displayedSlotCount = 5;
+            renderCareerGallery();
+            showToast('Đã khôi phục bộ 5 hình ảnh định hướng nghề nghiệp mặc định!');
+        }
+
+        // Cuộn mượt xuống khu vực quản lý ảnh và tạo hiệu ứng nháy viền
+        function scrollToGalleryAndHighlight() {
+            const section = document.getElementById('gallery-section');
+            const box = document.getElementById('galleryControlBox');
+            section.scrollIntoView({ behavior: 'smooth' });
+            box.classList.add('ring-4', 'ring-brandOrange-400');
+            setTimeout(() => box.classList.remove('ring-4', 'ring-brandOrange-400'), 2200);
+        }
+
+        /**
+         * 5. QUẢN LÝ ẢNH ĐẠI DIỆN CÁ NHÂN (AVATAR UPLOAD)
+         */
+        function handleAvatarUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profileAvatarImg').src = e.target.result;
+                showToast('Đã cập nhật ảnh chân dung của Nguyễn Huy Hoàng thành công!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        /**
+         * 6. MODAL THÊM ẢNH BẰNG LINK URL
+         */
+        function openAddImageUrlModal() {
+            document.getElementById('addUrlModal').classList.remove('hidden');
+        }
+
+        function closeAddImageUrlModal() {
+            document.getElementById('addUrlModal').classList.add('hidden');
+        }
+
+        function submitNewImageByUrl(event) {
+            event.preventDefault();
+            const url = document.getElementById('newImgUrlInput').value.trim();
+            const title = document.getElementById('newImgTitleInput').value.trim();
+            const tag = document.getElementById('newImgTagInput').value.trim() || 'Định Hướng Nghề Nghiệp';
+            const desc = document.getElementById('newImgDescInput').value.trim() || 'Hình ảnh bổ sung trong kế hoạch phát triển nghề nghiệp ngành Kinh doanh Quốc tế.';
+
+            galleryItems.splice(displayedSlotCount, 0, {
+                id: 'url-' + Date.now(),
+                title,
+                tag,
+                desc,
+                url
+            });
+            displayedSlotCount += 1;
+            renderCareerGallery();
+            closeAddImageUrlModal();
+            event.target.reset();
+            showToast(`Đã thêm hình ảnh "${title}" vào bộ sưu tập!`);
+        }
+
+        /**
+         * 7. LIGHTBOX XEM ẢNH PHÓNG TO
+         */
+        function openLightboxModal(index) {
+            activeLightboxIndex = index;
+            updateLightboxContent();
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightboxModal() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+
+        function navigateLightbox(direction) {
+            activeLightboxIndex = (activeLightboxIndex + direction + displayedSlotCount) % displayedSlotCount;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const item = galleryItems[activeLightboxIndex];
+            if (!item) return;
+            document.getElementById('lightboxImage').src = item.url;
+            document.getElementById('lightboxTitle').textContent = item.title;
+            document.getElementById('lightboxBadge').textContent = `#${activeLightboxIndex + 1} • ${item.tag}`;
+            document.getElementById('lightboxDesc').textContent = item.desc;
+        }
+
+        /**
+         * 8. CHUYỂN TAB PHÂN TÍCH SWOT
+         */
+        function switchSwotTab(key) {
+            ['S', 'W', 'O', 'T'].forEach(k => {
+                const panel = document.getElementById('swotContent-' + k);
+                const btn = document.getElementById('swotBtn-' + k);
+                if (k === key) {
+                    panel.classList.remove('hidden');
+                    btn.className = (k === 'S' || k === 'O')
+                        ? 'swot-tab-btn py-2 px-2 rounded-xl text-xs font-bold transition-all bg-brandGreen-600 text-white shadow-sm'
+                        : 'swot-tab-btn py-2 px-2 rounded-xl text-xs font-bold transition-all bg-brandOrange-500 text-white shadow-sm';
+                } else {
+                    panel.classList.add('hidden');
+                    btn.className = 'swot-tab-btn py-2 px-2 rounded-xl text-xs font-bold transition-all text-slate-600 hover:bg-white';
+                }
+            });
+        }
+
+        /**
+         * 9. MODAL CHI TIẾT TRƯỜNG ĐẠI HỌC MỤC TIÊU
+         */
+        const UNIVERSITY_DATA = {
+            FTU: {
+                code: 'FTU',
+                name: 'Trường Đại Học Ngoại Thương (Hà Nội & TP.HCM)',
+                program: 'Kinh doanh Quốc tế (Chương trình Tiêu chuẩn & Chất lượng cao Tiếng Anh)',
+                blocks: 'A00, A01, D01, D07',
+                score: '28.0 – 28.6 điểm (hoặc Xét tuyển kết hợp IELTS)',
+                reason: 'Cái nôi hàng đầu cả nước về đào tạo Ngoại thương, Logistics và Kinh doanh quốc tế với mạng lưới cựu sinh viên rộng khắp các tập đoàn đa quốc gia.'
+            },
+            UEH: {
+                code: 'UEH',
+                name: 'Đại Học Kinh Tế TP. Hồ Chí Minh',
+                program: 'Cử nhân Kinh doanh Quốc tế & Logistics - Quản trị Chuỗi cung ứng',
+                blocks: 'A00, A01, D01, D07',
+                score: '27.2 – 28.0 điểm',
+                reason: 'Môi trường học thuật hiện đại, năng động, gắn kết chặt chẽ với cộng đồng doanh nghiệp quốc tế tại trung tâm kinh tế lớn nhất cả nước.'
+            },
+            NEU: {
+                code: 'NEU',
+                name: 'Đại Học Kinh Tế Quốc Dân',
+                program: 'Kinh doanh Quốc tế & Quản trị Kinh doanh Quốc tế (E-BBA)',
+                blocks: 'A00, A01, D01, D07',
+                score: '27.8 – 28.5 điểm',
+                reason: 'Bề dày truyền thống đào tạo kinh tế vĩ mô, thương mại quốc tế và đội ngũ giảng viên, chuyên gia đầu ngành.'
+            },
+            UEL: {
+                code: 'UEL',
+                name: 'Trường Đại Học Kinh Tế - Luật (ĐHQG TP.HCM)',
+                program: 'Kinh doanh Quốc tế (Chuẩn & Chất lượng cao bằng Tiếng Anh)',
+                blocks: 'A00, A01, D01',
+                score: '26.8 – 27.6 điểm',
+                reason: 'Thế mạnh kết hợp độc đáo giữa tư duy Kinh doanh quốc tế và am hiểu sâu sắc Luật thương mại quốc tế.'
+            }
+        };
+
+        function openUniversityModal(uniKey) {
+            const info = UNIVERSITY_DATA[uniKey];
+            if (!info) return;
+            document.getElementById('uniModalCode').textContent = info.code;
+            document.getElementById('uniModalName').textContent = info.name;
+            document.getElementById('uniModalProgram').textContent = info.program;
+            document.getElementById('uniModalBlocks').textContent = info.blocks;
+            document.getElementById('uniModalScore').textContent = info.score;
+            document.getElementById('uniModalReason').textContent = info.reason;
+            document.getElementById('uniModal').classList.remove('hidden');
+        }
+
+        function closeUniversityModal() {
+            document.getElementById('uniModal').classList.add('hidden');
+        }
+
+        /**
+         * 10. CHẾ ĐỘ CHỈNH SỬA CHỮ TRỰC TIẾP TRÊN TRANG (CONTENTEDITABLE)
+         */
+        function toggleTextEditMode() {
+            isTextEditMode = !isTextEditMode;
+            const editableElements = document.querySelectorAll('.editable-text');
+            const banner = document.getElementById('editModeBanner');
+            const btn = document.getElementById('toggleEditModeBtn');
+            const label = document.getElementById('editModeLabel');
+
+            editableElements.forEach(el => {
+                el.setAttribute('contenteditable', isTextEditMode ? 'true' : 'false');
+            });
+
+            if (isTextEditMode) {
+                banner.classList.remove('hidden');
+                btn.className = 'flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-brandGreen-600 text-white shadow-glow-green transition-all';
+                label.textContent = 'Đang bật sửa chữ';
+                showToast('Đã bật Chế độ sửa chữ trực tiếp! Hãy nhấp vào bất kỳ đoạn văn nào để chỉnh sửa.');
+            } else {
+                banner.classList.add('hidden');
+                btn.className = 'flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-brandGreen-200 bg-brandGreen-50/90 text-brandGreen-800 hover:bg-brandGreen-100 transition-all shadow-sm';
+                label.textContent = 'Sửa chữ trực tiếp';
+                showToast('Đã lưu các nội dung chỉnh sửa trên trang!');
+            }
+        }
+
+        /**
+         * 11. XUẤT / TẢI XUỐNG FILE HTML ĐÃ TÙY CHỈNH
+         */
+        function exportCustomizedHTML() {
+            // Tắt tạm chế độ sửa chữ trước khi xuất file để giao diện sạch đẹp
+            if (isTextEditMode) {
+                toggleTextEditMode();
+            }
+            const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Ke-Hoach-Dinh-Huong-Nghe-Nghiep-Nguyen-Huy-Hoang.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('Đã tải xuống file HTML kèm toàn bộ hình ảnh & nội dung bạn đã tùy chỉnh!');
+        }
+
+        // Đóng các modal khi nhấn phím Escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightboxModal();
+                closeAddImageUrlModal();
+                closeUniversityModal();
+            }
+        });
+
+        // Khởi chạy ứng dụng khi tải trang hoàn tất
+        window.onload = function() {
+            renderCareerGallery();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hồ Sơ Cá Nhân & Ứng Xử Văn Minh Trên Không Gian Mạng</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #fff5eb 0%, #ffe4cc 50%, #ffd2a8 100%);
+      --primary: #ff6b00;
+      --primary-dark: #e05500;
+      --primary-light: #ff9a44;
+      --accent: #ffb703;
+      --surface: #ffffff;
+      --surface-soft: #fffaf5;
+      --text-main: #2d1e12;
+      --text-muted: #6e5544;
+      --border: #ffd8b8;
+      --shadow: 0 12px 30px rgba(255, 107, 0, 0.14);
+      --radius: 20px;
+      --base-font: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: var(--base-font);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Thanh điều hướng & công cụ nhanh */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 250, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 16px rgba(255, 107, 0, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 7px 14px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: #ffe8d6;
+      color: var(--primary-dark);
+    }
+
+    .utility-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-icon {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--primary-dark);
+      padding: 6px 11px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.88rem;
+    }
+
+    .btn-icon:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Container chính */
+    .container {
+      max-width: 1120px;
+      margin: 28px auto 0;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    /* Card chung */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #ff6b00, #ff9a44, #ffb703);
+    }
+
+    /* PHẦN 1: THÔNG TIN CÁ NHÂN */
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(255, 107, 0, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+
+    .btn-secondary {
+      background: #fff3e6;
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: #ffe4cc;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .avatar-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface-soft);
+      padding: 20px;
+      border-radius: 18px;
+      border: 2px dashed var(--primary-light);
+      text-align: center;
+    }
+
+    .avatar-wrapper {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid #fff;
+      box-shadow: 0 8px 22px rgba(255, 107, 0, 0.22);
+      background: #ffe8d6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-hint {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .info-fields {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .field-group {
+      background: var(--surface-soft);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      transition: 0.2s;
+    }
+
+    .field-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .field-value {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text-main);
+      word-break: break-word;
+    }
+
+    .editing .field-group {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.12);
+    }
+
+    .field-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      background: transparent;
+      resize: vertical;
+    }
+
+    /* PHẦN 2: NỘI DUNG ỨNG XỬ TRÊN KHÔNG GIAN MẠNG */
+    .cyber-intro {
+      background: linear-gradient(135deg, #ff7b00 0%, #ff9e00 100%);
+      color: #fff;
+      padding: 28px;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .cyber-intro h2 {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+    }
+
+    .cyber-intro p {
+      max-width: 720px;
+      opacity: 0.96;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      font-size: 0.98rem;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    .rule-card {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .rule-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 28px rgba(255, 107, 0, 0.16);
+      border-color: var(--primary-light);
+    }
+
+    .rule-illus {
+      position: relative;
+      height: 185px;
+      background: linear-gradient(180deg, #fff0e0 0%, #ffe0c2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rule-illus svg,
+    .rule-illus img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .illus-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .change-img-tip {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(45, 30, 18, 0.72);
+      color: #fff;
+      font-size: 0.74rem;
+      padding: 4px 9px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .rule-illus:hover .change-img-tip {
+      opacity: 1;
+    }
+
+    .rule-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rule-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .rule-desc {
+      font-size: 0.96rem;
+      color: var(--text-main);
+    }
+
+    .rule-tips {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .rule-tips strong {
+      color: var(--primary-dark);
+    }
+
+    /* Bảng Nên làm vs Không nên làm */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .compare-box {
+      padding: 22px;
+      border-radius: 16px;
+    }
+
+    .do-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .do-box h3 {
+      color: #15803d;
+      margin-bottom: 12px;
+    }
+
+    .dont-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+
+    .dont-box h3 {
+      color: #b91c1c;
+      margin-bottom: 12px;
+    }
+
+    .compare-box ul {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    /* PHẦN 3: TRẮC NGHIỆM NHANH */
+    .quiz-item {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-q {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--primary);
+      background: #fff7ed;
+    }
+
+    .quiz-result {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #fff3e6;
+      border: 2px solid var(--primary);
+      font-weight: 700;
+      display: none;
+    }
+
+    /* PHẦN 4: CAM KẾT & SAO LƯU OFFLINE */
+    .pledge-box {
+      background: linear-gradient(135deg, #fff5eb, #ffe4cc);
+      border: 2px solid var(--primary-light);
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .pledge-quote {
+      font-size: 1.12rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--text-main);
+      max-width: 760px;
+      margin: 0 auto 18px;
+    }
+
+    .pledge-status {
+      margin-top: 14px;
+      font-weight: 800;
+      color: #15803d;
+      font-size: 1.05rem;
+    }
+
+    .backup-bar {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Toast thông báo */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #2d1e12;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 780px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+      .info-fields {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Thanh điều hướng -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-badge">☀️</div>
+      <span>Công Dân Số Văn Minh</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#ho-so">Hồ sơ cá nhân</a>
+      <a href="#quy-tac">6 Quy tắc ứng xử</a>
+      <a href="#nen-khong-nen">Nên & Không nên</a>
+      <a href="#trac-nghiem">Trắc nghiệm</a>
+      <a href="#cam-ket">Cam kết</a>
+    </nav>
+    <div class="utility-controls">
+      <button class="btn-icon" onclick="changeFontSize(-1)" title="Giảm cỡ chữ">A-</button>
+      <button class="btn-icon" onclick="changeFontSize(1)" title="Tăng cỡ chữ">A+</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- PHẦN 1: GIỚI THIỆU THÔNG TIN CÁ NHÂN -->
+    <section id="ho-so" class="card">
+      <div class="profile-header">
+        <h1 class="section-title">👤 Giới Thiệu Thông Tin Cá Nhân</h1>
+        <div class="profile-actions">
+          <button id="editBtn" class="btn btn-primary" onclick="toggleEditProfile()">✏️ Chỉnh sửa thông tin</button>
+          <button id="saveBtn" class="btn btn-primary" style="display:none; background:#16a34a;" onclick="saveProfile()">💾 Lưu thông tin</button>
+          <button class="btn btn-secondary" onclick="resetProfile()">🔄 Khôi phục mặc định</button>
+        </div>
+      </div>
+
+      <div class="profile-grid" id="profileContainer">
+        <!-- Khu vực ảnh chân dung -->
+        <div class="avatar-box">
+          <div class="avatar-wrapper" onclick="document.getElementById('avatarInput').click()" title="Nhấn để tải ảnh chân dung">
+            <img id="avatarPreview" alt="Ảnh chân dung" />
+          </div>
+          <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)" />
+          <button class="btn btn-secondary" onclick="document.getElementById('avatarInput').click()">📷 Đổi ảnh chân dung</button>
+          <span class="avatar-hint">Nhấn vào khung tròn để tải ảnh từ máy tính (Tự động lưu offline)</span>
+        </div>
+
+        <!-- Khu vực thông tin chi tiết -->
+        <div class="info-fields" id="infoFields">
+          <div class="field-group">
+            <span class="field-label">Họ và tên</span>
+            <div class="field-value" data-key="fullName">Nguyễn Văn An</div>
+          </div>
+          <div class="field-group">
+            <span class="field-label">Ngày sinh / Tuổi</span>
+            <div class="field-value" data-key="dob">15/08/2008</div>
+          </div>
+          <div class="field-group">
+            <span class="field-label">Lớp / Đơn vị công tác</span>
+            <div class="field-value" data-key="organization">Lớp 12A11 - Nhóm 7</div>
+          </div>
+          <div class="field-group">
+            <span class="field-label">Địa chỉ / Quê quán</span>
+            <div class="field-value" data-key="address">Việt Nam</div>
+          </div>
+          <div class="field-group">
+            <span class="field-label">Email / Liên hệ</span>
+            <div class="field-value" data-key="contact">nguyenvanan@example.com</div>
+          </div>
+          <div class="field-group">
+            <span class="field-label">Sở thích & Kỹ năng</span>
+            <div class="field-value" data-key="hobbies">Đọc sách, Công nghệ, Thể thao, Thiết kế Web</div>
+          </div>
+          <div class="field-group full-width">
+            <span class="field-label">Giới thiệu bản thân & Phương châm sống</span>
+            <div class="field-value" data-key="bio">Xin chào! Mình yêu thích học hỏi công nghệ mới, rèn luyện tư duy tích cực và luôn hướng tới việc xây dựng môi trường mạng văn minh, an toàn, tử tế cho cộng đồng.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 2: NỘI DUNG ỨNG XỬ TRÊN KHÔNG GIAN MẠNG -->
+    <section id="quy-tac" class="card">
+      <div class="cyber-intro">
+        <div>
+          <h2>🌐 Quy Tắc Ứng Xử Văn Minh Trên Không Gian Mạng</h2>
+          <p>Không gian mạng là một phần của đời sống thực. Mỗi bình luận, lượt chia sẻ hay tin nhắn đều thể hiện nhân cách của chính bạn. Hãy cùng thực hành 6 nguyên tắc vàng dưới đây!</p>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="ruleSearch" class="search-input" placeholder="🔍 Tìm nhanh quy tắc (ví dụ: bảo mật, tin giả, tôn trọng, bản quyền...)" oninput="filterRules()" />
+      </div>
+
+      <div class="rules-grid" id="rulesGrid">
+        <!-- Quy tắc 1 -->
+        <article class="rule-card" data-keywords="tôn trọng lễ phép lịch sự ngôn từ xúc phạm">
+          <div class="rule-illus" onclick="triggerRuleImgUpload(1)" title="Nhấp để thay ảnh minh họa riêng">
+            <span class="illus-badge">Quy tắc 01</span>
+            <div id="ruleImgBox1" style="width:100%;height:100%;">
+              <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#fff0e0"/>
+                <circle cx="135" cy="95" r="38" fill="#ff9a44"/>
+                <circle cx="135" cy="82" r="16" fill="#fff"/>
+                <path d="M108 122 C108 104, 162 104, 162 122" fill="#fff"/>
+                <circle cx="265" cy="95" r="38" fill="#ff6b00"/>
+                <circle cx="265" cy="82" r="16" fill="#fff"/>
+                <path d="M238 122 C238 104, 292 104, 292 122" fill="#fff"/>
+                <rect x="165" y="42" width="70" height="34" rx="12" fill="#ffffff" stroke="#ff6b00" stroke-width="3"/>
+                <path d="M200 66 C192 56, 182 56, 188 49 C193 44, 200 50, 200 50 C200 50, 207 44, 212 49 C218 56, 208 56, 200 66 Z" fill="#ff4d4d"/>
+                <path d="M175 110 L225 110" stroke="#e05500" stroke-width="5" stroke-linecap="round" stroke-dasharray="6 6"/>
+              </svg>
+            </div>
+            <span class="change-img-tip">🖼️ Nhấp để đổi ảnh</span>
+            <input type="file" id="ruleFile1" accept="image/*" style="display:none" onchange="handleRuleImgUpload(event, 1)" />
+          </div>
+          <div class="rule-body">
+            <h3 class="rule-title">1. Tôn trọng & Lịch sự trong giao tiếp</h3>
+            <p class="rule-desc">Sử dụng ngôn từ chuẩn mực, văn minh khi bình luận, nhắn tin và thảo luận. Tôn trọng sự khác biệt về quan điểm, văn hóa, vùng miền và độ tuổi của người khác.</p>
+            <div class="rule-tips"><strong>Hành động:</strong> Không công kích cá nhân, không miệt thị ngoại hình hay dùng lời lẽ thô tục gây tổn thương.</div>
+          </div>
+        </article>
+
+        <!-- Quy tắc 2 -->
+        <article class="rule-card" data-keywords="kiểm chứng thông tin tin giả fake news chia sẻ nguồn chính thống">
+          <div class="rule-illus" onclick="triggerRuleImgUpload(2)" title="Nhấp để thay ảnh minh họa riêng">
+            <span class="illus-badge">Quy tắc 02</span>
+            <div id="ruleImgBox2" style="width:100%;height:100%;">
+              <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#fff3e6"/>
+                <rect x="115" y="32" width="130" height="140" rx="14" fill="#ffffff" stroke="#ff9a44" stroke-width="4"/>
+                <line x1="135" y1="60" x2="225" y2="60" stroke="#ffd8b8" stroke-width="8" stroke-linecap="round"/>
+                <line x1="135" y1="84" x2="210" y2="84" stroke="#ffd8b8" stroke-width="8" stroke-linecap="round"/>
+                <line x1="135" y1="108" x2="195" y2="108" stroke="#ffd8b8" stroke-width="8" stroke-linecap="round"/>
+                <circle cx="242" cy="115" r="42" fill="#fff" stroke="#ff6b00" stroke-width="6"/>
+                <line x1="272" y1="145" x2="305" y2="175" stroke="#e05500" stroke-width="10" stroke-linecap="round"/>
+                <path d="M225 115 L237 127 L260 102" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="change-img-tip">🖼️ Nhấp để đổi ảnh</span>
+            <input type="file" id="ruleFile2" accept="image/*" style="display:none" onchange="handleRuleImgUpload(event, 2)" />
+          </div>
+          <div class="rule-body">
+            <h3 class="rule-title">2. Kiểm chứng thông tin trước khi chia sẻ</h3>
+            <p class="rule-desc">Luôn đặt câu hỏi về nguồn gốc, độ tin cậy và mục đích của bài viết trước khi nhấn nút "Chia sẻ". Cảnh giác với tin giật gân, tin giả (Fake News) chưa được xác thực.</p>
+            <div class="rule-tips"><strong>Hành động:</strong> Đối chiếu thông tin từ báo chí chính thống và cơ quan chức năng có thẩm quyền.</div>
+          </div>
+        </article>
+
+        <!-- Quy tắc 3 -->
+        <article class="rule-card" data-keywords="bảo mật thông tin cá nhân mật khẩu lừa đảo otp">
+          <div class="rule-illus" onclick="triggerRuleImgUpload(3)" title="Nhấp để thay ảnh minh họa riêng">
+            <span class="illus-badge">Quy tắc 03</span>
+            <div id="ruleImgBox3" style="width:100%;height:100%;">
+              <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#ffeedd"/>
+                <path d="M200 28 L272 56 L272 106 C272 148, 238 172, 200 184 C162 172, 128 148, 128 106 L128 56 Z" fill="#ff6b00"/>
+                <path d="M200 40 L260 64 L260 106 C260 140, 231 160, 200 171 C169 160, 140 140, 140 106 L140 64 Z" fill="#ff9a44"/>
+                <rect x="178" y="96" width="44" height="36" rx="8" fill="#ffffff"/>
+                <path d="M186 96 V82 A14 14 0 0 1 214 82 V96" fill="none" stroke="#ffffff" stroke-width="6"/>
+                <circle cx="200" cy="112" r="4" fill="#e05500"/>
+              </svg>
+            </div>
+            <span class="change-img-tip">🖼️ Nhấp để đổi ảnh</span>
+            <input type="file" id="ruleFile3" accept="image/*" style="display:none" onchange="handleRuleImgUpload(event, 3)" />
+          </div>
+          <div class="rule-body">
+            <h3 class="rule-title">3. Bảo vệ dữ liệu & An toàn tài khoản</h3>
+            <p class="rule-desc">Không công khai thông tin nhạy cảm như số CCCD, địa chỉ nhà riêng, số tài khoản ngân hàng, mã OTP hay lịch trình cá nhân lên mạng xã hội công khai.</p>
+            <div class="rule-tips"><strong>Hành động:</strong> Bật xác thực 2 lớp (2FA), đặt mật khẩu mạnh và không nhấp vào đường link lạ.</div>
+          </div>
+        </article>
+
+        <!-- Quy tắc 4 -->
+        <article class="rule-card" data-keywords="bản quyền sở hữu trí tuệ trích dẫn sáng tạo">
+          <div class="rule-illus" onclick="triggerRuleImgUpload(4)" title="Nhấp để thay ảnh minh họa riêng">
+            <span class="illus-badge">Quy tắc 04</span>
+            <div id="ruleImgBox4" style="width:100%;height:100%;">
+              <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#fff0e0"/>
+                <circle cx="200" cy="100" r="56" fill="#ffb703"/>
+                <circle cx="200" cy="100" r="42" fill="#ffffff"/>
+                <text x="200" y="116" text-anchor="middle" font-size="48" font-weight="900" fill="#ff6b00" font-family="Arial">C</text>
+                <rect x="92" y="75" width="42" height="50" rx="8" fill="#ff9a44"/>
+                <rect x="266" y="75" width="42" height="50" rx="8" fill="#ff9a44"/>
+              </svg>
+            </div>
+            <span class="change-img-tip">🖼️ Nhấp để đổi ảnh</span>
+            <input type="file" id="ruleFile4" accept="image/*" style="display:none" onchange="handleRuleImgUpload(event, 4)" />
+          </div>
+          <div class="rule-body">
+            <h3 class="rule-title">4. Tôn trọng bản quyền & Quyền riêng tư</h3>
+            <p class="rule-desc">Ghi rõ nguồn tác giả khi sử dụng hình ảnh, bài viết, âm nhạc hoặc video của người khác. Không tự ý đăng ảnh, video riêng tư của cá nhân khác khi chưa được đồng ý.</p>
+            <div class="rule-tips"><strong>Hành động:</strong> Khuyến khích tự sáng tạo nội dung lành mạnh, trích dẫn minh bạch.</div>
+          </div>
+        </article>
+
+        <!-- Quy tắc 5 -->
+        <article class="rule-card" data-keywords="bắt nạt trực tuyến cyberbullying hỗ trợ bảo vệ">
+          <div class="rule-illus" onclick="triggerRuleImgUpload(5)" title="Nhấp để thay ảnh minh họa riêng">
+            <span class="illus-badge">Quy tắc 05</span>
+            <div id="ruleImgBox5" style="width:100%;height:100%;">
+              <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#fff4e6"/>
+                <circle cx="200" cy="102" r="58" fill="#ffe0c2" stroke="#ff6b00" stroke-width="4"/>
+                <path d="M168 112 C168 85, 232 85, 232 112" fill="none" stroke="#e05500" stroke-width="8" stroke-linecap="round"/>
+                <circle cx="182" cy="82" r="10" fill="#ff6b00"/>
+                <circle cx="218" cy="82" r="10" fill="#ff6b00"/>
+                <path d="M180 128 Q200 144 220 128" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="change-img-tip">🖼️ Nhấp để đổi ảnh</span>
+            <input type="file" id="ruleFile5" accept="image/*" style="display:none" onchange="handleRuleImgUpload(event, 5)" />
+          </div>
+          <div class="rule-body">
+            <h3 class="rule-title">5. Nói KHÔNG với bắt nạt trực tuyến</h3>
+            <p class="rule-desc">Không tham gia hùa theo đám đông để công kích, bôi nhọ hay tẩy chay người khác trên mạng. Lên tiếng bảo vệ nạn nhân và báo cáo hành vi quấy rối.</p>
+            <div class="rule-tips"><strong>Hành động:</strong> Sử dụng tính năng Báo cáo (Report) / Chặn (Block) và thông báo cho người lớn hoặc cơ quan chức năng khi gặp bắt nạt mạng.</div>
+          </div>
+        </article>
+
+        <!-- Quy tắc 6 -->
+        <article class="rule-card" data-keywords="lan tỏa tích cực học tập cộng đồng cân bằng thời gian">
+          <div class="rule-illus" onclick="triggerRuleImgUpload(6)" title="Nhấp để thay ảnh minh họa riêng">
+            <span class="illus-badge">Quy tắc 06</span>
+            <div id="ruleImgBox6" style="width:100%;height:100%;">
+              <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#ffeedd"/>
+                <circle cx="200" cy="95" r="40" fill="#ffb703"/>
+                <g stroke="#ff6b00" stroke-width="6" stroke-linecap="round">
+                  <line x1="200" y1="32" x2="200" y2="46"/>
+                  <line x1="200" y1="144" x2="200" y2="158"/>
+                  <line x1="137" y1="95" x2="151" y2="95"/>
+                  <line x1="249" y1="95" x2="263" y2="95"/>
+                  <line x1="156" y1="51" x2="166" y2="61"/>
+                  <line x1="234" y1="129" x2="244" y2="139"/>
+                  <line x1="244" y1="51" x2="234" y2="61"/>
+                  <line x1="166" y1="129" x2="156" y2="139"/>
+                </g>
+              </svg>
+            </div>
+            <span class="change-img-tip">🖼️ Nhấp để đổi ảnh</span>
+            <input type="file" id="ruleFile6" accept="image/*" style="display:none" onchange="handleRuleImgUpload(event, 6)" />
+          </div>
+          <div class="rule-body">
+            <h3 class="rule-title">6. Lan tỏa giá trị tích cực & Cân bằng cuộc sống</h3>
+            <p class="rule-desc">Tận dụng Internet để học tập, trau dồi tri thức, chia sẻ những câu chuyện nhân văn và quảng bá hình ảnh đẹp của quê hương, đất nước.</p>
+            <div class="rule-tips"><strong>Hành động:</strong> Quản lý thời gian sử dụng mạng hợp lý, dành thời gian giao tiếp trực tiếp với gia đình và bạn bè.</div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Bảng so sánh Nên & Không nên -->
+      <div id="nen-khong-nen" class="compare-grid">
+        <div class="compare-box do-box">
+          <h3>✅ Những điều NÊN làm</h3>
+          <ul>
+            <li>Suy nghĩ kỹ trước khi đăng tải hoặc bình luận bất kỳ nội dung nào.</li>
+            <li>Sử dụng tên thật hoặc danh tính rõ ràng khi tham gia cộng đồng học tập, làm việc.</li>
+            <li>Bảo mật tài khoản bằng mật khẩu mạnh và xác thực hai yếu tố.</li>
+            <li>Chia sẻ kiến thức hữu ích, cổ vũ hành động đẹp và lòng nhân ái.</li>
+          </ul>
+        </div>
+        <div class="compare-box dont-box">
+          <h3>❌ Những điều KHÔNG NÊN làm</h3>
+          <ul>
+            <li>Đăng tải, chia sẻ thông tin sai sự thật, kích động bạo lực, thù ghét.</li>
+            <li>Xúc phạm danh dự, nhân phẩm hoặc tiết lộ bí mật đời tư của người khác.</li>
+            <li>Cung cấp mã OTP, mật khẩu hoặc chuyển tiền theo yêu cầu qua tin nhắn lạ.</li>
+            <li>Lạm dụng mạng xã hội quá nhiều giờ làm ảnh hưởng sức khỏe và học tập.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 3: TRẮC NGHIỆM KIẾN THỨC NHANH -->
+    <section id="trac-nghiem" class="card">
+      <h2 class="section-title" style="margin-bottom:18px;">🧠 Trắc Nghiệm Nhanh: Bạn Hiểu Rõ Quy Tắc Ứng Xử?</h2>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Câu 1: Khi thấy một bài viết giật gân, gây hoang mang trên mạng xã hội nhưng chưa rõ nguồn gốc, bạn nên làm gì?</div>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q1" value="a" /> Chia sẻ ngay lập tức để cảnh báo mọi người.</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="b" /> Kiểm chứng thông tin từ các nguồn báo chí chính thống trước khi chia sẻ.</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="c" /> Bình luận chỉ trích dù chưa biết thực hư.</label>
+        </div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Câu 2: Hành động nào giúp bảo vệ an toàn thông tin cá nhân tốt nhất trên không gian mạng?</div>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q2" value="a" /> Đăng ảnh thẻ CCCD và vé máy bay lên trang cá nhân ở chế độ công khai.</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="b" /> Dùng chung một mật khẩu đơn giản cho mọi tài khoản để dễ nhớ.</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="c" /> Bật xác thực 2 lớp (2FA) và tuyệt đối không chia sẻ mã OTP cho bất kỳ ai.</label>
+        </div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Câu 3: Khi gặp bình luận trái chiều với quan điểm của mình trên mạng, cách ứng xử văn minh là gì?</div>
+        <div class="quiz-options">
+          <label class="quiz-option"><input type="radio" name="q3" value="a" /> Tranh luận lịch sự, tôn trọng người đối diện hoặc bỏ qua nếu thấy không phù hợp.</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="b" /> Dùng lời lẽ xúc phạm và kêu gọi bạn bè vào công kích tài khoản đó.</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="c" /> Tìm ảnh cá nhân của họ để chế ảnh bôi nhọ.</label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" onclick="checkQuiz()">🎯 Kiểm tra kết quả</button>
+      <div id="quizResult" class="quiz-result"></div>
+    </section>
+
+    <!-- PHẦN 4: CAM KẾT & SAO LƯU OFFLINE -->
+    <section id="cam-ket" class="card">
+      <div class="pledge-box">
+        <h2 class="section-title" style="justify-content:center; margin-bottom:12px;">🤝 Cam Kết Công Dân Số Văn Minh</h2>
+        <p class="pledge-quote">“Tôi cam kết luôn tôn trọng pháp luật, giữ gìn sự trong sáng của tiếng Việt, ứng xử tử tế, bảo vệ thông tin cá nhân và lan tỏa những giá trị tích cực trên không gian mạng.”</p>
+        <button class="btn btn-primary" onclick="signPledge()">✍️ Xác nhận ký cam kết</button>
+        <div id="pledgeStatus" class="pledge-status"></div>
+      </div>
+
+      <div class="backup-bar">
+        <div style="font-size:0.9rem; color:var(--text-muted);">
+          💾 <strong>Chế độ Offline:</strong> Toàn bộ thông tin & ảnh được lưu tự động trên trình duyệt máy bạn.
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-secondary" onclick="exportData()">📤 Xuất dữ liệu (.json)</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('importInput').click()">📥 Nhập dữ liệu</button>
+          <input type="file" id="importInput" accept=".json" style="display:none" onchange="importData(event)" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast">Đã lưu thành công!</div>
+
+  <script>
+    const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="200" fill="#ffe4cc"/>
+        <circle cx="100" cy="76" r="36" fill="#ff6b00"/>
+        <path d="M40 185 C40 135, 160 135, 160 185" fill="#ff9a44"/>
+      </svg>
+    `);
+
+    const DEFAULT_PROFILE = {
+      fullName: "Nguyễn Văn An",
+      dob: "15/08/2008",
+      organization: "Lớp 12A11 - Nhóm 7",
+      address: "Việt Nam",
+      contact: "nguyenvanan@example.com",
+      hobbies: "Đọc sách, Công nghệ, Thể thao, Thiết kế Web",
+      bio: "Xin chào! Mình yêu thích học hỏi công nghệ mới, rèn luyện tư duy tích cực và luôn hướng tới việc xây dựng môi trường mạng văn minh, an toàn, tử tế cho cộng đồng.",
+      avatar: DEFAULT_AVATAR,
+      pledged: false,
+      pledgeDate: "",
+      ruleImages: {}
+    };
+
+    let profileData = JSON.parse(localStorage.getItem("cyberProfileData")) || { ...DEFAULT_PROFILE };
+    let isEditing = false;
+    let currentFontSize = 16;
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    function renderProfile() {
+      document.getElementById("avatarPreview").src = profileData.avatar || DEFAULT_AVATAR;
+      document.querySelectorAll(".field-value").forEach(el => {
+        const key = el.getAttribute("data-key");
+        el.textContent = profileData[key] || "";
+      });
+
+      if (profileData.pledged) {
+        document.getElementById("pledgeStatus").textContent =
+          `✅ Đã ký cam kết bởi: ${profileData.fullName} (${profileData.pledgeDate})`;
+      } else {
+        document.getElementById("pledgeStatus").textContent = "";
+      }
+
+      if (profileData.ruleImages) {
+        for (let i = 1; i <= 6; i++) {
+          if (profileData.ruleImages[i]) {
+            document.getElementById(`ruleImgBox${i}`).innerHTML =
+              `<img src="${profileData.ruleImages[i]}" alt="Minh họa quy tắc ${i}" />`;
+          }
+        }
+      }
+    }
+
+    function toggleEditProfile() {
+      if (isEditing) return;
+      isEditing = true;
+      document.getElementById("profileContainer").classList.add("editing");
+      document.getElementById("editBtn").style.display = "none";
+      document.getElementById("saveBtn").style.display = "inline-flex";
+
+      document.querySelectorAll(".field-value").forEach(el => {
+        const key = el.getAttribute("data-key");
+        const val = profileData[key] || "";
+        if (key === "bio") {
+          el.innerHTML = `<textarea class="field-input" rows="3" data-input-key="${key}">${val}</textarea>`;
+        } else {
+          el.innerHTML = `<input class="field-input" type="text" data-input-key="${key}" value="${val.replace(/"/g, '&quot;')}" />`;
+        }
+      });
+    }
+
+    function saveProfile() {
+      document.querySelectorAll("[data-input-key]").forEach(input => {
+        const key = input.getAttribute("data-input-key");
+        profileData[key] = input.value.trim();
+      });
+      isEditing = false;
+      document.getElementById("profileContainer").classList.remove("editing");
+      document.getElementById("editBtn").style.display = "inline-flex";
+      document.getElementById("saveBtn").style.display = "none";
+
+      localStorage.setItem("cyberProfileData", JSON.stringify(profileData));
+      renderProfile();
+      showToast("✅ Đã lưu thông tin cá nhân!");
+    }
+
+    function resetProfile() {
+      if (!confirm("Bạn có chắc muốn khôi phục thông tin cá nhân về mặc định?")) return;
+      profileData = { ...DEFAULT_PROFILE, ruleImages: {} };
+      localStorage.setItem("cyberProfileData", JSON.stringify(profileData));
+      isEditing = false;
+      document.getElementById("profileContainer").classList.remove("editing");
+      document.getElementById("editBtn").style.display = "inline-flex";
+      document.getElementById("saveBtn").style.display = "none";
+      renderProfile();
+      showToast("🔄 Đã khôi phục mặc định!");
+    }
+
+    function handleAvatarUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        profileData.avatar = e.target.result;
+        localStorage.setItem("cyberProfileData", JSON.stringify(profileData));
+        renderProfile();
+        showToast("📷 Đã cập nhật và lưu ảnh chân dung!");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function triggerRuleImgUpload(index) {
+      document.getElementById(`ruleFile${index}`).click();
+    }
+
+    function handleRuleImgUpload(event, index) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        if (!profileData.ruleImages) profileData.ruleImages = {};
+        profileData.ruleImages[index] = e.target.result;
+        localStorage.setItem("cyberProfileData", JSON.stringify(profileData));
+        renderProfile();
+        showToast(`🖼️ Đã cập nhật ảnh minh họa Quy tắc ${index}!`);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function filterRules() {
+      const query = document.getElementById("ruleSearch").value.toLowerCase().trim();
+      document.querySelectorAll(".rule-card").forEach(card => {
+        const text = (card.innerText + " " + card.getAttribute("data-keywords")).toLowerCase();
+        card.style.display = text.includes(query) ? "flex" : "none";
+      });
+    }
+
+    function checkQuiz() {
+      const answers = { q1: "b", q2: "c", q3: "a" };
+      let score = 0;
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) score++;
+      }
+      const resBox = document.getElementById("quizResult");
+      resBox.style.display = "block";
+      const name = profileData.fullName || "Bạn";
+      if (score === 3) {
+        resBox.innerHTML = `🎉 Xuất sắc! <strong>${name}</strong> đạt <strong>3/3 điểm</strong> — Bạn là một Công dân số cực kỳ am hiểu và văn minh!`;
+      } else {
+        resBox.innerHTML = `💡 <strong>${name}</strong> đạt <strong>${score}/3 điểm</strong>. Hãy xem lại các quy tắc phía trên để đạt trọn vẹn 3/3 điểm nhé!`;
+      }
+    }
+
+    function signPledge() {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString("vi-VN") + " " + now.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+      profileData.pledged = true;
+      profileData.pledgeDate = dateStr;
+      localStorage.setItem("cyberProfileData", JSON.stringify(profileData));
+      renderProfile();
+      showToast("🤝 Ký cam kết thành công!");
+    }
+
+    function changeFontSize(delta) {
+      currentFontSize = Math.min(20, Math.max(14, currentFontSize + delta));
+      document.documentElement.style.setProperty("--base-font", currentFontSize + "px");
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(profileData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "ho-so-cong-dan-so.json";
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("📤 Đã tải xuống file sao lưu dữ liệu!");
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          profileData = { ...DEFAULT_PROFILE, ...imported };
+          localStorage.setItem("cyberProfileData", JSON.stringify(profileData));
+          renderProfile();
+          showToast("📥 Đã khôi phục dữ liệu từ file thành công!");
+        } catch {
+          alert("File dữ liệu không hợp lệ!");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    renderProfile();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sáng Trong Lành - Giáo Dục Giới Tính Thanh Thiếu Niên</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        peach: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                        },
+                        lavender: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            500: '#a855f7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons CDN -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-all text-base" id="appBody">
+
+    <!-- TOP ALERT / QUICK EXIT BAR -->
+    <div class="bg-rose-600 text-white px-4 py-2 text-xs sm:text-sm flex justify-between items-center z-50 sticky top-0 shadow-md">
+        <div class="flex items-center space-x-2">
+            <i class="ph-bold ph-shield-check text-lg"></i>
+            <span>Không gian an toàn & bảo mật. Lịch sử duyệt không bị lưu trữ bởi trang này.</span>
+        </div>
+        <button onclick="quickExit()" class="bg-white text-rose-700 hover:bg-rose-100 font-bold px-3 py-1 rounded-full text-xs transition flex items-center gap-1 shadow">
+            <i class="ph-bold ph-arrow-square-out"></i>
+            <span>THOÁT NHANH (ESC)</span>
+        </button>
+    </div>
+
+    <!-- MAIN HEADER & NAVIGATION -->
+    <header class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 sticky top-9 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 rounded-2xl bg-teal-500 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                        🌱
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-teal-700 dark:text-teal-400 leading-tight">Sáng Trong Lành</h1>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Giáo dục giới tính an toàn & khoa học</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex space-x-1 text-sm font-medium">
+                    <button onclick="navigateTo('home')" class="nav-btn px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1" data-target="home">
+                        <i class="ph-bold ph-house"></i> Trang chủ
+                    </button>
+                    <button onclick="navigateTo('topics')" class="nav-btn px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1" data-target="topics">
+                        <i class="ph-bold ph-book-open"></i> Chuyên mục
+                    </button>
+                    <button onclick="navigateTo('library')" class="nav-btn px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1" data-target="library">
+                        <i class="ph-bold ph-books"></i> Thư viện & Video
+                    </button>
+                    <button onclick="navigateTo('dictionary')" class="nav-btn px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1" data-target="dictionary">
+                        <i class="ph-bold ph-text-a-underline"></i> Từ điển A-Z
+                    </button>
+                    <button onclick="navigateTo('qa-quiz')" class="nav-btn px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1" data-target="qa-quiz">
+                        <i class="ph-bold ph-question"></i> Hỏi đáp & Quiz
+                    </button>
+                    <button onclick="navigateTo('parents-teachers')" class="nav-btn px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center gap-1" data-target="parents-teachers">
+                        <i class="ph-bold ph-users-three"></i> Cha mẹ & Thầy cô
+                    </button>
+                    <button onclick="navigateTo('team')" class="nav-btn px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-700 text-teal-700 dark:text-teal-400 font-semibold flex items-center gap-1" data-target="team">
+                        <i class="ph-bold ph-users text-teal-600"></i> Về chúng tôi
+                    </button>
+                    <button onclick="navigateTo('helpline')" class="nav-btn px-3 py-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950 text-rose-600 dark:text-rose-400 font-semibold flex items-center gap-1" data-target="helpline">
+                        <i class="ph-bold ph-phone-call"></i> Trợ giúp
+                    </button>
+                </nav>
+
+                <!-- Accessibility & Theme Utilities -->
+                <div class="flex items-center gap-2">
+                    <!-- Font Resize -->
+                    <div class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-700 rounded-lg p-1 text-xs">
+                        <button onclick="adjustFontSize(-1)" class="px-2 py-1 hover:bg-white dark:hover:bg-slate-600 rounded text-slate-600 dark:text-slate-300 font-bold" title="Giảm cỡ chữ">A-</button>
+                        <button onclick="adjustFontSize(0)" class="px-2 py-1 hover:bg-white dark:hover:bg-slate-600 rounded text-slate-600 dark:text-slate-300 font-bold" title="Cỡ chữ chuẩn">A</button>
+                        <button onclick="adjustFontSize(1)" class="px-2 py-1 hover:bg-white dark:hover:bg-slate-600 rounded text-slate-600 dark:text-slate-300 font-bold" title="Tăng cỡ chữ">A+</button>
+                    </div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" class="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg" title="Chuyển chế độ Sáng/Tối">
+                        <i class="ph-bold ph-moon text-lg dark:hidden"></i>
+                        <i class="ph-bold ph-sun text-lg hidden dark:block"></i>
+                    </button>
+
+                    <!-- Saved Items Bookmark Modal Button -->
+                    <button onclick="openBookmarksModal()" class="relative p-2 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-700 rounded-lg" title="Bài viết đã lưu">
+                        <i class="ph-bold ph-bookmark-simple text-xl"></i>
+                        <span id="bookmarkCount" class="absolute top-1 right-1 bg-rose-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                        <i class="ph-bold ph-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 pt-2 pb-4 space-y-1">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2">
+                <i class="ph-bold ph-house"></i> Trang chủ
+            </button>
+            <button onclick="navigateTo('topics'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2">
+                <i class="ph-bold ph-book-open"></i> Các Chuyên mục kiến thức
+            </button>
+            <button onclick="navigateTo('library'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2">
+                <i class="ph-bold ph-books"></i> Thư viện & Video học liệu
+            </button>
+            <button onclick="navigateTo('dictionary'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2">
+                <i class="ph-bold ph-text-a-underline"></i> Từ điển A-Z
+            </button>
+            <button onclick="navigateTo('qa-quiz'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2">
+                <i class="ph-bold ph-question"></i> Hỏi đáp & Kiểm tra Kiến thức
+            </button>
+            <button onclick="navigateTo('parents-teachers'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2">
+                <i class="ph-bold ph-users-three"></i> Dành cho Cha mẹ & Thầy cô
+            </button>
+            <button onclick="navigateTo('team'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-teal-600 font-semibold flex items-center gap-2">
+                <i class="ph-bold ph-users"></i> Nhóm phát triển website
+            </button>
+            <button onclick="navigateTo('helpline'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg bg-rose-50 text-rose-600 font-semibold flex items-center gap-2">
+                <i class="ph-bold ph-phone-call"></i> Danh bạ hỗ trợ khẩn cấp
+            </button>
+        </div>
+    </header>
+
+    <!-- SEARCH BAR SECTION (GLOBAL) -->
+    <section class="bg-gradient-to-r from-teal-500 via-teal-600 to-emerald-600 text-white py-8 px-4 shadow-inner">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-xl sm:text-2xl font-bold mb-2">Bạn đang thắc mắc hay tìm kiếm thông tin gì?</h2>
+            <p class="text-teal-100 text-xs sm:text-sm mb-4">Không gian giải đáp khoa học, khách quan, hoàn toàn riêng tư cho thanh thiếu niên 13–19 tuổi</p>
+            
+            <div class="relative max-w-2xl mx-auto">
+                <div class="relative flex items-center">
+                    <input type="text" id="globalSearchInput" oninput="handleSearchInput(this.value)" placeholder="Ví dụ: kinh nguyệt, bao cao su, dậy thì, consent, sexting..." 
+                           class="w-full pl-11 pr-10 py-3.5 rounded-2xl text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800 shadow-xl focus:outline-none focus:ring-4 focus:ring-teal-300 dark:focus:ring-teal-800 text-sm sm:text-base">
+                    <i class="ph-bold ph-magnifying-glass absolute left-4 text-slate-400 text-xl"></i>
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-4 text-slate-400 hover:text-slate-600 text-lg">
+                        <i class="ph-bold ph-x-circle"></i>
+                    </button>
+                </div>
+
+                <!-- Dynamic Search Suggestion Dropdown -->
+                <div id="searchResultsDropdown" class="hidden absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 max-h-96 overflow-y-auto z-50 text-left p-2">
+                </div>
+            </div>
+
+            <!-- Quick Suggestion Tags -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mt-3 text-xs text-teal-100">
+                <span class="opacity-80">Gợi ý tìm nhanh:</span>
+                <button onclick="setQuickSearch('dậy thì')" class="bg-white/20 hover:bg-white/30 px-2 py-1 rounded-full">Dậy thì</button>
+                <button onclick="setQuickSearch('tránh thai')" class="bg-white/20 hover:bg-white/30 px-2 py-1 rounded-full">Tránh thai</button>
+                <button onclick="setQuickSearch('đồng thuận')" class="bg-white/20 hover:bg-white/30 px-2 py-1 rounded-full">Đồng thuận</button>
+                <button onclick="setQuickSearch('an toàn mạng')" class="bg-white/20 hover:bg-white/30 px-2 py-1 rounded-full">An toàn mạng</button>
+                <button onclick="setQuickSearch('LGBTIQ+')" class="bg-white/20 hover:bg-white/30 px-2 py-1 rounded-full">LGBTIQ+</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER (SPA PAGES) -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        <!-- PAGE 1: HOME PAGE -->
+        <div id="page-home" class="page-content space-y-10">
+            
+            <!-- Hero Banner -->
+            <div class="bg-amber-50 dark:bg-slate-800 rounded-3xl p-6 sm:p-10 border border-amber-200/60 dark:border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+                <div class="space-y-4 max-w-xl">
+                    <span class="inline-block bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Hiểu về bản thân • Tự tin làm chủ</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-slate-100 leading-tight">Chào mừng bạn đến với Trang Giáo dục Giới tính An toàn</h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Nơi bạn được giải đáp mọi thắc mắc về sự thay đổi cơ thể, tình cảm tuổi mới lớn, tình yêu, và các kỹ năng bảo vệ bản thân. Tất cả thông tin dựa trên y học hiện đại và khoa học tâm lý, hoàn toàn không kỳ thị hay phán xét.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="navigateTo('topics')" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition shadow-md flex items-center gap-2">
+                            <i class="ph-bold ph-compass"></i> Khám phá các chủ đề
+                        </button>
+                        <button onclick="navigateTo('team')" class="bg-teal-100 dark:bg-slate-700 text-teal-800 dark:text-teal-300 hover:bg-teal-200 font-semibold px-5 py-2.5 rounded-xl text-sm transition flex items-center gap-2">
+                            <i class="ph-bold ph-users"></i> Nhóm phát triển
+                        </button>
+                        <button onclick="navigateTo('helpline')" class="bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 hover:bg-rose-200 font-semibold px-5 py-2.5 rounded-xl text-sm transition flex items-center gap-2">
+                            <i class="ph-bold ph-phone-call"></i> Đường dây hỗ trợ
+                        </button>
+                    </div>
+                </div>
+                <div class="w-full md:w-72 h-56 bg-teal-100 dark:bg-slate-700 rounded-2xl flex flex-col items-center justify-center p-4 text-center border border-teal-200 dark:border-slate-600">
+                    <div class="text-5xl mb-2">🪴</div>
+                    <p class="font-bold text-slate-700 dark:text-slate-200 text-sm">Góc Nhắc Nhở An Toàn</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Cơ thể bạn là thuộc về bạn. Hãy luôn lắng nghe, tôn trọng cảm xúc và ranh giới cá nhân của chính mình cũng như người khác.</p>
+                </div>
+            </div>
+
+            <!-- 8 Key Featured Topics Grid -->
+            <div>
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">8 Chuyên Mục Tự Học Chính</h3>
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Chọn chủ đề bạn muốn tìm hiểu</p>
+                    </div>
+                    <button onclick="navigateTo('topics')" class="text-teal-600 dark:text-teal-400 font-medium text-sm hover:underline">Xem tất cả &rarr;</button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="homeTopicsGrid">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+            </div>
+
+            <!-- Spotlight Article & Myth Busters Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Myth Buster Card -->
+                <div class="bg-indigo-50 dark:bg-slate-800 p-6 rounded-3xl border border-indigo-100 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-3">
+                            <i class="ph-bold ph-lightbulb text-xl"></i>
+                            <span>SỰ THẬT HAY LẦM TƯỞNG?</span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-2">"Lần đầu quan hệ tình dục thì không thể mang thai?"</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            <strong>Sự thật:</strong> SAI HOÀN TOÀN! Khả năng thụ thai phụ thuộc vào sự rụng trứng, không phụ thuộc vào số lần quan hệ. Ngay lần đầu tiên nếu không dùng biện pháp tránh thai an toàn thì tỉ lệ mang thai vẫn xảy ra bình thường.
+                        </p>
+                    </div>
+                    <button onclick="navigateTo('topics', 'myth')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition w-full text-center">
+                        Xem thêm 10+ hiểu lầm phổ biến
+                    </button>
+                </div>
+
+                <!-- Emergency Contact Quick Banner -->
+                <div class="bg-rose-50 dark:bg-slate-800 p-6 rounded-3xl border border-rose-200 dark:border-slate-700 flex flex-col justify-between lg:col-span-2">
+                    <div>
+                        <div class="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-sm mb-3">
+                            <i class="ph-bold ph-warning-circle text-xl"></i>
+                            <span>BẠN CẦN TRỢ GIÚP HOẶC TƯ VẤN KHẨN CẤP?</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                            Nếu bạn đang gặp rắc rối, bị xâm hại, bạo lực, bắt nạt trực tuyến hoặc có hoang mang về sức khỏe sinh sản, đừng ngần ngại tìm sự hỗ trợ miễn phí và bảo mật từ các tổng đài quốc gia:
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+                            <div class="bg-white dark:bg-slate-700 p-3 rounded-xl border border-rose-100 dark:border-slate-600 flex items-center gap-3">
+                                <span class="text-2xl font-black text-rose-600">111</span>
+                                <div class="text-xs">
+                                    <p class="font-bold">Tổng đài Quốc gia Bảo vệ Trẻ em</p>
+                                    <p class="text-slate-500 dark:text-slate-400">Trực 24/7 • Miễn phí cước gọi</p>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-700 p-3 rounded-xl border border-rose-100 dark:border-slate-600 flex items-center gap-3">
+                                <span class="text-2xl font-black text-teal-600">1800 1567</span>
+                                <div class="text-xs">
+                                    <p class="font-bold">Đường dây tư vấn tâm lý - xã hội</p>
+                                    <p class="text-slate-500 dark:text-slate-400">Tư vấn chuyên sâu miễn phí</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button onclick="navigateTo('helpline')" class="text-rose-600 dark:text-rose-400 font-semibold text-xs hover:underline inline-flex items-center gap-1">
+                            Xem danh bạ địa chỉ tư vấn đầy đủ <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Learning Resources Carousel/Grid -->
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-4">Tài Liệu & Học Liệu Nổi Bật</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="homeResourcesPreview">
+                    <!-- Dynamic rendering JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: TOPICS PAGE (ARTICLES BY CATEGORY) -->
+        <div id="page-topics" class="page-content space-y-6 hidden">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-700 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Chuyên Mục Kiến Thức Khoa Học</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Chọn chủ đề để xem các bài viết hướng dẫn chi tiết</p>
+                </div>
+
+                <!-- Topic Selector Filter -->
+                <div class="flex flex-wrap gap-2" id="topicCategoryTabs">
+                    <!-- Dynamic buttons -->
+                </div>
+            </div>
+
+            <!-- Topic Articles List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articlesListGrid">
+                <!-- Articles dynamically populated -->
+            </div>
+        </div>
+
+        <!-- PAGE 3: LIBRARY PAGE (BOOKS, ARTICLES, VIDEOS, INFOGRAPHICS) -->
+        <div id="page-library" class="page-content space-y-6 hidden">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Thư Viện Học Liệu & Video Trực Quan</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Tổng hợp video giáo dục, infographic, sách và bài báo chính thống từ UNFPA, UNICEF, WHO, Bộ Y tế Việt Nam</p>
+            </div>
+
+            <!-- Library Filters -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-wrap gap-4 items-center justify-between">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Loại tài liệu:</span>
+                    <button onclick="filterLibrary('all')" class="lib-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-teal-600 text-white" data-type="all">Tất cả</button>
+                    <button onclick="filterLibrary('video')" class="lib-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" data-type="video">🎬 Video Giáo Dục</button>
+                    <button onclick="filterLibrary('infographic')" class="lib-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" data-type="infographic">🖼️ Infographic / Tranh</button>
+                    <button onclick="filterLibrary('book')" class="lib-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" data-type="book">📚 Sách & Cẩm nang</button>
+                    <button onclick="filterLibrary('article')" class="lib-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300" data-type="article">📰 Bài báo / Báo cáo</button>
+                </div>
+
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Độ tuổi:</span>
+                    <select id="libraryAgeFilter" onchange="renderLibrary()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-xs rounded-lg px-2 py-1.5">
+                        <option value="all">Tất cả lứa tuổi</option>
+                        <option value="13-15">13 - 15 tuổi</option>
+                        <option value="16-19">16 - 19 tuổi</option>
+                        <option value="parents">Cha mẹ & Giáo viên</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Library Items Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="libraryItemsGrid">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- PAGE 4: DICTIONARY A-Z -->
+        <div id="page-dictionary" class="page-content space-y-6 hidden">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Từ Điển Thuật Ngữ A–Z</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Giải thích ngắn gọn, chính xác chuẩn y khoa và tâm lý học về các khái niệm giới tính</p>
+            </div>
+
+            <!-- Alphabet Bar -->
+            <div class="flex flex-wrap gap-1 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 justify-center" id="alphabetBar">
+                <!-- JS populated -->
+            </div>
+
+            <!-- Dictionary Search -->
+            <div class="max-w-md mx-auto">
+                <input type="text" id="dictSearchInput" oninput="renderDictionary(this.value)" placeholder="Lọc nhanh thuật ngữ..." class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+            </div>
+
+            <!-- Dictionary List Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="dictionaryGrid">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+
+        <!-- PAGE 5: Q&A & MINI QUIZ -->
+        <div id="page-qa-quiz" class="page-content space-y-8 hidden">
+            
+            <!-- Section Header Tabs -->
+            <div class="flex border-b border-slate-200 dark:border-slate-700">
+                <button onclick="switchQATab('quiz')" id="tabBtnQuiz" class="py-3 px-6 text-sm font-bold border-b-2 border-teal-600 text-teal-600 dark:text-teal-400">
+                    <i class="ph-bold ph-check-square-offset"></i> Mini Quiz Kiểm Tra Kiến Thức
+                </button>
+                <button onclick="switchQATab('qa')" id="tabBtnQA" class="py-3 px-6 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+                    <i class="ph-bold ph-chat-teardrop-dots"></i> Hỏi & Đáp Ẩn Danh
+                </button>
+            </div>
+
+            <!-- SUB-TAB 1: MINI QUIZ INTERACTIVE -->
+            <div id="subTabQuiz" class="space-y-6">
+                <div class="bg-teal-50 dark:bg-slate-800 p-4 sm:p-6 rounded-2xl border border-teal-100 dark:border-slate-700">
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2">Thử tài hiểu biết của bạn về Giới tính & Tình yêu an toàn</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Trả lời các câu hỏi dưới đây để tự đánh giá kiến thức của mình. Mỗi câu hỏi đều có giải thích y khoa/khoa học chi tiết đi kèm.</p>
+                </div>
+
+                <!-- Quiz Container -->
+                <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700" id="quizContainer">
+                    <!-- Dynamic rendering of active question -->
+                </div>
+            </div>
+
+            <!-- SUB-TAB 2: ANONYMOUS Q&A -->
+            <div id="subTabQA" class="space-y-6 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Form Submit Anonymous Question -->
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 h-fit">
+                        <h3 class="font-bold text-slate-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+                            <i class="ph-bold ph-paper-plane-tilt text-teal-600"></i> Gửi câu hỏi ẩn danh
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                            Thông tin của bạn hoàn toàn bảo mật. Chúng tôi sẽ chọn lọc các thắc mắc phổ biến để bác sĩ/chuyên gia giải đáp công khai.
+                        </p>
+                        <form onsubmit="handleAnonymousQuestion(event)" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Độ tuổi của bạn:</label>
+                                <select id="qaAgeGroup" class="w-full text-xs p-2 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700">
+                                    <option>13 - 15 tuổi</option>
+                                    <option>16 - 19 tuổi</option>
+                                    <option>Trên 19 tuổi / Khác</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Chủ đề thắc mắc:</label>
+                                <select id="qaTopic" class="w-full text-xs p-2 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700">
+                                    <option>Cơ thể & Dậy thì</option>
+                                    <option>Sức khỏe sinh sản & Tránh thai</option>
+                                    <option>Tình cảm & Tâm lý</option>
+                                    <option>An toàn trên mạng & Bạo lực</option>
+                                    <option>Khác</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Nội dung câu hỏi:</label>
+                                <textarea id="qaContent" rows="4" required placeholder="Viết thắc mắc của bạn ở đây (không ghi thông tin cá nhân như tên, địa chỉ)..." class="w-full text-xs p-2.5 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-2 focus:ring-teal-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold py-2.5 rounded-xl transition">
+                                Gửi câu hỏi an toàn
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- FAQ List -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <h3 class="font-bold text-slate-800 dark:text-slate-100">Các câu hỏi thường gặp đã được giải đáp</h3>
+                        <div class="space-y-3" id="faqAccordionList">
+                            <!-- JS Populated FAQ -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 6: PARENTS & TEACHERS -->
+        <div id="page-parents-teachers" class="page-content space-y-6 hidden">
+            <div class="bg-amber-50 dark:bg-slate-800 p-6 rounded-3xl border border-amber-200 dark:border-slate-700">
+                <span class="bg-amber-200 dark:bg-amber-900 text-amber-900 dark:text-amber-200 text-xs font-bold px-3 py-1 rounded-full uppercase">Dành Cho Cha Mẹ & Thầy Cô</span>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-2 mb-2">Đồng Hành Cùng Con Trong Tuổi Dậy Thì</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Giáo dục giới tính không phải là "vẽ đường cho hươu chạy", mà là "vẽ đường cho hươu chạy đúng". Hãy trở thành điểm tựa tin cậy để con trẻ yên tâm chia sẻ những thắc mắc thầm kín nhất.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Guide Card 1 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-peach-100 text-peach-600 flex items-center justify-center font-bold text-xl">
+                        💬
+                    </div>
+                    <h3 class="font-bold text-slate-800 dark:text-slate-100 text-lg">Cách mở lời nói chuyện giới tính với con</h3>
+                    <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc pl-4 leading-relaxed">
+                        <li><strong>Chọn thời điểm tự nhiên:</strong> Tận dụng các tình huống thực tế khi xem phim, tin tức hoặc sự kiện sinh hoạt gia đình.</li>
+                        <li><strong>Giữ thái độ bình thản, không phán xét:</strong> Nếu con thắc mắc điều nhạy cảm, đừng giận dữ hay gạt đi. Hãy khen ngợi vì con đã chủ động hỏi.</li>
+                        <li><strong>Dùng từ ngữ khoa học:</strong> Gọi đúng tên các bộ phận cơ thể (dương vật, âm đạo...) thay vì dùng từ lảng tránh.</li>
+                    </ul>
+                </div>
+
+                <!-- Guide Card 2 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-xl">
+                        🛡️
+                    </div>
+                    <h3 class="font-bold text-slate-800 dark:text-slate-100 text-lg">Dấu hiệu nhận biết trẻ cần trợ giúp khẩn cấp</h3>
+                    <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc pl-4 leading-relaxed">
+                        <li><strong>Thay đổi tâm lý đột ngột:</strong> Thu mình, sợ hãi, khóc lóc không rõ lý do, học lực sút giảm nghiêm trọng.</li>
+                        <li><strong>Dấu hiệu bị xâm hại/bắt nạt:</strong> Hoảng sợ khi gặp người quen nhất định, giấu giếm điện thoại, tổn thương thể chất bất thường.</li>
+                        <li><strong>Liên hệ chuyên gia ngay:</strong> Gọi Tổng đài 111 hoặc gặp bác sĩ tâm lý nhi khoa để được tư vấn lộ trình hỗ trợ đúng cách.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Recommended Books/Documents for Parents -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+                <h3 class="font-bold text-slate-800 dark:text-slate-100 mb-3">Tài liệu tham khảo chuyên sâu cho Phụ huynh & Nhà trường</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="parentsResourcesGrid">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 7: TEAM MEMBERS SECTION (BỔ SUNG THEO YÊU CẦU) -->
+        <div id="page-team" class="page-content space-y-6 hidden">
+            <div class="bg-teal-50 dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-teal-200/80 dark:border-slate-700">
+                <span class="bg-teal-200 dark:bg-teal-900 text-teal-900 dark:text-teal-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Đội ngũ xây dựng</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-slate-100 mt-2 mb-2">Nhóm Phát Triển Website "Sáng Trong Lành"</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Dự án giáo dục cộng đồng được xây dựng với mục tiêu mang tới không gian học tập khoa học, văn minh, an toàn và hoàn toàn không phán xét dành cho thanh thiếu niên Việt Nam.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Nhóm trưởng -->
+                <div class="bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-slate-800 dark:to-slate-800 p-6 rounded-2xl border-2 border-teal-500 shadow-md flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-3xl shadow-lg mb-4">
+                        👑
+                    </div>
+                    <span class="bg-teal-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Nhóm trưởng</span>
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-slate-100">Phan Duy Nguyễn</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Quản trị chung & Lập trình trang web</p>
+                </div>
+
+                <!-- Tổ phó -->
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-slate-800 dark:to-slate-800 p-6 rounded-2xl border-2 border-amber-400 shadow-md flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold text-3xl shadow-lg mb-4">
+                        ⭐
+                    </div>
+                    <span class="bg-amber-500 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Tổ phó</span>
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-slate-100">Vũ Nguyên Tuệ Nhi</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Điều phối nội dung & Thiết kế trải nghiệm</p>
+                </div>
+
+                <!-- Thành viên 1 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center font-bold text-2xl mb-3">
+                        🌱
+                    </div>
+                    <span class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase mb-2">Thành viên</span>
+                    <h3 class="font-bold text-base text-slate-800 dark:text-slate-100">Nguyễn Ngọc Uyển Nhi</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Biên tập tài liệu & Từ điển A-Z</p>
+                </div>
+
+                <!-- Thành viên 2 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center font-bold text-2xl mb-3">
+                        🌱
+                    </div>
+                    <span class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase mb-2">Thành viên</span>
+                    <h3 class="font-bold text-base text-slate-800 dark:text-slate-100">Nguyễn Hoàng Tâm Như</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Thu thập dữ liệu Y khoa & WHO</p>
+                </div>
+
+                <!-- Thành viên 3 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center font-bold text-2xl mb-3">
+                        🌱
+                    </div>
+                    <span class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase mb-2">Thành viên</span>
+                    <h3 class="font-bold text-base text-slate-800 dark:text-slate-100">Nguyễn Thị Thanh Nhàn</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Xây dựng bộ câu hỏi Quiz & Đáp án</p>
+                </div>
+
+                <!-- Thành viên 4 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center font-bold text-2xl mb-3">
+                        🌱
+                    </div>
+                    <span class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase mb-2">Thành viên</span>
+                    <h3 class="font-bold text-base text-slate-800 dark:text-slate-100">Trần Hoàng Nguyên</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Tổng hợp thư viện Infographic & Video</p>
+                </div>
+
+                <!-- Thành viên 5 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center text-center sm:col-span-2 lg:col-span-1">
+                    <div class="w-16 h-16 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center font-bold text-2xl mb-3">
+                        🌱
+                    </div>
+                    <span class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase mb-2">Thành viên</span>
+                    <h3 class="font-bold text-base text-slate-800 dark:text-slate-100">Nguyễn Thảo Nguyên</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Rà soát nội dung & Kiểm định an toàn</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 8: HELPLINES & SUPPORT DIRECTORY -->
+        <div id="page-helpline" class="page-content space-y-6 hidden">
+            <div class="bg-rose-50 dark:bg-slate-800 p-6 rounded-3xl border border-rose-200 dark:border-slate-700">
+                <h2 class="text-2xl font-bold text-rose-700 dark:text-rose-400 mb-2">Danh Bạ Hỗ Trợ Khẩn Cấp & Tư Vấn Uy Tín</h2>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                    Tất cả thông tin liên hệ bên dưới là của các tổ chức, tổng đài chính thức tại Việt Nam. <em>(Ghi chú: Vui lòng kiểm tra lại thông tin liên hệ mới nhất khi sử dụng).</em>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="helplineGrid">
+                <!-- JS Populated Directory Items -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ARTICLE / RESOURCE DETAIL MODAL -->
+    <div id="detailModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full bg-slate-100 dark:bg-slate-700 text-xl">
+                <i class="ph-bold ph-x"></i>
+            </button>
+            <div id="modalBody">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SAVED BOOKMARKS MODAL -->
+    <div id="bookmarksModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+            <button onclick="closeBookmarksModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2">
+                <i class="ph-bold ph-x text-xl"></i>
+            </button>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
+                <i class="ph-bold ph-bookmark-simple text-teal-600"></i> Bài viết & Học liệu đã lưu
+            </h3>
+            <div id="bookmarksList" class="space-y-3">
+                <!-- JS Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- DISCLAIMER & FOOTER -->
+    <footer class="bg-slate-100 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-xs py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            
+            <!-- Medical & Legal Disclaimer -->
+            <div class="bg-amber-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-700 text-[11px] leading-relaxed text-slate-600 dark:text-slate-400">
+                <strong>⚠️ Tuyên bố miễn trừ trách nhiệm y tế:</strong> Nội dung trên website được biên soạn cho mục đích giáo dục kiến thức chung dựa trên các tài liệu khuyến nghị của WHO, UNICEF, UNFPA và Bộ Y tế Việt Nam. Thông tin tại đây KHÔNG thay thế cho việc chẩn đoán, tư vấn y khoa hoặc điều trị từ bác sĩ chuyên khoa. Khi có dấu hiệu bất thường về sức khỏe sinh sản hay khủng hoảng tâm lý, bạn hãy đến cơ sở y tế gần nhất hoặc gọi tổng đài tư vấn chuyên môn.
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div>
+                    <p class="font-bold text-slate-800 dark:text-slate-200 text-sm">Sáng Trong Lành - Dự Án Giáo Dục Giới Tính Thanh Thiếu Niên Việt Nam</p>
+                    <p class="text-slate-500 dark:text-slate-400">Tôn trọng sự đa dạng • Khoa học • Không phán xét • Không kỳ thị</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button onclick="navigateTo('team')" class="hover:underline font-semibold text-teal-600">Nhóm phát triển</button>
+                    <span>•</span>
+                    <button onclick="openPrivacyPolicy()" class="hover:underline">Chính sách Quyền riêng tư</button>
+                    <span>•</span>
+                    <button onclick="navigateTo('helpline')" class="hover:underline">Liên hệ khẩn cấp</button>
+                </div>
+            </div>
+
+            <div class="text-center text-[11px] text-slate-400">
+                © 2026 Sáng Trong Lành. Nội dung được phát triển bởi Nhóm Phan Duy Nguyễn vì cộng đồng thanh thiếu niên Việt Nam.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC & COMPLETE DATASTORE -->
+    <script>
+        // ==========================================
+        // 1. DATASTORE (JSON-like JavaScript Arrays)
+        // ==========================================
+
+        const CATEGORIES = [
+            { id: 'puberty', title: 'Cơ thể & Dậy thì', icon: '🌱', color: 'bg-emerald-100 text-emerald-800' },
+            { id: 'psychology', title: 'Tâm lý & Cảm xúc', icon: '💭', color: 'bg-blue-100 text-blue-800' },
+            { id: 'consent', title: 'Tình yêu & Sự đồng thuận', icon: '🤝', color: 'bg-rose-100 text-rose-800' },
+            { id: 'reproductive', title: 'Sức khỏe sinh sản & An toàn', icon: '🛡️', color: 'bg-teal-100 text-teal-800' },
+            { id: 'prevention', title: 'Phòng chống xâm hại & Bạo lực', icon: '🚨', color: 'bg-red-100 text-red-800' },
+            { id: 'gender', title: 'Giới & Xu hướng tính dục', icon: '🌈', color: 'bg-purple-100 text-purple-800' },
+            { id: 'cyber', title: 'An toàn trên mạng', icon: '🌐', color: 'bg-indigo-100 text-indigo-800' },
+            { id: 'myth', title: 'Sự thật hay Lầm tưởng?', icon: '💡', color: 'bg-amber-100 text-amber-800' }
+        ];
+
+        const ARTICLES = [
+            {
+                id: 'art-1',
+                categoryId: 'puberty',
+                title: 'Những thay đổi kỳ diệu của cơ thể ở tuổi dậy thì',
+                age: '13-15',
+                summary: 'Hiểu về sự tăng trưởng chiều cao, biến đổi giọng nói, sự phát triển ngực, lông cơ thể và tuyến mồ hôi.',
+                content: `
+                    <p class="mb-3">Dậy thì là giai đoạn chuyển tiếp từ trẻ con sang người trưởng thành (thường từ 10–16 tuổi ở nữ và 11–18 tuổi ở nam). Đây là quá trình hoàn toàn tự nhiên do sự gia tăng của các hormone sinh dục.</p>
+                    <h4 class="font-bold text-slate-800 dark:text-slate-100 mt-4 mb-2">1. Thay đổi ở bạn nữ:</h4>
+                    <ul class="list-disc pl-5 space-y-1 mb-3">
+                        <li>Phát triển ngực (có thể thấy hơi nhức nhẹ ban đầu, điều này bình thường).</li>
+                        <li>Mọc lông ở vùng kín và nách.</li>
+                        <li>Bắt đầu xuất hiện chu kỳ kinh nguyệt.</li>
+                        <li>Cơ thể tròn trịa hơn, hông mở rộng.</li>
+                    </ul>
+                    <h4 class="font-bold text-slate-800 dark:text-slate-100 mt-4 mb-2">2. Thay đổi ở bạn nam:</h4>
+                    <ul class="list-disc pl-5 space-y-1 mb-3">
+                        <li>Thanh quản phát triển dẫn đến "vỡ giọng" (giọng trầm hơn hoặc ngập ngừng).</li>
+                        <li>Dương vật và tinh hoàn tăng kích thước.</li>
+                        <li>Mọc râu, lông nách và lông vùng kín.</li>
+                        <li>Có thể xuất hiện giấc mơ ướt (mộng tinh).</li>
+                    </ul>
+                    <p class="bg-teal-50 dark:bg-slate-700 p-3 rounded-xl border border-teal-200 dark:border-slate-600 mt-3 font-medium text-xs">💡 Lời khuyên: Mọi cơ thể đều phát triển theo mốc thời gian riêng. Đừng quá lo lắng nếu bạn phát triển sớm hơn hoặc muộn hơn bạn bè!</p>
+                `,
+                source: 'Bộ Y tế & WHO Việt Nam'
+            },
+            {
+                id: 'art-2',
+                categoryId: 'puberty',
+                title: 'Kinh nguyệt & Giấc mơ ướt: Tất tần tật những điều cần biết',
+                age: '13-15',
+                summary: 'Giải mã hiện tượng kinh nguyệt ở nữ và mộng tinh ở nam, cách chăm sóc vệ sinh cá nhân sạch sẽ.',
+                content: `
+                    <p class="mb-3"><strong>Kinh nguyệt là gì?</strong> Là hiện tượng niêm mạc tử cung bong ra và thoát ra ngoài qua âm đạo khi trứng không được thụ tinh. Chu kỳ trung bình kéo dài 21–35 ngày. Hãy luôn mang theo băng vệ sinh dự phòng và thay mỗi 4 tiếng/lần.</p>
+                    <p class="mb-3"><strong>Giấc mơ ướt (Mộng tinh) là gì?</strong> Là hiện tượng xuất tinh tự nhiên trong lúc ngủ ở bạn nam. Đây là cơ chế giải phóng tinh dịch dư thừa hoàn toàn sinh lý, không phải là bệnh lý hay lỗi lầm.</p>
+                `,
+                source: 'UNFPA Việt Nam'
+            },
+            {
+                id: 'art-3',
+                categoryId: 'psychology',
+                title: 'Rung động đầu đời & Áp lực đồng trang lứa (Peer Pressure)',
+                age: '13-19',
+                summary: 'Làm sao để ứng phó với những cảm xúc xao xuyến tuổi học trò và áp lực phải "giống các bạn"?',
+                content: `
+                    <p class="mb-3">Thích một ai đó ở tuổi teen là cảm xúc vô cùng đẹp đẽ và tự nhiên. Tuy nhiên, việc nhầm lẫn giữa tình cảm xao xuyến tạm thời và tình yêu đích thực là rất phổ biến.</p>
+                    <h4 class="font-bold mt-2">Xử lý áp lực đồng trang lứa:</h4>
+                    <p>Nếu bạn bè xúi giục bạn làm những việc bạn không thấy thoải mái (như thử hút thuốc, xem nội dung đồi trụy, hay nhận lời yêu ai đó), hãy nhớ rằng: <strong>Giữ vững ranh giới của bản thân mới là bản lĩnh thực sự.</strong></p>
+                `,
+                source: 'Viện Tâm lý Học Việt Nam'
+            },
+            {
+                id: 'art-4',
+                categoryId: 'consent',
+                title: 'Sự đồng thuận (Consent) là gì và tại sao lại quan trọng?',
+                age: '15-19',
+                summary: 'Quy tắc F.R.I.E.S. trong sự đồng thuận tôn trọng ranh giới cá nhân.',
+                content: `
+                    <p class="mb-3">Sự đồng thuận không chỉ áp dụng trong chuyện tình dục mà trong mọi tương tác cơ thể (ôm, nắm tay, đụng chạm).</p>
+                    <h4 class="font-bold text-teal-700 dark:text-teal-400 mb-2">Quy tắc F.R.I.E.S. về Đồng Thuận:</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+                        <li><strong>F - Freely given:</strong> Tự nguyện, không bị ép buộc hay đe dọa.</li>
+                        <li><strong>R - Reversible:</strong> Có thể rút lại ý kiến bất kỳ lúc nào.</li>
+                        <li><strong>I - Informed:</strong> Biết rõ mình đang đồng ý với điều gì.</li>
+                        <li><strong>E - Enthusiastic:</strong> Hào hứng, tự nguyện chứ không phải vì miễn cưỡng.</li>
+                        <li><strong>S - Specific:</strong> Đồng ý việc này không có nghĩa là đồng ý việc khác.</li>
+                    </ul>
+                `,
+                source: 'UN Women / UNESCO'
+            },
+            {
+                id: 'art-5',
+                categoryId: 'reproductive',
+                title: 'Các biện pháp tránh thai an toàn & Phòng ngừa bệnh lây qua đường tình dục (STIs)',
+                age: '16-19',
+                summary: 'Kiến thức y khoa chuẩn xác về bao cao su, thuốc tránh thai và xét nghiệm STIs.',
+                content: `
+                    <p class="mb-3">Quan hệ tình dục không an toàn có thể dẫn đến mang thai ngoài ý muốn và lây nhiễm các bệnh như HIV, Giang mai, Lậu, Chlamydia, HPV...</p>
+                    <h4 class="font-bold text-slate-800 dark:text-slate-100">Bao cao su - Biện pháp bảo vệ kép:</h4>
+                    <p class="mb-3">Bao cao su nam/nữ là biện pháp DUY NHẤT vừa ngăn ngừa mang thai (hiệu quả ~98% nếu dùng đúng cách) vừa phòng tránh các bệnh lây truyền qua đường tình dục.</p>
+                `,
+                source: 'Bộ Y tế Việt Nam'
+            },
+            {
+                id: 'art-6',
+                categoryId: 'prevention',
+                title: 'Nhận diện & Phòng chống xâm hại tình dục / Grooming',
+                age: '13-19',
+                summary: 'Quy tắc 5 ngón tay, nhận diện hành vi dụ dỗ (grooming) và cách tìm kiếm sự giúp đỡ.',
+                content: `
+                    <p class="mb-3"><strong>Grooming (Dụ dỗ tình dục):</strong> Là hành vi kẻ xấu cố tình kết bạn, tặng quà, khen ngợi để tạo sự tin tưởng với thanh thiếu niên nhằm mục đích xâm hại sau đó.</p>
+                    <p class="mb-3 font-bold text-rose-600">Nếu bạn cảm thấy bất an hay khó chịu trước bất kỳ lời đề nghị nào, hãy lập tức nói "KHÔNG", rời đi và báo ngay cho người lớn tin cậy hoặc gọi 111.</p>
+                `,
+                source: 'Tổng đài Quốc gia 111'
+            },
+            {
+                id: 'art-7',
+                categoryId: 'gender',
+                title: 'Hiểu đúng về Giới, Giới tính & Xu hướng tính dục (LGBTIQ+)',
+                age: '13-19',
+                summary: 'Phân biệt Giới tính sinh học, Bản dạng giới, Thể hiện giới và Xu hướng tính dục.',
+                content: `
+                    <p class="mb-3">Mỗi con người là một cá thể độc đáo. Việc bạn là nam, nữ, hay người đồng tính, song tính, chuyển giới... đều là sự đa dạng tự nhiên của con người.</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>Giới tính sinh học (Sex):</strong> Yếu tố giải phẫu (Nam / Nữ / Liên giới tính).</li>
+                        <li><strong>Xu hướng tính dục (Sexual Orientation):</strong> Việc bạn có hấp dẫn tình cảm/tình dục với ai (Đồng tính, Dị tính, Song tính, Vô tính...).</li>
+                    </ul>
+                `,
+                source: 'WHO & CSAGA Việt Nam'
+            },
+            {
+                id: 'art-8',
+                categoryId: 'cyber',
+                title: 'An toàn trên mạng: Sexting, ảnh nhạy cảm & Bắt nạt trực tuyến',
+                age: '13-19',
+                summary: 'Rủi ro khi gửi ảnh riêng tư trực tuyến và các bước xử lý khi bị đe dọa phát tán ảnh.',
+                content: `
+                    <p class="mb-3">Một khi hình ảnh riêng tư đã được gửi qua không gian mạng, bạn sẽ không còn quyền kiểm soát nó. Kẻ xấu có thể chụp màn hình và tống tiền hoặc phát tán.</p>
+                    <h4 class="font-bold text-rose-600 mb-1">Cần làm gì nếu bị đe dọa lộ ảnh nhạy cảm?</h4>
+                    <ol class="list-decimal pl-5 space-y-1">
+                        <li>Không chuyển tiền hay làm theo yêu cầu tống tiền của kẻ xấu.</li>
+                        <li>Chụp lại bằng chứng tin nhắn/tài khoản đe dọa.</li>
+                        <li>Chia sẻ ngay với cha mẹ, thầy cô hoặc gọi Tổng đài 111 để được hỗ trợ pháp lý và tâm lý.</li>
+                    </ol>
+                `,
+                source: 'Cục An toàn thông tin - Bộ Thông tin & Truyền thông'
+            }
+        ];
+
+        const LIBRARY_DATA = [
+            {
+                id: 'lib-vid-1',
+                type: 'video',
+                title: 'Sự đồng thuận trong tình yêu (Consent) - Phim hoạt hình giáo dục',
+                author: 'UNFPA Việt Nam',
+                year: '2023',
+                age: '13-19',
+                summary: 'Video hoạt hình giải thích đơn giản, dễ hiểu về ranh giới cá nhân và sự đồng thuận theo quy chuẩn quốc tế.',
+                embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                link: 'https://www.youtube.com',
+                sourceName: 'UNFPA Vietnam YouTube'
+            },
+            {
+                id: 'lib-info-1',
+                type: 'infographic',
+                title: 'Infographic: Quy tắc 5 ngón tay phòng chống xâm hại cơ thể',
+                author: 'Tổng đài Quốc gia 111 & Bộ Lao động - Thương binh & Xã hội',
+                year: '2023',
+                age: '13-15',
+                summary: 'Hình ảnh đồ họa minh họa trực quan 5 mức độ giao tiếp giúp các bạn trẻ nhận diện hành vi đụng chạm an toàn và không an toàn.',
+                link: 'https://tongdai111.vn',
+                sourceName: 'Tổng đài 111'
+            },
+            {
+                id: 'lib-1',
+                type: 'book',
+                title: 'Cẩm Nang Tuổi Dậy Thì (Dành cho bạn gái & bạn trai)',
+                author: 'NXB Kim Đồng / Nhiều tác giả',
+                year: '2022',
+                age: '13-15',
+                summary: 'Bộ sách hình ảnh minh họa sinh động về những thay đổi tâm sinh lý tuổi teen, dễ đọc và cực kỳ thân thiện.',
+                link: 'https://nxbkimdong.com.vn',
+                sourceName: 'NXB Kim Đồng'
+            },
+            {
+                id: 'lib-2',
+                type: 'article',
+                title: 'Khuyến nghị của WHO về Giáo dục Giới tính Toàn diện',
+                author: 'Tổ chức Y tế Thế giới (WHO)',
+                year: '2021',
+                age: 'parents',
+                summary: 'Tài liệu khung chuẩn quốc tế về nội dung giáo dục giới tính theo từng độ tuổi phát triển của trẻ.',
+                link: 'https://www.who.int',
+                sourceName: 'WHO Official'
+            },
+            {
+                id: 'lib-3',
+                type: 'video',
+                title: 'Video: Hiểu về tuổi dậy thì & Sức khỏe sinh sản vị thành niên',
+                author: 'Truyền thông Y tế - Bộ Y tế Việt Nam',
+                year: '2023',
+                age: '13-19',
+                summary: 'Video clip hướng dẫn kiến thức chăm sóc cơ thể, phòng tránh thai ngoài ý muốn từ các chuyên gia y tế.',
+                embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                link: 'https://moh.gov.vn',
+                sourceName: 'Cổng thông tin Bộ Y tế'
+            },
+            {
+                id: 'lib-4',
+                type: 'infographic',
+                title: 'Infographic: Hướng dẫn sử dụng bao cao su đúng cách chuẩn y khoa',
+                author: 'Trung tâm Kiểm soát Bệnh tật (CDC / Bộ Y tế)',
+                year: '2023',
+                age: '16-19',
+                summary: 'Hình ảnh đồ họa từng bước sử dụng bao cao su nam/nữ để đạt hiệu quả ngừa thai và phòng bệnh STIs cao nhất.',
+                link: 'https://moh.gov.vn',
+                sourceName: 'Bộ Y tế Việt Nam'
+            },
+            {
+                id: 'lib-5',
+                type: 'book',
+                title: 'Chuyện Của Bờm - Lời Bàn Về Giới Tính',
+                author: 'Bác sĩ Nguyễn Lan Hải',
+                year: '2020',
+                age: '13-19',
+                summary: 'Sách giải đáp thắc mắc giới tính bằng văn phong hóm hỉnh, gần gũi với văn hóa Việt Nam.',
+                link: 'https://nhasachphuongnam.com',
+                sourceName: 'Nhà sách Phương Nam'
+            },
+            {
+                id: 'lib-6',
+                type: 'article',
+                title: 'Báo cáo Quốc gia về Bạo lực Trên cơ sở Giới tại Việt Nam',
+                author: 'UN Women Việt Nam',
+                year: '2022',
+                age: 'parents',
+                summary: 'Số liệu và phân tích thực trạng bảo vệ thanh thiếu niên khỏi bạo lực và quấy rối.',
+                link: 'https://vietnam.unwomen.org',
+                sourceName: 'UN Women'
+            }
+        ];
+
+        const DICTIONARY_DATA = [
+            { term: 'Âm đạo (Vagina)', desc: 'Ống cơ nối từ âm hộ đến tử cung ở cơ quan sinh dục nữ.' },
+            { term: 'Bao cao su (Condom)', desc: 'Màng mỏng (thường bằng latex) dùng khi quan hệ tình dục để phòng tránh thai và các bệnh lây truyền.' },
+            { term: 'Bản dạng giới (Gender Identity)', desc: 'Cảm nhận nội tâm sâu sắc của một người về giới tính của mình (có thể trùng hoặc khác với giới tính sinh học lúc sinh).' },
+            { term: 'Bệnh lây truyền qua đường tình dục (STIs)', desc: 'Các bệnh nhiễm trùng lây từ người này sang người khác qua tiếp xúc tình dục (như HIV, Giang mai, Lậu, HPV).' },
+            { term: 'Chlamydia', desc: 'Một loại bệnh nhiễm khuẩn lây qua đường tình dục phổ biến, có thể chữa khỏi bằng kháng sinh theo đơn bác sĩ.' },
+            { term: 'Dương vật (Penis)', desc: 'Cơ quan sinh dục ngoài của nam giới.' },
+            { term: 'Dậy thì (Puberty)', desc: 'Giai đoạn cơ thể phát triển biến đổi về thể chất và sinh lý để đạt khả năng sinh sản.' },
+            { term: 'Đồng thuận (Consent)', desc: 'Sự tự nguyện, rõ ràng và hào hứng đồng ý tham gia vào một hành vi thân mật.' },
+            { term: 'Đồng tính (Homosexual / Gay / Lesbian)', desc: 'Người có sự hấp dẫn tình cảm hoặc tình dục với người cùng giới tính.' },
+            { term: 'Giấc mơ ướt (Mộng tinh)', desc: 'Hiện tượng xuất tinh tự nhiên không tự chủ ở nam giới trong lúc ngủ.' },
+            { term: 'Grooming (Dụ dỗ tình dục)', desc: 'Hành vi kẻ xấu xây dựng mối quan hệ thân thiết giả tạo để lạm dụng hoặc xâm hại trẻ em/thiếu niên.' },
+            { term: 'HPV (Human Papillomavirus)', desc: 'Virus gây u nhú ở người, có thể phòng ngừa bằng cách tiêm vaccine HPV.' },
+            { term: 'Kinh nguyệt (Menstruation)', desc: 'Sự chảy máu định kỳ hàng tháng từ tử cung ra ngoài qua âm đạo ở nữ giới.' },
+            { term: 'Liên giới tính (Intersex)', desc: 'Người sinh ra với các đặc điểm sinh học giới tính không hoàn toàn khớp với định nghĩa nam hay nữ thông thường.' },
+            { term: 'Lồng ngực / Ngực phát triển', desc: 'Dấu hiệu dậy thì bình thường ở nữ giới do hormone Estrogen kích thích.' },
+            { term: 'Màng trinh (Hymen)', desc: 'Lớp màng mỏng nằm gần cửa âm đạo, có các lỗ nhỏ để kinh nguyệt thoát ra. Màng trinh có thể rách do vận động thể thao chứ không chỉ do quan hệ.' },
+            { term: 'Nội tiết tố (Hormone)', desc: 'Các chất hóa học do tuyến nội tiết tiết ra (như Estrogen, Testosterone) điều khiển sự phát triển cơ thể.' },
+            { term: 'Phá thai an toàn', desc: 'Thủ thuật y khoa chấm dứt thai kỳ do bác sĩ chuyên khoa thực hiện tại cơ sở y tế hợp pháp.' },
+            { term: 'Quy đầu', desc: 'Phần đầu của dương vật, chứa nhiều dây thần kinh nhạy cảm.' },
+            { term: 'Ranh giới cá nhân (Personal Boundaries)', desc: 'Nghị lực và quy tắc giới hạn về cơ thể và không gian riêng tư mà người khác không được vi phạm.' },
+            { term: 'Sexting', desc: 'Hành vi gửi tin nhắn, hình ảnh hoặc video có nội dung nhạy cảm/khiêu dâm qua điện thoại hoặc mạng xã hội.' },
+            { term: 'Song tính (Bisexual)', desc: 'Người có sự hấp dẫn tình cảm/tình dục với cả hai giới nam và nữ.' },
+            { term: 'Thụ thai (Conception)', desc: 'Quá trình tinh trùng gặp và kết hợp với trứng tạo thành hợp thể.' },
+            { term: 'Thủ dâm (Masturbation)', desc: 'Hành vi tự kích thích cơ quan sinh dục của bản thân để tạo cảm giác dễ chịu. Đây là hành vi sinh lý bình thường nếu không lạm dụng.' },
+            { term: 'Thuốc tránh thai khẩn cấp', desc: 'Thuốc dùng sau khi quan hệ không an toàn để ngăn chặn sự rụng trứng, không được dùng thay thế biện pháp tránh thai hàng ngày.' },
+            { term: 'Tinh hoàn (Testicles)', desc: 'Tuyến sinh dục nam nằm trong bìu, có nhiệm vụ sản xuất tinh trùng và testosterone.' },
+            { term: 'Tinh dịch (Semen)', desc: 'Chất dịch chứa tinh trùng thoát ra từ dương vật khi xuất tinh.' },
+            { term: 'Trứng (Ova)', desc: 'Tế bào sinh dục nữ do buồng trứng rụng ra mỗi tháng.' },
+            { term: 'Tử cung (Uterus)', desc: 'Cơ quan hình quả lê ở nữ giới, nơi thai nhi phát triển trong thai kỳ.' },
+            { term: 'Xu hướng tính dục (Sexual Orientation)', desc: 'Sự hấp dẫn bền vững về mặt tình cảm, lãng mạn hoặc tình dục đối với người khác.' }
+        ];
+
+        const QUIZ_QUESTIONS = [
+            {
+                q: 'Bao cao su có tác dụng gì khi quan hệ tình dục?',
+                options: [
+                    'A. Chỉ giúp tránh thai',
+                    'B. Chỉ giúp phòng bệnh lây qua đường tình dục (STIs)',
+                    'C. Vừa phòng tránh thai vừa ngăn ngừa bệnh lây qua đường tình dục',
+                    'D. Không có tác dụng phòng bệnh'
+                ],
+                correct: 2,
+                explain: 'Bao cao su là biện pháp duy nhất cung cấp sự bảo vệ kép: vừa ngăn tinh trùng gặp trứng vừa ngăn sự tiếp xúc mầm bệnh STIs.'
+            },
+            {
+                q: 'Nếu một ai đó nói "CÓ" lúc đầu nhưng sau đó đổi ý nói "KHÔNG" khi đang thân mật, bạn nên làm gì?',
+                options: [
+                    'A. Giận dỗi và tiếp tục',
+                    'B. Lập tức dừng lại và tôn trọng quyết định của họ',
+                    'C. Thuyết phục cho đến khi họ đồng ý lại',
+                    'D. Bắt buộc họ phải tuân theo lời nói ban đầu'
+                ],
+                correct: 1,
+                explain: 'Sự đồng thuận (Consent) có thể rút lại bất kỳ lúc nào. Tôn trọng từ "KHÔNG" là nguyên tắc cốt lõi của mối quan hệ lành mạnh.'
+            },
+            {
+                q: 'Hiện tượng giấc mơ ướt (mộng tinh) ở nam giới có phải là bệnh lý không?',
+                options: [
+                    'A. Có, cần đi khám bác sĩ ngay',
+                    'B. Không, đó là hiện tượng sinh lý hoàn toàn tự nhiên ở tuổi dậy thì',
+                    'C. Là do cơ thể bị suy nhược',
+                    'D. Là dấu hiệu của việc vi phạm đạo đức'
+                ],
+                correct: 1,
+                explain: 'Mộng tinh là cơ chế tự giải phóng tinh dịch thừa của cơ thể nam giới khi dậy thì, hoàn toàn bình thường và khỏe mạnh.'
+            },
+            {
+                q: 'Biện pháp nào sau đây giúp phòng ngừa ung thư cổ tử cung hiệu quả nhất ở nữ giới?',
+                options: [
+                    'A. Uống nhiều nước ấm',
+                    'B. Tiêm vắc xin phòng HPV đúng độ tuổi',
+                    'C. Ăn nhiều rau xanh',
+                    'D. Dùng thuốc kháng sinh hàng ngày'
+                ],
+                correct: 1,
+                explain: 'Tiêm vắc xin ngừa virus HPV (tốt nhất từ 9-26 tuổi) giúp ngăn ngừa các chủng HPV nguy cơ cao gây ung thư cổ tử cung.'
+            }
+        ];
+
+        const HELPLINES_DATA = [
+            {
+                name: 'Tổng đài Quốc gia Bảo vệ Trẻ em 111',
+                phone: '111',
+                type: 'Miễn phí 24/7',
+                desc: 'Tư vấn, hỗ trợ can thiệp khẩn cấp cho trẻ em và thanh thiếu niên bị xâm hại, bạo lực, bắt nạt.',
+                address: 'Toàn quốc'
+            },
+            {
+                name: 'Trung tâm CSAGA (Phòng chống bạo lực giới)',
+                phone: '024 3333 5599',
+                type: 'Tư vấn tâm lý & Pháp lý',
+                desc: 'Hỗ trợ phụ nữ, thanh thiếu niên và cộng đồng LGBTIQ+ bị bạo lực hoặc xâm hại.',
+                address: 'Hà Nội & Trực tuyến'
+            },
+            {
+                name: 'Viện Sức khỏe Tâm thần - Bệnh viện Bạch Mai',
+                phone: '024 3576 5344',
+                type: 'Khám & Khủng hoảng tâm lý',
+                desc: 'Tư vấn và điều trị chuyên sâu các rối loạn tâm lý, trầm cảm, khủng hoảng tuổi dậy thì.',
+                address: '78 Giải Phóng, Đống Đa, Hà Nội'
+            },
+            {
+                name: 'Bệnh viện Tuệ Tĩnh / Phòng khám Sức khỏe Sinh sản vị thành niên',
+                phone: '024 3854 4223',
+                type: 'Tư vấn Y khoa',
+                desc: 'Khám và tư vấn sức khỏe sinh sản, bệnh lây qua đường tình dục thân thiện với giới trẻ.',
+                address: 'Hà Nội / Kiểm tra thông tin mới nhất trước khi đến'
+            }
+        ];
+
+        const FAQS = [
+            {
+                q: 'Lần đầu quan hệ tình dục có thể mang thai không?',
+                a: 'CÓ! Khả năng thụ thai xảy ra khi có sự gặp nhau giữa tinh trùng và trứng. Số lần quan hệ không ảnh hưởng đến sinh lý thụ thai. Nếu không dùng biện pháp tránh thai an toàn, ngay lần đầu tiên vẫn có thể mang thai.'
+            },
+            {
+                q: 'Thủ dâm có gây vô sinh hay mụn trứng cá không?',
+                a: 'KHÔNG! Thủ dâm là hành vi tự khám phá cơ thể bình thường. Nó không gây vô sinh hay mụn trứng cá. Tuy nhiên, nếu lạm dụng quá mức làm ảnh hưởng đến học tập và sinh hoạt thì bạn nên điều chỉnh lại lối sống.'
+            },
+            {
+                q: 'Làm sao để biết mình có bị mắc bệnh lây truyền qua đường tình dục (STIs)?',
+                a: 'Nhiều bệnh STIs không có triệu chứng rõ ràng ban đầu. Dấu hiệu nghi ngờ gồm: tiểu buốt, tiết dịch bất thường ở vùng kín, mụn/vết loét không đau, ngứa ngáy. Cách duy nhất để biết chính xác là đến cơ sở y tế xét nghiệm.'
+            }
+        ];
+
+        // ==========================================
+        // 2. APP STATE & LOCALSTORAGE MANAGEMENT
+        // ==========================================
+        let currentPage = 'home';
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let bookmarks = JSON.parse(localStorage.getItem('stl_bookmarks') || '[]');
+
+        // Initialize App on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderHomeTopics();
+            renderHomeResources();
+            renderArticles();
+            renderLibrary();
+            renderDictionary();
+            renderQuiz();
+            renderFAQs();
+            renderHelplines();
+            updateBookmarkBadge();
+
+            // Handle ESC key for Quick Exit
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    quickExit();
+                }
+            });
+        });
+
+        // ==========================================
+        // 3. NAVIGATION & PAGE ROUTING
+        // ==========================================
+        function navigateTo(pageId, categoryFilter = null) {
+            currentPage = pageId;
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Update Nav Active State
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.target === pageId) {
+                    btn.classList.add('bg-teal-100', 'dark:bg-slate-700', 'text-teal-800', 'font-bold');
+                } else {
+                    btn.classList.remove('bg-teal-100', 'dark:bg-slate-700', 'text-teal-800', 'font-bold');
+                }
+            });
+
+            if (categoryFilter && pageId === 'topics') {
+                filterTopicCategory(categoryFilter);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function quickExit() {
+            // Instantly redirect to a neutral, safe website
+            window.location.href = 'https://www.google.com';
+        }
+
+        // ==========================================
+        // 4. RENDERING FUNCTIONS
+        // ==========================================
+        function renderHomeTopics() {
+            const container = document.getElementById('homeTopicsGrid');
+            container.innerHTML = CATEGORIES.map(cat => `
+                <div onclick="navigateTo('topics', '${cat.id}')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:shadow-lg transition cursor-pointer flex items-start gap-4 group">
+                    <div class="text-3xl p-2 rounded-xl ${cat.color} group-hover:scale-110 transition">
+                        ${cat.icon}
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm group-hover:text-teal-600 transition">${cat.title}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Xem kiến thức bài viết &rarr;</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderHomeResources() {
+            const container = document.getElementById('homeResourcesPreview');
+            const topResources = LIBRARY_DATA.slice(0, 3);
+            container.innerHTML = topResources.map(item => `
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-100 dark:bg-slate-700 text-teal-800 dark:text-teal-300 uppercase">${item.type}</span>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm mt-2">${item.title}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.summary}</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center text-xs">
+                        <span class="text-slate-400">${item.sourceName}</span>
+                        <button onclick="navigateTo('library')" class="text-teal-600 font-semibold hover:underline">Chi tiết</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Also render parents resources
+            const parentsGrid = document.getElementById('parentsResourcesGrid');
+            if(parentsGrid) {
+                parentsGrid.innerHTML = LIBRARY_DATA.filter(i => i.age === 'parents' || i.type === 'book').map(item => `
+                    <div class="bg-amber-50/50 dark:bg-slate-700/50 p-4 rounded-xl border border-amber-200/60 dark:border-slate-600">
+                        <h4 class="font-bold text-sm mb-1">${item.title}</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 mb-2">${item.summary}</p>
+                        <a href="${item.link}" target="_blank" rel="noopener" class="text-xs font-bold text-teal-600 hover:underline inline-flex items-center gap-1">Tìm đọc tại ${item.sourceName} <i class="ph-bold ph-arrow-square-out"></i></a>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderArticles(selectedCat = 'all') {
+            // Render Tabs
+            const tabsContainer = document.getElementById('topicCategoryTabs');
+            tabsContainer.innerHTML = `
+                <button onclick="filterTopicCategory('all')" class="px-3 py-1.5 rounded-lg text-xs font-semibold ${selectedCat === 'all' ? 'bg-teal-600 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'}">Tất cả</button>
+                ${CATEGORIES.map(cat => `
+                    <button onclick="filterTopicCategory('${cat.id}')" class="px-3 py-1.5 rounded-lg text-xs font-semibold ${selectedCat === cat.id ? 'bg-teal-600 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'}">${cat.title}</button>
+                `).join('')}
+            `;
+
+            // Filter Articles
+            const filtered = selectedCat === 'all' ? ARTICLES : ARTICLES.filter(a => a.categoryId === selectedCat);
+            const grid = document.getElementById('articlesListGrid');
+
+            grid.innerHTML = filtered.map(art => {
+                const isSaved = bookmarks.some(b => b.id === art.id);
+                return `
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-2">
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Độ tuổi: ${art.age}</span>
+                                <button onclick="toggleBookmark('${art.id}', 'article')" class="text-slate-400 hover:text-rose-500 text-lg" title="Lưu bài viết">
+                                    <i class="ph-${isSaved ? 'fill text-rose-500' : 'bold'} ph-bookmark-simple"></i>
+                                </button>
+                            </div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base mb-2">${art.title}</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">${art.summary}</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center text-xs">
+                            <span class="text-slate-400 italic">Nguồn: ${art.source}</span>
+                            <button onclick="openArticleModal('${art.id}')" class="bg-teal-50 dark:bg-slate-700 text-teal-700 dark:text-teal-300 hover:bg-teal-100 px-3 py-1.5 rounded-lg font-bold transition">Đọc tiếp</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterTopicCategory(catId) {
+            renderArticles(catId);
+        }
+
+        function renderLibrary(typeFilter = 'all') {
+            const ageVal = document.getElementById('libraryAgeFilter')?.value || 'all';
+            let items = LIBRARY_DATA;
+
+            if (typeFilter !== 'all') {
+                items = items.filter(i => i.type === typeFilter);
+            }
+            if (ageVal !== 'all') {
+                items = items.filter(i => i.age === ageVal || i.age === 'parents');
+            }
+
+            const grid = document.getElementById('libraryItemsGrid');
+            grid.innerHTML = items.map(item => `
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3 flex flex-col justify-between shadow-sm">
+                    <div>
+                        ${item.embedUrl ? `
+                            <div class="aspect-video bg-black rounded-xl overflow-hidden mb-3">
+                                <iframe class="w-full h-full" src="${item.embedUrl}" title="${item.title}" allowfullscreen></iframe>
+                            </div>
+                        ` : ''}
+                        
+                        ${item.type === 'infographic' ? `
+                            <div class="bg-teal-50 dark:bg-slate-700 border border-teal-200 dark:border-slate-600 rounded-xl p-4 text-center mb-3">
+                                <div class="text-4xl mb-1">🖼️</div>
+                                <span class="text-[10px] font-bold text-teal-800 dark:text-teal-300 uppercase">Tài liệu hình ảnh trực quan</span>
+                            </div>
+                        ` : ''}
+
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-1">
+                            <span class="uppercase font-bold text-teal-600">${item.type}</span>
+                            <span>Phù hợp: ${item.age} tuổi</span>
+                        </div>
+                        <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base">${item.title}</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Tác giả/Nguồn: ${item.author} (${item.year})</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 mt-2">${item.summary}</p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center text-xs">
+                        <span class="font-semibold text-slate-500">${item.sourceName}</span>
+                        <a href="${item.link}" target="_blank" rel="noopener" class="bg-teal-600 hover:bg-teal-700 text-white px-3 py-1.5 rounded-lg font-bold transition inline-flex items-center gap-1">
+                            Nguồn gốc <i class="ph-bold ph-arrow-square-out"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterLibrary(type) {
+            document.querySelectorAll('.lib-filter-btn').forEach(btn => {
+                if (btn.dataset.type === type) {
+                    btn.classList.add('bg-teal-600', 'text-white');
+                    btn.classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+                } else {
+                    btn.classList.remove('bg-teal-600', 'text-white');
+                    btn.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+                }
+            });
+            renderLibrary(type);
+        }
+
+        function renderDictionary(searchTerm = '') {
+            const grid = document.getElementById('dictionaryGrid');
+            const alphaBar = document.getElementById('alphabetBar');
+
+            // Render Alphabets
+            const alphabet = "A B C D Đ G H K L M N P Q R S T X".split(" ");
+            alphaBar.innerHTML = alphabet.map(letter => `
+                <button onclick="renderDictionary('${letter}')" class="px-2 py-1 text-xs font-bold rounded hover:bg-teal-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">${letter}</button>
+            `).join('');
+
+            const normalizedSearch = normalizeText(searchTerm);
+            const filtered = DICTIONARY_DATA.filter(item => 
+                normalizeText(item.term).includes(normalizedSearch) || 
+                normalizeText(item.desc).includes(normalizedSearch)
+            );
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1">
+                    <h4 class="font-bold text-teal-700 dark:text-teal-400 text-sm">${item.term}</h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            if (currentQuizIndex >= QUIZ_QUESTIONS.length) {
+                container.innerHTML = `
+                    <div class="text-center space-y-4 py-6">
+                        <div class="text-5xl">🎉</div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Chúc mừng bạn đã hoàn thành Mini Quiz!</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Bạn đã trả lời đúng <strong>${quizScore} / ${QUIZ_QUESTIONS.length}</strong> câu hỏi.</p>
+                        <button onclick="restartQuiz()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition">
+                            Làm lại Quiz
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = QUIZ_QUESTIONS[currentQuizIndex];
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center text-xs text-slate-400 font-bold">
+                        <span>Câu hỏi ${currentQuizIndex + 1} / ${QUIZ_QUESTIONS.length}</span>
+                        <span>Điểm: ${quizScore}</span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 dark:text-slate-100 text-base sm:text-lg">${q.q}</h4>
+                    <div class="space-y-2">
+                        ${q.options.map((opt, idx) => `
+                            <button onclick="checkQuizAnswer(${idx})" class="w-full text-left p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-teal-50 dark:hover:bg-slate-700 text-xs sm:text-sm font-medium transition">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            const q = QUIZ_QUESTIONS[currentQuizIndex];
+            const isCorrect = selectedIdx === q.correct;
+            if (isCorrect) quizScore++;
+
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="p-4 rounded-2xl ${isCorrect ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'} text-sm font-bold flex items-center gap-2">
+                        <i class="ph-bold ph-${isCorrect ? 'check-circle' : 'x-circle'} text-2xl"></i>
+                        <span>${isCorrect ? 'Chính xác! Hoàn hảo.' : 'Chưa chính xác.'}</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-700 p-4 rounded-2xl text-xs sm:text-sm space-y-2">
+                        <p class="font-bold text-slate-800 dark:text-slate-100">Giải thích chi tiết:</p>
+                        <p class="text-slate-600 dark:text-slate-300">${q.explain}</p>
+                    </div>
+                    <button onclick="nextQuestion()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
+                        Câu hỏi tiếp theo &rarr;
+                    </button>
+                </div>
+            `;
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            renderQuiz();
+        }
+
+        function restartQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            renderQuiz();
+        }
+
+        function switchQATab(tab) {
+            const quizTab = document.getElementById('subTabQuiz');
+            const qaTab = document.getElementById('subTabQA');
+            const btnQuiz = document.getElementById('tabBtnQuiz');
+            const btnQA = document.getElementById('tabBtnQA');
+
+            if (tab === 'quiz') {
+                quizTab.classList.remove('hidden');
+                qaTab.classList.add('hidden');
+                btnQuiz.className = "py-3 px-6 text-sm font-bold border-b-2 border-teal-600 text-teal-600 dark:text-teal-400";
+                btnQA.className = "py-3 px-6 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300";
+            } else {
+                quizTab.classList.add('hidden');
+                qaTab.classList.remove('hidden');
+                btnQA.className = "py-3 px-6 text-sm font-bold border-b-2 border-teal-600 text-teal-600 dark:text-teal-400";
+                btnQuiz.className = "py-3 px-6 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300";
+            }
+        }
+
+        function renderFAQs() {
+            const container = document.getElementById('faqAccordionList');
+            container.innerHTML = FAQS.map((faq, i) => `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                    <button onclick="toggleFAQ(${i})" class="w-full p-4 text-left font-bold text-slate-800 dark:text-slate-100 text-sm flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-700">
+                        <span>❓ ${faq.q}</span>
+                        <i class="ph-bold ph-caret-down" id="faqIcon-${i}"></i>
+                    </button>
+                    <div id="faqAns-${i}" class="hidden p-4 pt-0 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-700 leading-relaxed bg-slate-50/50 dark:bg-slate-800/50">
+                        ${faq.a}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFAQ(index) {
+            const ans = document.getElementById(`faqAns-${index}`);
+            const icon = document.getElementById(`faqIcon-${index}`);
+            ans.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        function handleAnonymousQuestion(e) {
+            e.preventDefault();
+            const content = document.getElementById('qaContent').value;
+            if (!content) return;
+
+            alert('Cảm ơn bạn! Câu hỏi ẩn danh của bạn đã được gửi thành công. Ban biên tập và bác sĩ cố vấn sẽ tổng hợp câu trả lời trong mục FAQ sớm nhất.');
+            document.getElementById('qaContent').value = '';
+        }
+
+        function renderHelplines() {
+            const container = document.getElementById('helplineGrid');
+            container.innerHTML = HELPLINES_DATA.map(h => `
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-700 uppercase">${h.type}</span>
+                        <span class="text-xs text-slate-400"><i class="ph-bold ph-map-pin"></i> ${h.address}</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base">${h.name}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">${h.desc}</p>
+                    <div class="pt-2 flex items-center gap-2">
+                        <a href="tel:${h.phone.replace(/\s+/g, '')}" class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition inline-flex items-center gap-2">
+                            <i class="ph-bold ph-phone"></i> Gọi ngay: ${h.phone}
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // 5. GLOBAL SEARCH WITH FUZZY/UNACCENTED MATCHING
+        // ==========================================
+        function normalizeText(str) {
+            if (!str) return '';
+            return str
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[đĐ]/g, "d");
+        }
+
+        function handleSearchInput(val) {
+            const dropdown = document.getElementById('searchResultsDropdown');
+            const clearBtn = document.getElementById('clearSearchBtn');
+
+            if (!val.trim()) {
+                dropdown.classList.add('hidden');
+                clearBtn.classList.add('hidden');
+                return;
+            }
+
+            clearBtn.classList.remove('hidden');
+            const query = normalizeText(val);
+
+            // Search across Articles, Library, Dictionary
+            const matchedArticles = ARTICLES.filter(a => normalizeText(a.title).includes(query) || normalizeText(a.summary).includes(query));
+            const matchedDict = DICTIONARY_DATA.filter(d => normalizeText(d.term).includes(query) || normalizeText(d.desc).includes(query)).slice(0, 3);
+
+            if (matchedArticles.length === 0 && matchedDict.length === 0) {
+                dropdown.innerHTML = `<div class="p-4 text-xs text-slate-500 text-center">Không tìm thấy kết quả phù hợp cho "${val}". Thử từ khóa khác như "dậy thì", "tránh thai"...</div>`;
+            } else {
+                dropdown.innerHTML = `
+                    ${matchedArticles.length > 0 ? `
+                        <div class="text-[10px] font-bold text-slate-400 px-3 py-1 uppercase">Bài viết (${matchedArticles.length})</div>
+                        ${matchedArticles.map(a => `
+                            <div onclick="openArticleModal('${a.id}'); closeSearchDropdown()" class="p-2.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg cursor-pointer transition">
+                                <p class="font-bold text-xs text-slate-800 dark:text-slate-100">${a.title}</p>
+                                <p class="text-[11px] text-slate-500 truncate">${a.summary}</p>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+
+                    ${matchedDict.length > 0 ? `
+                        <div class="text-[10px] font-bold text-slate-400 px-3 py-1 uppercase mt-2">Từ điển thuật ngữ (${matchedDict.length})</div>
+                        ${matchedDict.map(d => `
+                            <div onclick="navigateTo('dictionary'); closeSearchDropdown()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg cursor-pointer transition">
+                                <p class="font-bold text-xs text-teal-600">${d.term}</p>
+                                <p class="text-[11px] text-slate-500 truncate">${d.desc}</p>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                `;
+            }
+            dropdown.classList.remove('hidden');
+        }
+
+        function setQuickSearch(term) {
+            const input = document.getElementById('globalSearchInput');
+            input.value = term;
+            handleSearchInput(term);
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('globalSearchInput');
+            input.value = '';
+            handleSearchInput('');
+        }
+
+        function closeSearchDropdown() {
+            document.getElementById('searchResultsDropdown').classList.add('hidden');
+        }
+
+        // ==========================================
+        // 6. MODALS & BOOKMARK MANAGEMENT
+        // ==========================================
+        function openArticleModal(articleId) {
+            const art = ARTICLES.find(a => a.id === articleId);
+            if (!art) return;
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="space-y-4">
+                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800">Độ tuổi: ${art.age}</span>
+                    <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">${art.title}</h2>
+                    <div class="text-xs text-slate-400">Nguồn thẩm định: ${art.source}</div>
+                    <div class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-700 pt-4">
+                        ${art.content}
+                    </div>
+                </div>
+            `;
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        function toggleBookmark(id, type) {
+            const index = bookmarks.findIndex(b => b.id === id);
+            if (index > -1) {
+                bookmarks.splice(index, 1);
+            } else {
+                bookmarks.push({ id, type, savedAt: new Date().toLocaleDateString() });
+            }
+            localStorage.setItem('stl_bookmarks', JSON.stringify(bookmarks));
+            updateBookmarkBadge();
+            renderArticles();
+        }
+
+        function updateBookmarkBadge() {
+            const badge = document.getElementById('bookmarkCount');
+            if (bookmarks.length > 0) {
+                badge.textContent = bookmarks.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function openBookmarksModal() {
+            const list = document.getElementById('bookmarksList');
+            if (bookmarks.length === 0) {
+                list.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">Bạn chưa lưu bài viết nào.</p>`;
+            } else {
+                const savedArts = ARTICLES.filter(a => bookmarks.some(b => b.id === a.id));
+                list.innerHTML = savedArts.map(art => `
+                    <div class="p-3 bg-slate-50 dark:bg-slate-700 rounded-xl flex justify-between items-center text-xs">
+                        <div>
+                            <p class="font-bold text-slate-800 dark:text-slate-100">${art.title}</p>
+                            <p class="text-[10px] text-slate-400">${art.source}</p>
+                        </div>
+                        <button onclick="openArticleModal('${art.id}'); closeBookmarksModal()" class="text-teal-600 font-bold hover:underline">Đọc</button>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('bookmarksModal').classList.remove('hidden');
+        }
+
+        function closeBookmarksModal() {
+            document.getElementById('bookmarksModal').classList.add('hidden');
+        }
+
+        // UTILITIES: Accessibility & Theme
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function adjustFontSize(delta) {
+            const body = document.getElementById('appBody');
+            if (delta === 0) {
+                body.style.fontSize = '16px';
+            } else if (delta === -1) {
+                body.style.fontSize = '14px';
+            } else if (delta === 1) {
+                body.style.fontSize = '18px';
+            }
+        }
+
+        function openPrivacyPolicy() {
+            alert('CHÍNH SÁCH QUYỀN RIÊNG TƯ:\n\n1. Website KHÔNG thu thập địa chỉ IP, tên, hay thông tin cá nhân.\n2. Lịch sử lưu trữ bài viết chỉ lưu trên thiết bị của bạn (localStorage).\n3. Câu hỏi ẩn danh không liên kết với bất kỳ tài khoản hay nhận dạng nào.');
+        }
+    </script>
+</body>
+</html>

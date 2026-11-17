@@ -1,0 +1,29 @@
+TRANG WEB TỔ CHÚNG MÌNH — HƯỚNG DẪN NHANH
+==========================================
+
+Mở trang: bấm đúp vào file index.html (nên dùng Chrome hoặc Edge, máy cần có mạng
+để tải phông chữ và hiệu ứng 3D).
+
+1) LOGO TRƯỜNG
+   Đặt ảnh logo vào thư mục này, đặt tên là: logo.png
+   (cũng nhận logo.jpg, logo.webp, avatar.png). Logo hiện trong vòng tròn ở giữa.
+
+2) THÊM THÀNH VIÊN
+   - Bỏ ảnh vào thư mục "anh", ví dụ: anh/tran-van-a.jpg
+   - Mở index.html bằng Notepad (chuột phải > Open with > Notepad),
+     tìm phần thanhVien ở gần đầu file và thêm một dòng:
+       { ten: "Trần Văn A", anh: "anh/tran-van-a.jpg" },
+   - Lưu file, mở lại trang là thấy.
+   - Muốn chỉnh khung ảnh (ảnh bị cắt mất mặt), thêm canhAnh: "50% 20%"
+     (số đầu: trái-phải, số sau: trên-dưới).
+
+3) THÊM NHẠC
+   - Bỏ file nhạc (.mp3, .m4a) vào thư mục "nhac"
+   - Trong phần nhac của index.html thêm:
+       { ten: "Tên bài hát", file: "nhac/ten-file.mp3" },
+
+4) ĐỔI TÊN TỔ, TÊN TRƯỜNG, KHẨU HIỆU
+   Sửa các dòng ten, truong, khauHieu ở đầu file index.html.
+
+Lưu ý: bài đăng, tim, điểm game và quẻ omikuji khi mở file trên máy
+được lưu trong trình duyệt của máy đó (máy khác sẽ không thấy).

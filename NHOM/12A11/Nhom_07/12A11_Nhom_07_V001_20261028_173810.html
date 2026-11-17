@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHÓM 7 - LỚP 12A11 | Light Warm Art Studio Edition</title>
+    <!-- Thư viện Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        creamBg: '#FFFBF5',
+                        warmCanvas: '#FFF3E2',
+                        sketchCard: '#FFFFFF',
+                        artOrange: '#FF7B00',
+                        artPeach: '#FF9E00',
+                        artCoral: '#FF5E36',
+                        textDark: '#3D2314',
+                        textMuted: '#8C6D58',
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif'],
+                        caveat: ['Caveat', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FFFBF5;
+            background-image: radial-gradient(#FFD3B6 1.2px, transparent 1.2px), radial-gradient(#FFD3B6 1.2px, #FFFBF5 1.2px);
+            background-size: 48px 48px;
+            background-position: 0 0, 24px 24px;
+            color: #3D2314;
+            overflow-x: hidden;
+        }
+
+        .heading-font { font-family: 'Fredoka', sans-serif; }
+        .sketch-font { font-family: 'Caveat', cursive; }
+
+        .doodle-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+
+        .doodle-item {
+            position: absolute; opacity: 0.35; font-size: 2.2rem;
+            animation: floatSketch 18s infinite linear; user-select: none;
+        }
+
+        @keyframes floatSketch {
+            0% { transform: translateY(105vh) rotate(0deg); }
+            50% { transform: translateY(50vh) rotate(180deg); }
+            100% { transform: translateY(-10vh) rotate(360deg); }
+        }
+
+        .sketch-card {
+            background: #FFFFFF;
+            border: 3px solid #3D2314;
+            border-radius: 24px;
+            box-shadow: 6px 6px 0px #FFD3B6, 10px 10px 0px #3D2314;
+            transition: all 0.3s ease;
+        }
+
+        .sketch-card:hover {
+            transform: translateY(-8px) rotate(-0.5deg);
+            box-shadow: 10px 10px 0px #FF9E00, 14px 14px 0px #3D2314;
+        }
+
+        .brush-bar-orange { background: linear-gradient(90deg, #FF9E00 0%, #FF7B00 100%); border-radius: 999px; border: 1.5px solid #3D2314; }
+        .brush-bar-coral { background: linear-gradient(90deg, #FF7B00 0%, #FF5E36 100%); border-radius: 999px; border: 1.5px solid #3D2314; }
+        .brush-bar-green { background: linear-gradient(90deg, #2A9D8F 0%, #264653 100%); border-radius: 999px; border: 1.5px solid #3D2314; }
+
+        @keyframes colorBurst {
+            0% { transform: translateY(0) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.4); opacity: 0; }
+        }
+
+        .floating-color-burst {
+            position: absolute; pointer-events: none;
+            animation: colorBurst 0.9s ease-out forwards;
+            font-size: 1.8rem; z-index: 60;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative">
+
+    <!-- FLOATING SKETCH DOODLES -->
+    <div class="doodle-bg">
+        <span class="doodle-item text-artOrange" style="left: 5%; animation-duration: 20s;"><i class="fa-solid fa-palette"></i></span>
+        <span class="doodle-item text-artCoral" style="left: 20%; animation-duration: 16s;"><i class="fa-solid fa-paintbrush"></i></span>
+        <span class="doodle-item text-artPeach" style="left: 40%; animation-duration: 22s;"><i class="fa-solid fa-futbol"></i></span>
+        <span class="doodle-item text-artOrange" style="left: 60%; animation-duration: 17s;"><i class="fa-solid fa-calculator"></i></span>
+        <span class="doodle-item text-artCoral" style="left: 80%; animation-duration: 19s;"><i class="fa-solid fa-book-open"></i></span>
+    </div>
+
+    <!-- HEADER -->
+    <header class="relative pt-10 pb-8 px-4 text-center z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 bg-warmCanvas border-2 border-textDark text-textDark px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold mb-4 shadow-[3px_3px_0px_#3D2314]">
+                <i class="fa-solid fa-paint-brush text-artCoral"></i>
+                <span>LIGHT ART STUDIO • LỚP 12A11</span>
+                <i class="fa-solid fa-graduation-cap text-artPeach"></i>
+            </div>
+            
+            <h1 class="heading-font text-4xl sm:text-6xl font-bold text-textDark mb-2">
+                NHÓM 7 - LỚP 12A11 🎨✨
+            </h1>
+            
+            <p class="sketch-font text-2xl sm:text-3xl font-bold text-artOrange mb-3">
+                "Nơi hội tụ những sắc màu tri thức và nét vẽ tài hoa tuổi học trò!"
+            </p>
+        </div>
+    </header>
+
+    <!-- TOOLBAR -->
+    <section class="max-w-6xl mx-auto px-4 w-full mb-8 relative z-10">
+        <div class="bg-white p-4 rounded-3xl border-3 border-textDark shadow-[6px_6px_0px_#3D2314] flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="relative w-full md:w-1/2">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-artOrange"></i>
+                <input type="text" id="searchInput" oninput="filterMembers()" placeholder="Tìm kiếm theo tên, môn học..." 
+                    class="w-full pl-11 pr-4 py-2.5 rounded-2xl border-2 border-textDark bg-creamBg text-textDark font-semibold text-sm focus:outline-none">
+            </div>
+
+            <div class="flex flex-wrap gap-2" id="roleFilters">
+                <button onclick="setFilter('ALL')" class="filter-btn active bg-artOrange text-white font-bold px-3.5 py-1.5 rounded-xl border-2 border-textDark text-xs shadow-[2px_2px_0px_#3D2314]">
+                    Tất cả (5)
+                </button>
+                <button onclick="setFilter('🧮 Tự Nhiên')" class="filter-btn bg-warmCanvas text-textDark font-bold px-3 py-1.5 rounded-xl border-2 border-textDark text-xs shadow-[2px_2px_0px_#3D2314]">
+                    🧮 Tự Nhiên
+                </button>
+                <button onclick="setFilter('📖 Xã Hội')" class="filter-btn bg-warmCanvas text-textDark font-bold px-3 py-1.5 rounded-xl border-2 border-textDark text-xs shadow-[2px_2px_0px_#3D2314]">
+                    📖 Xã Hội
+                </button>
+                <button onclick="setFilter('🎨 Sáng Tạo')" class="filter-btn bg-warmCanvas text-textDark font-bold px-3 py-1.5 rounded-xl border-2 border-textDark text-xs shadow-[2px_2px_0px_#3D2314]">
+                    🎨 Sáng Tạo
+                </button>
+                <button onclick="resetData()" title="Khôi phục mặc định" class="p-2 bg-warmCanvas text-textDark rounded-xl border-2 border-textDark shadow-[2px_2px_0px_#3D2314] text-xs">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBERS GRID -->
+    <main class="max-w-6xl mx-auto px-4 w-full mb-12 flex-grow relative z-10">
+        <div id="membersContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+    </main>
+
+    <!-- EDIT MODAL (SỬA TÊN & TẢI ẢNH OFFLINE) -->
+    <div id="editModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-textDark/60 hidden">
+        <div class="bg-white rounded-3xl border-3 border-textDark max-w-xl w-full p-6 relative shadow-[10px_10px_0px_#FF7B00] max-h-[90vh] overflow-y-auto">
+            <button onclick="closeEditModal()" class="absolute top-4 right-4 w-8 h-8 bg-warmCanvas border-2 border-textDark rounded-full flex items-center justify-center font-bold">✕</button>
+
+            <h2 class="heading-font text-2xl font-bold text-textDark mb-4">🎨 Chỉnh Sửa Thành Viên & Ảnh (Offline)</h2>
+
+            <form id="editForm" onsubmit="saveMemberChanges(event)" class="space-y-4">
+                <input type="hidden" id="editId">
+
+                <!-- Upload Offline Image -->
+                <div class="bg-warmCanvas p-3.5 rounded-2xl border-2 border-textDark flex items-center gap-4">
+                    <img id="editImagePreview" src="" class="w-20 h-20 rounded-2xl object-cover border-2 border-textDark bg-white">
+                    <div class="flex-grow space-y-2">
+                        <label class="block text-xs font-bold text-textDark">Tải ảnh mới từ máy tính (Offline):</label>
+                        <input type="file" id="editImageInput" accept="image/*" onchange="previewUploadImage(event)" class="block w-full text-xs text-textMuted cursor-pointer">
+                        <input type="text" id="editImageUrl" oninput="previewUrlImage(this.value)" placeholder="Hoặc dán link đường dẫn ảnh..." class="w-full px-2.5 py-1.5 rounded-xl border-2 border-textDark text-xs font-semibold bg-white">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold mb-1">Tên thành viên</label>
+                        <input type="text" id="editName" required class="w-full px-3 py-2 rounded-xl border-2 border-textDark bg-creamBg text-xs font-bold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold mb-1">Vai trò / Chức vụ</label>
+                        <input type="text" id="editRole" required class="w-full px-3 py-2 rounded-xl border-2 border-textDark bg-creamBg text-xs font-bold">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold mb-1">Phân loại</label>
+                        <select id="editCategory" class="w-full px-3 py-2 rounded-xl border-2 border-textDark bg-creamBg text-xs font-bold">
+                            <option value="🧮 Tự Nhiên">🧮 Tự Nhiên</option>
+                            <option value="📖 Xã Hội">📖 Xã Hội</option>
+                            <option value="🎨 Sáng Tạo">🎨 Sáng Tạo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold mb-1">Sở thích</label>
+                        <input type="text" id="editHobbies" required class="w-full px-3 py-2 rounded-xl border-2 border-textDark bg-creamBg text-xs font-bold">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold mb-1">Câu nói yêu thích</label>
+                    <input type="text" id="editQuote" required class="w-full px-3 py-2 rounded-xl border-2 border-textDark bg-creamBg text-xs font-bold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold mb-1">Tiểu sử ngắn</label>
+                    <textarea id="editBio" rows="3" required class="w-full px-3 py-2 rounded-xl border-2 border-textDark bg-creamBg text-xs font-bold"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-xl border-2 border-textDark font-bold text-xs bg-warmCanvas">Hủy</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-artOrange text-white font-bold text-xs border-2 border-textDark shadow-[2px_2px_0px_#3D2314]">Lưu Thay Đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white text-textDark py-6 text-center border-t-3 border-textDark relative z-10">
+        <p class="heading-font text-lg font-bold text-artOrange">✨ NHÓM 7 • LỚP 12A11 • ĐOÀN KẾT VÀ TỎA SÁNG ✨</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const initialMembers = [
+            {
+                id: 1, name: "Nguyễn Văn Hoàng", role: "Nhóm Trưởng • Thần Đồng Tự Nhiên 📐",
+                category: "🧮 Tự Nhiên", avatar: "image/member1.jpg",
+                hobbies: "Bóng đá ⚽, Giải Toán nâng cao 📐", quote: "Toán học là nét vẽ chính xác nhất vẽ nên thế giới!",
+                likes: 68, stats: { math: 98, lit: 82, eng: 92 },
+                bio: "Nhóm trưởng năng nổ của Nhóm 7 - Lớp 12A11. Vừa là chân sút bóng đá cừ khôi, vừa sở hữu tư duy Toán học sắc bén."
+            },
+            {
+                id: 2, name: "Trần Mai Phương", role: "Họa Sĩ Đồ Họa 🎨 • Văn Học Trữ Tình",
+                category: "🎨 Sáng Tạo", avatar: "image/member2.jpg",
+                hobbies: "Vẽ tranh màu nước 🎨, Cầu lông 🏸", quote: "Mỗi nét vẽ là một giai điệu tươi sáng của tuổi học trò!",
+                likes: 85, stats: { math: 78, lit: 96, eng: 90 },
+                bio: "Tài năng hội họa số 1 của 12A11. Mai Phương biến tất cả các trang slide thuyết trình học thuật thành những bức tranh màu nước đẹp mê hồn."
+            },
+            {
+                id: 3, name: "Lê Quốc Bảo", role: "Chuyên Gia Tiếng Anh 🌐 • Cầu Lông",
+                category: "📖 Xã Hội", avatar: "image/member3.jpg",
+                hobbies: "Cầu lông 🏸, Dịch thuật Anh - Việt 🌐", quote: "Kiến thức là màu vẽ, công nghệ là cọ vẽ tương lai!",
+                likes: 54, stats: { math: 86, lit: 84, eng: 98 },
+                bio: "Tay vợt cầu lông xuất sắc kiêm chiến thần Tiếng Anh của lớp. Quốc Bảo luôn giúp nhóm tổng hợp tài liệu quốc tế."
+            },
+            {
+                id: 4, name: "Phạm Khánh Linh", role: "Diễn Giả Thuyết Trình 🎙️ • Tranh Biện",
+                category: "📖 Xã Hội", avatar: "image/member4.jpg",
+                hobbies: "Múa nghệ thuật 💃, Tranh biện 🎙️", quote: "Tự tin cất lời, kết nối triệu trái tim nghệ thuật!",
+                likes: 72, stats: { math: 80, lit: 95, eng: 91 },
+                bio: "Gương mặt đại diện quen thuộc của Nhóm 7 trên bục thuyết trình. Khánh Linh truyền cảm hứng mạnh mẽ với chất giọng truyền cảm."
+            },
+            {
+                id: 5, name: "Đặng Minh Quân", role: "Bộ Óc Lý / Hóa 🧪 • Tiền Đạo Sân Cỏ",
+                category: "🧮 Tự Nhiên", avatar: "image/member5.jpg",
+                hobbies: "Bóng đá ⚽, Thí nghiệm Hóa học 🧪", quote: "Khám phá bản chất vạn vật bằng tinh thần thực nghiệm!",
+                likes: 61, stats: { math: 95, lit: 76, eng: 88 },
+                bio: "Trùm thí nghiệm Vật lý - Hóa học của nhóm. Minh Quân luôn tính toán chuẩn xác từng số liệu thực nghiệm."
+            }
+        ];
+
+        let members = [];
+        let currentFilter = 'ALL';
+        let tempEditImageBase64 = null;
+
+        function initData() {
+            const saved = localStorage.getItem('group7_12a11_art_data');
+            if (saved) {
+                try { members = JSON.parse(saved); } catch(e) { members = [...initialMembers]; }
+            } else {
+                members = [...initialMembers];
+            }
+            renderMembers();
+        }
+
+        function saveData() {
+            localStorage.setItem('group7_12a11_art_data', JSON.stringify(members));
+        }
+
+        function resetData() {
+            if (confirm("Khôi phục lại thông tin mặc định của 5 thành viên Nhóm 7?")) {
+                members = JSON.parse(JSON.stringify(initialMembers));
+                saveData();
+                renderMembers();
+            }
+        }
+
+        function renderMembers() {
+            const container = document.getElementById('membersContainer');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            container.innerHTML = '';
+
+            const filtered = members.filter(m => {
+                const matchesCategory = currentFilter === 'ALL' || m.category === currentFilter;
+                const matchesSearch = m.name.toLowerCase().includes(searchVal) || m.role.toLowerCase().includes(searchVal);
+                return matchesCategory && matchesSearch;
+            });
+
+            filtered.forEach(m => {
+                const card = document.createElement('div');
+                card.className = "sketch-card p-5 flex flex-col justify-between relative";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-warmCanvas text-textDark text-xs font-bold px-3 py-1 rounded-xl border-2 border-textDark">${m.category}</span>
+                            <button onclick="openEditModal(${m.id})" class="text-textMuted hover:text-artOrange p-1.5" title="Sửa tên / Tải ảnh mới">
+                                <i class="fa-solid fa-pen-to-square text-base"></i>
+                            </button>
+                        </div>
+
+                        <div class="relative w-28 h-28 mx-auto mb-3">
+                            <img src="${m.avatar}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23FFE0B5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'40\'>🎨</text></svg>'" 
+                                class="w-full h-full rounded-2xl object-cover border-3 border-textDark shadow-[4px_4px_0px_#FF9E00] bg-warmCanvas">
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <h3 class="heading-font text-xl font-bold text-textDark">${m.name}</h3>
+                            <p class="text-xs font-bold text-artOrange mt-0.5">${m.role}</p>
+                        </div>
+
+                        <div class="bg-creamBg p-2.5 rounded-xl border-2 border-textDark text-center mb-4">
+                            <p class="text-xs font-semibold text-textDark">${m.hobbies}</p>
+                        </div>
+
+                        <div class="space-y-2 mb-4 bg-warmCanvas/80 p-3 rounded-2xl border-2 border-textDark">
+                            <div class="text-[11px] font-bold">📐 Toán: ${m.stats.math}%</div>
+                            <div class="text-[11px] font-bold">📖 Văn: ${m.stats.lit}%</div>
+                            <div class="text-[11px] font-bold">🌐 Anh: ${m.stats.eng}%</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function setFilter(cat) {
+            currentFilter = cat;
+            renderMembers();
+        }
+
+        function filterMembers() {
+            renderMembers();
+        }
+
+        function openEditModal(id) {
+            const m = members.find(item => item.id === id);
+            if (!m) return;
+
+            document.getElementById('editId').value = m.id;
+            document.getElementById('editName').value = m.name;
+            document.getElementById('editRole').value = m.role;
+            document.getElementById('editCategory').value = m.category;
+            document.getElementById('editHobbies').value = m.hobbies;
+            document.getElementById('editQuote').value = m.quote;
+            document.getElementById('editBio').value = m.bio;
+
+            document.getElementById('editImagePreview').src = m.avatar;
+            document.getElementById('editImageUrl').value = m.avatar.startsWith('http') ? m.avatar : '';
+            tempEditImageBase64 = m.avatar;
+
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+
+        function previewUploadImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    tempEditImageBase64 = e.target.result;
+                    document.getElementById('editImagePreview').src = tempEditImageBase64;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function previewUrlImage(url) {
+            if (url.trim()) {
+                tempEditImageBase64 = url.trim();
+                document.getElementById('editImagePreview').src = tempEditImageBase64;
+            }
+        }
+
+        function saveMemberChanges(event) {
+            event.preventDefault();
+            const id = parseInt(document.getElementById('editId').value);
+            const member = members.find(m => m.id === id);
+
+            if (member) {
+                member.name = document.getElementById('editName').value.trim();
+                member.role = document.getElementById('editRole').value.trim();
+                member.category = document.getElementById('editCategory').value;
+                member.hobbies = document.getElementById('editHobbies').value.trim();
+                member.quote = document.getElementById('editQuote').value.trim();
+                member.bio = document.getElementById('editBio').value.trim();
+
+                if (tempEditImageBase64) {
+                    member.avatar = tempEditImageBase64;
+                }
+
+                saveData();
+                renderMembers();
+                closeEditModal();
+            }
+        }
+
+        window.onload = initData;
+    </script>
+</body>
+</html>

@@ -1,0 +1,1611 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Website giới thiệu nhóm và bài nghị luận so sánh Sang thu của Hữu Thỉnh với Thu điếu của Nguyễn Khuyến.">
+<title>Hương Thu | Sang Thu & Thu Điếu</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --cream: #fbf7ef;
+    --white: #fff;
+    --brown: #654a32;
+    --dark: #332d25;
+    --gold: #c59a54;
+    --green: #66765b;
+    --text: #5f5b53;
+    --border: #e9e0d1;
+    --shadow: 0 10px 30px rgba(75,57,35,.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Be Vietnam Pro", sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.8;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+section {
+    padding: 85px 7%;
+    scroll-margin-top: 80px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: "Playfair Display", serif;
+    color: var(--brown);
+    font-size: clamp(30px, 4vw, 45px);
+    line-height: 1.35;
+    margin-bottom: 15px;
+}
+
+.section-desc {
+    max-width: 750px;
+    margin: auto;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.gold {
+    color: var(--gold);
+}
+
+/* THANH ĐIỀU HƯỚNG */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(251,247,239,.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+.navbar {
+    max-width: 1400px;
+    margin: auto;
+    padding: 14px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--brown);
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--brown);
+}
+
+/* TRANG CHỦ */
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    color: white;
+    background:
+        linear-gradient(90deg,rgba(35,36,28,.85),rgba(35,36,28,.35)),
+        url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1800&q=85")
+        center/cover no-repeat;
+}
+
+.hero-content {
+    max-width: 780px;
+    animation: fadeUp 1s ease;
+}
+
+.hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,.7);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(48px,7vw,82px);
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #e9c990;
+    font-style: italic;
+}
+
+.hero p {
+    max-width: 650px;
+    color: #f0eee8;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px 10px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #a98140;
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--brown);
+}
+
+/* GIỚI THIỆU */
+
+.intro {
+    background: white;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    align-items: center;
+}
+
+.intro-image {
+    position: relative;
+}
+
+.intro-image img {
+    height: 430px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.image-note {
+    position: absolute;
+    right: -15px;
+    bottom: 25px;
+    background: var(--green);
+    color: white;
+    padding: 18px 23px;
+    max-width: 230px;
+    border-radius: 5px;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+}
+
+.intro-text p {
+    text-align: justify;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 17px;
+}
+
+.quote {
+    border-left: 4px solid var(--gold);
+    background: var(--cream);
+    padding: 18px;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    color: var(--brown);
+}
+
+/* THÀNH VIÊN */
+
+.members {
+    background: #f3eee4;
+}
+
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 24px;
+}
+
+.member-card {
+    background: white;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: .35s;
+}
+
+.member-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 40px rgba(75,57,35,.16);
+}
+
+.member-card img {
+    height: 230px;
+    transition: .4s;
+}
+
+.member-card:hover img {
+    transform: scale(1.04);
+}
+
+.member-info {
+    padding: 20px;
+}
+
+.member-number {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--gold);
+}
+
+.member-info h3 {
+    color: var(--brown);
+    font-size: 17px;
+    margin: 6px 0;
+}
+
+.role {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #e8ecdf;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.member-info p {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.8;
+}
+
+.notice {
+    background: white;
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+/* TÁC PHẨM */
+
+.works {
+    background: white;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 30px;
+}
+
+.work-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.work-card img {
+    height: 280px;
+}
+
+.work-content {
+    padding: 28px;
+}
+
+.work-content h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    color: var(--brown);
+}
+
+.author {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 800;
+    margin: 5px 0 15px;
+}
+
+.work-content p {
+    color: var(--text);
+    font-size: 13px;
+    text-align: justify;
+    margin-bottom: 14px;
+}
+
+.work-meta {
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--brown);
+}
+
+/* BÀI NGHỊ LUẬN */
+
+.article-section {
+    background: var(--cream);
+}
+
+.article {
+    max-width: 950px;
+    margin: auto;
+    background: white;
+    padding: clamp(24px,5vw,65px);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.article-header {
+    text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.article-header h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--brown);
+    font-size: clamp(27px,4vw,40px);
+    line-height: 1.4;
+    margin: 12px 0;
+}
+
+.article-header p {
+    font-size: 13px;
+    color: var(--text);
+}
+
+.article h3 {
+    font-family: "Playfair Display", serif;
+    color: var(--green);
+    font-size: 25px;
+    margin: 35px 0 15px;
+    line-height: 1.5;
+}
+
+.article h4 {
+    color: var(--brown);
+    font-size: 17px;
+    margin: 24px 0 12px;
+}
+
+.article p {
+    color: #514d46;
+    font-size: 14px;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 17px;
+}
+
+.article .lead {
+    color: var(--brown);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.article blockquote {
+    border-left: 4px solid var(--gold);
+    background: #f5f1e8;
+    padding: 20px 25px;
+    margin: 25px 0;
+    color: var(--brown);
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    margin: 25px 0;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+th {
+    background: var(--green);
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+td {
+    padding: 14px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f8f5ef;
+}
+
+.conclusion {
+    background: var(--green);
+    color: white;
+    padding: 25px;
+    border-radius: 7px;
+    margin-top: 30px;
+}
+
+.conclusion h3 {
+    color: #f0d29b;
+    margin-top: 0;
+}
+
+.conclusion p {
+    color: white;
+    margin-bottom: 0;
+}
+
+/* THÔNG ĐIỆP */
+
+.message {
+    text-align: center;
+    color: white;
+    background:
+        linear-gradient(rgba(42,47,36,.86),rgba(42,47,36,.86)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80")
+        center/cover no-repeat;
+}
+
+.message .label {
+    color: #e6c58b;
+}
+
+.message h2 {
+    color: white;
+}
+
+.message p {
+    max-width: 750px;
+    margin: auto;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(18px,3vw,24px);
+    font-style: italic;
+}
+
+/* CHÂN TRANG */
+
+footer {
+    background: #2f3028;
+    color: white;
+    padding: 45px 7% 22px;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 35px;
+}
+
+.footer-title {
+    font-family: "Playfair Display", serif;
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+footer p, footer a {
+    color: #d1cec5;
+    font-size: 12px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer li {
+    margin-bottom: 8px;
+}
+
+footer a:hover {
+    color: #e6c58b;
+}
+
+.copyright {
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding-top: 18px;
+    border-top: 1px solid #55554b;
+    text-align: center;
+    color: #bcb9b0;
+    font-size: 11px;
+}
+
+/* NÚT LÊN ĐẦU */
+
+.back-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: var(--gold);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 999;
+}
+
+.back-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* HIỆU ỨNG */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: .7s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+    .member-grid {
+        grid-template-columns: repeat(3,minmax(0,1fr));
+    }
+}
+
+@media(max-width:760px) {
+    section {
+        padding: 65px 6%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        padding: 20px 7%;
+        flex-direction: column;
+        gap: 14px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 560px;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .intro-image img {
+        height: 320px;
+    }
+
+    .image-note {
+        right: 10px;
+    }
+
+    .member-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        gap: 16px;
+    }
+
+    .member-card img {
+        height: 190px;
+    }
+
+    .member-info {
+        padding: 15px;
+    }
+
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .work-card img {
+        height: 230px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+@media(max-width:400px) {
+    .member-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-card img {
+        height: 270px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="#home" class="logo">HƯƠNG<span>THU.</span></a>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Mở menu" aria-expanded="false">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#intro">Giới thiệu</a></li>
+            <li><a href="#members">Thành viên</a></li>
+            <li><a href="#works">Tác phẩm</a></li>
+            <li><a href="#article">Bài nghị luận</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<!-- TRANG CHỦ -->
+
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <div class="hero-tag">KHÔNG GIAN VĂN HỌC VIỆT NAM</div>
+
+        <h1>Hương sắc<br><span>mùa thu</span></h1>
+
+        <p>
+            Hai bài thơ, hai thời đại, hai cách cảm nhận thiên nhiên.
+            Cùng khám phá vẻ đẹp mùa thu qua
+            <em>Sang thu</em> của Hữu Thỉnh và
+            <em>Thu điếu</em> của Nguyễn Khuyến.
+        </p>
+
+        <a class="btn btn-primary" href="#article">ĐỌC BÀI NGHỊ LUẬN</a>
+        <a class="btn btn-outline" href="#members">GẶP GỠ NHÓM</a>
+    </div>
+</section>
+
+<!-- GIỚI THIỆU -->
+
+<section class="intro" id="intro">
+    <div class="container intro-grid">
+
+        <div class="intro-image reveal">
+            <img
+                src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=85"
+                alt="Rừng cây trong sắc thu"
+                loading="lazy">
+
+            <div class="image-note">
+                Mỗi mùa thu là một miền cảm xúc.
+            </div>
+        </div>
+
+        <div class="intro-text reveal">
+            <div class="label">LỜI MỞ ĐẦU</div>
+
+            <h2 class="section-title">
+                Khi văn chương<br>chạm đến mùa thu
+            </h2>
+
+            <p>
+                Mùa thu từ lâu đã trở thành nguồn cảm hứng bất tận
+                trong thi ca Việt Nam. Mỗi thi sĩ lại tìm thấy ở
+                mùa thu một vẻ đẹp riêng, gắn với những rung động
+                và suy tư của tâm hồn.
+            </p>
+
+            <p>
+                Nguyễn Khuyến đem đến bức tranh thu tĩnh lặng,
+                trong trẻo của làng quê Bắc Bộ qua
+                <em>Thu điếu</em>. Hữu Thỉnh lại ghi lại những
+                tín hiệu tinh tế của khoảnh khắc giao mùa trong
+                <em>Sang thu</em>.
+            </p>
+
+            <p>
+                Website giới thiệu hai tác phẩm, phân tích những
+                điểm tương đồng và khác biệt về nội dung, nghệ
+                thuật, qua đó làm nổi bật phong cách sáng tác
+                của hai nhà thơ.
+            </p>
+
+            <div class="quote">
+                Văn học giúp ta không chỉ nhìn thấy thiên nhiên,
+                mà còn lắng nghe những rung động của tâm hồn.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 7 THÀNH VIÊN -->
+
+<section class="members" id="members">
+    <div class="container">
+
+        <div class="section-heading reveal">
+            <div class="label">NHỮNG NGƯỜI THỰC HIỆN</div>
+            <h2 class="section-title">
+                Gặp gỡ <span class="gold">7 thành viên</span>
+            </h2>
+            <p class="section-desc">
+                Bảy thành viên cùng hợp tác, nghiên cứu và sáng tạo
+                để hoàn thành dự án tìm hiểu vẻ đẹp mùa thu trong
+                thơ ca Việt Nam.
+            </p>
+        </div>
+
+        <div class="member-grid">
+
+            <article class="member-card reveal">
+                <img src="images/anh5.jpg" 
+                     alt="Ảnh minh họa thành viên 1" loading="lazy">
+                <div class="member-info">
+                    <div class="member-number">THÀNH VIÊN 01</div>
+                    <h3>Nguyễn Anh Thư</h3>
+                    <span class="role">Nhóm trưởng</span>
+                    <p>Phân công công việc, điều phối hoạt động và tổng hợp kết quả.</p>
+                </div>
+            </article>
+
+            <article class="member-card reveal">
+               <img src="images/anh4.jpg" 
+                     alt="Ảnh minh họa thành viên 2" loading="lazy">
+                <div class="member-info">
+                    <div class="member-number">THÀNH VIÊN 02</div>
+                    <h3>Lê Trịnh Anh Thư</h3>
+                    <span class="role">Nghiên cứu</span>
+                    <p>Tìm hiểu tác giả, hoàn cảnh sáng tác và giá trị nội dung.</p>
+                </div>
+            </article>
+
+            <article class="member-card reveal">
+                <img src="images/anh2.jpg" 
+                     alt="Ảnh minh họa thành viên 3" loading="lazy">
+                <div class="member-info">
+                    <div class="member-number">THÀNH VIÊN 03</div>
+                    <h3>Vũ Lê Phương Thùy</h3>
+                    <span class="role">Phân tích</span>
+                    <p>Phân tích hình ảnh thơ, ngôn ngữ và biện pháp nghệ thuật.</p>
+                </div>
+            </article>
+
+            <article class="member-card reveal">
+                 <img src="images/anh1.jpg" 
+                     alt="Ảnh minh họa thành viên 4" loading="lazy">
+                <div class="member-info">
+                    <div class="member-number">THÀNH VIÊN 04</div>
+                    <h3>Vũ Thị Hà Vy</h3>
+                    <span class="role">So sánh</span>
+                    <p>Đối chiếu những điểm giống và khác nhau của hai bài thơ.</p>
+                </div>
+            </article>
+
+            <article class="member-card reveal">
+                <img src="images/anh7.jpg" 
+                     alt="Ảnh minh họa thành viên " loading="lazy">
+                <div class="member-info">
+                    <div class="member-number">THÀNH VIÊN 05</div>
+                    <h3>Nguyễn Phương Uyên</h3>
+                    <span class="role">Thiết kế</span>
+                    <p>Lựa chọn hình ảnh, màu sắc và thiết kế giao diện website.</p>
+                </div>
+            </article>
+
+            <article class="member-card reveal">
+                <img src="images/anh3.jpg" 
+                     alt="Ảnh minh họa thành viên 6" loading="lazy">
+                <div class="member-info">
+                    <div class="member-number">THÀNH VIÊN 06</div>
+                    <h3>Võ Bảo Thùy</h3>
+                    <span class="role">Kỹ thuật</span>
+                    <p>Xây dựng mã HTML, CSS và kiểm tra hoạt động của website.</p>
+                </div>
+            </article>
+
+            <article class="member-card reveal">
+                    <img src="images/anh6.jpg" 
+                     alt="Ảnh minh họa thành viên 7" loading="lazy">
+                <div class="member-info">
+                    <div class="member-number">THÀNH VIÊN 07</div>
+                    <h3>Nguyễn Thùy Tiên</h3>
+                    <span class="role">Biên tập</span>
+                    <p>Kiểm tra chính tả, hoàn thiện nội dung và chuẩn bị thuyết trình.</p>
+                </div>
+            </article>
+
+        </div>
+
+        
+
+    </div>
+</section>
+
+<!-- HAI TÁC PHẨM -->
+
+<section class="works" id="works">
+    <div class="container">
+
+        <div class="section-heading reveal">
+            <div class="label">HAI THI PHẨM - HAI THẾ GIỚI</div>
+            <h2 class="section-title">
+                Dấu ấn mùa thu trong <span class="gold">thi ca</span>
+            </h2>
+            <p class="section-desc">
+                Từ ao thu tĩnh lặng đến khoảnh khắc giao mùa,
+                hai tác phẩm mở ra những cách cảm nhận thiên nhiên
+                độc đáo.
+            </p>
+        </div>
+
+        <div class="work-grid">
+
+            <article class="work-card reveal">
+                <img
+                    src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1000&q=85"
+                    alt="Hồ nước yên bình" loading="lazy">
+
+                <div class="work-content">
+                    <h3>Thu điếu</h3>
+                    <div class="author">NGUYỄN KHUYẾN</div>
+
+                    <p>
+                        <em>Thu điếu</em> là bài thơ tiêu biểu trong
+                        chùm thơ thu của Nguyễn Khuyến. Tác phẩm
+                        tái hiện cảnh sắc làng quê Bắc Bộ với ao
+                        thu, chiếc thuyền câu, ngõ trúc và bầu
+                        trời xanh. Bức tranh trong trẻo, thanh
+                        sơ nhưng phảng phất tâm trạng trầm lắng
+                        của nhà thơ.
+                    </p>
+
+                    <div class="work-meta">
+                        Thể thơ: Thất ngôn bát cú Đường luật
+                    </div>
+                </div>
+            </article>
+
+            <article class="work-card reveal">
+                <img
+                    src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1000&q=85"
+                    alt="Cảnh thiên nhiên mùa thu" loading="lazy">
+
+                <div class="work-content">
+                    <h3>Sang thu</h3>
+                    <div class="author">HỮU THỈNH</div>
+
+                    <p>
+                        <em>Sang thu</em> ghi lại những tín hiệu
+                        tinh tế của thiên nhiên khi mùa hạ
+                        chuyển sang mùa thu. Hương ổi, gió se,
+                        làn sương và những thay đổi của đất trời
+                        gợi cảm giác ngỡ ngàng, đồng thời mở ra
+                        những suy ngẫm về cuộc đời và con người.
+                    </p>
+
+                    <div class="work-meta">
+                        Thể thơ: Năm chữ
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- BÀI VĂN NGHỊ LUẬN HOÀN CHỈNH -->
+
+<section class="article-section" id="article">
+<div class="container">
+
+    <div class="section-heading reveal">
+        <div class="label">GÓC PHÂN TÍCH VĂN HỌC</div>
+        <h2 class="section-title">Bài văn nghị luận</h2>
+        <p class="section-desc">
+            So sánh hai bài thơ Sang thu của Hữu Thỉnh
+            và Thu điếu của Nguyễn Khuyến.
+        </p>
+    </div>
+
+    <article class="article reveal">
+
+        <div class="article-header">
+            <div class="label">BÀI VIẾT CHUYÊN ĐỀ</div>
+            <h2>
+                So sánh hai bài thơ<br>
+                <em>Sang thu</em> và <em>Thu điếu</em>
+            </h2>
+            <p>
+                Vẻ đẹp thiên nhiên và chiều sâu tâm hồn thi sĩ
+            </p>
+        </div>
+
+        <h3>I. Mở bài</h3>
+
+        <p class="lead">
+            Mùa thu từ lâu đã trở thành nguồn cảm hứng bất tận
+            của thi ca bởi vẻ đẹp dịu dàng, trong trẻo cùng
+            những rung động tinh tế mà mùa thu mang lại cho
+            tâm hồn con người.
+        </p>
+
+        <p>
+            Trong văn học Việt Nam, mỗi nhà thơ lại có một
+            cách cảm nhận và thể hiện mùa thu riêng. Nếu
+            Nguyễn Khuyến đưa người đọc đến với khung cảnh
+            mùa thu làng quê Bắc Bộ thanh sơ, tĩnh lặng qua
+            bài thơ <em>Thu điếu</em>, thì Hữu Thỉnh lại tái
+            hiện khoảnh khắc giao mùa đầy tinh tế trong
+            <em>Sang thu</em>. Dù được sáng tác ở hai thời
+            đại khác nhau, cả hai tác phẩm đều thể hiện tình
+            yêu thiên nhiên sâu sắc, đồng thời gửi gắm những
+            tâm tư, tình cảm và suy ngẫm của người nghệ sĩ
+            trước cuộc đời. So sánh hai bài thơ giúp chúng
+            ta nhận ra những điểm tương đồng, khác biệt
+            trong cảm hứng sáng tác cũng như tài năng nghệ
+            thuật độc đáo của mỗi tác giả.
+        </p>
+
+        <h3>II. Khái quát về hai tác giả và tác phẩm</h3>
+
+        <h4>1. Nguyễn Khuyến và bài thơ Thu điếu</h4>
+
+        <p>
+            Nguyễn Khuyến (1835–1909) là nhà thơ tiêu biểu
+            của văn học trung đại Việt Nam. Ông nổi tiếng
+            với những sáng tác viết về thiên nhiên, làng
+            quê và con người Việt Nam. Chùm thơ thu gồm
+            <em>Thu vịnh</em>, <em>Thu ẩm</em> và
+            <em>Thu điếu</em> thể hiện tài năng nghệ thuật
+            xuất sắc của ông trong việc miêu tả cảnh sắc
+            mùa thu vùng đồng bằng Bắc Bộ.
+        </p>
+
+        <p>
+            <em>Thu điếu</em>, nghĩa là <em>Câu cá mùa thu</em>,
+            tái hiện một không gian làng quê yên ả. Những
+            hình ảnh như ao thu, thuyền câu, ngõ trúc và
+            bầu trời xanh tạo nên bức tranh thu trong trẻo
+            nhưng phảng phất vẻ cô quạnh. Cảnh vật không
+            chỉ có giá trị miêu tả mà còn gợi tâm trạng
+            trầm tư của nhân vật trữ tình.
+        </p>
+
+        <h4>2. Hữu Thỉnh và bài thơ Sang thu</h4>
+
+        <p>
+            Hữu Thỉnh là nhà thơ trưởng thành trong thời
+            kì kháng chiến chống Mỹ. Thơ ông thường hướng
+            đến những cảm nhận gần gũi về thiên nhiên,
+            cuộc sống và con người, với giọng thơ nhẹ nhàng,
+            sâu lắng và giàu sức gợi.
+        </p>
+
+        <p>
+            <em>Sang thu</em> được sáng tác năm 1977, ghi
+            lại những cảm nhận tinh tế của tác giả trước
+            khoảnh khắc đất trời chuyển từ hạ sang thu.
+            Từ những tín hiệu như hương ổi, gió se, màn
+            sương đến sự thay đổi của dòng sông và cánh
+            chim, nhà thơ thể hiện khả năng quan sát nhạy
+            bén. Từ cảnh sắc thiên nhiên, bài thơ còn gợi
+            suy ngẫm về con người khi đã trải qua những
+            biến động của cuộc đời.
+        </p>
+
+        <h3>III. Những điểm tương đồng giữa hai bài thơ</h3>
+
+        <h4>1. Cùng thể hiện tình yêu thiên nhiên</h4>
+
+        <p>
+            Trước hết, <em>Thu điếu</em> và <em>Sang thu</em>
+            đều bắt nguồn từ sự quan sát tinh tế và tình
+            yêu tha thiết đối với thiên nhiên. Hai nhà thơ
+            không lựa chọn những cảnh tượng hùng vĩ mà chú
+            ý đến những sự vật gần gũi, bình dị của đời sống.
+        </p>
+
+        <p>
+            Trong <em>Thu điếu</em>, Nguyễn Khuyến mở ra
+            không gian làng quê qua hình ảnh ao thu,
+            thuyền câu, ngõ trúc và bầu trời. Trong
+            <em>Sang thu</em>, Hữu Thỉnh cảm nhận mùa thu
+            qua hương ổi, gió se, màn sương và những chuyển
+            động của dòng sông, cánh chim. Những chi tiết
+            nhỏ bé ấy đều cho thấy sự gắn bó của người
+            nghệ sĩ với thiên nhiên và quê hương.
+        </p>
+
+        <h4>2. Ngôn ngữ thơ giàu sức gợi</h4>
+
+        <p>
+            Cả hai tác phẩm đều không miêu tả thiên nhiên
+            bằng những lời lẽ cầu kì. Nguyễn Khuyến phát
+            huy vẻ đẹp của ngôn ngữ thơ Nôm, sử dụng những
+            hình ảnh quen thuộc của làng quê Việt Nam.
+            Hữu Thỉnh chọn những từ ngữ giản dị nhưng độc
+            đáo, giúp người đọc hình dung được những chuyển
+            động rất nhẹ của đất trời.
+        </p>
+
+        <p>
+            Cảnh vật trong hai bài thơ không chỉ được nhìn
+            bằng mắt mà còn được cảm nhận bằng tâm hồn.
+            Nhờ vậy, thiên nhiên trở thành phương tiện
+            thể hiện thế giới nội tâm và những rung động
+            sâu kín của người viết.
+        </p>
+
+        <h4>3. Cảnh thu gắn liền với tâm trạng</h4>
+
+        <p>
+            Trong <em>Thu điếu</em>, vẻ thanh vắng của
+            không gian thu gắn với tâm trạng trầm lắng,
+            nỗi niềm thời thế và sự gắn bó với quê hương.
+            Trong <em>Sang thu</em>, những chuyển biến của
+            thiên nhiên gợi nên suy ngẫm về bước đi của
+            thời gian và sự trưởng thành của con người.
+            Cả hai tác phẩm đều vượt lên trên việc miêu
+            tả phong cảnh đơn thuần để thể hiện chiều sâu
+            tâm hồn thi sĩ.
+        </p>
+
+        <h3>IV. Những điểm khác biệt về nội dung</h3>
+
+        <h4>1. Khác biệt trong cách cảm nhận mùa thu</h4>
+
+        <p>
+            Điểm khác biệt trước hết nằm ở thời điểm và
+            cách thức cảm nhận thiên nhiên. Trong
+            <em>Thu điếu</em>, mùa thu đã hiện diện khá
+            rõ nét. Không gian được tổ chức theo chiều
+            cao, chiều sâu và những đường nét tinh tế,
+            tạo nên một bức tranh thu tương đối tĩnh tại.
+        </p>
+
+        <blockquote>
+            “Ao thu lạnh lẽo nước trong veo,<br>
+            Một chiếc thuyền câu bé tẻo teo.”
+        </blockquote>
+
+        <p>
+            Ao thu hiện lên với làn nước trong veo, mang
+            theo cảm giác se lạnh của tiết trời. Chiếc
+            thuyền câu nhỏ bé càng làm nổi bật sự vắng
+            lặng của không gian. Các từ ngữ “lạnh lẽo”,
+            “trong veo”, “bé tẻo teo” vừa gợi tả cảnh vật
+            vừa tạo cảm giác cô tịch, trầm lắng.
+        </p>
+
+        <p>
+            Không gian tiếp tục được mở rộng qua hai câu thơ:
+        </p>
+
+        <blockquote>
+            “Sóng biếc theo làn hơi gợn tí,<br>
+            Lá vàng trước gió khẽ đưa vèo.”
+        </blockquote>
+
+        <p>
+            Hai câu thơ sử dụng nghệ thuật lấy động tả
+            tĩnh rất đặc sắc. Những chuyển động nhỏ bé
+            của sóng nước và chiếc lá càng khiến người
+            đọc cảm nhận rõ sự yên ắng của cảnh thu.
+            Sắc vàng của lá hòa cùng sắc xanh của nước
+            tạo nên vẻ đẹp hài hòa, thanh nhã.
+        </p>
+
+        <p>
+            Trái lại, <em>Sang thu</em> tập trung vào
+            khoảnh khắc giao mùa. Mùa thu không đến đột
+            ngột mà được nhận ra qua từng dấu hiệu:
+        </p>
+
+        <blockquote>
+            “Bỗng nhận ra hương ổi<br>
+            Phả vào trong gió se.”
+        </blockquote>
+
+        <p>
+            Từ “bỗng” diễn tả sự bất ngờ, ngỡ ngàng của
+            nhà thơ khi nhận ra mùa thu đang đến. Hương
+            ổi là tín hiệu bình dị, gần gũi với làng quê
+            Việt Nam. Động từ “phả” gợi cảm giác hương
+            thơm lan tỏa rõ rệt trong không gian, hòa vào
+            làn gió se lạnh đầu mùa. Mùa thu vì thế không
+            chỉ được cảm nhận bằng thị giác mà còn bằng
+            khứu giác và xúc giác.
+        </p>
+
+        <p>
+            Tiếp đó, hình ảnh màn sương được miêu tả bằng
+            một cách diễn đạt độc đáo:
+        </p>
+
+        <blockquote>
+            “Sương chùng chình qua ngõ<br>
+            Hình như thu đã về.”
+        </blockquote>
+
+        <p>
+            Từ láy “chùng chình” kết hợp với biện pháp
+            nhân hóa khiến làn sương như có tâm trạng,
+            bước đi chậm rãi và lưu luyến. Cụm từ “hình
+            như” thể hiện cảm giác vừa nhận ra vừa ngờ
+            ngợ của nhà thơ trước thời khắc giao mùa.
+            Nếu mùa thu trong thơ Nguyễn Khuyến hiện lên
+            với những đường nét thanh tĩnh thì mùa thu
+            trong thơ Hữu Thỉnh lại đến nhẹ nhàng, mơ hồ
+            và đầy bất ngờ.
+        </p>
+
+        <h4>2. Khác biệt trong tâm trạng và cảm hứng</h4>
+
+        <p>
+            Ẩn sau cảnh thu của Nguyễn Khuyến là một tâm
+            hồn nhiều suy tư. Nhà thơ sống trong thời kì
+            đất nước có những biến động lớn và lựa chọn
+            rời chốn quan trường để trở về quê nhà. Bởi
+            vậy, vẻ thanh bình trong <em>Thu điếu</em>
+            vẫn có thể gợi lên nỗi niềm sâu kín của một
+            nhà nho nặng lòng với thời cuộc.
+        </p>
+
+        <p>
+            Với Hữu Thỉnh, cảm hứng của <em>Sang thu</em>
+            bắt đầu từ niềm ngỡ ngàng, say mê trước vẻ
+            đẹp của thiên nhiên. Sau đó, bài thơ mở rộng
+            thành suy ngẫm về con người khi đi qua những
+            trải nghiệm của cuộc đời.
+        </p>
+
+        <blockquote>
+            “Sấm cũng bớt bất ngờ<br>
+            Trên hàng cây đứng tuổi.”
+        </blockquote>
+
+        <p>
+            Ở nghĩa tả thực, tiếng sấm không còn dữ dội
+            như trong những cơn mưa mùa hạ, còn hàng cây
+            đã trải qua nhiều biến đổi của thời tiết.
+            Ở tầng nghĩa biểu tượng, “sấm” có thể gợi
+            những biến động bất thường của cuộc đời,
+            còn “hàng cây đứng tuổi” có thể gợi hình
+            ảnh con người từng trải. Khi đã đi qua
+            nhiều thử thách, con người thường trở nên
+            bình tĩnh, vững vàng và sâu sắc hơn trước
+            những đổi thay.
+        </p>
+
+        <p>
+            Như vậy, nếu <em>Thu điếu</em> nghiêng về
+            việc khắc họa vẻ đẹp tĩnh lặng của thiên
+            nhiên và tâm trạng trầm tư của nhà thơ,
+            thì <em>Sang thu</em> nổi bật ở những biến
+            chuyển tinh tế của đất trời cùng những
+            chiêm nghiệm về cuộc sống con người.
+        </p>
+
+        <h3>V. Những điểm khác biệt về nghệ thuật</h3>
+
+        <p>
+            <em>Thu điếu</em> được sáng tác theo thể thơ
+            thất ngôn bát cú Đường luật, với kết cấu
+            chặt chẽ, niêm luật nghiêm ngặt và cách
+            tổ chức hình ảnh cân đối. Ngôn ngữ thơ Nôm
+            vừa giản dị, gần gũi với đời sống vừa có
+            khả năng biểu đạt tinh tế. Nghệ thuật lấy
+            động tả tĩnh, cách phối hợp màu sắc và việc
+            sử dụng những hình ảnh giàu sức gợi tạo nên
+            bức tranh thu mang vẻ đẹp cổ điển mà đậm
+            nét đặc trưng của làng quê Việt Nam.
+        </p>
+
+        <p>
+            Ngược lại, <em>Sang thu</em> được viết theo
+            thể thơ năm chữ với nhịp điệu linh hoạt.
+            Hữu Thỉnh sử dụng những từ ngữ độc đáo như
+            “bỗng”, “phả”, “chùng chình”, “dềnh dàng”,
+            “vội vã” để làm nổi bật sự vận động của
+            cảnh vật. Các biện pháp nhân hóa, ẩn dụ
+            cùng hình ảnh giàu tính biểu tượng khiến
+            bài thơ vừa gần gũi vừa chứa đựng những
+            suy ngẫm sâu xa.
+        </p>
+
+        <p>
+            Nếu nghệ thuật của Nguyễn Khuyến thiên về
+            sự hàm súc, cân đối và tĩnh tại, thì nghệ
+            thuật của Hữu Thỉnh nổi bật ở sự tinh tế,
+            tự nhiên và khả năng gợi mở nhiều tầng ý
+            nghĩa. Mỗi phong cách đều có nét độc đáo
+            riêng, góp phần làm phong phú thơ ca Việt Nam.
+        </p>
+
+        <h3>VI. Bảng tổng hợp so sánh</h3>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tiêu chí</th>
+                        <th>Thu điếu</th>
+                        <th>Sang thu</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Tác giả</strong></td>
+                        <td>Nguyễn Khuyến</td>
+                        <td>Hữu Thỉnh</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Thể thơ</strong></td>
+                        <td>Thất ngôn bát cú Đường luật</td>
+                        <td>Năm chữ</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Không gian</strong></td>
+                        <td>Ao thu, thuyền câu, ngõ trúc, bầu trời làng quê.</td>
+                        <td>Thiên nhiên trong thời khắc chuyển từ hạ sang thu.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Cảm hứng</strong></td>
+                        <td>Vẻ đẹp thanh sơ, yên tĩnh và tâm trạng trầm lắng.</td>
+                        <td>Chuyển biến tinh tế của thiên nhiên và suy ngẫm về cuộc đời.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Nghệ thuật</strong></td>
+                        <td>Ngôn ngữ cô đọng, bút pháp cổ điển, lấy động tả tĩnh.</td>
+                        <td>Hình ảnh giàu sức gợi, nhân hóa, ẩn dụ và nhịp thơ linh hoạt.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Điểm chung</strong></td>
+                        <td colspan="2">
+                            Đều thể hiện tình yêu thiên nhiên, khả năng quan sát
+                            tinh tế và những rung động sâu sắc của tâm hồn thi sĩ.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>VII. Lí giải sự tương đồng và khác biệt</h3>
+
+        <p>
+            Sự tương đồng giữa hai tác phẩm trước hết bắt
+            nguồn từ cảm hứng thiên nhiên vốn có vị trí
+            quan trọng trong thơ ca Việt Nam. Cả Nguyễn
+            Khuyến và Hữu Thỉnh đều có khả năng quan sát
+            tinh tế, yêu những vẻ đẹp bình dị và gửi gắm
+            cảm xúc vào cảnh vật.
+        </p>
+
+        <p>
+            Tuy nhiên, hai bài thơ được sáng tác trong
+            những hoàn cảnh lịch sử và thời đại văn học
+            khác nhau. Nguyễn Khuyến sáng tác trong bối
+            cảnh xã hội phong kiến cuối thế kỉ XIX nhiều
+            biến động. Vì vậy, thơ thu của ông mang vẻ
+            đẹp cổ điển cùng những nỗi niềm kín đáo trước
+            thời cuộc.
+        </p>
+
+        <p>
+            Hữu Thỉnh là nhà thơ hiện đại, có những trải
+            nghiệm của người lính và sự chiêm nghiệm về
+            cuộc sống. Trong <em>Sang thu</em>, sự thay
+            đổi của thiên nhiên không chỉ là hiện tượng
+            thời tiết mà còn gợi ra những suy tư về thời
+            gian, sự trưởng thành và cách con người đối
+            diện với cuộc đời. Sự khác biệt về thời đại,
+            trải nghiệm và phong cách đã tạo nên hai
+            bức tranh thu mang vẻ đẹp riêng biệt.
+        </p>
+
+        <h3>VIII. Kết bài</h3>
+
+        <p>
+            Có thể khẳng định rằng <em>Thu điếu</em> của
+            Nguyễn Khuyến và <em>Sang thu</em> của Hữu
+            Thỉnh đều là những tác phẩm đặc sắc viết về
+            mùa thu trong văn học Việt Nam. Một bài thơ
+            mang vẻ đẹp cổ điển, thanh sơ và tĩnh lặng
+            của làng quê Bắc Bộ; bài thơ còn lại ghi
+            lại khoảnh khắc giao mùa đầy tinh tế, đồng
+            thời gửi gắm những suy ngẫm sâu sắc về cuộc
+            đời. Dù có những khác biệt về nội dung và
+            nghệ thuật, cả hai tác phẩm đều gặp gỡ ở
+            tình yêu thiên nhiên và khả năng cảm nhận
+            những rung động nhỏ bé của cuộc sống.
+        </p>
+
+        <p>
+            Qua hai bài thơ, người đọc càng thêm trân
+            trọng vẻ đẹp của quê hương, đồng thời hiểu
+            rằng thiên nhiên không chỉ là cảnh sắc bên
+            ngoài mà còn là tấm gương phản chiếu tâm
+            hồn và những chiêm nghiệm của con người.
+        </p>
+
+        <div class="conclusion">
+            <h3>Lời kết</h3>
+            <p>
+                Dù ở thời đại nào, mùa thu vẫn luôn mang
+                đến cho thi ca những rung động đẹp đẽ.
+                Qua ngòi bút của mỗi nhà thơ, thiên nhiên
+                không chỉ hiện lên bằng sắc màu và đường
+                nét mà còn lưu giữ những suy tư, tình
+                cảm và vẻ đẹp tâm hồn con người.
+            </p>
+        </div>
+
+    </article>
+</div>
+</section>
+
+<!-- THÔNG ĐIỆP -->
+
+<section class="message">
+    <div class="container reveal">
+        <div class="label">THÔNG ĐIỆP CUỐI CÙNG</div>
+
+        <h2 class="section-title">
+            Lắng nghe thiên nhiên,<br>thấu hiểu tâm hồn
+        </h2>
+
+        <p>
+            Có những vẻ đẹp không cần rực rỡ để được nhớ đến.
+            Chỉ một làn gió nhẹ, một mặt hồ yên ả hay một
+            khoảnh khắc giao mùa cũng đủ khiến tâm hồn con
+            người rung động.
+        </p>
+    </div>
+</section>
+
+</main>
+
+<!-- CHÂN TRANG -->
+
+<footer>
+    <div class="footer-grid">
+
+        <div>
+            <div class="footer-title">HƯƠNG THU.</div>
+            <p>
+                Một góc nhỏ dành cho những tâm hồn yêu văn học,
+                thiên nhiên và vẻ đẹp của thơ ca Việt Nam.
+            </p>
+        </div>
+
+        <div>
+            <div class="footer-title">Khám phá</div>
+            <ul>
+                <li><a href="#intro">Giới thiệu đề tài</a></li>
+                <li><a href="#members">Bảy thành viên</a></li>
+                <li><a href="#works">Hai tác phẩm</a></li>
+                <li><a href="#article">Bài nghị luận</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="footer-title">Thông tin dự án</div>
+            <p>Chủ đề: So sánh Sang thu và Thu điếu.</p>
+            <p>Lĩnh vực: Ngữ văn.</p>
+            <p>Thực hiện: Nhóm học sinh gồm 7 thành viên.</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © <span id="year"></span> HƯƠNG THU.
+        Sản phẩm học tập Ngữ văn.
+    </div>
+</footer>
+
+<button class="back-top" id="backTop"
+        aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
+
+<script>
+// MENU ĐIỆN THOẠI
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function () {
+    const opened = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", opened);
+    menuToggle.textContent = opened ? "✕" : "☰";
+});
+
+document.querySelectorAll(".nav-links a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+    });
+});
+
+// NÚT QUAY LẠI ĐẦU TRANG
+const backTop = document.getElementById("backTop");
+
+window.addEventListener("scroll", function () {
+    backTop.classList.toggle("show", window.scrollY > 400);
+});
+
+backTop.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+// HIỆU ỨNG XUẤT HIỆN KHI CUỘN
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(function (item) {
+        observer.observe(item);
+    });
+} else {
+    revealItems.forEach(function (item) {
+        item.classList.add("visible");
+    });
+}
+
+// NĂM TỰ ĐỘNG
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
+```

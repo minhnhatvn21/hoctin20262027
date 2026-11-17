@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA SIX | Cổng Thông Tin Nhóm & Thư Mục Hình Ảnh Tương Tác</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Cấu hình Tailwind tùy chỉnh -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        space: {
+                            950: '#04060e',
+                            900: '#090d1a',
+                            800: '#111827',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 12s infinite alternate',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 14s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(35px, -45px) scale(1.1)' },
+                            '66%': { transform: 'translate(-25px, 25px) scale(0.95)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --glass-bg: rgba(15, 23, 42, 0.68);
+            --glass-border: rgba(255, 255, 255, 0.11);
+            --card-spotlight: rgba(34, 211, 238, 0.18);
+        }
+
+        html:not(.dark) {
+            --glass-bg: rgba(255, 255, 255, 0.82);
+            --glass-border: rgba(15, 23, 42, 0.1);
+            --card-spotlight: rgba(99, 102, 241, 0.12);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Thanh cuộn Neon tùy chỉnh */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050814;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #06b6d4, #8b5cf6, #ec4899);
+            border-radius: 9999px;
+        }
+
+        /* Hiệu ứng kính mờ Glassmorphism */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Hiệu ứng 3D Tilt và Spotlight cho Card Thành viên */
+        .member-card {
+            transform-style: preserve-3d;
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .member-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--card-spotlight), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .member-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Chữ Gradient Aurora chuyển động */
+        .text-gradient-aurora {
+            background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hiệu ứng xuất hiện mượt khi cuộn */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hạt cảm xúc bay lên */
+        @keyframes floatUpFade {
+            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.45) rotate(14deg); opacity: 0; }
+        }
+        .floating-emoji {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatUpFade 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Chế độ chỉnh sửa bài viết trực tiếp */
+        [contenteditable="true"] {
+            outline: 2px dashed #22d3ee;
+            outline-offset: 6px;
+            border-radius: 10px;
+            background: rgba(34, 211, 238, 0.07);
+            padding: 6px 10px;
+            transition: all 0.2s ease;
+        }
+
+        /* Con trỏ gõ chữ */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.9s infinite;
+            color: #22d3ee;
+            margin-left: 3px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Hiệu ứng Đĩa Than Vinyl Xoay & Sóng Nhạc Equalizer */
+        @keyframes spinVinyl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .vinyl-spinning {
+            animation: spinVinyl 5s linear infinite;
+        }
+        .vinyl-paused {
+            animation: spinVinyl 5s linear infinite;
+            animation-play-state: paused;
+        }
+
+        @keyframes eqBar {
+            0%, 100% { height: 4px; }
+            50% { height: 18px; }
+        }
+        .eq-bar {
+            width: 3px;
+            border-radius: 9999px;
+            background: linear-gradient(to top, #06b6d4, #ec4899);
+            height: 4px;
+            transition: height 0.2s ease;
+        }
+        .playing .eq-bar:nth-child(1) { animation: eqBar 0.6s ease-in-out infinite 0.1s; }
+        .playing .eq-bar:nth-child(2) { animation: eqBar 0.5s ease-in-out infinite 0.25s; }
+        .playing .eq-bar:nth-child(3) { animation: eqBar 0.7s ease-in-out infinite 0.05s; }
+        .playing .eq-bar:nth-child(4) { animation: eqBar 0.55s ease-in-out infinite 0.35s; }
+
+        /* Custom Suno Player Range Input */
+        .suno-progress {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: #475569;
+            border-radius: 999px;
+            outline: none;
+            cursor: pointer;
+        }
+        .suno-progress::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .suno-progress::-webkit-slider-thumb:hover {
+            background: #f1f5f9;
+            transform: scale(1.2);
+        }
+        .lyric-line.active {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255,255,255,0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-space-950 dark:text-slate-100 selection:bg-fuchsia-500 selection:text-white">
+
+    <!-- Thanh tiến trình đọc & cuộn trang ở đỉnh -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 z-[100] w-0 transition-all duration-75"></div>
+
+    <!-- Đèn Spotlight đi theo chuột -->
+    <div id="cursor-glow" class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300 opacity-75 hidden lg:block"
+         style="background: radial-gradient(650px circle at 50% 50%, rgba(139, 92, 246, 0.1), transparent 45%);"></div>
+
+    <!-- Canvas Hạt Chòm Sao Tương Tác Chuột -->
+    <canvas id="constellation-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
+
+    <!-- Các quầng sáng Aurora nền -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-28 -left-28 w-96 h-96 bg-purple-600/20 dark:bg-purple-600/25 rounded-full blur-[115px] animate-blob"></div>
+        <div class="absolute top-1/3 -right-28 w-96 h-96 bg-cyan-500/20 dark:bg-cyan-500/20 rounded-full blur-[115px] animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-600/15 dark:bg-pink-600/20 rounded-full blur-[115px] animate-blob" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- ================= THANH TRẠNG THÁI ĐƯỜNG DẪN FILE INDEX.HTML ================= -->
+    <div class="relative z-50 bg-slate-900 text-slate-300 text-xs py-1.5 px-4 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 font-mono">
+                <span class="inline-flex items-center gap-1 text-amber-400">
+                    <i class="fa-solid fa-folder-open"></i> ThuMucNhom_Web
+                </span>
+                <span class="text-slate-600">/</span>
+                <a href="#gallery-folder" class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/30 transition-colors">
+                    <i class="fa-brands fa-html5 text-orange-400"></i> index.html
+                </a>
+                <span class="hidden sm:inline text-slate-500">• Đang chạy trực tiếp</span>
+            </div>
+            <div class="flex items-center gap-4 text-[11px]">
+                <a href="#gallery-folder" onclick="switchExplorerView('code')" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-code text-purple-400"></i> Xem cấu trúc thư mục <code class="text-amber-300">images/</code>
+                </a>
+                <span class="hidden md:inline text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i>6 Thành viên Online</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= HEADER ĐIỀU HƯỚNG CỐ ĐỊNH ================= -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-200/60 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Nhóm -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-500 via-purple-500 to-pink-500 p-[2px] shadow-lg shadow-purple-500/25 group-hover:rotate-6 transition-transform">
+                    <div class="w-full h-full bg-white dark:bg-space-900 rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-atom text-xl text-transparent bg-clip-text bg-gradient-to-tr from-cyan-400 to-pink-500 animate-spin-slow"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                        NOVA<span class="text-gradient-aurora">SIX</span>
+                        <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">index.html</span>
+                    </span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">6 Cá Tính • 1 Tinh Thần Sáng Tạo</p>
+                </div>
+            </a>
+
+            <!-- Menu Điều Hướng Desktop -->
+            <nav class="hidden md:flex items-center gap-1 p-1.5 rounded-2xl bg-slate-200/60 dark:bg-white/5 border border-slate-300/50 dark:border-white/10">
+                <a href="#hero" class="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-white/10 transition-all">Trang chủ</a>
+                <a href="#members" class="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-white/10 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-users text-cyan-400 text-xs"></i> Thành viên (6)
+                </a>
+                <a href="#articles" class="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-white/10 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-feather-pointed text-purple-400 text-xs"></i> Bài viết nhóm
+                </a>
+                <a href="#gallery-folder" class="px-4 py-2 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-white/10 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-folder-open text-amber-400 text-xs"></i> Thư mục ảnh
+                </a>
+                <button onclick="playTayTienInPage()" class="px-4 py-2 rounded-xl text-sm font-semibold text-pink-500 dark:text-pink-400 hover:bg-white dark:hover:bg-white/10 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-compact-disc animate-spin-slow text-xs"></i> Nhạc Tây Tiến (Suno AI)
+                </button>
+            </nav>
+
+            <!-- Nút Chức năng Phải -->
+            <div class="flex items-center gap-2.5">
+                <!-- Nút Phát Nhạc Tây Tiến Trực Tiếp Trong Trang -->
+                <button onclick="playTayTienInPage()" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-pink-500/15 text-pink-500 dark:text-pink-400 border border-pink-500/30 hover:bg-pink-500 hover:text-white transition-all">
+                    <i class="fa-solid fa-music"></i>
+                    <span class="hidden xl:inline">Phát Nhạc Tây Tiến</span>
+                </button>
+
+                <!-- Nút Mở Modal Chèn Ảnh Nhanh -->
+                <button onclick="openUploadModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:opacity-95 hover:scale-[1.02] active:scale-95 transition-all">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span>Chèn Ảnh Nhanh</span>
+                </button>
+
+                <!-- Nút Đổi Giao diện Sáng / Tối -->
+                <button id="theme-toggle" onclick="toggleTheme()" title="Đổi giao diện Sáng/Tối" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-700 dark:text-amber-300 hover:scale-105 transition-all">
+                    <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= PHẦN 1: HERO SECTION SIÊU HIỆN ĐẠI ================= -->
+    <section id="hero" class="relative z-10 pt-12 pb-24 lg:pt-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Cột Trái: Nội dung chính -->
+            <div class="lg:col-span-7 text-center lg:text-left">
+                <!-- Huy hiệu trạng thái trực tuyến -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel mb-6 border border-cyan-500/30 shadow-sm">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200">
+                        Không gian số chính thức của <strong class="text-cyan-500 dark:text-cyan-400">6 Thành Viên Tinh Nhuệ</strong>
+                    </span>
+                </div>
+
+                <!-- Tiêu đề lớn kèm hiệu ứng chữ chuyển động -->
+                <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.12] mb-6 text-slate-900 dark:text-white">
+                    Hội Tụ Đam Mê <br>
+                    <span id="typewriter-text" class="text-gradient-aurora typing-cursor">Kiến Tạo Tương Lai</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+                    Chào mừng bạn đến với ngôi nhà chung của <span class="font-semibold text-slate-900 dark:text-white">Lê Xuân Trung, Ma Khánh Tùng, Thân Thị Thu Uyên, Nguyễn Thị Huyền Vy, Phạm Như Ý</span> và <span class="font-semibold text-slate-900 dark:text-white">Nguyễn Đoàn Phi Yến</span>. Nơi lưu giữ các dự án tâm huyết, giai điệu Suno AI độc quyền, bài viết chuyên đề và khoảnh khắc thanh xuân rực rỡ nhất.
+                </p>
+
+                <!-- Các nút kêu gọi hành động -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
+                    <a href="#members" class="px-7 py-4 rounded-2xl font-semibold text-white bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-2.5">
+                        <span>Khám Phá 6 Thành Viên</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <button onclick="playTayTienInPage()" class="px-6 py-4 rounded-2xl font-semibold glass-panel border-pink-500/40 hover:border-pink-400 hover:-translate-y-0.5 transition-all flex items-center gap-2.5 text-pink-600 dark:text-pink-300">
+                        <i class="fa-solid fa-circle-play text-pink-500 text-lg"></i>
+                        <span>Phát Nhạc "Tây Tiến" Ngay Trong Trang</span>
+                    </button>
+                    <a href="#gallery-folder" class="px-6 py-4 rounded-2xl font-semibold glass-panel hover:border-cyan-400/50 hover:-translate-y-0.5 transition-all flex items-center gap-2.5">
+                        <i class="fa-solid fa-folder-tree text-amber-400"></i>
+                        <span>Mở Thư Mục Ảnh</span>
+                    </a>
+                </div>
+
+                <!-- Dãy Avatar Mini tương tác nhanh -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                    <div class="flex -space-x-3" id="hero-mini-avatars">
+                        <!-- Render tự động bằng JS từ danh sách 6 thành viên -->
+                    </div>
+                    <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                        Nhấp vào avatar bất kỳ để mở <span class="text-cyan-500 dark:text-cyan-400 font-semibold">Hồ sơ 3D & Đổi ảnh đại diện</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột Phải: Cụm Thẻ Cấu Trúc Dự Án & Đội Hình -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl blur-2xl opacity-30 animate-pulse-slow"></div>
+
+                    <!-- Bảng Terminal / Explorer Mini -->
+                    <div class="relative glass-panel rounded-3xl p-6 sm:p-7 shadow-2xl border border-white/15">
+                        <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-200/60 dark:border-white/10">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                                <span class="text-xs font-mono text-slate-400 ml-2">📁 ThuMucNhom_Web/index.html</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                                <i class="fa-solid fa-bolt mr-1"></i>Ready
+                            </span>
+                        </div>
+
+                        <!-- Sơ đồ cây thư mục tóm tắt ngay trên Hero -->
+                        <div class="p-4 rounded-2xl bg-slate-900/90 text-slate-200 font-mono text-xs space-y-1.5 mb-5 border border-white/10">
+                            <div class="text-amber-400 font-semibold"><i class="fa-solid fa-folder-open mr-1.5"></i>ThuMucNhom_Web/</div>
+                            <div class="pl-4 flex items-center justify-between text-cyan-300 bg-cyan-500/10 py-1 px-2 rounded-lg">
+                                <span>├── <i class="fa-brands fa-html5 text-orange-400 mr-1"></i>index.html</span>
+                                <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20">Đang mở</span>
+                            </div>
+                            <div class="pl-4 text-pink-300">
+                                <button onclick="playTayTienInPage()" class="hover:underline text-left">├── <i class="fa-solid fa-music mr-1"></i>music/tay-tien-suno.mp3 (Phát tại chỗ)</button>
+                            </div>
+                            <div class="pl-4 text-amber-300">
+                                <a href="#gallery-folder" class="hover:underline">└── <i class="fa-solid fa-folder-open mr-1"></i>images/ (Thư mục ảnh)</a>
+                            </div>
+                        </div>
+
+                        <!-- Danh sách rút gọn 6 thành viên trong Hero Card -->
+                        <div class="p-4 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 border border-white/10">
+                            <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center justify-between">
+                                <span>Đội hình NOVA SIX</span>
+                                <span class="text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i>Đã xác thực</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/80 dark:bg-white/10">1. Lê Xuân Trung</span>
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/80 dark:bg-white/10">2. Nguyễn Thị Huyền Vy</span>
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/80 dark:bg-white/10">3. Phạm Như Ý</span>
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/80 dark:bg-white/10">4. Nguyễn Đoàn Phi Yến</span>
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/80 dark:bg-white/10">5. Ma Khánh Tùng</span>
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/80 dark:bg-white/10">6. Thân Thị Thu Uyên</span>
+                            </div>
+                        </div>
+
+                        <!-- Trình phát nhúng trực tiếp ngoài trang: Tây Tiến – Khúc Hát Người (Suno AI) -->
+                        <div class="mt-5 relative rounded-xl overflow-hidden bg-[#161b33] shadow-xl p-4 sm:p-5 flex items-center gap-4 sm:gap-5 border border-slate-700/50">
+                            <a href="https://suno.com/s/eqKNGe01fiP6L2IY" target="_blank" title="Mở link gốc" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+                                <i class="fa-solid fa-link text-xs"></i>
+                            </a>
+                            
+                            <img src="images/ky-niem/41bde7fe-c146-45d1-875c-2e2190b69b65.jfif" alt="Cover" class="w-24 h-24 sm:w-28 sm:h-28 rounded-md object-cover shadow-md border border-white/5" onerror="this.src='https://placehold.co/128x128/1e1b4b/38bdf8?text=Cover'">
+                            
+                            <div class="flex-1 min-w-0 pr-2 pb-2">
+                                <h4 class="text-white font-bold text-sm sm:text-base mb-3 sm:mb-4 truncate">Tây Tiến – Khúc Hát Người</h4>
+                                
+                                <div class="flex items-center gap-3">
+                                    <button onclick="toggleGlobalAudio()" class="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-[#f4f0e6] text-slate-900 flex items-center justify-center hover:scale-105 transition-transform global-play-btn shadow">
+                                        <i class="fa-solid fa-play text-sm sm:text-lg ml-0.5"></i>
+                                    </button>
+                                    <span class="text-[10px] sm:text-xs text-slate-300 font-mono global-time-current w-8 text-right">0:00</span>
+                                    <input type="range" class="suno-progress global-progress flex-1" value="0" max="100" onchange="seekGlobalAudio(this.value)">
+                                    <span class="text-[10px] sm:text-xs text-slate-300 font-mono global-time-total w-8 text-left">0:00</span>
+                                </div>
+                            </div>
+
+                            <div class="absolute bottom-3 right-4 text-white font-display font-bold text-xl sm:text-2xl tracking-widest opacity-90 select-none">
+                                SUNO
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PHẦN 2: GIỚI THIỆU 6 THÀNH VIÊN (3D TILT + ĐỔI ẢNH) ================= -->
+    <section id="members" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal-item">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 dark:text-cyan-400 text-xs font-semibold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-users-viewfinder"></i> Đội Hình 6 Thành Viên
+            </div>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                Sáu Cá Tính — <span class="text-gradient-aurora">Một Sức Mạnh</span>
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+                Di chuột lên thẻ để trải nghiệm hiệu ứng <strong>Nghiêng 3D & Ánh sáng Spotlight</strong>. Nhấn nút <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-400 font-semibold"><i class="fa-solid fa-camera"></i> Đổi ảnh</span> để tải ảnh thật từ máy tính hoặc xem hồ sơ chi tiết.
+            </p>
+
+            <!-- Bộ lọc vai trò thành viên -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+                <button onclick="filterMembers('all')" class="member-filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-md transition-all" data-filter="all">
+                    Tất cả thành viên (6)
+                </button>
+                <button onclick="filterMembers('tech')" class="member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium glass-panel hover:border-cyan-400/50 transition-all" data-filter="tech">
+                    Kỹ thuật & Hệ thống (Trung, Tùng)
+                </button>
+                <button onclick="filterMembers('creative')" class="member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium glass-panel hover:border-pink-400/50 transition-all" data-filter="creative">
+                    Biên tập & Thiết kế (Thu Uyên, Huyền Vy)
+                </button>
+                <button onclick="filterMembers('research')" class="member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium glass-panel hover:border-emerald-400/50 transition-all" data-filter="research">
+                    Nghiên cứu & Truyền thông (Như Ý, Phi Yến)
+                </button>
+            </div>
+        </div>
+
+        <!-- Lưới 6 Thành Viên -->
+        <div id="members-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Render tự động bằng JS từ mảng defaultMembers -->
+        </div>
+    </section>
+
+    <!-- ================= PHẦN 3: CHUYÊN MỤC BÀI VIẾT TƯƠNG TÁC CỦA NHÓM ================= -->
+    <section id="articles" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-12 reveal-item">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-500 dark:text-purple-400 text-xs font-semibold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-newspaper"></i> Chuyên Mục Bài Viết Của Nhóm
+            </div>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                Góc Nghiên Cứu & <span class="text-gradient-aurora">Chia Sẻ Tri Thức</span>
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+                Các bài viết chuyên đề do 6 thành viên biên soạn. Bạn có thể chuyển đổi giữa 3 chủ đề, <strong>chỉnh sửa nội dung trực tiếp trên trang</strong> và thả cảm xúc bay lên sống động!
+            </p>
+        </div>
+
+        <!-- Thanh chọn Chủ đề Bài viết & Công cụ đọc -->
+        <div class="glass-panel rounded-3xl p-4 sm:p-6 mb-8 shadow-xl reveal-item">
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+                <!-- 3 Tab Chủ đề -->
+                <div class="flex flex-wrap gap-2" id="article-tabs">
+                    <button onclick="switchArticle(0)" class="article-tab-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-microchip"></i>
+                        <span>Chủ đề 1: Trí Tuệ Nhân Tạo & Tương Lai Số</span>
+                    </button>
+                    <button onclick="switchArticle(1)" class="article-tab-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-medium bg-slate-200/70 dark:bg-white/5 hover:bg-slate-300/60 dark:hover:bg-white/10 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span>Chủ đề 2: Hành Trình Gắn Kết 6 Cá Tính</span>
+                    </button>
+                    <button onclick="switchArticle(2)" class="article-tab-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-medium bg-slate-200/70 dark:bg-white/5 hover:bg-slate-300/60 dark:hover:bg-white/10 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Chủ đề 3: Xu Hướng Web Tương Tác 2026</span>
+                    </button>
+                </div>
+
+                <!-- Thanh công cụ: Cỡ chữ + Bật chỉnh sửa bài viết -->
+                <div class="flex flex-wrap items-center justify-end gap-2 border-t lg:border-t-0 pt-3 lg:pt-0 border-slate-200/60 dark:border-white/10">
+                    <div class="flex items-center bg-slate-200/70 dark:bg-white/5 rounded-xl p-1">
+                        <button onclick="changeArticleFontSize(-1)" title="Giảm cỡ chữ" class="px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-white dark:hover:bg-white/10 transition-all">A-</button>
+                        <span class="px-2 text-xs text-slate-400">|</span>
+                        <button onclick="changeArticleFontSize(1)" title="Tăng cỡ chữ" class="px-2.5 py-1 rounded-lg text-sm font-bold hover:bg-white dark:hover:bg-white/10 transition-all">A+</button>
+                    </div>
+
+                    <button id="toggle-edit-article-btn" onclick="toggleArticleEditMode()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 hover:bg-amber-500 hover:text-white transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span id="edit-btn-label">Chỉnh sửa bài viết</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Khung Nội Dung Bài Viết Chính -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Cột Trái: Mục lục & Thông tin Tác giả Nhóm -->
+            <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+                <div class="glass-panel rounded-3xl p-6 shadow-xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white text-xl shadow-lg">
+                            <i class="fa-solid fa-feather"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 uppercase tracking-wider">Nhóm Tác Giả</div>
+                            <div class="font-bold text-slate-900 dark:text-white text-sm sm:text-base" id="article-author">Xuân Trung, Khánh Tùng & Như Ý</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-slate-100/80 dark:bg-white/5 text-xs mb-5">
+                        <div>
+                            <span class="text-slate-400 block">Ngày xuất bản:</span>
+                            <strong id="article-date" class="text-slate-800 dark:text-slate-200">25/10/2026</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Thời lượng đọc:</span>
+                            <strong id="article-readtime" class="text-cyan-500">4 phút đọc</strong>
+                        </div>
+                    </div>
+
+                    <!-- Mục lục tự động -->
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Mục lục bài viết</h4>
+                        <ul id="article-toc" class="space-y-2 text-sm">
+                            <!-- Render bằng JS -->
+                        </ul>
+                    </div>
+
+                    <!-- Thả Cảm Xúc Tương Tác -->
+                    <div class="pt-5 border-t border-slate-200/60 dark:border-white/10">
+                        <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-3 flex items-center justify-between">
+                            <span>Thả cảm xúc cho bài viết của nhóm:</span>
+                            <span id="total-reactions" class="text-pink-500 font-bold">146 lượt</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5">
+                            <button onclick="triggerReaction(event, '❤️', 'heart')" class="p-2 rounded-2xl bg-slate-100 dark:bg-white/5 hover:bg-rose-500/20 border border-transparent hover:border-rose-500/40 transition-all text-center group">
+                                <div class="text-lg group-hover:scale-125 transition-transform">❤️</div>
+                                <div id="react-heart" class="text-[11px] font-bold mt-1">54</div>
+                            </button>
+                            <button onclick="triggerReaction(event, '🔥', 'fire')" class="p-2 rounded-2xl bg-slate-100 dark:bg-white/5 hover:bg-amber-500/20 border border-transparent hover:border-amber-500/40 transition-all text-center group">
+                                <div class="text-lg group-hover:scale-125 transition-transform">🔥</div>
+                                <div id="react-fire" class="text-[11px] font-bold mt-1">38</div>
+                            </button>
+                            <button onclick="triggerReaction(event, '👏', 'clap')" class="p-2 rounded-2xl bg-slate-100 dark:bg-white/5 hover:bg-cyan-500/20 border border-transparent hover:border-cyan-500/40 transition-all text-center group">
+                                <div class="text-lg group-hover:scale-125 transition-transform">👏</div>
+                                <div id="react-clap" class="text-[11px] font-bold mt-1">21</div>
+                            </button>
+                            <button onclick="triggerReaction(event, '💡', 'idea')" class="p-2 rounded-2xl bg-slate-100 dark:bg-white/5 hover:bg-purple-500/20 border border-transparent hover:border-purple-500/40 transition-all text-center group">
+                                <div class="text-lg group-hover:scale-125 transition-transform">💡</div>
+                                <div id="react-idea" class="text-[11px] font-bold mt-1">15</div>
+                            </button>
+                            <button onclick="triggerReaction(event, '🚀', 'rocket')" class="p-2 rounded-2xl bg-slate-100 dark:bg-white/5 hover:bg-emerald-500/20 border border-transparent hover:border-emerald-500/40 transition-all text-center group">
+                                <div class="text-lg group-hover:scale-125 transition-transform">🚀</div>
+                                <div id="react-rocket" class="text-[11px] font-bold mt-1">18</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Cột Phải: Nội Dung Bài Viết & Bình Luận -->
+            <div class="lg:col-span-8 space-y-8">
+                <article class="glass-panel rounded-3xl overflow-hidden shadow-2xl border border-slate-200/70 dark:border-white/10">
+                    <!-- Ảnh bìa bài viết -->
+                    <div class="relative h-64 sm:h-80 overflow-hidden">
+                        <img id="article-cover" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Article Cover" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-space-950 via-space-950/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span id="article-badge" class="px-3.5 py-1 rounded-full text-xs font-bold bg-cyan-500 text-white shadow-md">
+                                Chuyên Đề Công Nghệ
+                            </span>
+                            <h3 id="article-title" class="font-display text-2xl sm:text-4xl font-bold text-white mt-3 leading-tight">
+                                Trí Tuệ Nhân Tạo (AI) & Tương Lai Sáng Tạo Của Thế Hệ Trẻ Việt Nam
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Thân bài viết -->
+                    <div id="article-body" class="p-6 sm:p-10 space-y-6 text-slate-700 dark:text-slate-200 leading-relaxed" style="font-size: 17px;">
+                        <!-- Render tự động bằng JS -->
+                    </div>
+                </article>
+
+                <!-- Khu vực Bình luận & Thảo luận Nhóm -->
+                <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-xl">
+                    <h4 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-5 flex items-center gap-2">
+                        <i class="fa-regular fa-comments text-cyan-400"></i>
+                        <span>Thảo Luận Cùng 6 Thành Viên</span>
+                    </h4>
+
+                    <form onsubmit="submitComment(event)" class="grid grid-cols-1 sm:grid-cols-12 gap-3 mb-6">
+                        <input type="text" id="comment-name" required placeholder="Tên của bạn..." class="sm:col-span-4 px-4 py-3 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-300/60 dark:border-white/10 text-sm focus:outline-none focus:border-cyan-400">
+                        <select id="comment-role" class="sm:col-span-3 px-3 py-3 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-300/60 dark:border-white/10 text-sm focus:outline-none focus:border-cyan-400">
+                            <option value="Khách ghé thăm" class="dark:bg-space-900">✨ Khách ghé thăm</option>
+                            <option value="Bạn cùng lớp" class="dark:bg-space-900">🎓 Bạn cùng lớp</option>
+                            <option value="Giảng viên" class="dark:bg-space-900">👨‍🏫 Giảng viên</option>
+                            <option value="Thành viên NOVA SIX" class="dark:bg-space-900">🚀 Thành viên nhóm</option>
+                        </select>
+                        <input type="text" id="comment-text" required placeholder="Viết cảm nghĩ hoặc lời nhắn cho nhóm..." class="sm:col-span-3 px-4 py-3 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-300/60 dark:border-white/10 text-sm focus:outline-none focus:border-cyan-400">
+                        <button type="submit" class="sm:col-span-2 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg hover:opacity-95 transition-all">
+                            Gửi ngay
+                        </button>
+                    </form>
+
+                    <div id="comments-list" class="space-y-3">
+                        <!-- Render tự động bằng JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PHẦN 4: HỆ THỐNG CÂY THƯ MỤC DỰ ÁN & HÌNH ẢNH (`ThuMucNhom_Web`) ================= -->
+    <section id="gallery-folder" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- Tiêu đề Section -->
+        <div class="text-center max-w-3xl mx-auto mb-12 reveal-item">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-500 dark:text-amber-400 text-xs font-semibold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-folder-tree"></i> Quản Lý Cây Thư Mục `ThuMucNhom_Web`
+            </div>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                Thư Mục <span class="text-gradient-aurora">Hình Ảnh & Âm Nhạc</span>
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+                Mô phỏng trực quan cấu trúc thư mục dự án <code>📁 ThuMucNhom_Web</code> gồm file <code>📄 index.html</code>, thư mục nhạc <code>📁 music/</code> (chứa bản nhạc Suno AI) và thư mục hình ảnh <code>📁 images/</code>.
+            </p>
+        </div>
+
+        <!-- Cửa sổ Trình Quản Lý Thư Mục (macOS Finder / Windows 11 Explorer Style) -->
+        <div class="glass-panel rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 dark:border-white/15 reveal-item">
+            
+            <!-- Thanh Tiêu đề Cửa sổ Explorer -->
+            <div class="bg-slate-200/80 dark:bg-space-900/90 px-4 sm:px-6 py-4 border-b border-slate-300/60 dark:border-white/10 flex flex-wrap items-center justify-between gap-4">
+                <!-- Nút điều khiển cửa sổ & Đường dẫn Breadcrumb -->
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded-full bg-rose-500 inline-block"></span>
+                        <span class="w-3.5 h-3.5 rounded-full bg-amber-400 inline-block"></span>
+                        <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 inline-block"></span>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2 text-xs sm:text-sm font-mono bg-white/80 dark:bg-white/5 px-3.5 py-1.5 rounded-xl border border-slate-300/50 dark:border-white/10">
+                        <i class="fa-solid fa-folder-tree text-cyan-400"></i>
+                        <span class="text-slate-400">ThuMucNhom_Web</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                        <span class="text-amber-400"><i class="fa-solid fa-folder-open mr-1"></i>images/</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                        <span id="current-folder-breadcrumb" class="font-bold text-slate-900 dark:text-white">Tất cả hình ảnh</span>
+                    </div>
+                </div>
+
+                <!-- Chuyển chế độ xem (Grid / List / Code) + Tìm kiếm + Chèn ảnh -->
+                <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end">
+                    <!-- 3 Chế độ xem -->
+                    <div class="flex items-center bg-white dark:bg-white/5 p-1 rounded-xl border border-slate-300/60 dark:border-white/10">
+                        <button onclick="setExplorerViewMode('grid')" id="view-btn-grid" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-white transition-all flex items-center gap-1" title="Xem lưới ảnh">
+                            <i class="fa-solid fa-grip"></i> <span class="hidden md:inline">Lưới</span>
+                        </button>
+                        <button onclick="setExplorerViewMode('list')" id="view-btn-list" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-white/10 transition-all flex items-center gap-1" title="Xem danh sách tệp">
+                            <i class="fa-solid fa-list"></i> <span class="hidden md:inline">Tệp tin</span>
+                        </button>
+                        <button onclick="setExplorerViewMode('code')" id="view-btn-code" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-white/10 transition-all flex items-center gap-1" title="Xem hướng dẫn Code chèn ảnh & nhạc Suno">
+                            <i class="fa-solid fa-code"></i> <span class="hidden md:inline">Code HTML</span>
+                        </button>
+                    </div>
+
+                    <div class="relative flex-1 sm:w-48">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+                        <input type="text" id="gallery-search" oninput="renderGallery()" placeholder="Tìm tên ảnh..." class="w-full pl-8 pr-3 py-2 rounded-xl text-xs bg-white dark:bg-white/5 border border-slate-300/60 dark:border-white/10 focus:outline-none focus:border-cyan-400">
+                    </div>
+
+                    <button onclick="openUploadModal()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all flex items-center gap-1.5 shrink-0">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Chèn Ảnh Mới</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bố cục 2 cột: Cây Thư Mục Bên Trái & Nội Dung Bên Phải -->
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+                <!-- Sidebar Cây Thư Mục (`ThuMucNhom_Web`) -->
+                <aside class="lg:col-span-3 p-4 sm:p-5 bg-slate-100/70 dark:bg-space-900/50 border-b lg:border-b-0 lg:border-r border-slate-200/70 dark:border-white/10 font-mono text-xs space-y-4">
+                    <div>
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between">
+                            <span>Cấu Trúc Dự Án</span>
+                            <span class="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 text-[10px]">Ready</span>
+                        </div>
+
+                        <!-- Cây thư mục trực quan -->
+                        <div class="space-y-1.5 text-slate-700 dark:text-slate-300">
+                            <div class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-200/70 dark:bg-white/5 font-bold">
+                                <i class="fa-solid fa-folder-open text-amber-400"></i>
+                                <span>ThuMucNhom_Web/</span>
+                            </div>
+
+                            <!-- File index.html -->
+                            <div class="pl-4">
+                                <a href="#hero" class="flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30 font-semibold">
+                                    <span class="flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-500 text-sm"></i> index.html</span>
+                                    <span class="text-[10px] px-1.5 py-0.2 rounded bg-cyan-500/20">Đang mở</span>
+                                </a>
+                            </div>
+
+                            <!-- Thư mục music/ chứa nhạc Suno AI -->
+                            <div class="pl-4 space-y-1">
+                                <div class="flex items-center gap-2 px-2.5 py-1 text-pink-500 dark:text-pink-400 font-bold">
+                                    <i class="fa-solid fa-folder-open"></i>
+                                    <span>music/</span>
+                                </div>
+                                <button onclick="openSunoModal()" class="w-full text-left pl-5 pr-2.5 py-1.5 rounded-xl hover:bg-pink-500/15 text-slate-600 dark:text-slate-300 hover:text-pink-400 transition-all flex items-center justify-between group">
+                                    <span class="truncate flex items-center gap-1.5">
+                                        <i class="fa-solid fa-music text-pink-400 group-hover:animate-bounce"></i>
+                                        <span>suno-eqKNGe.mp3</span>
+                                    </span>
+                                    <span class="text-[10px] text-pink-400 font-sans">Phát</span>
+                                </button>
+                            </div>
+
+                            <!-- Thư mục images/ và các thư mục con -->
+                            <div class="pl-4 space-y-1 pt-1">
+                                <button onclick="selectFolder('all', 'Tất cả hình ảnh')" class="folder-card w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-xl font-bold text-amber-500 hover:bg-white/10 transition-all" data-folder="all">
+                                    <span><i class="fa-solid fa-folder-open mr-1.5"></i>images/ (Tất cả)</span>
+                                    <span id="count-all" class="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-slate-300">10</span>
+                                </button>
+
+                                <div class="pl-4 space-y-1">
+                                    <button onclick="selectFolder('thanh-vien', 'images/thanh-vien/')" class="folder-card w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-emerald-500/10 transition-all" data-folder="thanh-vien">
+                                        <span class="truncate"><i class="fa-solid fa-folder text-emerald-400 mr-1.5"></i>thanh-vien/</span>
+                                        <span id="count-thanh-vien" class="text-[10px] text-slate-400">4</span>
+                                    </button>
+                                    <button onclick="selectFolder('hop-nhom', 'images/hop-nhom/')" class="folder-card w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-cyan-500/10 transition-all" data-folder="hop-nhom">
+                                        <span class="truncate"><i class="fa-solid fa-folder text-cyan-400 mr-1.5"></i>hop-nhom/</span>
+                                        <span id="count-hop-nhom" class="text-[10px] text-slate-400">2</span>
+                                    </button>
+                                    <button onclick="selectFolder('su-kien', 'images/su-kien/')" class="folder-card w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-purple-500/10 transition-all" data-folder="su-kien">
+                                        <span class="truncate"><i class="fa-solid fa-folder text-purple-400 mr-1.5"></i>su-kien/</span>
+                                        <span id="count-su-kien" class="text-[10px] text-slate-400">2</span>
+                                    </button>
+                                    <button onclick="selectFolder('ky-niem', 'images/ky-niem/')" class="folder-card w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-pink-500/10 transition-all" data-folder="ky-niem">
+                                        <span class="truncate"><i class="fa-solid fa-folder text-pink-400 mr-1.5"></i>ky-niem/</span>
+                                        <span id="count-ky-niem" class="text-[10px] text-slate-400">2</span>
+                                    </button>
+                                    <button onclick="selectFolder('tay-tien', 'images/tay-tien/')" class="folder-card w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-rose-500/10 transition-all" data-folder="tay-tien">
+                                        <span class="truncate"><i class="fa-solid fa-folder text-rose-400 mr-1.5"></i>tay-tien/</span>
+                                        <span id="count-tay-tien" class="text-[10px] text-slate-400">1</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hộp Trạng Thái Nhạc Suno Trong Cây Thư Mục -->
+                    <div class="p-3.5 rounded-2xl bg-gradient-to-br from-pink-500/15 via-purple-500/15 to-cyan-500/15 border border-pink-500/30 font-sans">
+                        <div class="flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white mb-1">
+                            <i class="fa-solid fa-Wave-square text-pink-500"></i>
+                            <span>Tích hợp Suno AI</span>
+                        </div>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed mb-2.5">
+                            Bản nhạc nhóm: <code class="text-pink-400">eqKNGe01fiP6L2IY</code>
+                        </p>
+                        <button onclick="openSunoModal()" class="w-full py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold shadow hover:opacity-95 transition-all">
+                            <i class="fa-solid fa-headphones mr-1"></i> Mở Trình Phát Suno
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Khu vực Chính Bên Phải: Kéo Thả & Hiển Thị Lưới Ảnh / Danh Sách / Code -->
+                <div id="drop-zone" class="lg:col-span-9 p-6 sm:p-8 min-h-[440px] transition-colors">
+                    <!-- Lưới ảnh hoặc Danh sách tệp -->
+                    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Render động bằng JS -->
+                    </div>
+
+                    <!-- Khung Hướng dẫn Code HTML khi chọn chế độ Xem Code -->
+                    <div id="gallery-code-guide" class="hidden space-y-5">
+                        <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 border border-white/10 font-mono text-xs overflow-x-auto">
+                            <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-cyan-400 font-sans font-bold">
+                                <span>📌 Cách 1: Tổ chức thư mục trên máy tính & chèn ảnh/nhạc vào index.html</span>
+                                <button onclick="copySunoLink('https://suno.com/s/eqKNGe01fiP6L2IY')" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px]">Copy Link Suno</button>
+                            </div>
+<pre class="leading-relaxed text-emerald-300">ThuMucNhom_Web/
+├── index.html                  &lt;-- File web chính của nhóm (6 thành viên)
+├── music/
+│   └── suno-eqKNGe01fiP6L2IY.mp3 &lt;-- Tải nhạc từ https://suno.com/s/eqKNGe01fiP6L2IY bỏ vào đây
+└── images/
+    ├── thanh-vien/             &lt;-- Ảnh đại diện Trung, Tùng, Uyên, Vy, Như Ý, Yến
+    ├── hop-nhom/               &lt;-- Ảnh hậu trường làm việc nhóm
+    ├── su-kien/                &lt;-- Ảnh thuyết trình & nhận giải
+    └── ky-niem/                &lt;-- Ảnh đi chơi, dã ngoại</pre>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 border border-white/10 font-mono text-xs overflow-x-auto">
+                            <div class="text-pink-400 font-sans font-bold mb-2">🎵 Code HTML nhúng nhạc Suno AI & Thẻ Audio đã được cài sẵn trong file này:</div>
+<pre class="leading-relaxed text-slate-300">&lt;!-- Link gốc Suno AI của nhóm: https://suno.com/s/eqKNGe01fiP6L2IY --&gt;
+&lt;audio id="nova-audio-player" src="music/suno-eqKNGe01fiP6L2IY.mp3" preload="auto" loop&gt;&lt;/audio&gt;</pre>
+                        </div>
+                    </div>
+
+                    <!-- Trạng thái trống nếu tìm kiếm không thấy -->
+                    <div id="gallery-empty" class="hidden py-16 text-center">
+                        <div class="w-16 h-16 rounded-full bg-slate-200 dark:bg-white/5 mx-auto flex items-center justify-center text-2xl text-slate-400 mb-3">
+                            <i class="fa-regular fa-folder-open"></i>
+                        </div>
+                        <p class="font-semibold text-slate-700 dark:text-slate-300">Chưa có hình ảnh nào trong thư mục này</p>
+                        <button onclick="openUploadModal()" class="mt-4 px-5 py-2.5 rounded-xl bg-cyan-500 text-white text-xs font-semibold hover:bg-cyan-600 transition-all">
+                            + Thêm ảnh đầu tiên vào đây
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thanh Trạng Thái Dưới Đáy Explorer -->
+            <div class="bg-slate-100 dark:bg-space-900/70 px-6 py-3 border-t border-slate-200/60 dark:border-white/10 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-2">
+                <div id="explorer-status-text">Đang mở: ThuMucNhom_Web/index.html • Sẵn sàng chèn ảnh & phát nhạc Suno AI</div>
+                <div class="flex items-center gap-4">
+                    <button onclick="resetDefaultData()" class="hover:text-rose-400 transition-colors" title="Khôi phục ảnh mặc định ban đầu">
+                        <i class="fa-solid fa-rotate-left mr-1"></i>Khôi phục mặc định
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER & DOCK ĐIỀU HƯỚNG NỔI ================= -->
+    <footer class="relative z-10 border-t border-slate-200/70 dark:border-white/10 py-14 pb-32 px-4 sm:px-6 lg:px-8 glass-panel mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <div class="font-display font-bold text-2xl text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2">
+                    <i class="fa-solid fa-atom text-cyan-400"></i> NOVA<span class="text-gradient-aurora">SIX</span>
+                </div>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                    Lê Xuân Trung • Ma Khánh Tùng • Thân Thị Thu Uyên • Nguyễn Thị Huyền Vy • Phạm Như Ý • Nguyễn Đoàn Phi Yến
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+                <button onclick="playTayTienInPage()" class="px-3.5 py-2 rounded-xl bg-pink-500/10 text-pink-500 dark:text-pink-400 border border-pink-500/30 hover:bg-pink-500 hover:text-white transition-all font-semibold cursor-pointer">
+                    <i class="fa-solid fa-circle-play mr-1"></i> Phát Nhạc Tây Tiến (Suno AI) Trong Trang
+                </button>
+                <span>© 2026 Thiết kế độc quyền cho Nhóm Sáng Tạo.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= TRÌNH PHÁT NHẠC ĐĨA THAN NỔI & NGĂN KÉO PHÁT TRONG TRANG (IN-PAGE SUNO PLAYER) ================= -->
+    <div id="floating-music-widget" class="fixed bottom-20 sm:bottom-6 left-4 sm:left-6 z-40 glass-panel p-2.5 pr-4 rounded-2xl shadow-2xl border border-pink-500/40 flex items-center gap-3 max-w-[330px] sm:max-w-sm transition-all">
+        <!-- Đĩa than xoay 360 độ -->
+        <div onclick="toggleGlobalAudio()" title="Nhấn để phát / tạm dừng Tây Tiến" class="relative w-12 h-12 rounded-full bg-slate-950 border-2 border-pink-500/60 flex items-center justify-center shrink-0 cursor-pointer shadow-lg group">
+            <div id="vinyl-disc" class="w-full h-full rounded-full bg-[radial-gradient(circle,#ec4899_0%,#ec4899_18%,#111827_20%,#1f2937_45%,#0f172a_70%)] flex items-center justify-center vinyl-paused">
+                <div class="w-3.5 h-3.5 rounded-full bg-white border-2 border-slate-900"></div>
+            </div>
+            <div class="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white text-xs">
+                <i class="fa-solid fa-play global-play-btn-inner"></i>
+            </div>
+        </div>
+
+        <!-- Thông tin bài nhạc Tây Tiến – Khúc Hát Người -->
+        <div class="overflow-hidden flex-1 cursor-pointer" onclick="toggleInPageDrawer(true)">
+            <div class="flex items-center gap-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.2 rounded bg-pink-500/20 text-pink-400">Suno AI</span>
+                <div id="eq-container" class="flex items-end gap-0.5 h-3.5">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+            </div>
+            <div id="player-track-title" class="text-xs font-bold text-slate-900 dark:text-white truncate mt-0.5">
+                Tây Tiến – Khúc Hát Người
+            </div>
+            <div id="player-track-status" class="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                Nhấn để xem lời bài hát đồng bộ
+            </div>
+        </div>
+
+        <!-- Nút bật/tắt khung trình phát Tây Tiến – Khúc Hát Người -->
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button id="main-play-btn" onclick="toggleGlobalAudio()" title="Phát / Tạm dừng" class="w-9 h-9 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 text-white flex items-center justify-center shadow-md hover:scale-105 transition-all global-play-btn">
+                <i id="main-play-icon" class="fa-solid fa-play text-xs ml-0.5"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- KHUNG TRÌNH PHÁT NHÚNG TRỰC TIẾP NGOÀI TRANG: TÂY TIẾN – KHÚC HÁT NGƯỜI (SUNO AI) -->
+    <div id="inpage-suno-drawer" class="fixed bottom-36 sm:bottom-24 left-4 sm:left-6 z-40 w-[calc(100vw-2rem)] sm:w-[400px] glass-panel rounded-3xl p-3 shadow-2xl border border-pink-500/40 hidden transition-all duration-300">
+        <div class="rounded-2xl overflow-hidden border border-slate-300/60 dark:border-white/10 bg-[#161b33]">
+            <div class="px-4 py-2.5 bg-black/20 text-[11px] text-slate-300 flex flex-wrap items-center justify-between gap-2 border-b border-white/5">
+                <span><i class="fa-solid fa-music text-pink-400 mr-1.5"></i>Trình phát trực tiếp: <strong>Tây Tiến</strong></span>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleInPageDrawer(false)" title="Thu gọn khung nhạc" class="w-6 h-6 rounded-lg bg-white/10 hover:bg-rose-500 text-white flex items-center justify-center text-xs transition-all">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-0">
+                <!-- Trình phát Custom Suno Style -->
+                <div class="relative p-5 flex items-center gap-4 border-b border-white/10 pb-5 bg-[#161b33]">
+                    <a href="https://suno.com/s/eqKNGe01fiP6L2IY" target="_blank" title="Mở link gốc" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fa-solid fa-link text-xs"></i>
+                    </a>
+                    
+                    <img src="images/ky-niem/41bde7fe-c146-45d1-875c-2e2190b69b65.jfif" alt="Cover" class="w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] rounded-lg object-cover shadow-lg border border-white/10" onerror="this.src='https://placehold.co/100x100/1e1b4b/38bdf8?text=Cover'">
+                    
+                    <div class="flex-1 min-w-0 pr-4 pb-1">
+                        <h4 class="text-white font-bold text-sm sm:text-base truncate mb-3">Tây Tiến – Khúc Hát Người</h4>
+                        <div class="flex items-center gap-3">
+                            <button onclick="toggleGlobalAudio()" class="w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-full bg-[#f4f0e6] text-slate-900 flex items-center justify-center shadow hover:scale-105 transition-transform global-play-btn">
+                                <i class="fa-solid fa-play text-xs sm:text-sm ml-0.5"></i>
+                            </button>
+                            <span class="text-[10px] text-slate-300 font-mono global-time-current w-7 text-right">0:00</span>
+                            <input type="range" class="suno-progress global-progress flex-1" value="0" max="100" onchange="seekGlobalAudio(this.value)">
+                            <span class="text-[10px] text-slate-300 font-mono global-time-total w-7 text-left">0:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-4 right-4 text-white font-display font-bold text-lg tracking-widest opacity-90 select-none">
+                        SUNO
+                    </div>
+                </div>
+
+                <!-- Lyrics Sync -->
+                <div id="drawer-lyrics" class="p-4 pt-5 bg-[#121629] max-h-40 overflow-y-auto space-y-2">
+                    <p class="lyric-line text-sm text-slate-500 transition-all duration-300" data-time="0">Sông Mã xa rồi Tây Tiến ơi!</p>
+                    <p class="lyric-line text-sm text-slate-500 transition-all duration-300" data-time="5">Nhớ về rừng núi, nhớ chơi vơi...</p>
+                    <p class="lyric-line text-sm text-slate-500 transition-all duration-300" data-time="11">Sài Khao sương lấp đoàn quân mỏi</p>
+                    <p class="lyric-line text-sm text-slate-500 transition-all duration-300" data-time="17.5">Mường Lát hoa về trong đêm hơi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: TRẠM ÂM NHẠC TÂY TIẾN – KHÚC HÁT NGƯỜI (SUNO AI) ================= -->
+    <div id="suno-modal" class="fixed inset-0 z-[85] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl border border-pink-500/30 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeSunoModal()" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-slate-200/80 dark:bg-white/10 hover:bg-rose-500 hover:text-white transition-all flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center gap-3.5 mb-5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 via-purple-500 to-cyan-400 flex items-center justify-center text-white text-2xl shadow-lg">
+                    <i class="fa-solid fa-compact-disc animate-spin-slow"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-pink-400">Phát Trực Tiếp Trong Trang • Suno AI</span>
+                    <h3 class="font-display text-2xl font-bold text-slate-900 dark:text-white">Tây Tiến – Khúc Hát Người</h3>
+                </div>
+            </div>
+
+            <!-- Khung Nhúng Trực Tiếp Suno Ngay Trong Modal -->
+            <div class="rounded-2xl overflow-hidden border border-slate-700/50 bg-[#161b33]">
+                <div class="px-4 py-2.5 bg-black/20 text-[11px] text-slate-300 flex flex-wrap items-center justify-between gap-2 border-b border-white/5">
+                    <span><i class="fa-solid fa-music text-pink-400 mr-1.5"></i>Custom Suno Player</span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="closeSunoModal()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-rose-500 text-white font-semibold transition-colors">Đóng cửa sổ</button>
+                    </div>
+                </div>
+                
+                <div class="p-0">
+                    <div class="relative p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 border-b border-white/10">
+                        <a href="https://suno.com/s/eqKNGe01fiP6L2IY" target="_blank" title="Mở link gốc" class="absolute top-4 right-5 text-slate-400 hover:text-white transition-colors">
+                            <i class="fa-solid fa-link text-sm"></i>
+                        </a>
+                        
+                        <img src="images/ky-niem/41bde7fe-c146-45d1-875c-2e2190b69b65.jfif" alt="Cover" class="w-32 h-32 sm:w-40 sm:h-40 rounded-xl object-cover shadow-2xl border border-white/10" onerror="this.src='https://placehold.co/200x200/1e1b4b/38bdf8?text=Cover'">
+                        
+                        <div class="flex-1 w-full text-center sm:text-left pt-2 sm:pt-4">
+                            <h4 class="text-white font-display text-2xl font-bold mb-6 sm:mb-8">Tây Tiến – Khúc Hát Người</h4>
+                            
+                            <div class="flex items-center gap-4">
+                                <button onclick="toggleGlobalAudio()" class="w-12 h-12 shrink-0 rounded-full bg-[#f4f0e6] text-slate-900 flex items-center justify-center shadow hover:scale-105 transition-transform global-play-btn">
+                                    <i class="fa-solid fa-play text-lg ml-1"></i>
+                                </button>
+                                <span class="text-xs text-slate-300 font-mono global-time-current w-10 text-right">0:00</span>
+                                <input type="range" class="suno-progress global-progress flex-1" value="0" max="100" onchange="seekGlobalAudio(this.value)">
+                                <span class="text-xs text-slate-300 font-mono global-time-total w-10 text-left">0:00</span>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-5 right-6 text-white font-display font-bold text-3xl tracking-widest opacity-90 select-none">
+                            SUNO
+                        </div>
+                    </div>
+
+                    <!-- Lyrics Sync -->
+                    <div id="modal-lyrics" class="p-6 bg-[#121629] space-y-2">
+                        <p class="lyric-line text-base text-slate-500 transition-all duration-300" data-time="0">Sông Mã xa rồi Tây Tiến ơi!</p>
+                        <p class="lyric-line text-base text-slate-500 transition-all duration-300" data-time="5">Nhớ về rừng núi, nhớ chơi vơi...</p>
+                        <p class="lyric-line text-base text-slate-500 transition-all duration-300" data-time="11">Sài Khao sương lấp đoàn quân mỏi</p>
+                        <p class="lyric-line text-base text-slate-500 transition-all duration-300" data-time="17.5">Mường Lát hoa về trong đêm hơi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: HỒ SƠ THÀNH VIÊN ================= -->
+    <div id="member-modal" class="fixed inset-0 z-[90] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl border border-cyan-500/30">
+            <button onclick="closeMemberModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-200/80 dark:bg-white/10 hover:bg-rose-500 hover:text-white transition-all flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="member-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: TẢI ẢNH MỚI ================= -->
+    <div id="upload-modal" class="fixed inset-0 z-[90] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="glass-panel rounded-3xl max-w-md w-full p-6 relative shadow-2xl border border-emerald-500/30">
+            <button onclick="closeUploadModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-200/80 dark:bg-white/10 hover:bg-rose-500 hover:text-white transition-all flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-4">Chèn Ảnh Mới</h3>
+            <form onsubmit="handleAddGalleryImage(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Tiêu đề ảnh</label>
+                    <input type="text" id="upload-title-input" required placeholder="Nhập tiêu đề..." class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-sm focus:outline-none focus:border-cyan-400">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Thư mục lưu</label>
+                    <select id="upload-folder-select" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-sm focus:outline-none focus:border-cyan-400">
+                        <option value="thanh-vien">images/thanh-vien/</option>
+                        <option value="hop-nhom">images/hop-nhom/</option>
+                        <option value="su-kien">images/su-kien/</option>
+                        <option value="ky-niem">images/ky-niem/</option>
+                        <option value="tay-tien">images/tay-tien/</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">Đường dẫn ảnh (URL) hoặc Chọn tệp</label>
+                    <input type="text" id="upload-url-input" placeholder="https://..." class="w-full px-3 py-2 mb-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-sm focus:outline-none focus:border-cyan-400">
+                    <input type="file" multiple accept="image/*" onchange="previewSelectedFiles(event)" class="w-full text-xs file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-cyan-500 file:text-white hover:file:bg-cyan-600">
+                </div>
+                <div id="upload-preview-box" class="hidden flex-wrap gap-2 mt-2"></div>
+                <button type="submit" class="w-full py-2.5 mt-2 rounded-xl font-bold bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg hover:opacity-95 transition-all">Lưu Ảnh</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: LIGHTBOX XEM ẢNH PHÓNG TO ================= -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-xl">
+        <button onclick="closeLightbox()" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-rose-500 text-white flex items-center justify-center transition-all z-50">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="absolute top-5 left-5 right-20 flex items-center gap-3 z-50">
+            <span id="lightbox-folder-badge" class="px-2.5 py-1 rounded-lg bg-white/10 border border-white/20 text-white font-mono text-xs"></span>
+            <h3 id="lightbox-title" class="font-bold text-white text-base truncate"></h3>
+        </div>
+        <div class="relative w-full h-full flex items-center justify-center p-4 sm:p-12 overflow-hidden">
+            <img id="lightbox-img" src="" alt="Zoom" class="max-w-full max-h-full object-contain transition-transform duration-300">
+        </div>
+        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 glass-panel p-2 rounded-2xl z-50">
+            <button onclick="stepLightbox(-1)" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center" title="Ảnh trước"><i class="fa-solid fa-chevron-left"></i></button>
+            <button onclick="zoomLightbox(-0.25)" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center" title="Thu nhỏ"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+            <button onclick="zoomLightbox(0.25)" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center" title="Phóng to"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <button id="lightbox-delete-btn" class="w-10 h-10 rounded-xl bg-rose-500/20 hover:bg-rose-500 text-rose-400 hover:text-white ml-2 flex items-center justify-center" title="Xóa ảnh"><i class="fa-regular fa-trash-can"></i></button>
+            <button onclick="stepLightbox(1)" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center" title="Ảnh sau"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Input ẩn dùng để đổi ảnh đại diện trực tiếp cho từng thành viên -->
+    <input type="file" id="member-avatar-input" accept="image/*" class="hidden" onchange="handleMemberAvatarSelected(event)">
+
+    <!-- Toast thông báo nổi -->
+    <div id="toast-notification" class="fixed top-24 right-6 z-[95] transform translate-x-[150%] transition-transform duration-300 glass-panel px-5 py-3.5 rounded-2xl shadow-2xl border border-emerald-400/40 flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <span id="toast-message" class="text-sm font-semibold">Đã cập nhật thành công!</span>
+    </div>
+
+    <!-- TRÌNH PHÁT AUDIO ẨN CHÍNH -->
+    <audio id="global-audio-player" src="https://cdn1.suno.ai/eqKNGe01fiP6L2IY.mp3" preload="metadata" crossorigin="anonymous"></audio>
+
+    <!-- ================= JAVASCRIPT XỬ LÝ TOÀN BỘ TƯƠNG TÁC ================= -->
+    <script>
+        /* =========================================================================
+           1. DỮ LIỆU 6 THÀNH VIÊN NHÓM (SẮP XẾP ĐÚNG THỨ TỰ ẢNH & TÊN 1 -> 4)
+        ========================================================================= */
+        const defaultMembers = [
+            {
+                id: 'trung',
+                name: 'Lê Xuân Trung',
+                role: 'Trưởng Nhóm / Full-stack & Kiến trúc hệ thống',
+                category: 'tech',
+                badge: '1 • Team Leader',
+                color: 'from-cyan-400 to-blue-600',
+                filePath: 'images/thanh-vien/1-le-xuan-trung.jpg',
+                avatar: 'image_4dece0.jpg',
+                shortBio: 'Người cầm lái định hướng chiến lược cho cả nhóm, đam mê kiến trúc phần mềm và kết nối sức mạnh tập thể.',
+                quote: '"Muốn đi nhanh hãy đi một mình, muốn kiến tạo kỳ tích hãy đi cùng đồng đội."',
+                skills: [
+                    { name: 'Quản trị & Lãnh đạo dự án', percent: 95 },
+                    { name: 'Lập trình Web & Kiến trúc hệ thống', percent: 92 },
+                    { name: 'Tư duy phản biện & Giải quyết vấn đề', percent: 90 }
+                ],
+                hobbies: ['Công nghệ AI', 'Cờ vua', 'Nhiếp ảnh', 'Du lịch khám phá']
+            },
+            {
+                id: 'vy',
+                name: 'Nguyễn Thị Huyền Vy',
+                role: 'UI/UX Designer / Thiết kế giao diện & Nghệ thuật thị giác',
+                category: 'creative',
+                badge: '2 • UI/UX Designer',
+                color: 'from-amber-400 to-orange-500',
+                filePath: 'images/thanh-vien/2-nguyen-thi-huyen-vy.jpg',
+                avatar: 'image_4ded39.jpg',
+                shortBio: 'Kiến trúc sư thị giác đứng sau những bố cục Glassmorphism hiện đại, bảng màu Aurora tinh tế và trải nghiệm người dùng mượt mà.',
+                quote: '"Thiết kế là sự giao thoa hoàn hảo giữa nghệ thuật thị giác và sự thấu cảm người dùng."',
+                skills: [
+                    { name: 'Thiết kế Giao diện UI/UX hiện đại', percent: 97 },
+                    { name: 'Đồ họa Sáng tạo & Nghệ thuật thị giác', percent: 94 },
+                    { name: 'Prototyping & Trải nghiệm tương tác', percent: 92 }
+                ],
+                hobbies: ['Vẽ Digital Art', 'Triển lãm nghệ thuật', 'Thưởng thức trà', 'Nhiếp ảnh']
+            },
+            {
+                id: 'y',
+                name: 'Phạm Như Ý',
+                role: 'Media & Researcher / Nghiên cứu chuyên đề & Truyền thông',
+                category: 'research',
+                badge: '3 • Media & Analyst',
+                color: 'from-emerald-400 to-teal-600',
+                filePath: 'images/thanh-vien/3-pham-nhu-y.jpg',
+                avatar: 'image_4ded76.jpg',
+                shortBio: 'Chuyên gia đào sâu dữ liệu, tổng hợp nguồn tài liệu chuẩn xác và sản xuất tư liệu truyền thông đa phương tiện cho nhóm.',
+                quote: '"Dữ liệu chính xác và góc nhìn đa chiều là kim chỉ nam cho mọi quyết định đột phá."',
+                skills: [
+                    { name: 'Nghiên cứu Chuyên đề & Phân tích dữ liệu', percent: 96 },
+                    { name: 'Sản xuất Media & Truyền thông số', percent: 93 },
+                    { name: 'Hoạch định Chiến lược dài hạn', percent: 90 }
+                ],
+                hobbies: ['Nghiên cứu tâm lý', 'Nghe Podcast', 'Chăm sóc cây xanh', 'Yoga']
+            },
+            {
+                id: 'yen',
+                name: 'Nguyễn Đoàn Phi Yến',
+                role: 'Community & QA / Quản lý dự án & Gắn kết đội ngũ',
+                category: 'research',
+                badge: '4 • Community & QA',
+                color: 'from-violet-500 to-fuchsia-600',
+                filePath: 'images/thanh-vien/4-nguyen-doan-phi-yen.jpg',
+                avatar: 'image_4df021.jpg',
+                shortBio: 'Sợi dây gắn kết đầy năng lượng của cả nhóm, phụ trách kiểm thử chất lượng sản phẩm (QA), điều phối tiến độ và đối ngoại.',
+                quote: '"Năng lượng tích cực và sự thấu hiểu chính là chất keo gắn kết một tập thể bất bại."',
+                skills: [
+                    { name: 'Quản lý chất lượng dự án (QA) & Điều phối', percent: 97 },
+                    { name: 'Giao tiếp Đối ngoại & Thuyết trình', percent: 95 },
+                    { name: 'Xây dựng cộng đồng & Gắn kết thành viên', percent: 94 }
+                ],
+                hobbies: ['Hoạt động ngoại khóa', 'Vlogger', 'Tổ chức Teambuilding', 'Âm nhạc Suno']
+            },
+            {
+                id: 'tung',
+                name: 'Ma Khánh Tùng',
+                role: 'Tech Lead / Kỹ thuật & Sáng tạo tương tác 3D',
+                category: 'tech',
+                badge: '5 • Core Tech',
+                color: 'from-purple-500 to-indigo-600',
+                filePath: 'images/thanh-vien/5-ma-khanh-tung.jpg',
+                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80',
+                shortBio: 'Bộ não kỹ thuật đứng sau các thuật toán tối ưu và hiệu ứng tương tác 3D mượt mà. Luôn biến ý tưởng khó thành hiện thực.',
+                quote: '"Mọi vấn đề phức tạp đều có lời giải nếu ta chia nhỏ nó bằng tư duy logic."',
+                skills: [
+                    { name: 'Kỹ thuật phần mềm & Tương tác 3D', percent: 96 },
+                    { name: 'Tối ưu hóa hiệu năng & Bảo mật', percent: 90 },
+                    { name: 'Nghiên cứu công nghệ mới', percent: 93 }
+                ],
+                hobbies: ['Coding đêm', 'Chơi Guitar', 'Esports', 'Đọc sách Khoa học']
+            },
+            {
+                id: 'uyen',
+                name: 'Thân Thị Thu Uyên',
+                role: 'Content Director / Biên tập nội dung & Chiến lược',
+                category: 'creative',
+                badge: '6 • Content Director',
+                color: 'from-pink-500 to-rose-500',
+                filePath: 'images/thanh-vien/6-than-thi-thu-uyen.jpg',
+                avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80',
+                shortBio: 'Người định hình chiến lược nội dung và thông điệp truyền thông, thổi hồn cảm xúc vào mọi dự án của nhóm.',
+                quote: '"Nội dung xuất sắc không chỉ truyền tải thông tin mà còn chạm đến trái tim người đọc."',
+                skills: [
+                    { name: 'Chiến lược Nội dung & Biên tập', percent: 96 },
+                    { name: 'Kể chuyện thương hiệu (Storytelling)', percent: 94 },
+                    { name: 'Tư duy Thẩm mỹ & Sáng tạo', percent: 95 }
+                ],
+                hobbies: ['Viết lách', 'Chụp ảnh Film', 'Decor không gian', 'Nghe nhạc Indie']
+            }
+        ];
+
+        /* =========================================================================
+           2. DỮ LIỆU THƯ MỤC HÌNH ẢNH (`ThuMucNhom_Web/images/...`)
+        ========================================================================= */
+        const defaultGalleryImages = [
+            {
+                id: 'img-avt-1',
+                title: '1. Ảnh đại diện Lê Xuân Trung',
+                folder: 'thanh-vien',
+                fileName: '1-le-xuan-trung.jpg',
+                size: '1.1 MB',
+                date: '26/10/2026',
+                url: 'image_4dece0.jpg'
+            },
+            {
+                id: 'img-avt-2',
+                title: '2. Ảnh đại diện Nguyễn Thị Huyền Vy',
+                folder: 'thanh-vien',
+                fileName: '2-nguyen-thi-huyen-vy.jpg',
+                size: '1.0 MB',
+                date: '26/10/2026',
+                url: 'image_4ded39.jpg'
+            },
+            {
+                id: 'img-avt-3',
+                title: '3. Ảnh đại diện Phạm Như Ý',
+                folder: 'thanh-vien',
+                fileName: '3-pham-nhu-y.jpg',
+                size: '1.2 MB',
+                date: '26/10/2026',
+                url: 'image_4ded76.jpg'
+            },
+            {
+                id: 'img-avt-4',
+                title: '4. Ảnh đại diện Nguyễn Đoàn Phi Yến',
+                folder: 'thanh-vien',
+                fileName: '4-nguyen-doan-phi-yen.jpg',
+                size: '1.1 MB',
+                date: '26/10/2026',
+                url: 'image_4df021.jpg'
+            },
+            {
+                id: 'img-taytien-new',
+                title: 'Tây Tiến - Hành quân lịch sử',
+                folder: 'tay-tien',
+                fileName: 'image_4df0e1.jpg',
+                size: '1.4 MB',
+                date: '26/10/2026',
+                url: 'image_4df0e1.jpg'
+            },
+            {
+                id: 'img-taytien-1',
+                title: 'Hành quân Tây Tiến - Quang Dũng',
+                folder: 'ky-niem',
+                fileName: '41bde7fe-c146-45d1-875c-2e2190b69b65.jfif',
+                size: '1.2 MB',
+                date: '26/10/2026',
+                url: '41bde7fe-c146-45d1-875c-2e2190b69b65.jfif'
+            },
+            {
+                id: 'img-taytien-2',
+                title: 'Tây Tiến - Hình ảnh minh họa',
+                folder: 'ky-niem',
+                fileName: '4e86d7f2-4436-4cff-b9c8-285b4f2db3f4.jfif',
+                size: '800 KB',
+                date: '26/10/2026',
+                url: '4e86d7f2-4436-4cff-b9c8-285b4f2db3f4.jfif'
+            },
+            {
+                id: 'img-taytien-3',
+                title: 'Núi rừng Tây Bắc hiểm trở',
+                folder: 'ky-niem',
+                fileName: '940da02f-8bdb-4990-bfa6-18673578f2d0.jfif',
+                size: '1.5 MB',
+                date: '26/10/2026',
+                url: '940da02f-8bdb-4990-bfa6-18673578f2d0.jfif'
+            },
+            {
+                id: 'img-5',
+                title: 'Buổi họp Brainstorm xây dựng giao diện index.html',
+                folder: 'hop-nhom',
+                fileName: 'hop-brainstorm-du-an.jpg',
+                size: '1.1 MB',
+                date: '20/10/2026',
+                url: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=900&q=80'
+            },
+            {
+                id: 'img-6',
+                title: 'Phân tích dữ liệu chuyên đề tại thư viện',
+                folder: 'hop-nhom',
+                fileName: 'nghien-cuu-thu-vien.jpg',
+                size: '890 KB',
+                date: '21/10/2026',
+                url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80'
+            },
+            {
+                id: 'img-7',
+                title: 'Báo cáo & Demo sản phẩm Web tương tác của nhóm',
+                folder: 'su-kien',
+                fileName: 'thuyet-trinh-du-an.png',
+                size: '1.8 MB',
+                date: '23/10/2026',
+                url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=80'
+            },
+            {
+                id: 'img-8',
+                title: 'Workshop Công nghệ & Trí tuệ nhân tạo 2026',
+                folder: 'su-kien',
+                fileName: 'workshop-cong-nghe.jpg',
+                size: '1.3 MB',
+                date: '23/10/2026',
+                url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=80'
+            }
+        ];
+
+        /* =========================================================================
+           3. DỮ LIỆU BÀI VIẾT & THƯ MỤC CHUNG
+        ========================================================================= */
+        const folderLabels = {
+            'thanh-vien': '📁 images/thanh-vien/',
+            'hop-nhom': '📁 images/hop-nhom/',
+            'su-kien': '📁 images/su-kien/',
+            'ky-niem': '📁 images/ky-niem/',
+            'tay-tien': '📁 images/tay-tien/'
+        };
+
+        const articlesData = [
+            {
+                badge: 'Chuyên Đề Công Nghệ & Âm Nhạc AI',
+                title: 'Trí Tuệ Nhân Tạo (AI) & Tương Lai Sáng Tạo Của Thế Hệ Trẻ Việt Nam',
+                author: 'Lê Xuân Trung, Ma Khánh Tùng & Phạm Như Ý',
+                date: '25/10/2026',
+                readTime: '4 phút đọc',
+                cover: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+                sections: [
+                    {
+                        heading: '1. Khi AI không thay thế con người mà trở thành đôi cánh sáng tạo',
+                        content: 'Trong kỷ nguyên số bùng nổ, Trí tuệ nhân tạo (AI) không còn là khái niệm xa vời trong các phòng thí nghiệm mà đã hiện diện trong từng dòng code, từng bản thiết kế và cả âm nhạc sáng tạo (như bản nhạc chủ đề Suno AI của nhóm tại địa chỉ suno.com/s/EbAAC6NFOARGHDw2). Nhóm NOVA SIX tin rằng AI không đến để lấy đi sự sáng tạo, mà đến để giải phóng chúng ta khỏi những tác vụ lặp lại nhàm chán.'
+                    },
+                    {
+                        heading: '2. Sự kết hợp giữa Tư duy Phản biện và Công cụ Hiện đại',
+                        content: 'Một sản phẩm đột phá là sự giao thoa giữa trái tim giàu cảm xúc của con người và tốc độ xử lý siêu việt của máy tính. Khi Lê Xuân Trung và Ma Khánh Tùng xây dựng hệ thống kỹ thuật, hay khi Thu Uyên, Huyền Vy, Phạm Như Ý và Phi Yến phác thảo ý tưởng truyền thông, AI đóng vai trò như người trợ lý thứ 7 giúp mở rộng biên độ tưởng tượng gấp nhiều lần.'
+                    },
+                    {
+                        heading: '3. Thông điệp từ nhóm NOVA SIX',
+                        content: 'Hãy làm chủ công nghệ bằng sự tò mò không giới hạn và đạo đức nghề nghiệp vững vàng. Tương lai thuộc về những người trẻ biết kết hợp sức mạnh công nghệ với bản sắc văn hóa và tinh thần đồng đội gắn kết!'
+                    }
+                ]
+            },
+            {
+                badge: 'Văn Hóa Nhóm & Kỹ Năng Mềm',
+                title: 'Hành Trình Kết Nối 6 Cá Tính: Từ Sự Khác Biệt Đến Sức Mạnh Bứt Phá',
+                author: 'Thân Thị Thu Uyên, Nguyễn Thị Huyền Vy & Nguyễn Đoàn Phi Yến',
+                date: '24/10/2026',
+                readTime: '5 phút đọc',
+                cover: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+                sections: [
+                    {
+                        heading: '1. Sáu mảnh ghép với sáu gam màu riêng biệt',
+                        content: 'Một nhóm mạnh không phải là tập hợp của những người giống hệt nhau, mà là nơi những thế mạnh khác biệt được đặt đúng vị trí. Trong nhóm chúng tôi, sự điềm tĩnh logic của Xuân Trung và Khánh Tùng hòa quyện hoàn hảo với sự bay bổng nghệ thuật của Thu Uyên, Huyền Vy cùng khả năng nghiên cứu sắc bén của Phạm Như Ý và sự năng động của Đoàn Phi Yến.'
+                    },
+                    {
+                        heading: '2. Lắng nghe để thấu hiểu và cùng nhau tiến bộ',
+                        content: 'Trong suốt quá trình thực hiện các dự án chung, không ít lần cả nhóm đối mặt với những cuộc tranh luận sôi nổi. Nhưng chính nhờ nguyên tắc "Tôn trọng sự khác biệt - Hướng tới mục tiêu chung", mỗi buổi họp đều trở thành cơ hội để 6 thành viên học hỏi lẫn nhau.'
+                    },
+                    {
+                        heading: '3. Kỷ niệm là tài sản quý giá nhất',
+                        content: 'Sau mỗi bài thuyết trình thành công hay những đêm chạy deadline căng thẳng, điều đọng lại sâu sắc nhất chính là tình bạn và sự trưởng thành của từng thành viên trong đại gia đình NOVA SIX.'
+                    }
+                ]
+            },
+            {
+                badge: 'Góc Học Tập Thời 4.0',
+                title: 'Chuyển Đổi Số Trong Học Tập: Bí Quyết Quản Lý Thời Gian & Tri Thức Hiệu Quả',
+                author: 'Tập thể 6 Thành viên NOVA SIX',
+                date: '20/10/2026',
+                readTime: '4 phút đọc',
+                cover: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+                sections: [
+                    {
+                        heading: '1. Xây dựng "Bộ não thứ hai" (Second Brain) trên không gian số',
+                        content: 'Thay vì ghi chép rời rạc, nhóm chúng tôi áp dụng phương pháp số hóa toàn bộ tài liệu học tập, sơ đồ tư duy (Mindmap) và kho hình ảnh nghiên cứu lên nền tảng đám mây chung để cả 6 thành viên có thể truy cập mọi lúc, mọi nơi.'
+                    },
+                    {
+                        heading: '2. Quy tắc Pomodoro & Phân công nhiệm vụ thông minh',
+                        content: 'Chia nhỏ mục tiêu lớn thành các chặng ngắn (Sprint), kết hợp làm việc tập trung 25 phút và nghỉ ngơi hợp lý giúp nhóm luôn duy trì được năng lượng tích cực mà không bị quá tải trước các kỳ thi hay dự án lớn.'
+                    }
+                ]
+            }
+        ];
+
+        let membersState = JSON.parse(localStorage.getItem('nova_members_v6')) || defaultMembers;
+        let galleryState = JSON.parse(localStorage.getItem('nova_gallery_v6')) || defaultGalleryImages;
+        let currentMemberFilter = 'all';
+        let currentFolder = 'all';
+        let explorerViewMode = 'grid';
+        let currentArticleIndex = 0;
+        let articleFontSize = 17;
+        let isArticleEditable = false;
+        let activeAvatarMemberId = null;
+        let pendingUploadDataUrls = [];
+        let currentLightboxIndex = 0;
+        let currentLightboxZoom = 1;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHeroMiniAvatars();
+            renderMembers();
+            switchArticle(0);
+            renderComments();
+            renderGallery();
+            initScrollReveal();
+            initTypewriter();
+            initCursorAndProgress();
+            initConstellationCanvas();
+            initDragAndDropZone();
+        });
+
+        function renderHeroMiniAvatars() {
+            const container = document.getElementById('hero-mini-avatars');
+            container.innerHTML = membersState.map(m => `
+                <button onclick="openMemberModal('${m.id}')" title="${m.name} — ${m.role}" class="relative group focus:outline-none">
+                    <img src="${m.avatar}" alt="${m.name}" class="w-11 h-11 rounded-full object-cover object-top ring-2 ring-white dark:ring-space-900 group-hover:scale-115 group-hover:z-20 transition-all">
+                </button>
+            `).join('');
+        }
+
+        function renderMembers() {
+            const grid = document.getElementById('members-grid');
+            const filtered = currentMemberFilter === 'all'
+                ? membersState
+                : membersState.filter(m => m.category === currentMemberFilter);
+
+            grid.innerHTML = filtered.map((m) => `
+                <div class="member-card glass-panel rounded-3xl p-6 sm:p-7 shadow-xl border border-slate-200/70 dark:border-white/10 flex flex-col justify-between group"
+                     onmousemove="handleCardTilt(event, this)"
+                     onmouseleave="resetCardTilt(this)">
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${m.color} text-white shadow-sm">
+                                ${m.badge}
+                            </span>
+                            <button onclick="triggerMemberAvatarChange('${m.id}')" title="Tải ảnh mới cho ${m.name}"
+                                    class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-200/80 dark:bg-white/10 hover:bg-cyan-500 hover:text-white transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-camera"></i>
+                                <span>Đổi ảnh</span>
+                            </button>
+                        </div>
+
+                        <div class="relative w-32 h-32 mx-auto mb-4">
+                            <div class="absolute -inset-1.5 rounded-full bg-gradient-to-tr ${m.color} opacity-75 blur-md group-hover:opacity-100 transition-opacity"></div>
+                            <img src="${m.avatar}" alt="${m.name}" onclick="openMemberModal('${m.id}')"
+                                 onerror="this.src='https://placehold.co/300x300/1e1b4b/22d3ee?text=${encodeURIComponent(m.name)}'"
+                                 class="relative w-32 h-32 rounded-full object-cover object-top border-4 border-white dark:border-space-900 cursor-pointer group-hover:scale-105 transition-transform">
+                            <div class="absolute bottom-1 right-1 w-7 h-7 rounded-full bg-emerald-500 border-2 border-white dark:border-space-900 flex items-center justify-center text-white text-[10px]" title="Thành viên chính thức">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="text-center mb-2">
+                            <span class="inline-block px-2.5 py-0.5 rounded-md bg-slate-200/70 dark:bg-white/5 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                                <i class="fa-regular fa-folder-open text-amber-400 mr-1"></i>${m.filePath}
+                            </span>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <h3 class="font-display text-2xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors cursor-pointer" onclick="openMemberModal('${m.id}')">
+                                ${m.name}
+                            </h3>
+                            <p class="text-xs sm:text-sm font-semibold text-purple-600 dark:text-purple-400 mt-1">${m.role}</p>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-300 text-center leading-relaxed mb-6">
+                            ${m.shortBio}
+                        </p>
+                    </div>
+
+                    <div class="relative z-10 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <div class="flex flex-wrap justify-center gap-1.5 mb-4">
+                            ${m.hobbies.map(h => `
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300">${h}</span>
+                            `).join('')}
+                        </div>
+                        <button onclick="openMemberModal('${m.id}')" class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-slate-900/5 dark:bg-white/5 hover:bg-gradient-to-r ${m.color} hover:text-white transition-all flex items-center justify-center gap-2">
+                            <span>Mở Hồ Sơ 3D Chi Tiết</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterMembers(category) {
+            currentMemberFilter = category;
+            document.querySelectorAll('.member-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.className = 'member-filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-md transition-all';
+                } else {
+                    btn.className = 'member-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium glass-panel hover:border-cyan-400/50 transition-all';
+                }
+            });
+            renderMembers();
+        }
+
+        function handleCardTilt(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        }
+
+        function resetCardTilt(card) {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        }
+
+        function triggerMemberAvatarChange(memberId) {
+            activeAvatarMemberId = memberId;
+            document.getElementById('member-avatar-input').click();
+        }
+
+        function handleMemberAvatarSelected(event) {
+            const file = event.target.files[0];
+            if (!file || !activeAvatarMemberId) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const idx = membersState.findIndex(m => m.id === activeAvatarMemberId);
+                if (idx !== -1) {
+                    membersState[idx].avatar = e.target.result;
+                    localStorage.setItem('nova_members_v6', JSON.stringify(membersState));
+                    renderMembers();
+                    renderHeroMiniAvatars();
+                    showToast(`Đã cập nhật ảnh đại diện cho ${membersState[idx].name}!`);
+                }
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        function openMemberModal(memberId) {
+            const m = membersState.find(item => item.id === memberId);
+            if (!m) return;
+
+            const content = document.getElementById('member-modal-content');
+            content.innerHTML = `
+                <div class="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-slate-200/60 dark:border-white/10">
+                    <div class="relative shrink-0">
+                        <div class="absolute -inset-1.5 rounded-full bg-gradient-to-tr ${m.color} blur-md"></div>
+                        <img src="${m.avatar}" alt="${m.name}" class="relative w-28 h-28 rounded-full object-cover object-top border-4 border-white dark:border-space-900">
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${m.color} text-white">${m.badge}</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-200/70 dark:bg-white/10 text-cyan-400">${m.filePath}</span>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold text-slate-900 dark:text-white mt-2">${m.name}</h3>
+                        <p class="text-sm font-semibold text-cyan-500">${m.role}</p>
+                        <p class="text-xs italic text-slate-500 dark:text-slate-300 mt-2 bg-slate-100 dark:bg-white/5 px-3.5 py-2 rounded-xl border-l-2 border-cyan-400">${m.quote}</p>
+                    </div>
+                </div>
+
+                <div class="py-5 space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Thế mạnh chuyên môn & Đóng góp trong nhóm</h4>
+                    <div class="space-y-3">
+                        ${m.skills.map(s => `
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>${s.name}</span>
+                                    <span class="text-cyan-400">${s.percent}%</span>
+                                </div>
+                                <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r ${m.color}" style="width: ${s.percent}%"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-200/60 dark:border-white/10 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap gap-1.5">
+                        ${m.hobbies.map(h => `<span class="px-3 py-1 rounded-lg text-xs bg-slate-200/70 dark:bg-white/10">✨ ${h}</span>`).join('')}
+                    </div>
+                    <button onclick="triggerMemberAvatarChange('${m.id}'); closeMemberModal();" class="px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-white hover:bg-cyan-600 transition-all">
+                        <i class="fa-solid fa-camera mr-1"></i>Đổi ảnh đại diện
+                    </button>
+                </div>
+            `;
+
+            const modal = document.getElementById('member-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMemberModal() {
+            const modal = document.getElementById('member-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        const reactionsCount = { heart: 54, fire: 38, clap: 21, idea: 15, rocket: 18 };
+        let commentsData = [
+            { name: 'Lê Xuân Trung', role: 'Trưởng Nhóm NOVA SIX', time: '10 phút trước', text: 'Bài viết tổng hợp rất tâm huyết của cả 6 thành viên, mọi người cùng đọc và thả cảm xúc nhé!' },
+            { name: 'Phạm Như Ý', role: 'Media & Researcher', time: '5 phút trước', text: 'Mình đã cập nhật thêm tư liệu mới và tích hợp bài nhạc Suno AI của nhóm ở góc trái màn hình rồi nha!' }
+        ];
+
+        function switchArticle(index) {
+            currentArticleIndex = index;
+            const art = articlesData[index];
+            if (!art) return;
+
+            document.querySelectorAll('.article-tab-btn').forEach((btn, idx) => {
+                if (idx === index) {
+                    btn.className = 'article-tab-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg transition-all flex items-center gap-2';
+                } else {
+                    btn.className = 'article-tab-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-medium bg-slate-200/70 dark:bg-white/5 hover:bg-slate-300/60 dark:hover:bg-white/10 transition-all flex items-center gap-2';
+                }
+            });
+
+            document.getElementById('article-author').textContent = art.author;
+            document.getElementById('article-date').textContent = art.date;
+            document.getElementById('article-readtime').textContent = art.readTime;
+            document.getElementById('article-cover').src = art.cover;
+            document.getElementById('article-badge').textContent = art.badge;
+            document.getElementById('article-title').textContent = art.title;
+
+            const toc = document.getElementById('article-toc');
+            toc.innerHTML = art.sections.map((s, i) => `
+                <li>
+                    <a href="#sec-${i}" class="text-slate-600 dark:text-slate-300 hover:text-cyan-400 transition-colors flex items-start gap-2">
+                        <span class="text-cyan-400 font-mono text-xs mt-0.5">0${i + 1}.</span>
+                        <span>${s.heading}</span>
+                    </a>
+                </li>
+            `).join('');
+
+            const body = document.getElementById('article-body');
+            body.innerHTML = art.sections.map((s, i) => `
+                <div id="sec-${i}" class="space-y-2">
+                    <h4 class="font-display text-xl font-bold text-slate-900 dark:text-white">${s.heading}</h4>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">${s.content}</p>
+                </div>
+            `).join('');
+        }
+
+        function changeArticleFontSize(delta) {
+            articleFontSize = Math.min(24, Math.max(14, articleFontSize + delta));
+            const body = document.getElementById('article-body');
+            if (body) body.style.fontSize = `${articleFontSize}px`;
+        }
+
+        function toggleArticleEditMode() {
+            isArticleEditable = !isArticleEditable;
+            const body = document.getElementById('article-body');
+            const title = document.getElementById('article-title');
+            const label = document.getElementById('edit-btn-label');
+
+            if (body) body.contentEditable = isArticleEditable ? 'true' : 'false';
+            if (title) title.contentEditable = isArticleEditable ? 'true' : 'false';
+
+            if (isArticleEditable) {
+                label.textContent = 'Lưu bài viết';
+                showToast('Đã bật chế độ chỉnh sửa! Nhấp trực tiếp vào chữ trong bài viết để sửa.');
+            } else {
+                label.textContent = 'Chỉnh sửa bài viết';
+                showToast('Đã lưu nội dung bài viết thành công!');
+            }
+        }
+
+        function triggerReaction(event, emoji, key) {
+            reactionsCount[key] = (reactionsCount[key] || 0) + 1;
+            const countEl = document.getElementById(`react-${key}`);
+            if (countEl) countEl.textContent = reactionsCount[key];
+
+            const total = Object.values(reactionsCount).reduce((a, b) => a + b, 0);
+            const totalEl = document.getElementById('total-reactions');
+            if (totalEl) totalEl.textContent = `${total} lượt`;
+
+            const particle = document.createElement('div');
+            particle.className = 'floating-emoji text-2xl';
+            particle.textContent = emoji;
+            particle.style.left = `${event.clientX - 12}px`;
+            particle.style.top = `${event.clientY - 20}px`;
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1150);
+        }
+
+        function renderComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            list.innerHTML = commentsData.map(c => `
+                <div class="p-4 rounded-2xl bg-slate-100/80 dark:bg-white/5 border border-slate-200/60 dark:border-white/10">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <div class="flex items-center gap-2">
+                            <strong class="text-sm text-slate-900 dark:text-white">${c.name}</strong>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-cyan-500/15 text-cyan-500 dark:text-cyan-400">${c.role}</span>
+                        </div>
+                        <span class="text-[11px] text-slate-400">${c.time}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">${c.text}</p>
+                </div>
+            `).join('');
+        }
+
+        function submitComment(e) {
+            e.preventDefault();
+            const name = document.getElementById('comment-name').value.trim();
+            const role = document.getElementById('comment-role').value;
+            const text = document.getElementById('comment-text').value.trim();
+            if (!name || !text) return;
+
+            commentsData.unshift({ name, role, time: 'Vừa xong', text });
+            document.getElementById('comment-text').value = '';
+            renderComments();
+            showToast('Đã thêm bình luận của bạn vào bài viết!');
+        }
+
+        function setExplorerViewMode(mode) {
+            explorerViewMode = mode;
+            ['grid', 'list', 'code'].forEach(m => {
+                const btn = document.getElementById(`view-btn-${m}`);
+                if (!btn) return;
+                if (m === mode) {
+                    btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-white transition-all flex items-center gap-1';
+                } else {
+                    btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-white/10 transition-all flex items-center gap-1';
+                }
+            });
+            renderGallery();
+        }
+
+        function switchExplorerView(mode) {
+            setExplorerViewMode(mode === 'files' ? 'list' : mode);
+        }
+
+        function selectFolder(folderKey, breadcrumbLabel) {
+            currentFolder = folderKey;
+            const breadEl = document.getElementById('current-folder-breadcrumb');
+            if (breadEl) breadEl.textContent = breadcrumbLabel;
+            if (explorerViewMode === 'code') {
+                setExplorerViewMode('grid');
+            } else {
+                renderGallery();
+            }
+        }
+
+        function updateFolderCounts() {
+            const countAllEl = document.getElementById('count-all');
+            if (countAllEl) countAllEl.textContent = `${galleryState.length}`;
+            ['thanh-vien', 'hop-nhom', 'su-kien', 'ky-niem', 'tay-tien'].forEach(f => {
+                const cnt = galleryState.filter(img => img.folder === f).length;
+                const el = document.getElementById(`count-${f}`);
+                if (el) el.textContent = `${cnt}`;
+            });
+        }
+
+        function renderGallery() {
+            updateFolderCounts();
+            const grid = document.getElementById('gallery-grid');
+            const emptyState = document.getElementById('gallery-empty');
+            const codeGuide = document.getElementById('gallery-code-guide');
+
+            if (explorerViewMode === 'code') {
+                grid.classList.add('hidden');
+                emptyState.classList.add('hidden');
+                codeGuide.classList.remove('hidden');
+                return;
+            }
+            codeGuide.classList.add('hidden');
+            grid.classList.remove('hidden');
+
+            const searchInput = document.getElementById('gallery-search');
+            const searchQuery = (searchInput ? searchInput.value : '').toLowerCase();
+
+            const filtered = galleryState.filter(item => {
+                const matchFolder = currentFolder === 'all' || item.folder === currentFolder;
+                const matchSearch = item.title.toLowerCase().includes(searchQuery) || (item.fileName || '').toLowerCase().includes(searchQuery);
+                return matchFolder && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            if (explorerViewMode === 'list') {
+                grid.className = 'space-y-2.5';
+                grid.innerHTML = filtered.map((item, idx) => `
+                    <div class="p-3 rounded-2xl bg-slate-100/80 dark:bg-white/5 border border-slate-200/70 dark:border-white/10 flex items-center justify-between gap-4 hover:border-cyan-400/50 transition-all">
+                        <div class="flex items-center gap-3.5 overflow-hidden cursor-pointer" onclick="openLightbox('${item.id}')">
+                            <img src="${item.url}" alt="${item.title}" class="w-14 h-14 rounded-xl object-cover shrink-0 border border-white/15">
+                            <div class="overflow-hidden">
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white truncate">${item.title}</h4>
+                                <div class="text-xs font-mono text-cyan-500 dark:text-cyan-400 truncate">${folderLabels[item.folder] || 'images/'}${item.fileName || ('anh-' + (idx + 1) + '.jpg')}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 shrink-0">
+                            <span class="hidden sm:inline text-xs text-slate-400">${item.date}</span>
+                            <button onclick="openLightbox('${item.id}')" class="px-3 py-1.5 rounded-xl bg-purple-500/15 text-purple-400 text-xs font-semibold hover:bg-purple-500 hover:text-white transition-all">
+                                Xem
+                            </button>
+                            <button onclick="deleteGalleryImage('${item.id}')" class="w-8 h-8 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500 hover:text-white transition-all">
+                                <i class="fa-regular fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                return;
+            }
+
+            grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6';
+            grid.innerHTML = filtered.map((item) => `
+                <div class="group relative rounded-2xl overflow-hidden bg-slate-200 dark:bg-space-800 border border-slate-300/60 dark:border-white/10 shadow-lg hover:shadow-cyan-500/20 transition-all">
+                    <div class="h-52 overflow-hidden cursor-pointer" onclick="openLightbox('${item.id}')">
+                        <img src="${item.url}" alt="${item.title}"
+                             onerror="this.src='https://placehold.co/600x400/1e1b4b/38bdf8?text=Hinh+Anh+Nhom'"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+
+                    <div class="p-4 bg-white/95 dark:bg-space-900/95 backdrop-blur-md">
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                            <span class="font-mono font-semibold text-cyan-500 dark:text-cyan-400">${folderLabels[item.folder] || '📁 Thư mục'}</span>
+                            <span>${item.date}</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white truncate" title="${item.title}">${item.title}</h4>
+                        <div class="flex items-center justify-between mt-3 pt-2.5 border-t border-slate-200/60 dark:border-white/10">
+                            <button onclick="openLightbox('${item.id}')" class="text-xs font-semibold text-purple-500 hover:text-purple-400 flex items-center gap-1">
+                                <i class="fa-solid fa-expand"></i> Xem phóng to
+                            </button>
+                            <button onclick="deleteGalleryImage('${item.id}')" title="Xóa ảnh này" class="text-xs text-slate-400 hover:text-rose-500 transition-colors">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openUploadModal() {
+            pendingUploadDataUrls = [];
+            document.getElementById('upload-preview-box').innerHTML = '';
+            document.getElementById('upload-preview-box').classList.add('hidden');
+            document.getElementById('upload-url-input').value = '';
+            document.getElementById('upload-title-input').value = '';
+            if (currentFolder !== 'all') {
+                document.getElementById('upload-folder-select').value = currentFolder;
+            }
+            const modal = document.getElementById('upload-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeUploadModal() {
+            const modal = document.getElementById('upload-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function previewSelectedFiles(event) {
+            const files = Array.from(event.target.files);
+            if (!files.length) return;
+
+            pendingUploadDataUrls = [];
+            const previewBox = document.getElementById('upload-preview-box');
+            previewBox.innerHTML = '';
+            previewBox.classList.remove('hidden');
+            previewBox.classList.add('flex');
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    pendingUploadDataUrls.push({
+                        name: file.name,
+                        size: (file.size / 1024).toFixed(0) + ' KB',
+                        dataUrl: e.target.result
+                    });
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'w-16 h-16 rounded-xl object-cover border border-cyan-400';
+                    previewBox.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            if (!document.getElementById('upload-title-input').value) {
+                document.getElementById('upload-title-input').value = files[0].name.replace(/\.[^/.]+$/, "");
+            }
+        }
+
+        function handleAddGalleryImage(event) {
+            event.preventDefault();
+            const title = document.getElementById('upload-title-input').value.trim() || 'Khoảnh khắc nhóm NOVA SIX';
+            const folder = document.getElementById('upload-folder-select').value;
+            const urlInput = document.getElementById('upload-url-input').value.trim();
+            const today = new Date().toLocaleDateString('vi-VN');
+
+            if (pendingUploadDataUrls.length > 0) {
+                pendingUploadDataUrls.forEach((fileObj, index) => {
+                    galleryState.unshift({
+                        id: 'img-' + Date.now() + '-' + index,
+                        title: pendingUploadDataUrls.length > 1 ? `${title} (${index + 1})` : title,
+                        folder: folder,
+                        fileName: fileObj.name,
+                        size: fileObj.size,
+                        date: today,
+                        url: fileObj.dataUrl
+                    });
+                });
+            } else if (urlInput) {
+                const extractedName = urlInput.split('/').pop().split('?')[0] || 'anh-moi.jpg';
+                galleryState.unshift({
+                    id: 'img-' + Date.now(),
+                    title: title,
+                    folder: folder,
+                    fileName: extractedName.includes('.') ? extractedName : `${extractedName}.jpg`,
+                    size: '1.1 MB',
+                    date: today,
+                    url: urlInput
+                });
+            } else {
+                showToast('Vui lòng chọn tệp ảnh từ máy tính hoặc nhập đường dẫn ảnh!');
+                return;
+            }
+
+            try {
+                localStorage.setItem('nova_gallery_v6', JSON.stringify(galleryState));
+            } catch (err) {}
+
+            closeUploadModal();
+            selectFolder(folder, `images/${folder}/`);
+            showToast(`Đã lưu ảnh vào thư mục images/${folder}/ thành công!`);
+        }
+
+        function deleteGalleryImage(imageId) {
+            galleryState = galleryState.filter(img => img.id !== imageId);
+            try {
+                localStorage.setItem('nova_gallery_v6', JSON.stringify(galleryState));
+            } catch (err) {}
+            renderGallery();
+            showToast('Đã xóa ảnh khỏi thư mục.');
+        }
+
+        function resetDefaultData() {
+            localStorage.removeItem('nova_gallery_v6');
+            localStorage.removeItem('nova_members_v6');
+            membersState = JSON.parse(JSON.stringify(defaultMembers));
+            galleryState = JSON.parse(JSON.stringify(defaultGalleryImages));
+            renderMembers();
+            renderHeroMiniAvatars();
+            renderGallery();
+            showToast('Đã khôi phục dữ liệu mẫu ban đầu!');
+        }
+
+        function openLightbox(imageId) {
+            const idx = galleryState.findIndex(item => item.id === imageId);
+            if (idx === -1) return;
+            currentLightboxIndex = idx;
+            currentLightboxZoom = 1;
+            updateLightboxView();
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function updateLightboxView() {
+            const item = galleryState[currentLightboxIndex];
+            if (!item) return;
+            const imgEl = document.getElementById('lightbox-img');
+            imgEl.src = item.url;
+            imgEl.style.transform = `scale(${currentLightboxZoom})`;
+            document.getElementById('lightbox-title').textContent = item.title;
+            document.getElementById('lightbox-folder-badge').textContent = `images/${item.folder}/${item.fileName || 'anh.jpg'}`;
+            const delBtn = document.getElementById('lightbox-delete-btn');
+            if (delBtn) {
+                delBtn.onclick = () => {
+                    deleteGalleryImage(item.id);
+                    closeLightbox();
+                };
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function stepLightbox(dir) {
+            if (!galleryState.length) return;
+            currentLightboxIndex = (currentLightboxIndex + dir + galleryState.length) % galleryState.length;
+            currentLightboxZoom = 1;
+            updateLightboxView();
+        }
+
+        function zoomLightbox(delta) {
+            currentLightboxZoom = Math.min(2.5, Math.max(0.5, currentLightboxZoom + delta));
+            const imgEl = document.getElementById('lightbox-img');
+            if (imgEl) imgEl.style.transform = `scale(${currentLightboxZoom})`;
+        }
+
+        function initDragAndDropZone() {
+            const dropZone = document.getElementById('drop-zone');
+            if (!dropZone) return;
+
+            ['dragenter', 'dragover'].forEach(evt => {
+                dropZone.addEventListener(evt, (e) => {
+                    e.preventDefault();
+                    dropZone.classList.add('bg-cyan-500/10');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(evt => {
+                dropZone.addEventListener(evt, (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('bg-cyan-500/10');
+                });
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+                if (!files.length) return;
+                const today = new Date().toLocaleDateString('vi-VN');
+                const targetFolder = currentFolder === 'all' ? 'ky-niem' : currentFolder;
+
+                files.forEach((file, idx) => {
+                    const reader = new FileReader();
+                    reader.onload = (ev) => {
+                        galleryState.unshift({
+                            id: 'img-' + Date.now() + '-' + idx,
+                            title: file.name.replace(/\.[^/.]+$/, ''),
+                            folder: targetFolder,
+                            fileName: file.name,
+                            size: (file.size / 1024).toFixed(0) + ' KB',
+                            date: today,
+                            url: ev.target.result
+                        });
+                        renderGallery();
+                    };
+                    reader.readAsDataURL(file);
+                });
+                showToast(`Đã thả ${files.length} ảnh vào thư mục!`);
+            });
+        }
+
+        /* =========================================================================
+           4. HỆ THỐNG TRÌNH PHÁT NHẠC CUSTOM (SUNO PLAYER) & LYRICS SYNC
+        ========================================================================= */
+        const globalAudio = document.getElementById('global-audio-player');
+        let isAudioPlaying = false;
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return m + ":" + (s < 10 ? "0" + s : s);
+        }
+
+        function toggleGlobalAudio() {
+            if (globalAudio.paused) {
+                globalAudio.play().then(() => {
+                    isAudioPlaying = true;
+                    updatePlayPauseUI(true);
+                    showToast('🎵 Đang phát: Tây Tiến – Khúc Hát Người');
+                }).catch(err => {
+                    showToast('❌ Không thể phát trực tiếp link Suno. Vui lòng bấm "Nghe bản gốc".');
+                });
+            } else {
+                globalAudio.pause();
+                isAudioPlaying = false;
+                updatePlayPauseUI(false);
+            }
+        }
+
+        function updatePlayPauseUI(isPlaying) {
+            document.querySelectorAll('.global-play-btn i').forEach(icon => {
+                if (icon.classList.contains('text-lg')) {
+                    icon.className = isPlaying ? 'fa-solid fa-pause text-lg' : 'fa-solid fa-play text-lg ml-1';
+                } else if (icon.classList.contains('global-play-btn-inner')) {
+                    icon.className = isPlaying ? 'fa-solid fa-pause global-play-btn-inner' : 'fa-solid fa-play global-play-btn-inner';
+                } else {
+                    icon.className = isPlaying ? 'fa-solid fa-pause text-xs' : 'fa-solid fa-play text-xs ml-0.5';
+                }
+            });
+            const vinylDisc = document.getElementById('vinyl-disc');
+            const eqContainer = document.getElementById('eq-container');
+            
+            if (isPlaying) {
+                if(vinylDisc) vinylDisc.classList.remove('vinyl-paused');
+                if(eqContainer) eqContainer.classList.add('playing');
+            } else {
+                if(vinylDisc) vinylDisc.classList.add('vinyl-paused');
+                if(eqContainer) eqContainer.classList.remove('playing');
+            }
+        }
+
+        function seekGlobalAudio(value) {
+            const time = (value / 100) * globalAudio.duration;
+            globalAudio.currentTime = time;
+        }
+
+        globalAudio.addEventListener('loadedmetadata', () => {
+            const totalStr = formatTime(globalAudio.duration);
+            document.querySelectorAll('.global-time-total').forEach(el => el.textContent = totalStr);
+        });
+
+        globalAudio.addEventListener('timeupdate', () => {
+            const current = globalAudio.currentTime;
+            const duration = globalAudio.duration || 1;
+            const percentage = (current / duration) * 100;
+            
+            document.querySelectorAll('.global-time-current').forEach(el => el.textContent = formatTime(current));
+            document.querySelectorAll('.global-progress').forEach(el => el.value = percentage);
+            
+            syncLyrics(current);
+        });
+
+        globalAudio.addEventListener('ended', () => {
+            isAudioPlaying = false;
+            updatePlayPauseUI(false);
+            document.querySelectorAll('.global-progress').forEach(el => el.value = 0);
+            syncLyrics(0);
+        });
+
+        function syncLyrics(currentTime) {
+            updateLyricContainer('drawer-lyrics', currentTime);
+            updateLyricContainer('modal-lyrics', currentTime);
+        }
+
+        function updateLyricContainer(containerId, currentTime) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const lines = container.querySelectorAll('.lyric-line');
+            if (lines.length === 0) return;
+            
+            let activeLineIndex = -1;
+            
+            lines.forEach((line, index) => {
+                const time = parseFloat(line.getAttribute('data-time'));
+                if (currentTime >= time) {
+                    activeLineIndex = index;
+                }
+            });
+
+            lines.forEach((line, index) => {
+                if (index === activeLineIndex) {
+                    line.classList.remove('text-slate-500');
+                    line.classList.add('active');
+                } else {
+                    line.classList.remove('active');
+                    line.classList.add('text-slate-500');
+                }
+            });
+
+            if (activeLineIndex !== -1) {
+                const activeLine = lines[activeLineIndex];
+                const containerHalfHeight = container.clientHeight / 2;
+                container.scrollTo({
+                    top: activeLine.offsetTop - containerHalfHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function playTayTienInPage() {
+            toggleInPageDrawer(true);
+        }
+
+        function toggleInPageDrawer(forceState) {
+            const drawer = document.getElementById('inpage-suno-drawer');
+            if (!drawer) return;
+            const shouldShow = typeof forceState === 'boolean' ? forceState : drawer.classList.contains('hidden');
+            if (shouldShow) {
+                drawer.classList.remove('hidden');
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+        function openSunoModal() {
+            const modal = document.getElementById('suno-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeSunoModal() {
+            const modal = document.getElementById('suno-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function copySunoLink(url) {
+            const tempInput = document.createElement('input');
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Đã sao chép liên kết nhạc Suno AI!');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('translate-x-[150%]');
+            setTimeout(() => {
+                toast.classList.add('translate-x-[150%]');
+            }, 3200);
+        }
+
+        function toggleTheme() {
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            htmlEl.classList.toggle('dark');
+            if (htmlEl.classList.contains('dark')) {
+                icon.className = 'fa-solid fa-sun text-lg';
+            } else {
+                icon.className = 'fa-solid fa-moon text-lg';
+            }
+        }
+
+        function initTypewriter() {
+            const el = document.getElementById('typewriter-text');
+            if (!el) return;
+            const phrases = [
+                'Kiến Tạo Tương Lai',
+                'Gắn Kết 6 Cá Tính',
+                'Sáng Tạo Không Giới Hạn',
+                'Bứt Phá Mọi Giới Hạn'
+            ];
+            let pIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeStep() {
+                const current = phrases[pIndex];
+                if (isDeleting) {
+                    charIndex--;
+                    el.textContent = current.substring(0, charIndex);
+                } else {
+                    charIndex++;
+                    el.textContent = current.substring(0, charIndex);
+                }
+
+                let speed = isDeleting ? 45 : 95;
+                if (!isDeleting && charIndex === current.length) {
+                    speed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    pIndex = (pIndex + 1) % phrases.length;
+                    speed = 350;
+                }
+                setTimeout(typeStep, speed);
+            }
+            setTimeout(typeStep, 1200);
+        }
+
+        function initScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
+        }
+
+        function initCursorAndProgress() {
+            const glow = document.getElementById('cursor-glow');
+            const progress = document.getElementById('scroll-progress');
+
+            window.addEventListener('mousemove', (e) => {
+                glow.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(34, 211, 238, 0.09), transparent 45%)`;
+            });
+
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+                progress.style.width = scrolled + '%';
+            });
+        }
+
+        function initConstellationCanvas() {
+            const canvas = document.getElementById('constellation-canvas');
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            let mouse = { x: -1000, y: -1000 };
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            const particles = [];
+            const count = Math.min(52, Math.floor(width / 28));
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    r: Math.random() * 2 + 1
+                });
+            }
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, width, height);
+                const isDark = document.documentElement.classList.contains('dark');
+                ctx.fillStyle = isDark ? 'rgba(56, 189, 248, 0.6)' : 'rgba(99, 102, 241, 0.45)';
+
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    const mdx = p.x - mouse.x;
+                    const mdy = p.y - mouse.y;
+                    const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+                    if (mDist < 150) {
+                        ctx.strokeStyle = isDark
+                            ? `rgba(34, 211, 238, ${0.35 * (1 - mDist / 150)})`
+                            : `rgba(99, 102, 241, ${0.25 * (1 - mDist / 150)})`;
+                        ctx.lineWidth = 1.2;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 125) {
+                            ctx.strokeStyle = isDark
+                                ? `rgba(139, 92, 246, ${0.18 * (1 - dist / 125)})`
+                                : `rgba(99, 102, 241, ${0.12 * (1 - dist / 125)})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+        }
+    </script>
+</body>
+</html>

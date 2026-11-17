@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Xuân Trường Học - Nhóm Của Chúng Mình</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Be Vietnam Pro & Dancing Script for handwriting quotes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                        handwriting: ['"Dancing Script"', 'cursive'],
+                    },
+                    colors: {
+                        sky: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(224, 242, 254, 0.8);
+        }
+
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 40%, #f0f9ff 75%, #ffffff 100%);
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- CÁNH HOA RƠI ANIMATION --- */
+        #petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, #ffb7c5, #ff9ebb);
+            border-radius: 15px 0 15px 0;
+            opacity: 0.8;
+            pointer-events: none;
+            box-shadow: 0 0 5px rgba(255, 183, 197, 0.5);
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -5%;
+                transform: translateX(0) rotate(0deg) scale(0.8);
+                opacity: 0.9;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                top: 105%;
+                transform: translateX(var(--sway-x, 120px)) rotate(540deg) scale(1.1);
+                opacity: 0.1;
+            }
+        }
+
+        /* Music visualizer wave animation */
+        .bar {
+            width: 3px;
+            height: 12px;
+            background-color: #0ea5e9;
+            animation: soundWave 1.2s infinite ease-in-out;
+        }
+        .bar:nth-child(1) { animation-delay: 0.1s; }
+        .bar:nth-child(2) { animation-delay: 0.3s; }
+        .bar:nth-child(3) { animation-delay: 0.2s; }
+        .bar:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes soundWave {
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f9ff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7dd3fc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-700 font-sans antialiased selection:bg-sky-200 selection:text-sky-900 min-h-screen flex flex-col relative">
+
+    <!-- Container hiệu ứng cánh hoa rơi -->
+    <div id="petal-container"></div>
+
+    <!-- Thanh Điều Hướng (Navbar) -->
+    <header class="sticky top-0 z-40 glass-card border-b border-sky-100 shadow-sm transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 text-sky-700 font-bold text-lg md:text-xl group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-400 to-sky-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition transform">
+                    <i class="fa-solid fa-graduation-cap text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="leading-none text-sky-800">ThanhXuân<span class="text-sky-500">.Edu</span></span>
+                    <span class="text-[10px] text-sky-500 font-normal tracking-wider uppercase mt-0.5">Nhóm 5 Thành Viên</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#hero" class="hover:text-sky-600 transition flex items-center gap-1.5"><i class="fa-solid fa-house text-xs opacity-70"></i> Trang Chủ</a>
+                <a href="#members" class="hover:text-sky-600 transition flex items-center gap-1.5"><i class="fa-solid fa-users text-xs opacity-70"></i> Thành Viên (5)</a>
+                <a href="#memories" class="hover:text-sky-600 transition flex items-center gap-1.5"><i class="fa-solid fa-images text-xs opacity-70"></i> Khoảnh Khắc</a>
+                <a href="#countdown" class="hover:text-sky-600 transition flex items-center gap-1.5"><i class="fa-solid fa-clock text-xs opacity-70"></i> Đếm Ngược</a>
+                <a href="#wall" class="hover:text-sky-600 transition flex items-center gap-1.5"><i class="fa-solid fa-comment-dots text-xs opacity-70"></i> Lưu Bút</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <!-- Toggle Music Button -->
+                <button id="music-toggle-btn" onclick="toggleAudio()" class="flex items-center gap-2 bg-white/80 hover:bg-sky-100 text-sky-700 px-3 py-1.5 rounded-full border border-sky-200 text-xs font-medium transition shadow-sm" title="Bật/Tắt Nhạc Nền Thanh Xuân">
+                    <i id="music-icon" class="fa-solid fa-music text-sky-500"></i>
+                    <span id="music-text" class="hidden sm:inline">Lofi Nhạc</span>
+                    <div id="music-visualizer" class="hidden flex items-center gap-0.5 h-4 ml-1">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </button>
+
+                <a href="#members" class="hidden sm:inline-flex bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-md shadow-sky-200 transition transform hover:scale-105 items-center gap-1.5">
+                    <i class="fa-solid fa-sparkles"></i> Khám Phá Ngay
+                </a>
+
+                <!-- Mobile menu toggle button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-600 hover:text-sky-600 p-2 focus:outline-none">
+                    <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-sky-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-sky-600 border-b border-slate-50"><i class="fa-solid fa-house w-6 text-sky-500"></i> Trang Chủ</a>
+            <a href="#members" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-sky-600 border-b border-slate-50"><i class="fa-solid fa-users w-6 text-sky-500"></i> Thành Viên Nhóm (5)</a>
+            <a href="#memories" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-sky-600 border-b border-slate-50"><i class="fa-solid fa-images w-6 text-sky-500"></i> Khoảnh Khắc Kỷ Niệm</a>
+            <a href="#countdown" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-sky-600 border-b border-slate-50"><i class="fa-solid fa-clock w-6 text-sky-500"></i> Đồng Hồ Thanh Xuân</a>
+            <a href="#wall" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-sky-600"><i class="fa-solid fa-comment-dots w-6 text-sky-500"></i> Góc Lưu Bút</a>
+        </div>
+    </header>
+
+    <!-- Background Audio Element -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Phần Mở Đầu (Hero Section) -->
+    <section id="hero" class="hero-gradient py-16 lg:py-24 px-4 text-center relative overflow-hidden">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-sky-200/50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full text-xs font-semibold bg-white/90 text-sky-600 shadow-sm mb-6 uppercase tracking-wider border border-sky-200">
+                <i class="fa-solid fa-heart text-pink-500 animate-pulse"></i> Tình Bạn Học Trò Bền Chặt
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 tracking-tight leading-tight mb-6">
+                Thanh Xuân Của <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-500 to-indigo-600">Chúng Mình</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                "Năm tháng ấy, dưới mái trường mến yêu, chúng ta đã cùng nhau viết nên những trang ký ức rực rỡ, hồn nhiên và trong trẻo nhất của tuổi học trò."
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#members" class="bg-sky-600 hover:bg-sky-700 text-white font-medium px-6 py-3.5 rounded-xl shadow-lg shadow-sky-200 transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <i class="fa-solid fa-users text-sky-200"></i> Xem 5 Thành Viên
+                </a>
+                <a href="#memories" class="bg-white hover:bg-sky-50 text-sky-700 border border-sky-200 font-medium px-6 py-3.5 rounded-xl shadow-sm transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <i class="fa-solid fa-images text-sky-500"></i> Kho Ảnh Kỷ Niệm
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-14 flex justify-center">
+            <div class="floating bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-md border border-sky-100 text-xs sm:text-sm text-slate-600 flex items-center gap-3">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span>Nhóm 5 thành viên luôn đoàn kết, chia sẻ & gắn kết</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHẦN 1: THÀNH VIÊN NHÓM (5 người kèm thông tin chi tiết) -->
+    <section id="members" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+            <span class="text-sky-600 font-semibold text-xs tracking-widest uppercase">Gương Mặt Nhóm</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mt-1 mb-3">Thành Viên Trong Nhóm</h2>
+            <p class="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">Mỗi cá tính là một mảnh ghép hoàn hảo tạo nên bức tranh thanh xuân trọn vẹn.</p>
+            <div class="w-16 h-1 bg-gradient-to-r from-sky-400 to-blue-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Thành viên 1: Lã Tuyết Như -->
+            <div onclick="openMemberModal('tuyet_nhu')" class="glass-card rounded-2xl overflow-hidden shadow-lg shadow-sky-100/50 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 flex flex-col group border border-sky-100 cursor-pointer">
+                <div class="relative h-72 overflow-hidden bg-sky-100">
+                    <img src="images/tuyet_nhu.jpg" alt="Lã Tuyết Như" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/e0f2fe/0284c7?text=La+Tuyet+Nhu';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-90"></div>
+                    <span class="absolute top-3 right-3 bg-white/90 backdrop-blur text-sky-700 text-xs font-semibold px-3 py-1 rounded-full shadow">Thành viên #1</span>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <span class="inline-block px-2 py-0.5 rounded bg-sky-500/80 text-[10px] font-medium tracking-wide uppercase mb-1">Trưởng Nhóm / Kết Nối</span>
+                        <h3 class="text-xl font-bold leading-snug">Lã Tuyết Như</h3>
+                        <p class="text-xs text-sky-200">Năng động & Sáng tạo</p>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">"Luôn mang lại năng lượng tích cực và sự vui vẻ cho cả nhóm trong mọi hoàn cảnh."</p>
+                    <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-xs text-slate-500">
+                        <span class="text-sky-600 font-medium group-hover:underline flex items-center gap-1">Xem tiểu sử <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="bg-sky-50 text-sky-600 px-2.5 py-1 rounded-md font-medium">Nhóm Bạn</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thành viên 2: Lê Đắc Sáng -->
+            <div onclick="openMemberModal('dac_sang')" class="glass-card rounded-2xl overflow-hidden shadow-lg shadow-sky-100/50 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 flex flex-col group border border-sky-100 cursor-pointer">
+                <div class="relative h-72 overflow-hidden bg-sky-100">
+                    <img src="images/dac_sang.jpg" alt="Lê Đắc Sáng" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/e0f2fe/0284c7?text=Le+Dac+Sang';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-90"></div>
+                    <span class="absolute top-3 right-3 bg-white/90 backdrop-blur text-sky-700 text-xs font-semibold px-3 py-1 rounded-full shadow">Thành viên #2</span>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <span class="inline-block px-2 py-0.5 rounded bg-blue-500/80 text-[10px] font-medium tracking-wide uppercase mb-1">Cố Vấn Học Tập</span>
+                        <h3 class="text-xl font-bold leading-snug">Lê Đắc Sáng</h3>
+                        <p class="text-xs text-sky-200">Vững chãi & Tận tâm</p>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">"Luôn sẵn sàng hỗ trợ các bạn hết mình trong học tập cũng như các hoạt động chung."</p>
+                    <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-xs text-slate-500">
+                        <span class="text-sky-600 font-medium group-hover:underline flex items-center gap-1">Xem tiểu sử <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="bg-sky-50 text-sky-600 px-2.5 py-1 rounded-md font-medium">Nhóm Bạn</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thành viên 3: Phạm Minh Nguyệt -->
+            <div onclick="openMemberModal('minh_nguyet')" class="glass-card rounded-2xl overflow-hidden shadow-lg shadow-sky-100/50 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 flex flex-col group border border-sky-100 cursor-pointer">
+                <div class="relative h-72 overflow-hidden bg-sky-100">
+                    <img src="images/minh_nguyet.jpg" alt="Phạm Minh Nguyệt" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/e0f2fe/0284c7?text=Pham+Minh+Nguyet';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-90"></div>
+                    <span class="absolute top-3 right-3 bg-white/90 backdrop-blur text-sky-700 text-xs font-semibold px-3 py-1 rounded-full shadow">Thành viên #3</span>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <span class="inline-block px-2 py-0.5 rounded bg-indigo-500/80 text-[10px] font-medium tracking-wide uppercase mb-1">Thủ Kho Kỷ Niệm</span>
+                        <h3 class="text-xl font-bold leading-snug">Phạm Minh Nguyệt</h3>
+                        <p class="text-xs text-sky-200">Nhẹ nhàng & Sâu sắc</p>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">"Cô nàng chu đáo, luôn giữ gìn những khoảnh khắc đáng yêu của cả nhóm."</p>
+                    <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-xs text-slate-500">
+                        <span class="text-sky-600 font-medium group-hover:underline flex items-center gap-1">Xem tiểu sử <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="bg-sky-50 text-sky-600 px-2.5 py-1 rounded-md font-medium">Nhóm Bạn</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thành viên 4: Phạm Hoàng Yến Nhi -->
+            <div onclick="openMemberModal('yen_nhi')" class="glass-card rounded-2xl overflow-hidden shadow-lg shadow-sky-100/50 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 flex flex-col group border border-sky-100 cursor-pointer">
+                <div class="relative h-72 overflow-hidden bg-sky-100">
+                    <img src="images/yen_nhi.jpg" alt="Phạm Hoàng Yến Nhi" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/e0f2fe/0284c7?text=Pham+Hoang+Yen+Nhi';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-90"></div>
+                    <span class="absolute top-3 right-3 bg-white/90 backdrop-blur text-sky-700 text-xs font-semibold px-3 py-1 rounded-full shadow">Thành viên #4</span>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <span class="inline-block px-2 py-0.5 rounded bg-amber-500/80 text-[10px] font-medium tracking-wide uppercase mb-1">Đại Sứ Tiếng Cười</span>
+                        <h3 class="text-xl font-bold leading-snug">Phạm Hoàng Yến Nhi</h3>
+                        <p class="text-xs text-sky-200">Thân thiện & Vui tươi</p>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">"Luôn lan tỏa nụ cười và tiếng cười giòn giã trong mỗi buổi học nhóm."</p>
+                    <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-xs text-slate-500">
+                        <span class="text-sky-600 font-medium group-hover:underline flex items-center gap-1">Xem tiểu sử <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="bg-sky-50 text-sky-600 px-2.5 py-1 rounded-md font-medium">Nhóm Bạn</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thành viên 5: Hoàng Kỳ Ngân -->
+            <div onclick="openMemberModal('ky_ngan')" class="glass-card rounded-2xl overflow-hidden shadow-lg shadow-sky-100/50 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 flex flex-col group border border-sky-100 cursor-pointer">
+                <div class="relative h-72 overflow-hidden bg-sky-100">
+                    <img src="images/ky_ngan.jpg" alt="Hoàng Kỳ Ngân" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/e0f2fe/0284c7?text=Hoang+Ky+Ngan';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-90"></div>
+                    <span class="absolute top-3 right-3 bg-white/90 backdrop-blur text-sky-700 text-xs font-semibold px-3 py-1 rounded-full shadow">Thành viên #5</span>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <span class="inline-block px-2 py-0.5 rounded bg-rose-500/80 text-[10px] font-medium tracking-wide uppercase mb-1">Truyền Cảm Hứng</span>
+                        <h3 class="text-xl font-bold leading-snug">Hoàng Kỳ Ngân</h3>
+                        <p class="text-xs text-sky-200">Nhiệt huyết & Sáng tạo</p>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">"Mang đến nhiều ý tưởng độc đáo và luôn đồng hành cùng nhóm qua mọi chặng đường."</p>
+                    <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-xs text-slate-500">
+                        <span class="text-sky-600 font-medium group-hover:underline flex items-center gap-1">Xem tiểu sử <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="bg-sky-50 text-sky-600 px-2.5 py-1 rounded-md font-medium">Nhóm Bạn</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PHẦN 2: KHOẢNH KHẮC THANH XUÂN (Gallery hình ảnh có bộ lọc & Lightbox) -->
+    <section id="memories" class="bg-sky-100/60 py-20 px-4 sm:px-6 lg:px-8 border-y border-sky-200/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-sky-600 font-semibold text-xs tracking-widest uppercase">Thư Viện Ảnh</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mt-1 mb-3">Khoảnh Khắc Thanh Xuân</h2>
+                <p class="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">Những khung hình lưu giữ tiếng cười, giờ phút sinh hoạt và tình bạn gắn kết.</p>
+                <div class="w-16 h-1 bg-sky-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Gallery Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10 text-xs sm:text-sm">
+                <button onclick="filterGallery('all')" class="gallery-filter-btn active bg-sky-600 text-white font-medium px-4 py-2 rounded-full shadow-sm transition">Tất Cả</button>
+                <button onclick="filterGallery('study')" class="gallery-filter-btn bg-white hover:bg-sky-50 text-slate-600 font-medium px-4 py-2 rounded-full border border-sky-200 transition">Học Tập</button>
+                <button onclick="filterGallery('activity')" class="gallery-filter-btn bg-white hover:bg-sky-50 text-slate-600 font-medium px-4 py-2 rounded-full border border-sky-200 transition">Ngoại Khóa</button>
+                <button onclick="filterGallery('memories')" class="gallery-filter-btn bg-white hover:bg-sky-50 text-slate-600 font-medium px-4 py-2 rounded-full border border-sky-200 transition">Kỷ Niệm</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Item 1 -->
+                <div class="gallery-item study glass-card p-3 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="relative h-52 rounded-xl overflow-hidden bg-sky-200 mb-3 group cursor-pointer" onclick="openLightbox('images/gallery_1.jpg', 'Giờ ra chơi sân trường', 'Cùng nhau ôn bài và chuyện trò rôm rả dưới bóng cây xanh mát.')">
+                        <img src="images/gallery_1.jpg" alt="Kỷ niệm 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2fe/0284c7?text=San+Truong+Yeu+Thuong';">
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h3 class="font-bold text-slate-800 text-base">Giờ ra chơi sân trường</h3>
+                        <span class="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded font-medium">Học Tập</span>
+                    </div>
+                    <p class="text-xs text-slate-500 px-2 mt-1">Cùng nhau ôn bài và chuyện trò rôm rả dưới bóng cây xanh mát.</p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item activity glass-card p-3 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="relative h-52 rounded-xl overflow-hidden bg-sky-200 mb-3 group cursor-pointer" onclick="openLightbox('images/gallery_2.jpg', 'Hoạt động ngoại khóa', 'Nụ cười rạng rỡ trong các phong trào thi đua của lớp.')">
+                        <img src="images/gallery_2.jpg" alt="Kỷ niệm 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2fe/0284c7?text=Hoat+Dong+Ngoai+Khoa';">
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h3 class="font-bold text-slate-800 text-base">Hoạt động ngoại khóa</h3>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-medium">Ngoại Khóa</span>
+                    </div>
+                    <p class="text-xs text-slate-500 px-2 mt-1">Nụ cười rạng rỡ trong các phong trào thi đua của lớp.</p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item study glass-card p-3 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="relative h-52 rounded-xl overflow-hidden bg-sky-200 mb-3 group cursor-pointer" onclick="openLightbox('images/gallery_3.jpg', 'Góc học tập miệt mài', 'Cùng nhau giải những bài toán khó và chuẩn bị cho các kỳ thi.')">
+                        <img src="images/gallery_3.jpg" alt="Kỷ niệm 3" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2fe/0284c7?text=Goc+Hoc+Tap+Nhom';">
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h3 class="font-bold text-slate-800 text-base">Góc học tập miệt mài</h3>
+                        <span class="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded font-medium">Học Tập</span>
+                    </div>
+                    <p class="text-xs text-slate-500 px-2 mt-1">Cùng nhau giải những bài toán khó và chuẩn bị cho các kỳ thi.</p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item memories glass-card p-3 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="relative h-52 rounded-xl overflow-hidden bg-sky-200 mb-3 group cursor-pointer" onclick="openLightbox('images/gallery_4.jpg', 'Buổi dã ngoại cuối tuần', 'Chuyến đi lưu giữ muôn vàn kỷ niệm đẹp và những bức ảnh rực rỡ.')">
+                        <img src="images/gallery_4.jpg" alt="Kỷ niệm 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2fe/0284c7?text=Chuyen+Da+Ngoai';">
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h3 class="font-bold text-slate-800 text-base">Buổi dã ngoại cuối tuần</h3>
+                        <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded font-medium">Kỷ Niệm</span>
+                    </div>
+                    <p class="text-xs text-slate-500 px-2 mt-1">Chuyến đi lưu giữ muôn vàn kỷ niệm đẹp và những bức ảnh rực rỡ.</p>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item memories glass-card p-3 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="relative h-52 rounded-xl overflow-hidden bg-sky-200 mb-3 group cursor-pointer" onclick="openLightbox('images/gallery_5.jpg', 'Tiệc sinh nhật ấm áp', 'Mỗi sinh nhật trôi qua lại đánh dấu một năm chúng mình trưởng thành bên nhau.')">
+                        <img src="images/gallery_5.jpg" alt="Kỷ niệm 5" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2fe/0284c7?text=Sinh+Nhat+Nhom';">
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h3 class="font-bold text-slate-800 text-base">Tiệc sinh nhật ấm áp</h3>
+                        <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded font-medium">Kỷ Niệm</span>
+                    </div>
+                    <p class="text-xs text-slate-500 px-2 mt-1">Mỗi sinh nhật trôi qua lại đánh dấu một năm chúng mình trưởng thành bên nhau.</p>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="gallery-item activity glass-card p-3 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="relative h-52 rounded-xl overflow-hidden bg-sky-200 mb-3 group cursor-pointer" onclick="openLightbox('images/gallery_6.jpg', 'Ngày hội văn nghệ trường', 'Cùng cháy hết mình trên sân khấu trong tiếng reo hò của bạn bè.')">
+                        <img src="images/gallery_6.jpg" alt="Kỷ niệm 6" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2fe/0284c7?text=Van+Nghe+Truong';">
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2">
+                        <h3 class="font-bold text-slate-800 text-base">Ngày hội văn nghệ trường</h3>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-medium">Ngoại Khóa</span>
+                    </div>
+                    <p class="text-xs text-slate-500 px-2 mt-1">Cùng cháy hết mình trên sân khấu trong tiếng reo hò của bạn bè.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PHẦN 3: ĐỒNG HỒ ĐẾM NGƯỢC CỘT MỐC THANH XUÂN -->
+    <section id="countdown" class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="glass-card rounded-3xl p-8 sm:p-10 shadow-xl border border-sky-200 text-center relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-sky-200/40 rounded-full blur-2xl"></div>
+            
+            <span class="inline-block text-sky-600 font-semibold text-xs tracking-widest uppercase mb-2">Đồng Hồ Thanh Xuân</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">Đếm Ngược Kỳ Thi & Lễ Tốt Nghiệp</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mb-8 max-w-md mx-auto">Mỗi giây phút trôi qua là một khoảnh khắc đáng trân trọng bên mái trường.</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg mx-auto">
+                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-sky-100">
+                    <span id="cd-days" class="block text-3xl sm:text-4xl font-extrabold text-sky-600">00</span>
+                    <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Ngày</span>
+                </div>
+                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-sky-100">
+                    <span id="cd-hours" class="block text-3xl sm:text-4xl font-extrabold text-sky-600">00</span>
+                    <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Giờ</span>
+                </div>
+                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-sky-100">
+                    <span id="cd-minutes" class="block text-3xl sm:text-4xl font-extrabold text-sky-600">00</span>
+                    <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Phút</span>
+                </div>
+                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-sky-100">
+                    <span id="cd-seconds" class="block text-3xl sm:text-4xl font-extrabold text-sky-600">00</span>
+                    <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Giây</span>
+                </div>
+            </div>
+
+            <p class="text-xs text-sky-700/80 mt-6 font-medium italic">"Thời gian trôi qua không bao giờ trở lại, nhưng kỷ niệm sẽ còn mãi."</p>
+        </div>
+    </section>
+
+    <!-- PHẦN 4: TƯỜNG LƯU BÚT / LỜI CHÚC (Interactive Message Wall) -->
+    <section id="wall" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="text-sky-600 font-semibold text-xs tracking-widest uppercase">Góc Kỷ Niệm</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 mt-1 mb-3">Tường Lưu Bút Thanh Xuân</h2>
+            <p class="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">Gửi gắm những lời chúc, cảm nghĩ hoặc nhắn gửi thân thương dành cho nhóm.</p>
+            <div class="w-16 h-1 bg-sky-400 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Form gửi lời chúc -->
+            <div class="glass-card p-6 rounded-2xl border border-sky-100 shadow-lg">
+                <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-nib text-sky-500"></i> Viết Lời Chúc
+                </h3>
+                <form id="note-form" onsubmit="handleAddNote(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Tên của bạn / Biệt danh</label>
+                        <input type="text" id="note-author" required placeholder="Nhập tên của bạn..." class="w-full px-4 py-2.5 text-sm rounded-xl border border-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white/70">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Dành cho</label>
+                        <select id="note-target" class="w-full px-4 py-2.5 text-sm rounded-xl border border-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white/70">
+                            <option value="Cả Nhóm 5 Bạn">Cả Nhóm 5 Bạn</option>
+                            <option value="Lã Tuyết Như">Lã Tuyết Như</option>
+                            <option value="Lê Đắc Sáng">Lê Đắc Sáng</option>
+                            <option value="Phạm Minh Nguyệt">Phạm Minh Nguyệt</option>
+                            <option value="Phạm Hoàng Yến Nhi">Phạm Hoàng Yến Nhi</option>
+                            <option value="Hoàng Kỳ Ngân">Hoàng Kỳ Ngân</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Lời nhắn gửi</label>
+                        <textarea id="note-content" required rows="3" placeholder="Viết dòng lưu bút ngọt ngào ở đây..." class="w-full px-4 py-2.5 text-sm rounded-xl border border-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white/70"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-medium py-2.5 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-paper-plane text-xs"></i> Gửi Lưu Bút
+                    </button>
+                </form>
+            </div>
+
+            <!-- List lời chúc -->
+            <div class="lg:col-span-2 space-y-4 max-h-[460px] overflow-y-auto pr-2" id="notes-list">
+                <!-- Direct Dynamic Cards inserted via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-auto bg-slate-800 text-slate-300 py-12 px-4 text-center text-sm relative z-10 border-t border-slate-700">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center justify-center gap-2.5 text-white font-bold text-lg mb-3">
+                <div class="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <span>ThanhXuân<span class="text-sky-400">.Edu</span></span>
+            </div>
+            <p class="text-slate-400 mb-6 max-w-md mx-auto text-xs sm:text-sm">Được thiết kế với tất cả tình cảm dành cho tuổi học trò và tình bạn đẹp của 5 thành viên.</p>
+            <div class="flex justify-center gap-6 mb-6 text-slate-400 text-base">
+                <a href="#" class="hover:text-sky-400 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-sky-400 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-sky-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <p class="text-xs text-slate-500">&copy; 2026 Nhóm Học Sinh Thanh Xuân. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL CHI TIẾT THÀNH VIÊN -->
+    <div id="member-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="glass-card max-w-lg w-full rounded-3xl overflow-hidden shadow-2xl border border-sky-200 relative animate-scaleUp">
+            <button onclick="closeMemberModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-white/80 hover:bg-white text-slate-600 rounded-full flex items-center justify-center shadow transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="member-modal-content">
+                <!-- Inject via Javascript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX XEM ẢNH KHỔ LỚN -->
+    <div id="image-lightbox" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md" onclick="closeLightbox()">
+        <div class="relative max-w-3xl w-full text-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white/80 hover:text-white text-2xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Zoom Photo" class="max-h-[75vh] w-auto mx-auto rounded-2xl shadow-2xl border border-white/20 object-contain">
+            <h3 id="lightbox-title" class="text-white text-lg font-bold mt-4"></h3>
+            <p id="lightbox-desc" class="text-slate-300 text-xs sm:text-sm mt-1 max-w-md mx-auto"></p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT THỜI TRANG & TƯƠNG TÁC -->
+    <script>
+        // Data Chi Tiết 5 Thành Viên
+        const membersData = {
+            tuyet_nhu: {
+                name: "Lã Tuyết Như",
+                role: "Thành viên #1 • Trưởng Nhóm",
+                image: "images/tuyet_nhu.jpg",
+                fallback: "https://placehold.co/400x500/e0f2fe/0284c7?text=La+Tuyet+Nhu",
+                bio: "Như là nguồn năng lượng tích cực không bao giờ cạn của cả nhóm. Luôn là người chủ động lên kế hoạch cho các buổi học nhóm, dã ngoại và gắn kết tất cả các thành viên.",
+                quote: "Thanh xuân đẹp nhất là khi có các bạn bên cạnh!",
+                skills: ["Kỹ năng lãnh đạo", "Sáng tạo nội dung", "Gắn kết bạn bè"],
+                social: { fb: "#", ig: "#" }
+            },
+            dac_sang: {
+                name: "Lê Đắc Sáng",
+                role: "Thành viên #2 • Cố Vấn Học Tập",
+                image: "images/dac_sang.jpg",
+                fallback: "https://placehold.co/400x500/e0f2fe/0284c7?text=Le+Dac+Sang",
+                bio: "Điềm đạm, kiên nhẫn và cực kỳ thông minh. Sáng luôn là 'cứu tinh' gỡ rối những bài toán khó hay những bài tập lý thuyết phức tạp cho cả nhóm trước mỗi kỳ thi.",
+                quote: "Cùng nhau cố gắng, ước mơ sẽ thành hiện thực.",
+                skills: ["Tư duy Logic", "Giải toán nhanh", "Thấu hiểu & Lắng nghe"],
+                social: { fb: "#", ig: "#" }
+            },
+            minh_nguyet: {
+                name: "Phạm Minh Nguyệt",
+                role: "Thành viên #3 • Thủ Kho Kỷ Niệm",
+                image: "images/minh_nguyet.jpg",
+                fallback: "https://placehold.co/400x500/e0f2fe/0284c7?text=Pham+Minh+Nguyet",
+                bio: "Một cô gái vô cùng chu đáo, nhẹ nhàng và tình cảm. Nguyệt sở hữu chiếc máy ảnh và cuốn sổ tay lưu giữ trọn vẹn từng khoảnh khắc ý nghĩa nhất của 5 người.",
+                quote: "Lưu giữ ký ức là cách chúng ta giữ thanh xuân ở lại.",
+                skills: ["Nhiếp ảnh học trò", "Viết lách", "Chu đáo & Tỉ mỉ"],
+                social: { fb: "#", ig: "#" }
+            },
+            yen_nhi: {
+                name: "Phạm Hoàng Yến Nhi",
+                role: "Thành viên #4 • Đại Sứ Tiếng Cười",
+                image: "images/yen_nhi.jpg",
+                fallback: "https://placehold.co/400x500/e0f2fe/0284c7?text=Pham+Hoang+Yen+Nhi",
+                bio: "Sở hữu nụ cười tỏa nắng và sự hài hước tự nhiên. Bất kể buổi học nhóm có căng thẳng đến đâu, Nhi luôn biết cách xua tan mệt mỏi bằng những câu chuyện dí dỏm.",
+                quote: "Cười lên nhé, vì chúng ta còn trẻ và còn có nhau!",
+                skills: ["Hài hước", "Giao tiếp tự nhiên", "Hòa đồng"],
+                social: { fb: "#", ig: "#" }
+            },
+            ky_ngan: {
+                name: "Hoàng Kỳ Ngân",
+                role: "Thành viên #5 • Truyền Cảm Hứng",
+                image: "images/ky_ngan.jpg",
+                fallback: "https://placehold.co/400x500/e0f2fe/0284c7?text=Hoang+Ky+Ngan",
+                bio: "Nhiệt huyết, sáng tạo và luôn tràn đầy ước mơ lớn. Ngân là người luôn động viên cả nhóm bước ra khỏi vùng an toàn để thử sức với những điều mới mẻ.",
+                quote: "Đừng ngại ngần, hãy cháy hết mình với đam mê!",
+                skills: ["Ý tưởng độc đáo", "Truyền động lực", "Thiết kế & Nghệ thuật"],
+                social: { fb: "#", ig: "#" }
+            }
+        };
+
+        // Lưu Bút Mặc Định
+        let initialNotes = [
+            { id: 1, author: "Tuyết Như", target: "Cả Nhóm 5 Bạn", content: "Chúc cho 5 đứa mình luôn giữ vững tình bạn đẹp này, dù sau này mỗi đứa một ngả đường!", date: "Hôm nay" },
+            { id: 2, author: "Đắc Sáng", target: "Cả Nhóm 5 Bạn", content: "Cùng nhau vượt qua kỳ thi tốt nghiệp sắp tới thật rực rỡ nhé mọi người!", date: "Hôm qua" },
+            { id: 3, author: "Minh Nguyệt", target: "Phạm Hoàng Yến Nhi", content: "Cảm ơn Nhi vì lúc nào cũng làm cho cả nhóm cười tít mắt mỗi giờ ra chơi!", date: "3 ngày trước" }
+        ];
+
+        // 1. CHỨC NĂNG CÁNH HOA RƠI TỰ ĐỘNG (createPetal Complete)
+        function createPetal() {
+            const container = document.getElementById('petal-container');
+            if (!container) return;
+
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+
+            // Kích thước ngẫu nhiên từ 10px - 20px
+            const size = Math.random() * 10 + 10;
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size * 1.2}px`;
+
+            // Tọa độ xuất phát ngẫu nhiên
+            petal.style.left = `${Math.random() * 100}%`;
+
+            // Tốc độ rơi ngẫu nhiên (5s - 10s)
+            const duration = Math.random() * 5 + 5;
+            petal.style.animationDuration = `${duration}s`;
+
+            // Lực gió lắc ngang (Sway)
+            const sway = (Math.random() - 0.5) * 200;
+            petal.style.setProperty('--sway-x', `${sway}px`);
+
+            // Thêm cánh hoa vào DOM
+            container.appendChild(petal);
+
+            // Tự động xoá cánh hoa sau khi rơi xong để tối ưu bộ nhớ
+            setTimeout(() => {
+                petal.remove();
+            }, duration * 1000);
+        }
+
+        // Tạo cánh hoa liên tục mỗi 400ms
+        setInterval(createPetal, 400);
+
+        // 2. CHỨC NĂNG BẬT/TẮT NHẠC NỀN LOFI
+        let isPlaying = false;
+        function toggleAudio() {
+            const audio = document.getElementById('bg-music');
+            const visualizer = document.getElementById('music-visualizer');
+            const musicIcon = document.getElementById('music-icon');
+            const musicText = document.getElementById('music-text');
+
+            if (isPlaying) {
+                audio.pause();
+                visualizer.classList.add('hidden');
+                musicIcon.className = "fa-solid fa-music text-sky-500";
+                musicText.innerText = "Lofi Nhạc";
+            } else {
+                audio.play().then(() => {
+                    visualizer.classList.remove('hidden');
+                    musicIcon.className = "fa-solid fa-pause text-sky-600";
+                    musicText.innerText = "Đang Phát";
+                }).catch(err => {
+                    console.log("Audio autoplay restricted by browser.");
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // 3. MODAL CHI TIẾT THÀNH VIÊN
+        function openMemberModal(key) {
+            const member = membersData[key];
+            if (!member) return;
+
+            const modalContent = document.getElementById('member-modal-content');
+            modalContent.innerHTML = `
+                <div class="relative h-64 overflow-hidden bg-sky-200">
+                    <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='${member.fallback}';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent"></div>
+                    <div class="absolute bottom-4 left-6 right-6 text-white">
+                        <span class="text-xs bg-sky-500 px-2.5 py-0.5 rounded font-medium">${member.role}</span>
+                        <h3 class="text-2xl font-bold mt-1">${member.name}</h3>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">${member.bio}</p>
+                    
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-100 mb-4">
+                        <span class="text-[11px] font-bold text-sky-600 uppercase tracking-wider block mb-1">Trích dẫn yêu thích</span>
+                        <p class="font-handwriting text-lg text-slate-700 italic">"${member.quote}"</p>
+                    </div>
+
+                    <div class="mb-5">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2">Thế mạnh & Điểm nổi bật</span>
+                        <div class="flex flex-wrap gap-2">
+                            ${member.skills.map(s => `<span class="bg-white text-sky-700 text-xs px-3 py-1 rounded-full border border-sky-200 font-medium">${s}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-sky-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">Kết nối mạng xã hội:</span>
+                        <div class="flex gap-3 text-sky-600">
+                            <a href="#" class="hover:text-sky-800 transition"><i class="fa-brands fa-facebook text-lg"></i></a>
+                            <a href="#" class="hover:text-sky-800 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('member-modal').classList.remove('hidden');
+        }
+
+        function closeMemberModal() {
+            document.getElementById('member-modal').classList.add('hidden');
+        }
+
+        // 4. LIGHTBOX XEM ẢNH KHỔ LỚN
+        function openLightbox(imgUrl, title, desc) {
+            document.getElementById('lightbox-img').src = imgUrl;
+            document.getElementById('lightbox-title').innerText = title;
+            document.getElementById('lightbox-desc').innerText = desc;
+            document.getElementById('image-lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('image-lightbox').classList.add('hidden');
+        }
+
+        // 5. BỘ LỌC GALLERY PHOTO
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const btns = document.querySelectorAll('.gallery-filter-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-600');
+            });
+
+            event.target.classList.remove('bg-white', 'text-slate-600');
+            event.target.classList.add('bg-sky-600', 'text-white');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // 6. ĐỒNG HỒ ĐẾM NGƯỢC (Graduation / Exam Countdown)
+        function updateCountdown() {
+            // Mốc ngày tốt nghiệp giả định (25 Tháng 6 năm 2027)
+            const targetDate = new Date("June 25, 2027 00:00:00").getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('cd-hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('cd-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('cd-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 7. QUẢN LÝ TƯỜNG LƯU BÚT
+        function renderNotes() {
+            const listContainer = document.getElementById('notes-list');
+            const storedNotes = JSON.parse(localStorage.getItem('youth_notes')) || initialNotes;
+
+            listContainer.innerHTML = storedNotes.map(note => `
+                <div class="glass-card p-4 rounded-2xl border border-sky-100 shadow-sm relative hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-300 to-blue-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                                ${note.author.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800">${note.author}</h4>
+                                <span class="text-[10px] text-sky-600 bg-sky-50 px-2 py-0.5 rounded font-medium">Gửi: ${note.target}</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] text-slate-400">${note.date}</span>
+                    </div>
+                    <p class="text-xs text-slate-600 italic leading-relaxed pl-10">"${note.content}"</p>
+                </div>
+            `).join('');
+        }
+
+        function handleAddNote(e) {
+            e.preventDefault();
+            const author = document.getElementById('note-author').value.trim();
+            const target = document.getElementById('note-target').value;
+            const content = document.getElementById('note-content').value.trim();
+
+            if (!author || !content) return;
+
+            const storedNotes = JSON.parse(localStorage.getItem('youth_notes')) || initialNotes;
+            const newNote = {
+                id: Date.now(),
+                author,
+                target,
+                content,
+                date: "Vừa xong"
+            };
+
+            storedNotes.unshift(newNote);
+            localStorage.setItem('youth_notes', JSON.stringify(storedNotes));
+
+            // Reset form & Render
+            document.getElementById('note-form').reset();
+            renderNotes();
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = "fa-solid fa-xmark text-xl";
+            } else {
+                menu.classList.add('hidden');
+                icon.className = "fa-solid fa-bars text-xl";
+            }
+        }
+
+        // Khởi tạo render lưu bút khi load trang
+        window.onload = function() {
+            renderNotes();
+        };
+    </script>
+</body>
+</html>

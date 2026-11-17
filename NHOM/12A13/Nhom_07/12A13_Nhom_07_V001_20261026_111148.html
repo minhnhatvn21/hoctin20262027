@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Squad — Sáng Tạo & Kết Nối | Trang Giới Thiệu Nhóm</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            900: '#2e1065',
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-14px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.06)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #8b5cf6, #ec4899);
+            border-radius: 9999px;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Vinyl Grooves */
+        .vinyl-disc {
+            background: 
+                radial-gradient(circle, #1e1b4b 0%, #1e1b4b 18%, transparent 18%),
+                repeating-radial-gradient(circle, #090d16 0%, #090d16 4px, #1e293b 5px, #090d16 6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Equalizer Bars */
+        .eq-bar {
+            transition: height 0.18s ease;
+        }
+        @keyframes eqBounce {
+            0%, 100% { height: 18%; }
+            50% { height: 95%; }
+        }
+        .playing .eq-bar {
+            animation: eqBounce 0.75s ease-in-out infinite;
+        }
+
+        /* 3D Card Tilt Effect */
+        .member-card {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+        }
+        .member-card:hover {
+            transform: translateY(-10px) scale(1.015);
+            box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.28);
+        }
+
+        /* Reading Progress Bar */
+        #reading-progress {
+            transition: width 0.1s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-[#070B19] dark:text-slate-100 transition-colors duration-300 selection:bg-violet-500 selection:text-white overflow-x-hidden">
+
+    <!-- Thanh Tiến Trình Đọc Trang -->
+    <div class="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent">
+        <div id="reading-progress" class="h-full w-0 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-cyan-400"></div>
+    </div>
+
+    <!-- Hiệu ứng Ánh Sáng Nền (Ambient Blobs) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-violet-600/20 dark:bg-violet-600/25 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div class="absolute top-1/3 -right-32 w-[28rem] h-[28rem] bg-fuchsia-500/15 dark:bg-fuchsia-600/20 rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+        <div class="absolute -bottom-32 left-1/4 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-500/15 rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 2.5s;"></div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-200/60 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Nhóm -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-500 to-cyan-400 flex items-center justify-center text-white font-display font-bold text-xl shadow-lg shadow-violet-500/30 group-hover:rotate-6 transition-transform">
+                    5T
+                </div>
+                <div>
+                    <span class="font-display font-bold text-xl tracking-tight bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-400 bg-clip-text text-transparent">
+                        T-SQUAD
+                    </span>
+                    <span class="block text-[11px] font-medium text-slate-500 dark:text-slate-400 tracking-wider uppercase">
+                        Tân • Thu • Thu • Thư • Thư
+                    </span>
+                </div>
+            </a>
+
+            <!-- Menu Điều Hướng Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="#hero" class="hover:text-violet-500 transition-colors">Trang chủ</a>
+                <a href="#music" class="flex items-center gap-1.5 text-fuchsia-600 dark:text-fuchsia-400 hover:text-fuchsia-500 transition-colors">
+                    <i class="fa-solid fa-compact-disc animate-spin-slow"></i> Góc Âm Nhạc Suno
+                </a>
+                <a href="#members" class="hover:text-violet-500 transition-colors">5 Thành Viên</a>
+                <a href="#article" class="hover:text-violet-500 transition-colors">Bài Viết Chuyên Đề</a>
+                <a href="#comments" class="hover:text-violet-500 transition-colors">Thảo Luận</a>
+            </nav>
+
+            <!-- Nút Chức Năng Phải -->
+            <div class="flex items-center gap-3">
+                <a href="https://suno.com/s/oJy6wFGZe1i9P74h" target="_blank" rel="noopener noreferrer"
+                   class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md shadow-violet-500/25 hover:opacity-95 transition-all">
+                    <i class="fa-solid fa-headphones"></i>
+                    <span>Nghe trên Suno</span>
+                </a>
+
+                <!-- Nút Đổi Giao Diện Sáng / Tối -->
+                <button id="theme-toggle" aria-label="Chuyển chế độ Sáng/Tối"
+                        class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-amber-300 hover:scale-105 transition-transform">
+                    <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+                </button>
+
+                <!-- Nút Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Mở menu"
+                        class="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200/60 dark:border-white/10 px-4 pt-3 pb-5 space-y-2 glass-card">
+            <a href="#hero" class="block px-3 py-2 rounded-lg font-medium hover:bg-violet-500/10">Trang chủ</a>
+            <a href="#music" class="block px-3 py-2 rounded-lg font-medium text-fuchsia-500 hover:bg-fuchsia-500/10">🎵 Góc Âm Nhạc Suno</a>
+            <a href="#members" class="block px-3 py-2 rounded-lg font-medium hover:bg-violet-500/10">👥 5 Thành Viên</a>
+            <a href="#article" class="block px-3 py-2 rounded-lg font-medium hover:bg-violet-500/10">📝 Bài Viết Chuyên Đề</a>
+            <a href="#comments" class="block px-3 py-2 rounded-lg font-medium hover:bg-violet-500/10">💬 Góc Bình Luận</a>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="relative pt-12 pb-20 md:pt-20 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <!-- Cột Trái: Nội Dung Giới Thiệu -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-violet-500/10 text-violet-600 dark:bg-violet-500/20 dark:text-violet-300 border border-violet-500/20">
+                    <span class="w-2 h-2 rounded-full bg-fuchsia-500 animate-ping"></span>
+                    Ngũ Tinh Hội Tụ • Sáng Tạo Không Giới Hạn
+                </div>
+
+                <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+                    Chúng mình là <br/>
+                    <span class="bg-gradient-to-r from-violet-500 via-fuchsia-500 to-cyan-400 bg-clip-text text-transparent">
+                        T-Squad: Kết Nối Đam Mê & Công Nghệ
+                    </span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Nơi hội tụ của 5 cá tính mang chữ <strong>"T"</strong> đặc biệt:
+                    <span class="font-semibold text-violet-600 dark:text-violet-400">Nhật Tân</span>,
+                    <span class="font-semibold text-fuchsia-600 dark:text-fuchsia-400">Hoài Thu</span>,
+                    <span class="font-semibold text-cyan-600 dark:text-cyan-400">Tài Thu</span>,
+                    <span class="font-semibold text-emerald-600 dark:text-emerald-400">Anh Thư</span> và
+                    <span class="font-semibold text-amber-600 dark:text-amber-400">Đức Thư</span>.
+                    Cùng khám phá câu chuyện, giai điệu AI độc quyền và góc nhìn sáng tạo của nhóm chúng mình!
+                </p>
+
+                <!-- Cụm Nút Hành Động -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#music" class="px-6 py-3.5 rounded-2xl font-bold text-white bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 shadow-xl shadow-fuchsia-500/25 hover:scale-105 transition-all flex items-center gap-2.5">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Thưởng Thức Bài Nhạc Nhóm</span>
+                    </a>
+                    <a href="#members" class="px-6 py-3.5 rounded-2xl font-bold glass-card hover:border-violet-500/50 hover:scale-105 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-users text-violet-500"></i>
+                        <span>Gặp Gỡ 5 Thành Viên</span>
+                    </a>
+                    <a href="#article" class="px-5 py-3.5 rounded-2xl font-semibold text-sm text-slate-600 dark:text-slate-300 hover:text-violet-500 flex items-center gap-2 transition-colors">
+                        <span>Đọc Bài Viết</span>
+                        <i class="fa-solid fa-arrow-down-long"></i>
+                    </a>
+                </div>
+
+                <!-- Thống kê nhanh -->
+                <div class="grid grid-cols-3 gap-4 pt-6 max-w-lg mx-auto lg:mx-0">
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <div class="font-display text-2xl sm:text-3xl font-bold text-violet-500">05</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Thành viên "Chữ T"</div>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <div class="font-display text-2xl sm:text-3xl font-bold text-fuchsia-500">01</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Ca khúc Suno AI</div>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <div class="font-display text-2xl sm:text-3xl font-bold text-cyan-500">100%</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Nhiệt huyết & Sáng tạo</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột Phải: Tổ Hợp Thẻ Nổi 5 Thành Viên & Đĩa Nhạc -->
+            <div class="lg:col-span-5 relative">
+                <div class="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl border border-white/20 animate-float">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">T-SQUAD // 2025</span>
+                    </div>
+
+                    <!-- Lưới Avatar Nhanh -->
+                    <div class="space-y-3">
+                        <div onclick="openMemberModal(0)" class="cursor-pointer p-3 rounded-2xl bg-violet-500/10 hover:bg-violet-500/20 border border-violet-500/20 flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <img id="hero-avatar-0" src="https://api.dicebear.com/9.x/adventurer/svg?seed=NguyenNhatTan&backgroundColor=8b5cf6" alt="Nguyễn Nhật Tân" class="w-11 h-11 rounded-xl object-cover border border-violet-400/40 shadow-md bg-violet-600/20">
+                                <div>
+                                    <div class="font-bold text-sm">Nguyễn Nhật Tân</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Trưởng Nhóm • Định Hướng & Công Nghệ</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-violet-500/20 text-violet-400">Leader</span>
+                        </div>
+
+                        <div onclick="openMemberModal(1)" class="cursor-pointer p-3 rounded-2xl bg-fuchsia-500/10 hover:bg-fuchsia-500/20 border border-fuchsia-500/20 flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <img id="hero-avatar-1" src="https://api.dicebear.com/9.x/adventurer/svg?seed=TranThiHoaiThu&backgroundColor=ec4899" alt="Trần Thị Hoài Thu" class="w-11 h-11 rounded-xl object-cover border border-fuchsia-400/40 shadow-md bg-fuchsia-600/20">
+                                <div>
+                                    <div class="font-bold text-sm">Trần Thị Hoài Thu</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Thiết Kế Sáng Tạo & Truyền Thông</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-fuchsia-500/20 text-fuchsia-400">Design</span>
+                        </div>
+
+                        <div onclick="openMemberModal(2)" class="cursor-pointer p-3 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <img id="hero-avatar-2" src="https://api.dicebear.com/9.x/adventurer/svg?seed=LeNguyenTaiThu&backgroundColor=06b6d4" alt="Lê Nguyễn Tài Thu" class="w-11 h-11 rounded-xl object-cover border border-cyan-400/40 shadow-md bg-cyan-600/20">
+                                <div>
+                                    <div class="font-bold text-sm">Lê Nguyễn Tài Thu</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Nghiên Cứu & Phát Triển Ý Tưởng</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-400">Research</span>
+                        </div>
+
+                        <div onclick="openMemberModal(3)" class="cursor-pointer p-3 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <img id="hero-avatar-3" src="https://api.dicebear.com/9.x/adventurer/svg?seed=NguyenThiAnhThu&backgroundColor=10b981" alt="Nguyễn Thị Anh Thư" class="w-11 h-11 rounded-xl object-cover border border-emerald-400/40 shadow-md bg-emerald-600/20">
+                                <div>
+                                    <div class="font-bold text-sm">Nguyễn Thị Anh Thư</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Biên Tập Nội Dung & Thuyết Trình</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400">Content</span>
+                        </div>
+
+                        <div onclick="openMemberModal(4)" class="cursor-pointer p-3 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <img id="hero-avatar-4" src="https://api.dicebear.com/9.x/adventurer/svg?seed=ViLeDucThu&backgroundColor=f59e0b" alt="Vi Lê Đức Thư" class="w-11 h-11 rounded-xl object-cover border border-amber-400/40 shadow-md bg-amber-600/20">
+                                <div>
+                                    <div class="font-bold text-sm">Vi Lê Đức Thư</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Kỹ Thuật & Tối Ưu Trải Nghiệm</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-400">Tech UX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. GÓC ÂM NHẠC SUNO AI -->
+    <section id="music" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-12 border border-fuchsia-500/30 shadow-2xl relative overflow-hidden">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <!-- Cột Đĩa Than Xoay & Sóng Nhạc -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+                    <div class="relative w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center">
+                        <!-- Đĩa Than -->
+                        <div id="vinyl-record" class="w-full h-full rounded-full vinyl-disc flex items-center justify-center relative border-4 border-slate-800">
+                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-violet-600 via-fuchsia-500 to-amber-400 flex flex-col items-center justify-center text-white shadow-inner border-4 border-slate-900">
+                                <span class="font-display font-bold text-xs tracking-wider">T-SQUAD</span>
+                                <span class="w-3 h-3 rounded-full bg-slate-950 my-0.5"></span>
+                                <span class="text-[9px] opacity-80">SUNO AI</span>
+                            </div>
+                        </div>
+                        <!-- Cần Đĩa Than -->
+                        <div id="vinyl-arm" class="w-24 h-3 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full absolute -top-2 right-2 origin-right -rotate-12 transition-transform duration-500 shadow-md"></div>
+                    </div>
+
+                    <!-- Sóng Nhạc Equalizer -->
+                    <div id="equalizer" class="flex items-end gap-1.5 h-10 mt-6">
+                        <span class="eq-bar w-1.5 h-3 bg-violet-500 rounded-full" style="animation-delay: 0.1s"></span>
+                        <span class="eq-bar w-1.5 h-6 bg-fuchsia-500 rounded-full" style="animation-delay: 0.3s"></span>
+                        <span class="eq-bar w-1.5 h-4 bg-cyan-400 rounded-full" style="animation-delay: 0.2s"></span>
+                        <span class="eq-bar w-1.5 h-8 bg-pink-500 rounded-full" style="animation-delay: 0.4s"></span>
+                        <span class="eq-bar w-1.5 h-5 bg-violet-400 rounded-full" style="animation-delay: 0.15s"></span>
+                        <span class="eq-bar w-1.5 h-7 bg-fuchsia-400 rounded-full" style="animation-delay: 0.35s"></span>
+                        <span class="eq-bar w-1.5 h-3 bg-cyan-500 rounded-full" style="animation-delay: 0.25s"></span>
+                    </div>
+                </div>
+
+                <!-- Cột Thông Tin & Trình Điều Khiển Nhạc -->
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-fuchsia-500/15 text-fuchsia-400 border border-fuchsia-500/30">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Ca Khúc Chủ Đề Của Nhóm
+                    </div>
+                    <div>
+                        <h2 id="song-title-display" class="font-display text-2xl sm:text-4xl font-bold">
+                            Giai Điệu Kết Nối T-Squad
+                        </h2>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+                            Sáng tác & Phối khí cùng AI bởi <strong>Nhật Tân, Hoài Thu, Tài Thu, Anh Thư & Đức Thư</strong>
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        Thưởng thức trực tiếp bản thu âm chính thức của nhóm trên nền tảng <strong>Suno AI</strong> (<code class="text-fuchsia-400">https://suno.com/s/oJy6wFGZe1i9P74h</code>). Hệ thống tự động giải mã luồng nhạc gốc từ Suno để phát trực tiếp bên dưới!
+                    </p>
+
+                    <!-- TRÌNH PHÁT NHẠC THẬT (HTML5 AUDIO + SUNO EXTRACTOR + POPUP PLAYER) -->
+                    <div class="p-4 sm:p-6 rounded-2xl bg-slate-900/95 text-white border border-fuchsia-500/30 space-y-4 shadow-xl">
+                        <!-- Audio Element Thật -->
+                        <audio id="real-audio-player" preload="metadata" crossorigin="anonymous"></audio>
+
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <button id="main-play-btn" onclick="toggleRealMusic()"
+                                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-500 to-violet-600 hover:scale-105 active:scale-95 transition-all flex items-center justify-center text-white shadow-lg shadow-fuchsia-500/30"
+                                        title="Phát / Tạm dừng bài nhạc của nhóm">
+                                    <i id="main-play-icon" class="fa-solid fa-play text-xl ml-0.5"></i>
+                                </button>
+                                <div>
+                                    <div class="font-bold text-sm sm:text-base flex flex-wrap items-center gap-2">
+                                        <span id="track-name-label">Bài Nhạc Nhóm T-Squad (Suno AI)</span>
+                                        <span id="player-status-badge" class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-semibold">
+                                            Đang kết nối Suno...
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-slate-400 mt-0.5">
+                                        Nguồn: <a href="https://suno.com/s/oJy6wFGZe1i9P74h" target="_blank" class="underline hover:text-fuchsia-400">https://suno.com/s/oJy6wFGZe1i9P74h</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cụm Nút Phụ Trợ -->
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button onclick="openSunoMiniWindow()"
+                                        class="px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:brightness-110 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all"
+                                        title="Mở cửa sổ phát nhạc Suno nổi ngay trên màn hình">
+                                    <i class="fa-solid fa-window-restore"></i>
+                                    <span>Trình Phát Suno Mini</span>
+                                </button>
+                                <label for="local-mp3-upload" class="cursor-pointer px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Chọn file nhạc MP3 tải từ Suno về máy">
+                                    <i class="fa-solid fa-file-audio text-cyan-400"></i>
+                                    <span>Chọn file MP3</span>
+                                    <input id="local-mp3-upload" type="file" accept="audio/*" class="hidden" onchange="handleLocalAudioUpload(event)">
+                                </label>
+                                <button onclick="copySunoLink()" class="px-3 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-regular fa-copy"></i>
+                                    <span id="copy-link-text">Copy Link</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Thanh Tiến Trình Nhạc (Seekbar) & Thời Gian -->
+                        <div class="space-y-1.5 pt-1">
+                            <input id="audio-seekbar" type="range" min="0" max="100" value="0" step="0.1"
+                                   class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-fuchsia-500">
+                            <div class="flex justify-between text-[11px] font-mono text-slate-400">
+                                <span id="current-time-text">00:00</span>
+                                <span id="duration-time-text">00:00</span>
+                            </div>
+                        </div>
+
+                        <!-- Khung Nhúng Suno Chính Thức (Tự động hiện khi giải mã được UUID bài hát) -->
+                        <div id="suno-official-embed-wrapper" class="hidden pt-2 border-t border-white/10">
+                            <div class="text-xs text-emerald-400 font-semibold mb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-check-circle"></i>
+                                <span>Trình phát nhúng chính thức từ Suno:</span>
+                            </div>
+                            <div class="rounded-xl overflow-hidden border border-white/15 bg-black">
+                                <iframe id="suno-official-iframe" src="" class="w-full h-40" allow="autoplay; encrypted-media; fullscreen" loading="lazy"></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Tùy Chọn Dán Link MP3 / UUID Suno Thủ Công (Nếu mạng chặn CORS) -->
+                        <div class="pt-3 border-t border-white/10">
+                            <div class="flex items-center justify-between text-xs text-slate-300">
+                                <span><i class="fa-solid fa-sliders text-fuchsia-400 mr-1"></i> Đổi link stream hoặc dán link đầy đủ của Suno:</span>
+                                <button onclick="document.getElementById('custom-audio-box').classList.toggle('hidden')" class="text-cyan-400 hover:underline font-semibold">
+                                    Tùy chỉnh nguồn nhạc
+                                </button>
+                            </div>
+                            <div id="custom-audio-box" class="hidden mt-2.5 flex flex-col sm:flex-row gap-2">
+                                <input id="custom-suno-input" type="text"
+                                       placeholder="Dán link đầy đủ (VD: https://suno.com/song/xxxx... hoặc link .mp3)"
+                                       class="flex-1 px-3.5 py-2 rounded-xl bg-slate-800 border border-white/15 text-xs text-white focus:outline-none focus:border-fuchsia-500">
+                                <button onclick="applyCustomSunoInput()" class="px-4 py-2 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 text-xs font-bold shrink-0">
+                                    Áp dụng & Phát
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. GIỚI THIỆU 5 THÀNH VIÊN CỦA NHÓM -->
+    <section id="members" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-violet-500/10 text-violet-500 border border-violet-500/20">
+                <i class="fa-solid fa-star"></i> Đội Hình 5 Thành Viên
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold">
+                Những Mảnh Ghép Tạo Nên <span class="text-violet-500">T-Squad</span>
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                Mỗi thành viên là một màu sắc riêng biệt nhưng cùng chung tinh thần trách nhiệm, sáng tạo và sẻ chia. Hãy bấm vào từng thẻ để xem hồ sơ chi tiết!
+            </p>
+
+            <!-- Bộ Lọc Thành Viên -->
+            <div class="flex flex-wrap justify-center gap-2 pt-2">
+                <button onclick="filterMembers('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-violet-600 text-white shadow-md transition-all" data-filter="all">
+                    Tất cả (5)
+                </button>
+                <button onclick="filterMembers('tech')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card hover:border-violet-500/50 transition-all" data-filter="tech">
+                    Định Hướng & Kỹ Thuật
+                </button>
+                <button onclick="filterMembers('creative')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card hover:border-violet-500/50 transition-all" data-filter="creative">
+                    Thiết Kế & Nội Dung
+                </button>
+                <button onclick="filterMembers('research')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card hover:border-violet-500/50 transition-all" data-filter="research">
+                    Nghiên Cứu & Ý Tưởng
+                </button>
+                <button onclick="resetAllAvatars()" class="px-4 py-2 rounded-xl text-xs font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20 hover:bg-rose-500/20 transition-all flex items-center gap-1.5" title="Khôi phục ảnh mặc định cho tất cả thành viên">
+                    <i class="fa-solid fa-rotate-left"></i> Đặt lại ảnh mặc định
+                </button>
+            </div>
+            <p class="text-xs text-violet-500 dark:text-violet-400 font-medium">
+                <i class="fa-solid fa-camera mr-1"></i> Mẹo: Bấm vào biểu tượng máy ảnh trên từng avatar để ghép ảnh thật của các thành viên từ máy tính hoặc dán link ảnh!
+            </p>
+        </div>
+
+        <!-- Input ẩn dùng để tải ảnh từ máy tính ghép vào Avatar -->
+        <input id="avatar-file-input" type="file" accept="image/*" class="hidden" onchange="handleAvatarFileSelected(event)">
+
+        <!-- Lưới Thẻ Thành Viên -->
+        <div id="members-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+            <!-- JS sẽ render tự động 5 thành viên tại đây -->
+        </div>
+    </section>
+
+    <!-- 4. BÀI VIẾT CHUYÊN ĐỀ CỦA NHÓM -->
+    <section id="article" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Cột Trái: Mục Lục Tự Động & Tương Tác Nhanh (Sticky Sidebar) -->
+            <aside class="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
+                <div class="glass-card rounded-3xl p-6 space-y-5">
+                    <div class="flex items-center gap-2.5 text-violet-500 font-display font-bold text-sm uppercase tracking-wider">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>Mục Lục Bài Viết</span>
+                    </div>
+                    <ul class="space-y-3 text-sm font-medium border-l-2 border-slate-200 dark:border-slate-800 pl-4">
+                        <li>
+                            <a href="#sec-1" class="hover:text-violet-500 transition-colors block">1. Khi AI không còn là khái niệm xa vời</a>
+                        </li>
+                        <li>
+                            <a href="#sec-2" class="hover:text-violet-500 transition-colors block">2. Hành trình T-Squad sáng tạo nhạc cùng Suno</a>
+                        </li>
+                        <li>
+                            <a href="#sec-3" class="hover:text-violet-500 transition-colors block">3. Công nghệ thay thế hay chắp cánh cảm xúc?</a>
+                        </li>
+                        <li>
+                            <a href="#sec-4" class="hover:text-violet-500 transition-colors block">4. Thông điệp gửi đến thế hệ trẻ Việt Nam</a>
+                        </li>
+                    </ul>
+
+                    <div class="pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 font-medium">Thả cảm xúc cho bài viết của nhóm:</div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button onclick="reactArticle('heart')" class="p-2.5 rounded-xl glass-card hover:scale-105 active:scale-95 transition-all flex flex-col items-center gap-1">
+                                <span class="text-xl">❤️</span>
+                                <span id="react-heart" class="text-xs font-bold">42</span>
+                            </button>
+                            <button onclick="reactArticle('fire')" class="p-2.5 rounded-xl glass-card hover:scale-105 active:scale-95 transition-all flex flex-col items-center gap-1">
+                                <span class="text-xl">🔥</span>
+                                <span id="react-fire" class="text-xs font-bold">38</span>
+                            </button>
+                            <button onclick="reactArticle('clap')" class="p-2.5 rounded-xl glass-card hover:scale-105 active:scale-95 transition-all flex flex-col items-center gap-1">
+                                <span class="text-xl">👏</span>
+                                <span id="react-clap" class="text-xs font-bold">29</span>
+                            </button>
+                            <button onclick="reactArticle('star')" class="p-2.5 rounded-xl glass-card hover:scale-105 active:scale-95 transition-all flex flex-col items-center gap-1">
+                                <span class="text-xl">🌟</span>
+                                <span id="react-star" class="text-xs font-bold">51</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hộp Trích Dẫn Nhóm -->
+                <div class="glass-card rounded-3xl p-6 bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 border border-violet-500/20">
+                    <i class="fa-solid fa-quote-left text-2xl text-violet-500 mb-3"></i>
+                    <p class="text-sm italic text-slate-600 dark:text-slate-300 leading-relaxed">
+                        "Một cá nhân có thể tạo nên một nốt nhạc hay, nhưng 5 thành viên đồng lòng mới có thể viết nên một bản giao hưởng đáng nhớ."
+                    </p>
+                    <div class="mt-3 text-xs font-bold text-violet-500">— Tập thể nhóm T-Squad</div>
+                </div>
+            </aside>
+
+            <!-- Cột Phải: Nội Dung Bài Viết Chuyên Đề -->
+            <article class="lg:col-span-8 glass-card rounded-3xl p-6 sm:p-10 lg:p-12 space-y-8">
+                <!-- Header Bài Viết -->
+                <div class="space-y-4 border-b border-slate-200/70 dark:border-white/10 pb-8">
+                    <div class="flex flex-wrap items-center gap-3 text-xs font-semibold">
+                        <span class="px-3 py-1 rounded-full bg-fuchsia-500/15 text-fuchsia-500">CHUYÊN ĐỀ CÔNG NGHỆ & SÁNG TẠO</span>
+                        <span class="text-slate-400">•</span>
+                        <span class="text-slate-500 dark:text-slate-400"><i class="fa-regular fa-clock mr-1"></i> 5 phút đọc</span>
+                        <span class="text-slate-400">•</span>
+                        <span class="text-slate-500 dark:text-slate-400"><i class="fa-solid fa-pen-nib mr-1"></i> Tác giả: Nhóm T-Squad</span>
+                    </div>
+
+                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold leading-tight">
+                        Trí Tuệ Nhân Tạo (AI) & Âm Nhạc Sáng Tạo: Khi Công Nghệ Chắp Cánh Cho Cảm Xúc Thế Hệ Trẻ
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+                        Chưa bao giờ khoảng cách giữa một ý tưởng thoáng qua trong đầu và một tác phẩm âm nhạc hoàn chỉnh lại gần nhau đến thế. Cùng nhóm chúng mình nhìn lại hành trình ứng dụng AI để kể câu chuyện thanh xuân và tinh thần làm việc nhóm.
+                    </p>
+                </div>
+
+                <!-- Ảnh Minh Họa SVG Sinh Động -->
+                <div class="rounded-2xl overflow-hidden relative bg-gradient-to-r from-indigo-950 via-purple-900 to-fuchsia-900 p-8 text-white shadow-inner">
+                    <div class="relative z-10 max-w-lg space-y-2">
+                        <span class="text-xs font-mono uppercase tracking-widest text-fuchsia-300">T-Squad Feature Visual</span>
+                        <h3 class="font-display text-xl sm:text-2xl font-bold">Giao thoa giữa Sóng Âm & Thuật Toán</h3>
+                        <p class="text-xs sm:text-sm text-slate-200/90">
+                            Từ những dòng lời bài hát do các thành viên cùng nhau thảo luận, AI đã giúp chuyển hóa thành giai điệu sống động.
+                        </p>
+                    </div>
+                    <!-- Họa tiết sóng SVG -->
+                    <svg class="w-full h-24 mt-4 opacity-40" viewBox="0 0 800 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 60 Q 100 10, 200 60 T 400 60 T 600 60 T 800 60" stroke="url(#grad1)" stroke-width="4" fill="transparent"/>
+                        <path d="M0 80 Q 100 120, 200 70 T 400 70 T 600 50 T 800 80" stroke="#38bdf8" stroke-width="3" fill="transparent"/>
+                        <defs>
+                            <linearGradient id="grad1" x1="0" y1="0" x2="800" y2="0">
+                                <stop offset="0%" stop-color="#c084fc"/>
+                                <stop offset="50%" stop-color="#f472b6"/>
+                                <stop offset="100%" stop-color="#38bdf8"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <!-- Nội dung chi tiết -->
+                <div class="space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed text-base">
+                    <div id="sec-1" class="scroll-mt-28 space-y-3">
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-violet-500/20 text-violet-500 flex items-center justify-center text-sm">01</span>
+                            Khi AI không còn là khái niệm xa vời
+                        </h3>
+                        <p>
+                            Trước đây, để sản xuất một bài hát chủ đề cho nhóm, chúng ta cần phòng thu, nhạc cụ chuyên nghiệp và nhiều tuần lễ hậu kỳ. Nhưng với sự bùng nổ của Generative AI (Trí tuệ nhân tạo tạo sinh), những nền tảng như <strong>Suno AI</strong> đã mở ra một cánh cửa hoàn toàn mới cho học sinh, sinh viên.
+                        </p>
+                        <p>
+                            Trong dự án lần này, 5 thành viên của nhóm — <strong>Nguyễn Nhật Tân, Trần Thị Hoài Thu, Lê Nguyễn Tài Thu, Nguyễn Thị Anh Thư</strong> và <strong>Vi Lê Đức Thư</strong> — đã đặt ra câu hỏi: <em>"Làm sao để trang web giới thiệu nhóm không chỉ có chữ và ảnh tĩnh, mà còn mang một giai điệu riêng biệt?"</em>
+                        </p>
+                    </div>
+
+                    <div id="sec-2" class="scroll-mt-28 space-y-3">
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-fuchsia-500/20 text-fuchsia-500 flex items-center justify-center text-sm">02</span>
+                            Hành trình T-Squad sáng tạo nhạc cùng Suno
+                        </h3>
+                        <p>
+                            Để tạo nên bản nhạc tại địa chỉ <a href="https://suno.com/s/oJy6wFGZe1i9P74h" target="_blank" class="text-fuchsia-500 underline font-semibold">suno.com/s/oJy6wFGZe1i9P74h</a>, từng thành viên đã phát huy thế mạnh của mình:
+                        </p>
+                        <ul class="space-y-2 pl-4 border-l-2 border-fuchsia-500/40">
+                            <li><strong>Nhật Tân & Tài Thu:</strong> Lên cấu trúc câu lệnh (Prompt Engineering), lựa chọn phong cách âm nhạc hiện đại, bắt tai và giàu năng lượng.</li>
+                            <li><strong>Anh Thư & Hoài Thu:</strong> Chăm chút từng câu chữ, thông điệp cảm xúc để lời ca phản ánh đúng tinh thần đoàn kết và nhiệt huyết của nhóm.</li>
+                            <li><strong>Đức Thư:</strong> Tích hợp trình phát nhạc và hiệu ứng sóng âm trực tiếp lên giao diện web để người xem vừa đọc bài vừa thưởng thức âm nhạc mượt mà.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Trích dẫn nổi bật -->
+                    <blockquote class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-800/70 border-l-4 border-violet-500 my-6">
+                        <p class="font-medium text-slate-800 dark:text-slate-100 italic">
+                            "AI có thể tạo ra hàng ngàn giai điệu chỉ trong vài giây, nhưng chính tình bạn, sự thấu hiểu và những buổi thảo luận sôi nổi của các thành viên mới là 'linh hồn' tạo nên ý nghĩa cho bài hát."
+                        </p>
+                    </blockquote>
+
+                    <div id="sec-3" class="scroll-mt-28 space-y-3">
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-500 flex items-center justify-center text-sm">03</span>
+                            Công nghệ thay thế hay chắp cánh cảm xúc?
+                        </h3>
+                        <p>
+                            Nhiều người lo ngại rằng công nghệ sẽ làm con người trở nên phụ thuộc. Tuy nhiên, qua trải nghiệm thực tế của nhóm T-Squad, chúng mình nhận ra rằng AI đóng vai trò như một <strong>"người trợ lý đồng sáng tạo"</strong>. Khi rào cản kỹ thuật được gỡ bỏ, người trẻ có nhiều không gian hơn để tập trung vào ý tưởng cốt lõi, thông điệp nhân văn và cách kể chuyện độc đáo.
+                        </p>
+                    </div>
+
+                    <div id="sec-4" class="scroll-mt-28 space-y-3">
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-sm">04</span>
+                            Thông điệp gửi đến thế hệ trẻ Việt Nam
+                        </h3>
+                        <p>
+                            Thế giới số đang chuyển mình từng ngày. Hãy chủ động làm chủ công nghệ bằng tư duy cởi mở, sáng tạo có trách nhiệm và đừng bao giờ quên sức mạnh của sự kết nối con người. Cảm ơn bạn đã ghé thăm không gian sáng tạo của 5 thành viên chúng mình!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Khu Vực Bình Luận Tương Tác -->
+                <div id="comments" class="pt-8 border-t border-slate-200/70 dark:border-white/10 space-y-6">
+                    <h3 class="font-display text-xl font-bold flex items-center gap-2">
+                        <i class="fa-regular fa-comments text-violet-500"></i>
+                        <span>Lưu Bút & Bình Luận Dành Cho Nhóm</span>
+                    </h3>
+
+                    <!-- Form Gửi Bình Luận -->
+                    <form id="comment-form" onsubmit="addComment(event)" class="space-y-3">
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <input id="comment-name" type="text" required placeholder="Tên của bạn (VD: Minh Anh)..."
+                                   class="w-full px-4 py-3 rounded-xl glass-card text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
+                            <select id="comment-tag" class="w-full px-4 py-3 rounded-xl glass-card text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 bg-transparent">
+                                <option value="Gửi cả nhóm T-Squad" class="dark:bg-slate-900">🌟 Gửi cả nhóm T-Squad</option>
+                                <option value="Nhắn gửi Nhật Tân" class="dark:bg-slate-900">🚀 Nhắn gửi Nguyễn Nhật Tân</option>
+                                <option value="Nhắn gửi Hoài Thu" class="dark:bg-slate-900">🎨 Nhắn gửi Trần Thị Hoài Thu</option>
+                                <option value="Nhắn gửi Tài Thu" class="dark:bg-slate-900">💡 Nhắn gửi Lê Nguyễn Tài Thu</option>
+                                <option value="Nhắn gửi Anh Thư" class="dark:bg-slate-900">✍️ Nhắn gửi Nguyễn Thị Anh Thư</option>
+                                <option value="Nhắn gửi Đức Thư" class="dark:bg-slate-900">💻 Nhắn gửi Vi Lê Đức Thư</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-3">
+                            <input id="comment-content" type="text" required placeholder="Chia sẻ cảm nhận của bạn về bài viết hoặc bài nhạc Suno của nhóm..."
+                                   class="flex-1 px-4 py-3 rounded-xl glass-card text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
+                            <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold text-sm hover:opacity-95 transition-opacity shrink-0">
+                                Gửi ngay
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Danh Sách Bình Luận -->
+                    <div id="comments-list" class="space-y-3">
+                        <!-- Render từ JS -->
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 5. FOOTER -->
+    <footer class="mt-16 border-t border-slate-200/70 dark:border-white/10 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-500 flex items-center justify-center text-white font-bold text-sm">5T</div>
+                        <span class="font-display font-bold text-lg">T-SQUAD PROJECT</span>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                        Trang web giới thiệu thành viên, chuyên đề sáng tạo & âm nhạc AI.
+                    </p>
+                </div>
+
+                <div class="text-xs text-slate-500 dark:text-slate-400 md:text-center space-y-1">
+                    <div class="font-semibold text-slate-700 dark:text-slate-200">Danh sách 5 thành viên:</div>
+                    <div>Nguyễn Nhật Tân • Trần Thị Hoài Thu • Lê Nguyễn Tài Thu</div>
+                    <div>Nguyễn Thị Anh Thư • Vi Lê Đức Thư</div>
+                </div>
+
+                <div class="flex md:justify-end items-center gap-3">
+                    <a href="https://suno.com/s/oJy6wFGZe1i9P74h" target="_blank" rel="noopener noreferrer"
+                       class="px-4 py-2 rounded-xl bg-fuchsia-500/15 text-fuchsia-500 hover:bg-fuchsia-500/25 text-xs font-bold transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-music"></i>
+                        <span>Suno: oJy6wFGZe1i9P74h</span>
+                    </a>
+                    <a href="#hero" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center hover:text-violet-500 transition-colors" title="Lên đầu trang">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CHI TIẾT THÀNH VIÊN -->
+    <div id="member-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm">
+        <div class="glass-card w-full max-w-lg rounded-3xl p-6 sm:p-8 relative border border-white/20 shadow-2xl transform transition-all">
+            <button onclick="closeMemberModal()" class="absolute top-5 right-5 w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-500 hover:text-rose-500">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- TOAST THÔNG BÁO NHẸ NHÀNG (Không dùng alert) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 px-5 py-3.5 rounded-2xl bg-slate-900 text-white text-sm font-medium shadow-2xl border border-white/15">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-message">Đã thực hiện!</span>
+    </div>
+
+    <!-- JAVASCRIPT XỬ LÝ TƯƠNG TÁC -->
+    <script>
+        // Dữ liệu 5 Thành Viên Nhóm T-Squad (Tích hợp sẵn Avatar minh họa sinh động + hỗ trợ thay ảnh thật)
+        const membersData = [
+            {
+                id: 0,
+                name: "Nguyễn Nhật Tân",
+                initials: "NT",
+                avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=NguyenNhatTan&backgroundColor=8b5cf6",
+                fallbackAvatar: "https://placehold.co/200x200/7c3aed/ffffff?text=Nhat+Tan",
+                role: "Trưởng Nhóm • Định Hướng & Công Nghệ",
+                category: "tech",
+                badge: "Team Leader",
+                gradient: "from-violet-600 via-indigo-600 to-purple-600",
+                lightBg: "bg-violet-500/10 text-violet-500 border-violet-500/30",
+                quote: "Đổi mới bắt đầu từ sự dám nghĩ, dám thử nghiệm và kết nối sức mạnh của từng thành viên.",
+                bio: "Là người cầm trịch điều phối tiến độ chung của cả nhóm, Nhật Tân phụ trách định hướng chủ đề bài viết, kết nối ý tưởng âm nhạc Suno AI và kiến trúc tổng thể cho dự án.",
+                skills: ["Quản lý dự án", "Prompt AI", "Kiến trúc Web", "Thuyết trình"],
+                hobby: "Khám phá công nghệ AI mới, nghe nhạc điện tử & chạy bộ"
+            },
+            {
+                id: 1,
+                name: "Trần Thị Hoài Thu",
+                initials: "HT",
+                avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=TranThiHoaiThu&backgroundColor=ec4899",
+                fallbackAvatar: "https://placehold.co/200x200/db2777/ffffff?text=Hoai+Thu",
+                role: "Thiết Kế Sáng Tạo & Truyền Thông",
+                category: "creative",
+                badge: "Creative Designer",
+                gradient: "from-fuchsia-600 via-pink-600 to-rose-500",
+                lightBg: "bg-fuchsia-500/10 text-fuchsia-500 border-fuchsia-500/30",
+                quote: "Cái đẹp không chỉ nằm ở màu sắc, mà còn ở cảm xúc đọng lại trong lòng người xem.",
+                bio: "Hoài Thu là 'phù thủy hình ảnh' của nhóm, chịu trách nhiệm phối màu bảng màu Neon-Glassmorphism, định hình phong cách thị giác và truyền tải cảm xúc nghệ thuật vào bài hát của nhóm.",
+                skills: ["UI/UX Design", "Thẩm mỹ thị giác", "Sáng tạo nội dung số", "Truyền thông"],
+                hobby: "Nhiếp ảnh, vẽ minh họa kỹ thuật số & nghe nhạc Acoustic"
+            },
+            {
+                id: 2,
+                name: "Lê Nguyễn Tài Thu",
+                initials: "TT",
+                avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=LeNguyenTaiThu&backgroundColor=06b6d4",
+                fallbackAvatar: "https://placehold.co/200x200/0891b2/ffffff?text=Tai+Thu",
+                role: "Nghiên Cứu & Phát Triển Ý Tưởng",
+                category: "research",
+                badge: "R&D Specialist",
+                gradient: "from-cyan-500 via-sky-600 to-blue-600",
+                lightBg: "bg-cyan-500/10 text-cyan-500 border-cyan-500/30",
+                quote: "Mỗi ý tưởng lớn đều khởi nguồn từ sự tò mò và những câu hỏi đào sâu đến tận cùng.",
+                bio: "Tài Thu chuyên thu thập dẫn chứng, phân tích xu hướng âm nhạc AI và xây dựng dàn ý chiều sâu cho bài viết chuyên đề của nhóm thêm thuyết phục và giàu thông tin.",
+                skills: ["Nghiên cứu chuyên sâu", "Phân tích dữ liệu", "Tư duy phản biện", "Lập kế hoạch"],
+                hobby: "Đọc sách khoa học, cờ vua & khám phá podcast công nghệ"
+            },
+            {
+                id: 3,
+                name: "Nguyễn Thị Anh Thư",
+                initials: "AT",
+                avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=NguyenThiAnhThu&backgroundColor=10b981",
+                fallbackAvatar: "https://placehold.co/200x200/059669/ffffff?text=Anh+Thu",
+                role: "Biên Tập Nội Dung & Thuyết Trình",
+                category: "creative",
+                badge: "Content Storyteller",
+                gradient: "from-emerald-500 via-teal-600 to-cyan-600",
+                lightBg: "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
+                quote: "Ngôn từ chân thành là chiếc cầu nối ngắn nhất chạm tới trái tim người đọc.",
+                bio: "Anh Thư chấp bút biên tập các đoạn văn giàu cảm xúc trong chuyên đề báo chí của nhóm, đồng thời trau chuốt lời ca và câu chuyện hậu trường cho ca khúc Suno AI.",
+                skills: ["Viết lách & Biên tập", "Kể chuyện (Storytelling)", "Giao tiếp", "MC / Thuyết trình"],
+                hobby: "Viết blog cá nhân, du lịch trải nghiệm & thưởng thức trà chiều"
+            },
+            {
+                id: 4,
+                name: "Vi Lê Đức Thư",
+                initials: "ĐT",
+                avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=ViLeDucThu&backgroundColor=f59e0b",
+                fallbackAvatar: "https://placehold.co/200x200/d97706/ffffff?text=Duc+Thu",
+                role: "Kỹ Thuật & Tối Ưu Trải Nghiệm",
+                category: "tech",
+                badge: "Tech & UX Engineer",
+                gradient: "from-amber-500 via-orange-500 to-rose-500",
+                lightBg: "bg-amber-500/10 text-amber-500 border-amber-500/30",
+                quote: "Một sản phẩm tốt là sản phẩm mượt mà đến mức người dùng tận hưởng trọn vẹn từng khoảnh khắc.",
+                bio: "Đức Thư phụ trách tối ưu hóa hiệu ứng chuyển động mượt mà, hiệu ứng đĩa than xoay, sóng nhạc tương tác và đảm bảo trang web hiển thị đẹp mắt trên cả điện thoại lẫn máy tính.",
+                skills: ["Front-end Animation", "Tối ưu hiệu năng", "Tương tác âm thanh", "Responsive Web"],
+                hobby: "Lập trình sáng tạo, chơi nhạc cụ & tìm hiểu phần cứng"
+            }
+        ];
+
+        let currentMemberIdForUpload = null;
+        let currentActiveFilter = 'all';
+
+        // Lấy ảnh avatar hiện tại của thành viên (ưu tiên ảnh đã được người dùng ghép lưu trong localStorage)
+        function getMemberAvatar(member) {
+            const savedCustomAvatar = localStorage.getItem(`tsquad_custom_avatar_${member.id}`);
+            return savedCustomAvatar || member.avatar;
+        }
+
+        // Cập nhật đồng bộ ảnh ở khung Hero phía trên
+        function syncHeroAvatars() {
+            membersData.forEach(member => {
+                const heroImg = document.getElementById(`hero-avatar-${member.id}`);
+                if (heroImg) {
+                    heroImg.src = getMemberAvatar(member);
+                    heroImg.onerror = function() {
+                        this.src = member.fallbackAvatar;
+                    };
+                }
+            });
+        }
+
+        // Mở hộp thoại chọn file ảnh từ máy tính để ghép vào avatar nhân vật
+        function triggerAvatarUpload(event, memberId) {
+            event.stopPropagation();
+            currentMemberIdForUpload = memberId;
+            const fileInput = document.getElementById('avatar-file-input');
+            fileInput.value = '';
+            fileInput.click();
+        }
+
+        // Xử lý khi người dùng chọn ảnh từ máy tính
+        function handleAvatarFileSelected(event) {
+            const file = event.target.files[0];
+            if (!file || currentMemberIdForUpload === null) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageDataUrl = e.target.result;
+                try {
+                    localStorage.setItem(`tsquad_custom_avatar_${currentMemberIdForUpload}`, imageDataUrl);
+                } catch (err) {
+                    // Nếu ảnh quá nặng vượt bộ nhớ localStorage, vẫn cập nhật trực tiếp trong phiên hiện tại
+                    membersData[currentMemberIdForUpload].avatar = imageDataUrl;
+                }
+                syncHeroAvatars();
+                renderMembers(currentActiveFilter);
+
+                // Nếu modal đang mở thì cập nhật luôn ảnh trong modal
+                const modal = document.getElementById('member-modal');
+                if (!modal.classList.contains('hidden')) {
+                    openMemberModal(currentMemberIdForUpload);
+                }
+
+                const mName = membersData.find(m => m.id === currentMemberIdForUpload)?.name || "thành viên";
+                showToast(`Đã ghép ảnh mới cho ${mName} thành công!`);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Lưu link ảnh trực tiếp trong Modal
+        function applyCustomAvatarUrl(memberId) {
+            const inputEl = document.getElementById(`custom-avatar-url-${memberId}`);
+            if (!inputEl || !inputEl.value.trim()) return;
+            const newUrl = inputEl.value.trim();
+            localStorage.setItem(`tsquad_custom_avatar_${memberId}`, newUrl);
+            syncHeroAvatars();
+            renderMembers(currentActiveFilter);
+            openMemberModal(memberId);
+            showToast("Đã cập nhật đường dẫn ảnh đại diện mới!");
+        }
+
+        // Đặt lại ảnh mặc định cho tất cả thành viên
+        function resetAllAvatars() {
+            membersData.forEach(m => localStorage.removeItem(`tsquad_custom_avatar_${m.id}`));
+            syncHeroAvatars();
+            renderMembers(currentActiveFilter);
+            showToast("Đã khôi phục ảnh đại diện mặc định cho cả 5 thành viên!");
+        }
+
+        // Hiển thị danh sách thẻ thành viên
+        function renderMembers(filter = 'all') {
+            currentActiveFilter = filter;
+            const grid = document.getElementById('members-grid');
+            const filtered = filter === 'all' ? membersData : membersData.filter(m => m.category === filter);
+
+            grid.innerHTML = filtered.map(member => {
+                const avatarSrc = getMemberAvatar(member);
+                return `
+                <div onclick="openMemberModal(${member.id})"
+                     class="member-card cursor-pointer glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                    <!-- Dải màu trên cùng -->
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r ${member.gradient}"></div>
+
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-5">
+                            <!-- Khung Ảnh Avatar Nhân Vật kèm nút ghép ảnh -->
+                            <div class="relative group/avatar">
+                                <div class="w-20 h-20 rounded-2xl p-1 bg-gradient-to-br ${member.gradient} shadow-lg group-hover:scale-105 transition-transform">
+                                    <img src="${avatarSrc}"
+                                         alt="${member.name}"
+                                         onerror="this.onerror=null;this.src='${member.fallbackAvatar}';"
+                                         class="w-full h-full object-cover rounded-xl bg-slate-900">
+                                </div>
+                                <button onclick="triggerAvatarUpload(event, ${member.id})"
+                                        title="Đổi / Ghép ảnh thật cho ${member.name}"
+                                        class="absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-slate-900 text-white border border-white/20 shadow-md flex items-center justify-center hover:bg-violet-600 hover:scale-110 transition-all">
+                                    <i class="fa-solid fa-camera text-xs"></i>
+                                </button>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold border ${member.lightBg}">
+                                ${member.badge}
+                            </span>
+                        </div>
+
+                        <h3 class="font-display text-xl font-bold group-hover:text-violet-500 transition-colors">
+                            ${member.name}
+                        </h3>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">
+                            ${member.role}
+                        </p>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-4 line-clamp-3 leading-relaxed">
+                            ${member.bio}
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            ${member.skills.map(s => `
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-200/70 dark:bg-white/5 text-slate-700 dark:text-slate-300">
+                                    #${s}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <div class="flex items-center justify-between text-xs font-bold text-violet-500">
+                            <span>Xem hồ sơ & đổi ảnh</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        // Lọc thành viên theo vai trò
+        function filterMembers(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.className = "filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-violet-600 text-white shadow-md transition-all";
+                } else {
+                    btn.className = "filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card hover:border-violet-500/50 transition-all";
+                }
+            });
+            renderMembers(category);
+        }
+
+        // Mở Modal chi tiết thành viên
+        function openMemberModal(id) {
+            const member = membersData.find(m => m.id === id);
+            if (!member) return;
+
+            const modal = document.getElementById('member-modal');
+            const body = document.getElementById('modal-body');
+            const avatarSrc = getMemberAvatar(member);
+
+            body.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-5">
+                    <div class="relative w-24 h-24 shrink-0">
+                        <div class="w-24 h-24 rounded-2xl p-1 bg-gradient-to-br ${member.gradient} shadow-xl">
+                            <img src="${avatarSrc}"
+                                 alt="${member.name}"
+                                 onerror="this.onerror=null;this.src='${member.fallbackAvatar}';"
+                                 class="w-full h-full object-cover rounded-xl bg-slate-900">
+                        </div>
+                        <button onclick="triggerAvatarUpload(event, ${member.id})"
+                                class="absolute -bottom-2 -right-2 px-2.5 py-1 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-[11px] font-bold shadow-lg flex items-center gap-1">
+                            <i class="fa-solid fa-upload"></i> Ảnh máy
+                        </button>
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${member.lightBg}">
+                            ${member.badge}
+                        </span>
+                        <h3 class="font-display text-2xl font-bold mt-1">${member.name}</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">${member.role}</p>
+                    </div>
+                </div>
+
+                <!-- Thanh công cụ ghép link ảnh nhanh cho nhân vật -->
+                <div class="mb-5 p-3 rounded-2xl bg-slate-200/60 dark:bg-slate-800/60 border border-slate-300/60 dark:border-white/10">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+                        <i class="fa-solid fa-image text-violet-500 mr-1"></i> Ghép ảnh qua đường dẫn URL hoặc tải ảnh từ thiết bị:
+                    </label>
+                    <div class="flex gap-2">
+                        <input id="custom-avatar-url-${member.id}" type="text" placeholder="Dán link ảnh (.jpg, .png...) của ${member.name}"
+                               class="flex-1 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/15 text-xs focus:outline-none focus:border-violet-500">
+                        <button onclick="applyCustomAvatarUrl(${member.id})"
+                                class="px-3 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold shrink-0">
+                            Lưu ảnh
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-violet-500/10 border border-violet-500/20 text-sm italic mb-5">
+                    "${member.quote}"
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <div class="font-bold text-slate-900 dark:text-white mb-1">Vai trò trong dự án:</div>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">${member.bio}</p>
+                    </div>
+                    <div>
+                        <div class="font-bold text-slate-900 dark:text-white mb-1.5">Thế mạnh nổi bật:</div>
+                        <div class="flex flex-wrap gap-2">
+                            ${member.skills.map(s => `<span class="px-3 py-1 rounded-xl text-xs font-semibold glass-card">${s}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-bold text-slate-900 dark:text-white mb-1">Sở thích cá nhân:</div>
+                        <p class="text-slate-600 dark:text-slate-300">${member.hobby}</p>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMemberModal() {
+            const modal = document.getElementById('member-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // =========================================================================
+        // HỆ THỐNG PHÁT NHẠC SUNO THẬT (KHÔNG DÙNG NHẠC GIẢ LẬP)
+        // Tự động giải mã link rút gọn https://suno.com/s/oJy6wFGZe1i9P74h sang MP3 CDN
+        // =========================================================================
+        const SUNO_SHORT_URL = "https://suno.com/s/oJy6wFGZe1i9P74h";
+        let isAudioReady = false;
+
+        function setVisualPlayingState(playing) {
+            const vinyl = document.getElementById('vinyl-record');
+            const arm = document.getElementById('vinyl-arm');
+            const eq = document.getElementById('equalizer');
+            const icon = document.getElementById('main-play-icon');
+
+            if (playing) {
+                vinyl.classList.add('animate-spin-slow');
+                if (arm) {
+                    arm.classList.remove('-rotate-12');
+                    arm.classList.add('rotate-12');
+                }
+                eq.classList.add('playing');
+                icon.className = "fa-solid fa-pause text-xl";
+            } else {
+                vinyl.classList.remove('animate-spin-slow');
+                if (arm) {
+                    arm.classList.remove('rotate-12');
+                    arm.classList.add('-rotate-12');
+                }
+                eq.classList.remove('playing');
+                icon.className = "fa-solid fa-play text-xl ml-0.5";
+            }
+        }
+
+        function formatSeconds(sec) {
+            if (!sec || isNaN(sec)) return "00:00";
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+        }
+
+        // Hàm trích xuất UUID hoặc link MP3 trực tiếp từ nội dung HTML hoặc URL của Suno
+        function extractSunoInfo(rawText) {
+            if (!rawText) return null;
+
+            // 1. Tìm link MP3 trực tiếp từ CDN của Suno
+            const mp3Match = rawText.match(/https:\/\/cdn[12]?\.suno\.ai\/[a-f0-9-]{36}\.mp3/i);
+            if (mp3Match) {
+                const uuid = mp3Match[0].match(/[a-f0-9-]{36}/i)[0];
+                return { uuid, mp3Url: mp3Match[0] };
+            }
+
+            // 2. Tìm cấu trúc /song/{uuid} hoặc /embed/{uuid}
+            const songUuidMatch = rawText.match(/(?:song|embed)\/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/i);
+            if (songUuidMatch) {
+                const uuid = songUuidMatch[1];
+                return { uuid, mp3Url: `https://cdn1.suno.ai/${uuid}.mp3` };
+            }
+
+            // 3. Nếu người dùng dán trực tiếp 1 chuỗi UUID 36 ký tự
+            const directUuidMatch = rawText.match(/\b([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})\b/i);
+            if (directUuidMatch) {
+                const uuid = directUuidMatch[1];
+                return { uuid, mp3Url: `https://cdn1.suno.ai/${uuid}.mp3` };
+            }
+
+            return null;
+        }
+
+        // Thiết lập nguồn nhạc MP3 và khung Embed chính thức của Suno
+        function setupSunoAudioSource(info, customTitle = null) {
+            const audio = document.getElementById('real-audio-player');
+            const badge = document.getElementById('player-status-badge');
+            const embedWrapper = document.getElementById('suno-official-embed-wrapper');
+            const embedIframe = document.getElementById('suno-official-iframe');
+            const trackLabel = document.getElementById('track-name-label');
+
+            if (customTitle) {
+                trackLabel.textContent = customTitle;
+            }
+
+            if (info.mp3Url) {
+                audio.src = info.mp3Url;
+                audio.load();
+                isAudioReady = true;
+                badge.textContent = "Đã kết nối nhạc Suno gốc";
+                badge.className = "text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold";
+            }
+
+            if (info.uuid) {
+                embedIframe.src = `https://suno.com/embed/${info.uuid}`;
+                embedWrapper.classList.remove('hidden');
+            }
+        }
+
+        // Tự động giải mã link rút gọn https://suno.com/s/oJy6wFGZe1i9P74h qua các cổng Proxy CORS an toàn
+        async function autoResolveSunoShortLink() {
+            const badge = document.getElementById('player-status-badge');
+
+            // Kiểm tra xem đã lưu cache trong localStorage chưa
+            const cachedUuid = localStorage.getItem('tsquad_suno_uuid_oJy6wFGZe1i9P74h');
+            const cachedTitle = localStorage.getItem('tsquad_suno_title_oJy6wFGZe1i9P74h');
+            if (cachedUuid) {
+                setupSunoAudioSource({
+                    uuid: cachedUuid,
+                    mp3Url: `https://cdn1.suno.ai/${cachedUuid}.mp3`
+                }, cachedTitle);
+                return;
+            }
+
+            const proxyEndpoints = [
+                `https://api.allorigins.win/get?url=${encodeURIComponent(SUNO_SHORT_URL)}`,
+                `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(SUNO_SHORT_URL)}`,
+                `https://corsproxy.io/?${encodeURIComponent(SUNO_SHORT_URL)}`
+            ];
+
+            for (const endpoint of proxyEndpoints) {
+                try {
+                    const res = await fetch(endpoint);
+                    if (!res.ok) continue;
+                    const dataText = await res.text();
+                    const info = extractSunoInfo(dataText);
+
+                    if (info && info.uuid) {
+                        // Thử lấy tên bài hát từ thẻ og:title nếu có
+                        let songTitle = null;
+                        const titleMatch = dataText.match(/property="og:title"\s+content="([^"]+)"/i) || dataText.match(/<title>([^<]+)<\/title>/i);
+                        if (titleMatch && titleMatch[1]) {
+                            songTitle = titleMatch[1].replace(/\|?\s*Suno/i, '').trim();
+                        }
+
+                        localStorage.setItem('tsquad_suno_uuid_oJy6wFGZe1i9P74h', info.uuid);
+                        if (songTitle) localStorage.setItem('tsquad_suno_title_oJy6wFGZe1i9P74h', songTitle);
+
+                        setupSunoAudioSource(info, songTitle);
+                        showToast("Đã tải thành công bài nhạc gốc từ Suno của nhóm!");
+                        return;
+                    }
+                } catch (err) {
+                    // Thử tiếp proxy tiếp theo
+                }
+            }
+
+            // Nếu mạng chặn tất cả Proxy, thông báo rõ ràng và bật chế độ mở Mini Player trực tiếp
+            badge.textContent = "Bấm Play để mở Suno Player";
+            badge.className = "text-[11px] px-2.5 py-0.5 rounded-full bg-fuchsia-500/20 text-fuchsia-300 font-semibold";
+        }
+
+        // Bấm nút Play/Pause chính
+        function toggleRealMusic() {
+            const audio = document.getElementById('real-audio-player');
+            const badge = document.getElementById('player-status-badge');
+
+            // Nếu đã có luồng MP3 thật (từ Suno CDN hoặc file MP3 người dùng chọn)
+            if (isAudioReady && audio.src) {
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        setVisualPlayingState(true);
+                        badge.textContent = "Đang phát nhạc thật";
+                        badge.className = "text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold";
+                    }).catch(() => {
+                        openSunoMiniWindow();
+                    });
+                } else {
+                    audio.pause();
+                    setVisualPlayingState(false);
+                    badge.textContent = "Tạm dừng";
+                }
+            } else {
+                // Nếu trình duyệt chặn CORS không lấy được file .mp3 tự động, mở ngay cửa sổ Mini Suno chính thức để nghe đúng bài
+                openSunoMiniWindow();
+            }
+        }
+
+        // Mở cửa sổ Mini Player chính thức của Suno ngay góc màn hình (đảm bảo 100% nghe đúng bài oJy6wFGZe1i9P74h)
+        function openSunoMiniWindow() {
+            const width = 420;
+            const height = 620;
+            const left = (window.screen.width / 2) - (width / 2);
+            const top = (window.screen.height / 2) - (height / 2);
+
+            window.open(
+                SUNO_SHORT_URL,
+                'SunoTSquadPlayer',
+                `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`
+            );
+
+            setVisualPlayingState(true);
+            const badge = document.getElementById('player-status-badge');
+            badge.textContent = "Đang mở trên trình phát Suno";
+            badge.className = "text-[11px] px-2.5 py-0.5 rounded-full bg-fuchsia-500/20 text-fuchsia-300 font-semibold";
+            showToast("Đã mở trình phát bài hát gốc trên Suno! Bạn cũng có thể chọn file MP3 tải về máy để phát trực tiếp.");
+        }
+
+        // Cho phép chọn trực tiếp file MP3 từ máy tính (nếu thành viên đã tải file nhạc từ Suno về)
+        function handleLocalAudioUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const audio = document.getElementById('real-audio-player');
+            const objectUrl = URL.createObjectURL(file);
+            audio.src = objectUrl;
+            audio.load();
+            isAudioReady = true;
+
+            document.getElementById('track-name-label').textContent = file.name.replace(/\.[^/.]+$/, "");
+            const badge = document.getElementById('player-status-badge');
+            badge.textContent = "Đang phát file MP3 gốc";
+            badge.className = "text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold";
+
+            audio.play().then(() => {
+                setVisualPlayingState(true);
+                showToast(`Đang phát bài nhạc: ${file.name}`);
+            });
+        }
+
+        // Cho phép dán link đầy đủ của Suno (https://suno.com/song/xxxx...) hoặc link .mp3
+        function applyCustomSunoInput() {
+            const inputVal = document.getElementById('custom-suno-input').value.trim();
+            if (!inputVal) return;
+
+            const info = extractSunoInfo(inputVal);
+            if (info) {
+                localStorage.setItem('tsquad_suno_uuid_oJy6wFGZe1i9P74h', info.uuid);
+                setupSunoAudioSource(info);
+                const audio = document.getElementById('real-audio-player');
+                audio.play().then(() => setVisualPlayingState(true)).catch(() => {});
+                showToast("Đã kết nối thành công với luồng nhạc Suno!");
+            } else if (inputVal.startsWith('http')) {
+                const audio = document.getElementById('real-audio-player');
+                audio.src = inputVal;
+                audio.load();
+                isAudioReady = true;
+                audio.play().then(() => setVisualPlayingState(true)).catch(() => {});
+                showToast("Đã cập nhật đường dẫn âm thanh mới!");
+            } else {
+                showToast("Vui lòng dán link bài hát đầy đủ từ Suno (có dạng suno.com/song/...) hoặc chọn file MP3!");
+            }
+        }
+
+        // Sao chép link bài nhạc Suno
+        function copySunoLink() {
+            const link = "https://suno.com/s/oJy6wFGZe1i9P74h";
+            const tempInput = document.createElement("textarea");
+            tempInput.value = link;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            document.getElementById('copy-link-text').textContent = "Đã copy!";
+            showToast("Đã sao chép link nhạc Suno của nhóm vào bộ nhớ tạm!");
+            setTimeout(() => {
+                document.getElementById('copy-link-text').textContent = "Copy Link";
+            }, 2500);
+        }
+
+        // Tương tác Thả Cảm Xúc Bài Viết
+        function reactArticle(type) {
+            const el = document.getElementById(`react-${type}`);
+            if (el) {
+                el.textContent = parseInt(el.textContent, 10) + 1;
+                showToast("Cảm ơn bạn đã thả cảm xúc cho bài viết của nhóm T-Squad!");
+            }
+        }
+
+        // Quản lý Bình Luận
+        const initialComments = [
+            {
+                name: "Thầy/Cô & Bạn Bè",
+                tag: "Gửi cả nhóm T-Squad",
+                content: "Giao diện nhóm thiết kế rất hiện đại, ấn tượng nhất là sự kết hợp bài nhạc Suno AI và chuyên đề công nghệ!",
+                time: "Vừa xong"
+            },
+            {
+                name: "Hoàng Minh",
+                tag: "Gửi cả nhóm T-Squad",
+                content: "Cả 5 bạn Tân, Hoài Thu, Tài Thu, Anh Thư, Đức Thư đều có tên bắt đầu bằng chữ T thú vị thật sự!",
+                time: "10 phút trước"
+            }
+        ];
+
+        function renderComments() {
+            const list = document.getElementById('comments-list');
+            list.innerHTML = initialComments.map(c => `
+                <div class="p-4 rounded-2xl glass-card flex items-start justify-between gap-4">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-sm text-violet-500">${c.name}</span>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full bg-violet-500/10 text-slate-500 dark:text-slate-300">${c.tag}</span>
+                        </div>
+                        <p class="text-sm text-slate-700 dark:text-slate-300">${c.content}</p>
+                    </div>
+                    <span class="text-[11px] text-slate-400 shrink-0">${c.time}</span>
+                </div>
+            `).join('');
+        }
+
+        function addComment(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('comment-name');
+            const tagInput = document.getElementById('comment-tag');
+            const contentInput = document.getElementById('comment-content');
+
+            initialComments.unshift({
+                name: nameInput.value.trim(),
+                tag: tagInput.value,
+                content: contentInput.value.trim(),
+                time: "Vừa xong"
+            });
+
+            contentInput.value = '';
+            renderComments();
+            showToast("Đã gửi lời nhắn thành công tới nhóm T-Squad!");
+        }
+
+        // Hiển thị Toast thông báo
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const text = document.getElementById('toast-message');
+            text.textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        // Khởi tạo Sự Kiện Trang
+        window.onload = function () {
+            syncHeroAvatars();
+            renderMembers('all');
+            renderComments();
+
+            // Khởi tạo sự kiện cho trình phát nhạc thật
+            const audio = document.getElementById('real-audio-player');
+            const seekbar = document.getElementById('audio-seekbar');
+            const currentTimeEl = document.getElementById('current-time-text');
+            const durationTimeEl = document.getElementById('duration-time-text');
+
+            audio.addEventListener('timeupdate', () => {
+                if (audio.duration) {
+                    seekbar.value = (audio.currentTime / audio.duration) * 100;
+                    currentTimeEl.textContent = formatSeconds(audio.currentTime);
+                    durationTimeEl.textContent = formatSeconds(audio.duration);
+                }
+            });
+
+            audio.addEventListener('loadedmetadata', () => {
+                durationTimeEl.textContent = formatSeconds(audio.duration);
+            });
+
+            audio.addEventListener('ended', () => {
+                setVisualPlayingState(false);
+            });
+
+            seekbar.addEventListener('input', () => {
+                if (audio.duration) {
+                    audio.currentTime = (seekbar.value / 100) * audio.duration;
+                }
+            });
+
+            // Tự động giải mã bài hát Suno từ link rút gọn
+            autoResolveSunoShortLink();
+
+            // Chuyển đổi Sáng / Tối
+            const themeBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            themeBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                themeIcon.className = isDark ? "fa-solid fa-sun text-lg" : "fa-solid fa-moon text-lg";
+            });
+
+            // Menu Mobile
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Thanh Tiến Trình Đọc Trang
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+                document.getElementById('reading-progress').style.width = scrolled + "%";
+            });
+
+            // Đóng modal khi click ra ngoài
+            document.getElementById('member-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'member-modal') closeMemberModal();
+            });
+        };
+    </script>
+</body>
+</html>

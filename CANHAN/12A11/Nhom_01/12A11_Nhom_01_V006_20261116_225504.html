@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế hoạch Định hướng Nghề nghiệp | Nguyễn Văn Gia Huy - 12A11</title>
+    
+    <!-- Tích hợp Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Cấu hình Tailwind CSS -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6', 
+                        secondary: '#10b981', 
+                        accent: '#ec4899', 
+                        warning: '#f59e0b', 
+                        darkBg: '#09090b', 
+                        darkCard: '#18181b'
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        pulseGlow: "pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" }
+                        },
+                        pulseGlow: {
+                            "0%, 100%": { opacity: 1, transform: "scale(1)" },
+                            "50%": { opacity: .8, transform: "scale(1.06)", boxShadow: "0 0 30px 8px rgba(59, 130, 246, 0.6)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Thư viện Confetti bắn pháo giấy -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body { font-family: 'Quicksand', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Poppins', sans-serif; }
+        
+        * { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .dark .glass-card {
+            background: rgba(24, 24, 27, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 3D Flip Card - Tương thích Desktop & Mobile */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); }
+        .backface-hidden { backface-visibility: hidden; }
+        
+        @media (hover: hover) {
+            .flip-card-container:hover .transform-style-3d { transform: rotateY(180deg); }
+        }
+        .flip-card-container.flipped .transform-style-3d { transform: rotateY(180deg); }
+
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #2563eb, #06b6d4, #3b82f6);
+        }
+
+        /* Hover Glow */
+        .hover-glow:hover {
+            box-shadow: 0 12px 30px -5px rgba(59, 130, 246, 0.35);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-sky-50/70 text-slate-800 dark:bg-darkBg dark:text-slate-200 antialiased relative">
+
+    <!-- Nền Blobs Chuyển Động -->
+    <div class="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-0 left-0 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob dark:opacity-20 dark:bg-blue-600"></div>
+        <div class="absolute top-[20%] right-0 w-80 h-80 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob dark:opacity-20 dark:bg-cyan-600" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-0 left-[20%] w-80 h-80 bg-sky-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob dark:opacity-20 dark:bg-indigo-700" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Thanh Điều Hướng -->
+    <nav class="sticky top-0 z-50 glass-card shadow-sm border-b border-blue-100 dark:border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <span class="text-2xl">🚀</span>
+                <span class="text-xl md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                    CareerPath
+                </span>
+                <span class="hidden sm:inline-block text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700">
+                    12A11
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-6 text-sm font-bold text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-primary transition">Bản thân</a>
+                <a href="#ikigai" class="hover:text-primary transition">Định vị</a>
+                <a href="#timeline" class="hover:text-primary transition">Lộ trình</a>
+                <a href="#skills" class="hover:text-primary transition">Kỹ năng</a>
+                <a href="#action" class="hover:text-primary transition">Hành động</a>
+                <a href="#gallery" class="hover:text-primary transition">Thư viện</a>
+            </div>
+
+            <button id="theme-toggle" class="p-2.5 rounded-full bg-white dark:bg-slate-800 shadow-md border border-blue-100 dark:border-slate-700 hover:scale-110 transition-transform" title="Đổi giao diện Sáng/Tối">
+                <span id="theme-icon-light" class="hidden text-lg">🌞</span>
+                <span id="theme-icon-dark" class="text-lg">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header class="relative w-full min-h-[82vh] flex items-center justify-center text-center px-4 overflow-hidden">
+        <div class="relative z-20 max-w-4xl mx-auto pt-12 pb-16 reveal active flex flex-col items-center">
+            
+            <!-- Avatar Nam Phát Sáng -->
+            <div class="mb-6 relative group">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 animate-pulseGlow blur-md opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=GiaHuy12A11&top=shortFlat&accessoriesProbability=0&facialHairProbability=0&clothing=blazerAndShirt&backgroundColor=b6e3f4" 
+                     onerror="this.src='https://placehold.co/200x200/3b82f6/ffffff?text=Gia+Huy'"
+                     alt="Avatar Nguyễn Văn Gia Huy" 
+                     class="relative w-36 h-36 md:w-44 md:h-44 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl bg-sky-100 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                <span class="absolute bottom-2 right-2 bg-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-full border-2 border-white shadow">
+                    12A11
+                </span>
+            </div>
+
+            <!-- Badge Cá Nhân -->
+            <div class="inline-flex items-center gap-2 px-5 py-2 mb-6 rounded-full glass-card text-sm md:text-base font-bold text-blue-700 dark:text-blue-300 border border-blue-300/60 shadow-sm animate-bounce">
+                <span>👨‍🎓</span> Hồ sơ định hướng: <span class="underline decoration-cyan-400 decoration-2">Nguyễn Văn Gia Huy - Lớp 12A11</span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight drop-shadow-sm">
+                Kế Hoạch Định Hướng <br class="hidden md:block">
+                <span class="text-gradient">Sự Nghiệp Tương Lai</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl text-slate-600 dark:text-slate-300 font-medium mb-8 max-w-2xl mx-auto">
+                "Khám phá đam mê, hoạch định lộ trình rõ ràng từ giảng đường lớp 12A11 và từng bước chinh phục đỉnh cao công nghệ."
+            </p>
+
+            <!-- Thống kê nhanh -->
+            <div class="grid grid-cols-3 gap-4 md:gap-8 max-w-lg w-full mb-10">
+                <div class="glass-card p-3 rounded-2xl shadow-sm border border-blue-200/60">
+                    <div class="text-2xl md:text-3xl font-extrabold text-blue-600 dark:text-blue-400">5 Năm</div>
+                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Lộ trình chiến lược</div>
+                </div>
+                <div class="glass-card p-3 rounded-2xl shadow-sm border border-cyan-200/60">
+                    <div class="text-2xl md:text-3xl font-extrabold text-cyan-600 dark:text-cyan-400">8+</div>
+                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Kỹ năng trọng tâm</div>
+                </div>
+                <div class="glass-card p-3 rounded-2xl shadow-sm border border-indigo-200/60">
+                    <div class="text-2xl md:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">100%</div>
+                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Quyết tâm bứt phá</div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#about" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition text-lg">
+                    Khám phá lộ trình 🌟
+                </a>
+                <a href="#gallery" class="inline-flex items-center justify-center px-8 py-4 glass-card text-blue-600 dark:text-blue-300 font-bold rounded-full shadow hover:shadow-lg hover:-translate-y-1 transform transition text-lg border border-blue-300">
+                    Thư viện hình ảnh 📸
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-10 space-y-28">
+
+        <!-- PHẦN 1: GIẢI MÃ BẢN THÂN (6 THẺ LẬT 3D) -->
+        <section id="about" class="reveal">
+            <div class="text-center mb-12">
+                <span class="px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">Phần 01</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-3 dark:text-white">🧑‍💻 Giải Mã Bản Thân (SWOT & Holland)</h2>
+                <p class="text-slate-600 dark:text-slate-400">Chạm hoặc di chuột vào từng thẻ để lật xem phân tích chi tiết về Nguyễn Văn Gia Huy.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Thẻ 1: Điểm mạnh -->
+                <div class="h-72 perspective-1000 flip-card-container cursor-pointer w-full" onclick="this.classList.toggle('flipped')">
+                    <div class="relative w-full h-full transform-style-3d shadow-xl rounded-3xl">
+                        <div class="absolute inset-0 w-full h-full backface-hidden glass-card rounded-3xl flex flex-col items-center justify-center p-8 text-center border-2 border-blue-200 dark:border-slate-700">
+                            <div class="w-16 h-16 rounded-2xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-4xl mb-4">💪</div>
+                            <h3 class="font-extrabold text-xl mb-2 text-blue-600 dark:text-blue-400">Điểm Mạnh (Strengths)</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">Những kỹ năng và tố chất nổi bật làm nền tảng bứt phá.</p>
+                            <span class="mt-4 text-xs font-bold text-primary bg-blue-100 dark:bg-blue-900/50 px-3 py-1 rounded-full animate-pulse">Chạm để lật ➔</span>
+                        </div>
+                        <div class="absolute inset-0 w-full h-full backface-hidden bg-gradient-to-br from-blue-500 to-cyan-600 text-white rounded-3xl flex flex-col justify-center p-8 shadow-inner" style="transform: rotateY(180deg);">
+                            <h3 class="font-bold text-xl mb-3 border-b border-white/30 pb-2 text-center">Sở trường cá nhân:</h3>
+                            <ul class="text-sm list-disc pl-4 space-y-2 font-medium">
+                                <li>Tư duy logic, nhạy bén với công nghệ & lập trình.</li>
+                                <li>Khả năng tự học và tìm kiếm tài liệu mới rất nhanh.</li>
+                                <li>Tinh thần trách nhiệm cao khi làm việc nhóm.</li>
+                                <li>Kiên trì giải quyết bài toán khó đến cùng.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ 2: Điểm yếu -->
+                <div class="h-72 perspective-1000 flip-card-container cursor-pointer w-full" onclick="this.classList.toggle('flipped')">
+                    <div class="relative w-full h-full transform-style-3d shadow-xl rounded-3xl">
+                        <div class="absolute inset-0 w-full h-full backface-hidden glass-card rounded-3xl flex flex-col items-center justify-center p-8 text-center border-2 border-pink-200 dark:border-slate-700">
+                            <div class="w-16 h-16 rounded-2xl bg-pink-100 dark:bg-pink-900/40 flex items-center justify-center text-4xl mb-4">🎯</div>
+                            <h3 class="font-extrabold text-xl mb-2 text-pink-500">Điểm Yếu (Weaknesses)</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">Những khía cạnh cần nghiêm túc khắc phục mỗi ngày.</p>
+                            <span class="mt-4 text-xs font-bold text-accent bg-pink-100 dark:bg-pink-900/50 px-3 py-1 rounded-full animate-pulse">Chạm để lật ➔</span>
+                        </div>
+                        <div class="absolute inset-0 w-full h-full backface-hidden bg-gradient-to-br from-pink-500 to-rose-600 text-white rounded-3xl flex flex-col justify-center p-8 shadow-inner" style="transform: rotateY(180deg);">
+                            <h3 class="font-bold text-xl mb-3 border-b border-white/30 pb-2 text-center">Cần cải thiện:</h3>
+                            <ul class="text-sm list-disc pl-4 space-y-2 font-medium">
+                                <li>Phản xạ giao tiếp tiếng Anh chuyên ngành cần nâng cao.</li>
+                                <li>Đôi khi ôm đồm nhiều việc cùng lúc.</li>
+                                <li>Thuyết trình trước đám đông lớn còn hơi hồi hộp.</li>
+                                <li>Cần cân bằng tốt hơn giữa học tập và nghỉ ngơi.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ 3: Giá trị cốt lõi -->
+                <div class="h-72 perspective-1000 flip-card-container cursor-pointer w-full" onclick="this.classList.toggle('flipped')">
+                    <div class="relative w-full h-full transform-style-3d shadow-xl rounded-3xl">
+                        <div class="absolute inset-0 w-full h-full backface-hidden glass-card rounded-3xl flex flex-col items-center justify-center p-8 text-center border-2 border-amber-200 dark:border-slate-700">
+                            <div class="w-16 h-16 rounded-2xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-4xl mb-4">🌟</div>
+                            <h3 class="font-extrabold text-xl mb-2 text-amber-500">Giá Trị Cốt Lõi</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">Kim chỉ nam định hướng mọi quyết định nghề nghiệp.</p>
+                            <span class="mt-4 text-xs font-bold text-warning bg-amber-100 dark:bg-amber-900/50 px-3 py-1 rounded-full animate-pulse">Chạm để lật ➔</span>
+                        </div>
+                        <div class="absolute inset-0 w-full h-full backface-hidden bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-3xl flex flex-col justify-center p-8 shadow-inner" style="transform: rotateY(180deg);">
+                            <h3 class="font-bold text-xl mb-3 border-b border-white/30 pb-2 text-center">Nguyên tắc sống:</h3>
+                            <ul class="text-sm list-disc pl-4 space-y-2 font-medium">
+                                <li>Chính trực, uy tín và tận tâm trong từng sản phẩm.</li>
+                                <li>Học tập suốt đời, không ngừng đổi mới sáng tạo.</li>
+                                <li>Tạo ra giải pháp công nghệ hữu ích cho xã hội.</li>
+                                <li>Tôn trọng sự khác biệt và đề cao tinh thần đồng đội.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ 4: Sở thích & Đam mê -->
+                <div class="h-72 perspective-1000 flip-card-container cursor-pointer w-full" onclick="this.classList.toggle('flipped')">
+                    <div class="relative w-full h-full transform-style-3d shadow-xl rounded-3xl">
+                        <div class="absolute inset-0 w-full h-full backface-hidden glass-card rounded-3xl flex flex-col items-center justify-center p-8 text-center border-2 border-cyan-200 dark:border-slate-700">
+                            <div class="w-16 h-16 rounded-2xl bg-cyan-100 dark:bg-cyan-900/40 flex items-center justify-center text-4xl mb-4">🔥</div>
+                            <h3 class="font-extrabold text-xl mb-2 text-cyan-600 dark:text-cyan-400">Đam Mê & Sở Thích</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">Nguồn năng lượng tích cực nuôi dưỡng sự sáng tạo.</p>
+                            <span class="mt-4 text-xs font-bold text-cyan-600 bg-cyan-100 dark:bg-cyan-900/50 px-3 py-1 rounded-full animate-pulse">Chạm để lật ➔</span>
+                        </div>
+                        <div class="absolute inset-0 w-full h-full backface-hidden bg-gradient-to-br from-cyan-500 to-teal-600 text-white rounded-3xl flex flex-col justify-center p-8 shadow-inner" style="transform: rotateY(180deg);">
+                            <h3 class="font-bold text-xl mb-3 border-b border-white/30 pb-2 text-center">Yêu thích nhất:</h3>
+                            <ul class="text-sm list-disc pl-4 space-y-2 font-medium">
+                                <li>Thiết kế và xây dựng giao diện Website hiện đại.</li>
+                                <li>Khám phá Trí tuệ nhân tạo (AI) và tự động hóa.</li>
+                                <li>Đọc sách phát triển bản thân, công nghệ mới.</li>
+                                <li>Chơi thể thao, nhiếp ảnh và chỉnh sửa hình ảnh.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ 5: Trắc nghiệm tính cách -->
+                <div class="h-72 perspective-1000 flip-card-container cursor-pointer w-full" onclick="this.classList.toggle('flipped')">
+                    <div class="relative w-full h-full transform-style-3d shadow-xl rounded-3xl">
+                        <div class="absolute inset-0 w-full h-full backface-hidden glass-card rounded-3xl flex flex-col items-center justify-center p-8 text-center border-2 border-indigo-200 dark:border-slate-700">
+                            <div class="w-16 h-16 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-4xl mb-4">🧭</div>
+                            <h3 class="font-extrabold text-xl mb-2 text-indigo-600 dark:text-indigo-400">Mã Holland & MBTI</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">Kết quả trắc nghiệm định hướng nghề nghiệp khoa học.</p>
+                            <span class="mt-4 text-xs font-bold text-indigo-600 bg-indigo-100 dark:bg-indigo-900/50 px-3 py-1 rounded-full animate-pulse">Chạm để lật ➔</span>
+                        </div>
+                        <div class="absolute inset-0 w-full h-full backface-hidden bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-3xl flex flex-col justify-center p-8 shadow-inner" style="transform: rotateY(180deg);">
+                            <h3 class="font-bold text-xl mb-3 border-b border-white/30 pb-2 text-center">Hồ sơ tâm lý:</h3>
+                            <ul class="text-sm list-disc pl-4 space-y-2 font-medium">
+                                <li><strong>MBTI: INTJ / ENTJ</strong> - Người có tầm nhìn chiến lược & hoạch định.</li>
+                                <li><strong>Holland: Nhóm I (Nghiên cứu) & C (Nghiệp vụ)</strong>.</li>
+                                <li>Phù hợp cao với: Kỹ sư phần mềm, Khoa học dữ liệu, Quản trị hệ thống.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ 6: Cơ hội & Thách thức -->
+                <div class="h-72 perspective-1000 flip-card-container cursor-pointer w-full" onclick="this.classList.toggle('flipped')">
+                    <div class="relative w-full h-full transform-style-3d shadow-xl rounded-3xl">
+                        <div class="absolute inset-0 w-full h-full backface-hidden glass-card rounded-3xl flex flex-col items-center justify-center p-8 text-center border-2 border-emerald-200 dark:border-slate-700">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-4xl mb-4">🌍</div>
+                            <h3 class="font-extrabold text-xl mb-2 text-emerald-600 dark:text-emerald-400">Cơ Hội & Thách Thức</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">Nhận diện bối cảnh thị trường lao động kỷ nguyên số.</p>
+                            <span class="mt-4 text-xs font-bold text-emerald-600 bg-emerald-100 dark:bg-emerald-900/50 px-3 py-1 rounded-full animate-pulse">Chạm để lật ➔</span>
+                        </div>
+                        <div class="absolute inset-0 w-full h-full backface-hidden bg-gradient-to-br from-emerald-500 to-green-600 text-white rounded-3xl flex flex-col justify-center p-8 shadow-inner" style="transform: rotateY(180deg);">
+                            <h3 class="font-bold text-xl mb-3 border-b border-white/30 pb-2 text-center">Bối cảnh thị trường:</h3>
+                            <ul class="text-sm list-disc pl-4 space-y-2 font-medium">
+                                <li><strong>Cơ hội:</strong> Nhu cầu nhân lực CNTT & chuyển đổi số tăng mạnh toàn cầu.</li>
+                                <li><strong>Cơ hội:</strong> Làm việc từ xa cho doanh nghiệp quốc tế.</li>
+                                <li><strong>Thách thức:</strong> Cạnh tranh cao, đòi hỏi làm chủ AI và ngoại ngữ giỏi.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: ĐỊNH VỊ NGHỀ NGHIỆP MỤC TIÊU (MÔ HÌNH IKIGAI) -->
+        <section id="ikigai" class="reveal">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-blue-200/70 dark:border-slate-800 relative overflow-hidden">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="px-4 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300 text-xs font-bold uppercase tracking-wider">Phần 02</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-3 dark:text-white">🧭 Định Vị Nghề Nghiệp Theo Ikigai</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Sự giao thoa giữa 4 yếu tố tạo nên nghề nghiệp lý tưởng: <strong>Kỹ sư Phần mềm & Giải pháp AI (Fullstack / AI Engineer)</strong>.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-3xl bg-gradient-to-b from-blue-50 to-white dark:from-slate-800 dark:to-slate-900 border border-blue-200 dark:border-slate-700 shadow-sm hover-glow transition-all">
+                        <div class="text-3xl mb-3">❤️</div>
+                        <h3 class="font-extrabold text-lg text-blue-600 dark:text-blue-400 mb-2">Điều Tôi Yêu Thích</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Sáng tạo các ứng dụng web/mobile thông minh, biến ý tưởng trên giấy thành sản phẩm số sống động phục vụ người dùng.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-gradient-to-b from-cyan-50 to-white dark:from-slate-800 dark:to-slate-900 border border-cyan-200 dark:border-slate-700 shadow-sm hover-glow transition-all">
+                        <div class="text-3xl mb-3">⭐</div>
+                        <h3 class="font-extrabold text-lg text-cyan-600 dark:text-cyan-400 mb-2">Điều Tôi Giỏi</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Tư duy thuật toán, thiết kế giao diện trực quan (UI/UX), phân tích hệ thống và làm chủ nhanh các công cụ công nghệ mới.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-gradient-to-b from-indigo-50 to-white dark:from-slate-800 dark:to-slate-900 border border-indigo-200 dark:border-slate-700 shadow-sm hover-glow transition-all">
+                        <div class="text-3xl mb-3">🌏</div>
+                        <h3 class="font-extrabold text-lg text-indigo-600 dark:text-indigo-400 mb-2">Điều Xã Hội Cần</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Chuyển đổi số toàn diện trong giáo dục, y tế, thương mại; các hệ thống phần mềm an toàn, tốc độ cao và tích hợp AI.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-gradient-to-b from-emerald-50 to-white dark:from-slate-800 dark:to-slate-900 border border-emerald-200 dark:border-slate-700 shadow-sm hover-glow transition-all">
+                        <div class="text-3xl mb-3">💎</div>
+                        <h3 class="font-extrabold text-lg text-emerald-600 dark:text-emerald-400 mb-2">Mang Lại Thu Nhập Tốt</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Ngành Kỹ thuật Phần mềm & Khoa học Máy tính có mức đãi ngộ hấp dẫn, cơ hội thăng tiến rõ ràng và làm việc toàn cầu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 3: BẢN ĐỒ MỤC TIÊU SMART -->
+        <section class="reveal">
+            <div class="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 rounded-[2.5rem] p-8 md:p-14 shadow-2xl text-white overflow-hidden">
+                <div class="text-center mb-12 relative z-10">
+                    <span class="px-4 py-1 rounded-full bg-white/10 text-cyan-300 text-xs font-bold uppercase tracking-wider">Phần 03</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-2">🎯 Bản Đồ <span class="text-cyan-300">Mục Tiêu Chiến Lược (SMART)</span></h2>
+                    <p class="text-blue-200 text-sm mt-2">Chia nhỏ mục tiêu theo từng giai đoạn để dễ dàng đo lường và chinh phục.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <!-- Ngắn hạn -->
+                    <div class="glass-card bg-white/10 border-white/20 p-7 rounded-3xl relative overflow-hidden hover:-translate-y-2 transition-transform">
+                        <div class="text-4xl mb-4">⏳</div>
+                        <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-500/30 text-blue-200">Giai đoạn 1 (1 - 2 năm)</span>
+                        <h3 class="text-2xl font-bold mt-3 mb-4 text-blue-300 border-b border-blue-400/30 pb-2">Mục Tiêu Ngắn Hạn</h3>
+                        <ul class="space-y-3 text-blue-50 text-sm">
+                            <li class="flex items-start"><span class="text-cyan-400 mr-2 font-bold">✓</span> Hoàn thành xuất sắc chương trình lớp 12A11 & đỗ Đại học nguyện vọng 1.</li>
+                            <li class="flex items-start"><span class="text-cyan-400 mr-2 font-bold">✓</span> Đạt chứng chỉ ngoại ngữ quốc tế IELTS 6.5+.</li>
+                            <li class="flex items-start"><span class="text-cyan-400 mr-2 font-bold">✓</span> Nắm vững nền tảng Cấu trúc dữ liệu, Giải thuật & Lập trình Web.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Trung hạn -->
+                    <div class="glass-card bg-white/10 border-white/20 p-7 rounded-3xl relative overflow-hidden hover:-translate-y-2 transition-transform">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-500/30 text-cyan-200">Giai đoạn 2 (2 - 4 năm)</span>
+                        <h3 class="text-2xl font-bold mt-3 mb-4 text-cyan-300 border-b border-cyan-400/30 pb-2">Mục Tiêu Trung Hạn</h3>
+                        <ul class="space-y-3 text-blue-50 text-sm">
+                            <li class="flex items-start"><span class="text-cyan-400 mr-2 font-bold">✓</span> Thực tập sinh (Intern/Fresher) tại tập đoàn công nghệ lớn (FPT, Viettel, VNG...).</li>
+                            <li class="flex items-start"><span class="text-cyan-400 mr-2 font-bold">✓</span> Xây dựng Portfolio cá nhân với ít nhất 5 dự án thực tế hoàn chỉnh.</li>
+                            <li class="flex items-start"><span class="text-cyan-400 mr-2 font-bold">✓</span> Đạt học bổng khuyến khích học tập và giải thưởng Nghiên cứu khoa học.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Dài hạn -->
+                    <div class="glass-card bg-white/10 border-white/20 p-7 rounded-3xl relative overflow-hidden hover:-translate-y-2 transition-transform">
+                        <div class="text-4xl mb-4">🚀</div>
+                        <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-pink-500/30 text-pink-200">Giai đoạn 3 (5 năm+)</span>
+                        <h3 class="text-2xl font-bold mt-3 mb-4 text-pink-300 border-b border-pink-400/30 pb-2">Mục Tiêu Dài Hạn</h3>
+                        <ul class="space-y-3 text-blue-50 text-sm">
+                            <li class="flex items-start"><span class="text-pink-400 mr-2 font-bold">✓</span> Trở thành Kỹ sư Phần mềm Senior / Trưởng nhóm dự án (Tech Lead).</li>
+                            <li class="flex items-start"><span class="text-pink-400 mr-2 font-bold">✓</span> Tự chủ tài chính vững vàng và đóng góp giá trị cho gia đình, xã hội.</li>
+                            <li class="flex items-start"><span class="text-pink-400 mr-2 font-bold">✓</span> Phát triển sản phẩm khởi nghiệp công nghệ mang dấu ấn cá nhân.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 4: LỘ TRÌNH HỌC VẤN & KINH NGHIỆM (TIMELINE) -->
+        <section id="timeline" class="reveal">
+            <div class="text-center mb-12">
+                <span class="px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">Phần 04</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-3 dark:text-white">🎓 Lộ Trình Học Vấn & Phát Triển</h2>
+                <p class="text-slate-600 dark:text-slate-400">Những cột mốc quan trọng định hình tri thức và sự nghiệp tương lai.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto relative border-l-4 border-blue-500 dark:border-blue-600 ml-4 md:ml-auto">
+                <!-- Mốc 1 -->
+                <div class="mb-10 ml-8 relative group">
+                    <div class="absolute -left-[42px] top-1 w-6 h-6 bg-cyan-400 rounded-full border-4 border-white dark:border-darkBg shadow-lg group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md hover-glow transition-all">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 text-sm font-bold rounded-full mb-3">2023 - 2026 | Lớp 12A11</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Trung học Phổ thông - Khởi nguồn đam mê</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm">Học sinh lớp 12A11. Tập trung ôn luyện vững chắc các môn tổ hợp xét tuyển Đại học, rèn luyện tư duy thuật toán, thiết kế web cơ bản và tham gia tích cực các hoạt động tập thể của lớp.</p>
+                    </div>
+                </div>
+                
+                <!-- Mốc 2 -->
+                <div class="mb-10 ml-8 relative group">
+                    <div class="absolute -left-[42px] top-1 w-6 h-6 bg-blue-500 rounded-full border-4 border-white dark:border-darkBg shadow-lg group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md hover-glow transition-all border-l-4 border-l-blue-500">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 text-sm font-bold rounded-full mb-3">2026 - 2028 (Dự kiến)</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Đại học Năm 1 & 2 - Xây dựng nền tảng chuyên sâu</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm">Sinh viên chuyên ngành Công nghệ Thông tin / Khoa học Máy tính. Làm chủ lập trình hướng đối tượng, cơ sở dữ liệu, mạng máy tính và tham gia Câu lạc bộ Lập trình tại trường.</p>
+                    </div>
+                </div>
+
+                <!-- Mốc 3 -->
+                <div class="mb-10 ml-8 relative group">
+                    <div class="absolute -left-[42px] top-1 w-6 h-6 bg-indigo-500 rounded-full border-4 border-white dark:border-darkBg shadow-lg group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md hover-glow transition-all border-l-4 border-l-indigo-500">
+                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-sm font-bold rounded-full mb-3">2028 - 2030 (Dự kiến)</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Đại học Năm 3 & 4 - Thực chiến doanh nghiệp</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm">Thực tập tại các doanh nghiệp phần mềm lớn, học quy trình phát triển dự án Agile/Scrum, hoàn thành đồ án tốt nghiệp loại Xuất sắc với đề tài ứng dụng AI thực tiễn.</p>
+                    </div>
+                </div>
+
+                <!-- Mốc 4 -->
+                <div class="ml-8 relative group">
+                    <div class="absolute -left-[42px] top-1 w-6 h-6 bg-pink-500 rounded-full border-4 border-white dark:border-darkBg shadow-lg group-hover:scale-125 transition-transform animate-pulse"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md hover-glow transition-all border-l-4 border-l-pink-500">
+                        <span class="inline-block px-3 py-1 bg-pink-100 text-pink-700 dark:bg-pink-900/50 dark:text-pink-300 text-sm font-bold rounded-full mb-3">Từ 2030 trở đi</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Phát triển Sự nghiệp Chuyên nghiệp</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm">Trở thành Kỹ sư phần mềm chính thức, không ngừng nâng cấp chuyên môn lên vị trí Chuyên gia / Quản lý dự án và kiến tạo nhiều sản phẩm giá trị.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 5: BỘ KỸ NĂNG NỀN TẢNG -->
+        <section id="skills" class="reveal">
+            <div class="text-center mb-12">
+                <span class="px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">Phần 05</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-3 dark:text-white">🛠️ Hệ Sinh Thái Kỹ Năng</h2>
+                <p class="text-slate-600 dark:text-slate-400">Sự kết hợp hài hòa giữa năng lực chuyên môn (Hard Skills) và kỹ năng mềm (Soft Skills).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Cột 1: Kỹ năng chuyên môn -->
+                <div class="glass-card p-8 rounded-3xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                        <span>💻</span> Kỹ Năng Chuyên Môn
+                    </h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Lập trình Web (HTML5, TailwindCSS, JS)</span>
+                                <span class="text-blue-600 font-bold">85%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-3 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Tư duy Thuật toán (C++ / Python)</span>
+                                <span class="text-blue-600 font-bold">80%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-3 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Thiết kế giao diện UI/UX (Figma, Canva)</span>
+                                <span class="text-blue-600 font-bold">78%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-3 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Ứng dụng AI & Công cụ số hiệu suất cao</span>
+                                <span class="text-blue-600 font-bold">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-3 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột 2: Kỹ năng mềm -->
+                <div class="glass-card p-8 rounded-3xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                        <span>🤝</span> Kỹ Năng Mềm Thiết Yếu
+                    </h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Làm việc nhóm & Phối hợp (Teamwork)</span>
+                                <span class="text-emerald-600 font-bold">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-3 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Tự học & Nghiên cứu tài liệu mới</span>
+                                <span class="text-emerald-600 font-bold">92%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-3 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Giải quyết vấn đề & Tư duy phản biện</span>
+                                <span class="text-emerald-600 font-bold">82%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-3 rounded-full" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold mb-1.5 text-sm dark:text-slate-200">
+                                <span>Ngoại ngữ (Tiếng Anh giao tiếp & đọc hiểu)</span>
+                                <span class="text-emerald-600 font-bold">75%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-3 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 6: CHECKLIST KẾ HOẠCH HÀNH ĐỘNG TƯƠNG TÁC -->
+        <section id="action" class="reveal">
+            <div class="glass-card p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-blue-200 dark:border-slate-800">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <span class="px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">Phần 06</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-3 dark:text-white">✅ Checklist Hành Động Mỗi Ngày</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Tích chọn vào các nhiệm vụ bên dưới để theo dõi tiến độ hoàn thành mục tiêu (Có hiệu ứng pháo hoa chúc mừng!).</p>
+                </div>
+
+                <!-- Thanh tiến độ tổng -->
+                <div class="max-w-xl mx-auto mb-8">
+                    <div class="flex justify-between text-sm font-bold mb-2">
+                        <span class="text-blue-600 dark:text-blue-400">Tiến độ hoàn thành kế hoạch:</span>
+                        <span id="checklist-progress-text" class="text-primary">50% (3/6)</span>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-4 rounded-full overflow-hidden p-0.5">
+                        <div id="checklist-progress-bar" class="bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                    <label class="flex items-center gap-4 p-4 rounded-2xl bg-white/80 dark:bg-darkCard border border-blue-100 dark:border-slate-700 cursor-pointer hover:border-blue-400 transition">
+                        <input type="checkbox" checked class="task-checkbox w-5 h-5 accent-blue-600 rounded cursor-pointer">
+                        <span class="text-sm font-semibold">Hoàn thành hồ sơ định hướng nghề nghiệp cá nhân lớp 12A11</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 rounded-2xl bg-white/80 dark:bg-darkCard border border-blue-100 dark:border-slate-700 cursor-pointer hover:border-blue-400 transition">
+                        <input type="checkbox" checked class="task-checkbox w-5 h-5 accent-blue-600 rounded cursor-pointer">
+                        <span class="text-sm font-semibold">Dành 2 giờ mỗi ngày luyện đề thi Tốt nghiệp THPT & Đại học</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 rounded-2xl bg-white/80 dark:bg-darkCard border border-blue-100 dark:border-slate-700 cursor-pointer hover:border-blue-400 transition">
+                        <input type="checkbox" checked class="task-checkbox w-5 h-5 accent-blue-600 rounded cursor-pointer">
+                        <span class="text-sm font-semibold">Thực hành viết code & thiết kế giao diện web mỗi tuần</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 rounded-2xl bg-white/80 dark:bg-darkCard border border-blue-100 dark:border-slate-700 cursor-pointer hover:border-blue-400 transition">
+                        <input type="checkbox" class="task-checkbox w-5 h-5 accent-blue-600 rounded cursor-pointer">
+                        <span class="text-sm font-semibold">Học 15 từ vựng tiếng Anh chuyên ngành CNTT mỗi ngày</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 rounded-2xl bg-white/80 dark:bg-darkCard border border-blue-100 dark:border-slate-700 cursor-pointer hover:border-blue-400 transition">
+                        <input type="checkbox" class="task-checkbox w-5 h-5 accent-blue-600 rounded cursor-pointer">
+                        <span class="text-sm font-semibold">Xây dựng 3 dự án cá nhân hoàn chỉnh đưa lên Github</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 rounded-2xl bg-white/80 dark:bg-darkCard border border-blue-100 dark:border-slate-700 cursor-pointer hover:border-blue-400 transition">
+                        <input type="checkbox" class="task-checkbox w-5 h-5 accent-blue-600 rounded cursor-pointer">
+                        <span class="text-sm font-semibold">Tham gia câu lạc bộ học thuật và đạt học bổng năm nhất</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 7: DỰ ÁN & THÀNH TỰU TIÊU BIỂU -->
+        <section class="reveal">
+            <div class="text-center mb-12">
+                <span class="px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">Phần 07</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-3 dark:text-white">🏆 Dự Án & Hoạt Động Tiêu Biểu</h2>
+                <p class="text-slate-600 dark:text-slate-400">Những sản phẩm đầu tay thể hiện niềm đam mê công nghệ và sáng tạo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card overflow-hidden rounded-3xl shadow-lg group hover-glow transition-all">
+                    <div class="h-40 bg-gradient-to-r from-blue-500 to-cyan-400 relative flex items-center justify-center text-6xl">
+                        🌐
+                        <div class="absolute bottom-3 left-4 bg-white/90 dark:bg-darkBg/90 px-3 py-1 rounded-full text-xs font-bold text-blue-600 dark:text-blue-400">Web Portfolio</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-extrabold text-xl mb-2 dark:text-white group-hover:text-blue-500 transition-colors">Website Định Hướng Nghề Nghiệp</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Trang web tương tác hiện đại trình bày kế hoạch phát triển bản thân, tích hợp hiệu ứng 3D và thư viện ảnh thông minh.</p>
+                        <div class="border-t border-slate-200 dark:border-slate-700 pt-4 text-xs text-slate-500 dark:text-slate-400 flex justify-between">
+                            <span><strong>Tác giả:</strong> Gia Huy 12A11</span>
+                            <span><strong>HTML / Tailwind / JS</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card overflow-hidden rounded-3xl shadow-lg group hover-glow transition-all">
+                    <div class="h-40 bg-gradient-to-r from-indigo-500 to-purple-500 relative flex items-center justify-center text-6xl">
+                        🤖
+                        <div class="absolute bottom-3 left-4 bg-white/90 dark:bg-darkBg/90 px-3 py-1 rounded-full text-xs font-bold text-indigo-600 dark:text-indigo-400">AI & Học Tập</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-extrabold text-xl mb-2 dark:text-white group-hover:text-indigo-500 transition-colors">Trợ Lý Ôn Tập Thông Minh</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Ứng dụng tổng hợp kiến thức trọng tâm lớp 12 và tạo câu hỏi trắc nghiệm ôn tập tự động giúp nâng cao hiệu quả học tập.</p>
+                        <div class="border-t border-slate-200 dark:border-slate-700 pt-4 text-xs text-slate-500 dark:text-slate-400 flex justify-between">
+                            <span><strong>Vai trò:</strong> Thiết kế & Code</span>
+                            <span><strong>Python / Web API</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card overflow-hidden rounded-3xl shadow-lg group hover-glow transition-all">
+                    <div class="h-40 bg-gradient-to-r from-emerald-400 to-teal-500 relative flex items-center justify-center text-6xl">
+                        🏅
+                        <div class="absolute bottom-3 left-4 bg-white/90 dark:bg-darkBg/90 px-3 py-1 rounded-full text-xs font-bold text-emerald-600 dark:text-emerald-400">Hoạt Động Lớp 12A11</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-extrabold text-xl mb-2 dark:text-white group-hover:text-emerald-500 transition-colors">Dự Án Công Nghệ & Đoàn Thể</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Tham gia thiết kế ấn phẩm truyền thông, thuyết trình các chuyên đề học tập và hỗ trợ kỹ thuật cho các hoạt động của lớp 12A11.</p>
+                        <div class="border-t border-slate-200 dark:border-slate-700 pt-4 text-xs text-slate-500 dark:text-slate-400 flex justify-between">
+                            <span><strong>Tập thể:</strong> Lớp 12A11</span>
+                            <span><strong>Teamwork & Media</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 8: THƯ VIỆN ẢNH THÔNG MINH (THÊM ẢNH + TÙY CHỈNH CỘT 1-5) -->
+        <section id="gallery" class="reveal pt-6">
+            <div class="text-center mb-10">
+                <span class="px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">Phần 08</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">📸 Thư Viện Hình Ảnh Hành Trình</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Thêm hình ảnh bằng đường link (URL) hoặc tải trực tiếp từ máy tính, tùy chỉnh linh hoạt từ 1 đến 5 cột hiển thị.</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto glass-card p-6 md:p-8 rounded-3xl shadow-xl border border-blue-100 dark:border-slate-800">
+                <!-- Bảng điều khiển (Controls) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-8 items-center bg-sky-50/90 dark:bg-darkCard p-4 rounded-2xl border border-blue-200/60 dark:border-slate-700">
+                    <!-- Nhập URL + Tên ảnh -->
+                    <div class="lg:col-span-6 flex flex-col sm:flex-row gap-2">
+                        <input type="text" id="img-url-input" placeholder="Dán link ảnh (https://...)" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                        <input type="text" id="img-title-input" placeholder="Chú thích ảnh..." class="sm:w-36 px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                        <button id="add-img-btn" class="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:opacity-95 transition shadow-md whitespace-nowrap text-sm">
+                            + Thêm Link
+                        </button>
+                    </div>
+
+                    <!-- Tải ảnh từ máy -->
+                    <div class="lg:col-span-3 flex items-center justify-center">
+                        <label for="file-upload-input" class="w-full text-center cursor-pointer px-4 py-2.5 bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 border border-blue-300 dark:border-slate-600 font-bold rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 transition shadow-sm text-sm">
+                            📁 Tải ảnh từ máy (<span id="img-count-badge">6</span>)
+                        </label>
+                        <input type="file" id="file-upload-input" accept="image/*" multiple class="hidden">
+                    </div>
+
+                    <!-- Thanh trượt số cột -->
+                    <div class="lg:col-span-3 flex items-center gap-3 px-2">
+                        <label for="column-slider" class="text-sm font-bold whitespace-nowrap text-slate-700 dark:text-slate-300">Số cột:</label>
+                        <input type="range" id="column-slider" min="1" max="5" value="3" class="w-full accent-primary cursor-pointer">
+                        <span id="column-val" class="font-extrabold text-white bg-primary px-2.5 py-0.5 rounded-lg text-sm">3</span>
+                    </div>
+                </div>
+
+                <!-- Thông báo trạng thái (Thay cho alert) -->
+                <div id="gallery-msg" class="hidden mb-4 p-3 rounded-xl bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-200 text-sm font-semibold text-center"></div>
+
+                <!-- Gallery Grid -->
+                <div id="image-gallery" class="grid grid-cols-1 md:grid-cols-3 gap-5 transition-all duration-300">
+                    <!-- Ảnh mẫu 1 -->
+                    <div class="gallery-item relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] border border-white/50">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Teamwork" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                            <span class="text-white font-bold text-sm">Làm việc nhóm & Sáng tạo</span>
+                            <button onclick="removeGalleryItem(this)" class="mt-2 self-start bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-red-600 transition">Xóa ảnh</button>
+                        </div>
+                    </div>
+                    <!-- Ảnh mẫu 2 -->
+                    <div class="gallery-item relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] border border-white/50">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Coding" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                            <span class="text-white font-bold text-sm">Đam mê Lập trình Phần mềm</span>
+                            <button onclick="removeGalleryItem(this)" class="mt-2 self-start bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-red-600 transition">Xóa ảnh</button>
+                        </div>
+                    </div>
+                    <!-- Ảnh mẫu 3 -->
+                    <div class="gallery-item relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] border border-white/50">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80" alt="Presentation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                            <span class="text-white font-bold text-sm">Tự tin Thuyết trình Dự án</span>
+                            <button onclick="removeGalleryItem(this)" class="mt-2 self-start bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-red-600 transition">Xóa ảnh</button>
+                        </div>
+                    </div>
+                    <!-- Ảnh mẫu 4 -->
+                    <div class="gallery-item relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] border border-white/50">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Planning" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                            <span class="text-white font-bold text-sm">Hoạch định Mục tiêu Tương lai</span>
+                            <button onclick="removeGalleryItem(this)" class="mt-2 self-start bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-red-600 transition">Xóa ảnh</button>
+                        </div>
+                    </div>
+                    <!-- Ảnh mẫu 5 -->
+                    <div class="gallery-item relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] border border-white/50">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Workshop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                            <span class="text-white font-bold text-sm">Học hỏi Công nghệ Mới</span>
+                            <button onclick="removeGalleryItem(this)" class="mt-2 self-start bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-red-600 transition">Xóa ảnh</button>
+                        </div>
+                    </div>
+                    <!-- Ảnh mẫu 6 -->
+                    <div class="gallery-item relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] border border-white/50">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Graduation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                            <span class="text-white font-bold text-sm">Kỷ niệm Tuổi học trò 12A11</span>
+                            <button onclick="removeGalleryItem(this)" class="mt-2 self-start bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-red-600 transition">Xóa ảnh</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PHẦN CUỐI: NGƯỜI THIẾT KẾ DỰ ÁN (THEO ĐÚNG MẪU ẢNH CỦA BẠN) -->
+    <footer class="mt-24 bg-gradient-to-b from-[#0f294a] to-[#09192f] text-white py-16 px-4 border-t border-blue-800/60 relative overflow-hidden">
+        <!-- Ánh sáng nền nhẹ -->
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-blue-500/20 blur-3xl pointer-events-none rounded-full"></div>
+
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <!-- Tiêu đề -->
+            <h2 class="text-2xl md:text-3xl font-extrabold mb-6 tracking-wide text-white drop-shadow">
+                Người thiết kế dự án
+            </h2>
+
+            <!-- Khung thẻ bo góc giống hệt hình mẫu -->
+            <div class="max-w-xl mx-auto rounded-2xl p-6 md:p-8 bg-[#184375]/80 border border-blue-400/40 backdrop-blur-md shadow-2xl text-left space-y-2.5">
+                <p class="text-base md:text-lg text-blue-100">
+                    Họ và tên: <strong class="font-extrabold text-white">Nguyễn Văn Gia Huy</strong>
+                </p>
+                <p class="text-base md:text-lg text-blue-100">
+                    Lớp: <strong class="font-extrabold text-white">12A11</strong>
+                </p>
+                <p class="pt-2 text-sm md:text-base italic font-semibold text-cyan-300 leading-relaxed">
+                    "Ước mơ không tự nhiên thành hiện thực, nó được kiến tạo từ kế hoạch rõ ràng và sự nỗ lực bền bỉ mỗi ngày!"
+                </p>
+            </div>
+
+            <!-- Bản quyền bên dưới -->
+            <p class="text-xs md:text-sm text-blue-200/80 mt-8 font-medium">
+                © 2026 Dự án Kế hoạch định hướng nghề nghiệp - Nguyễn Văn Gia Huy (12A11).
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Xử lý Dark Mode
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const iconLight = document.getElementById('theme-icon-light');
+        const iconDark = document.getElementById('theme-icon-dark');
+        const htmlElement = document.documentElement;
+
+        function toggleTheme() {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                iconLight.classList.remove('hidden');
+                iconDark.classList.add('hidden');
+            } else {
+                iconLight.classList.add('hidden');
+                iconDark.classList.remove('hidden');
+            }
+        }
+        themeToggleBtn.addEventListener('click', toggleTheme);
+
+        // 2. Hiệu ứng Scroll Reveal
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 80;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = function() {
+            reveal();
+            updateChecklistProgress(false);
+        };
+
+        // 3. Xử lý Checklist Hành động + Confetti
+        const checkboxes = document.querySelectorAll('.task-checkbox');
+        const progressBar = document.getElementById('checklist-progress-bar');
+        const progressText = document.getElementById('checklist-progress-text');
+
+        function updateChecklistProgress(triggerConfetti = true) {
+            const total = checkboxes.length;
+            let checkedCount = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) checkedCount++;
+            });
+            const percent = Math.round((checkedCount / total) * 100);
+            progressBar.style.width = percent + '%';
+            progressText.textContent = `${percent}% (${checkedCount}/${total})`;
+
+            if (triggerConfetti && checkedCount > 0 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: checkedCount === total ? 90 : 35,
+                    spread: 70,
+                    origin: { y: 0.7 }
+                });
+            }
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => updateChecklistProgress(true));
+        });
+
+        // 4. Xử lý Thư viện ảnh động (URL + Tải file + Chỉnh cột 1-5)
+        const slider = document.getElementById('column-slider');
+        const sliderVal = document.getElementById('column-val');
+        const gallery = document.getElementById('image-gallery');
+        const urlInput = document.getElementById('img-url-input');
+        const titleInput = document.getElementById('img-title-input');
+        const addBtn = document.getElementById('add-img-btn');
+        const fileInput = document.getElementById('file-upload-input');
+        const countBadge = document.getElementById('img-count-badge');
+        const galleryMsg = document.getElementById('gallery-msg');
+
+        function showGalleryMessage(text) {
+            galleryMsg.textContent = text;
+            galleryMsg.classList.remove('hidden');
+            setTimeout(() => {
+                galleryMsg.classList.add('hidden');
+            }, 3000);
+        }
+
+        function updateImageCount() {
+            const items = gallery.querySelectorAll('.gallery-item');
+            countBadge.textContent = items.length;
+        }
+
+        function removeGalleryItem(btn) {
+            const card = btn.closest('.gallery-item');
+            if (card) {
+                card.remove();
+                updateImageCount();
+            }
+        }
+
+        function createGalleryCard(src, titleText) {
+            const caption = titleText || 'Khoảnh khắc đáng nhớ';
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'gallery-item relative group rounded-2xl overflow-hidden shadow-md aspect-[4/3] border border-white/50 reveal active';
+            imgContainer.innerHTML = `
+                <img src="${src}" onerror="this.src='https://placehold.co/800x600/3b82f6/ffffff?text=Hinh+Anh+12A11'" alt="${caption}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                    <span class="text-white font-bold text-sm">${caption}</span>
+                    <button onclick="removeGalleryItem(this)" class="mt-2 self-start bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-red-600 transition">Xóa ảnh</button>
+                </div>
+            `;
+            gallery.appendChild(imgContainer);
+            updateImageCount();
+        }
+
+        // Cập nhật số cột (1 đến 5 cột)
+        slider.addEventListener('input', (e) => {
+            const cols = parseInt(e.target.value, 10);
+            sliderVal.textContent = cols;
+            gallery.className = 'grid gap-5 transition-all duration-300';
+            if (cols === 1) gallery.classList.add('grid-cols-1');
+            if (cols === 2) gallery.classList.add('grid-cols-1', 'sm:grid-cols-2');
+            if (cols === 3) gallery.classList.add('grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3');
+            if (cols === 4) gallery.classList.add('grid-cols-2', 'md:grid-cols-4');
+            if (cols === 5) gallery.classList.add('grid-cols-2', 'sm:grid-cols-3', 'lg:grid-cols-5');
+        });
+
+        // Thêm ảnh từ URL
+        addBtn.addEventListener('click', () => {
+            const url = urlInput.value.trim();
+            const caption = titleInput.value.trim();
+            if (!url) {
+                showGalleryMessage('⚠️ Vui lòng dán đường link ảnh trước khi bấm Thêm!');
+                return;
+            }
+            createGalleryCard(url, caption || 'Hình ảnh mới thêm');
+            urlInput.value = '';
+            titleInput.value = '';
+            showGalleryMessage('✅ Đã thêm hình ảnh mới vào thư viện!');
+        });
+
+        // Tải nhiều ảnh trực tiếp từ máy tính
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            if (!files.length) return;
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const cleanName = file.name.replace(/\.[^/.]+$/, "");
+                    createGalleryCard(evt.target.result, cleanName);
+                };
+                reader.readAsDataURL(file);
+            });
+            showGalleryMessage(`✅ Đã tải lên ${files.length} ảnh từ thiết bị của bạn!`);
+            fileInput.value = '';
+        });
+    </script>
+</body>
+</html>
+```
+
+### Điểm nổi bật đã được cập nhật cho bạn:
+1. **Phần cuối trang (`Người thiết kế dự án`)**: Được thiết kế giống hệt ảnh mẫu của bạn với nền xanh đậm chuyển sắc, khung thẻ bo góc viền sáng nổi bật chứa đầy đủ:
+   - **Họ và tên: Nguyễn Văn Gia Huy**
+   - **Lớp: 12A11**
+   - Câu châm ngôn in nghiêng màu xanh cyan sáng rõ và dòng bản quyền năm 2026 ở dưới.
+2. **Đồng bộ thông tin trên đầu trang**: Huy hiệu giới thiệu và Avatar nam ở đầu trang cũng đã được gắn tên **Nguyễn Văn Gia Huy - Lớp 12A11**.

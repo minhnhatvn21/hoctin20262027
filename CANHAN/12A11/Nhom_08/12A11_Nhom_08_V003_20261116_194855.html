@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Định Hướng Nghề Nghiệp - Giáo Viên Hóa Học</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Quicksand & Be Vietnam Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Quicksand:wght@600;700;800&amp;display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                        display: ['"Quicksand"', 'sans-serif'],
+                    },
+                    colors: {
+                        chem: {
+                            white: '#fdfaff',
+                            pinkLight: '#fdf2f8',
+                            pinkSoft: '#fce7f3',
+                            pink: '#ec4899',
+                            pinkDeep: '#be185d',
+                            purpleLight: '#f5f3ff',
+                            purpleSoft: '#ede9fe',
+                            purple: '#8b5cf6',
+                            purpleDeep: '#6d28d9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Chemistry Hexagonal Pattern & Rich Pink-Purple-White Gradient Background */
+        body {
+            background-color: #fff0f7;
+            background-image: 
+                radial-gradient(at 8% 12%, rgba(244, 114, 182, 0.45) 0px, transparent 48%),
+                radial-gradient(at 92% 14%, rgba(236, 72, 153, 0.32) 0px, transparent 50%),
+                radial-gradient(at 82% 88%, rgba(244, 114, 182, 0.38) 0px, transparent 52%),
+                radial-gradient(at 15% 85%, rgba(192, 132, 252, 0.28) 0px, transparent 48%),
+                radial-gradient(at 50% 50%, rgba(251, 207, 232, 0.5) 0px, transparent 60%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23ec4899' stroke-width='1.2' stroke-opacity='0.12'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23db2777' stroke-width='1' stroke-opacity='0.09'/%3E%3C/svg%3E");
+            background-attachment: fixed;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Floating Molecular Bubbles Animation - Extra Pink Glow */
+        .molecule-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .chem-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(244, 114, 182, 0.52), rgba(236, 72, 153, 0.45));
+            box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.9), 0 10px 30px rgba(236, 72, 153, 0.25);
+            animation: riseBubble 16s infinite ease-in-out;
+        }
+        @keyframes riseBubble {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.65; }
+            50% { transform: translateY(-45px) scale(1.08) rotate(180deg); opacity: 0.92; }
+            100% { transform: translateY(0) scale(1) rotate(360deg); opacity: 0.65; }
+        }
+
+        /* Bento Glass Panels - Pink-Tinted Glassmorphism */
+        .bento-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(253, 242, 248, 0.88) 60%, rgba(252, 231, 243, 0.82) 100%);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1.5px solid rgba(249, 168, 212, 0.8);
+            box-shadow: 0 14px 34px -8px rgba(236, 72, 153, 0.16), 0 4px 16px -4px rgba(219, 39, 119, 0.10);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 44px -10px rgba(236, 72, 153, 0.28), 0 8px 24px -6px rgba(219, 39, 119, 0.18);
+            border-color: rgba(236, 72, 153, 0.9);
+        }
+
+        /* Periodic Table Element Tile - Rich Pink Surface */
+        .periodic-tile {
+            position: relative;
+            background: linear-gradient(145deg, #ffffff 0%, #fdf2f8 50%, #fce7f3 100%);
+            border: 2px solid rgba(244, 114, 182, 0.6);
+            box-shadow: 0 10px 24px -6px rgba(236, 72, 153, 0.18);
+            transition: all 0.3s ease;
+        }
+        .periodic-tile:hover {
+            border-color: #ec4899;
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 16px 32px -8px rgba(236, 72, 153, 0.32);
+        }
+
+        /* Hexagon Avatar Clip */
+        .hexagon-frame {
+            clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+        }
+
+        /* Gradient Accents - Pink Dominant */
+        .text-chem-gradient {
+            background: linear-gradient(135deg, #e11d48 0%, #ec4899 45%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-chem-gradient {
+            background: linear-gradient(135deg, #f43f5e 0%, #ec4899 55%, #a855f7 100%);
+        }
+        .bg-chem-gradient:hover {
+            background: linear-gradient(135deg, #e11d48 0%, #db2777 55%, #9333ea 100%);
+            box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.55);
+        }
+        .bg-chem-soft {
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.95) 0%, rgba(253, 242, 248, 0.95) 55%, rgba(243, 232, 255, 0.9) 100%);
+        }
+
+        /* Inline Editable Highlighting (Only visible when edit-mode is active) */
+        body.edit-mode [contenteditable="true"] {
+            outline: 1.5px dashed rgba(236, 72, 153, 0.55);
+            outline-offset: 3px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            cursor: text;
+        }
+        body.edit-mode [contenteditable="true"]:hover {
+            background-color: rgba(253, 242, 248, 0.7);
+        }
+        body.edit-mode [contenteditable="true"]:focus {
+            outline: 2px solid #ec4899;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15);
+        }
+
+        .edit-only {
+            display: none !important;
+        }
+        body.edit-mode .edit-only {
+            display: inline-flex !important;
+        }
+        .edit-only-block {
+            display: none !important;
+        }
+        body.edit-mode .edit-only-block {
+            display: block !important;
+        }
+
+        /* Gallery Card Style Variations */
+        .gallery-style-polaroid .photo-card-inner {
+            padding: 12px 12px 20px 12px;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.18);
+        }
+        .gallery-style-polaroid .photo-img-wrapper {
+            border-radius: 12px;
+        }
+        .gallery-style-lab .photo-card-inner {
+            border-left: 4px solid #ec4899;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #fdf2f8; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #f472b6, #a855f7);
+            border-radius: 9999px;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            .bento-card { box-shadow: none; border: 1px solid #f9a8d4; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pink-200 selection:text-purple-950">
+
+    <!-- Floating Chemistry Bubbles & Molecular Background -->
+    <div class="molecule-bg">
+        <div class="chem-bubble w-32 h-32 top-16 left-[6%]" style="animation-delay: 0s;"></div>
+        <div class="chem-bubble w-20 h-20 top-1/3 right-[8%]" style="animation-delay: -4s;"></div>
+        <div class="chem-bubble w-40 h-40 bottom-20 left-[12%]" style="animation-delay: -8s;"></div>
+        <div class="chem-bubble w-24 h-24 bottom-1/4 right-[15%]" style="animation-delay: -12s;"></div>
+    </div>
+
+    <!-- Layout Wrapper: Left Sidebar Navigation Dock + Main Bento Workspace -->
+    <div class="min-h-screen flex flex-col lg:flex-row max-w-[1400px] mx-auto">
+
+        <!-- ================= LEFT SIDEBAR: COMPACT NAVIGATION DOCK ================= -->
+        <aside class="lg:w-64 xl:w-72 lg:shrink-0 lg:sticky lg:top-0 lg:h-screen p-4 sm:p-5 flex flex-col justify-between z-30 no-print">
+            <div class="bento-card rounded-3xl p-5 flex flex-col h-full justify-between border-pink-300/80">
+                
+                <!-- Top Brand & Element Badge -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 pb-3.5 border-b border-pink-200/80">
+                        <div class="w-11 h-11 rounded-2xl bg-chem-gradient text-white flex flex-col items-center justify-center shadow-md shadow-pink-500/25 shrink-0">
+                            <span class="text-[8px] font-bold leading-none opacity-85 self-start pl-1.5">29</span>
+                            <span class="font-display font-extrabold text-base leading-none">Hh</span>
+                        </div>
+                        <div>
+                            <h1 class="font-display font-extrabold text-base text-slate-800 leading-tight">
+                                ĐỊNH HƯỚNG <span class="text-chem-gradient">NGHỀ NGHIỆP</span>
+                            </h1>
+                            <p class="text-[11px] text-pink-600 font-semibold">Giáo viên Dạy Hóa học</p>
+                        </div>
+                    </div>
+
+                    <!-- Compact Navigation Menu -->
+                    <nav class="space-y-1.5">
+                        <a href="#sec-profile" class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold text-slate-700 hover:bg-pink-100/80 hover:text-pink-600 transition-all group">
+                            <span class="w-7 h-7 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-id-badge text-xs"></i>
+                            </span>
+                            <span>1. Hồ sơ &amp; Mục tiêu</span>
+                        </a>
+                        <a href="#sec-periodic" class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold text-slate-700 hover:bg-pink-100/80 hover:text-pink-600 transition-all group">
+                            <span class="w-7 h-7 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-table-cells-large text-xs"></i>
+                            </span>
+                            <span>2. Năng lực Rèn luyện</span>
+                        </a>
+                        <a href="#sec-reaction" class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold text-slate-700 hover:bg-pink-100/80 hover:text-pink-600 transition-all group">
+                            <span class="w-7 h-7 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-route text-xs"></i>
+                            </span>
+                            <span>3. Lộ trình Phát triển</span>
+                        </a>
+                        <a href="#sec-gallery" class="flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold text-slate-700 hover:bg-pink-100/80 hover:text-pink-600 transition-all group">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-colors">
+                                    <i class="fa-solid fa-camera-retro text-xs"></i>
+                                </span>
+                                <span>4. Thư viện Hình ảnh</span>
+                            </div>
+                            <span id="sidebarPhotoCount" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-pink-200/80 text-pink-700">6</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Minimalist Bottom Settings Button (Hides Edit Buttons by default) -->
+                <div class="space-y-2 pt-3 border-t border-pink-200/70">
+                    <button id="toggleEditBtn" onclick="toggleEditMode()" class="w-full py-2.5 px-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all bg-white/90 text-pink-600 border border-pink-200 hover:bg-pink-50 shadow-sm">
+                        <i id="editIcon" class="fa-solid fa-sliders"></i>
+                        <span id="editBtnText">Tùy chỉnh &amp; Thêm ảnh</span>
+                    </button>
+
+                    <!-- Extra actions only visible when customizing -->
+                    <div class="edit-only-block pt-1">
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button onclick="window.print()" class="py-1.5 px-2 rounded-xl text-[11px] font-semibold text-slate-600 bg-white hover:bg-pink-50 border border-pink-200 transition-colors flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-print text-pink-500"></i> In bài
+                            </button>
+                            <button onclick="openResetModal()" class="py-1.5 px-2 rounded-xl text-[11px] font-semibold text-slate-600 bg-white hover:bg-rose-50 hover:text-rose-600 border border-pink-200 transition-colors flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-rotate-left text-rose-500"></i> Mặc định
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- ================= RIGHT WORKSPACE: CLEAN BENTO MODULES ================= -->
+        <main class="flex-1 p-4 sm:p-5 lg:py-5 lg:pr-5 lg:pl-0 space-y-6">
+
+            <!-- MODULE 1: BENTO PROFILE & VISION -->
+            <section id="sec-profile" class="grid grid-cols-1 xl:grid-cols-12 gap-5">
+                
+                <!-- Left Sub-Bento: Teacher Avatar & Key Specs (5 cols) -->
+                <div class="xl:col-span-5 bento-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between">
+                    <svg class="w-32 h-32 text-pink-400/15 absolute -top-6 -right-6 pointer-events-none" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3">
+                        <polygon points="50,5 90,27 90,73 50,95 10,73 10,27"></polygon>
+                        <circle cx="50" cy="50" r="26"></circle>
+                    </svg>
+
+                    <div class="flex flex-col sm:flex-row xl:flex-col items-center gap-4 text-center sm:text-left xl:text-center">
+                        <!-- Hexagon Avatar Wrapper -->
+                        <div class="relative group shrink-0">
+                            <div class="w-36 h-36 sm:w-40 sm:h-40 p-1.5 bg-chem-gradient hexagon-frame shadow-xl mx-auto">
+                                <img id="avatarImg" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&amp;fit=crop&amp;w=600&amp;q=80" onerror="this.src='https://placehold.co/400x400/fdf2f8/db2777?text=Giao+Vien+Hoa'" alt="Ảnh đại diện" class="w-full h-full object-cover hexagon-frame bg-white cursor-pointer transition-transform duration-500 group-hover:scale-105" onclick="openLightbox(this.src, 'Ảnh chân dung cá nhân')">
+                            </div>
+                            <label for="avatarUpload" class="edit-only absolute bottom-1 right-1 w-9 h-9 rounded-xl bg-white text-pink-600 border border-pink-300 items-center justify-center shadow-md cursor-pointer hover:bg-pink-500 hover:text-white transition-all" title="Đổi ảnh chân dung">
+                                <i class="fa-solid fa-camera text-xs"></i>
+                                <input type="file" id="avatarUpload" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+                            </label>
+                        </div>
+
+                        <div class="space-y-1.5 flex-1">
+                            <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-bold bg-pink-100 text-pink-700 border border-pink-200">
+                                <i class="fa-solid fa-compass"></i>
+                                <span id="badgeRole" contenteditable="false" data-save="badgeRole">Định hướng: Giáo viên Hóa học</span>
+                            </div>
+                            <h2 id="teacherName" contenteditable="false" data-save="teacherName" class="font-display text-2xl font-extrabold text-slate-800">Nguyễn Thị Yến Nhàn</h2>
+                            <p id="teacherSubtitle" contenteditable="false" data-save="teacherSubtitle" class="text-xs sm:text-sm font-semibold text-chem-gradient">
+                                Giáo viên Hóa học THPT • Hóa Hữu cơ &amp; Thực nghiệm
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Mini Identity Specs -->
+                    <div class="mt-5 pt-4 border-t border-pink-200/80 grid grid-cols-2 gap-2.5 text-left">
+                        <div class="p-2.5 rounded-2xl bg-gradient-to-br from-pink-100/90 to-pink-50 border border-pink-200">
+                            <span class="text-[10px] font-bold text-pink-600 uppercase block">Ngành đào tạo</span>
+                            <span id="specSchool" contenteditable="false" data-save="specSchool" class="text-xs font-bold text-slate-800 mt-0.5 block">Sư phạm Hóa học</span>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200">
+                            <span class="text-[10px] font-bold text-pink-600 uppercase block">Hành trang</span>
+                            <span id="specCert" contenteditable="false" data-save="specCert" class="text-xs font-bold text-slate-800 mt-0.5 block">Nghiệp vụ SP &amp; Tin học</span>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200">
+                            <span class="text-[10px] font-bold text-pink-600 uppercase block">Chuyên môn sâu</span>
+                            <span id="specStrength" contenteditable="false" data-save="specStrength" class="text-xs font-bold text-slate-800 mt-0.5 block">Hóa Hữu cơ &amp; Thí nghiệm</span>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-gradient-to-br from-pink-100/90 to-pink-50 border border-pink-200">
+                            <span class="text-[10px] font-bold text-pink-600 uppercase block">Môi trường hướng tới</span>
+                            <span id="specContact" contenteditable="false" data-save="specContact" class="text-xs font-bold text-slate-800 mt-0.5 block">Trường THPT Chất lượng cao</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sub-Bento: Concise Story & Chemical Equation Vision (7 cols) -->
+                <div class="xl:col-span-7 bento-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
+                    
+                    <div class="space-y-3">
+                        <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-white bg-chem-gradient px-3 py-1 rounded-full shadow-sm">
+                            <i class="fa-solid fa-bullseye"></i> Lý do chọn nghề &amp; Định hướng Tương lai
+                        </span>
+
+                        <h3 id="bioHeadline" contenteditable="false" data-save="bioHeadline" class="font-display text-xl sm:text-2xl font-extrabold text-slate-800 leading-snug">
+                            "Truyền lửa đam mê Hóa học, biến mỗi tiết học thành một hành trình khám phá khoa học sống động."
+                        </h3>
+
+                        <div id="bioContent" contenteditable="false" data-save="bioContent" class="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-2">
+                            <p><b>• Khám phá bản thân:</b> Xuất phát từ niềm yêu thích các phản ứng thực nghiệm và khả năng truyền đạt rõ ràng, tôi chọn định hướng trở thành <b>Giáo viên Dạy Hóa học</b>.</p>
+                            <p><b>• Mục tiêu sự nghiệp:</b> Không ngừng trau dồi chuyên môn Hóa học, kỹ năng thí nghiệm an toàn và phương pháp sư phạm hiện đại để giúp học sinh yêu thích và vận dụng Hóa học vào đời sống.</p>
+                        </div>
+                    </div>
+
+                    <!-- Highlighted Chemical Reaction Formula Box -->
+                    <div class="p-3.5 rounded-2xl bg-chem-soft border border-pink-300 space-y-1.5">
+                        <div class="text-[11px] font-bold text-pink-600 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-flask"></i> Phương trình định hướng nghề nghiệp:
+                        </div>
+                        <div id="chemFormulaText" contenteditable="false" data-save="chemFormulaText" class="font-display font-bold text-xs sm:text-sm text-pink-700 bg-white/95 px-3 py-2.5 rounded-xl border border-pink-200 text-center shadow-sm">
+                            Đam Mê Hóa Học + Năng Lực Sư Phạm ⟶ (Kiên trì) ⟶ Giáo Viên Hóa Học Tận Tâm ↑
+                        </div>
+                    </div>
+
+                    <!-- Core Values Pills -->
+                    <div class="grid grid-cols-3 gap-2.5 text-center">
+                        <div class="p-2.5 rounded-2xl bg-gradient-to-b from-white to-pink-100/70 border border-pink-200">
+                            <div class="text-pink-600 font-display font-extrabold text-sm sm:text-base" id="stat1Val" contenteditable="false" data-save="stat1Val">Sở thích</div>
+                            <div class="text-[11px] text-slate-600 font-medium" id="stat1Label" contenteditable="false" data-save="stat1Label">Thực nghiệm &amp; Giảng dạy</div>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-gradient-to-b from-white to-pink-100/70 border border-pink-200">
+                            <div class="text-pink-600 font-display font-extrabold text-sm sm:text-base" id="stat2Val" contenteditable="false" data-save="stat2Val">Thế mạnh</div>
+                            <div class="text-[11px] text-slate-600 font-medium" id="stat2Label" contenteditable="false" data-save="stat2Label">Tư duy logic &amp; Thuyết trình</div>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-gradient-to-b from-white to-pink-100/70 border border-pink-200">
+                            <div class="text-pink-600 font-display font-extrabold text-sm sm:text-base" id="stat3Val" contenteditable="false" data-save="stat3Val">Giá trị nghề</div>
+                            <div class="text-[11px] text-slate-600 font-medium" id="stat3Label" contenteditable="false" data-save="stat3Label">Truyền cảm hứng tri thức</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- MODULE 2: QUICK PROFILE SETUP FORM (HIDDEN BY DEFAULT, SHOWN ONLY IN EDIT MODE) -->
+            <section id="sec-form" class="edit-only-block bento-card rounded-3xl p-5 sm:p-6 border-2 border-pink-300">
+                <div class="flex items-center justify-between gap-4 pb-4 border-b border-pink-200">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-chem-gradient text-white flex items-center justify-center text-base shadow-md">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-display text-lg font-extrabold text-slate-800">
+                                Phiếu Điền Nhanh Thông Tin &amp; Số Lượng Ảnh
+                            </h2>
+                            <p class="text-xs text-pink-600 font-medium">Khung này chỉ hiện khi bật chế độ Tùy chỉnh</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="careerFormBody" class="pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Họ và tên</label>
+                        <input type="text" id="formName" oninput="syncFormToProfile()" value="Nguyễn Thị Yến Nhàn" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Lĩnh vực chuyên sâu</label>
+                        <select id="formBranch" onchange="syncFormToProfile()" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                            <option value="Hóa Hữu cơ &amp; Thực nghiệm">Hóa Hữu cơ &amp; Thực nghiệm</option>
+                            <option value="Hóa Vô cơ &amp; Đại cương">Hóa Vô cơ &amp; Đại cương</option>
+                            <option value="Hóa Phân tích &amp; Hóa học Xanh">Hóa Phân tích &amp; Hóa học Xanh</option>
+                            <option value="Phương pháp Dạy học Tích cực">Phương pháp Dạy học Tích cực</option>
+                            <option value="Bồi dưỡng Học sinh giỏi Hóa">Bồi dưỡng Học sinh giỏi Hóa</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Mục tiêu vị trí nghề nghiệp</label>
+                        <input type="text" id="formTargetSchool" oninput="syncFormToProfile()" value="Giáo viên Hóa học THPT" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Ngành đào tạo</label>
+                        <input type="text" id="formUni" oninput="syncFormToProfile()" value="Sư phạm Hóa học" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Hành trang kỹ năng</label>
+                        <input type="text" id="formCert" oninput="syncFormToProfile()" value="Nghiệp vụ SP &amp; Tin học" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Số lượng ảnh muốn hiển thị</label>
+                        <div class="flex items-center gap-2">
+                            <input type="number" id="formPhotoCount" min="0" max="60" value="6" class="w-full px-3 py-2 rounded-xl bg-pink-50 border border-pink-300 text-xs font-extrabold text-pink-700 focus:outline-none">
+                            <button type="button" onclick="applyPhotoCountFromForm()" class="shrink-0 px-3 py-2 rounded-xl text-xs font-bold text-white bg-chem-gradient">
+                                Áp dụng
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="formPhilosophy" value="Truyền lửa đam mê Hóa học, biến mỗi tiết học thành một hành trình khám phá khoa học sống động.">
+                </div>
+            </section>
+
+            <!-- MODULE 3: PERIODIC TABLE OF TEACHING COMPETENCIES -->
+            <section id="sec-periodic" class="space-y-4">
+                <div class="flex items-center justify-between gap-4">
+                    <div>
+                        <span class="px-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-pink-100 text-pink-700 border border-pink-200">Hành trang nghề giáo</span>
+                        <h2 class="font-display text-xl sm:text-2xl font-extrabold text-slate-800 mt-1">
+                            Bảng Tuần Hoàn <span class="text-chem-gradient">Năng Lực Nghề Giáo Viên Hóa</span>
+                        </h2>
+                    </div>
+                    <button onclick="addNewElementSkill()" class="edit-only px-3.5 py-2 rounded-2xl text-xs font-bold text-white bg-chem-gradient shadow-sm items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Thêm Năng Lực
+                    </button>
+                </div>
+
+                <!-- Periodic Elements Grid -->
+                <div id="periodicSkillsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </section>
+
+            <!-- MODULE 4: CAREER ROADMAP -->
+            <section id="sec-reaction" class="bento-card rounded-3xl p-6 space-y-5">
+                <div class="flex items-center justify-between gap-4 pb-3 border-b border-pink-200">
+                    <div>
+                        <span class="px-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-pink-100 text-pink-700 border border-pink-200">Chiến lược phát triển</span>
+                        <h2 class="font-display text-xl sm:text-2xl font-extrabold text-slate-800 mt-1">
+                            Lộ Trình <span class="text-chem-gradient">Phát Triển Sự Nghiệp</span>
+                        </h2>
+                    </div>
+                    <button onclick="addReactionStep()" class="edit-only px-3.5 py-2 rounded-2xl text-xs font-bold bg-chem-gradient text-white shadow-sm items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Thêm Giai Đoạn
+                    </button>
+                </div>
+
+                <!-- Reaction Steps Container -->
+                <div id="reactionRoadmapContainer" class="grid grid-cols-1 lg:grid-cols-3 gap-5"></div>
+            </section>
+
+            <!-- MODULE 5: PHOTO GALLERY -->
+            <section id="sec-gallery" class="bento-card rounded-3xl p-6 space-y-5">
+                
+                <!-- Compact Gallery Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-pink-200">
+                    <div>
+                        <span class="px-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-pink-100 text-pink-700 border border-pink-200">Minh chứng thực tế</span>
+                        <h2 id="galleryTitle" contenteditable="false" data-save="galleryTitle" class="font-display text-xl sm:text-2xl font-extrabold text-slate-800 mt-1">
+                            Hình Ảnh Hành Trình Hướng Nghiệp
+                        </h2>
+                    </div>
+
+                    <!-- Compact Counter & Quick Edit Toggle -->
+                    <div class="flex items-center gap-2 self-start sm:self-auto">
+                        <div class="flex items-center gap-2 bg-pink-100/80 px-3.5 py-1.5 rounded-2xl border border-pink-200">
+                            <span class="w-6 h-6 rounded-lg bg-chem-gradient text-white flex items-center justify-center font-display font-extrabold text-xs" id="galleryCountBadge">6</span>
+                            <span class="text-xs font-bold text-pink-700">hình ảnh</span>
+                        </div>
+                        <button onclick="toggleEditMode()" class="px-3.5 py-2 rounded-2xl text-xs font-bold bg-white text-pink-600 hover:bg-pink-50 border border-pink-200 shadow-sm flex items-center gap-1.5 no-print" title="Mở thanh tùy chỉnh số lượng ảnh">
+                            <i class="fa-solid fa-camera-rotate"></i>
+                            <span>Tùy chỉnh ảnh</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- IMAGE QUANTITY & UPLOAD BAR (HIDDEN UNLESS EDIT MODE IS ON) -->
+                <div class="edit-only-block p-4 rounded-2xl bg-chem-soft border border-pink-300 space-y-3 no-print">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        
+                        <!-- Upload & Add 1 -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <label for="multiPhotoUpload" class="px-3.5 py-2 rounded-xl font-bold text-xs text-white bg-chem-gradient cursor-pointer shadow-sm flex items-center gap-1.5">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Tải nhiều ảnh</span>
+                                <input type="file" id="multiPhotoUpload" accept="image/*" multiple="" class="hidden" onchange="handleMultiPhotoUpload(event)">
+                            </label>
+                            <button onclick="addEmptyPhotoSlot(1)" class="px-3 py-2 rounded-xl font-bold text-xs bg-white text-pink-600 hover:bg-pink-50 border border-pink-200 flex items-center gap-1 shadow-sm">
+                                <i class="fa-solid fa-plus"></i> Thêm 1 khung
+                            </button>
+                        </div>
+
+                        <!-- Customize Photo Count -->
+                        <div class="flex flex-wrap items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-pink-200">
+                            <span class="text-xs font-bold text-pink-700">Số lượng ảnh:</span>
+                            <button onclick="stepPhotoCount(-1)" class="w-6 h-6 rounded-lg bg-pink-100 hover:bg-pink-200 text-pink-700 font-extrabold text-xs">-</button>
+                            <input type="number" id="targetPhotoCountInput" min="0" max="60" value="6" class="w-11 text-center font-extrabold text-xs text-pink-700 bg-pink-50 border border-pink-300 rounded-lg py-0.5">
+                            <button onclick="stepPhotoCount(1)" class="w-6 h-6 rounded-lg bg-pink-100 hover:bg-pink-200 text-pink-700 font-extrabold text-xs">+</button>
+                            <button onclick="applyCustomPhotoCount()" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-chem-gradient text-white">Áp dụng</button>
+                            <div class="flex items-center gap-1 border-l border-pink-200 pl-2">
+                                <button onclick="setExactPhotoCount(3)" class="px-2 py-0.5 rounded text-[11px] font-bold bg-pink-100 text-pink-700 hover:bg-pink-500 hover:text-white">3</button>
+                                <button onclick="setExactPhotoCount(6)" class="px-2 py-0.5 rounded text-[11px] font-bold bg-pink-100 text-pink-700 hover:bg-pink-500 hover:text-white">6</button>
+                                <button onclick="setExactPhotoCount(9)" class="px-2 py-0.5 rounded text-[11px] font-bold bg-pink-100 text-pink-700 hover:bg-pink-500 hover:text-white">9</button>
+                            </div>
+                        </div>
+
+                        <!-- Columns & Style -->
+                        <div class="flex items-center gap-2 bg-white px-2.5 py-1.5 rounded-xl border border-pink-200">
+                            <button onclick="setGridColumns(2)" id="colBtn2" class="px-2 py-0.5 rounded text-xs font-bold text-slate-600">2 Cột</button>
+                            <button onclick="setGridColumns(3)" id="colBtn3" class="px-2 py-0.5 rounded text-xs font-bold bg-pink-500 text-white">3 Cột</button>
+                            <button onclick="setGridColumns(4)" id="colBtn4" class="px-2 py-0.5 rounded text-xs font-bold text-slate-600">4 Cột</button>
+                            <select id="cardStyleSelect" onchange="setGalleryCardStyle(this.value)" class="text-xs font-bold text-pink-700 bg-pink-50 border border-pink-200 rounded px-2 py-0.5">
+                                <option value="modern">Khung Kính</option>
+                                <option value="polaroid">Khung Kỷ Niệm</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Dynamic Photo Cards Grid -->
+                <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 gallery-style-lab"></div>
+
+            </section>
+
+            <!-- Footer -->
+            <footer class="pt-2 pb-6 text-center text-xs text-slate-500 flex items-center justify-between px-2">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-chem-gradient inline-block"></span>
+                    <span id="footerNote" contenteditable="false" data-save="footerNote">Kế hoạch Định hướng Nghề nghiệp • Giáo viên Hóa học</span>
+                </div>
+                <a href="#sec-profile" class="text-pink-600 hover:text-purple-700 font-bold flex items-center gap-1 no-print">
+                    <span>Đầu trang</span>
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+            </footer>
+
+        </main>
+    </div>
+
+<!-- ================= LIGHTBOX MODAL ================= -->
+<div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4" onclick="closeLightbox()">
+    <div class="relative max-w-4xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-pink-200" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between px-6 py-4 bg-chem-soft border-b border-pink-100">
+            <h4 id="lightboxCaption" class="font-display font-bold text-slate-800 text-base sm:text-lg truncate pr-4">Chi tiết hình ảnh</h4>
+            <button onclick="closeLightbox()" class="w-9 h-9 rounded-full bg-white text-slate-600 hover:text-rose-600 flex items-center justify-center shadow-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        <div class="p-4 bg-slate-900/5 flex items-center justify-center max-h-[75vh]">
+            <img id="lightboxImg" src="" alt="Xem phóng to" class="max-h-[70vh] w-auto object-contain rounded-xl shadow-md">
+        </div>
+    </div>
+</div>
+
+<!-- ================= RESET CONFIRMATION MODAL ================= -->
+<div id="resetModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-pink-200 space-y-4">
+        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-slate-800">Khôi phục dữ liệu mẫu Giáo viên Hóa?</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+            Thao tác này sẽ đưa toàn bộ thông tin cá nhân, bảng tuần hoàn kỹ năng, phương trình lộ trình và thư viện ảnh về trạng thái mẫu ban đầu.
+        </p>
+        <div class="flex items-center justify-end gap-3 pt-2">
+            <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100">
+                Hủy
+            </button>
+            <button onclick="confirmResetData()" class="px-5 py-2 rounded-xl text-sm font-semibold bg-rose-600 hover:bg-rose-700 text-white shadow-sm">
+                Khôi phục ngay
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden file input for changing a single card's photo -->
+<input type="file" id="singleCardPhotoInput" accept="image/*" class="hidden" onchange="handleSingleCardPhotoChange(event)">
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-5 right-5 z-50 transform transition-all duration-300 pointer-events-none translate-y-20 opacity-0">
+    <div class="px-4 py-3 rounded-2xl bg-slate-900/95 text-white text-xs sm:text-sm font-medium shadow-xl flex items-center gap-2.5 border border-pink-400/40">
+        <i class="fa-solid fa-vial-circle-check text-pink-400 text-base"></i>
+        <span id="toastMsg">Đã bật chế độ chỉnh sửa trực tiếp</span>
+    </div>
+</div>
+
+<!-- ================= JAVASCRIPT LOGIC ================= -->
+<script>
+    const STORAGE_KEY = 'KE_HOACH_DINH_HUONG_NGHE_NGHIEP_GV_HOA_V6';
+    let isEditMode = false; // Default to clean view mode so all extra buttons are neatly hidden
+    let currentEditingCardIndex = null;
+
+    // Concise Periodic Table Skills
+    const defaultPeriodicSkills = [
+        { number: "01", symbol: "Cm", name: "Kiến thức Hóa học Chuyên sâu", group: "Chuyên môn", level: 92 },
+        { number: "02", symbol: "Tn", name: "Kỹ năng Thực hành Thí nghiệm", group: "Thực nghiệm", level: 88 },
+        { number: "03", symbol: "Sp", name: "Nghiệp vụ Sư phạm & Truyền đạt", group: "Nghề giáo", level: 90 },
+        { number: "04", symbol: "Cn", name: "Thiết kế Bài giảng & Học liệu số", group: "Công nghệ", level: 85 },
+        { number: "05", symbol: "Tl", name: "Tâm lý Học sinh & Quản lý lớp", group: "Sư phạm", level: 89 },
+        { number: "06", symbol: "Nc", name: "Tự học & Nghiên cứu Khoa học", group: "Phát triển", level: 86 }
+    ];
+
+    // Concise Career Orientation Roadmap
+    const defaultReactionRoadmap = [
+        {
+            stageCode: "Giai đoạn 1: Đào tạo (Hiện tại - 4 năm)",
+            catalyst: "Tích lũy nền tảng",
+            title: "Cử nhân Sư phạm Hóa học",
+            desc: "Hoàn thành tốt các học phần chuyên ngành Hóa, rèn luyện kỹ năng thí nghiệm và thực tập sư phạm.",
+            product: "Tốt nghiệp Cử nhân loại Giỏi"
+        },
+        {
+            stageCode: "Giai đoạn 2: Khởi đầu (1 - 3 năm tiếp)",
+            catalyst: "Thực tiễn giảng dạy",
+            title: "Giáo viên Hóa học THPT",
+            desc: "Giảng dạy chính thức tại trường THPT, đổi mới phương pháp dạy học trực quan và chủ nhiệm lớp.",
+            product: "Giáo viên vững chuyên môn"
+        },
+        {
+            stageCode: "Giai đoạn 3: Chuyên sâu (Trên 5 năm)",
+            catalyst: "Nâng tầm & Cống hiến",
+            title: "Giáo viên Giỏi & Thạc sĩ",
+            desc: "Học Thạc sĩ Phương pháp dạy học Hóa học, bồi dưỡng học sinh giỏi và hướng dẫn nghiên cứu khoa học.",
+            product: "Giáo viên Cốt cán cấp Tỉnh"
+        }
+    ];
+
+    // Concise Photo Gallery
+    const defaultGallery = [
+        {
+            url: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
+            title: "Đam mê Phản ứng Hóa học",
+            category: "Sở thích",
+            caption: "Khởi nguồn ước mơ trở thành Giáo viên Hóa từ những thí nghiệm sắc màu."
+        },
+        {
+            url: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=800&q=80",
+            title: "Thực hành Phòng Thí nghiệm",
+            category: "Rèn luyện",
+            caption: "Trau dồi thao tác chuẩn xác và an toàn với dụng cụ, hóa chất."
+        },
+        {
+            url: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80",
+            title: "Hóa học Xanh & Đời sống",
+            category: "Định hướng",
+            caption: "Kết nối kiến thức Hóa học với ứng dụng thực tiễn gần gũi."
+        },
+        {
+            url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+            title: "Tác phong Đứng lớp Sư phạm",
+            category: "Mục tiêu",
+            caption: "Rèn luyện kỹ năng thuyết trình và truyền cảm hứng trên bục giảng."
+        },
+        {
+            url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+            title: "Ứng dụng Công nghệ Dạy học",
+            category: "Kỹ năng số",
+            caption: "Thiết kế bài giảng điện tử và mô phỏng trực quan."
+        },
+        {
+            url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+            title: "Hoạt động Ngoại khóa Hướng nghiệp",
+            category: "Trải nghiệm",
+            caption: "Giao lưu, học hỏi kinh nghiệm cùng thầy cô và bạn bè."
+        }
+    ];
+
+    let appState = {
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        gridColumns: 3,
+        cardStyle: 'modern',
+        texts: {},
+        periodicSkills: JSON.parse(JSON.stringify(defaultPeriodicSkills)),
+        reactionRoadmap: JSON.parse(JSON.stringify(defaultReactionRoadmap)),
+        gallery: JSON.parse(JSON.stringify(defaultGallery))
+    };
+
+    // ================= INITIALIZATION =================
+    window.addEventListener('DOMContentLoaded', () => {
+        loadStateFromStorage();
+        renderPeriodicSkills();
+        renderReactionRoadmap();
+        renderGallery();
+        setGridColumns(appState.gridColumns || 3, false);
+        setGalleryCardStyle(appState.cardStyle || 'modern', false);
+        attachEditableListeners();
+    });
+
+    // ================= FORM SYNC LOGIC =================
+    function syncFormToProfile() {
+        const fName = document.getElementById('formName').value;
+        const fBranch = document.getElementById('formBranch').value;
+        const fTarget = document.getElementById('formTargetSchool').value;
+        const fUni = document.getElementById('formUni').value;
+        const fCert = document.getElementById('formCert').value;
+
+        document.getElementById('teacherName').innerText = fName || 'Họ và tên cá nhân';
+        document.getElementById('specStrength').innerText = fBranch;
+        document.getElementById('teacherSubtitle').innerText = `${fTarget} • ${fBranch}`;
+        document.getElementById('specSchool').innerText = fUni;
+        document.getElementById('specCert').innerText = fCert;
+
+        saveStateToStorage(true);
+    }
+
+    function applyPhotoCountFromForm() {
+        const val = parseInt(document.getElementById('formPhotoCount').value, 10);
+        if (isNaN(val) || val < 0) return;
+        document.getElementById('targetPhotoCountInput').value = val;
+        applyCustomPhotoCount();
+        document.getElementById('sec-gallery').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ================= EDIT MODE TOGGLE =================
+    function toggleEditMode() {
+        isEditMode = !isEditMode;
+        const body = document.body;
+        const btn = document.getElementById('toggleEditBtn');
+        const btnText = document.getElementById('editBtnText');
+        const icon = document.getElementById('editIcon');
+
+        if (isEditMode) {
+            body.classList.add('edit-mode');
+            btn.className = "w-full py-2.5 px-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all bg-chem-gradient text-white shadow-md";
+            btnText.textContent = "Hoàn tất & Ẩn công cụ";
+            icon.className = "fa-solid fa-check";
+            showToast("Đã mở công cụ tùy chỉnh & thêm ảnh");
+        } else {
+            body.classList.remove('edit-mode');
+            btn.className = "w-full py-2.5 px-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all bg-white/90 text-pink-600 border border-pink-200 hover:bg-pink-50 shadow-sm";
+            btnText.textContent = "Tùy chỉnh & Thêm ảnh";
+            icon.className = "fa-solid fa-sliders";
+            saveStateToStorage();
+            showToast("Đã ẩn công cụ giúp bài làm gọn đẹp");
+        }
+
+        document.querySelectorAll('[data-save]').forEach(el => {
+            el.setAttribute('contenteditable', isEditMode ? 'true' : 'false');
+        });
+
+        renderPeriodicSkills();
+        renderReactionRoadmap();
+        renderGallery();
+    }
+
+    function attachEditableListeners() {
+        document.querySelectorAll('[data-save]').forEach(el => {
+            el.addEventListener('blur', () => {
+                appState.texts[el.getAttribute('data-save')] = el.innerHTML;
+                saveStateToStorage(true);
+            });
+        });
+    }
+
+    // ================= AVATAR UPLOAD =================
+    function handleAvatarUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        compressAndReadImage(file, 600, (dataUrl) => {
+            document.getElementById('avatarImg').src = dataUrl;
+            appState.avatar = dataUrl;
+            saveStateToStorage();
+            showToast("Đã cập nhật ảnh chân dung cá nhân!");
+        });
+    }
+
+    // ================= MODULE 3: PERIODIC SKILLS LOGIC =================
+    function renderPeriodicSkills() {
+        const grid = document.getElementById('periodicSkillsGrid');
+        grid.innerHTML = '';
+
+        appState.periodicSkills.forEach((item, index) => {
+            const tile = document.createElement('div');
+            tile.className = "periodic-tile rounded-3xl p-5 flex flex-col justify-between space-y-4";
+            tile.innerHTML = `
+                <div class="flex items-start justify-between gap-3">
+                    <div class="w-16 h-16 rounded-2xl bg-chem-gradient text-white p-2 flex flex-col justify-between shadow-md shadow-pink-500/25 shrink-0">
+                        <div class="flex items-center justify-between text-[10px] font-bold opacity-90">
+                            <span contenteditable="${isEditMode}" onblur="updateElementSkill(${index}, 'number', this.innerText)">${item.number}</span>
+                            <span>${item.level}%</span>
+                        </div>
+                        <div contenteditable="${isEditMode}" onblur="updateElementSkill(${index}, 'symbol', this.innerText)" class="font-display font-extrabold text-xl text-center leading-none">${item.symbol}</div>
+                        <div class="text-[8px] text-center opacity-90 truncate">Năng lực</div>
+                    </div>
+
+                    <div class="flex-1 min-w-0">
+                        <span contenteditable="${isEditMode}" onblur="updateElementSkill(${index}, 'group', this.innerText)" class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-pink-100 text-pink-700 border border-pink-200 mb-1">${item.group}</span>
+                        <h4 contenteditable="${isEditMode}" onblur="updateElementSkill(${index}, 'name', this.innerText)" class="font-display font-bold text-slate-800 text-sm sm:text-base leading-snug">${item.name}</h4>
+                    </div>
+
+                    <button onclick="removeElementSkill(${index})" class="edit-only text-pink-400 hover:text-rose-600 p-1 transition-colors" title="Xóa năng lực">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-1.5">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-semibold text-pink-700/80">Mức độ hoàn thiện mục tiêu</span>
+                        <span class="font-extrabold text-pink-600">${item.level}%</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-pink-100 rounded-full overflow-hidden border border-pink-200/60">
+                        <div class="h-full bg-chem-gradient rounded-full transition-all duration-500" style="width: ${item.level}%"></div>
+                    </div>
+                    <div class="edit-only w-full pt-1">
+                        <input type="range" min="10" max="100" value="${item.level}" oninput="updateElementSkillLevel(${index}, this.value)" class="w-full accent-pink-500 cursor-pointer h-1.5 bg-pink-100 rounded-lg">
+                    </div>
+                </div>
+            `;
+            grid.appendChild(tile);
+        });
+    }
+
+    function updateElementSkill(index, field, val) {
+        appState.periodicSkills[index][field] = val.trim();
+        saveStateToStorage(true);
+    }
+
+    function updateElementSkillLevel(index, val) {
+        appState.periodicSkills[index].level = parseInt(val, 10);
+        renderPeriodicSkills();
+        saveStateToStorage(true);
+    }
+
+    function addNewElementSkill() {
+        const nextNum = String(appState.periodicSkills.length + 1).padStart(2, '0');
+        appState.periodicSkills.push({
+            number: nextNum,
+            symbol: "Kn",
+            name: "Năng lực Nghề nghiệp Mới (Nhấp để sửa)",
+            group: "Kỹ năng Bổ trợ",
+            level: 85
+        });
+        renderPeriodicSkills();
+        saveStateToStorage();
+        showToast("Đã thêm 1 năng lực nghề nghiệp mới!");
+    }
+
+    function removeElementSkill(index) {
+        appState.periodicSkills.splice(index, 1);
+        renderPeriodicSkills();
+        saveStateToStorage();
+        showToast("Đã xóa năng lực khỏi bảng");
+    }
+
+    // ================= MODULE 4: REACTION ROADMAP LOGIC =================
+    function renderReactionRoadmap() {
+        const container = document.getElementById('reactionRoadmapContainer');
+        container.innerHTML = '';
+
+        appState.reactionRoadmap.forEach((step, index) => {
+            const card = document.createElement('div');
+            card.className = "rounded-3xl p-5 sm:p-6 bg-gradient-to-b from-white via-pink-50/80 to-pink-100/70 border-2 border-pink-300/80 shadow-md flex flex-col justify-between space-y-4 relative group";
+            card.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between gap-2">
+                        <span contenteditable="${isEditMode}" onblur="updateReactionStep(${index}, 'stageCode', this.innerText)" class="px-3 py-1 rounded-full text-xs font-extrabold bg-chem-gradient text-white shadow-sm">${step.stageCode}</span>
+                        <button onclick="removeReactionStep(${index})" class="edit-only w-7 h-7 rounded-full bg-rose-50 text-rose-500 hover:bg-rose-500 hover:text-white items-center justify-center transition-colors" title="Xóa giai đoạn">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="px-3 py-1.5 rounded-xl bg-pink-100/90 border border-pink-200 text-xs font-bold text-pink-700 flex items-center gap-1.5">
+                        <i class="fa-solid fa-compass text-pink-600"></i>
+                        <span contenteditable="${isEditMode}" onblur="updateReactionStep(${index}, 'catalyst', this.innerText)">${step.catalyst}</span>
+                    </div>
+
+                    <h3 contenteditable="${isEditMode}" onblur="updateReactionStep(${index}, 'title', this.innerText)" class="font-display font-extrabold text-lg text-slate-800 leading-snug">${step.title}</h3>
+
+                    <p contenteditable="${isEditMode}" onblur="updateReactionStep(${index}, 'desc', this.innerText)" class="text-xs sm:text-sm text-slate-600 leading-relaxed">${step.desc}</p>
+                </div>
+
+                <div class="pt-3 border-t border-pink-200/80">
+                    <div class="px-3.5 py-2 rounded-xl bg-white border border-pink-300 text-xs font-extrabold text-pink-600 flex items-center justify-between shadow-sm">
+                        <span contenteditable="${isEditMode}" onblur="updateReactionStep(${index}, 'product', this.innerText)">${step.product}</span>
+                        <i class="fa-solid fa-flag-checkered text-pink-500"></i>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function updateReactionStep(index, field, val) {
+        appState.reactionRoadmap[index][field] = val.trim();
+        saveStateToStorage(true);
+    }
+
+    function addReactionStep() {
+        const nextIdx = appState.reactionRoadmap.length + 1;
+        appState.reactionRoadmap.push({
+            stageCode: `Giai đoạn ${nextIdx}: Mục tiêu Định hướng Mới`,
+            catalyst: "Trọng tâm: Nỗ lực & Phát triển",
+            title: "Mục tiêu nghề nghiệp tiếp theo (Nhấp để sửa)",
+            desc: "Mô tả chi tiết kế hoạch học tập, rèn luyện kỹ năng sư phạm và mục tiêu phấn đấu trong giai đoạn này.",
+            product: "Đích đến: Hoàn thành xuất sắc mục tiêu"
+        });
+        renderReactionRoadmap();
+        saveStateToStorage();
+        showToast("Đã thêm cột mốc định hướng mới!");
+    }
+
+    function removeReactionStep(index) {
+        appState.reactionRoadmap.splice(index, 1);
+        renderReactionRoadmap();
+        saveStateToStorage();
+        showToast("Đã xóa cột mốc định hướng");
+    }
+
+    // ================= MODULE 5: PHOTO GALLERY & QUANTITY CONTROLLER =================
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        const countBadge = document.getElementById('galleryCountBadge');
+        const sidebarCount = document.getElementById('sidebarPhotoCount');
+        const targetInput = document.getElementById('targetPhotoCountInput');
+        const formCountInput = document.getElementById('formPhotoCount');
+
+        const total = appState.gallery.length;
+        countBadge.textContent = total;
+        if (sidebarCount) sidebarCount.textContent = total;
+        if (targetInput) targetInput.value = total;
+        if (formCountInput) formCountInput.value = total;
+
+        grid.innerHTML = '';
+
+        if (total === 0) {
+            grid.innerHTML = `
+                <div class="col-span-full py-12 px-6 text-center rounded-3xl bg-white/80 border-2 border-dashed border-pink-300 space-y-3">
+                    <div class="w-16 h-16 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl mx-auto">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
+                    <h4 class="font-display font-bold text-lg text-slate-700">Thư viện đang có 0 hình ảnh</h4>
+                    <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto">
+                        Bạn có thể nhập số lượng ảnh mong muốn ở thanh công cụ phía trên hoặc nhấn nút bên dưới để thêm khung ảnh mới.
+                    </p>
+                    <button onclick="addEmptyPhotoSlot(3)" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-white bg-chem-gradient shadow-md">
+                        + Tạo ngay 3 Khung Ảnh Định Hướng
+                    </button>
+                </div>
+            `;
+            return;
+        }
+
+        appState.gallery.forEach((photo, index) => {
+            const card = document.createElement('div');
+            card.className = "bento-card rounded-3xl overflow-hidden flex flex-col justify-between group photo-card-inner";
+            card.innerHTML = `
+                <div>
+                    <!-- Image Container -->
+                    <div class="relative h-52 sm:h-56 w-full overflow-hidden bg-gradient-to-br from-pink-100 to-purple-100 photo-img-wrapper">
+                        <img src="${photo.url}"
+                             onerror="this.src='https://placehold.co/800x600/fdf2f8/db2777?text=Anh+Dinh+Huong+${index + 1}'"
+                             alt="${photo.title}"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer"
+                             onclick="openLightbox('${photo.url.replace(/'/g, "\\'")}', '${photo.title.replace(/'/g, "\\'")}')">
+
+                        <!-- Top Category Badge -->
+                        <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
+                            <span contenteditable="${isEditMode}"
+                                  onblur="updateGalleryField(${index}, 'category', this.innerText)"
+                                  class="pointer-events-auto px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-white/90 text-pink-600 shadow-sm backdrop-blur-md">
+                                ${photo.category || 'Định hướng'}
+                            </span>
+                        </div>
+
+                        <!-- Action Buttons Overlay (Only shown when hovering in Edit Mode) -->
+                        <div class="edit-only absolute bottom-2.5 right-2.5 items-center gap-1.5">
+                            <button onclick="triggerSingleCardPhotoUpload(${index})"
+                                    class="w-8 h-8 rounded-xl bg-white/95 text-pink-600 hover:bg-pink-500 hover:text-white flex items-center justify-center shadow-md transition-colors"
+                                    title="Đổi ảnh này">
+                                <i class="fa-solid fa-camera-rotate text-xs"></i>
+                            </button>
+                            <button onclick="removePhotoSlot(${index})"
+                                    class="w-8 h-8 rounded-xl bg-white/95 text-rose-600 hover:bg-rose-600 hover:text-white flex items-center justify-center shadow-md transition-colors"
+                                    title="Xóa khung ảnh">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Concise Caption Content -->
+                    <div class="p-4 space-y-1">
+                        <h4 contenteditable="${isEditMode}"
+                            onblur="updateGalleryField(${index}, 'title', this.innerText)"
+                            class="font-display font-bold text-slate-800 text-sm sm:text-base leading-snug">
+                            ${photo.title}
+                        </h4>
+                        <p contenteditable="${isEditMode}"
+                           onblur="updateGalleryField(${index}, 'caption', this.innerText)"
+                           class="text-xs text-slate-500 leading-relaxed">
+                            ${photo.caption}
+                        </p>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function updateGalleryField(index, field, val) {
+        if (!appState.gallery[index]) return;
+        appState.gallery[index][field] = val.trim();
+        saveStateToStorage(true);
+    }
+
+    // Add N empty photo slots
+    function addEmptyPhotoSlot(count = 1) {
+        for (let i = 0; i < count; i++) {
+            const num = appState.gallery.length + 1;
+            appState.gallery.push({
+                url: `https://placehold.co/800x600/fdf2f8/db2777?text=Hinh+Anh+Dinh+Huong+${num}`,
+                title: `Hoạt động Định hướng Nghề nghiệp #${num}`,
+                category: "Hành trang Nghề giáo",
+                caption: "Nhấp vào nút máy ảnh trên góc khung để tải hình ảnh từ thiết bị và viết mô tả cho bức ảnh này."
+            });
+        }
+        renderGallery();
+        saveStateToStorage();
+        showToast(`Đã thêm ${count} khung ảnh mới! Tổng cộng: ${appState.gallery.length} ảnh`);
+    }
+
+    function removePhotoSlot(index) {
+        appState.gallery.splice(index, 1);
+        renderGallery();
+        saveStateToStorage();
+        showToast(`Đã xóa ảnh. Còn lại ${appState.gallery.length} ảnh`);
+    }
+
+    function movePhotoCard(index, direction) {
+        const targetIndex = index + direction;
+        if (targetIndex < 0 || targetIndex >= appState.gallery.length) return;
+        const temp = appState.gallery[index];
+        appState.gallery[index] = appState.gallery[targetIndex];
+        appState.gallery[targetIndex] = temp;
+        renderGallery();
+        saveStateToStorage();
+    }
+
+    // Step +/- photo count
+    function stepPhotoCount(delta) {
+        const input = document.getElementById('targetPhotoCountInput');
+        let val = parseInt(input.value || 0, 10) + delta;
+        if (val < 0) val = 0;
+        if (val > 60) val = 60;
+        input.value = val;
+        applyCustomPhotoCount();
+    }
+
+    function setExactPhotoCount(count) {
+        document.getElementById('targetPhotoCountInput').value = count;
+        applyCustomPhotoCount();
+    }
+
+    function applyCustomPhotoCount() {
+        const input = document.getElementById('targetPhotoCountInput');
+        let target = parseInt(input.value, 10);
+        if (isNaN(target) || target < 0) target = 0;
+        if (target > 60) target = 60;
+
+        const current = appState.gallery.length;
+        if (target > current) {
+            addEmptyPhotoSlot(target - current);
+        } else if (target < current) {
+            appState.gallery.splice(target);
+            renderGallery();
+            saveStateToStorage();
+            showToast(`Đã điều chỉnh số lượng hiển thị thành ${target} ảnh`);
+        } else {
+            showToast(`Hiện tại đang hiển thị đúng ${target} ảnh`);
+        }
+    }
+
+    // Upload multiple photos at once
+    function handleMultiPhotoUpload(event) {
+        const files = Array.from(event.target.files || []);
+        processUploadedFiles(files);
+        event.target.value = '';
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+        document.getElementById('dropZone').classList.add('bg-pink-100/80', 'border-purple-500');
+    }
+
+    function handleDragLeave(event) {
+        event.preventDefault();
+        document.getElementById('dropZone').classList.remove('bg-pink-100/80', 'border-purple-500');
+    }
+
+    function handleDrop(event) {
+        event.preventDefault();
+        document.getElementById('dropZone').classList.remove('bg-pink-100/80', 'border-purple-500');
+        const files = Array.from(event.dataTransfer.files || []).filter(f => f.type.startsWith('image/'));
+        processUploadedFiles(files);
+    }
+
+    function processUploadedFiles(files) {
+        if (!files.length) return;
+        let processed = 0;
+        files.forEach((file) => {
+            compressAndReadImage(file, 950, (dataUrl) => {
+                const cleanName = file.name.replace(/\.[^/.]+$/, "");
+                appState.gallery.push({
+                    url: dataUrl,
+                    title: cleanName || `Hình ảnh Định hướng #${appState.gallery.length + 1}`,
+                    category: "Ảnh Cá nhân",
+                    caption: "Khoảnh khắc đáng nhớ trên hành trình theo đuổi mục tiêu trở thành Giáo viên Hóa học."
+                });
+                processed++;
+                if (processed === files.length) {
+                    renderGallery();
+                    saveStateToStorage();
+                    showToast(`Đã tải lên thành công ${files.length} hình ảnh!`);
+                }
+            });
+        });
+    }
+
+    // Replace photo on a single card
+    function triggerSingleCardPhotoUpload(index) {
+        currentEditingCardIndex = index;
+        document.getElementById('singleCardPhotoInput').click();
+    }
+
+    function handleSingleCardPhotoChange(event) {
+        const file = event.target.files[0];
+        if (!file || currentEditingCardIndex === null) return;
+        compressAndReadImage(file, 950, (dataUrl) => {
+            if (appState.gallery[currentEditingCardIndex]) {
+                appState.gallery[currentEditingCardIndex].url = dataUrl;
+                renderGallery();
+                saveStateToStorage();
+                showToast(`Đã cập nhật hình ảnh cho khung #${currentEditingCardIndex + 1}!`);
+            }
+            currentEditingCardIndex = null;
+            event.target.value = '';
+        });
+    }
+
+    // Grid Columns & Style switcher
+    function setGridColumns(cols, notify = true) {
+        appState.gridColumns = cols;
+        const grid = document.getElementById('galleryGrid');
+        grid.classList.remove('lg:grid-cols-2', 'lg:grid-cols-3', 'lg:grid-cols-4');
+        if (cols === 2) grid.classList.add('lg:grid-cols-2');
+        if (cols === 3) grid.classList.add('lg:grid-cols-3');
+        if (cols === 4) grid.classList.add('lg:grid-cols-4');
+
+        [2, 3, 4].forEach(c => {
+            const btn = document.getElementById(`colBtn${c}`);
+            if (!btn) return;
+            if (c === cols) {
+                btn.className = "px-2 py-1 rounded-lg text-xs font-bold bg-pink-500 text-white shadow-sm";
+            } else {
+                btn.className = "px-2 py-1 rounded-lg text-xs font-bold text-slate-600 hover:bg-pink-50";
+            }
+        });
+
+        saveStateToStorage(true);
+        if (notify) showToast(`Đã chuyển bố cục thư viện sang ${cols} cột`);
+    }
+
+    function setGalleryCardStyle(style, notify = true) {
+        appState.cardStyle = style;
+        const grid = document.getElementById('galleryGrid');
+        const select = document.getElementById('cardStyleSelect');
+        if (select) select.value = style;
+
+        grid.classList.remove('gallery-style-lab', 'gallery-style-polaroid');
+        if (style === 'polaroid') {
+            grid.classList.add('gallery-style-polaroid');
+        } else {
+            grid.classList.add('gallery-style-lab');
+        }
+        saveStateToStorage(true);
+        if (notify) showToast("Đã đổi kiểu khung hình ảnh!");
+    }
+
+    // ================= IMAGE COMPRESSION HELPER =================
+    function compressAndReadImage(file, maxWidth, callback) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+                callback(compressedDataUrl);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // ================= LIGHTBOX MODAL =================
+    function openLightbox(url, caption) {
+        document.getElementById('lightboxImg').src = url;
+        document.getElementById('lightboxCaption').textContent = caption || 'Chi tiết hình ảnh';
+        document.getElementById('lightboxModal').classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightboxModal').classList.add('hidden');
+    }
+
+    // ================= RESET MODAL & STORAGE =================
+    function openResetModal() {
+        document.getElementById('resetModal').classList.remove('hidden');
+    }
+
+    function closeResetModal() {
+        document.getElementById('resetModal').classList.add('hidden');
+    }
+
+    function confirmResetData() {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+    }
+
+    function saveStateToStorage(silent = false) {
+        try {
+            document.querySelectorAll('[data-save]').forEach(el => {
+                appState.texts[el.getAttribute('data-save')] = el.innerHTML;
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        } catch (err) {
+            if (!silent) showToast("Dung lượng ảnh lớn, hệ thống giữ trạng thái trên phiên hiện tại.");
+        }
+    }
+
+    function loadStateFromStorage() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const parsed = JSON.parse(raw);
+
+            if (parsed.avatar) {
+                appState.avatar = parsed.avatar;
+                document.getElementById('avatarImg').src = parsed.avatar;
+            }
+            if (parsed.gridColumns) appState.gridColumns = parsed.gridColumns;
+            if (parsed.cardStyle) appState.cardStyle = parsed.cardStyle;
+            if (parsed.texts) {
+                appState.texts = parsed.texts;
+                Object.keys(parsed.texts).forEach(key => {
+                    const el = document.querySelector(`[data-save="${key}"]`);
+                    if (el) el.innerHTML = parsed.texts[key];
+                });
+            }
+            if (Array.isArray(parsed.periodicSkills)) appState.periodicSkills = parsed.periodicSkills;
+            if (Array.isArray(parsed.reactionRoadmap)) appState.reactionRoadmap = parsed.reactionRoadmap;
+            if (Array.isArray(parsed.gallery)) appState.gallery = parsed.gallery;
+        } catch (e) {
+            console.warn("Không thể tải dữ liệu đã lưu:", e);
+        }
+    }
+
+    // ================= TOAST NOTIFICATION =================
+    let toastTimer = null;
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+        toastMsg.textContent = msg;
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+            toast.classList.add('translate-y-20', 'opacity-0');
+        }, 2800);
+    }
+</script>
+</body>
+</html>

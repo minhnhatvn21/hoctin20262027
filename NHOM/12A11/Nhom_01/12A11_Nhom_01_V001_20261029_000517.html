@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Lam Thắng Cảnh Việt Nam</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti Library for Quiz Celebration -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        ocean: {
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Customizations & Smooth Theme Transitions */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .bubble-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bubble-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.25);
+        }
+        
+        /* Highlight search effect */
+        .highlight-card {
+            animation: pulseGlow 2s infinite alternate, borderBounce 0.6s ease-in-out 3;
+            border-color: #10b981 !important;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.9) !important;
+            transform: scale(1.04);
+            z-index: 20;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(14, 165, 233, 0.9); }
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans leading-relaxed selection:bg-brand-500 selection:text-white">
+
+    <!-- BACKGROUND AUDIO ELEMENT (Royalty-free ambient sound demo) -->
+    <audio id="bg-music" loop preload="none">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- GUIDANCE INSTRUCTION BANNER (Dành cho người chỉnh sửa website) -->
+    <div id="guide-banner" class="bg-amber-500 text-slate-900 text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-between shadow-md relative z-50">
+        <span>
+            <i class="fa-solid fa-lightbulb mr-2"></i>
+            <strong>Note :</strong> Bạn có thể bật nhạc, thay đổi chế độ sáng/tối!
+        </span>
+        <button onclick="document.getElementById('guide-banner').remove();" class="text-slate-900 hover:text-white ml-2 p-1 font-bold">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="glass-nav fixed top-0 left-0 w-full z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-slate-900/85 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-ocean-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid font-bold fa-mountain-sun text-lg"></i>
+                    </div>
+                    <span class="font-serif font-bold text-xl sm:text-2xl text-slate-800 dark:text-white tracking-tight">
+                        Danh Lam <span class="text-brand-600 dark:text-brand-500">Việt Nam</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="#home" class="px-3.5 py-2 rounded-full text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-slate-800 transition">Trang chủ</a>
+                    <a href="#landmarks" class="px-3.5 py-2 rounded-full text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-slate-800 transition">Danh lam thắng cảnh</a>
+                    <a href="#quiz" class="px-3.5 py-2 rounded-full text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-slate-800 transition">Trắc nghiệm</a>
+                    <a href="#team" class="px-3.5 py-2 rounded-full text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-slate-800 transition">Giới thiệu nhóm</a>
+                </div>
+
+                <!-- Right Tools: Music Player & Dark Mode Toggle -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Music Controls -->
+                    <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5 border border-slate-200 dark:border-slate-700 shadow-inner">
+                        <button id="music-toggle-btn" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 text-sm focus:outline-none transition flex items-center gap-1.5" title="Bật/Tắt nhạc nền">
+                            <i id="music-icon" class="fa-solid fa-music"></i>
+                            <span id="music-text" class="text-xs font-semibold hidden sm:inline">Nhạc nền</span>
+                        </button>
+                        <input id="volume-slider" type="range" min="0" max="1" step="0.1" value="0.4" class="w-12 sm:w-16 h-1 ml-2 accent-brand-600 cursor-pointer" title="Âm lượng">
+                    </div>
+
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="theme-toggle-btn" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center border border-slate-200 dark:border-slate-700" title="Đổi chế độ Sáng/Tối">
+                        <i id="theme-icon" class="fa-solid fa-moon text-base"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pt-2 pb-4 space-y-2">
+            <a href="#home" class="mobile-nav-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-800">Trang chủ</a>
+            <a href="#landmarks" class="mobile-nav-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-800">Danh lam thắng cảnh</a>
+            <a href="#quiz" class="mobile-nav-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-800">Trắc nghiệm</a>
+            <a href="#team" class="mobile-nav-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-800">Giới thiệu nhóm</a>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: TRANG CHỦ (HERO BANNER) -->
+    <section id="home" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-900/90 via-slate-900/80 to-slate-950 text-white">
+        <!-- Background Image Overlay -->
+        <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1920&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-0"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-brand-100 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-6 border border-white/20">
+                <i class="fa-solid fa-compass text-brand-400"></i> Khám phá Vẻ đẹp Bất tận
+            </span>
+
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight drop-shadow-lg">
+                Danh lam thắng cảnh <br class="hidden sm:inline"/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-ocean-400">Việt Nam</span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-10 italic leading-relaxed">
+                "Hãy đi đi - Hạnh phúc không phải đích đến mà là từng chặng đường đi."
+            </p>
+
+            <!-- Search Bar Component -->
+            <div class="relative max-w-2xl mx-auto">
+                <div class="relative flex items-center bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-2 border border-white/30 dark:border-slate-800 focus-within:ring-4 focus-within:ring-brand-500/40 transition">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg ml-4 mr-2"></i>
+                    <input type="text" id="search-input" placeholder="Nhập địa danh hoặc tỉnh thành (ví dụ: Hạ Long, Đà Nẵng...)" class="w-full py-3 px-2 text-slate-800 dark:text-white placeholder-slate-400 bg-transparent text-sm sm:text-base focus:outline-none" autocomplete="off">
+                    <button id="search-btn" class="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-semibold px-6 py-3 rounded-xl transition flex items-center gap-2 shrink-0 shadow-md">
+                        <span>Tìm kiếm</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Autocomplete Suggestions Dropdown -->
+                <div id="autocomplete-results" class="hidden absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-100 dark:border-slate-800 max-h-60 overflow-y-auto text-left z-30 text-slate-800 dark:text-slate-100">
+                    <!-- Suggestions injected via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: CÁC DANH LAM THẮNG CẢNH -->
+    <section id="landmarks" class="py-24 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                    Hành Trình Khám Phá
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+                    36 thắng cảnh kỳ vĩ trải dài từ mảnh đất địa đầu Tổ quốc đến vùng đất Mũi Cà Mau (Nhấp vào ảnh để xem chi tiết)
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12">
+                <button class="filter-btn active px-6 py-2.5 rounded-full text-sm sm:text-base font-semibold transition shadow-sm bg-brand-600 text-white" data-region="all">
+                    Tất cả (36)
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full text-sm sm:text-base font-semibold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition shadow-sm" data-region="bac">
+                    Miền Bắc (12)
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full text-sm sm:text-base font-semibold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition shadow-sm" data-region="trung">
+                    Miền Trung (12)
+                </button>
+                <button class="filter-btn px-6 py-2.5 rounded-full text-sm sm:text-base font-semibold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500 transition shadow-sm" data-region="nam">
+                    Miền Nam (12)
+                </button>
+            </div>
+
+            <!-- Landmarks Grid Container -->
+            <div id="landmarks-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Cards injected dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: TRẮC NGHIỆM KIẾN THỨC (QUIZ) -->
+    <section id="quiz" class="py-24 bg-gradient-to-b from-slate-100 to-emerald-50/50 dark:from-slate-900 dark:to-slate-950">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm tracking-wider uppercase bg-brand-100 dark:bg-brand-900/40 px-3 py-1 rounded-full">Thử Thách</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-2 mb-4">
+                    Trắc Nghiệm Danh Lam Thắng Cảnh
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400">Kiểm tra hiểu biết của bạn về các địa danh nổi tiếng Việt Nam</p>
+            </div>
+
+            <!-- Quiz Box -->
+            <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 p-6 sm:p-10 relative overflow-hidden">
+                <!-- Score Header -->
+                <div class="flex items-center justify-between pb-6 mb-6 border-b border-slate-100 dark:border-slate-800">
+                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400" id="quiz-progress">Câu hỏi 1 / 10</span>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-trophy text-amber-500"></i>
+                        <span class="font-bold text-slate-800 dark:text-slate-200 text-sm sm:text-base" id="quiz-score-badge">Điểm: 0 / 10</span>
+                    </div>
+                </div>
+
+                <!-- Questions Container -->
+                <div id="quiz-questions-container" class="space-y-8">
+                    <!-- Quiz Questions injected via JS -->
+                </div>
+
+                <!-- Final Results Modal/Box -->
+                <div id="quiz-result" class="hidden text-center py-8">
+                    <div class="w-20 h-20 bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-inner">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2">Chúc mừng bạn đã hoàn thành!</h3>
+                    <p class="text-slate-600 dark:text-slate-300 mb-6 text-lg">Bạn trả lời đúng <span id="final-score" class="font-bold text-brand-600 dark:text-brand-400 text-2xl">0</span>/10 câu hỏi.</p>
+                    <button id="restart-quiz-btn" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-8 py-3 rounded-full transition shadow-lg hover:shadow-brand-500/30">
+                        <i class="fa-solid fa-rotate-right mr-2"></i> Làm lại bài test
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: GIỚI THIỆU NHÓM (ABOUT US) -->
+    <!-- 
+        ===================================================================
+        [HƯỚNG DẪN THAY ĐỔI TÊN & HÌNH CẢNH THÀNH VIÊN NHÓM]
+        - Để đổi tên: Tìm chữ "Thành Viên 1", "Thành Viên 2"... và thay thế.
+        - Để đổi hình ảnh từ máy tính (nội bộ): Tạo thư mục tên là "images"
+          nằm cùng cấp với file HTML này. Thêm ảnh vào đó (vd: images/anh1.jpg).
+          Sau đó thay link src="..." dưới đây bằng src="images/anh1.jpg".
+        ===================================================================
+    -->
+    <section id="team" class="py-24 bg-white dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-ocean-600 dark:text-ocean-400 font-bold text-sm tracking-wider uppercase bg-ocean-50 dark:bg-ocean-950/50 px-3 py-1 rounded-full">Thành Viên</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-2 mb-4">
+                    Nhóm Phát Triển Dự Án
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400">5 thành viên tâm huyết xây dựng và gìn giữ văn hóa du lịch Việt Nam</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
+                <!-- Member 1 -->
+                <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 text-center border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition group">
+                    <div class="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-md group-hover:scale-105 transition">
+                        <!-- THAY ĐỔI FILE ÁNH: Ví dụ src="images/thanhvien1.jpg" -->
+                        <img src="https://i.pinimg.com/736x/a6/e8/cb/a6e8cbbacb6015a0ea4f4a5905b2c94f.jpg">
+                    </div>
+                    <!-- THAY ĐỔI TÊN THÀNH VIÊN TẠI ĐÂY -->
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Nguyễn Ngọc Bảo Thư</h3>
+                    <p class="text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider mb-3">Thành viên</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">thủ lĩnh của bầy chuột.</p>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 text-center border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition group">
+                    <div class="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-md group-hover:scale-105 transition">
+                        <img src="https://i.pinimg.com/736x/10/bc/bd/10bcbdc51fdacda178fbf70267e19251.jpg" alt="Thành viên 2" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Nguyễn Thị Thùy Anh</h3>
+                    <p class="text-ocean-600 dark:text-ocean-400 text-xs font-semibold uppercase tracking-wider mb-3">Thành viên</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">early cat.</p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 text-center border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition group">
+                    <div class="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-md group-hover:scale-105 transition">
+                        <img src="https://i.pinimg.com/1200x/54/9c/7b/549c7b0a43fcf85b1b629fbe785bbb64.jpg" alt="Thành viên 3" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Võ Thị Quỳnh Anh</h3>
+                    <p class="text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider mb-3">Thành viên</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">nhím.</p>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 text-center border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition group">
+                    <div class="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-md group-hover:scale-105 transition">
+                        <img src="https://i.pinimg.com/736x/87/15/6d/87156d105b46bda2fe27400bdbb2a212.jpg" alt="Thành viên 4" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Phan Đình Thiên Anh</h3>
+                    <p class="text-ocean-600 dark:text-ocean-400 text-xs font-semibold uppercase tracking-wider mb-3">Thành viên</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">yêu màu hằm ghéc sự giả dối.</p>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 text-center border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition group">
+                    <div class="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-md group-hover:scale-105 transition">
+                        <img src="https://i.pinimg.com/736x/3c/02/42/3c0242ba930de7bf88377d2784dbc34d.jpg" alt="Thành viên 5" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Nguyễn Văn Gia Huy</h3>
+                    <p class="text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider mb-3">Thành viên</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">Thằng cò.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGE LIGHTBOX MODAL (Xem ảnh phóng to) -->
+    <div id="image-modal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-slate-900/70 text-white rounded-full flex items-center justify-center hover:bg-slate-900 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="relative h-72 sm:h-96 w-full bg-slate-950">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-contain">
+            </div>
+            <div class="p-6">
+                <div class="flex items-center gap-2 text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase mb-1">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="modal-province"></span>
+                </div>
+                <h3 id="modal-title" class="font-bold text-2xl text-slate-900 dark:text-white mb-3"></h3>
+                <p id="modal-desc" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-brand-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-700 hover:scale-110">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <i class="fa-solid fa-mountain-sun text-brand-500 text-2xl"></i>
+                <span class="font-serif font-bold text-xl text-white">Danh Lam Thắng Cảnh Việt Nam</span>
+            </div>
+            <p class="text-sm max-w-md mx-auto mb-6 text-slate-500">Website giới thiệu và bảo tồn nét đẹp thiên nhiên, văn hóa du lịch các vùng miền trên dải đất hình chữ S.</p>
+            <p class="text-xs text-slate-600">&copy; 2026 Nhóm Phát Triển. Bản quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // ====================================================================
+        // [HƯỚNG DẪN THAY ĐỔI HÌNH CẢNH CÁC DANH LAM THẮNG CẢNH]
+        // Muốn dùng ảnh lưu trong máy: thay thuộc tính "img" từ link URL sang
+        // đường dẫn tương đối như: 'images/vinh-ha-long.jpg'
+        // ====================================================================
+        const landmarksData = [
+            // MIỀN BẮC (1 - 12)
+            { id: 1, region: 'bac', name: 'Vịnh Hạ Long', province: 'Quảng Ninh', desc: 'Di sản Thiên nhiên Thế giới UNESCO với hàng nghìn đảo đá vôi nhấp nhô trên làn nước xanh ngọc bích.', img: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=600&auto=format&fit=crop' },
+            { id: 2, region: 'bac', name: 'Quần thể danh thắng Tràng An', province: 'Ninh Bình', desc: 'Di sản Hỗn hợp Thế giới đầu tiên ở Đông Nam Á, nổi tiếng với núi đá vôi uốn lượn và hang động xuyên thủy.', img: 'https://i.pinimg.com/736x/f4/3f/8c/f43f8c1ed13469c534adf61f5e162c1d.jpg' },
+            { id: 3, region: 'bac', name: 'Đỉnh Fansipan & Thung lũng Sa Pa', province: 'Lào Cai', desc: '"Nóc nhà Đông Dương" cao 3.143m, gắn liền với mây mù quanh năm và những thửa ruộng bậc thang kỳ vĩ.', img: 'https://i.pinimg.com/736x/7b/7a/53/7b7a53b86b248381b4c606e7ef9d5e5f.jpg' },
+            { id: 4, region: 'bac', name: 'Hồ Hoàn Kiếm & Đền Ngọc Sơn', province: 'Hà Nội', desc: 'Biểu tượng văn hóa - lịch sử ngàn năm của Hà Nội với Tháp Rùa cổ kính và cầu Thê Húc đỏ rực.', img: 'https://i.pinimg.com/736x/2c/79/23/2c7923ee076da3b9b855d297b992ddb8.jpg' },
+            { id: 5, region: 'bac', name: 'Cao nguyên đá Đồng Văn', province: 'Hà Giang', desc: 'Công viên Địa chất Toàn cầu UNESCO với cảnh quan núi đá tai mèo hùng vĩ và đèo Mã Pì Lèng hiểm trở.', img: 'https://i.pinimg.com/736x/67/5d/9b/675d9ba6100b2aff51e4037965823479.jpg' },
+            { id: 6, region: 'bac', name: 'Thác Bản Giốc', province: 'Cao Bằng', desc: 'Một trong những thác nước tự nhiên trên đường biên giới đẹp và lớn nhất thế giới.', img: 'https://i.pinimg.com/736x/e2/83/d8/e283d8d6bb5410b74108829c64c84368.jpg' },
+            { id: 7, region: 'bac', name: 'Hồ Ba Bể', province: 'Bắc Kạn', desc: 'Hồ nước ngọt tự nhiên trên núi đá vôi lớn nhất Việt Nam, nằm giữa lòng Vườn quốc gia Ba Bể.', img: 'https://i.pinimg.com/736x/4a/a4/a0/4aa4a0c0df09deaa145facdfe302b6dd.jpg' },
+            { id: 8, region: 'bac', name: 'Thung lũng Mai Châu', province: 'Hòa Bình', desc: 'Bản làng thanh bình của người Thái, nổi tiếng với nếp nhà sàn truyền thống và cánh đồng lúa bạt ngàn.', img: 'https://i.pinimg.com/736x/e4/2a/6c/e42a6cb4c50d6eb20a948df219ffece4.jpg' },
+            { id: 9, region: 'bac', name: 'Tam Đảo', province: 'Vĩnh Phúc', desc: 'Thị trấn trên núi cao với khí hậu mát mẻ quanh năm, được ví như "Sapa thu nhỏ" gần Hà Nội.', img: 'https://i.pinimg.com/736x/4f/30/2b/4f302b3acb3168eeb6ac66d3bcd3a7bd.jpg' },
+            { id: 10, region: 'bac', name: 'Vườn quốc gia Cúc Phương', province: 'Ninh Bình', desc: 'Vườn quốc gia đầu tiên của Việt Nam, nơi bảo tồn hệ động thực vật nhiệt đới phong phú và cây chò ngàn năm.', img: 'https://i.pinimg.com/736x/e8/50/cb/e850cbd0371c9e234f8bb1523840ed73.jpg' },
+            { id: 11, region: 'bac', name: 'Đảo Cát Bà', province: 'Hải Phòng', desc: 'Khu dự trữ sinh quyển thế giới với thảm thực vật đa dạng, bãi biển đẹp và Vịnh Lan Hạ êm đềm.', img: 'https://i.pinimg.com/736x/91/71/08/917108bacfe8a42daa4e1e4a77f2e78f.jpg' },
+            { id: 12, region: 'bac', name: 'Mù Cang Chải', province: 'Yên Bái', desc: 'Nổi tiếng với những danh thắng ruộng bậc thang tuyệt đẹp vào mùa lúa chín (tháng 9 - 10).', img: 'https://i.pinimg.com/736x/79/40/89/794089d28a0a728d74de3a8be3748ad3.jpg' },
+
+            // MIỀN TRUNG (13 - 24)
+            { id: 13, region: 'trung', name: 'Quần thể di tích Cố đô Huế', province: 'Thừa Thiên Huế', desc: 'Di sản Văn hóa Thế giới chứa đựng nét trầm mặc của Đại Nội, các lăng tẩm triều Nguyễn và dòng sông Hương.', img: 'https://i.pinimg.com/736x/72/68/09/726809464c37898f6ac6787c951743b0.jpg' },
+            { id: 14, region: 'trung', name: 'Phong Nha - Kẻ Bàng', province: 'Quảng Bình', desc: '"Vương quốc hang động" với hang Sơn Đoòng lớn nhất thế giới cùng động Phong Nha, Thiên Đường.', img: 'https://i.pinimg.com/736x/94/97/d4/9497d4dd915d410105d0bef4ea5c6a9e.jpg' },
+            { id: 15, region: 'trung', name: 'Phố cổ Hội An', province: 'Quảng Nam', desc: 'Thương cảng cổ châu Á nguyên vẹn nhất, lung linh đèn lồng về đêm bên dòng sông Hoài.', img: 'https://i.pinimg.com/736x/f2/1b/17/f21b1740a45a533399b0175f4a8c14e8.jpg' },
+            { id: 16, region: 'trung', name: 'Danh thắng Ngũ Hành Sơn', province: 'Đà Nẵng', desc: 'Quần thể 5 ngọn núi đá vôi hội tụ vẻ đẹp tâm linh với nhiều chùa chiền và hang động kỳ bí.', img: 'https://i.pinimg.com/736x/0b/b6/2b/0bb62bf6e6b5ebac769e7b91714ceb0a.jpg' },
+            { id: 17, region: 'trung', name: 'Mũi Điện (Hải đăng Đại Lãnh)', province: 'Phú Yên', desc: 'Nơi đón những ánh bình minh đầu tiên trên đất liền của Việt Nam với vách đá nhô ra biển hùng vĩ.', img: 'https://i.pinimg.com/736x/9f/f8/a6/9ff8a6b60e917c12abbf9c91f7389839.jpg' },
+            { id: 18, region: 'trung', name: 'Khu danh thắng Gành Đá Đĩa', province: 'Phú Yên', desc: 'Tuyệt tác thiên nhiên với các cột đá bazan hình lục giác xếp chồng lên nhau như một tổ ong khổng lồ.', img: 'https://i.pinimg.com/736x/50/c3/49/50c34985724ee65366453f31806f4d8d.jpg' },
+            { id: 19, region: 'trung', name: 'Vịnh Vân Phong', province: 'Khánh Hòa', desc: 'Vịnh biển hoang sơ với con đường đi bộ giữa biển độc đáo tại Điệp Sơn và bãi biển trong suốt.', img: 'https://i.pinimg.com/736x/9e/8e/6f/9e8e6f89205d0bb8af440693fd46168a.jpg' },
+            { id: 20, region: 'trung', name: 'Hồ Tuyền Lâm', province: 'Lâm Đồng (Đà Lạt)', desc: 'Hồ nước ngọt rộng lớn bao bọc bởi rừng thông xanh ngát, không khí quanh năm mát mẻ thơ mộng.', img: 'https://i.pinimg.com/736x/04/42/d9/0442d991e59f2155a0c5a76da52d40a6.jpg' },
+            { id: 21, region: 'trung', name: 'Mũi Né', province: 'Bình Thuận', desc: 'Nổi tiếng với những đồi cát bay mênh mông như sa mạc thu nhỏ và biển xanh ngập nắng.', img: 'https://i.pinimg.com/736x/b8/d7/5b/b8d75b4756fe9e8af5025ba4cabdb179.jpg' },
+            { id: 22, region: 'trung', name: 'Bán đảo Sơn Trà', province: 'Đà Nẵng', desc: '"Lá phổi xanh" của Đà Nẵng, nơi có Chùa Linh Ứng với tượng Phật Bà cao nhất Việt Nam và voọc chà vá chân nâu.', img: 'https://i.pinimg.com/736x/1c/3c/4d/1c3c4d242c10f1587848401ebeeaa277.jpg' },
+            { id: 23, region: 'trung', name: 'Biển Hồ (Hồ T\'Nưng)', province: 'Gia Lai', desc: '"Đôi mắt Pleiku" – hồ nước ngọt tự nhiên hình thành trên miệng núi lửa cổ đại mênh mông, tĩnh lặng.', img: 'https://i.pinimg.com/736x/69/76/8d/69768d3ebd0e6fa0d7e8a09edb161528.jpg' },
+            { id: 24, region: 'trung', name: 'Thác Tà Dùng', province: 'Đắk Nông', desc: 'Được mệnh danh là "Vịnh Hạ Long của Tây Nguyên" với hàng chục hòn đảo nhỏ nhấp nhô trên mặt hồ.', img: 'https://i.pinimg.com/736x/af/5b/32/af5b324d3e1fc428fd2fb54406b1d33b.jpg' },
+
+            // MIỀN NAM (25 - 36)
+            { id: 25, region: 'nam', name: 'Đảo Ngọc Phú Quốc', province: 'Kiên Giang', desc: 'Thiên đường nghỉ dưỡng nhiệt đới với Bãi Sao, Bãi Khem xanh mát và hệ sinh thái san hô phong phú.', img: 'https://i.pinimg.com/736x/cd/a0/32/cda0324feaf450e860ea2ddf88d4c012.jpg' },
+            { id: 26, region: 'nam', name: 'Chợ nổi Cái Răng', province: 'Cần Thơ', desc: 'Di sản văn hóa phi vật thể quốc gia, biểu tượng sinh hoạt sông nước tấp nập của miền Tây.', img: 'https://i.pinimg.com/736x/28/d5/0a/28d50aaccc4f6a0563b4a67e2dafdabb.jpg' },
+            { id: 27, region: 'nam', name: 'Vườn quốc gia Tràm Chim', province: 'Đồng Tháp', desc: 'Khu Ramsar thế giới bảo tồn hệ sinh thái đất ngập nước và là nơi trú ngụ của loài Sếu đầu đỏ quý hiếm.', img: 'https://i.pinimg.com/736x/1a/87/93/1a8793e8ac4c61e321ba1fa98fe635b9.jpg' },
+            { id: 28, region: 'nam', name: 'Núi Bà Đen', province: 'Tây Ninh', desc: '"Đệ nhất thiên sơn" miền Nam cao 986m, nổi tiếng với trung tâm hành hương tâm linh và cảnh sắc mây mù.', img: 'https://i.pinimg.com/736x/41/65/12/416512809877af72808bc99aab1a3e65.jpg' },
+            { id: 29, region: 'nam', name: 'Quần đảo Côn Đảo', province: 'Bà Rịa - Vũng Tàu', desc: 'Vừa là di tích lịch sử linh thiêng, vừa sở hữu thiên nhiên biển đảo hoang sơ, xanh trong bậc nhất.', img: 'https://i.pinimg.com/736x/93/22/88/932288144788bcae201b0fdcc87dd221.jpg' },
+            { id: 30, region: 'nam', name: 'Vườn quốc gia Cát Tiên', province: 'Đồng Nai', desc: 'Khu dự trữ sinh quyển thế giới với thảm rừng mưa nhiệt đới lưu giữ nhiều loài động vật quý hiếm.', img: 'https://i.pinimg.com/736x/ad/e4/89/ade48920d7fba52f2449ab535b9323d8.jpg' },
+            { id: 31, region: 'nam', name: 'Rừng tràm Trà Sư', province: 'An Giang', desc: 'Hệ sinh thái rừng tràm ngập nước đặc trưng với thảm bèo xanh phủ kín mặt nước mùa nước nổi.', img: 'https://i.pinimg.com/736x/73/35/75/733575d23b07ea8aa17717773cd6b555.jpg' },
+            { id: 32, region: 'nam', name: 'Mũi Cà Mau', province: 'Cà Mau', desc: 'Mảnh đất tận cùng phía Nam của Tổ quốc, nơi ngắm cả mặt trời mọc ở biển Đông và lặn ở biển Tây.', img: 'https://i.pinimg.com/736x/65/b7/b8/65b7b88634ac0af97e039bda4f367a92.jpg' },
+            { id: 33, region: 'nam', name: 'Địa đạo Củ Chi', province: 'TP. Hồ Chí Minh', desc: 'Kỳ tích kiến trúc quân sự ngầm dưới lòng đất dài hàng trăm km, chứng nhân lịch sử kiên cường.', img: 'https://i.pinimg.com/736x/eb/0c/ec/eb0cec4927092ec814c5226545122f9f.jpg' },
+            { id: 34, region: 'nam', name: 'Quần đảo Nam Du', province: 'Kiên Giang', desc: 'Quần đảo hoang sơ với bãi Cây Mến đẹp như tranh vẽ, nước biển trong vắt và hải sản tươi ngon.', img: 'https://i.pinimg.com/736x/f2/b3/24/f2b324fe2117d009f6088ab556fb5009.jpg' },
+            { id: 35, region: 'nam', name: 'Khu du lịch sinh thái Bò Cạp Vàng', province: 'Đồng Nai', desc: 'Cảnh quan sông nước miệt vườn thanh bình, điểm trải nghiệm sinh thái nổi tiếng cận kề TP.HCM.', img: 'https://i.pinimg.com/736x/b8/e9/9b/b8e99b54477fcc68dabac587303b94dc.jpg' },
+            { id: 36, region: 'nam', name: 'Hồ Dầu Tiếng', province: 'Tây Ninh / Bình Dương', desc: 'Hồ nước nhân tạo lớn nhất Việt Nam với không gian thoáng đãng, điểm cắm trại và ngắm hoàng hôn lý tưởng.', img: 'https://i.pinimg.com/736x/aa/29/e2/aa29e27257408b13ca7f20390921479f.jpg' }
+        ];
+
+        // Quiz Questions Data (10 Questions)
+        const quizQuestions = [
+            {
+                question: "Danh thắng nào ở Việt Nam là Di sản Hỗn hợp Thế giới đầu tiên ở Đông Nam Á?",
+                options: ["Vịnh Hạ Long", "Quần thể danh thắng Tràng An", "Phong Nha - Kẻ Bàng", "Cố đô Huế"],
+                answer: 1
+            },
+            {
+                question: "Ngọn núi nào được mệnh danh là 'Nóc nhà Đông Dương'?",
+                options: ["Đỉnh Fansipan", "Núi Bà Đen", "Ngũ Hành Sơn", "Đỉnh Langbiang"],
+                answer: 0
+            },
+            {
+                question: "Hang Sơn Đoòng - hang động tự nhiên lớn nhất thế giới thuộc danh thắng nào?",
+                options: ["Vườn quốc gia Cúc Phương", "Vườn quốc gia Cát Tiên", "Phong Nha - Kẻ Bàng", "Tràng An"],
+                answer: 2
+            },
+            {
+                question: "Danh thắng 'Gành Đá Đĩa' với cấu trúc đá lục giác tuyệt đẹp thuộc tỉnh nào?",
+                options: ["Khánh Hòa", "Bình Định", "Phú Yên", "Quảng Ngãi"],
+                answer: 2
+            },
+            {
+                question: "Đâu là tên gọi khác nổi tiếng của Biển Hồ ở Gia Lai?",
+                options: ["Hồ Tuyền Lâm", "Hồ T'Nưng", "Hồ Dầu Tiếng", "Hồ Ba Bể"],
+                answer: 1
+            },
+            {
+                question: "Ngọn núi nào ở miền Nam Việt Nam được phong tặng danh hiệu 'Đệ nhất thiên sơn' cao 986m?",
+                options: ["Núi Cấm", "Núi Bà Đen", "Núi Chứa Chan", "Núi Sam"],
+                answer: 1
+            },
+            {
+                question: "Di sản văn hóa phi vật thể nào là biểu tượng sông nước độc đáo của vùng đất Cần Thơ?",
+                options: ["Chợ nổi Cái Răng", "Rừng tràm Trà Sư", "Vườn quốc gia Tràm Chim", "Mũi Cà Mau"],
+                answer: 0
+            },
+            {
+                question: "Thác nước tự nhiên nằm trên đường biên giới Việt Nam - Trung Quốc đẹp bậc nhất thế giới tên là gì?",
+                options: ["Thác Cam Ly", "Thác Bản Giốc", "Thác Tà Dùng", "Thác Dambri"],
+                answer: 1
+            },
+            {
+                question: "Hồ nước ngọt tự nhiên nằm trên núi đá vôi lớn nhất Việt Nam thuộc tỉnh Bắc Kạn là gì?",
+                options: ["Hồ Ba Bể", "Hồ Dầu Tiếng", "Hồ Tuyền Lâm", "Hồ Thác Bà"],
+                answer: 0
+            },
+            {
+                question: "Quần đảo nào vừa sở hữu cảnh quan thiên nhiên tuyệt đẹp vừa là di tích lịch sử linh thiêng thuộc tỉnh Bà Rịa - Vũng Tàu?",
+                options: ["Phú Quốc", "Nam Du", "Côn Đảo", "Cát Bà"],
+                answer: 2
+            }
+        ];
+
+        // RENDER LANDMARKS GRID
+        function renderLandmarks(data) {
+            const container = document.getElementById('landmarks-grid');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.id = `landmark-card-${item.id}`;
+                card.className = `bubble-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 flex flex-col group relative transition-all duration-300 cursor-pointer`;
+                card.onclick = () => openModal(item);
+                
+                card.innerHTML = `
+                    <div class="relative h-52 w-full overflow-hidden bg-slate-200 dark:bg-slate-800">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                            STT: ${item.id}
+                        </span>
+                        <span class="absolute top-3 right-3 bg-brand-600/90 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                            ${item.region === 'bac' ? 'Miền Bắc' : item.region === 'trung' ? 'Miền Trung' : 'Miền Nam'}
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1.5 text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider mb-1">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>${item.province}</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                                ${item.name}
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed line-clamp-3">
+                                ${item.desc}
+                            </p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // IMAGE LIGHTBOX MODAL HANDLERS
+        function openModal(item) {
+            document.getElementById('modal-img').src = item.img;
+            document.getElementById('modal-title').innerText = item.name;
+            document.getElementById('modal-province').innerText = item.province;
+            document.getElementById('modal-desc').innerText = item.desc;
+            document.getElementById('image-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('image-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('image-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'image-modal') closeModal();
+        });
+
+        // LIGHT / DARK MODE TOGGLE
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-amber-400';
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-slate-600';
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon text-slate-600';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun text-amber-400';
+            }
+        });
+
+        // BACKGROUND MUSIC PLAYER LOGIC
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggleBtn = document.getElementById('music-toggle-btn');
+        const musicIcon = document.getElementById('music-icon');
+        const volumeSlider = document.getElementById('volume-slider');
+        let isPlaying = false;
+
+        bgMusic.volume = volumeSlider.value;
+
+        musicToggleBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.className = 'fa-solid fa-music';
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    musicIcon.className = 'fa-solid fa-volume-high text-brand-500 animate-pulse';
+                    isPlaying = true;
+                }).catch(err => console.log('Music play prevented by browser:', err));
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            bgMusic.volume = e.target.value;
+        });
+
+        // FILTER FUNCTIONALITY
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-600', 'text-white', 'active');
+                    b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300');
+                });
+                btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300');
+                btn.classList.add('bg-brand-600', 'text-white', 'active');
+
+                const region = btn.getAttribute('data-region');
+                if (region === 'all') {
+                    renderLandmarks(landmarksData);
+                } else {
+                    const filtered = landmarksData.filter(item => item.region === region);
+                    renderLandmarks(filtered);
+                }
+            });
+        });
+
+        // SEARCH & AUTOCOMPLETE FUNCTIONALITY
+        const searchInput = document.getElementById('search-input');
+        const autocompleteBox = document.getElementById('autocomplete-results');
+        const searchBtn = document.getElementById('search-btn');
+
+        function handleSearchSuggestions() {
+            const query = searchInput.value.trim().toLowerCase();
+            if (!query) {
+                autocompleteBox.classList.add('hidden');
+                return;
+            }
+
+            const matches = landmarksData.filter(item => 
+                item.name.toLowerCase().includes(query) || 
+                item.province.toLowerCase().includes(query)
+            );
+
+            if (matches.length > 0) {
+                autocompleteBox.innerHTML = matches.map(item => `
+                    <div class="px-4 py-3 hover:bg-brand-50 dark:hover:bg-slate-800 cursor-pointer border-b border-slate-50 dark:border-slate-800 last:border-none flex items-center justify-between" onclick="selectLandmark(${item.id})">
+                        <span class="font-semibold text-sm text-slate-800 dark:text-slate-100">${item.name}</span>
+                        <span class="text-xs text-brand-600 dark:text-brand-400 bg-brand-100 dark:bg-brand-950 px-2 py-0.5 rounded-full">${item.province}</span>
+                    </div>
+                `).join('');
+                autocompleteBox.classList.remove('hidden');
+            } else {
+                autocompleteBox.innerHTML = `<div class="px-4 py-3 text-xs text-slate-400">Không tìm thấy địa danh phù hợp</div>`;
+                autocompleteBox.classList.remove('hidden');
+            }
+        }
+
+        searchInput.addEventListener('input', handleSearchSuggestions);
+
+        function selectLandmark(id) {
+            const item = landmarksData.find(l => l.id === id);
+            if (!item) return;
+
+            const targetRegion = item.region;
+            const filterBtn = document.querySelector(`.filter-btn[data-region="${targetRegion}"]`) || document.querySelector('.filter-btn[data-region="all"]');
+            filterBtn.click();
+
+            autocompleteBox.classList.add('hidden');
+            searchInput.value = item.name;
+
+            setTimeout(() => {
+                const targetCard = document.getElementById(`landmark-card-${id}`);
+                if (targetCard) {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    document.querySelectorAll('.bubble-card').forEach(c => c.classList.remove('highlight-card'));
+                    targetCard.classList.add('highlight-card');
+                    
+                    setTimeout(() => {
+                        targetCard.classList.remove('highlight-card');
+                    }, 4000);
+                }
+            }, 200);
+        }
+
+        searchBtn.addEventListener('click', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            if (query) {
+                const found = landmarksData.find(item => item.name.toLowerCase().includes(query) || item.province.toLowerCase().includes(query));
+                if (found) {
+                    selectLandmark(found.id);
+                }
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !autocompleteBox.contains(e.target)) {
+                autocompleteBox.classList.add('hidden');
+            }
+        });
+
+        // RENDER QUIZ SECTION
+        let userAnswers = {};
+        
+        function renderQuiz() {
+            const container = document.getElementById('quiz-questions-container');
+            container.innerHTML = '';
+
+            quizQuestions.forEach((q, qIndex) => {
+                const qBox = document.createElement('div');
+                qBox.className = "p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 space-y-4";
+                
+                let optionsHTML = q.options.map((opt, optIndex) => `
+                    <button class="quiz-opt-btn w-full text-left p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-medium text-sm text-slate-700 dark:text-slate-200 hover:border-brand-500 transition flex items-center justify-between group" 
+                            onclick="handleQuizAnswer(${qIndex}, ${optIndex}, this)">
+                        <span>${String.fromCharCode(65 + optIndex)}. ${opt}</span>
+                        <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-500"></i>
+                    </button>
+                `).join('');
+
+                qBox.innerHTML = `
+                    <p class="font-bold text-slate-800 dark:text-white text-base sm:text-lg">
+                        <span class="text-brand-600 dark:text-brand-400 mr-2">Câu ${qIndex + 1}:</span>${q.question}
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="quiz-opts-${qIndex}">
+                        ${optionsHTML}
+                    </div>
+                `;
+                container.appendChild(qBox);
+            });
+        }
+
+        function handleQuizAnswer(qIndex, selectedOptIndex, btnEl) {
+            if (userAnswers[qIndex] !== undefined) return;
+
+            userAnswers[qIndex] = selectedOptIndex;
+            const correctOptIndex = quizQuestions[qIndex].answer;
+            const optsContainer = document.getElementById(`quiz-opts-${qIndex}`);
+            const buttons = optsContainer.querySelectorAll('.quiz-opt-btn');
+
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+
+                if (idx === correctOptIndex) {
+                    btn.className = "quiz-opt-btn w-full text-left p-3.5 rounded-xl border bg-emerald-500 text-white font-medium text-sm flex items-center justify-between";
+                    btn.innerHTML = `<span>${btn.innerText}</span><i class="fa-solid fa-circle-check text-white"></i>`;
+                } else if (idx === selectedOptIndex && selectedOptIndex !== correctOptIndex) {
+                    btn.className = "quiz-opt-btn w-full text-left p-3.5 rounded-xl border bg-rose-500 text-white font-medium text-sm flex items-center justify-between";
+                    btn.innerHTML = `<span>${btn.innerText}</span><i class="fa-solid fa-circle-xmark text-white"></i>`;
+                }
+            });
+
+            updateQuizScore();
+        }
+
+        function updateQuizScore() {
+            let score = 0;
+            const total = quizQuestions.length;
+            const answeredCount = Object.keys(userAnswers).length;
+
+            Object.keys(userAnswers).forEach(qIdx => {
+                if (userAnswers[qIdx] === quizQuestions[qIdx].answer) {
+                    score++;
+                }
+            });
+
+            document.getElementById('quiz-score-badge').innerText = `Điểm: ${score} / ${total}`;
+            document.getElementById('quiz-progress').innerText = `Đã trả lời ${answeredCount} / ${total}`;
+
+            if (answeredCount === total) {
+                setTimeout(() => {
+                    document.getElementById('quiz-questions-container').classList.add('hidden');
+                    document.getElementById('quiz-result').classList.remove('hidden');
+                    document.getElementById('final-score').innerText = score;
+
+                    // Trigger celebratory fireworks/confetti
+                    if (score >= 7 && typeof confetti === 'function') {
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: { y: 0.6 }
+                        });
+                    }
+                }, 800);
+            }
+        }
+
+        document.getElementById('restart-quiz-btn').addEventListener('click', () => {
+            userAnswers = {};
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-questions-container').classList.remove('hidden');
+            document.getElementById('quiz-score-badge').innerText = `Điểm: 0 / 10`;
+            document.getElementById('quiz-progress').innerText = `Câu hỏi 1 / 10`;
+            renderQuiz();
+        });
+
+        // BACK TO TOP BUTTON LOGIC
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // MOBILE NAVIGATION MENU TOGGLE
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderLandmarks(landmarksData);
+            renderQuiz();
+        });
+    </script>
+</body>
+</html>

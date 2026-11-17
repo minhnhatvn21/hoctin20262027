@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&B Innovators | Nhóm Công Nghệ & Tương Lai AI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            900: '#312e81',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar & Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 4px;
+        }
+        .glass-card {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .blob-bg {
+            filter: blur(80px);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+    <!-- Thanh tiến trình đọc bài (Reading Progress Bar) -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- Thông báo Toast (Thay cho alert) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-sm border border-slate-700 dark:border-slate-200">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-lg"></i>
+        <span id="toast-message">Thông báo</span>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-card bg-white/75 dark:bg-slate-950/75 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform">
+                    A&B
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight block leading-none">A&B <span class="gradient-text">Innovators</span></span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">2 Anh • 3 Bảo Tech Team</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="#home" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Trang chủ</a>
+                <a href="#members" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Thành viên (5)</a>
+                <a href="#article" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Chuyên đề AI</a>
+                <a href="#discussion" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Thảo luận</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <!-- Nút lọc nhanh Anh / Bảo -->
+                <button onclick="scrollToSection('members')" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/70 hover:bg-indigo-100 transition-all">
+                    <i class="fa-solid fa-users-viewfinder"></i> Khám phá Đội ngũ
+                </button>
+
+                <!-- Nút Dark/Light Mode -->
+                <button id="theme-toggle" aria-label="Chuyển giao diện Sáng/Tối" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 flex items-center justify-center hover:scale-105 active:scale-95 transition-all border border-slate-200 dark:border-slate-700">
+                    <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+                </button>
+
+                <!-- Mobile Hamburger -->
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4 space-y-3">
+            <a href="#home" class="block py-2 font-semibold text-slate-700 dark:text-slate-200 hover:text-indigo-500">Trang chủ</a>
+            <a href="#members" class="block py-2 font-semibold text-slate-700 dark:text-slate-200 hover:text-indigo-500">Thành viên nhóm (5)</a>
+            <a href="#article" class="block py-2 font-semibold text-slate-700 dark:text-slate-200 hover:text-indigo-500">Bài viết Chuyên đề AI</a>
+            <a href="#discussion" class="block py-2 font-semibold text-slate-700 dark:text-slate-200 hover:text-indigo-500">Bình luận & Tương tác</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <!-- Hiệu ứng ánh sáng nền -->
+        <div class="blob-bg absolute top-20 left-1/4 w-72 h-72 bg-indigo-500/25 rounded-full pointer-events-none"></div>
+        <div class="blob-bg absolute bottom-10 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Badge thú vị về tên nhóm -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-300 text-xs sm:text-sm font-semibold mb-6 animate-bounce">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
+                    Sự giao thoa độc đáo: 2 thành viên tên ANH & 3 thành viên tên BẢO
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+                    Kiến Tạo Tương Lai Số Cùng <span class="gradient-text">A&B Innovators</span>
+                </h1>
+
+                <p class="text-base sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto mb-10">
+                    Chúng mình là tập thể gồm 5 người trẻ đam mê Công nghệ thông tin, Thiết kế trải nghiệm và Nghiên cứu Trí tuệ Nhân tạo. Cùng khám phá đội ngũ và góc nhìn của nhóm về kỷ nguyên AI!
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="#members" class="px-7 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold shadow-xl shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-3">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                        Gặp gỡ 5 Thành viên
+                    </a>
+                    <a href="#article" class="px-7 py-4 rounded-2xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold border border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-500 hover:-translate-y-0.5 transition-all flex items-center gap-3 shadow-sm">
+                        <i class="fa-solid fa-newspaper text-indigo-500"></i>
+                        Đọc Chuyên đề AI
+                    </a>
+                </div>
+
+                <!-- Thống kê nhanh của nhóm -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 max-w-3xl mx-auto">
+                    <div class="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold gradient-text">05</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Thành viên cốt cán</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-indigo-500">2A : 3B</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Tỷ lệ Tên Anh & Bảo</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-purple-500">12+</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Dự án học thuật & Web</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-pink-500">100%</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Nhiệt huyết tuổi trẻ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM MEMBERS SECTION -->
+    <section id="members" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 border-y border-slate-200/70 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold block mb-2">// ĐỘI NGŨ SÁNG LẬP</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">5 Mảnh Ghép Của <span class="gradient-text">A&B Innovators</span></h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 max-w-xl text-sm sm:text-base">
+                        Mỗi thành viên đảm nhận một mắt xích quan trọng từ Full-stack, UI/UX, AI Research cho đến Frontend và Kiến trúc Hệ thống.
+                    </p>
+                </div>
+
+                <!-- Bộ lọc thú vị theo tên -->
+                <div class="inline-flex p-1.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 self-start">
+                    <button onclick="filterMembers('all')" id="filter-all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white transition-all">
+                        Tất cả (5)
+                    </button>
+                    <button onclick="filterMembers('Anh')" id="filter-Anh" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-indigo-500 transition-all">
+                        Team Tên "Anh" (2)
+                    </button>
+                    <button onclick="filterMembers('Bảo')" id="filter-Bảo" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-indigo-500 transition-all">
+                        Team Tên "Bảo" (3)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Danh sách Card Thành viên được render động từ JS -->
+            <div id="members-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Được chèn bởi JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED ARTICLE SECTION -->
+    <section id="article" class="py-24 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header bài báo -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-300 text-xs font-bold uppercase tracking-wider mb-4">
+                    <i class="fa-solid fa-sparkles"></i> Bài Viết Chuyên Đề Nhóm A&B
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                    Trí Tuệ Nhân Tạo (AI) & Tương Lai Của Thế Hệ Trẻ Việt Nam: <span class="gradient-text">Làm Chủ Hay Bị Thay Thế?</span>
+                </h2>
+
+                <!-- Metadata tác giả & thời gian đọc -->
+                <div class="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-pen-nib text-indigo-500"></i>
+                        Biên soạn: <strong>Đặng Hoàng Anh, Nguyễn Minh Anh, Nguyễn Huy Bảo, Hoàng Thiên Bảo, Phan Hiếu Bảo</strong>
+                    </span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1.5">
+                        <i class="fa-regular fa-clock text-indigo-500"></i> 7 phút đọc
+                    </span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-eye text-indigo-500"></i> <span id="view-counter">1,428</span> lượt xem
+                    </span>
+                </div>
+            </div>
+
+            <!-- Ảnh bìa bài báo -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl mb-12 border border-slate-200 dark:border-slate-800 group">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80" 
+                     onerror="this.src='https://placehold.co/1200x600/312e81/ffffff?text=AI+%26+Tuong+Lai+The+He+Tre'"
+                     alt="Trí Tuệ Nhân Tạo và Thế Hệ Trẻ" 
+                     class="w-full h-72 sm:h-[440px] object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex items-end p-6 sm:p-10">
+                    <div class="text-white max-w-2xl">
+                        <span class="px-3 py-1 rounded-lg bg-indigo-600 text-xs font-bold uppercase">Góc nhìn công nghệ 2026</span>
+                        <p class="mt-2 text-sm sm:text-base text-slate-200">
+                            Sự bùng nổ của các mô hình ngôn ngữ lớn (LLMs) và AI đa phương thức đang định hình lại hoàn toàn cách sinh viên học tập, lập trình và sáng tạo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung bài viết chuẩn Magazine -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Thanh công cụ tương tác bên trái (Sticky) -->
+                <aside class="lg:col-span-3 order-2 lg:order-1">
+                    <div class="sticky top-28 space-y-6">
+                        <!-- Hộp Tương tác Bài viết -->
+                        <div class="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                            <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold">Tương tác bài viết</h4>
+                            
+                            <!-- Nút Thả tim -->
+                            <button id="like-btn" onclick="toggleLikeArticle()" class="w-full py-3 px-4 rounded-2xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/60 font-bold flex items-center justify-between hover:scale-[1.02] active:scale-95 transition-all">
+                                <span class="flex items-center gap-2.5">
+                                    <i id="like-icon" class="fa-regular fa-heart text-lg"></i>
+                                    <span id="like-text">Yêu thích</span>
+                                </span>
+                                <span id="like-count" class="px-2.5 py-0.5 rounded-full bg-rose-500 text-white text-xs">128</span>
+                            </button>
+
+                            <!-- Nút Chia sẻ / Copy Link -->
+                            <button onclick="copyArticleSummary()" class="w-full py-3 px-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-sm flex items-center justify-center gap-2 hover:bg-indigo-600 hover:text-white transition-all">
+                                <i class="fa-solid fa-share-nodes"></i> Sao chép trích dẫn
+                            </button>
+                        </div>
+
+                        <!-- Mục lục nhanh -->
+                        <div class="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hidden lg:block">
+                            <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold mb-3">Mục lục chuyên đề</h4>
+                            <ul class="space-y-2.5 text-sm font-medium text-slate-600 dark:text-slate-400">
+                                <li><a href="#sec-1" class="hover:text-indigo-500 flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-500"></i> 1. Làn sóng AI tạo sinh</a></li>
+                                <li><a href="#sec-2" class="hover:text-indigo-500 flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-500"></i> 2. Số liệu khảo sát thực tế</a></li>
+                                <li><a href="#sec-3" class="hover:text-indigo-500 flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-500"></i> 3. Góc nhìn 5 thành viên</a></li>
+                                <li><a href="#sec-4" class="hover:text-indigo-500 flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-500"></i> 4. Bộ kỹ năng sinh tồn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Cột nội dung chính -->
+                <article class="lg:col-span-9 order-1 lg:order-2 space-y-8 text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                    <div id="sec-1">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">
+                            1. Khi AI không còn là khái niệm viễn tưởng
+                        </h3>
+                        <p>
+                            Chỉ trong vòng vài năm trở lại đây, <strong>Trí tuệ nhân tạo (Artificial Intelligence)</strong> đã bước ra khỏi các phòng thí nghiệm của những tập đoàn công nghệ lớn để trở thành "người cộng sự" hàng ngày của hàng triệu học sinh, sinh viên và kỹ sư trẻ. Từ việc hỗ trợ gỡ lỗi mã nguồn (debugging), phác thảo giao diện UI/UX cho đến phân tích dữ liệu lớn, AI đang tái định nghĩa năng suất lao động.
+                        </p>
+                    </div>
+
+                    <!-- Trích dẫn nổi bật (Blockquote) -->
+                    <blockquote class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 border-l-4 border-indigo-500 relative">
+                        <i class="fa-solid fa-quote-left text-3xl text-indigo-500/30 absolute top-4 right-6"></i>
+                        <p class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white italic mb-3">
+                            "AI sẽ không thay thế những người trẻ biết sáng tạo, nhưng những người trẻ biết làm chủ AI chắc chắn sẽ bỏ xa những ai từ chối nó."
+                        </p>
+                        <footer class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                            — Tuyên ngôn nghiên cứu của nhóm A&B Innovators
+                        </footer>
+                    </blockquote>
+
+                    <!-- Biểu đồ / Thống kê trực quan -->
+                    <div id="sec-2" class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                            <div>
+                                <h4 class="text-xl font-extrabold text-slate-900 dark:text-white">
+                                    📊 Thống kê: Mức độ ứng dụng AI trong công việc của Nhóm A&B
+                                </h4>
+                                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                                    Số liệu tổng hợp từ quá trình thực hiện các dự án phần mềm thực tế của 5 thành viên
+                                </p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-mono font-bold self-start">Cập nhật 2026</span>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-sm font-bold mb-1.5">
+                                    <span>Tối ưu hóa Code & Kiến trúc hệ thống (Hoàng Anh, Thiên Bảo, Hiếu Bảo)</span>
+                                    <span class="text-indigo-500">88%</span>
+                                </div>
+                                <div class="w-full h-3 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500" style="width: 88%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm font-bold mb-1.5">
+                                    <span>Nghiên cứu Mô hình Dữ liệu & Huấn luyện AI (Nguyễn Huy Bảo)</span>
+                                    <span class="text-purple-500">94%</span>
+                                </div>
+                                <div class="w-full h-3 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500" style="width: 94%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm font-bold mb-1.5">
+                                    <span>Sáng tạo Ý tưởng Thiết kế UI/UX & Nội dung số (Nguyễn Minh Anh)</span>
+                                    <span class="text-pink-500">82%</span>
+                                </div>
+                                <div class="w-full h-3 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-500" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Góc nhìn từ 5 thành viên trong bài viết -->
+                    <div id="sec-3">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">
+                            2. Đa góc nhìn từ 5 chuyên môn trong nhóm
+                        </h3>
+                        <p class="mb-6">
+                            Để có cái nhìn toàn diện nhất, mỗi thành viên của <strong>A&B Innovators</strong> đã đóng góp một lăng kính riêng từ chính lĩnh vực mình phụ trách:
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800">
+                                <div class="font-bold text-indigo-600 dark:text-indigo-400 text-sm mb-1">Đặng Hoàng Anh (Full-stack Lead)</div>
+                                <p class="text-sm text-slate-600 dark:text-slate-300">"AI giúp rút ngắn 50% thời gian viết boilerplate code, để lập trình viên tập trung vào giải quyết bài toán nghiệp vụ cốt lõi."</p>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800">
+                                <div class="font-bold text-pink-600 dark:text-pink-400 text-sm mb-1">Nguyễn Minh Anh (UI/UX & Content)</div>
+                                <p class="text-sm text-slate-600 dark:text-slate-300">"Công cụ AI tạo hình ảnh rất mạnh, nhưng sự thấu cảm người dùng (Empathy) vẫn là thứ chỉ trái tim con người mới chạm tới được."</p>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800">
+                                <div class="font-bold text-purple-600 dark:text-purple-400 text-sm mb-1">Nguyễn Huy Bảo (AI Researcher)</div>
+                                <p class="text-sm text-slate-600 dark:text-slate-300">"Hiểu bản chất toán học và dữ liệu đằng sau mô hình giúp chúng ta tránh phụ thuộc mù quáng vào các kết quả ảo giác (hallucinations)."</p>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800">
+                                <div class="font-bold text-cyan-600 dark:text-cyan-400 text-sm mb-1">Hoàng Thiên Bảo & Phan Hiếu Bảo</div>
+                                <p class="text-sm text-slate-600 dark:text-slate-300">"Sự kết hợp mượt mà giữa giao diện Frontend hiện đại và kiến trúc Backend bảo mật cao là nền tảng để tích hợp AI bền vững."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kết luận bài viết -->
+                    <div id="sec-4">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">
+                            3. Ba nguyên tắc vàng cho thế hệ trẻ
+                        </h3>
+                        <ul class="space-y-3 list-none">
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-indigo-500 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">1</span>
+                                <span><strong>Tư duy phản biện (Critical Thinking):</strong> Luôn kiểm chứng chéo thông tin do AI cung cấp thay vì sao chép nguyên bản.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">2</span>
+                                <span><strong>Nền tảng kiến thức vững chắc:</strong> Nắm vững thuật toán, cấu trúc dữ liệu và nguyên lý thiết kế trước khi nhờ AI tự động hóa.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">3</span>
+                                <span><strong>Đạo đức số & Bản quyền:</strong> Tôn trọng quyền sở hữu trí tuệ và bảo mật dữ liệu cá nhân trong kỷ nguyên số.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE COMMENTS SECTION -->
+    <section id="discussion" class="py-16 bg-slate-100/70 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold">Góc Thảo Luận Cùng Nhóm A&B</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Hãy để lại cảm nhận của bạn về bài viết hoặc gửi lời chào tới 5 thành viên!</p>
+                </div>
+                <span id="comment-count-badge" class="px-4 py-1.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold text-sm">3 bình luận</span>
+            </div>
+
+            <!-- Form gửi bình luận -->
+            <form id="comment-form" onsubmit="handleCommentSubmit(event)" class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Tên của bạn *</label>
+                        <input type="text" id="comment-name" required placeholder="VD: Trần Quốc Tuấn" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-indigo-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Gửi lời nhắn tới thành viên</label>
+                        <select id="comment-target" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-indigo-500 text-sm">
+                            <option value="Cả nhóm A&B Innovators">Cả nhóm A&B Innovators</option>
+                            <option value="Đặng Hoàng Anh">Đặng Hoàng Anh (Leader)</option>
+                            <option value="Nguyễn Minh Anh">Nguyễn Minh Anh (UI/UX)</option>
+                            <option value="Nguyễn Huy Bảo">Nguyễn Huy Bảo (AI Research)</option>
+                            <option value="Hoàng Thiên Bảo">Hoàng Thiên Bảo (Frontend)</option>
+                            <option value="Phan Hiếu Bảo">Phan Hiếu Bảo (Backend)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Nội dung chia sẻ *</label>
+                    <textarea id="comment-content" rows="3" required placeholder="Chia sẻ suy nghĩ của bạn về chủ đề AI hoặc giao diện trang web của nhóm..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-indigo-500 text-sm"></textarea>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 flex items-center gap-2 transition-all">
+                        <i class="fa-solid fa-paper-plane"></i> Đăng bình luận
+                    </button>
+                </div>
+            </form>
+
+            <!-- Danh sách bình luận -->
+            <div id="comments-list" class="space-y-4">
+                <!-- Render bằng JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+                <!-- Cột 1: Giới thiệu nhóm -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-extrabold">
+                            A&B
+                        </div>
+                        <span class="font-extrabold text-xl text-white">A&B Innovators</span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
+                        Nhóm nghiên cứu và phát triển sản phẩm công nghệ gồm 5 thành viên: 2 bạn tên <strong>Anh</strong> và 3 bạn tên <strong>Bảo</strong>. Luôn hướng tới những giải pháp sáng tạo, tối ưu và giàu tính nhân văn.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#home" aria-label="Github" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-indigo-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+                        <a href="#home" aria-label="Facebook" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-indigo-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#home" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-indigo-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Cột 2: Danh sách 5 thành viên -->
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white">5 Thành Viên Nhóm</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="hover:text-indigo-400 cursor-pointer transition-colors" onclick="openMemberModal(1)">1. Đặng Hoàng Anh — <span class="text-xs text-slate-500">Leader / Full-stack</span></li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition-colors" onclick="openMemberModal(2)">2. Nguyễn Minh Anh — <span class="text-xs text-slate-500">UI/UX & Content</span></li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition-colors" onclick="openMemberModal(3)">3. Nguyễn Huy Bảo — <span class="text-xs text-slate-500">AI & Data Researcher</span></li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition-colors" onclick="openMemberModal(4)">4. Hoàng Thiên Bảo — <span class="text-xs text-slate-500">Frontend Developer</span></li>
+                        <li class="hover:text-indigo-400 cursor-pointer transition-colors" onclick="openMemberModal(5)">5. Phan Hiếu Bảo — <span class="text-xs text-slate-500">Backend & System Architect</span></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 3: Liên hệ -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white">Thông Tin Liên Hệ</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-envelope text-indigo-400"></i> contact@abinnovators.vn</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-phone text-indigo-400"></i> (+84) 988 202 688</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-location-dot text-indigo-400"></i> Khu Công nghệ cao, Việt Nam</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 A&B Innovators (Đặng Hoàng Anh, Nguyễn Minh Anh, Nguyễn Huy Bảo, Hoàng Thiên Bảo, Phan Hiếu Bảo).</p>
+                <p>Thiết kế với <i class="fa-solid fa-heart text-rose-500 mx-1"></i> và đam mê công nghệ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CHI TIẾT HỒ SƠ THÀNH VIÊN -->
+    <div id="member-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm">
+        <div id="modal-box" class="relative w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+            <!-- Nội dung Modal được chèn động bởi JS -->
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Dữ liệu chi tiết của 5 thành viên trong nhóm (Đã loại bỏ toàn bộ link ảnh avatar, dùng monogram & visual tokens)
+        const teamMembers = [
+            {
+                id: 1,
+                name: "Đặng Hoàng Anh",
+                firstNameGroup: "Anh",
+                initials: "HA",
+                symbolIcon: "fa-solid fa-crown",
+                role: "Trưởng nhóm / Full-stack Developer",
+                badge: "Team Leader",
+                badgeColor: "from-indigo-600 to-blue-600",
+                avatarGradient: "from-blue-600 via-indigo-600 to-violet-700",
+                quote: "Code không chỉ để máy chạy, mà còn để kết nối con người và giải quyết vấn đề thực tiễn.",
+                skills: ["React / Next.js", "Node.js", "TypeScript", "Project Management", "Git Flow"],
+                bio: "Là người điều phối chung của A&B Innovators, Hoàng Anh kết nối hai mảng Frontend và Backend, đồng thời định hướng kiến trúc tổng thể cho mọi dự án web của nhóm.",
+                contributions: "Thiết kế cấu trúc dự án, phân chia công việc cho 5 thành viên và biên tập phần mở đầu chuyên đề AI.",
+                email: "hoanganh.dang@abinnovators.vn",
+                github: "github.com/danghoanganh-dev"
+            },
+            {
+                id: 2,
+                name: "Nguyễn Minh Anh",
+                firstNameGroup: "Anh",
+                initials: "MA",
+                symbolIcon: "fa-solid fa-wand-magic-sparkles",
+                role: "UI/UX Designer & Content Creator",
+                badge: "Creative Soul",
+                badgeColor: "from-pink-600 to-rose-500",
+                avatarGradient: "from-fuchsia-500 via-pink-600 to-rose-600",
+                quote: "Một giao diện đẹp sẽ thu hút ánh nhìn, nhưng một trải nghiệm tốt sẽ giữ chân người dùng mãi mãi.",
+                skills: ["Figma", "Design System", "UX Research", "Storytelling", "Visual Branding"],
+                bio: "Minh Anh là 'linh hồn nghệ thuật' của nhóm. Bạn phụ trách toàn bộ hệ thống màu sắc, bố cục giao diện Sáng/Tối và biên tập ngôn từ giàu cảm xúc cho bài báo chuyên đề.",
+                contributions: "Thiết kế Prototype UI/UX, lựa chọn bảng màu Indigo-Purple và hiệu đính nội dung bài viết chuyên đề.",
+                email: "minhanh.nguyen@abinnovators.vn",
+                github: "dribbble.com/nguyenminhanh"
+            },
+            {
+                id: 3,
+                name: "Nguyễn Huy Bảo",
+                firstNameGroup: "Bảo",
+                initials: "HB",
+                symbolIcon: "fa-solid fa-brain-circuit",
+                role: "AI & Data Researcher",
+                badge: "AI Specialist",
+                badgeColor: "from-purple-600 to-indigo-600",
+                avatarGradient: "from-violet-600 via-purple-600 to-indigo-700",
+                quote: "Dữ liệu là nhiên liệu mới, còn Trí tuệ nhân tạo chính là động cơ đưa thế hệ trẻ vươn xa.",
+                skills: ["Python", "PyTorch", "LLM Prompting", "Data Visualization", "Machine Learning"],
+                bio: "Huy Bảo đam mê nghiên cứu sâu về các mô hình ngôn ngữ lớn (LLMs) và khoa học dữ liệu. Bạn là tác giả chính của các số liệu thống kê và phân tích chuyên môn trong bài báo AI của nhóm.",
+                contributions: "Cung cấp số liệu nghiên cứu thực nghiệm về AI, xây dựng biểu đồ thống kê và kiểm chứng khoa học.",
+                email: "huybao.nguyen@abinnovators.vn",
+                github: "github.com/nguyenhuybao-ai"
+            },
+            {
+                id: 4,
+                name: "Hoàng Thiên Bảo",
+                firstNameGroup: "Bảo",
+                initials: "TB",
+                symbolIcon: "fa-solid fa-code-merge",
+                role: "Frontend Developer",
+                badge: "UI Engineer",
+                badgeColor: "from-cyan-500 to-teal-500",
+                avatarGradient: "from-teal-500 via-cyan-600 to-blue-600",
+                quote: "Biến từng bản vẽ thiết kế tĩnh thành những chuyển động mượt mà đến từng pixel trên mọi màn hình.",
+                skills: ["Tailwind CSS", "JavaScript ES6+", "Animation & Micro-interactions", "Responsive Web"],
+                bio: "Thiên Bảo chuyên trị mảng giao diện người dùng và trải nghiệm tương tác mượt mà. Mọi hiệu ứng chuyển cảnh, Dark Mode và độ tương thích di động của trang web đều có dấu ấn của bạn.",
+                contributions: "Tối ưu hóa giao diện Responsive trên Mobile/Desktop, xây dựng hiệu ứng mượt mà và chức năng lọc thành viên.",
+                email: "thienbao.hoang@abinnovators.vn",
+                github: "github.com/hoangthienbao-fe"
+            },
+            {
+                id: 5,
+                name: "Phan Hiếu Bảo",
+                firstNameGroup: "Bảo",
+                initials: "PB",
+                symbolIcon: "fa-solid fa-shield-halved",
+                role: "Backend & System Architect",
+                badge: "System Architect",
+                badgeColor: "from-emerald-600 to-teal-600",
+                avatarGradient: "from-emerald-600 via-teal-600 to-cyan-700",
+                quote: "Một hệ thống vững chắc luôn âm thầm vận hành ổn định phía sau những trải nghiệm hào nhoáng.",
+                skills: ["System Architecture", "PostgreSQL", "Docker & Cloud", "API Security", "Performance"],
+                bio: "Hiếu Bảo đảm nhận trọng trách thiết kế luồng dữ liệu, bảo mật và tối ưu hiệu năng hệ thống. Bạn luôn đảm bảo sản phẩm của nhóm đạt tốc độ phản hồi nhanh và an toàn nhất.",
+                contributions: "Xây dựng cấu trúc dữ liệu, xử lý logic tương tác bình luận thời gian thực và đảm bảo hiệu năng trang web.",
+                email: "hieubao.phan@abinnovators.vn",
+                github: "github.com/phanhieubao-sys"
+            }
+        ];
+
+        // Dữ liệu bình luận khởi tạo
+        let commentsData = [
+            {
+                name: "Thầy Lê Hoàng Nam",
+                target: "Cả nhóm A&B Innovators",
+                time: "15 phút trước",
+                content: "Ấn tượng với cách nhóm kết hợp câu chuyện 2 bạn tên Anh và 3 bạn tên Bảo! Bài viết về AI có bố cục rõ ràng, số liệu trực quan và giao diện rất hiện đại."
+            },
+            {
+                name: "Trần Ngọc Mai (Sinh viên CNTT)",
+                target: "Nguyễn Huy Bảo",
+                time: "1 giờ trước",
+                content: "Phần thống kê mức độ ứng dụng AI rất sát thực tế tụi mình đang học. Cho mình hỏi nhóm thường dùng công cụ nào để hỗ trợ nghiên cứu dữ liệu vậy ạ?"
+            },
+            {
+                name: "Phạm Quốc Khánh",
+                target: "Nguyễn Minh Anh",
+                time: "3 giờ trước",
+                content: "Chế độ Dark Mode phối màu tím - indigo nhìn cực kỳ dịu mắt trên điện thoại. Chúc 5 bạn đạt điểm tối đa cho dự án này nhé!"
+            }
+        ];
+
+        let isArticleLiked = false;
+        let likeCount = 128;
+
+        // Hàm hiển thị Toast thông báo (thay thế hoàn toàn alert)
+        function showToast(message, iconClass = "fa-solid fa-circle-check text-emerald-400") {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toast-message");
+            const toastIcon = document.getElementById("toast-icon");
+
+            toastMsg.textContent = message;
+            toastIcon.className = `${iconClass} text-lg`;
+
+            toast.classList.remove("translate-y-24", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-24", "opacity-0");
+            }, 3200);
+        }
+
+        // Render danh sách thẻ thành viên
+        function renderMembers(filterGroup = 'all') {
+            const grid = document.getElementById("members-grid");
+            const filtered = filterGroup === 'all' 
+                ? teamMembers 
+                : teamMembers.filter(m => m.firstNameGroup === filterGroup);
+
+            grid.innerHTML = filtered.map(member => `
+                <div class="group relative rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-7 shadow-sm hover:shadow-2xl hover:border-indigo-500/60 dark:hover:border-indigo-500/60 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <!-- Header Card: Badge & Số thứ tự -->
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${member.badgeColor} shadow-sm">
+                                ${member.badge}
+                            </span>
+                            <span class="text-xs font-mono font-bold text-slate-400 dark:text-slate-500">
+                                #0${member.id} • Team "${member.firstNameGroup}"
+                            </span>
+                        </div>
+
+                        <!-- Monogram Badge (Không dùng bất kỳ thẻ img nào) -->
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="relative shrink-0">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br ${member.avatarGradient} flex items-center justify-center text-white font-extrabold text-xl tracking-tight shadow-lg shadow-indigo-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 border-2 border-white/20 dark:border-slate-700/50">
+                                    <span>${member.initials}</span>
+                                </div>
+                                <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-lg bg-slate-900 dark:bg-slate-800 text-indigo-400 border border-slate-700 dark:border-slate-600 flex items-center justify-center text-[10px] shadow" title="${member.badge}">
+                                    <i class="${member.symbolIcon}"></i>
+                                </span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                    ${member.name}
+                                </h3>
+                                <p class="text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                                    ${member.role}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Châm ngôn cá nhân -->
+                        <p class="text-sm text-slate-600 dark:text-slate-300 italic bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl mb-5 border border-slate-100 dark:border-slate-800">
+                            "${member.quote}"
+                        </p>
+
+                        <!-- Kỹ năng nổi bật -->
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            ${member.skills.map(skill => `
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+                                    ${skill}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Nút mở Modal chi tiết -->
+                    <button onclick="openMemberModal(${member.id})" class="w-full py-3 px-4 rounded-2xl bg-slate-100 dark:bg-slate-800/90 group-hover:bg-indigo-600 text-slate-800 dark:text-slate-200 group-hover:text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-regular fa-id-card"></i> Xem Hồ Sơ Chi Tiết
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Lọc thành viên theo tên Anh hoặc Bảo
+        function filterMembers(group) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-indigo-500 transition-all";
+            });
+            const activeBtn = document.getElementById(`filter-${group}`);
+            if (activeBtn) {
+                activeBtn.className = "filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm transition-all";
+            }
+            renderMembers(group);
+        }
+
+        // Mở Modal chi tiết thành viên
+        function openMemberModal(id) {
+            const member = teamMembers.find(m => m.id === id);
+            if (!member) return;
+
+            const modal = document.getElementById("member-modal");
+            const modalBox = document.getElementById("modal-box");
+            const content = document.getElementById("modal-content");
+
+            content.innerHTML = `
+                <div class="h-28 bg-gradient-to-r ${member.badgeColor} relative flex items-center justify-between px-6">
+                    <div class="flex items-center gap-2 text-white/80 font-mono text-xs uppercase tracking-wider">
+                        <i class="${member.symbolIcon}"></i> Hồ sơ thành viên #0${member.id}
+                    </div>
+                    <button onclick="closeMemberModal()" aria-label="Đóng" class="w-9 h-9 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="px-6 sm:px-8 pb-8 -mt-12 relative">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5">
+                        <!-- Monogram Huy hiệu kích thước lớn trong Modal thay cho avatar img -->
+                        <div class="w-24 h-24 rounded-3xl bg-gradient-to-br ${member.avatarGradient} flex items-center justify-center text-white font-extrabold text-3xl shadow-xl shadow-indigo-500/30 border-4 border-white dark:border-slate-900 tracking-tight">
+                            <span>${member.initials}</span>
+                        </div>
+                        <span class="px-3.5 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${member.badgeColor} self-start sm:self-auto shadow-sm flex items-center gap-1.5">
+                            <i class="${member.symbolIcon}"></i>
+                            ${member.badge}
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">${member.name}</h3>
+                    <p class="text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-4">${member.role}</p>
+
+                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300">
+                        <div>
+                            <h4 class="text-xs font-mono uppercase text-slate-400 font-bold mb-1">Giới thiệu bản thân</h4>
+                            <p class="leading-relaxed">${member.bio}</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/60 dark:border-indigo-900/50">
+                            <h4 class="text-xs font-mono uppercase text-indigo-600 dark:text-indigo-400 font-bold mb-1">Đóng góp trong dự án</h4>
+                            <p>${member.contributions}</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-mono uppercase text-slate-400 font-bold mb-2">Kỹ năng chuyên môn</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${member.skills.map(s => `<span class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold">${s}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
+                            <span><i class="fa-solid fa-envelope text-indigo-500 mr-1.5"></i>${member.email}</span>
+                            <span><i class="fa-brands fa-github text-indigo-500 mr-1.5"></i>${member.github}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            setTimeout(() => {
+                modalBox.classList.remove("scale-95", "opacity-0");
+                modalBox.classList.add("scale-100", "opacity-100");
+            }, 20);
+        }
+
+        function closeMemberModal() {
+            const modal = document.getElementById("member-modal");
+            const modalBox = document.getElementById("modal-box");
+            modalBox.classList.remove("scale-100", "opacity-100");
+            modalBox.classList.add("scale-95", "opacity-0");
+            setTimeout(() => {
+                modal.classList.remove("flex");
+                modal.classList.add("hidden");
+            }, 250);
+        }
+
+        // Đóng modal khi click ra ngoài
+        document.getElementById("member-modal").addEventListener("click", (e) => {
+            if (e.target.id === "member-modal") closeMemberModal();
+        });
+
+        // Chức năng thả tim bài báo
+        function toggleLikeArticle() {
+            isArticleLiked = !isArticleLiked;
+            likeCount += isArticleLiked ? 1 : -1;
+
+            const icon = document.getElementById("like-icon");
+            const text = document.getElementById("like-text");
+            const count = document.getElementById("like-count");
+
+            count.textContent = likeCount;
+            if (isArticleLiked) {
+                icon.className = "fa-solid fa-heart text-lg text-rose-500 animate-bounce";
+                text.textContent = "Đã yêu thích";
+                showToast("Cảm ơn bạn đã thả tim cho bài viết của nhóm A&B!", "fa-solid fa-heart text-rose-500");
+            } else {
+                icon.className = "fa-regular fa-heart text-lg";
+                text.textContent = "Yêu thích";
+            }
+        }
+
+        // Sao chép trích dẫn bài viết vào Clipboard
+        function copyArticleSummary() {
+            const summaryText = `"AI sẽ không thay thế những người trẻ biết sáng tạo, nhưng những người trẻ biết làm chủ AI chắc chắn sẽ bỏ xa những ai từ chối nó." — Nhóm A&B Innovators (Đặng Hoàng Anh, Nguyễn Minh Anh, Nguyễn Huy Bảo, Hoàng Thiên Bảo, Phan Hiếu Bảo)`;
+            const tempInput = document.createElement("textarea");
+            tempInput.value = summaryText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast("Đã sao chép trích dẫn bài viết vào bộ nhớ tạm!");
+        }
+
+        // Render danh sách bình luận
+        function renderComments() {
+            const list = document.getElementById("comments-list");
+            const badge = document.getElementById("comment-count-badge");
+            badge.textContent = `${commentsData.length} bình luận`;
+
+            list.innerHTML = commentsData.map(c => `
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-extrabold flex items-center justify-center text-sm">
+                                ${c.name.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm text-slate-900 dark:text-white">${c.name}</h5>
+                                <span class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">Gửi tới: ${c.target}</span>
+                            </div>
+                        </div>
+                        <span class="text-xs text-slate-400 font-mono">${c.time}</span>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 pl-11">${c.content}</p>
+                </div>
+            `).join('');
+        }
+
+        // Xử lý thêm bình luận mới
+        function handleCommentSubmit(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById("comment-name");
+            const targetInput = document.getElementById("comment-target");
+            const contentInput = document.getElementById("comment-content");
+
+            const newComment = {
+                name: nameInput.value.trim(),
+                target: targetInput.value,
+                time: "Vừa xong",
+                content: contentInput.value.trim()
+            };
+
+            commentsData.unshift(newComment);
+            renderComments();
+            event.target.reset();
+            showToast(`Cảm ơn ${newComment.name} đã gửi bình luận tới ${newComment.target}!`);
+        }
+
+        // Điều hướng mượt tới phần bất kỳ
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Chuyển đổi giao diện Sáng / Tối
+        const themeToggleBtn = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+
+        themeToggleBtn.addEventListener("click", () => {
+            document.documentElement.classList.toggle("dark");
+            const isDark = document.documentElement.classList.contains("dark");
+            themeIcon.className = isDark ? "fa-solid fa-sun text-lg" : "fa-solid fa-moon text-lg text-indigo-600";
+            showToast(isDark ? "Đã chuyển sang Giao diện Tối (Dark Mode)" : "Đã chuyển sang Giao diện Sáng (Light Mode)");
+        });
+
+        // Menu Mobile
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Thanh tiến trình đọc trên cùng khi cuộn trang
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById("progress-bar").style.width = `${progress}%`;
+        });
+
+        // Khởi chạy khi tải trang
+        window.onload = function () {
+            renderMembers('all');
+            renderComments();
+        };
+    </script>
+</body>
+</html>

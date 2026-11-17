@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101f3b">
+<title>Thiết kế tương lai | Lộ trình chinh phục sự nghiệp</title>
+<style>
+:root{
+ --navy:#101f3b;--navy2:#1b3154;--gold:#c9a96e;--gold2:#ead9b5;
+ --cream:#f8f6f0;--paper:#fffefa;--ink:#263247;--muted:#788296;
+ --line:#e8e4da;--shadow:0 18px 55px rgba(16,31,59,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.65}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(16,31,59,.96);backdrop-filter:blur(14px);color:#fff;box-shadow:0 8px 25px #101f3b20}
+.top-inner{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;font-family:Georgia,serif;letter-spacing:.04em;font-size:17px;white-space:nowrap}
+.brand-mark{width:35px;height:35px;border:1px solid var(--gold);color:var(--gold2);display:grid;place-items:center;border-radius:50%;font-size:18px}
+.nav{display:flex;gap:5px;overflow:auto;scrollbar-width:none}
+.nav a{color:#e8eaf0;text-decoration:none;font-size:12px;white-space:nowrap;padding:8px 10px;border-radius:20px;transition:.25s}
+.nav a:hover{background:#ffffff18;color:var(--gold2)}
+.actions{display:flex;gap:7px;flex-shrink:0}
+.btn{border:1px solid transparent;border-radius:9px;padding:9px 13px;font-weight:650;font-size:12px;transition:.25s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-outline{background:transparent;color:white;border-color:#ffffff55}
+.btn-dark{background:var(--navy);color:white}
+.btn-soft{background:#f1eadb;color:var(--navy);border-color:#e6dac1}
+main{max-width:1120px;margin:auto;padding:30px 22px 70px}
+.hero{position:relative;overflow:hidden;border-radius:24px;background:linear-gradient(118deg,#101f3b 0%,#1b3154 68%,#344763 100%);color:white;padding:72px 7%;min-height:430px;display:flex;align-items:center;box-shadow:var(--shadow)}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid #d4b77b55;border-radius:50%;pointer-events:none}
+.hero:before{width:420px;height:420px;right:-70px;top:-130px}
+.hero:after{width:310px;height:310px;right:-15px;top:-75px}
+.hero-content{max-width:650px;position:relative;z-index:1}
+.eyebrow{color:var(--gold2);font-size:11px;letter-spacing:.23em;text-transform:uppercase;font-weight:700}
+h1,h2,h3{font-family:"Segoe UI",Tahoma,Arial,sans-serif;font-weight:650;line-height:1.2}
+h1{font-size:clamp(36px,6vw,66px);margin:18px 0;letter-spacing:-.035em;font-weight:750}
+.hero p{color:#e2e6ed;max-width:570px;font-size:16px}.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero .hero-note{color:var(--gold2);font-family:"Segoe UI",Tahoma,Arial,sans-serif;font-style:italic;margin-top:25px}
+.hero-orbit{position:absolute;right:11%;bottom:48px;width:145px;height:145px;border:1px solid #d9c18e88;border-radius:50%;display:grid;place-items:center;color:var(--gold2);font:52px Georgia;box-shadow:0 0 0 18px #ffffff08,0 0 0 36px #ffffff05}
+.section{padding:62px 0 12px;scroll-margin-top:85px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.kicker{font-size:11px;letter-spacing:.2em;color:#a4864f;text-transform:uppercase;font-weight:750}
+h2{font-size:clamp(28px,4vw,39px);color:var(--navy);margin:7px 0 0}
+.lead{max-width:620px;color:var(--muted);margin:8px 0 0;font-size:14px}
+.number{font:italic 42px Georgia;color:#d9c9a7}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:25px;box-shadow:0 8px 30px #15274708}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
+label{font-size:12px;color:#596579;font-weight:700;letter-spacing:.02em}
+input[type=text],input[type=email],input[type=url],textarea,select{width:100%;border:1px solid #e4e0d7;border-radius:9px;background:#fff;padding:11px 12px;color:var(--ink);outline:none;transition:.2s}
+textarea{min-height:104px;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c9a96e20}
+.hint{font-size:11px;color:var(--muted)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card-icon{width:38px;height:38px;border-radius:11px;background:#f2ecdf;color:#9b7a42;display:grid;place-items:center;font-size:18px;margin-bottom:13px}
+.card h3{font-size:20px;color:var(--navy);margin:0 0 7px}
+.card p{font-size:13px;color:var(--muted);margin:0}
+.pill{display:inline-block;border:1px solid #e7dcc5;background:#fbf7ef;color:#8b6b37;padding:4px 9px;border-radius:20px;font-size:10px;margin:8px 5px 0 0}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.step{padding:18px;border-top:2px solid var(--gold);position:relative}
+.step:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--gold);top:-6px;left:18px}
+.step strong{color:var(--navy);display:block;margin:5px 0}
+.step p{font-size:12px;color:var(--muted);margin:0}
+.photo-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:15px}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px}
+.photo-card{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#f6f2e9}
+.photo-card img{width:100%;height:145px;object-fit:cover;display:block}
+.photo-card input{border:0;border-radius:0;background:transparent;font-size:11px;padding:8px}
+.remove-photo{position:absolute;right:7px;top:7px;background:#101f3bdd;color:white;border:0;border-radius:20px;width:27px;height:27px}
+.empty{padding:30px;text-align:center;border:1px dashed #d8cfbd;border-radius:12px;color:var(--muted);font-size:13px}
+.quiz-q{padding:16px 0;border-bottom:1px solid var(--line)}
+.quiz-q:last-child{border:0}
+.quiz-q strong{display:block;color:var(--navy);font-size:14px;margin-bottom:10px}
+.choice{display:inline-flex;align-items:center;gap:6px;margin:4px 12px 4px 0;font-size:12px;color:#596579}
+.result{margin-top:15px;padding:15px;border-radius:12px;background:#f5f0e5;border-left:3px solid var(--gold);display:none}
+.progress{height:7px;border-radius:10px;background:#e9e5dc;overflow:hidden;margin:12px 0}
+.progress span{height:100%;display:block;width:0;background:linear-gradient(90deg,var(--gold),#ead9b5);transition:.4s}
+.footer{margin-top:65px;padding:32px;text-align:center;background:var(--navy);color:#e9eaf0;border-radius:20px}
+.footer h2{color:var(--gold2);font-size:29px}
+.footer p{font:italic 16px Georgia;color:#d5d9e1}
+.smallprint{font-size:10px;color:#9ca6b7;margin-top:15px}
+.toast{position:fixed;right:20px;bottom:20px;background:var(--navy);color:white;padding:12px 17px;border-radius:10px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.3s;z-index:50;font-size:13px;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:850px){.nav{display:none}.hero-orbit{right:6%;opacity:.45}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){main{padding:16px 14px 45px}.top-inner{padding:10px 14px}.brand{font-size:13px}.actions .btn{padding:8px;font-size:10px}.hero{padding:48px 25px;min-height:390px}.hero-orbit{width:90px;height:90px;font-size:34px;right:20px;bottom:22px}.grid2,.grid3,.timeline{grid-template-columns:1fr}.section{padding-top:45px}.section-head{align-items:start}.number{font-size:32px}.panel{padding:18px}}
+@media print{.topbar,.photo-tools,.no-print,.actions,.remove-photo{display:none!important}body{background:white}.hero,.footer{print-color-adjust:exact;-webkit-print-color-adjust:exact}.section{break-inside:avoid}.panel,.card{box-shadow:none}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="top-inner">
+  <div class="brand"><span class="brand-mark">✦</span> FUTURE BLUEPRINT</div>
+  <nav class="nav">
+   <a href="#home">Trang chủ</a><a href="#self">Bản thân</a><a href="#quiz">Trắc nghiệm</a><a href="#world">Nghề nghiệp</a><a href="#map">Bản đồ</a><a href="#major">Ngành học</a><a href="#skills">Kỹ năng</a><a href="#action">Hành động</a><a href="#backup">Dự phòng</a>
+  </nav>
+  <div class="actions">
+   <button class="btn btn-outline" onclick="saveDraft()">Lưu bản nháp</button>
+   <button class="btn btn-gold" onclick="downloadBackup()">Sao lưu</button>
+  </div>
+ </div>
+</header>
+<main>
+<section class="hero" id="home">
+ <div class="hero-content">
+  <div class="eyebrow">A JOURNEY TO YOUR FUTURE · 2026</div>
+  <h1>Thiết kế tương lai,<br><em>chinh phục sự nghiệp.</em></h1>
+  <p>Mỗi hành trình lớn đều bắt đầu từ một lựa chọn có ý thức. Đây là không gian để bạn khám phá chính mình, tìm hiểu thế giới nghề nghiệp và từng bước phác họa con đường tương lai.</p>
+  <div class="hero-note">“Tương lai không được chờ đợi — tương lai được kiến tạo.”</div>
+ </div>
+ <div class="hero-orbit">✧</div>
+</section>
+
+<section class="section" id="self">
+ <div class="section-head"><div><div class="kicker">01 / Know yourself</div><h2>Khám phá bản thân</h2><p class="lead">Bắt đầu từ việc hiểu rõ giá trị, sở thích và thế mạnh của chính mình.</p></div><div class="number">01</div></div>
+ <div class="grid2">
+  <div class="panel">
+   <div class="field"><label>HỌ VÀ TÊN</label><input data-save="name" type="text" placeholder="Nhập họ và tên của bạn"></div>
+   <div class="grid2">
+    <div class="field"><label>LỚP / TRƯỜNG</label><input data-save="class" type="text" placeholder="Ví dụ: 12A1"></div>
+    <div class="field"><label>ĐỊNH HƯỚNG HIỆN TẠI</label><input data-save="direction" type="text" placeholder="Ngành nghề bạn quan tâm"></div>
+   </div>
+   <div class="field"><label>ĐIỂM MẠNH NỔI BẬT</label><textarea data-save="strengths" placeholder="Ví dụ: giao tiếp, sáng tạo, tư duy logic, kiên trì..."></textarea></div>
+   <div class="field"><label>SỞ THÍCH VÀ ĐIỀU BẠN QUAN TÂM</label><textarea data-save="interests" placeholder="Những hoạt động khiến bạn thấy hứng thú..."></textarea></div>
+   <div class="field"><label>GIÁ TRỊ BẠN MUỐN THEO ĐUỔI</label><textarea data-save="values" placeholder="Ví dụ: tự do, ổn định, sáng tạo, đóng góp cho cộng đồng..."></textarea></div>
+  </div>
+  <div class="panel">
+   <h3 style="font:22px Georgia;color:var(--navy);margin-top:0">Chân dung của tôi</h3>
+   <p class="hint">Thêm một hoặc nhiều hình ảnh thể hiện cá tính, sở thích, thành tích hoặc những khoảnh khắc truyền cảm hứng. Ảnh được lưu cùng bản sao lưu của bạn.</p>
+   <div class="photo-tools no-print">
+    <label class="btn btn-dark" for="photoInput">＋ Thêm hình ảnh</label>
+    <input id="photoInput" type="file" accept="image/*" multiple hidden>
+    <span class="hint">Có thể chọn nhiều ảnh cùng lúc.</span>
+   </div>
+   <div id="photoGrid" class="photo-grid"><div class="empty" style="grid-column:1/-1">Chưa có hình ảnh. Hãy thêm những bức ảnh kể câu chuyện về bạn.</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="quiz">
+ <div class="section-head"><div><div class="kicker">02 / Career discovery</div><h2>Trắc nghiệm nghề nghiệp</h2><p class="lead">Chọn phương án gần với bạn nhất. Kết quả chỉ mang tính gợi ý để bạn khám phá thêm.</p></div><div class="number">02</div></div>
+ <div class="panel">
+  <div id="quizQuestions"></div>
+  <div class="progress"><span id="quizProgress"></span></div>
+  <button class="btn btn-dark" onclick="showQuizResult()">Xem gợi ý phù hợp</button>
+  <div id="quizResult" class="result"></div>
+ </div>
+</section>
+
+<section class="section" id="world">
+ <div class="section-head"><div><div class="kicker">03 / Explore opportunities</div><h2>Thế giới nghề nghiệp</h2><p class="lead">Một vài nhóm lĩnh vực tiêu biểu cùng những đặc điểm bạn có thể tìm hiểu.</p></div><div class="number">03</div></div>
+ <div class="grid3">
+  <article class="card"><div class="card-icon">⌘</div><h3>Công nghệ & dữ liệu</h3><p>Phát triển phần mềm, trí tuệ nhân tạo, an ninh mạng, phân tích dữ liệu.</p><span class="pill">Logic</span><span class="pill">Giải quyết vấn đề</span></article>
+  <article class="card"><div class="card-icon">◈</div><h3>Kinh doanh & thương mại</h3><p>Thương mại điện tử, quản trị kinh doanh, logistics, phát triển thị trường.</p><span class="pill">Tư duy kinh doanh</span><span class="pill">Linh hoạt</span></article>
+  <article class="card"><div class="card-icon">✧</div><h3>Truyền thông & sáng tạo</h3><p>Digital marketing, thiết kế, sản xuất nội dung, quan hệ công chúng.</p><span class="pill">Sáng tạo</span><span class="pill">Giao tiếp</span></article>
+  <article class="card"><div class="card-icon">＋</div><h3>Sức khỏe & đời sống</h3><p>Y tế, dược, dinh dưỡng, tâm lý học và các dịch vụ chăm sóc cộng đồng.</p><span class="pill">Trách nhiệm</span><span class="pill">Thấu cảm</span></article>
+  <article class="card"><div class="card-icon">⌂</div><h3>Giáo dục & xã hội</h3><p>Sư phạm, ngôn ngữ, công tác xã hội, nghiên cứu và phát triển con người.</p><span class="pill">Kiên nhẫn</span><span class="pill">Chia sẻ</span></article>
+  <article class="card"><div class="card-icon">△</div><h3>Kỹ thuật & môi trường</h3><p>Kỹ thuật điện, cơ khí, xây dựng, năng lượng và phát triển bền vững.</p><span class="pill">Thực hành</span><span class="pill">Chính xác</span></article>
+ </div>
+</section>
+
+<section class="section" id="map">
+ <div class="section-head"><div><div class="kicker">04 / Future map</div><h2>Bản đồ tương lai</h2><p class="lead">Chia mục tiêu thành những cột mốc nhỏ để hành trình trở nên rõ ràng và khả thi.</p></div><div class="number">04</div></div>
+ <div class="panel">
+  <div class="timeline">
+   <div class="step"><span class="kicker">Giai đoạn 01</span><strong>Hiện tại · Khám phá</strong><p>Nhận diện năng lực, tìm hiểu ngành học, cải thiện kết quả học tập và trải nghiệm hoạt động thực tế.</p></div>
+   <div class="step"><span class="kicker">Giai đoạn 02</span><strong>1–3 năm · Xây nền tảng</strong><p>Học kiến thức chuyên môn, rèn ngoại ngữ, kỹ năng số, tham gia dự án và hoạt động ngoại khóa.</p></div>
+   <div class="step"><span class="kicker">Giai đoạn 03</span><strong>3–5 năm · Bứt phá</strong><p>Thực tập, tích lũy kinh nghiệm, xây dựng hồ sơ năng lực và định hình con đường phát triển.</p></div>
+  </div>
+  <div class="field" style="margin-top:18px"><label>BỨC TRANH TƯƠNG LAI MÀ BẠN MONG MUỐN</label><textarea data-save="futureVision" placeholder="Hãy mô tả bạn muốn trở thành ai, sống và làm việc trong môi trường như thế nào..."></textarea></div>
+ </div>
+</section>
+
+<section class="section" id="major">
+ <div class="section-head"><div><div class="kicker">05 / Choose your major</div><h2>Lựa chọn ngành học</h2><p class="lead">Đừng chọn ngành chỉ vì xu hướng. Hãy đối chiếu sở thích, năng lực, chương trình đào tạo và cơ hội nghề nghiệp.</p></div><div class="number">05</div></div>
+ <div class="panel">
+  <div class="grid2">
+   <div class="field"><label>NGÀNH HỌC ƯU TIÊN</label><input data-save="major1" type="text" placeholder="Ngành học bạn muốn theo đuổi"></div>
+   <div class="field"><label>NGÀNH HỌC THỨ HAI</label><input data-save="major2" type="text" placeholder="Một lựa chọn phù hợp khác"></div>
+   <div class="field"><label>TRƯỜNG / CƠ SỞ ĐÀO TẠO QUAN TÂM</label><textarea data-save="schools" placeholder="Tên trường, chương trình đào tạo..."></textarea></div>
+   <div class="field"><label>LÝ DO LỰA CHỌN</label><textarea data-save="majorReason" placeholder="Sự phù hợp với năng lực, sở thích, mục tiêu..."></textarea></div>
+  </div>
+  <div class="field"><label>NHỮNG ĐIỀU CẦN TÌM HIỂU THÊM</label><textarea data-save="research" placeholder="Tổ hợp xét tuyển, học phí, học bổng, chuẩn đầu ra, chương trình học, cơ hội thực tập..."></textarea></div>
+ </div>
+</section>
+
+<section class="section" id="skills">
+ <div class="section-head"><div><div class="kicker">06 / Skills for tomorrow</div><h2>Kỹ năng cần thiết</h2><p class="lead">Năng lực chuyên môn giúp bạn bắt đầu; kỹ năng nền tảng giúp bạn thích nghi và tiến xa.</p></div><div class="number">06</div></div>
+ <div class="grid3">
+  <article class="card"><div class="card-icon">◎</div><h3>Tư duy phản biện</h3><p>Biết đặt câu hỏi, kiểm chứng thông tin và đưa ra quyết định có căn cứ.</p></article>
+  <article class="card"><div class="card-icon">↗</div><h3>Giao tiếp & hợp tác</h3><p>Trình bày rõ ràng, lắng nghe tích cực và phối hợp hiệu quả trong nhóm.</p></article>
+  <article class="card"><div class="card-icon">⌘</div><h3>Năng lực số</h3><p>Sử dụng công nghệ, dữ liệu và công cụ số an toàn, có trách nhiệm.</p></article>
+  <article class="card"><div class="card-icon">文</div><h3>Ngoại ngữ</h3><p>Mở rộng khả năng tiếp cận tri thức, học tập và làm việc trong môi trường đa dạng.</p></article>
+  <article class="card"><div class="card-icon">✦</div><h3>Sáng tạo & thích nghi</h3><p>Chủ động học hỏi, thử nghiệm giải pháp và thích ứng với thay đổi.</p></article>
+  <article class="card"><div class="card-icon">◷</div><h3>Quản lý bản thân</h3><p>Quản lý thời gian, đặt mục tiêu, duy trì kỷ luật và chăm sóc sức khỏe.</p></article>
+ </div>
+ <div class="panel" style="margin-top:17px"><div class="field"><label>BA KỸ NĂNG TÔI SẼ ƯU TIÊN RÈN LUYỆN</label><textarea data-save="skillsPlan" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea></div></div>
+</section>
+
+<section class="section" id="action">
+ <div class="section-head"><div><div class="kicker">07 / Make it happen</div><h2>Kế hoạch hành động</h2><p class="lead">Biến dự định thành việc làm cụ thể, có thời hạn và có thể theo dõi.</p></div><div class="number">07</div></div>
+ <div class="panel">
+  <div class="grid2">
+   <div class="field"><label>MỤC TIÊU TRONG 3 THÁNG</label><textarea data-save="goal3" placeholder="Mục tiêu học tập, kỹ năng hoặc trải nghiệm..."></textarea></div>
+   <div class="field"><label>MỤC TIÊU TRONG 1 NĂM</label><textarea data-save="goal1" placeholder="Kết quả bạn muốn đạt được..."></textarea></div>
+   <div class="field"><label>VIỆC LÀM HẰNG TUẦN</label><textarea data-save="weekly" placeholder="Lịch học, luyện tập, đọc tài liệu, tham gia hoạt động..."></textarea></div>
+   <div class="field"><label>NGƯỜI / NGUỒN LỰC CÓ THỂ HỖ TRỢ</label><textarea data-save="support" placeholder="Gia đình, thầy cô, bạn bè, cố vấn, học liệu..."></textarea></div>
+  </div>
+  <div class="field"><label>CÁCH ĐÁNH GIÁ TIẾN ĐỘ</label><textarea data-save="measure" placeholder="Ví dụ: kiểm tra kết quả mỗi tháng, cập nhật mục tiêu, lưu sản phẩm học tập..."></textarea></div>
+ </div>
+</section>
+
+<section class="section" id="backup">
+ <div class="section-head"><div><div class="kicker">08 / Stay resilient</div><h2>Phương án dự phòng</h2><p class="lead">Một kế hoạch tốt luôn có lựa chọn thay thế. Thay đổi hướng đi không đồng nghĩa với thất bại.</p></div><div class="number">08</div></div>
+ <div class="panel">
+  <div class="grid2">
+   <div class="field"><label>NẾU KHÔNG ĐẠT NGUYỆN VỌNG ƯU TIÊN</label><textarea data-save="backup1" placeholder="Ngành/trường/lộ trình thay thế mà bạn có thể cân nhắc..."></textarea></div>
+   <div class="field"><label>NẾU NHẬN RA NGÀNH HỌC KHÔNG PHÙ HỢP</label><textarea data-save="backup2" placeholder="Tìm hiểu chuyển hướng, học bổ sung hoặc trải nghiệm lĩnh vực khác..."></textarea></div>
+   <div class="field"><label>KHÓ KHĂN CÓ THỂ GẶP</label><textarea data-save="risks" placeholder="Áp lực học tập, tài chính, thời gian, thay đổi sở thích..."></textarea></div>
+   <div class="field"><label>GIẢI PHÁP ỨNG PHÓ</label><textarea data-save="solutions" placeholder="Tìm tư vấn, điều chỉnh mục tiêu, chia nhỏ kế hoạch..."></textarea></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="message">
+ <div class="section-head"><div><div class="kicker">09 / A note to my future self</div><h2>Thông điệp cuối</h2><p class="lead">Gửi một lời nhắn cho chính mình — người đang từng ngày trưởng thành và tiến gần hơn đến ước mơ.</p></div><div class="number">09</div></div>
+ <div class="panel">
+  <div class="field"><label>LỜI NHẮN DÀNH CHO TƯƠNG LAI</label><textarea data-save="message" style="min-height:145px" placeholder="Tôi hiểu rằng hành trình phía trước sẽ có thử thách, nhưng..."></textarea></div>
+  <div class="field"><label>CHỮ KÝ / NGÀY HOÀN THÀNH</label><input data-save="signature" type="text" placeholder="Tên của bạn · Ngày / tháng / năm"></div>
+ </div>
+</section>
+
+<footer class="footer">
+ <div class="eyebrow">YOUR STORY · YOUR CHOICE · YOUR FUTURE</div>
+ <h2>Hãy là kiến trúc sư của tương lai mình.</h2>
+ <p>“Không cần nhìn thấy toàn bộ con đường. Chỉ cần đủ can đảm để bước đi đầu tiên.”</p>
+ <div class="smallprint">FUTURE BLUEPRINT · THIẾT KẾ TƯƠNG LAI – LỘ TRÌNH CHINH PHỤC SỰ NGHIỆP</div>
+</footer>
+
+<section class="section no-print" id="save-area">
+ <div class="section-head"><div><div class="kicker">Workspace / Your project</div><h2>Lưu trữ & sao lưu</h2><p class="lead">Bản nháp được lưu trên trình duyệt của thiết bị này. Hãy tải bản sao lưu để giữ an toàn khi đổi máy hoặc trình duyệt.</p></div></div>
+ <div class="panel" id="backup-tools">
+  <div class="grid3">
+   <div><div class="card-icon">▣</div><h3 style="font:20px Georgia;color:var(--navy)">Lưu trên thiết bị</h3><p class="hint">Lưu nội dung và ảnh vào bộ nhớ trình duyệt hiện tại.</p><button class="btn btn-dark" style="margin-top:12px" onclick="saveDraft()">Lưu bản nháp</button></div>
+   <div><div class="card-icon">↓</div><h3 style="font:20px Georgia;color:var(--navy)">Tải bản sao lưu</h3><p class="hint">Xuất toàn bộ nội dung và hình ảnh thành một tệp JSON.</p><button class="btn btn-gold" style="margin-top:12px" onclick="downloadBackup()">Tải file sao lưu</button></div>
+   <div><div class="card-icon">↑</div><h3 style="font:20px Georgia;color:var(--navy)">Khôi phục dữ liệu</h3><p class="hint">Chọn tệp JSON đã sao lưu trước đó để tiếp tục chỉnh sửa.</p><label class="btn btn-soft" style="display:inline-block;margin-top:12px" for="restoreInput">Chọn file khôi phục</label><input id="restoreInput" type="file" accept=".json,application/json" hidden></div>
+  </div>
+  <p class="hint" style="margin-top:20px">Mẹo: Dùng nút “In / Lưu PDF” để xuất bản trình bày thành PDF. Tệp HTML này có thể mở trực tiếp bằng trình duyệt, không cần Internet.</p>
+  <button class="btn btn-outline" style="background:var(--navy);margin-top:5px" onclick="window.print()">In / Lưu PDF</button>
+ </div>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+const STORE_KEY='futureBlueprintDraft_v1';
+let photos=[];
+const fields=()=>[...document.querySelectorAll('[data-save]')];
+function collect(){const data={};fields().forEach(el=>data[el.dataset.save]=el.value);return {data,photos,updatedAt:new Date().toISOString()}}
+function notify(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
+function saveDraft(){
+ try{localStorage.setItem(STORE_KEY,JSON.stringify(collect()));notify('Đã lưu bản nháp trên trình duyệt này.')}
+ catch(e){notify('Bộ nhớ trình duyệt đã đầy. Hãy tải bản sao lưu JSON.')}
+}
+function applyState(state){
+ if(!state||!state.data)throw new Error('Tệp sao lưu không hợp lệ');
+ fields().forEach(el=>{if(Object.prototype.hasOwnProperty.call(state.data,el.dataset.save))el.value=state.data[el.dataset.save]});
+ photos=Array.isArray(state.photos)?state.photos:[];
+ renderPhotos();saveDraft();
+}
+function downloadBackup(){
+ const blob=new Blob([JSON.stringify(collect(),null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');
+ a.href=url;a.download='lo-trinh-chinh-phuc-su-nghiep-sao-luu.json';a.click();URL.revokeObjectURL(url);
+ notify('Đã tạo tệp sao lưu. Hãy giữ tệp này ở nơi an toàn.');
+}
+document.getElementById('restoreInput').addEventListener('change',async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{applyState(JSON.parse(await file.text()));notify('Đã khôi phục dữ liệu thành công.')}
+ catch(err){alert('Không thể đọc tệp này. Hãy chọn đúng tệp JSON sao lưu.')}
+ e.target.value='';
+});
+document.getElementById('photoInput').addEventListener('change',async e=>{
+ const files=[...e.target.files];
+ for(const file of files){
+  if(!file.type.startsWith('image/'))continue;
+  const data=await new Promise((resolve,reject)=>{
+   const reader=new FileReader();reader.onload=()=>{
+    const image=new Image();image.onload=()=>{
+     const scale=Math.min(1,1400/Math.max(image.width,image.height));
+     const canvas=document.createElement('canvas');canvas.width=Math.round(image.width*scale);canvas.height=Math.round(image.height*scale);
+     canvas.getContext('2d').drawImage(image,0,0,canvas.width,canvas.height);
+     resolve(canvas.toDataURL('image/jpeg',0.82));
+    };image.onerror=reject;image.src=reader.result;
+   };reader.onerror=reject;reader.readAsDataURL(file);
+  });
+  photos.push({src:data,caption:file.name.replace(/\.[^.]+$/,'')});
+ }
+ renderPhotos();saveDraft();e.target.value='';
+});
+function renderPhotos(){
+ const grid=document.getElementById('photoGrid');grid.innerHTML='';
+ if(!photos.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1">Chưa có hình ảnh. Hãy thêm những bức ảnh kể câu chuyện về bạn.</div>';return}
+ photos.forEach((p,i)=>{
+  const card=document.createElement('div');card.className='photo-card';
+  const img=document.createElement('img');img.src=p.src;img.alt=p.caption||'Ảnh cá nhân';
+  const input=document.createElement('input');input.type='text';input.value=p.caption||'';input.placeholder='Viết chú thích...';
+  input.addEventListener('input',()=>{photos[i].caption=input.value;clearTimeout(window.draftTimer);window.draftTimer=setTimeout(saveDraft,900)});
+  const del=document.createElement('button');del.className='remove-photo no-print';del.textContent='×';del.title='Xóa ảnh';
+  del.addEventListener('click',()=>{photos.splice(i,1);renderPhotos();saveDraft()});
+  card.append(img,input,del);grid.append(card);
+ });
+}
+const quiz=[
+ ['Bạn thích hoạt động nào nhất?',['Phân tích, tìm quy luật và giải quyết vấn đề','Lên ý tưởng, sáng tạo nội dung hoặc hình ảnh','Giao tiếp, thuyết phục và kết nối mọi người','Hỗ trợ, chăm sóc hoặc hướng dẫn người khác']],
+ ['Trong một dự án nhóm, bạn thường muốn…',['Phụ trách số liệu, kỹ thuật hoặc cấu trúc','Thiết kế ý tưởng và cách thể hiện','Điều phối, trình bày và tổ chức công việc','Lắng nghe, hỗ trợ và kết nối thành viên']],
+ ['Môi trường nào khiến bạn hứng thú?',['Công nghệ, nghiên cứu, phòng lab','Truyền thông, nghệ thuật, sáng tạo','Doanh nghiệp, thị trường, môi trường năng động','Giáo dục, y tế, cộng đồng']],
+ ['Điều gì khiến bạn tự hào nhất?',['Tìm ra lời giải cho vấn đề khó','Tạo ra sản phẩm độc đáo','Đạt mục tiêu và tạo ảnh hưởng tích cực','Giúp người khác tiến bộ hoặc cảm thấy tốt hơn']]
+];
+const answers=['tech','creative','business','people'];
+const descriptions={
+ tech:['Công nghệ, kỹ thuật, dữ liệu hoặc nghiên cứu','Bạn có xu hướng yêu thích tư duy hệ thống và giải quyết vấn đề. Hãy thử tìm hiểu công nghệ thông tin, kỹ thuật, khoa học dữ liệu hoặc các ngành khoa học ứng dụng.'],
+ creative:['Truyền thông, thiết kế hoặc sáng tạo nội dung','Bạn có thể phù hợp với môi trường cần ý tưởng và khả năng biểu đạt. Hãy khám phá thiết kế, truyền thông đa phương tiện, marketing hoặc ngôn ngữ.'],
+ business:['Kinh doanh, quản trị hoặc thương mại','Bạn có thể hứng thú với mục tiêu, tổ chức và kết nối thị trường. Hãy tìm hiểu thương mại điện tử, marketing, quản trị kinh doanh hoặc logistics.'],
+ people:['Giáo dục, sức khỏe hoặc lĩnh vực xã hội','Bạn có thể coi trọng sự kết nối và đóng góp cho cộng đồng. Hãy khám phá giáo dục, tâm lý, y tế hoặc công tác xã hội.']
+};
+const qbox=document.getElementById('quizQuestions');
+quiz.forEach((q,i)=>{
+ const wrap=document.createElement('div');wrap.className='quiz-q';
+ const title=document.createElement('strong');title.textContent=(i+1)+'. '+q[0];wrap.append(title);
+ q[1].forEach((answer,j)=>{
+  const lab=document.createElement('label');lab.className='choice';
+  const radio=document.createElement('input');radio.type='radio';radio.name='q'+i;radio.value=answers[j];
+  radio.addEventListener('change',updateProgress);lab.append(radio,document.createTextNode(answer));wrap.append(lab);
+ });qbox.append(wrap);
+});
+function updateProgress(){const n=quiz.filter((_,i)=>document.querySelector('input[name=q'+i+']:checked')).length;document.getElementById('quizProgress').style.width=(n/quiz.length*100)+'%'}
+function showQuizResult(){
+ const selected=quiz.map((_,i)=>document.querySelector('input[name=q'+i+']:checked')?.value).filter(Boolean);
+ const box=document.getElementById('quizResult');box.style.display='block';
+ if(selected.length<quiz.length){box.textContent='Bạn hãy trả lời đủ 4 câu hỏi để nhận gợi ý rõ ràng hơn.';return}
+ const counts={tech:0,creative:0,business:0,people:0};selected.forEach(x=>counts[x]++);
+ const top=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];box.innerHTML='';
+ const strong=document.createElement('strong');strong.textContent='Nhóm lĩnh vực gợi ý: '+descriptions[top][0];
+ const p=document.createElement('p');p.textContent=descriptions[top][1]+' Đây không phải kết luận cố định; hãy đối chiếu với trải nghiệm, năng lực và thông tin tuyển sinh thực tế.';
+ box.append(strong,p);
+}
+fields().forEach(el=>el.addEventListener('input',()=>{clearTimeout(window.draftTimer);window.draftTimer=setTimeout(saveDraft,900)}));
+try{const saved=localStorage.getItem(STORE_KEY);if(saved)applyState(JSON.parse(saved));}catch(e){}
+</script>
+</body>
+</html>

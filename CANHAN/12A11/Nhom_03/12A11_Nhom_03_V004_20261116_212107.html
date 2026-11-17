@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hồ sơ cá nhân Nguyễn Thị Bảo Ngọc - lớp 12A11, trường THPT Đắk Mil">
+<title>Nguyễn Thị Bảo Ngọc | Hành trình tuổi 18</title>
+<style>
+:root{
+ --ink:#26334b;--muted:#65718a;--pink:#ffb8d0;--pink-deep:#df6795;
+ --purple:#c9b9ff;--blue:#b9e8ff;--mint:#bcebd8;--yellow:#ffe5a6;
+ --white:#fff;--shadow:0 16px 45px rgba(70,73,112,.10)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;line-height:1.75;background:
+ radial-gradient(circle at 5% 8%,#ffe4ef 0,transparent 25%),
+ radial-gradient(circle at 95% 25%,#dff5ff 0,transparent 26%),
+ linear-gradient(135deg,#fffafd,#f8f6ff 55%,#f2fbff)}
+a{color:inherit;text-decoration:none}
+.top{position:sticky;top:0;z-index:20;background:#ffffffdf;backdrop-filter:blur(14px);border-bottom:1px solid #eeeaf5}
+.nav{max-width:1150px;margin:auto;padding:12px 22px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.logo{font-weight:950;letter-spacing:1px;color:var(--pink-deep)}.logo span{color:#8171c6}
+.links{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;font-weight:700;color:var(--muted)}
+.links a:hover{color:var(--pink-deep)}
+.tools{max-width:1150px;margin:17px auto 0;padding:0 22px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.btn{border:0;border-radius:999px;padding:10px 16px;font-weight:800;font-size:13px;cursor:pointer;background:white;color:var(--ink);box-shadow:0 6px 20px #68708b17;transition:.2s}
+.btn:hover{transform:translateY(-2px)}.btn.main{background:linear-gradient(100deg,#e77da4,#9a83dd);color:#fff}
+.status{font-size:12px;color:var(--muted)}
+main{max-width:1150px;margin:20px auto 55px;padding:0 22px}
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;padding:54px 46px;border-radius:34px;background:linear-gradient(120deg,#ffe3ed 0%,#eee5ff 53%,#dff5ff 100%);box-shadow:var(--shadow)}
+.hero:after{content:"✦";position:absolute;right:35%;top:15px;font-size:42px;color:#fff9;transform:rotate(15deg)}
+.eyebrow{display:inline-block;background:#ffffffbd;border:1px solid #fff;padding:6px 14px;border-radius:30px;font-size:11px;font-weight:900;letter-spacing:1.8px;color:#a6547a}
+h1{font-size:clamp(38px,6vw,68px);line-height:1.04;letter-spacing:-2px;margin:18px 0 15px}
+.gradient{background:linear-gradient(90deg,#d85f91,#8170c8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:660px;color:#58627a;font-size:17px}
+.tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.tag{background:#ffffffc9;padding:7px 13px;border-radius:30px;font-size:12px;font-weight:800}
+.profile{position:relative;z-index:1;padding:23px;border:1px solid #ffffffc9;border-radius:28px;background:#ffffffa8;text-align:center;box-shadow:0 12px 30px #786e9420}
+.photo{width:190px;height:190px;margin:0 auto 15px;border-radius:50%;border:7px solid white;background:linear-gradient(145deg,#ffd6e5,#d9d0ff);display:grid;place-items:center;overflow:hidden;color:#a66a91;font-size:58px;box-shadow:0 8px 24px #77658b22}
+.photo img{width:100%;height:100%;object-fit:cover}.profile h2{font-size:22px;margin:5px 0}.profile p{font-size:13px;color:var(--muted);margin:0}
+.photo-actions{margin-top:12px}
+section{margin-top:27px;padding:34px;background:#ffffffdb;border:1px solid #fff;border-radius:29px;box-shadow:var(--shadow)}
+.section-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.number{flex:0 0 46px;height:46px;border-radius:16px;display:grid;place-items:center;font-weight:950;color:#fff;background:linear-gradient(140deg,#e78bae,#9b8ade)}
+.kicker{font-size:10px;font-weight:950;letter-spacing:2px;color:#bd6b91}
+h2.title{font-size:clamp(25px,4vw,34px);line-height:1.2;margin:3px 0 7px}
+.sub{margin:0;color:var(--muted);font-size:14px}
+p{margin:0 0 13px}.editable{border-radius:4px;outline:2px dashed transparent;outline-offset:3px}
+[contenteditable="true"]:focus{outline-color:#dc8eaf;background:#fff9fc}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.card{padding:20px;border-radius:22px;background:#fff0f5}.card:nth-child(3n+2){background:#eff6ff}.card:nth-child(3n){background:#eff9f2}
+.icon{font-size:27px}.card h3{font-size:17px;margin:5px 0}.card p{font-size:13px;color:var(--muted);margin:0}
+.callout{margin-top:18px;padding:22px 24px;border-radius:22px;background:linear-gradient(110deg,#ffeaf1,#eee9ff)}
+.callout strong{color:#b45680}.callout p{margin:6px 0 0;color:#5f6078}
+.principle{display:grid;grid-template-columns:45px 1fr;gap:13px;padding:17px 0;border-bottom:1px solid #eeeaf3}
+.principle:last-child{border:0}.picon{width:42px;height:42px;border-radius:14px;background:#fce8f0;display:grid;place-items:center;font-size:21px}
+.principle h3{margin:0 0 4px;font-size:16px;color:#725f9e}.principle p{margin:0;color:var(--muted);font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.panel{padding:22px;border-radius:22px;background:#eaf6ff}.panel:nth-child(2){background:#fff0f5}.panel h3{margin:0 0 8px}.panel p{margin:0;color:var(--muted);font-size:14px}
+ul{padding-left:22px;margin:8px 0 16px}li{padding:4px 0}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.step{padding:20px;border-radius:21px;background:#fff0f5;border-top:5px solid #e8a8c2}
+.step:nth-child(2){background:#f1edff;border-color:#b9a8ec}.step:nth-child(3){background:#eaf6ff;border-color:#a6d9f0}.step:nth-child(4){background:#edf8f0;border-color:#a8dcb9}.step:nth-child(5){background:#fff7e4;border-color:#efd28a}
+.step small{font-weight:950;letter-spacing:1px;color:#9d6382}.step h3{margin:5px 0}.step p{font-size:13px;color:var(--muted);margin:0}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:15px}
+.gallery-item{border:2px dashed #d9cce8;border-radius:20px;min-height:180px;background:#faf8ff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:12px}
+.gallery-item img{width:100%;height:180px;object-fit:cover;border-radius:13px}.gallery-item span{font-size:34px}.gallery-item p{font-size:12px;color:var(--muted);margin:5px 0}
+.gallery-item button{border:0;border-radius:30px;background:#fff;padding:7px 12px;font-weight:750;color:#826db0;cursor:pointer}
+.quote{text-align:center;padding:34px 12px;font-size:22px;font-weight:900;color:#66607e}.quote span{color:#d36f98}
+footer{text-align:center;color:var(--muted);padding:30px 0 45px;font-size:13px}
+.note{font-size:12px;color:#a45d80;margin-top:10px}
+@media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}.links{gap:10px}.hero{grid-template-columns:1fr;padding:30px 23px}.profile{max-width:340px;margin:auto}.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}section{padding:25px 20px}.gallery{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.grid,.steps,.gallery{grid-template-columns:1fr}.lead{font-size:15px}.tools{padding:0 14px}.nav{padding:12px 15px}main{padding:0 14px}}
+@media print{.top,.tools,.photo-actions,.gallery-item button{display:none!important}body{background:white}main{margin:0 auto}.hero,section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="top"><div class="nav">
+ <div class="logo">✿ BAO NGOC <span>· MY JOURNEY</span></div>
+ <div class="links"><a href="#about">Giới thiệu</a><a href="#social">Ứng xử MXH</a><a href="#career">Nghề nghiệp</a><a href="#plan">Kế hoạch</a><a href="#gallery">Hình ảnh</a></div>
+</div></div>
+<div class="tools">
+ <button class="btn main" onclick="document.getElementById('mainPhoto').click()">📸 Chèn ảnh đại diện</button>
+ <input id="mainPhoto" type="file" accept="image/*" hidden onchange="addMainPhoto(event)">
+ <button class="btn" onclick="toggleEditing()">✏️ Bật / tắt chỉnh sửa</button>
+ <button class="btn" onclick="document.getElementById('galleryInput').click()">🖼 Thêm ảnh vào bộ sưu tập</button>
+ <input id="galleryInput" type="file" accept="image/*" multiple hidden onchange="addGallery(event)">
+ <button class="btn" onclick="saveHTML()">⬇ Tải HTML đã chỉnh sửa</button>
+ <button class="btn" onclick="window.print()">🖨 In / lưu PDF</button>
+ <span class="status" id="status">Chỉnh sửa đang bật · Bấm vào chữ để thay đổi</span>
+</div>
+<main>
+<header class="hero">
+ <div>
+  <span class="eyebrow">PERSONAL PROFILE · 2026</span>
+  <h1>Xin chào!<br>Mình là <span class="gradient" contenteditable="true">Nguyễn Thị Bảo Ngọc</span> 🌷</h1>
+  <p class="lead" contenteditable="true">Mình là học sinh lớp 12A11, trường THPT Đắk Mil. Đây là không gian nhỏ để mình chia sẻ đôi nét về bản thân, suy nghĩ về cách ứng xử văn minh trên mạng xã hội và những dự định cho chặng đường nghề nghiệp phía trước. Mình tin rằng tuổi trẻ đẹp nhất khi chúng ta dám ước mơ, biết sống có trách nhiệm và không ngừng nỗ lực để biến mục tiêu thành hiện thực.</p>
+  <div class="tags"><span class="tag">🎓 12A11 · THPT Đắk Mil</span><span class="tag">🌈 Tích cực</span><span class="tag">🚀 Sẵn sàng phát triển</span></div>
+ </div>
+ <aside class="profile">
+  <div class="photo" id="photoFrame"><span>🌸</span></div>
+  <h2 contenteditable="true">Nguyễn Thị Bảo Ngọc</h2>
+  <p contenteditable="true">Học sinh lớp 12A11</p>
+  <p contenteditable="true">Trường THPT Đắk Mil</p>
+  <div class="photo-actions"><button class="btn" onclick="document.getElementById('mainPhoto').click()">Thay ảnh</button></div>
+ </aside>
+</header>
+
+<section id="about">
+ <div class="section-top"><div class="number">01</div><div><div class="kicker">ABOUT ME</div><h2 class="title">Đôi nét về bản thân 💗</h2><p class="sub">Hiểu mình hôm nay để tự tin lựa chọn con đường ngày mai.</p></div></div>
+ <p contenteditable="true">Xin chào mọi người! Mình là Nguyễn Thị Bảo Ngọc, hiện đang là học sinh lớp 12A11, trường THPT Đắk Mil. Là một học sinh cuối cấp, mình đang trải qua khoảng thời gian có nhiều dấu mốc quan trọng: vừa tập trung hoàn thành chương trình học, vừa suy nghĩ nghiêm túc hơn về tương lai và con đường mà bản thân muốn theo đuổi.</p>
+ <p contenteditable="true">Mình nghĩ mỗi người đều có những điểm mạnh, điểm hạn chế và một hành trình trưởng thành riêng. Bản thân mình luôn mong muốn sống tích cực, có trách nhiệm với việc học và những lựa chọn của mình. Mình hiểu rằng để đạt được mục tiêu, chỉ có ước mơ thôi là chưa đủ; điều quan trọng hơn là sự kiên trì, tinh thần tự giác và khả năng đứng dậy sau những lần gặp khó khăn.</p>
+ <p contenteditable="true">Trong cuộc sống, mình trân trọng gia đình, thầy cô và bạn bè — những người luôn đồng hành, động viên và giúp mình có thêm động lực. Mình cũng muốn dành thời gian khám phá sở thích, tìm hiểu những điều mới và rèn luyện các kỹ năng cần thiết. Mình tin rằng việc lắng nghe góp ý, dám nhìn nhận thiếu sót và chủ động thay đổi sẽ giúp mình ngày càng hoàn thiện hơn.</p>
+ <div class="grid">
+  <article class="card"><div class="icon">🌱</div><h3>Điểm mạnh</h3><p contenteditable="true">Mình luôn cố gắng có trách nhiệm với công việc, sẵn sàng học hỏi và kiên trì với những mục tiêu đã đặt ra. Mình muốn tiếp tục rèn sự tự tin và khả năng quản lý thời gian.</p></article>
+  <article class="card"><div class="icon">🎧</div><h3>Sở thích</h3><p contenteditable="true">Mình yêu thích [bổ sung sở thích của bạn: nghe nhạc, đọc sách, thể thao, du lịch, chụp ảnh hoặc khám phá điều mới]. Đây là những hoạt động giúp mình thư giãn và cân bằng sau giờ học.</p></article>
+  <article class="card"><div class="icon">✨</div><h3>Điều mình hướng tới</h3><p contenteditable="true">Trở thành người tự lập, có tri thức, biết yêu thương, tôn trọng mọi người và có thể tạo ra những giá trị tích cực cho gia đình, cộng đồng.</p></article>
+ </div>
+ <div class="callout"><strong>Thông điệp của mình</strong><p contenteditable="true">Mình không cần phải trở nên hoàn hảo ngay lập tức. Mình chỉ cần nghiêm túc với mục tiêu, dũng cảm sửa đổi những điều chưa tốt và cố gắng tiến bộ hơn chính mình của ngày hôm qua.</p></div>
+</section>
+
+<section id="social">
+ <div class="section-top"><div class="number">02</div><div><div class="kicker">DIGITAL CITIZENSHIP</div><h2 class="title">Ứng xử văn minh trên mạng xã hội 🌐</h2><p class="sub">Mỗi hành động trực tuyến đều thể hiện ý thức, nhân cách và trách nhiệm của người sử dụng.</p></div></div>
+ <p contenteditable="true">Mạng xã hội đã trở thành một phần quen thuộc trong cuộc sống của học sinh. Đây là nơi chúng ta kết nối với bạn bè, cập nhật thông tin, học hỏi kiến thức, chia sẻ cảm xúc và thể hiện cá tính. Nếu biết sử dụng đúng cách, mạng xã hội mang lại rất nhiều lợi ích. Tuy nhiên, môi trường này cũng tiềm ẩn những vấn đề như tin giả, lừa đảo, bình luận ác ý, bắt nạt trực tuyến, lộ thông tin cá nhân và sự phụ thuộc quá mức vào lượt thích hay những đánh giá từ người khác.</p>
+ <p contenteditable="true">Theo mình, ứng xử văn minh trên mạng xã hội không chỉ đơn giản là nói lời hay, ý đẹp mà còn là biết suy nghĩ trước khi đăng tải, tôn trọng quyền riêng tư, kiểm chứng thông tin và chịu trách nhiệm với những gì mình chia sẻ. Dù giao tiếp qua màn hình, phía bên kia vẫn là những con người thật với cảm xúc và lòng tự trọng cần được tôn trọng.</p>
+ <div class="principle"><div class="picon">💬</div><div><h3>1. Tôn trọng người khác trong giao tiếp</h3><p contenteditable="true">Mình sẽ sử dụng ngôn từ lịch sự, không xúc phạm, miệt thị, chế giễu ngoại hình hay công kích cá nhân. Khi có ý kiến khác nhau, mình chọn cách trao đổi bình tĩnh, lắng nghe và phản biện bằng lý lẽ. Không nên dùng tài khoản ẩn danh để làm tổn thương người khác hoặc cổ vũ hành vi bắt nạt trực tuyến.</p></div></div>
+ <div class="principle"><div class="picon">🔎</div><div><h3>2. Kiểm chứng thông tin trước khi chia sẻ</h3><p contenteditable="true">Mình sẽ xem xét nguồn tin, tác giả, thời điểm đăng tải và đối chiếu với những nguồn đáng tin cậy. Không chia sẻ tin đồn, hình ảnh cắt ghép hay nội dung chưa được xác thực chỉ vì chúng gây tò mò hoặc có nhiều lượt tương tác. Một lần chia sẻ thiếu suy nghĩ đôi khi có thể gây ảnh hưởng lớn đến cá nhân và cộng đồng.</p></div></div>
+ <div class="principle"><div class="picon">🔐</div><div><h3>3. Bảo vệ thông tin cá nhân và quyền riêng tư</h3><p contenteditable="true">Mình không công khai mật khẩu, mã xác thực, địa chỉ nhà, số điện thoại, giấy tờ cá nhân hay lịch trình riêng tư. Mình cần cảnh giác với đường link lạ, tin nhắn yêu cầu cung cấp thông tin và những tài khoản có dấu hiệu giả mạo. Trước khi đăng ảnh hoặc thông tin của bạn bè, mình sẽ tôn trọng quyền riêng tư và xin phép khi cần thiết.</p></div></div>
+ <div class="principle"><div class="picon">⚖️</div><div><h3>4. Tôn trọng pháp luật và bản quyền</h3><p contenteditable="true">Mình không đăng tải nội dung vi phạm pháp luật, vu khống, xúc phạm danh dự hoặc tiếp tay cho hành vi lừa đảo. Khi sử dụng hình ảnh, bài viết, âm nhạc và sản phẩm sáng tạo của người khác, mình cần tôn trọng quyền tác giả, xin phép khi cần và ghi nguồn phù hợp.</p></div></div>
+ <div class="principle"><div class="picon">🧠</div><div><h3>5. Suy nghĩ kỹ trước khi đăng bình luận</h3><p contenteditable="true">Trước khi đăng tải, mình sẽ tự hỏi nội dung có đúng sự thật không, có cần thiết không và có thể gây tổn thương cho ai không. Mình hiểu rằng dấu vết số có thể tồn tại lâu dài, được chụp lại hoặc chia sẻ ngay cả khi bài viết đã bị xóa. Vì vậy, mình muốn xây dựng hình ảnh cá nhân tích cực và có trách nhiệm.</p></div></div>
+ <div class="principle"><div class="picon">🆘</div><div><h3>6. Biết cách bảo vệ mình khi gặp rủi ro</h3><p contenteditable="true">Khi gặp tin nhắn đe dọa, quấy rối, lừa đảo hoặc bắt nạt trực tuyến, mình không nên im lặng chịu đựng hay đáp trả bằng lời lẽ tiêu cực. Mình có thể lưu bằng chứng, chặn và báo cáo tài khoản vi phạm, đồng thời chia sẻ với cha mẹ, thầy cô hoặc người có trách nhiệm để được hỗ trợ.</p></div></div>
+ <div class="callout"><strong>Cam kết của Nguyễn Thị Bảo Ngọc 🌷</strong><p contenteditable="true">Mình cam kết sử dụng mạng xã hội một cách lành mạnh, có chọn lọc và đúng mục đích; không phát tán thông tin sai lệch, không bình luận gây tổn thương và luôn tôn trọng người khác. Mình muốn lan tỏa những điều tích cực, biến mạng xã hội thành công cụ học tập và phát triển bản thân thay vì nơi để so sánh, phán xét hay chạy theo sự công nhận.</p></div>
+</section>
+
+<section id="career">
+ <div class="section-top"><div class="number">03</div><div><div class="kicker">CAREER ORIENTATION</div><h2 class="title">Định hướng nghề nghiệp cá nhân 🧭</h2><p class="sub">Chọn nghề bằng sự hiểu mình, tìm hiểu thực tế và trách nhiệm với tương lai.</p></div></div>
+ <p contenteditable="true">Là học sinh lớp 12, mình nhận thức rằng lựa chọn ngành học và nghề nghiệp là một quyết định quan trọng, có ảnh hưởng đến quá trình học tập cũng như cuộc sống sau này. Mình không muốn lựa chọn nghề chỉ vì xu hướng, vì bạn bè chọn hay vì những nhận định chưa được kiểm chứng. Mình cần hiểu rõ bản thân, tìm hiểu đặc điểm từng ngành và cân nhắc điều kiện thực tế trước khi đưa ra quyết định.</p>
+ <p contenteditable="true">Hiện tại, mình quan tâm và muốn tìm hiểu thêm về các lĩnh vực gắn với pháp luật, quản lý nhà nước, thanh tra và an ninh. Đây là những hướng nghề nghiệp có ý nghĩa đối với đời sống xã hội, đòi hỏi người làm nghề có tinh thần trách nhiệm, tính kỷ luật, sự trung thực, khả năng phân tích và ý thức phục vụ cộng đồng. Mình xem đây là những định hướng đang tìm hiểu, đồng thời vẫn sẵn sàng cân nhắc những lựa chọn phù hợp khác khi có thêm thông tin.</p>
+ <div class="two">
+  <div class="panel"><h3>🎯 Vì sao mình quan tâm?</h3><p contenteditable="true">Mình mong muốn tìm hiểu những công việc có tính trách nhiệm xã hội, góp phần bảo vệ trật tự, thực thi quy định và phục vụ cộng đồng. Mình thấy bản thân cần tiếp tục rèn luyện kiến thức, sự bản lĩnh, tính công tâm và khả năng giao tiếp để xem mình có thực sự phù hợp hay không.</p></div>
+  <div class="panel"><h3>🧩 Tiêu chí lựa chọn</h3><p contenteditable="true">Ngành học cần phù hợp với năng lực, sở thích và điều kiện của bản thân; có chương trình đào tạo rõ ràng; môi trường học tập phù hợp; cơ hội phát triển lâu dài và giá trị tích cực mà nghề nghiệp có thể mang lại cho xã hội.</p></div>
+ </div>
+ <h3>Những năng lực mình cần rèn luyện</h3>
+ <ul>
+  <li contenteditable="true"><b>Kiến thức:</b> củng cố các môn học nền tảng, rèn tư duy logic, khả năng đọc hiểu và phân tích vấn đề.</li>
+  <li contenteditable="true"><b>Kỹ năng:</b> giao tiếp, thuyết trình, làm việc nhóm, giải quyết vấn đề và quản lý thời gian.</li>
+  <li contenteditable="true"><b>Phẩm chất:</b> trung thực, kỷ luật, trách nhiệm, kiên trì, bình tĩnh và tôn trọng quy định.</li>
+  <li contenteditable="true"><b>Năng lực bổ trợ:</b> tin học, ngoại ngữ, kỹ năng tìm kiếm và đánh giá thông tin trên môi trường số.</li>
+  <li contenteditable="true"><b>Sức khỏe:</b> duy trì thói quen vận động, nghỉ ngơi hợp lý và chăm sóc sức khỏe tinh thần.</li>
+ </ul>
+ <div class="callout"><strong>Điều mình cần tìm hiểu trước khi quyết định</strong><p contenteditable="true">Mình sẽ tra cứu thông tin tuyển sinh mới nhất từ website và đề án chính thức của từng trường: ngành đào tạo, tổ hợp và phương thức xét tuyển, chỉ tiêu, tiêu chuẩn sức khỏe hoặc điều kiện riêng (nếu có), học phí và cơ hội nghề nghiệp. Mình cũng sẽ trao đổi với gia đình, thầy cô và người có kinh nghiệm để có lựa chọn thực tế, phù hợp với bản thân.</p></div>
+</section>
+
+<section id="plan">
+ <div class="section-top"><div class="number">04</div><div><div class="kicker">MY ACTION PLAN</div><h2 class="title">Kế hoạch thực hiện mục tiêu 🚀</h2><p class="sub">Từng bước nhỏ, mục tiêu rõ ràng và sự kiên trì mỗi ngày.</p></div></div>
+ <p contenteditable="true">Để biến định hướng nghề nghiệp thành hành động, mình xây dựng kế hoạch theo từng giai đoạn. Mình hiểu rằng kế hoạch có thể thay đổi khi năng lực, nguyện vọng hoặc thông tin tuyển sinh thay đổi, vì vậy mình sẽ thường xuyên đánh giá và điều chỉnh để luôn đi đúng hướng.</p>
+ <div class="steps">
+  <article class="step"><small>GIAI ĐOẠN 01 · NGAY BÂY GIỜ</small><h3>Hoàn thành tốt việc học</h3><p contenteditable="true">Xây dựng thời gian biểu hợp lý, tập trung ôn tập kiến thức lớp 12, xác định môn học còn yếu và chủ động nhờ thầy cô hỗ trợ. Duy trì thói quen tự học, làm bài tập và đánh giá kết quả theo tuần.</p></article>
+  <article class="step"><small>GIAI ĐOẠN 02 · TÌM HIỂU</small><h3>Khám phá ngành và trường</h3><p contenteditable="true">Tìm hiểu kỹ các ngành mình quan tâm, chương trình đào tạo, điều kiện tuyển sinh, tổ hợp xét tuyển và yêu cầu đặc thù. Ghi chú nguồn thông tin chính thức, so sánh ưu điểm và những điểm cần cân nhắc.</p></article>
+  <article class="step"><small>GIAI ĐOẠN 03 · RÈN LUYỆN</small><h3>Phát triển kỹ năng cá nhân</h3><p contenteditable="true">Rèn luyện kỹ năng giao tiếp, thuyết trình, làm việc nhóm, tin học và ngoại ngữ. Tham gia hoạt động tập thể phù hợp, tập quản lý thời gian, giữ kỷ luật và chăm sóc sức khỏe.</p></article>
+  <article class="step"><small>GIAI ĐOẠN 04 · ĐÁNH GIÁ</small><h3>Điều chỉnh mục tiêu</h3><p contenteditable="true">Mỗi tháng nhìn lại kết quả học tập, mức độ tiến bộ và những khó khăn gặp phải. Lắng nghe góp ý từ gia đình, thầy cô; điều chỉnh phương pháp học và định hướng nếu nhận thấy lựa chọn ban đầu chưa phù hợp.</p></article>
+  <article class="step"><small>GIAI ĐOẠN 05 · HƯỚNG TỚI TƯƠNG LAI</small><h3>Chuẩn bị lựa chọn cuối cùng</h3><p contenteditable="true">Sắp xếp nguyện vọng theo mức độ phù hợp, chuẩn bị hồ sơ và các yêu cầu cần thiết, theo dõi thời hạn tuyển sinh. Đồng thời xây dựng phương án dự phòng để chủ động và bình tĩnh trước mọi kết quả.</p></article>
+ </div>
+ <h3>Những việc mình có thể bắt đầu từ hôm nay</h3>
+ <ul>
+  <li contenteditable="true">Mỗi ngày dành thời gian học tập tập trung và hạn chế sử dụng điện thoại không cần thiết.</li>
+  <li contenteditable="true">Mỗi tuần lập kế hoạch học tập, tự kiểm tra kiến thức và ghi lại điều cần cải thiện.</li>
+  <li contenteditable="true">Mỗi tháng tìm hiểu sâu ít nhất một ngành học hoặc một cơ sở đào tạo bằng nguồn chính thức.</li>
+  <li contenteditable="true">Luôn giữ thái độ tích cực, giao tiếp văn minh và có trách nhiệm cả ngoài đời lẫn trên mạng.</li>
+ </ul>
+ <div class="quote">“Tuổi trẻ là hành trình dám ước mơ,<br><span>kiên trì hành động và không ngừng trưởng thành.”</span> ✨</div>
+ <h3>Lời kết</h3>
+ <p contenteditable="true">Qua chủ đề ứng xử trên mạng xã hội và định hướng nghề nghiệp, mình nhận ra rằng xây dựng tương lai không chỉ là chuẩn bị kiến thức để bước vào một ngành học, mà còn là rèn luyện nhân cách và trách nhiệm của bản thân. Mình cần biết sử dụng công nghệ một cách thông minh, tôn trọng mọi người, có khả năng chọn lọc thông tin và giữ vững những giá trị tốt đẹp.</p>
+ <p contenteditable="true">Mình biết chặng đường phía trước sẽ có những thử thách và không phải lúc nào mọi việc cũng diễn ra như mong muốn. Nhưng mình tin rằng nếu có mục tiêu rõ ràng, biết cố gắng từng ngày và dám điều chỉnh khi cần thiết, mình sẽ tiến gần hơn đến ước mơ. Mình sẽ nỗ lực để trở thành Nguyễn Thị Bảo Ngọc — một người trẻ tự tin, có tri thức, sống trách nhiệm và luôn hướng đến những điều tích cực.</p>
+</section>
+
+<section id="gallery">
+ <div class="section-top"><div class="number">05</div><div><div class="kicker">MY MOMENTS</div><h2 class="title">Góc hình ảnh của Ngọc 📷</h2><p class="sub">Thêm ảnh chân dung, hoạt động ở trường, bạn bè hoặc những khoảnh khắc đáng nhớ.</p></div></div>
+ <div class="gallery" id="galleryGrid">
+  <div class="gallery-item"><span>🌼</span><p>Ảnh hoạt động / học tập</p><button onclick="document.getElementById('galleryInput').click()">+ Chèn ảnh</button></div>
+  <div class="gallery-item"><span>🎀</span><p>Kỷ niệm cùng bạn bè</p><button onclick="document.getElementById('galleryInput').click()">+ Chèn ảnh</button></div>
+  <div class="gallery-item"><span>🌈</span><p>Khoảnh khắc đáng nhớ</p><button onclick="document.getElementById('galleryInput').click()">+ Chèn ảnh</button></div>
+ </div>
+ <p class="note">Ảnh được nhúng trực tiếp vào file khi bạn bấm “Tải HTML đã chỉnh sửa”, vì vậy có thể mở file đã lưu trên máy khác mà vẫn giữ được hình ảnh.</p>
+</section>
+<footer>✿ NGUYỄN THỊ BẢO NGỌC · LỚP 12A11 · TRƯỜNG THPT ĐẮK MIL<br><span contenteditable="true">“Học tập hôm nay — tự tin ngày mai.”</span></footer>
+</main>
+<script>
+let editing=true;
+function toggleEditing(){
+ editing=!editing;
+ document.querySelectorAll('[contenteditable]').forEach(el=>el.contentEditable=editing?'true':'false');
+ document.getElementById('status').textContent=editing?'Chỉnh sửa đang bật · Bấm vào chữ để thay đổi':'Chế độ xem · Bấm nút để bật chỉnh sửa';
+}
+function imageData(file,callback){
+ if(!file || !file.type.startsWith('image/')) return;
+ const reader=new FileReader(); reader.onload=e=>callback(e.target.result); reader.readAsDataURL(file);
+}
+function addMainPhoto(event){
+ const file=event.target.files[0]; if(!file)return;
+ imageData(file,data=>{
+  const frame=document.getElementById('photoFrame');frame.innerHTML='';
+  const img=document.createElement('img');img.src=data;img.alt='Ảnh đại diện Nguyễn Thị Bảo Ngọc';frame.appendChild(img);
+ });
+ event.target.value='';
+}
+function addGallery(event){
+ const files=Array.from(event.target.files||[]);if(!files.length)return;
+ const grid=document.getElementById('galleryGrid');
+ files.forEach(file=>imageData(file,data=>{
+  const item=document.createElement('div');item.className='gallery-item';
+  const img=document.createElement('img');img.src=data;img.alt='Ảnh kỷ niệm';
+  const caption=document.createElement('p');caption.contentEditable='true';caption.textContent='Bấm vào đây để ghi chú cho ảnh';
+  const remove=document.createElement('button');remove.textContent='Xóa ảnh';remove.onclick=()=>item.remove();
+  item.append(img,caption,remove);grid.appendChild(item);
+ }));
+ event.target.value='';
+}
+function saveHTML(){
+ const clone=document.documentElement.cloneNode(true);
+ clone.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','true'));
+ clone.querySelectorAll('input[type=file]').forEach(el=>el.value='');
+ const blob=new Blob(['<!DOCTYPE html>\\n'+clone.outerHTML],{type:'text/html;charset=utf-8'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');
+ a.href=url;a.download='Nguyen_Thi_Bao_Ngoc_12A11_THPT_Dak_Mil.html';
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+ document.getElementById('status').textContent='Đã xuất bản HTML hiện tại. Hãy mở file vừa tải để kiểm tra!';
+}
+</script>
+</body>
+</html>

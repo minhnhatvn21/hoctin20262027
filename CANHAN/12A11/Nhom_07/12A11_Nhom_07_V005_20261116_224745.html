@@ -1,0 +1,1412 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Đậu Huy Vũ | Định hướng nghề nghiệp tương lai</title>
+
+<!-- FONT CHU -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --blue: #72b5e9;
+    --dark: #347bb7;
+    --light: #eaf5ff;
+    --pale: #f5faff;
+    --text: #294765;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--pale);
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+section {
+    padding: 80px 9%;
+    scroll-margin-top: 85px;
+}
+
+/* HEADER */
+header {
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(12px);
+    padding: 15px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 18px #a9cce633;
+}
+
+.logo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    color: var(--dark);
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--blue);
+}
+
+/* HERO */
+.hero {
+    min-height: 580px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 70px 20px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,#dceeff,#b5d9fa,#eaf5ff);
+}
+
+.hero h1 {
+    font-size: clamp(38px,7vw,60px);
+    color: #347bb7;
+    animation: fadeUp 1s ease;
+}
+
+.hero h2 {
+    font-size: clamp(17px,3vw,25px);
+    color: #527fa8;
+    margin: 15px 0;
+    animation: fadeUp 1.2s ease;
+}
+
+.hero p {
+    max-width: 650px;
+    color: #45627e;
+    font-size: 15px;
+}
+
+.hero-tag {
+    background: #ffffff88;
+    padding: 8px 20px;
+    border-radius: 30px;
+    color: #397fbd;
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 13px 30px;
+    background: #6baee8;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px #6baee855;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    background: #347bb7;
+}
+
+.bubble {
+    position: absolute;
+    background: #ffffff55;
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+    pointer-events: none;
+}
+
+.b1 { width: 110px; height: 110px; top: 12%; left: 8%; }
+.b2 { width: 160px; height: 160px; bottom: 8%; right: 10%; animation-delay: 2s; }
+.b3 { width: 55px; height: 55px; top: 30%; right: 20%; animation-delay: 1s; }
+
+/* SECTION TITLE */
+.section-title {
+    text-align: center;
+    font-size: clamp(24px,4vw,32px);
+    color: #438bc8;
+    margin-bottom: 15px;
+}
+
+.section-desc {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 40px;
+    color: #7189a2;
+    font-size: 14px;
+}
+
+/* ABOUT */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.avatar-box {
+    padding: 12px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px #91bfe744;
+    transition: .4s;
+}
+
+.avatar-box:hover {
+    transform: translateY(-8px) rotate(1deg);
+}
+
+.avatar-box img {
+    width: 280px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+
+.avatar-placeholder {
+    width: 280px;
+    height: 350px;
+    background: #eaf5ff;
+    color: #438bc8;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.about-content {
+    flex: 1;
+    min-width: 270px;
+    max-width: 570px;
+}
+
+.about-content h3 {
+    color: #347bb7;
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.about-content > p {
+    color: #5c7590;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+}
+
+.info {
+    background: white;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px #b7d7f333;
+}
+
+.info b {
+    color: #438bc8;
+    font-size: 13px;
+}
+
+.info p {
+    font-size: 14px;
+}
+
+.hobby {
+    margin-top: 20px;
+    padding: 18px;
+    background: #e4f2ff;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.hobby b {
+    color: #347bb7;
+}
+
+/* GENERAL CARDS */
+.blue-section {
+    background: #eaf5ff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 27px;
+    border-radius: 20px;
+    border: 1px solid #d7eafa;
+    box-shadow: 0 8px 25px #8ab9df22;
+    transition: .35s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px #80b6e955;
+}
+
+.icon-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #dceeff;
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    color: #397fbd;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.card p, .card li {
+    color: #647f99;
+    font-size: 13px;
+}
+
+.card ul {
+    padding-left: 18px;
+}
+
+.card li {
+    margin-bottom: 7px;
+}
+
+/* CAREER */
+.career-section {
+    background: #eaf5ff;
+}
+
+.career-card {
+    background: white;
+    padding: 27px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px #9cc7eb33;
+    transition: .35s;
+    border-bottom: 4px solid #72b5e9;
+}
+
+.career-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 12px 25px #83b6e755;
+}
+
+.career-card h3 {
+    color: #438bc8;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.career-card p {
+    color: #657e98;
+    font-size: 13px;
+}
+
+.skill {
+    display: inline-block;
+    background: #eaf5ff;
+    color: #438bc8;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+/* HIGHLIGHT */
+.highlight {
+    background: linear-gradient(135deg,#78b9eb,#397fbd);
+    color: white;
+    padding: 40px;
+    border-radius: 22px;
+    text-align: center;
+    margin-top: 35px;
+    box-shadow: 0 10px 30px #75b3e555;
+}
+
+.highlight h3 {
+    font-size: 25px;
+    margin: 12px 0;
+}
+
+.highlight p {
+    max-width: 750px;
+    margin: auto;
+    font-size: 14px;
+}
+
+/* TIMELINE */
+.timeline {
+    max-width: 850px;
+    margin: auto;
+    border-left: 4px solid #80b9e9;
+    padding-left: 30px;
+}
+
+.time-item {
+    position: relative;
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px #9bc5e533;
+    transition: .3s;
+}
+
+.time-item:hover {
+    transform: translateX(7px);
+}
+
+.time-item::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 28px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #5ca3dc;
+    border: 4px solid white;
+}
+
+.time-item span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6baee8;
+}
+
+.time-item h3 {
+    color: #397fbd;
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+.time-item p {
+    color: #647f99;
+    font-size: 13px;
+}
+
+/* TABLE */
+.table-wrap {
+    overflow-x: auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px #9bc5e533;
+}
+
+.plan-table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+}
+
+.plan-table th {
+    background: #75b5e8;
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.plan-table td {
+    padding: 16px;
+    border-bottom: 1px solid #e0effb;
+    color: #58748e;
+    font-size: 13px;
+}
+
+.plan-table tr:hover {
+    background: #f0f8ff;
+}
+
+/* CHALLENGES */
+.problem {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    border-left: 5px solid #72b4e8;
+    box-shadow: 0 5px 20px #9bc5e533;
+}
+
+.problem h3 {
+    color: #397fbd;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.problem p {
+    color: #647f99;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+/* QUIZ */
+.quiz-box {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px #9bc5e544;
+}
+
+.quiz-question {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0effb;
+}
+
+.quiz-question h3 {
+    color: #397fbd;
+    font-size: 16px;
+    margin-bottom: 13px;
+}
+
+.quiz-option {
+    display: block;
+    padding: 12px 15px;
+    background: #f0f7ff;
+    margin: 9px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 13px;
+}
+
+.quiz-option:hover {
+    background: #dceeff;
+}
+
+.quiz-option input {
+    margin-right: 10px;
+    accent-color: #397fbd;
+}
+
+.quiz-button {
+    border: none;
+    background: #5ca3dc;
+    color: white;
+    padding: 13px 28px;
+    border-radius: 25px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.quiz-button:hover {
+    background: #347bb7;
+    transform: translateY(-3px);
+}
+
+#quizResult {
+    display: none;
+    margin-top: 25px;
+    padding: 22px;
+    border-radius: 15px;
+    background: #eaf5ff;
+    color: #397fbd;
+    text-align: center;
+}
+
+/* QUOTE */
+.quote {
+    text-align: center;
+    background: linear-gradient(120deg,#b5d9fa,#eaf5ff);
+    padding: 60px 20px;
+    color: #347bb7;
+    font-size: 20px;
+    font-style: italic;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #d9ecfc;
+    color: #527fa8;
+    font-size: 13px;
+}
+
+/* ANIMATIONS */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: all .8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BACK TO TOP */
+#topBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    border: none;
+    background: #6baee8;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 21px;
+    cursor: pointer;
+    display: none;
+    z-index: 99;
+    box-shadow: 0 4px 15px #6baee855;
+}
+
+#topBtn:hover {
+    background: #347bb7;
+}
+
+/* MOBILE */
+@media(max-width:850px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+}
+
+@media(max-width:650px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .about-container {
+        gap: 25px;
+    }
+
+    .avatar-box img,
+    .avatar-placeholder {
+        width: 240px;
+        height: 300px;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+
+    .highlight {
+        padding: 28px 18px;
+    }
+
+    .quiz-box {
+        padding: 22px 16px;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">MY FUTURE ✦</div>
+
+    <nav>
+        <a href="#home">Trang chủ</a>
+        <a href="#about">Bản thân</a>
+        <a href="#discovery">Khám phá</a>
+        <a href="#career">Nghề nghiệp</a>
+        <a href="#roadmap">Lộ trình</a>
+        <a href="#action-plan">Kế hoạch</a>
+        <a href="#challenges">Thử thách</a>
+        <a href="#quiz">Trắc nghiệm</a>
+    </nav>
+</header>
+
+<!-- TRANG CHU -->
+<div class="hero" id="home">
+
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+
+    <div class="hero-tag">✦ PERSONAL CAREER PORTFOLIO ✦</div>
+
+    <h1>ĐẬU HUY VŨ</h1>
+
+    <h2>HÀNH TRÌNH CHINH PHỤC TƯƠNG LAI</h2>
+
+    <p>
+        Khám phá bản thân - Xác định mục tiêu -
+        Xây dựng tương lai bằng đam mê và nỗ lực.
+    </p>
+
+    <a href="#about" class="btn">KHÁM PHÁ HÀNH TRÌNH →</a>
+
+</div>
+
+
+<!-- GIOI THIEU BAN THAN -->
+<section id="about">
+
+    <h2 class="section-title reveal">GIỚI THIỆU BẢN THÂN</h2>
+
+    <p class="section-desc reveal">
+        Mỗi hành trình đều bắt đầu từ việc hiểu rõ chính mình.
+    </p>
+
+    <div class="about-container reveal">
+
+        <div class="avatar-box">
+
+            <img
+                src="https://scontent.fdad3-9.fna.fbcdn.net/v/t39.30808-6/909704046_1143797588106055_6280667178065837326_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=100&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGQPh6ydEIFrYlDTNaAb7o1EyrOBCkgwRETKs4EKSDBEc6zNmv4Jq2HnFn-ko2jj7O6337JtWtMSEqVMwOjtyVq&_nc_ohc=vaQCZHT4KmAQ7kNvwGltVQc&_nc_oc=AdpKZp0VcjI_lpSjUrfBsxVW1cQzNsAgdyTdgaq6anbt4v-hGoHXe084GyWXF0ydzPw&_nc_zt=23&_nc_ht=scontent.fdad3-9.fna&_nc_gid=_bVQ9EYjTX6FZIEQaJafew&_nc_ss=7b2a8&oh=00_AQTplx8lgQE0_pgUIO2MZg7UTRepRa76rXo_7Otrc6QiRQ&oe=6B00EC43"
+                alt="Ảnh chân dung Đậu Huy Vũ"
+                onerror="
+                    this.style.display='none';
+                    this.nextElementSibling.style.display='flex';
+                "
+            >
+
+            <div class="avatar-placeholder" style="display:none;">
+                <div>
+                    <div style="font-size:50px;">📷</div>
+                    <p>Thêm ảnh avatar.jpg</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="about-content">
+
+            <h3>Xin chào! Tôi là Huy Vũ 👋</h3>
+
+            <p>
+                Tôi là một học sinh đang trên hành trình khám phá
+                bản thân và định hướng nghề nghiệp tương lai.
+                Tôi yêu thích công nghệ thông tin, luôn muốn tìm hiểu
+                những điều mới mẻ và phát triển khả năng của mình.
+
+                Tôi tin rằng kiến thức, sự kiên trì và tinh thần
+                học hỏi chính là hành trang quan trọng để chinh phục
+                những mục tiêu trong tương lai.
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info">
+                    <b>HỌ VÀ TÊN</b>
+                    <p>Đậu Huy Vũ</p>
+                </div>
+
+                <div class="info">
+                    <b>NGÀY SINH</b>
+                    <p>22/03/2009</p>
+                </div>
+
+                <div class="info">
+                    <b>TRƯỜNG HỌC</b>
+                    <p>THPT Đắk Mil</p>
+                </div>
+
+                <div class="info">
+                    <b>LỚP</b>
+                    <p>12A11</p>
+                </div>
+
+            </div>
+
+            <div class="hobby">
+                <b>💻 SỞ THÍCH VÀ ĐAM MÊ</b>
+                <p>
+                    Công nghệ thông tin • Khám phá công nghệ •
+                    Học hỏi kiến thức mới • Phát triển bản thân
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- KHAM PHA BAN THAN -->
+<section class="blue-section" id="discovery">
+
+    <h2 class="section-title reveal">KHÁM PHÁ BẢN THÂN</h2>
+
+    <p class="section-desc reveal">
+        Hiểu rõ sở thích, điểm mạnh và những kỹ năng cần rèn luyện
+        để lựa chọn con đường phù hợp.
+    </p>
+
+    <div class="grid">
+
+        <div class="card reveal">
+            <div class="icon-box">⚡</div>
+            <h3>Điểm mạnh</h3>
+            <ul>
+                <li>Yêu thích tìm tòi và khám phá công nghệ.</li>
+                <li>Có tinh thần học hỏi kiến thức mới.</li>
+                <li>Quan tâm đến máy tính và ứng dụng số.</li>
+                <li>Mong muốn phát triển tư duy logic.</li>
+            </ul>
+        </div>
+
+        <div class="card reveal">
+            <div class="icon-box">💻</div>
+            <h3>Kỹ năng cần phát triển</h3>
+            <ul>
+                <li>Kỹ năng lập trình và tư duy thuật toán.</li>
+                <li>Sử dụng thành thạo máy tính.</li>
+                <li>Tiếng Anh chuyên ngành.</li>
+                <li>Kỹ năng giải quyết vấn đề.</li>
+                <li>Làm việc nhóm và giao tiếp.</li>
+            </ul>
+        </div>
+
+        <div class="card reveal">
+            <div class="icon-box">🚀</div>
+            <h3>Giá trị và sở thích</h3>
+            <ul>
+                <li>Khám phá công nghệ mới.</li>
+                <li>Sáng tạo sản phẩm kỹ thuật số.</li>
+                <li>Tự học và phát triển bản thân.</li>
+                <li>Ứng dụng công nghệ vào cuộc sống.</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- DINH HUONG NGHE NGHIEP -->
+<section id="career" class="career-section">
+
+    <h2 class="section-title reveal">ĐỊNH HƯỚNG NGHỀ NGHIỆP</h2>
+
+    <p class="section-desc reveal">
+        Khám phá những lĩnh vực tiềm năng trong ngành
+        Công nghệ thông tin.
+    </p>
+
+    <div class="grid">
+
+        <div class="career-card reveal">
+            <div class="icon-box">👨‍💻</div>
+            <h3>Lập trình viên</h3>
+            <p>
+                Phát triển phần mềm, ứng dụng và hệ thống
+                bằng các ngôn ngữ lập trình.
+            </p>
+            <span class="skill">Python • Java • C++</span>
+        </div>
+
+        <div class="career-card reveal">
+            <div class="icon-box">🌐</div>
+            <h3>Phát triển Website</h3>
+            <p>
+                Thiết kế và xây dựng các trang web
+                phục vụ học tập, kinh doanh và giải trí.
+            </p>
+            <span class="skill">HTML • CSS • JavaScript</span>
+        </div>
+
+        <div class="career-card reveal">
+            <div class="icon-box">🔐</div>
+            <h3>An ninh mạng</h3>
+            <p>
+                Bảo vệ hệ thống máy tính, dữ liệu
+                và thông tin trước các nguy cơ an toàn mạng.
+            </p>
+            <span class="skill">Security • Networking</span>
+        </div>
+
+        <div class="career-card reveal">
+            <div class="icon-box">📊</div>
+            <h3>Phân tích dữ liệu</h3>
+            <p>
+                Thu thập, xử lý và phân tích dữ liệu
+                để hỗ trợ quá trình ra quyết định.
+            </p>
+            <span class="skill">Excel • SQL • Python</span>
+        </div>
+
+        <div class="career-card reveal">
+            <div class="icon-box">🤖</div>
+            <h3>Trí tuệ nhân tạo (AI)</h3>
+            <p>
+                Nghiên cứu và phát triển các hệ thống
+                có khả năng học hỏi và xử lý thông tin.
+            </p>
+            <span class="skill">AI • Python • Machine Learning</span>
+        </div>
+
+        <div class="career-card reveal">
+            <div class="icon-box">🖥️</div>
+            <h3>Kỹ sư phần mềm</h3>
+            <p>
+                Phân tích, thiết kế, xây dựng và kiểm thử
+                các sản phẩm phần mềm.
+            </p>
+            <span class="skill">Programming • Teamwork</span>
+        </div>
+
+    </div>
+
+    <div class="highlight reveal">
+        <p>ĐỊNH HƯỚNG NGHỀ NGHIỆP ƯU TIÊN</p>
+        <h3>💻 LẬP TRÌNH VIÊN PHẦN MỀM</h3>
+        <p>
+            Đây là hướng nghề nghiệp đáng để tìm hiểu sâu hơn
+            nhờ sự kết hợp giữa niềm yêu thích công nghệ,
+            tư duy logic và khả năng sáng tạo sản phẩm.
+            Tôi sẽ tiếp tục khám phá để xác định lựa chọn
+            phù hợp nhất với bản thân.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- LO TRINH PHAT TRIEN -->
+<section id="roadmap">
+
+    <h2 class="section-title reveal">
+        MỤC TIÊU & LỘ TRÌNH PHÁT TRIỂN
+    </h2>
+
+    <p class="section-desc reveal">
+        Từng bước xây dựng hành trang cho tương lai
+        trong lĩnh vực Công nghệ thông tin.
+    </p>
+
+    <div class="timeline">
+
+        <div class="time-item reveal">
+            <span>GIAI ĐOẠN 01 - LỚP 12</span>
+            <h3>Xây dựng nền tảng</h3>
+            <p>
+                - Tập trung ôn tập cho kỳ thi tốt nghiệp THPT.<br>
+                - Tìm hiểu các trường đại học đào tạo CNTT.<br>
+                - Làm quen với HTML, CSS và Python.<br>
+                - Rèn luyện tiếng Anh và tư duy logic.
+            </p>
+        </div>
+
+        <div class="time-item reveal">
+            <span>GIAI ĐOẠN 02 - ĐẠI HỌC NĂM 1, 2</span>
+            <h3>Phát triển kiến thức chuyên ngành</h3>
+            <p>
+                - Học kiến thức cơ sở về máy tính và lập trình.<br>
+                - Tìm hiểu các ngôn ngữ lập trình phổ biến.<br>
+                - Tham gia câu lạc bộ công nghệ.<br>
+                - Thực hiện những dự án nhỏ.
+            </p>
+        </div>
+
+        <div class="time-item reveal">
+            <span>GIAI ĐOẠN 03 - ĐẠI HỌC NĂM 3, 4</span>
+            <h3>Thực hành và tích lũy kinh nghiệm</h3>
+            <p>
+                - Tham gia các dự án phần mềm thực tế.<br>
+                - Xây dựng hồ sơ năng lực cá nhân (Portfolio).<br>
+                - Tìm kiếm cơ hội thực tập tại doanh nghiệp.<br>
+                - Rèn luyện kỹ năng làm việc nhóm.
+            </p>
+        </div>
+
+        <div class="time-item reveal">
+            <span>GIAI ĐOẠN 04 - SAU TỐT NGHIỆP</span>
+            <h3>Phát triển sự nghiệp</h3>
+            <p>
+                - Ứng tuyển vào vị trí phù hợp với chuyên ngành.<br>
+                - Vận dụng kiến thức vào công việc thực tế.<br>
+                - Tiếp tục cập nhật công nghệ mới.<br>
+                - Phấn đấu trở thành lập trình viên chuyên nghiệp.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- KE HOACH HANH DONG -->
+<section class="blue-section" id="action-plan">
+
+    <h2 class="section-title reveal">
+        KẾ HOẠCH HÀNH ĐỘNG CHI TIẾT
+    </h2>
+
+    <p class="section-desc reveal">
+        Những nhiệm vụ cụ thể để từng bước đạt được mục tiêu.
+    </p>
+
+    <div class="table-wrap reveal">
+
+        <table class="plan-table">
+
+            <thead>
+                <tr>
+                    <th>Giai đoạn</th>
+                    <th>Nhiệm vụ</th>
+                    <th>Công cụ</th>
+                    <th>Kết quả dự kiến</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><b>Lớp 12</b></td>
+                    <td>Ôn thi THPT, tìm hiểu ngành CNTT.</td>
+                    <td>Sách, máy tính, Internet.</td>
+                    <td>Đạt kết quả tốt trong kỳ thi.</td>
+                </tr>
+
+                <tr>
+                    <td><b>Năm 1-2</b></td>
+                    <td>Học lập trình cơ bản và kiến thức chuyên ngành.</td>
+                    <td>Python, C++, VS Code.</td>
+                    <td>Nắm vững kiến thức nền tảng.</td>
+                </tr>
+
+                <tr>
+                    <td><b>Năm 3-4</b></td>
+                    <td>Thực hiện dự án và tham gia thực tập.</td>
+                    <td>GitHub, VS Code, SQL.</td>
+                    <td>Có dự án và kinh nghiệm thực tế.</td>
+                </tr>
+
+                <tr>
+                    <td><b>Sau tốt nghiệp</b></td>
+                    <td>Ứng tuyển và phát triển nghề nghiệp.</td>
+                    <td>Portfolio, CV, kiến thức chuyên môn.</td>
+                    <td>Có công việc phù hợp.</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</section>
+
+
+<!-- KHO KHAN VA GIAI PHAP -->
+<section id="challenges">
+
+    <h2 class="section-title reveal">
+        KHÓ KHĂN & GIẢI PHÁP
+    </h2>
+
+    <p class="section-desc reveal">
+        Chuẩn bị tinh thần để vượt qua những thử thách
+        trên hành trình theo đuổi đam mê công nghệ.
+    </p>
+
+    <div class="grid">
+
+        <div class="problem reveal">
+            <h3>⚠️ Kiến thức chuyên ngành rộng</h3>
+            <p>
+                Công nghệ thông tin có nhiều lĩnh vực
+                và kiến thức cần tìm hiểu.
+            </p>
+            <p>
+                <b>Giải pháp:</b> Chia nhỏ mục tiêu,
+                học từ cơ bản đến nâng cao và thực hành thường xuyên.
+            </p>
+        </div>
+
+        <div class="problem reveal">
+            <h3>⚠️ Công nghệ thay đổi nhanh</h3>
+            <p>
+                Các công cụ, ngôn ngữ và xu hướng công nghệ
+                liên tục được cập nhật.
+            </p>
+            <p>
+                <b>Giải pháp:</b> Chủ động đọc tài liệu,
+                học hỏi và cập nhật kiến thức mới.
+            </p>
+        </div>
+
+        <div class="problem reveal">
+            <h3>⚠️ Ngoại ngữ chuyên ngành</h3>
+            <p>
+                Nhiều tài liệu công nghệ được viết bằng tiếng Anh.
+            </p>
+            <p>
+                <b>Giải pháp:</b> Học từ vựng chuyên ngành,
+                luyện đọc tài liệu và nghe tiếng Anh thường xuyên.
+            </p>
+        </div>
+
+        <div class="problem reveal">
+            <h3>⚠️ Thiếu kinh nghiệm thực tế</h3>
+            <p>
+                Người mới học có thể gặp khó khăn khi
+                áp dụng lý thuyết vào dự án.
+            </p>
+            <p>
+                <b>Giải pháp:</b> Thực hiện dự án cá nhân,
+                tham gia hoạt động học thuật và thực tập.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- TRAC NGHIEM -->
+<section class="blue-section" id="quiz">
+
+    <h2 class="section-title reveal">
+        TRẮC NGHIỆM ĐỊNH HƯỚNG NGHỀ NGHIỆP
+    </h2>
+
+    <p class="section-desc reveal">
+        Hãy trả lời các câu hỏi để khám phá lĩnh vực
+        công nghệ phù hợp với sở thích của bạn.
+    </p>
+
+    <div class="quiz-box reveal">
+
+        <form id="itQuiz">
+
+            <div class="quiz-question">
+                <h3>1. Bạn hứng thú nhất với hoạt động nào?</h3>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q1" value="A" required>
+                    Viết mã và xây dựng ứng dụng.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q1" value="B">
+                    Tìm hiểu cách bảo vệ máy tính và dữ liệu.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q1" value="C">
+                    Phân tích thông tin và tìm ra quy luật.
+                </label>
+            </div>
+
+            <div class="quiz-question">
+                <h3>2. Bạn thích giải quyết vấn đề theo cách nào?</h3>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q2" value="A" required>
+                    Tạo ra chương trình để giải quyết vấn đề.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q2" value="B">
+                    Kiểm tra và tìm cách bảo vệ hệ thống.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q2" value="C">
+                    Thu thập và phân tích dữ liệu.
+                </label>
+            </div>
+
+            <div class="quiz-question">
+                <h3>3. Bạn muốn tạo ra sản phẩm nào?</h3>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q3" value="A" required>
+                    Website hoặc ứng dụng điện thoại.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q3" value="B">
+                    Hệ thống bảo mật thông tin.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q3" value="C">
+                    Hệ thống phân tích dữ liệu thông minh.
+                </label>
+            </div>
+
+            <div class="quiz-question">
+                <h3>4. Bạn muốn phát triển kỹ năng nào nhất?</h3>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q4" value="A" required>
+                    Lập trình và phát triển phần mềm.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q4" value="B">
+                    An toàn thông tin và mạng máy tính.
+                </label>
+
+                <label class="quiz-option">
+                    <input type="radio" name="q4" value="C">
+                    Toán học, thống kê và phân tích dữ liệu.
+                </label>
+            </div>
+
+            <div style="text-align:center;">
+                <button type="submit" class="quiz-button">
+                    XEM KẾT QUẢ CỦA TÔI ✦
+                </button>
+            </div>
+
+        </form>
+
+        <div id="quizResult" aria-live="polite"></div>
+
+        <p style="font-size:11px;color:#8197ad;margin-top:18px;">
+            * Kết quả chỉ mang tính tham khảo, không thay thế
+            việc tìm hiểu năng lực và sở thích thực tế.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- THONG DIEP CUOI -->
+<div class="quote">
+
+    <p>
+        "Thành công không đến từ sự may mắn,
+        mà đến từ những nỗ lực không ngừng nghỉ."
+    </p>
+
+    <p style="margin-top:15px;font-weight:bold;">
+        — ĐẬU HUY VŨ —
+    </p>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p><b>ĐẬU HUY VŨ | THPT ĐẮK MIL - LỚP 12A11</b></p>
+
+    <p>Hành trình hôm nay - Tương lai ngày mai ✦</p>
+
+    <p style="margin-top:10px;font-size:11px;">
+        © 2026 - PERSONAL CAREER PORTFOLIO
+    </p>
+
+</footer>
+
+
+<!-- NUT LEN DAU TRANG -->
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    ↑
+</button>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+// HIEU UNG XUAT HIEN KHI CUON TRANG
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+});
+
+
+// NUT QUAY VE DAU TRANG
+const topBtn = document.getElementById('topBtn');
+
+window.addEventListener('scroll', () => {
+
+    topBtn.style.display = window.scrollY > 400
+        ? 'block' : 'none';
+
+});
+
+
+// TRAC NGHIEM DINH HUONG NGHE NGHIEP
+document.getElementById('itQuiz').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    const form = new FormData(this);
+
+    const scores = {
+        A: 0,
+        B: 0,
+        C: 0
+    };
+
+    for(let i = 1; i <= 4; i++) {
+
+        const answer = form.get('q' + i);
+
+        if(answer) {
+            scores[answer]++;
+        }
+
+    }
+
+    const max = Math.max(
+        scores.A,
+        scores.B,
+        scores.C
+    );
+
+    const winners = Object.keys(scores).filter(
+        key => scores[key] === max
+    );
+
+    const careers = {
+
+        A: {
+            name: 'LẬP TRÌNH VIÊN / PHÁT TRIỂN PHẦN MỀM',
+            desc: 'Bạn có xu hướng quan tâm đến việc xây dựng ứng dụng, viết mã và tạo ra các sản phẩm công nghệ.'
+        },
+
+        B: {
+            name: 'CHUYÊN VIÊN AN NINH MẠNG',
+            desc: 'Bạn có xu hướng yêu thích việc tìm hiểu hệ thống, bảo mật và bảo vệ thông tin.'
+        },
+
+        C: {
+            name: 'CHUYÊN VIÊN PHÂN TÍCH DỮ LIỆU',
+            desc: 'Bạn có xu hướng quan tâm đến dữ liệu, tư duy phân tích và tìm kiếm quy luật.'
+        }
+
+    };
+
+    let result = '';
+
+    if(winners.length > 1) {
+
+        result = `
+            Bạn có sự quan tâm đến nhiều lĩnh vực công nghệ.
+            Hãy tiếp tục trải nghiệm và tìm hiểu để xác định
+            hướng đi phù hợp nhất với bản thân.
+        `;
+
+    } else {
+
+        result = `
+            <b>${careers[winners[0]].name}</b>
+            <br><br>
+            ${careers[winners[0]].desc}
+        `;
+
+    }
+
+    const box = document.getElementById('quizResult');
+
+    box.innerHTML = `
+        <h3>✨ KẾT QUẢ CỦA BẠN</h3>
+        <p>${result}</p>
+    `;
+
+    box.style.display = 'block';
+
+    box.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
+
+});
+
+</script>
+
+</body>
+</html>

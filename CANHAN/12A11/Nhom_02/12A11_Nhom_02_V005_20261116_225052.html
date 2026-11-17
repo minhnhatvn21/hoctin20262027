@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Định Hướng Nghề Nghiệp | Nguyễn Thị Thùy Chi - 12A11 (Khối A01) - Marketing</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Be Vietnam Pro, Playfair Display, Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f3',
+                            100: '#ffe4e8',
+                            200: '#fecdd6',
+                            300: '#fda4b4',
+                            400: '#fb718c',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                        },
+                        violet: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'marquee': 'marquee 28s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary-accent: #f43f5e;
+            --secondary-accent: #7c3aed;
+            --tertiary-accent: #fb923c;
+        }
+
+        body {
+            background-color: #fff9fb;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(244, 63, 94, 0.09) 0px, transparent 45%),
+                radial-gradient(at 90% 15%, rgba(124, 58, 237, 0.10) 0px, transparent 45%),
+                radial-gradient(at 50% 60%, rgba(251, 146, 60, 0.07) 0px, transparent 50%),
+                radial-gradient(at 85% 90%, rgba(244, 63, 94, 0.08) 0px, transparent 45%);
+            background-attachment: fixed;
+            color: #1e1b4b;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 10px 35px -10px rgba(124, 58, 237, 0.07), 0 4px 16px -4px rgba(244, 63, 94, 0.05);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(244, 63, 94, 0.14), 0 8px 24px -6px rgba(124, 58, 237, 0.1);
+            border-color: rgba(244, 63, 94, 0.3);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #e11d48 0%, #7c3aed 55%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #f43f5e 0%, #8b5cf6 60%, #fb923c 100%);
+        }
+
+        /* Editable Highlight when Edit Mode is ON */
+        body.edit-mode-active [contenteditable="true"] {
+            outline: 2px dashed rgba(244, 63, 94, 0.45);
+            outline-offset: 4px;
+            border-radius: 6px;
+            background-color: rgba(255, 241, 243, 0.5);
+            cursor: text;
+            transition: all 0.2s ease;
+        }
+
+        body.edit-mode-active [contenteditable="true"]:focus {
+            outline: 2px solid #e11d48;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.15);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff1f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #fb718c, #a78bfa);
+            border-radius: 9999px;
+        }
+
+        /* Image Card Hover Zoom */
+        .gallery-img-wrapper img {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-card:hover .gallery-img-wrapper img {
+            transform: scale(1.07);
+        }
+
+        /* Skill Bar Shimmer */
+        .skill-progress {
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-progress::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-500 selection:text-white">
+
+    <!-- Top Floating Navigation -->
+    <header class="sticky top-3 z-40 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <nav class="glass-card rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between border border-rose-100/80">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-display font-bold text-lg shadow-md shadow-rose-500/25 group-hover:scale-105 transition">
+                    TC
+                </div>
+                <div>
+                    <span class="font-bold text-slate-900 tracking-tight block leading-none text-sm sm:text-base editable" contenteditable="false">Nguyễn Thị Thùy Chi</span>
+                    <span class="text-xs text-rose-600 font-semibold tracking-wide editable" contenteditable="false">LỚP 12A11 • KHỐI A01 • MARKETING</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu Links -->
+            <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-slate-600">
+                <a href="#hero" class="px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition">Tổng quan</a>
+                <a href="#a01-advantage" class="px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition">Thế mạnh A01</a>
+                <a href="#about" class="px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition">Bản thân & Ngành</a>
+                <a href="#swot" class="px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition">SWOT & Kỹ năng</a>
+                <a href="#roadmap" class="px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition">Lộ trình</a>
+                <a href="#gallery" class="px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition flex items-center gap-1.5">
+                    <i data-lucide="images" class="w-4 h-4 text-rose-500"></i>
+                    Bộ sưu tập ảnh
+                </a>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-2">
+                <button id="toggleEditBtn" onclick="toggleEditMode()" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-rose-200 bg-white/90 text-slate-700 hover:border-rose-400 hover:text-rose-600 transition flex items-center gap-1.5 shadow-sm" title="Bật/Tắt chỉnh sửa nội dung văn bản trực tiếp">
+                    <i data-lucide="pen-line" class="w-4 h-4 text-rose-500"></i>
+                    <span id="editBtnLabel">Sửa nội dung</span>
+                </button>
+                <a href="#gallery-controls" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold gradient-bg text-white shadow-md shadow-rose-500/20 hover:opacity-95 transition flex items-center gap-1.5">
+                    <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Tùy chỉnh ảnh</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 space-y-20">
+
+        <!-- ================= 1. HERO SECTION ================= -->
+        <section id="hero" class="relative pt-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Left Column: Intro & Vision -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100/90 border border-rose-200 text-rose-700 text-xs sm:text-sm font-bold">
+                            <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                            <span class="editable" contenteditable="false">HỒ SƠ ĐỊNH HƯỚNG NGHỀ NGHIỆP • LỚP 12A11</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-violet-100/90 border border-violet-200 text-violet-700 text-xs sm:text-sm font-bold">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                            <span class="editable" contenteditable="false">TỔ HỢP XÉT TUYỂN: KHỐI A01 (TOÁN - LÝ - ANH)</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="text-sm sm:text-base font-semibold uppercase tracking-widest text-violet-600 editable" contenteditable="false">
+                            Digital Marketing • Brand Strategy • Creative Storytelling
+                        </p>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+                            Xin chào, mình là <br>
+                            <span class="gradient-text editable" contenteditable="false">Nguyễn Thị Thùy Chi</span>
+                        </h1>
+                    </div>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed editable" contenteditable="false">
+                        Học sinh lớp <strong class="text-rose-600 font-bold">12A11</strong> với nền tảng tư duy logic chặt chẽ của khối <strong class="text-violet-600 font-bold">A01 (Toán - Vật lí - Tiếng Anh)</strong> hòa quyện cùng niềm đam mê <strong class="text-orange-600 font-bold">nghệ thuật truyền thông & sáng tạo thương hiệu</strong>. Mục tiêu của mình là trở thành một chuyên gia Marketing thế hệ mới — người kết hợp hoàn hảo giữa dữ liệu số (Data-driven) và cảm xúc sáng tạo để tạo nên những chiến dịch bùng nổ.
+                    </p>
+
+                    <!-- Quick Personal Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="glass-card p-3.5 rounded-2xl border border-rose-100">
+                            <div class="text-xs text-slate-400 font-medium">Họ tên & Lớp</div>
+                            <div class="text-sm font-bold text-rose-600 mt-0.5 editable" contenteditable="false">Thùy Chi • 12A11</div>
+                        </div>
+                        <div class="glass-card p-3.5 rounded-2xl border border-violet-100">
+                            <div class="text-xs text-slate-400 font-medium">Khối xét tuyển</div>
+                            <div class="text-sm font-bold text-violet-600 mt-0.5 editable" contenteditable="false">A01 (Toán - Lý - Anh)</div>
+                        </div>
+                        <div class="glass-card p-3.5 rounded-2xl border border-orange-100">
+                            <div class="text-xs text-slate-400 font-medium">Ngành định hướng</div>
+                            <div class="text-sm font-bold text-orange-600 mt-0.5 editable" contenteditable="false">Digital Marketing</div>
+                        </div>
+                        <div class="glass-card p-3.5 rounded-2xl border border-emerald-100">
+                            <div class="text-xs text-slate-400 font-medium">Hình mẫu hướng tới</div>
+                            <div class="text-sm font-bold text-emerald-600 mt-0.5 editable" contenteditable="false">Brand Manager</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#a01-advantage" class="px-6 py-3.5 rounded-2xl gradient-bg text-white font-semibold shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 hover:-translate-y-0.5 transition flex items-center gap-2">
+                            <span>Lợi thế Khối A01 trong Marketing</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#gallery" class="px-6 py-3.5 rounded-2xl bg-white text-slate-800 font-semibold border border-rose-200 hover:border-rose-400 hover:bg-rose-50/50 transition flex items-center gap-2 shadow-sm">
+                            <i data-lucide="camera" class="w-4 h-4 text-rose-500"></i>
+                            <span>Thư viện ảnh hướng nghiệp (<span id="heroGalleryCount">6</span>)</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Avatar Showcase & Floating Marketing Elements -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md">
+                        <!-- Decorative Glow -->
+                        <div class="absolute -inset-4 rounded-3xl gradient-bg opacity-20 blur-2xl animate-pulse-slow"></div>
+
+                        <!-- Main Profile Card -->
+                        <div class="glass-card rounded-3xl p-4 sm:p-5 relative z-10 border-2 border-white">
+                            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-rose-100 group">
+                                <img id="avatarImage" 
+                                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80" 
+                                     onerror="this.src='https://placehold.co/600x750/ffe4e8/e11d48?text=Nguyen+Thi+Thuy+Chi+12A11'"
+                                     alt="Chân dung Nguyễn Thị Thùy Chi - Lớp 12A11" 
+                                     class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105">
+                                
+                                <!-- Gradient Overlay at Bottom -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/20 to-transparent flex flex-col justify-end p-5 text-white">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="px-2.5 py-1 rounded-full bg-rose-500/90 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider">
+                                            Lớp 12A11
+                                        </span>
+                                        <span class="px-2.5 py-1 rounded-full bg-violet-600/90 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider">
+                                            Khối A01
+                                        </span>
+                                    </div>
+                                    <h2 class="text-xl font-bold leading-tight editable" contenteditable="false">Nguyễn Thị Thùy Chi</h2>
+                                    <p class="text-xs text-rose-100/90 mt-1 italic font-serif editable" contenteditable="false">
+                                        "Marketing hiện đại là sự giao thoa kỳ diệu giữa tư duy phân tích số liệu nhạy bén của khối A01 và trái tim biết kể chuyện."
+                                    </p>
+                                </div>
+
+                                <!-- Change Avatar Button Overlay -->
+                                <label for="avatarUploadInput" class="absolute top-3 right-3 px-3 py-2 rounded-xl bg-white/90 hover:bg-white text-slate-800 text-xs font-semibold shadow-lg cursor-pointer flex items-center gap-1.5 backdrop-blur-md transition hover:scale-105">
+                                    <i data-lucide="upload" class="w-3.5 h-3.5 text-rose-600"></i>
+                                    <span>Đổi ảnh đại diện</span>
+                                </label>
+                                <input type="file" id="avatarUploadInput" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+                            </div>
+
+                            <!-- Avatar URL Quick Input -->
+                            <div class="mt-3 flex items-center justify-between gap-2 text-xs text-slate-500 px-1">
+                                <span class="flex items-center gap-1 font-medium text-slate-600">
+                                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-rose-500"></i>
+                                    Định hướng: Quản trị Thương hiệu & Digital
+                                </span>
+                                <button onclick="promptAvatarUrl()" class="text-rose-600 hover:underline font-semibold">Dán link ảnh</button>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 1 -->
+                        <div class="hidden sm:flex glass-card px-4 py-3 rounded-2xl items-center gap-3 absolute -left-8 top-10 z-20 animate-float border border-white">
+                            <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center">
+                                <i data-lucide="megaphone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-slate-800">Chiến dịch Sáng tạo</div>
+                                <div class="text-[11px] text-slate-500">Viral & Brand Storytelling</div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 2 -->
+                        <div class="hidden sm:flex glass-card px-4 py-3 rounded-2xl items-center gap-3 absolute -right-6 bottom-16 z-20 animate-float-delayed border border-white">
+                            <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center">
+                                <i data-lucide="calculator" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-slate-800">Tư duy Khối A01</div>
+                                <div class="text-[11px] text-slate-500">Toán • Vật lí • Tiếng Anh</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= MARQUEE TICKER ================= -->
+        <div class="relative overflow-hidden py-3.5 rounded-2xl gradient-bg text-white shadow-md">
+            <div class="flex whitespace-nowrap animate-marquee font-display text-xs sm:text-sm font-bold tracking-wider uppercase items-center">
+                <span class="mx-6 flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4"></i> NGUYỄN THỊ THÙY CHI • 12A11</span>
+                <span class="mx-6">• KHỐI A01 (TOÁN - VẬT LÍ - TIẾNG ANH)</span>
+                <span class="mx-6">• DIGITAL MARKETING</span>
+                <span class="mx-6">• BRAND MANAGEMENT</span>
+                <span class="mx-6">• DATA-DRIVEN STRATEGY</span>
+                <span class="mx-6">• CONSUMER INSIGHT</span>
+                <span class="mx-6">• CREATIVE STORYTELLING</span>
+                <span class="mx-6 flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4"></i> NGUYỄN THỊ THÙY CHI • 12A11</span>
+                <span class="mx-6">• KHỐI A01 (TOÁN - VẬT LÍ - TIẾNG ANH)</span>
+                <span class="mx-6">• DIGITAL MARKETING</span>
+                <span class="mx-6">• BRAND MANAGEMENT</span>
+                <span class="mx-6">• DATA-DRIVEN STRATEGY</span>
+                <span class="mx-6">• CONSUMER INSIGHT</span>
+                <span class="mx-6">• CREATIVE STORYTELLING</span>
+            </div>
+        </div>
+
+        <!-- ================= 1.5. THẾ MẠNH KHỐI A01 TRONG NGÀNH MARKETING ================= -->
+        <section id="a01-advantage" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
+                    Tổ Hợp Xét Tuyển Chiến Lược • Lớp 12A11
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 editable" contenteditable="false">
+                    Sức Mạnh Của <span class="gradient-text">Khối A01 (Toán - Lý - Anh)</span> Trong Kỷ Nguyên Marketing Số
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base editable" contenteditable="false">
+                    Marketing hiện đại không chỉ có bay bổng sáng tạo mà còn là cuộc đua của dữ liệu, tư duy hệ thống và hội nhập quốc tế. Tổ hợp A01 chính là bệ phóng vững chắc nhất của <strong>Nguyễn Thị Thùy Chi</strong>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Toán học -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border-t-4 border-t-rose-500 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center font-display font-bold text-xl">
+                                ∑
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-rose-50 text-rose-600 text-xs font-bold border border-rose-200 editable" contenteditable="false">
+                                Mục tiêu: 8.8 - 9.2+
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 editable" contenteditable="false">1. Toán Học — Tư Duy Dữ Liệu (Data Analytics)</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable" contenteditable="false">
+                            Trong Digital Marketing, mọi quyết định đều dựa trên con số. Môn Toán giúp mình nhạy bén với việc phân tích báo cáo thị trường, tính toán ngân sách quảng cáo, tối ưu hóa tỷ lệ chuyển đổi (Conversion Rate), chỉ số ROI và đọc hiểu dữ liệu hành vi khách hàng.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-rose-100 flex items-center justify-between text-xs font-semibold text-rose-600">
+                        <span>Ứng dụng: Marketing Research & ROI</span>
+                        <i data-lucide="trending-up" class="w-4 h-4"></i>
+                    </div>
+                </div>
+
+                <!-- Vật lí -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border-t-4 border-t-violet-500 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-violet-100 text-violet-600 flex items-center justify-center">
+                                <i data-lucide="atom" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-violet-50 text-violet-600 text-xs font-bold border border-violet-200 editable" contenteditable="false">
+                                Mục tiêu: 8.5 - 9.0+
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 editable" contenteditable="false">2. Vật Lí — Tư Duy Hệ Thống & Giải Quyết Vấn Đề</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable" contenteditable="false">
+                            Học tốt Vật lí rèn luyện cho mình khả năng quan sát hiện tượng, tìm ra quy luật cốt lõi (nguyên nhân - kết quả) và tư duy cấu trúc chặt chẽ. Đây là chìa khóa để lập kế hoạch chiến dịch truyền thông tổng thể (IMC Plan) mạch lạc và xử lý tình huống linh hoạt.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-violet-100 flex items-center justify-between text-xs font-semibold text-violet-600">
+                        <span>Ứng dụng: Strategic Planning & Logic</span>
+                        <i data-lucide="cpu" class="w-4 h-4"></i>
+                    </div>
+                </div>
+
+                <!-- Tiếng Anh -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border-t-4 border-t-orange-500 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center">
+                                <i data-lucide="languages" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-orange-50 text-orange-600 text-xs font-bold border border-orange-200 editable" contenteditable="false">
+                                Mục tiêu: 9.0+ & IELTS
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 editable" contenteditable="false">3. Tiếng Anh — Hội Nhập Truyền Thông Toàn Cầu</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed editable" contenteditable="false">
+                            Thuật ngữ chuyên ngành, tài liệu Case Study quốc tế và các công cụ MarTech/AI tiên tiến nhất đều bằng tiếng Anh. Ngoại ngữ vững vàng giúp mình tự tin tiếp cận xu hướng thế giới và hướng tới làm việc tại các Tập đoàn Đa quốc gia (MNCs) hay Global Agency.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-orange-100 flex items-center justify-between text-xs font-semibold text-orange-600">
+                        <span>Ứng dụng: Global Branding & Copywriting</span>
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 2. BENTO GRID: VỀ BẢN THÂN & LÝ DO CHỌN NGÀNH ================= -->
+        <section id="about" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="px-3.5 py-1 rounded-full bg-violet-100 text-violet-700 text-xs font-bold uppercase tracking-wider">
+                    Khám Phá Bản Thân
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 editable" contenteditable="false">
+                    Chân Dung Cá Nhân & <span class="gradient-text">Đam Mê Marketing</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base editable" contenteditable="false">
+                    Sự kết hợp giữa tính cách năng động của cô nữ sinh lớp 12A11, tư duy nhạy bén khối A01 và niềm yêu thích sáng tạo hình ảnh đã dẫn lối mình đến với thế giới Marketing.
+                </p>
+            </div>
+
+            <!-- Bento Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                
+                <!-- Card 1: Câu chuyện & Lý do chọn ngành (7 cols) -->
+                <div class="md:col-span-7 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-rose-200/40 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center">
+                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 editable" contenteditable="false">
+                            Vì sao Nguyễn Thị Thùy Chi (12A11) chọn ngành Marketing?
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base editable" contenteditable="false">
+                            Trong suốt những năm học tập dưới mái trường THPT cùng tập thể lớp <strong>12A11</strong>, mình nhận ra bản thân vừa yêu thích sự logic, chính xác của các môn khối <strong>A01 (Toán - Lý - Anh)</strong>, vừa say mê cái đẹp, thích viết lách và sáng tạo nội dung truyền thông.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base editable" contenteditable="false">
+                            Đối với mình, <strong>Marketing chính là điểm giao thoa hoàn hảo nhất giữa Khoa học dữ liệu và Nghệ thuật cảm xúc.</strong> Ngành học này cho phép mình phát huy trọn vẹn cả hai bán cầu não: phân tích chiến lược sắc bén và bay bổng cùng những ý tưởng quảng cáo chạm đến trái tim khách hàng.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-rose-100 grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-display font-bold text-rose-600 editable" contenteditable="false">12A11</div>
+                            <div class="text-xs text-slate-500 mt-0.5">Tập thể gắn kết</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-display font-bold text-violet-600 editable" contenteditable="false">Khối A01</div>
+                            <div class="text-xs text-slate-500 mt-0.5">Toán • Vật lí • Anh</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-display font-bold text-orange-500 editable" contenteditable="false">27.0+</div>
+                            <div class="text-xs text-slate-500 mt-0.5">Mục tiêu điểm xét tuyển</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Sở thích & Đam mê (5 cols) -->
+                <div class="md:col-span-5 glass-card rounded-3xl p-6 sm:p-8 space-y-5">
+                    <div class="w-12 h-12 rounded-2xl bg-violet-100 text-violet-600 flex items-center justify-center">
+                        <i data-lucide="palette" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 editable" contenteditable="false">Sở Thích & Nguồn Cảm Hứng</h3>
+                    <ul class="space-y-3.5 text-sm sm:text-base text-slate-600">
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">1</span>
+                            <span class="editable" contenteditable="false"><strong>Sáng tạo nội dung (Content & Video):</strong> Lên kịch bản ngắn, chụp ảnh aesthetic và biên tập video bắt kịp xu hướng TikTok, Reels.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">2</span>
+                            <span class="editable" contenteditable="false"><strong>Phân tích chiến dịch Viral:</strong> Tìm hiểu câu chuyện đằng sau các chiến dịch quảng cáo thành công tại Việt Nam và thế giới.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">3</span>
+                            <span class="editable" contenteditable="false"><strong>Thiết kế ấn phẩm (Visual Design):</strong> Phối màu,排版 bố cục poster, slide thuyết trình bằng Canva & Photoshop.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">4</span>
+                            <span class="editable" contenteditable="false"><strong>Hoạt động ngoại khóa & Sự kiện:</strong> Giao lưu, kết nối bạn bè và tổ chức hoạt động truyền thông trường lớp.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: 3 Phân nhánh chuyên sâu hướng tới (12 cols) -->
+                <div class="md:col-span-12 glass-card rounded-3xl p-6 sm:p-8">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 editable" contenteditable="false">3 Lĩnh Vực Chuyên Sâu Trong Ngành Marketing Mình Hướng Tới</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Định vị năng lực cốt lõi để phát triển sự nghiệp vững chắc</p>
+                        </div>
+                        <span class="px-3 py-1.5 rounded-xl bg-rose-50 text-rose-600 text-xs font-bold border border-rose-200 w-fit">
+                            Tích hợp Đa kênh (IMC)
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <!-- Pillar 1 -->
+                        <div class="p-5 rounded-2xl bg-gradient-to-br from-rose-50/90 to-white border border-rose-100 hover:shadow-md transition">
+                            <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center mb-3 shadow-sm">
+                                <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-base editable" contenteditable="false">1. Content & Creative Strategy</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed editable" contenteditable="false">
+                                Xây dựng thông điệp truyền thông sáng tạo, viết copywriting cuốn hút, lên ý tưởng chủ đạo (Big Idea) và sản xuất nội dung đa nền tảng.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 2 -->
+                        <div class="p-5 rounded-2xl bg-gradient-to-br from-violet-50/90 to-white border border-violet-100 hover:shadow-md transition">
+                            <div class="w-10 h-10 rounded-xl bg-violet-600 text-white flex items-center justify-center mb-3 shadow-sm">
+                                <i data-lucide="globe-2" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-base editable" contenteditable="false">2. Digital & Social Media Marketing</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed editable" contenteditable="false">
+                                Làm chủ các nền tảng số (Facebook, TikTok, Instagram, Google, SEO), ứng dụng công cụ AI và tối ưu hóa trải nghiệm khách hàng trực tuyến.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 3 -->
+                        <div class="p-5 rounded-2xl bg-gradient-to-br from-orange-50/90 to-white border border-orange-100 hover:shadow-md transition">
+                            <div class="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-3 shadow-sm">
+                                <i data-lucide="award" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-base editable" contenteditable="false">3. Quản Trị Thương Hiệu (Branding)</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed editable" contenteditable="false">
+                                Nghiên cứu tâm lý người tiêu dùng (Consumer Insight), định vị bản sắc thương hiệu và điều phối các chiến dịch truyền thông tích hợp (IMC).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= 3. SWOT & KỸ NĂNG CỐT LÕI ================= -->
+        <section id="swot" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
+                    Đánh Giá Năng Lực
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 editable" contenteditable="false">
+                    Phân Tích <span class="gradient-text">SWOT Cá Nhân</span> & Kỹ Năng
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base editable" contenteditable="false">
+                    Nhận diện rõ điểm mạnh để phát huy, điểm yếu để khắc phục và nắm bắt cơ hội trong kỷ nguyên truyền thông số.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- SWOT 2x2 Grid (7 cols) -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- S: Strengths -->
+                    <div class="glass-card rounded-3xl p-6 border-t-4 border-t-emerald-500">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">Strengths</span>
+                            <span class="text-2xl font-display font-extrabold text-emerald-500/30">S</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Điểm Mạnh</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 list-disc list-inside editable" contenteditable="false">
+                            <li>Tư duy thẩm mỹ tốt, nhạy bén với các xu hướng (trend) mạng xã hội.</li>
+                            <li>Khả năng giao tiếp, thuyết trình và làm việc nhóm linh hoạt.</li>
+                            <li>Yêu thích viết lách, kể chuyện bằng hình ảnh và video.</li>
+                            <li>Tinh thần ham học hỏi, chủ động tiếp cận công nghệ mới.</li>
+                        </ul>
+                    </div>
+
+                    <!-- W: Weaknesses -->
+                    <div class="glass-card rounded-3xl p-6 border-t-4 border-t-rose-500">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-rose-600 bg-rose-50 px-2.5 py-1 rounded-lg">Weaknesses</span>
+                            <span class="text-2xl font-display font-extrabold text-rose-500/30">W</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Điểm Yếu & Cách Khắc Phục</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 list-disc list-inside editable" contenteditable="false">
+                            <li>Kinh nghiệm phân tích dữ liệu số chuyên sâu còn mới mẻ.</li>
+                            <li>Đôi khi cầu toàn quá mức trong khâu thiết kế hình ảnh.</li>
+                            <li><strong>Giải pháp:</strong> Rèn luyện tư duy logic, quản lý thời gian bằng Pomodoro & học thêm Excel/Google Analytics.</li>
+                        </ul>
+                    </div>
+
+                    <!-- O: Opportunities -->
+                    <div class="glass-card rounded-3xl p-6 border-t-4 border-t-violet-500">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-violet-600 bg-violet-50 px-2.5 py-1 rounded-lg">Opportunities</span>
+                            <span class="text-2xl font-display font-extrabold text-violet-500/30">O</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Cơ Hội Nghề Nghiệp</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 list-disc list-inside editable" contenteditable="false">
+                            <li>Ngành Marketing số tại Việt Nam tăng trưởng mạnh mẽ, nhu cầu nhân sự chất lượng cao rất lớn.</li>
+                            <li>Sự hỗ trợ của AI & các nền tảng sáng tạo giúp người trẻ dễ dàng xây dựng thương hiệu cá nhân sớm.</li>
+                            <li>Môi trường làm việc năng động, thu nhập hấp dẫn.</li>
+                        </ul>
+                    </div>
+
+                    <!-- T: Threats -->
+                    <div class="glass-card rounded-3xl p-6 border-t-4 border-t-amber-500">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg">Threats</span>
+                            <span class="text-2xl font-display font-extrabold text-amber-500/30">T</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Thách Thức</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 list-disc list-inside editable" contenteditable="false">
+                            <li>Tốc độ đào thải xu hướng nhanh, đòi hỏi cập nhật kiến thức liên tục.</li>
+                            <li>Tỷ lệ cạnh tranh đầu vào tại các trường Đại học top đầu và các Agency lớn khá cao.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Core Skills Progress (5 cols) -->
+                <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 editable" contenteditable="false">Tổ Hợp Kỹ Năng Mục Tiêu</h3>
+                            <p class="text-xs text-slate-500">Đang trau dồi và hoàn thiện mỗi ngày</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Skill 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
+                                <span class="text-slate-700 editable" contenteditable="false">Sáng tạo nội dung & Storytelling</span>
+                                <span class="text-rose-600">92%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-rose-100 rounded-full overflow-hidden">
+                                <div class="skill-progress h-full rounded-full gradient-bg" style="width: 92%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
+                                <span class="text-slate-700 editable" contenteditable="false">Cảm quan Thẩm mỹ & Thiết kế (Canva, CapCut, Ps)</span>
+                                <span class="text-violet-600">88%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-violet-100 rounded-full overflow-hidden">
+                                <div class="skill-progress h-full rounded-full bg-gradient-to-r from-violet-600 to-rose-500" style="width: 88%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 3 -->
+                        <div>
+                            <div class="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
+                                <span class="text-slate-700 editable" contenteditable="false">Giao tiếp, Thuyết trình & Làm việc nhóm</span>
+                                <span class="text-orange-600">90%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-orange-100 rounded-full overflow-hidden">
+                                <div class="skill-progress h-full rounded-full bg-gradient-to-r from-rose-500 to-orange-500" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 4 -->
+                        <div>
+                            <div class="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
+                                <span class="text-slate-700 editable" contenteditable="false">Ngoại ngữ (Tiếng Anh giao tiếp & chuyên ngành)</span>
+                                <span class="text-emerald-600">82%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-emerald-100 rounded-full overflow-hidden">
+                                <div class="skill-progress h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500" style="width: 82%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Skill 5 -->
+                        <div>
+                            <div class="flex justify-between text-xs sm:text-sm font-semibold mb-1.5">
+                                <span class="text-slate-700 editable" contenteditable="false">Nghiên cứu Thị trường & Ứng dụng AI Marketing</span>
+                                <span class="text-rose-600">85%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-rose-100 rounded-full overflow-hidden">
+                                <div class="skill-progress h-full rounded-full gradient-bg" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Target Universities Box -->
+                    <div class="pt-4 border-t border-rose-100">
+                        <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Trường Đại Học Mục Tiêu Định Hướng</div>
+                        <div class="flex flex-wrap gap-2 editable" contenteditable="false">
+                            <span class="px-3 py-1 rounded-xl bg-rose-50 text-rose-700 text-xs font-semibold border border-rose-200">ĐH Kinh tế TP.HCM (UEH)</span>
+                            <span class="px-3 py-1 rounded-xl bg-violet-50 text-violet-700 text-xs font-semibold border border-violet-200">ĐH Tài chính - Marketing (UFM)</span>
+                            <span class="px-3 py-1 rounded-xl bg-orange-50 text-orange-700 text-xs font-semibold border border-orange-200">ĐH Ngoại thương (FTU)</span>
+                            <span class="px-3 py-1 rounded-xl bg-sky-50 text-sky-700 text-xs font-semibold border border-sky-200">ĐH Kinh tế Quốc dân / Thương mại</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= 4. LỘ TRÌNH PHÁT TRIỂN NGHỀ NGHIỆP ================= -->
+        <section id="roadmap" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="px-3.5 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-wider">
+                    Kế Hoạch Hành Động
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 editable" contenteditable="false">
+                    Lộ Trình Chinh Phục <span class="gradient-text">Đam Mê Marketing</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base editable" contenteditable="false">
+                    Kế hoạch chi tiết từng giai đoạn từ năm lớp 12 đến khi trở thành một chuyên gia Quản trị Thương hiệu & Digital Marketing vững vàng.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                    <!-- Stage 1 -->
+                <div class="glass-card rounded-3xl p-6 relative flex flex-col justify-between border-t-4 border-t-rose-500">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold editable" contenteditable="false">Giai đoạn 1 • Lớp 12A11</span>
+                            <span class="w-8 h-8 rounded-full bg-rose-500 text-white font-bold text-sm flex items-center justify-center">01</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 editable" contenteditable="false">Bứt Phá Khối A01 & Đỗ Đại Học</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 editable" contenteditable="false">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i> Bứt phá điểm số tổ hợp <strong>A01 (Toán - Vật lí - Tiếng Anh)</strong> trong kỳ thi Tốt nghiệp THPT.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i> Chinh phục chứng chỉ IELTS và rèn luyện kỹ năng thiết kế, tin học ứng dụng.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i> Đọc sách nền tảng: <em>Marketing căn bản (Philip Kotler), Tiếp thị 4.0</em>.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-rose-100 text-xs font-semibold text-rose-600 flex items-center gap-1.5">
+                        <i data-lucide="target" class="w-4 h-4"></i>
+                        <span class="editable" contenteditable="false">Mục tiêu: Đỗ NV1 ngành Marketing bằng khối A01</span>
+                    </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="glass-card rounded-3xl p-6 relative flex flex-col justify-between border-t-4 border-t-violet-500">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-violet-100 text-violet-700 text-xs font-bold editable" contenteditable="false">Giai đoạn 2 • Năm 1 & 2 ĐH</span>
+                            <span class="w-8 h-8 rounded-full bg-violet-600 text-white font-bold text-sm flex items-center justify-center">02</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 editable" contenteditable="false">Trải Nghiệm & Tích Lũy Kỹ Năng</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 editable" contenteditable="false">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-violet-500 shrink-0 mt-0.5"></i> Nắm vững kiến thức đại cương kinh tế, hành vi khách hàng và nghiên cứu thị trường.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-violet-500 shrink-0 mt-0.5"></i> Gia nhập CLB Marketing của trường để rèn luyện kỹ năng chạy sự kiện, truyền thông.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-violet-500 shrink-0 mt-0.5"></i> Làm CTV Content/Social Media tự do và xây dựng kênh cá nhân.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-violet-100 text-xs font-semibold text-violet-600 flex items-center gap-1.5">
+                        <i data-lucide="target" class="w-4 h-4"></i>
+                        <span class="editable" contenteditable="false">Mục tiêu: GPA Giỏi & Thành thạo công cụ</span>
+                    </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="glass-card rounded-3xl p-6 relative flex flex-col justify-between border-t-4 border-t-orange-500">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold editable" contenteditable="false">Giai đoạn 3 • Năm 3 & 4 ĐH</span>
+                            <span class="w-8 h-8 rounded-full bg-orange-500 text-white font-bold text-sm flex items-center justify-center">03</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 editable" contenteditable="false">Thực Chiến Agency & Tốt Nghiệp</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 editable" contenteditable="false">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500 shrink-0 mt-0.5"></i> Tham gia các cuộc thi giải Case Study Marketing lớn dành cho sinh viên toàn quốc.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500 shrink-0 mt-0.5"></i> Thực tập (Intern / Management Trainee) tại các Creative Agency hoặc tập đoàn lớn.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500 shrink-0 mt-0.5"></i> Hoàn thiện Portfolio chuyên nghiệp với các dự án chiến dịch thực tế.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-orange-100 text-xs font-semibold text-orange-600 flex items-center gap-1.5">
+                        <i data-lucide="target" class="w-4 h-4"></i>
+                        <span class="editable" contenteditable="false">Mục tiêu: Tốt nghiệp loại Giỏi / Xuất sắc</span>
+                    </div>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="glass-card rounded-3xl p-6 relative flex flex-col justify-between border-t-4 border-t-emerald-500">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold editable" contenteditable="false">Giai đoạn 4 • Sau Tốt Nghiệp</span>
+                            <span class="w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-sm flex items-center justify-center">04</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 editable" contenteditable="false">Thăng Tiến & Khẳng Định Dấu Ấn</h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-600 editable" contenteditable="false">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i> 1 - 2 năm đầu: Đảm nhận vị trí Brand Executive / Digital Marketing Specialist.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i> 3 - 5 năm tiếp theo: Thăng tiến lên vị trí <strong>Brand Manager / Creative Director</strong>.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i> Dẫn dắt các chiến dịch truyền thông tạo tác động tích cực cho cộng đồng.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-emerald-100 text-xs font-semibold text-emerald-600 flex items-center gap-1.5">
+                        <i data-lucide="target" class="w-4 h-4"></i>
+                        <span class="editable" contenteditable="false">Mục tiêu: Chuyên gia Quản trị Thương hiệu</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= 5. BỘ SƯU TẬP HÌNH ẢNH HƯỚNG NGHIỆP MARKETING (DYNAMIC GALLERY) ================= -->
+        <section id="gallery" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider">
+                    Visual Moodboard & Hoạt Động Hướng Nghiệp
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 editable" contenteditable="false">
+                    Bộ Sưu Tập Hình Ảnh <span class="gradient-text">Định Hướng Ngành Marketing</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base editable" contenteditable="false">
+                    Không gian lưu trữ những hình ảnh truyền cảm hứng về môi trường làm việc ngành Marketing, các hoạt động sáng tạo nội dung, phân tích dữ liệu và kỷ niệm đáng nhớ của <strong>Nguyễn Thị Thùy Chi (12A11)</strong>.
+                </p>
+            </div>
+
+            <!-- Interactive Gallery Control Panel -->
+            <div id="gallery-controls" class="glass-card rounded-3xl p-5 sm:p-6 border-2 border-rose-200/70 shadow-lg">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                    
+                    <!-- Left: Customize Image Count -->
+                    <div class="space-y-2 flex-1">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-xl gradient-bg text-white flex items-center justify-center shadow-sm">
+                                <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                            </span>
+                            <div>
+                                <h3 class="text-sm sm:text-base font-bold text-slate-900">
+                                    Tùy Chỉnh Số Lượng Hình Ảnh Hiển Thị
+                                </h3>
+                                <p class="text-xs text-slate-500">Tăng/giảm số lượng ô hình ảnh hoặc tải nhiều ảnh từ máy tính của bạn</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <div class="flex items-center bg-white rounded-2xl border border-rose-200 p-1 shadow-sm">
+                                <button onclick="adjustImageCount(-1)" class="w-9 h-9 rounded-xl hover:bg-rose-50 text-rose-600 font-bold flex items-center justify-center transition" title="Giảm 1 ảnh">
+                                    <i data-lucide="minus" class="w-4 h-4"></i>
+                                </button>
+                                <input id="imageCountInput" type="number" min="1" max="30" value="6" onchange="setExactImageCount(this.value)" class="w-14 text-center font-display font-bold text-slate-900 text-base focus:outline-none">
+                                <button onclick="adjustImageCount(1)" class="w-9 h-9 rounded-xl hover:bg-rose-50 text-rose-600 font-bold flex items-center justify-center transition" title="Thêm 1 khung ảnh mới">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+
+                            <!-- Range Slider -->
+                            <div class="flex items-center gap-3 flex-1 min-w-[180px] max-w-xs bg-white/80 px-4 py-2 rounded-2xl border border-rose-100">
+                                <span class="text-xs text-slate-400 font-medium">1</span>
+                                <input id="imageCountSlider" type="range" min="1" max="24" value="6" oninput="setExactImageCount(this.value)" class="w-full accent-rose-500 cursor-pointer">
+                                <span class="text-xs text-slate-400 font-medium">24</span>
+                            </div>
+
+                            <!-- Grid Columns Selector -->
+                            <div class="flex items-center gap-1 bg-white px-2.5 py-1.5 rounded-2xl border border-rose-100 text-xs font-semibold text-slate-600">
+                                <span class="mr-1 text-slate-400">Bố cục:</span>
+                                <button onclick="setGridColumns(2)" id="colBtn2" class="px-2.5 py-1 rounded-lg hover:bg-rose-50 transition">2 cột</button>
+                                <button onclick="setGridColumns(3)" id="colBtn3" class="px-2.5 py-1 rounded-lg bg-rose-500 text-white transition">3 cột</button>
+                                <button onclick="setGridColumns(4)" id="colBtn4" class="px-2.5 py-1 rounded-lg hover:bg-rose-50 transition">4 cột</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Upload Multiple Images & Add via URL -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Multi-file Upload from Device -->
+                        <label for="multiImageUpload" class="px-4 py-3 rounded-2xl gradient-bg text-white text-xs sm:text-sm font-semibold shadow-md shadow-rose-500/20 hover:opacity-95 cursor-pointer transition flex items-center gap-2">
+                            <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                            <span>Tải ảnh từ máy (Chọn 1 hoặc nhiều ảnh)</span>
+                        </label>
+                        <input id="multiImageUpload" type="file" accept="image/*" multiple class="hidden" onchange="handleMultipleImageUpload(event)">
+
+                        <!-- Add via URL Modal Trigger -->
+                        <button onclick="openAddUrlModal()" class="px-4 py-3 rounded-2xl bg-white text-slate-700 hover:text-rose-600 border border-rose-200 hover:border-rose-400 text-xs sm:text-sm font-semibold transition flex items-center gap-2 shadow-sm">
+                            <i data-lucide="link" class="w-4 h-4 text-violet-600"></i>
+                            <span>Thêm bằng Link URL</span>
+                        </button>
+
+                        <!-- Reset Default Gallery -->
+                        <button onclick="resetGalleryToDefault()" class="p-3 rounded-2xl bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 transition" title="Khôi phục bộ ảnh Marketing mặc định">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="mt-5 pt-4 border-t border-rose-100 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap items-center gap-2" id="categoryFilterBar">
+                        <button onclick="filterGallery('ALL')" data-filter="ALL" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white transition">
+                            Tất cả ảnh (<span id="totalBadgeCount">6</span>)
+                        </button>
+                        <button onclick="filterGallery('Chiến dịch Sáng tạo')" data-filter="Chiến dịch Sáng tạo" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-rose-100 transition">
+                            Chiến dịch Sáng tạo
+                        </button>
+                        <button onclick="filterGallery('Digital & Analytics')" data-filter="Digital & Analytics" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-rose-100 transition">
+                            Digital & Analytics
+                        </button>
+                        <button onclick="filterGallery('Sản xuất Nội dung')" data-filter="Sản xuất Nội dung" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-rose-100 transition">
+                            Sản xuất Nội dung
+                        </button>
+                        <button onclick="filterGallery('Thương hiệu & Sự kiện')" data-filter="Thương hiệu & Sự kiện" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-rose-100 transition">
+                            Thương hiệu & Sự kiện
+                        </button>
+                        <button onclick="filterGallery('Dấu ấn Cá nhân')" data-filter="Dấu ấn Cá nhân" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-rose-100 transition">
+                            Dấu ấn Cá nhân
+                        </button>
+                    </div>
+
+                    <div class="text-xs text-slate-500 flex items-center gap-1.5">
+                        <i data-lucide="info" class="w-3.5 h-3.5 text-rose-500"></i>
+                        <span>Nhấn trực tiếp vào tiêu đề/mô tả dưới mỗi ảnh để sửa chữ, hoặc nhấn nút <strong>Đổi ảnh</strong> trên từng thẻ.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Image Grid Container -->
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rendered dynamically via JavaScript -->
+            </div>
+
+            <!-- Hidden single-card file input for replacing a specific card's image -->
+            <input type="file" id="replaceSingleImageInput" accept="image/*" class="hidden" onchange="handleReplaceSingleImage(event)">
+        </section>
+
+        <!-- ================= 6. TUYÊN NGÔN NGHỀ NGHIỆP & FOOTER ================= -->
+        <section class="glass-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border-2 border-white">
+            <div class="absolute -top-20 -left-20 w-64 h-64 bg-rose-300/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-violet-300/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-3xl mx-auto space-y-5 relative z-10">
+                <div class="w-14 h-14 rounded-2xl gradient-bg text-white flex items-center justify-center mx-auto shadow-lg shadow-rose-500/25">
+                    <i data-lucide="quote" class="w-7 h-7"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif italic text-slate-900 leading-relaxed editable" contenteditable="false">
+                    "Hành trình vạn dặm bắt đầu từ một bước chân. Với nền tảng tư duy vững chắc của khối A01, sự sáng tạo không giới hạn và trái tim nhiệt huyết của tuổi 18 lớp 12A11, mình tin bản thân sẽ tỏa sáng trên con đường Marketing chuyên nghiệp."
+                </h2>
+                <div class="pt-2">
+                    <div class="font-bold text-lg gradient-text editable" contenteditable="false">Nguyễn Thị Thùy Chi</div>
+                    <div class="text-xs sm:text-sm text-slate-500 editable" contenteditable="false">Lớp 12A11 • Khối A01 (Toán - Vật lí - Tiếng Anh) • Định hướng Ngành Marketing</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-rose-100 bg-white/60 backdrop-blur-md py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-500">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span>Thiết kế riêng cho <strong>Nguyễn Thị Thùy Chi (Lớp 12A11 - Khối A01)</strong> — Chuyên ngành Marketing</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-rose-600 font-semibold hover:underline flex items-center gap-1">
+                    <span>Lên đầu trang</span>
+                    <i data-lucide="arrow-up" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL: ADD IMAGE BY URL OR CUSTOM DETAILS ================= -->
+    <div id="urlModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-rose-100 space-y-5 animate-fadeIn">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl gradient-bg text-white flex items-center justify-center">
+                        <i data-lucide="image-plus" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900">Thêm Hình Ảnh Mới</h3>
+                        <p class="text-xs text-slate-500">Dán đường dẫn ảnh (URL) và nhập mô tả cho ảnh</p>
+                    </div>
+                </div>
+                <button onclick="closeAddUrlModal()" class="p-2 rounded-xl hover:bg-slate-100 text-slate-500">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Đường dẫn hình ảnh (Image URL) *</label>
+                    <input id="modalImgUrl" type="url" placeholder="https://images.unsplash.com/..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-rose-500 focus:outline-none text-sm">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Tiêu đề bức ảnh</label>
+                        <input id="modalImgTitle" type="text" placeholder="VD: Brainstorm Chiến dịch mới" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-rose-500 focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Danh mục Marketing</label>
+                        <select id="modalImgCategory" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-rose-500 focus:outline-none text-sm bg-white">
+                            <option value="Chiến dịch Sáng tạo">Chiến dịch Sáng tạo</option>
+                            <option value="Digital & Analytics">Digital & Analytics</option>
+                            <option value="Sản xuất Nội dung">Sản xuất Nội dung</option>
+                            <option value="Thương hiệu & Sự kiện">Thương hiệu & Sự kiện</option>
+                            <option value="Dấu ấn Cá nhân">Dấu ấn Cá nhân</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Mô tả chi tiết</label>
+                    <textarea id="modalImgDesc" rows="2" placeholder="Nhập cảm nhận hoặc nội dung hướng nghiệp của bức ảnh..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-rose-500 focus:outline-none text-sm"></textarea>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button onclick="closeAddUrlModal()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-semibold hover:bg-slate-50">
+                    Hủy
+                </button>
+                <button onclick="confirmAddUrlImage()" class="px-5 py-2.5 rounded-xl gradient-bg text-white text-sm font-semibold shadow-md shadow-rose-500/20 hover:opacity-95">
+                    Thêm vào bộ sưu tập
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: LIGHTBOX VIEW IMAGE ================= -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4" onclick="closeLightbox(event)">
+        <div class="relative max-w-4xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/20" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-900/70 text-white hover:bg-rose-600 flex items-center justify-center transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="bg-slate-950 max-h-[70vh] flex items-center justify-center overflow-hidden">
+                <img id="lightboxImg" src="" alt="Preview" class="max-h-[70vh] w-auto object-contain">
+            </div>
+            <div class="p-6 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <span id="lightboxCat" class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider"></span>
+                    <h3 id="lightboxTitle" class="text-xl font-bold text-slate-900 mt-2"></h3>
+                    <p id="lightboxDesc" class="text-sm text-slate-600 mt-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= TOAST NOTIFICATION ================= -->
+    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card bg-slate-900/95 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-rose-500/30">
+            <i data-lucide="sparkles" class="w-5 h-5 text-rose-400"></i>
+            <span id="toastMessage" class="text-xs sm:text-sm font-medium">Đã cập nhật thành công!</span>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // 1. Pre-loaded Marketing Career Orientation Images
+        const DEFAULT_MARKETING_IMAGES = [
+            {
+                id: 'mkt-1',
+                url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80',
+                title: 'Brainstorming Chiến Dịch Quảng Cáo Sáng Tạo',
+                category: 'Chiến dịch Sáng tạo',
+                desc: 'Thảo luận nhóm xây dựng Big Idea và thông điệp truyền thông tích hợp (IMC) tại Creative Agency.'
+            },
+            {
+                id: 'mkt-2',
+                url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+                title: 'Phân Tích Dữ Liệu Digital Marketing & ROI',
+                category: 'Digital & Analytics',
+                desc: 'Đo lường hiệu quả chiến dịch quảng cáo đa kênh, nghiên cứu hành vi người tiêu dùng trên nền tảng số.'
+            },
+            {
+                id: 'mkt-3',
+                url: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=900&q=80',
+                title: 'Sáng Tạo Nội Dung Đa Phương Tiện (Social Media)',
+                category: 'Sản xuất Nội dung',
+                desc: 'Xây dựng kịch bản nội dung viral, hình ảnh bắt mắt trên TikTok, Instagram và Facebook.'
+            },
+            {
+                id: 'mkt-4',
+                url: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80',
+                title: 'Thuyết Trình Chiến Lược Định Vị Thương Hiệu',
+                category: 'Thương hiệu & Sự kiện',
+                desc: 'Kỹ năng pitching tự tin trình bày kế hoạch phát triển thương hiệu trước khách hàng và đối tác.'
+            },
+            {
+                id: 'mkt-5',
+                url: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=900&q=80',
+                title: 'Thiết Kế Nhận Diện Thương Hiệu & Moodboard',
+                category: 'Chiến dịch Sáng tạo',
+                desc: 'Phối hợp màu sắc, font chữ và ấn phẩm truyền thông mang đậm bản sắc riêng của thương hiệu.'
+            },
+            {
+                id: 'mkt-6',
+                url: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80',
+                title: 'Không Gian Học Tập & Sáng Tạo Của Thùy Chi (12A11)',
+                category: 'Dấu ấn Cá nhân',
+                desc: 'Góc học tập ôn luyện khối A01 và ấp ủ những dự án Marketing đầu tay của Nguyễn Thị Thùy Chi.'
+            }
+        ];
+
+        // Additional backup pool when user increases image count via +/- or slider
+        const EXTRA_MARKETING_POOL = [
+            {
+                url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80',
+                title: 'Tổ Chức Sự Kiện & Họp Báo Truyền Thông (PR)',
+                category: 'Thương hiệu & Sự kiện',
+                desc: 'Điều phối sự kiện ra mắt sản phẩm mới và kết nối báo chí, KOLs/Influencers.'
+            },
+            {
+                url: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=900&q=80',
+                title: 'Chiến Lược Tiếp Thị Nội Dung (Content Marketing)',
+                category: 'Sản xuất Nội dung',
+                desc: 'Nghiên cứu từ khóa SEO và viết bài truyền cảm hứng thu hút khách hàng tiềm năng.'
+            },
+            {
+                url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+                title: 'Nghiên Cứu Thị Trường & Consumer Insight',
+                category: 'Digital & Analytics',
+                desc: 'Khảo sát tâm lý khách hàng mục tiêu để tìm ra sự thật ngầm hiểu (Insight) đắt giá.'
+            },
+            {
+                url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80',
+                title: 'Văn Hóa Làm Việc Năng Động Tại Agency',
+                category: 'Chiến dịch Sáng tạo',
+                desc: 'Môi trường trẻ trung, tôn vinh sự khác biệt và tinh thần đồng đội gắn kết.'
+            },
+            {
+                url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80',
+                title: 'Sản Xuất TVC & Nhiếp Ảnh Thương Mại',
+                category: 'Sản xuất Nội dung',
+                desc: 'Hậu trường buổi chụp hình sản phẩm và quay video quảng cáo chuyên nghiệp.'
+            },
+            {
+                url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
+                title: 'Ứng Dụng Công Nghệ AI Trong Marketing Hiện Đại',
+                category: 'Digital & Analytics',
+                desc: 'Tối ưu hóa quy trình sáng tạo và cá nhân hóa trải nghiệm người dùng bằng trí tuệ nhân tạo.'
+            }
+        ];
+
+        // State Variables
+        let galleryItems = [];
+        let currentFilter = 'ALL';
+        let currentColumns = 3;
+        let isEditMode = false;
+        let replacingCardId = null;
+
+        // Initialize on Window Load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadGalleryFromStorage();
+            renderGallery();
+            lucide.createIcons();
+        });
+
+        // Load from localStorage or fallback to default 6 items
+        function loadGalleryFromStorage() {
+            try {
+                const saved = localStorage.getItem('thuychi_12a11_marketing_gallery');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        galleryItems = parsed;
+                    } else {
+                        galleryItems = JSON.parse(JSON.stringify(DEFAULT_MARKETING_IMAGES));
+                    }
+                } else {
+                    galleryItems = JSON.parse(JSON.stringify(DEFAULT_MARKETING_IMAGES));
+                }
+
+                const savedAvatar = localStorage.getItem('thuychi_12a11_marketing_avatar');
+                if (savedAvatar) {
+                    document.getElementById('avatarImage').src = savedAvatar;
+                }
+            } catch (e) {
+                galleryItems = JSON.parse(JSON.stringify(DEFAULT_MARKETING_IMAGES));
+            }
+        }
+
+        function saveGalleryToStorage() {
+            try {
+                localStorage.setItem('thuychi_12a11_marketing_gallery', JSON.stringify(galleryItems));
+            } catch (e) {
+                // Storage quota exceeded if too many large high-res files, still works in session
+            }
+        }
+
+        // Render Gallery Cards
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const countInput = document.getElementById('imageCountInput');
+            const countSlider = document.getElementById('imageCountSlider');
+            const totalBadge = document.getElementById('totalBadgeCount');
+            const heroCount = document.getElementById('heroGalleryCount');
+
+            // Sync count displays
+            countInput.value = galleryItems.length;
+            countSlider.value = Math.min(24, galleryItems.length);
+            totalBadge.textContent = galleryItems.length;
+            if (heroCount) heroCount.textContent = galleryItems.length;
+
+            // Filter items
+            const filtered = currentFilter === 'ALL' 
+                ? galleryItems 
+                : galleryItems.filter(item => item.category === currentFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full glass-card rounded-3xl p-12 text-center space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto">
+                            <i data-lucide="image-off" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800">Chưa có hình ảnh nào trong danh mục "${currentFilter}"</h4>
+                        <p class="text-xs text-slate-500">Hãy nhấn nút "+" hoặc tải thêm hình ảnh mới lên nhé!</p>
+                        <button onclick="filterGallery('ALL')" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-semibold">Xem tất cả ảnh</button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            grid.innerHTML = filtered.map((item, idx) => `
+                <article class="gallery-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between group border border-white">
+                    <div>
+                        <!-- Image Container -->
+                        <div class="gallery-img-wrapper relative aspect-[16/11] bg-rose-100 overflow-hidden">
+                            <img src="${item.url}" 
+                                 alt="${item.title}" 
+                                 onerror="this.src='https://placehold.co/800x550/ffe4e8/e11d48?text=Marketing+Portfolio'"
+                                 class="w-full h-full object-cover cursor-pointer"
+                                 onclick="openLightbox('${item.id}')">
+
+                            <!-- Category Pill -->
+                            <div class="absolute top-3 left-3">
+                                <span class="px-3 py-1 rounded-full bg-slate-900/75 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
+                                    ${item.category}
+                                </span>
+                            </div>
+
+                            <!-- Number Index Badge -->
+                            <div class="absolute bottom-3 left-3">
+                                <span class="w-7 h-7 rounded-lg bg-white/90 backdrop-blur-md text-slate-900 font-display font-bold text-xs flex items-center justify-center shadow">
+                                    #${idx + 1}
+                                </span>
+                            </div>
+
+                            <!-- Action Overlay Buttons -->
+                            <div class="absolute top-3 right-3 flex items-center gap-1.5 opacity-95 sm:opacity-0 group-hover:opacity-100 transition duration-200">
+                                <button onclick="triggerReplaceCardImage('${item.id}')" class="px-2.5 py-1.5 rounded-xl bg-white/95 hover:bg-rose-600 text-slate-800 hover:text-white text-xs font-semibold shadow-md flex items-center gap-1 transition" title="Đổi ảnh khác từ máy tính">
+                                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                                    <span>Đổi ảnh</span>
+                                </button>
+                                <button onclick="openLightbox('${item.id}')" class="p-1.5 rounded-xl bg-white/95 hover:bg-violet-600 text-slate-800 hover:text-white shadow-md transition" title="Phóng to ảnh">
+                                    <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="deleteGalleryItem('${item.id}')" class="p-1.5 rounded-xl bg-white/95 hover:bg-red-600 text-rose-600 hover:text-white shadow-md transition" title="Xóa ảnh này">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Editable Caption Content -->
+                        <div class="p-5 space-y-2">
+                            <h4 contenteditable="true" 
+                                onblur="updateItemField('${item.id}', 'title', this.innerText)"
+                                class="font-bold text-slate-900 text-base leading-snug focus:outline-rose-500 focus:bg-rose-50/50 rounded px-1 -mx-1 transition"
+                                title="Nhấn để sửa tiêu đề ảnh">${item.title}</h4>
+                            <p contenteditable="true" 
+                               onblur="updateItemField('${item.id}', 'desc', this.innerText)"
+                               class="text-xs sm:text-sm text-slate-600 leading-relaxed focus:outline-rose-500 focus:bg-rose-50/50 rounded px-1 -mx-1 transition"
+                               title="Nhấn để sửa mô tả ảnh">${item.desc}</p>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="px-5 py-3 bg-rose-50/40 border-t border-rose-100/80 flex items-center justify-between text-xs text-slate-500">
+                        <span class="font-medium text-rose-600">Nguyễn Thị Thùy Chi • 12A11 (A01)</span>
+                        <button onclick="promptReplaceCardUrl('${item.id}')" class="hover:text-rose-600 underline font-medium">
+                            Dán link ảnh
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Adjust Image Count by delta (+1 or -1)
+        function adjustImageCount(delta) {
+            const newCount = Math.max(1, Math.min(30, galleryItems.length + delta));
+            setExactImageCount(newCount);
+        }
+
+        // Set exact number of images in gallery
+        function setExactImageCount(targetCount) {
+            let count = parseInt(targetCount, 10);
+            if (isNaN(count) || count < 1) count = 1;
+            if (count > 30) count = 30;
+
+            const currentLen = galleryItems.length;
+
+            if (count > currentLen) {
+                const toAdd = count - currentLen;
+                for (let i = 0; i < toAdd; i++) {
+                    const poolItem = EXTRA_MARKETING_POOL[(currentLen + i) % EXTRA_MARKETING_POOL.length];
+                    galleryItems.push({
+                        id: 'mkt-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+                        url: poolItem.url,
+                        title: poolItem.title + ` #${currentLen + i + 1}`,
+                        category: poolItem.category,
+                        desc: poolItem.desc
+                    });
+                }
+                showToast(`Đã tăng số lượng lên ${count} hình ảnh!`);
+            } else if (count < currentLen) {
+                galleryItems = galleryItems.slice(0, count);
+                showToast(`Đã điều chỉnh hiển thị ${count} hình ảnh.`);
+            }
+
+            saveGalleryToStorage();
+            renderGallery();
+        }
+
+        // Set Grid Columns (2, 3, or 4)
+        function setGridColumns(cols) {
+            currentColumns = cols;
+            const grid = document.getElementById('galleryGrid');
+            grid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-6 ';
+            if (cols === 2) grid.className += 'lg:grid-cols-2';
+            if (cols === 3) grid.className += 'lg:grid-cols-3';
+            if (cols === 4) grid.className += 'lg:grid-cols-4';
+
+            [2, 3, 4].forEach(n => {
+                const btn = document.getElementById('colBtn' + n);
+                if (n === cols) {
+                    btn.className = 'px-2.5 py-1 rounded-lg bg-rose-500 text-white transition';
+                } else {
+                    btn.className = 'px-2.5 py-1 rounded-lg hover:bg-rose-50 transition';
+                }
+            });
+        }
+
+        // Filter Gallery by Category
+        function filterGallery(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.className = 'filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white transition';
+                } else {
+                    btn.className = 'filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-rose-50 hover:text-rose-600 border border-rose-100 transition';
+                }
+            });
+            renderGallery();
+        }
+
+        // Upload Multiple Images from User's Computer
+        function handleMultipleImageUpload(event) {
+            const files = Array.from(event.target.files);
+            if (!files.length) return;
+
+            let loaded = 0;
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    galleryItems.unshift({
+                        id: 'user-img-' + Date.now() + '-' + index,
+                        url: e.target.result,
+                        title: file.name.replace(/\.[^/.]+$/, "") || 'Hoạt động Hướng nghiệp Marketing',
+                        category: currentFilter === 'ALL' ? 'Dấu ấn Cá nhân' : currentFilter,
+                        desc: 'Hình ảnh được Nguyễn Thị Thùy Chi (12A11) tải lên bộ sưu tập định hướng nghề nghiệp.'
+                    });
+                    loaded++;
+                    if (loaded === files.length) {
+                        saveGalleryToStorage();
+                        renderGallery();
+                        showToast(`Đã tải lên thành công ${files.length} hình ảnh mới!`);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+            event.target.value = '';
+        }
+
+        // Replace Single Card Image from Device
+        function triggerReplaceCardImage(cardId) {
+            replacingCardId = cardId;
+            document.getElementById('replaceSingleImageInput').click();
+        }
+
+        function handleReplaceSingleImage(event) {
+            const file = event.target.files[0];
+            if (!file || !replacingCardId) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const item = galleryItems.find(i => i.id === replacingCardId);
+                if (item) {
+                    item.url = e.target.result;
+                    saveGalleryToStorage();
+                    renderGallery();
+                    showToast('Đã thay đổi hình ảnh thành công!');
+                }
+                replacingCardId = null;
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        // Replace Single Card Image via URL
+        function promptReplaceCardUrl(cardId) {
+            const item = galleryItems.find(i => i.id === cardId);
+            if (!item) return;
+            openAddUrlModal(cardId);
+        }
+
+        // Update Title or Description inline
+        function updateItemField(cardId, field, value) {
+            const item = galleryItems.find(i => i.id === cardId);
+            if (item && value.trim() !== '') {
+                item[field] = value.trim();
+                saveGalleryToStorage();
+            }
+        }
+
+        // Delete Gallery Item
+        function deleteGalleryItem(cardId) {
+            if (galleryItems.length <= 1) {
+                showToast('Bộ sưu tập cần giữ lại ít nhất 1 hình ảnh!');
+                return;
+            }
+            galleryItems = galleryItems.filter(i => i.id !== cardId);
+            saveGalleryToStorage();
+            renderGallery();
+            showToast('Đã xóa hình ảnh khỏi bộ sưu tập.');
+        }
+
+        // Reset Gallery to Default 6 Marketing Photos
+        function resetGalleryToDefault() {
+            galleryItems = JSON.parse(JSON.stringify(DEFAULT_MARKETING_IMAGES));
+            currentFilter = 'ALL';
+            saveGalleryToStorage();
+            filterGallery('ALL');
+            showToast('Đã khôi phục 6 hình ảnh Marketing mặc định!');
+        }
+
+        // Avatar Upload Handler
+        function handleAvatarUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('avatarImage').src = e.target.result;
+                try {
+                    localStorage.setItem('thuychi_12a11_marketing_avatar', e.target.result);
+                } catch (err) {}
+                showToast('Đã cập nhật ảnh đại diện của Nguyễn Thị Thùy Chi!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function promptAvatarUrl() {
+            replacingCardId = 'AVATAR_ONLY';
+            openAddUrlModal('AVATAR_ONLY');
+        }
+
+        // Modal Add/Replace URL Functions
+        let modalTargetCardId = null;
+
+        function openAddUrlModal(targetId = null) {
+            modalTargetCardId = targetId;
+            const modal = document.getElementById('urlModal');
+            const urlInput = document.getElementById('modalImgUrl');
+            const titleInput = document.getElementById('modalImgTitle');
+            const descInput = document.getElementById('modalImgDesc');
+
+            if (targetId && targetId !== 'AVATAR_ONLY') {
+                const existing = galleryItems.find(i => i.id === targetId);
+                if (existing) {
+                    urlInput.value = existing.url.startsWith('data:') ? '' : existing.url;
+                    titleInput.value = existing.title;
+                    descInput.value = existing.desc;
+                }
+            } else {
+                urlInput.value = '';
+                titleInput.value = '';
+                descInput.value = '';
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            urlInput.focus();
+        }
+
+        function closeAddUrlModal() {
+            const modal = document.getElementById('urlModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modalTargetCardId = null;
+        }
+
+        function confirmAddUrlImage() {
+            const url = document.getElementById('modalImgUrl').value.trim();
+            const title = document.getElementById('modalImgTitle').value.trim() || 'Hoạt động Định hướng Marketing';
+            const category = document.getElementById('modalImgCategory').value;
+            const desc = document.getElementById('modalImgDesc').value.trim() || 'Hình ảnh truyền cảm hứng trên hành trình theo đuổi ngành Marketing của Nguyễn Thị Thùy Chi (12A11).';
+
+            if (!url) {
+                showToast('Vui lòng dán đường dẫn URL hình ảnh!');
+                return;
+            }
+
+            if (modalTargetCardId === 'AVATAR_ONLY') {
+                document.getElementById('avatarImage').src = url;
+                try { localStorage.setItem('thuychi_12a11_marketing_avatar', url); } catch (e) {}
+                closeAddUrlModal();
+                showToast('Đã cập nhật ảnh đại diện!');
+                return;
+            }
+
+            if (modalTargetCardId) {
+                const item = galleryItems.find(i => i.id === modalTargetCardId);
+                if (item) {
+                    item.url = url;
+                    item.title = title;
+                    item.category = category;
+                    item.desc = desc;
+                }
+                showToast('Đã cập nhật thông tin hình ảnh!');
+            } else {
+                galleryItems.unshift({
+                    id: 'url-img-' + Date.now(),
+                    url,
+                    title,
+                    category,
+                    desc
+                });
+                showToast('Đã thêm hình ảnh mới vào bộ sưu tập!');
+            }
+
+            saveGalleryToStorage();
+            renderGallery();
+            closeAddUrlModal();
+        }
+
+        // Lightbox Preview
+        function openLightbox(cardId) {
+            const item = galleryItems.find(i => i.id === cardId);
+            if (!item) return;
+            document.getElementById('lightboxImg').src = item.url;
+            document.getElementById('lightboxCat').textContent = item.category;
+            document.getElementById('lightboxTitle').textContent = item.title;
+            document.getElementById('lightboxDesc').textContent = item.desc;
+
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Toggle Live Edit Mode for all Page Text
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const body = document.body;
+            const editables = document.querySelectorAll('.editable');
+            const label = document.getElementById('editBtnLabel');
+            const btn = document.getElementById('toggleEditBtn');
+
+            if (isEditMode) {
+                body.classList.add('edit-mode-active');
+                editables.forEach(el => el.setAttribute('contenteditable', 'true'));
+                label.textContent = 'Đang bật sửa chữ';
+                btn.classList.add('bg-rose-600', 'text-white', 'border-rose-600');
+                btn.classList.remove('bg-white/90', 'text-slate-700');
+                showToast('Đã bật Chế độ Chỉnh sửa! Nhấp vào bất kỳ đoạn chữ nào để sửa.');
+            } else {
+                body.classList.remove('edit-mode-active');
+                editables.forEach(el => el.setAttribute('contenteditable', 'false'));
+                label.textContent = 'Sửa nội dung';
+                btn.classList.remove('bg-rose-600', 'text-white', 'border-rose-600');
+                btn.classList.add('bg-white/90', 'text-slate-700');
+                showToast('Đã lưu nội dung chỉnh sửa!');
+            }
+        }
+
+        // Toast Notification Helper
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            const msgEl = document.getElementById('toastMessage');
+            msgEl.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3200);
+        }
+    </script>
+</body>
+</html>

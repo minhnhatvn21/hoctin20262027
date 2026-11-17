@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ứng xử văn minh trên không gian mạng</title>
+
+<style>
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{
+ margin:0;font-family:Arial,sans-serif;color:#173c61;
+ background:linear-gradient(180deg,#8ed5ff,#eaf8ff,#dceeff);
+ line-height:1.8;overflow-x:hidden;
+}
+
+/* MÂY CHUYỂN ĐỘNG */
+.cloud{
+ position:fixed;z-index:-1;width:130px;height:45px;
+ background:white;border-radius:50px;
+ opacity:.8;animation:move 35s linear infinite;
+}
+.cloud:before,.cloud:after{
+ content:"";position:absolute;background:white;border-radius:50%;
+}
+.cloud:before{width:60px;height:60px;top:-25px;left:20px}
+.cloud:after{width:75px;height:75px;top:-35px;right:15px}
+.c1{top:15%;left:-150px}
+.c2{top:45%;left:-150px;animation-delay:-12s}
+.c3{top:75%;left:-150px;animation-delay:-23s}
+@keyframes move{
+ from{transform:translateX(0)}
+ to{transform:translateX(120vw)}
+}
+
+/* PHẦN ĐẦU */
+header{
+ text-align:center;padding:65px 20px;color:white;
+ background:linear-gradient(120deg,#0756a5,#2399e6,#64d6ed);
+}
+header h1{
+ font-size:clamp(28px,5vw,48px);
+ text-shadow:2px 3px 5px #164b75;line-height:1.3;
+}
+header p{font-size:18px}
+.student{
+ display:inline-block;background:#fff;color:#1265a5;
+ padding:10px 20px;border-radius:30px;
+ margin:5px;font-weight:bold;
+}
+.hero-img{font-size:65px;margin:20px}
+
+/* MENU */
+nav{
+ background:white;position:sticky;top:0;z-index:10;
+ display:flex;justify-content:center;flex-wrap:wrap;
+ box-shadow:0 3px 12px #356b9230;
+}
+nav a{
+ padding:13px 15px;text-decoration:none;
+ color:#1764a0;font-weight:bold;
+}
+nav a:hover{background:#d9f1ff;border-radius:20px}
+
+/* NỘI DUNG */
+main{max-width:1100px;margin:30px auto;padding:0 18px}
+section{
+ background:#ffffffed;padding:30px;margin:25px 0;
+ border-radius:25px;box-shadow:0 8px 25px #2c65951b;
+}
+h2{color:#1164a5;font-size:27px;line-height:1.4}
+h3{color:#2676b2}
+.title{
+ display:flex;align-items:center;gap:12px;
+ border-bottom:3px solid #b9e7ff;padding-bottom:12px;
+}
+.number{
+ background:#d5f1ff;border-radius:15px;
+ padding:8px 15px;font-weight:bold;
+}
+.grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:18px;margin-top:20px;
+}
+.card{
+ padding:20px;border-radius:20px;
+ background:#e5f5ff;border:2px solid #c3e7ff;
+ transition:.3s;
+}
+.card:hover{
+ transform:translateY(-6px);
+ box-shadow:0 8px 18px #4c9bd544;
+}
+.yellow{background:#fff1a8;border-color:#ffd94e}
+.pink{background:#ffe2ed;border-color:#ffbfd6}
+.purple{background:#eee5ff;border-color:#d9c5ff}
+.green{background:#dff9e9;border-color:#b5ebcb}
+.icon{font-size:35px}
+
+/* Ô GÀ CON */
+.chick{
+ position:relative;
+ background:linear-gradient(120deg,#fff5ae,#ffe16c);
+ border:2px solid #f4ca40;border-radius:20px;
+ padding:22px 22px 22px 70px;margin:20px 0;
+ box-shadow:0 5px 0 #f3d46a;
+}
+.chick:before{
+ content:"🐥";position:absolute;left:18px;top:17px;
+ font-size:35px;
+}
+.chick strong{color:#8c5b00}
+
+/* CÁC BƯỚC */
+.step{
+ padding:16px;margin:12px 0;border-radius:15px;
+ background:#eaf6ff;border-left:6px solid #3195d5;
+}
+.quote{
+ padding:25px;text-align:center;
+ background:linear-gradient(120deg,#d9f3ff,#f1e4ff);
+ border-radius:20px;font-size:21px;
+ font-weight:bold;color:#145d9c;
+}
+.profile{
+ display:grid;grid-template-columns:200px 1fr;
+ gap:25px;align-items:center;
+}
+.avatar{
+ background:#d9efff;border-radius:25px;
+ padding:35px;text-align:center;font-size:90px;
+}
+.tag{
+ display:inline-block;background:#d8efff;
+ padding:7px 13px;margin:5px;border-radius:20px;
+ font-weight:bold;color:#145b91;
+}
+footer{
+ background:linear-gradient(120deg,#0756a5,#299bd8);
+ color:white;text-align:center;padding:35px;
+}
+footer h2{color:white}
+
+@media(max-width:600px){
+ .profile{grid-template-columns:1fr}
+ section{padding:20px}
+ nav a{padding:9px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
+
+<header id="top">
+ <h1>🌐 ỨNG XỬ VĂN MINH<br>TRÊN KHÔNG GIAN MẠNG</h1>
+ <p>Hãy trở thành người dùng Internet thông minh và có trách nhiệm!</p>
+
+ <div class="student">NGUYỄN SAO ÁNH TƯỜNG</div>
+ <div class="student">LỚP 12A11</div>
+ <div class="student">THPT ĐẮK MIL</div>
+
+ <div class="hero-img">💻 💙 🐥 🌈</div>
+</header>
+
+<nav>
+ <a href="#gioithieu">Giới thiệu</a>
+ <a href="#thuctrang">Thực trạng</a>
+ <a href="#nguyennhan">Nguyên nhân</a>
+ <a href="#hauqua">Hậu quả</a>
+ <a href="#giaiphap">Giải pháp</a>
+ <a href="#tinhhuong">Tình huống</a>
+ <a href="#lienhe">Liên hệ</a>
+</nav>
+
+<main>
+
+<!-- 01 GIỚI THIỆU -->
+<section id="gioithieu">
+ <div class="title">
+  <span class="number">01</span>
+  <h2>Giới thiệu về bản thân</h2>
+ </div>
+
+ <div class="profile">
+  <div class="avatar">👩🏻‍🎓</div>
+  <div>
+   <h2>Nguyễn Sao Ánh Tường</h2>
+   <p><b>Lớp:</b> 12A11</p>
+   <p><b>Trường:</b> THPT Đắk Mil</p>
+   <p>
+    Em là học sinh lớp 12A11, luôn yêu thích việc học hỏi,
+    giao tiếp và khám phá những kiến thức mới.
+    Em nhận thấy Internet đã trở thành một phần quan trọng
+    trong cuộc sống, vì vậy mỗi người cần biết sử dụng
+    mạng xã hội một cách văn minh và có trách nhiệm.
+   </p>
+  </div>
+ </div>
+
+ <h3>🌟 Những điểm mạnh nổi bật</h3>
+
+ <div>
+  <span class="tag">🌈 Hoạt bát, năng động</span>
+  <span class="tag">💬 Tự tin</span>
+  <span class="tag">🤝 Làm việc nhóm tốt</span>
+ </div>
+
+ <p>
+  Em là người hoạt bát, năng động và tự tin khi giao tiếp.
+  Em có khả năng phối hợp với các thành viên trong nhóm,
+  biết lắng nghe, chia sẻ ý kiến và cùng nhau hoàn thành
+  nhiệm vụ được giao.
+ </p>
+
+ <div class="chick">
+  <strong>Quan điểm của em:</strong>
+  Mỗi người cần có trách nhiệm với lời nói và hành động
+  của mình trên Internet. Một bình luận tử tế có thể mang
+  đến niềm vui, nhưng một lời nói thiếu suy nghĩ cũng có
+  thể làm tổn thương người khác.
+ </div>
+</section>
+
+<!-- 02 KHÁI NIỆM -->
+<section>
+ <div class="title">
+  <span class="number">02</span>
+  <h2>Không gian mạng là gì?</h2>
+ </div>
+
+ <p>
+  Không gian mạng là môi trường kết nối thông qua Internet,
+  nơi mọi người có thể trao đổi thông tin, học tập, làm việc,
+  giải trí và giao tiếp với nhau.
+ </p>
+
+ <div class="grid">
+  <div class="card">
+   <div class="icon">📱</div>
+   <h3>Mạng xã hội</h3>
+   <p>Facebook, TikTok, Instagram và các nền tảng giao tiếp.</p>
+  </div>
+
+  <div class="card yellow">
+   <div class="icon">📚</div>
+   <h3>Học tập trực tuyến</h3>
+   <p>Tìm kiếm kiến thức, học ngoại ngữ và trao đổi tài liệu.</p>
+  </div>
+
+  <div class="card pink">
+   <div class="icon">🎮</div>
+   <h3>Giải trí</h3>
+   <p>Xem video, nghe nhạc và tham gia trò chơi trực tuyến.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 03 THỰC TRẠNG -->
+<section id="thuctrang">
+ <div class="title">
+  <span class="number">03</span>
+  <h2>Thực trạng ứng xử trên không gian mạng</h2>
+ </div>
+
+ <p>
+  Hiện nay, Internet phát triển mạnh mẽ và trở thành công cụ
+  không thể thiếu đối với học sinh và mọi tầng lớp trong xã hội.
+  Tuy nhiên, bên cạnh những mặt tích cực, vẫn tồn tại nhiều
+  hành vi thiếu văn minh.
+ </p>
+
+ <div class="grid">
+  <div class="card green">
+   <div class="icon">🌱</div>
+   <h3>Mặt tích cực</h3>
+   <ul>
+    <li>Chia sẻ kiến thức và tài liệu học tập.</li>
+    <li>Giúp đỡ người gặp khó khăn.</li>
+    <li>Lan tỏa những câu chuyện đẹp.</li>
+    <li>Tôn trọng sự khác biệt.</li>
+    <li>Kết nối bạn bè và cộng đồng.</li>
+   </ul>
+  </div>
+
+  <div class="card pink">
+   <div class="icon">⚠️</div>
+   <h3>Mặt tiêu cực</h3>
+   <ul>
+    <li>Chửi bới, xúc phạm người khác.</li>
+    <li>Lan truyền tin giả, tin chưa kiểm chứng.</li>
+    <li>Bắt nạt và công kích trên mạng.</li>
+    <li>Đăng tải hình ảnh riêng tư trái phép.</li>
+    <li>Sử dụng ngôn từ thiếu văn hóa.</li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="chick">
+  <strong>Ví dụ thực tế:</strong>
+  Một số học sinh sử dụng mạng xã hội để chế giễu ngoại hình,
+  hoàn cảnh hoặc lỗi sai của bạn bè. Những hành động tưởng
+  chừng chỉ là trò đùa có thể khiến người khác tổn thương
+  và mất tự tin.
+ </div>
+</section>
+
+<!-- 04 NGUYÊN NHÂN -->
+<section id="nguyennhan">
+ <div class="title">
+  <span class="number">04</span>
+  <h2>Nguyên nhân của vấn đề</h2>
+ </div>
+
+ <div class="grid">
+  <div class="card yellow">
+   <div class="icon">🧠</div>
+   <h3>Nhận thức hạn chế</h3>
+   <p>Chưa hiểu rõ hậu quả của những lời nói và hành động trên mạng.</p>
+  </div>
+
+  <div class="card">
+   <div class="icon">🎭</div>
+   <h3>Tâm lý ẩn danh</h3>
+   <p>Nghĩ rằng sử dụng tài khoản ảo thì không phải chịu trách nhiệm.</p>
+  </div>
+
+  <div class="card pink">
+   <div class="icon">🔥</div>
+   <h3>Thiếu kiểm soát cảm xúc</h3>
+   <p>Dễ nóng giận, tranh cãi và phản ứng tiêu cực khi bất đồng.</p>
+  </div>
+
+  <div class="card purple">
+   <div class="icon">📈</div>
+   <h3>Chạy theo lượt tương tác</h3>
+   <p>Muốn nổi tiếng nên đăng tải nội dung gây sốc, tranh cãi.</p>
+  </div>
+
+  <div class="card green">
+   <div class="icon">🔎</div>
+   <h3>Thiếu kỹ năng số</h3>
+   <p>Không biết kiểm chứng thông tin và bảo vệ dữ liệu cá nhân.</p>
+  </div>
+
+  <div class="card">
+   <div class="icon">🏠</div>
+   <h3>Thiếu định hướng</h3>
+   <p>Chưa được hướng dẫn đầy đủ về văn hóa ứng xử trên Internet.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 05 HẬU QUẢ -->
+<section id="hauqua">
+ <div class="title">
+  <span class="number">05</span>
+  <h2>Hậu quả của ứng xử thiếu văn minh</h2>
+ </div>
+
+ <div class="grid">
+  <div class="card pink">
+   <div class="icon">💔</div>
+   <h3>Đối với cá nhân</h3>
+   <p>Gây tổn thương tinh thần, mất tự tin, ảnh hưởng đến học tập và các mối quan hệ.</p>
+  </div>
+
+  <div class="card yellow">
+   <div class="icon">👥</div>
+   <h3>Đối với cộng đồng</h3>
+   <p>Tạo môi trường mạng độc hại, gây chia rẽ và làm giảm niềm tin.</p>
+  </div>
+
+  <div class="card purple">
+   <div class="icon">⚖️</div>
+   <h3>Đối với người vi phạm</h3>
+   <p>Có thể mất uy tín, bị xử lý theo quy định của nền tảng hoặc pháp luật.</p>
+  </div>
+
+  <div class="card green">
+   <div class="icon">🔐</div>
+   <h3>Đối với an toàn thông tin</h3>
+   <p>Nguy cơ bị đánh cắp dữ liệu, giả mạo tài khoản và lừa đảo.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 06 GIẢI PHÁP -->
+<section id="giaiphap">
+ <div class="title">
+  <span class="number">06</span>
+  <h2>Giải pháp xây dựng không gian mạng văn minh</h2>
+ </div>
+
+ <h3>🌟 Đối với mỗi cá nhân</h3>
+
+ <div class="step">
+  <b>1. Suy nghĩ trước khi đăng tải:</b>
+  Kiểm tra nội dung và cân nhắc ảnh hưởng của bài viết.
+ </div>
+
+ <div class="step">
+  <b>2. Tôn trọng người khác:</b>
+  Không xúc phạm, miệt thị hoặc phân biệt đối xử.
+ </div>
+
+ <div class="step">
+  <b>3. Kiểm chứng thông tin:</b>
+  Không chia sẻ tin giả hoặc thông tin chưa rõ nguồn gốc.
+ </div>
+
+ <div class="step">
+  <b>4. Bảo vệ quyền riêng tư:</b>
+  Không tự ý đăng thông tin cá nhân và hình ảnh của người khác.
+ </div>
+
+ <div class="step">
+  <b>5. Bảo vệ tài khoản:</b>
+  Sử dụng mật khẩu mạnh và cảnh giác với đường link lạ.
+ </div>
+
+ <div class="step">
+  <b>6. Tôn trọng bản quyền:</b>
+  Ghi nguồn khi sử dụng hình ảnh và tài liệu của người khác.
+ </div>
+
+ <h3>🏫 Đối với gia đình và nhà trường</h3>
+
+ <div class="grid">
+  <div class="card">
+   <h3>👨‍👩‍👧 Gia đình</h3>
+   <p>Quan tâm, hướng dẫn con sử dụng Internet an toàn và hợp lý.</p>
+  </div>
+
+  <div class="card yellow">
+   <h3>🏫 Nhà trường</h3>
+   <p>Tổ chức hoạt động giáo dục kỹ năng số, tuyên truyền văn hóa mạng.</p>
+  </div>
+
+  <div class="card pink">
+   <h3>🤝 Bạn bè</h3>
+   <p>Không cổ vũ hành vi bắt nạt, biết giúp đỡ và bảo vệ nhau.</p>
+  </div>
+ </div>
+
+ <div class="chick">
+  <strong>Quy tắc 5K:</strong>
+  Kiểm chứng thông tin – Kính trọng người khác –
+  Không tiết lộ dữ liệu riêng tư – Không lan truyền nội dung độc hại –
+  Kịp thời báo cáo hành vi vi phạm.
+ </div>
+</section>
+
+<!-- 07 TÌNH HUỐNG -->
+<section id="tinhhuong">
+ <div class="title">
+  <span class="number">07</span>
+  <h2>Một số tình huống và cách xử lý</h2>
+ </div>
+
+ <div class="grid">
+  <div class="card yellow">
+   <h3>📩 Tình huống 1</h3>
+   <p><b>Nhận được tin gây sốc:</b> Không vội chia sẻ, cần kiểm tra nguồn tin và đối chiếu với nguồn đáng tin cậy.</p>
+  </div>
+
+  <div class="card pink">
+   <h3>💬 Tình huống 2</h3>
+   <p><b>Bị bình luận xúc phạm:</b> Giữ bình tĩnh, không đáp trả tiêu cực, lưu bằng chứng và báo cáo tài khoản khi cần.</p>
+  </div>
+
+  <div class="card purple">
+   <h3>📸 Tình huống 3</h3>
+   <p><b>Bạn đăng ảnh người khác để trêu chọc:</b> Không chia sẻ tiếp, góp ý lịch sự và đề nghị gỡ nội dung khi chưa được đồng ý.</p>
+  </div>
+
+  <div class="card green">
+   <h3>🔐 Tình huống 4</h3>
+   <p><b>Nhận đường link lạ:</b> Không bấm vào link, không cung cấp mật khẩu hay mã xác minh.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 08 LIÊN HỆ -->
+<section id="lienhe">
+ <div class="title">
+  <span class="number">08</span>
+  <h2>Liên hệ bản thân và thông điệp</h2>
+ </div>
+
+ <p>
+  Là một học sinh lớp 12A11, em nhận thấy bản thân cần
+  có trách nhiệm hơn khi tham gia mạng xã hội.
+  Với tính cách hoạt bát, tự tin và khả năng làm việc nhóm tốt,
+  em mong muốn sử dụng những ưu điểm của mình để lan tỏa
+  năng lượng tích cực, kết nối bạn bè và cùng mọi người
+  xây dựng môi trường giao tiếp văn minh.
+ </p>
+
+ <p>
+  Em sẽ chủ động chọn lọc thông tin, sử dụng ngôn ngữ lịch sự,
+  tôn trọng người khác và không chia sẻ những nội dung
+  chưa được kiểm chứng. Khi chứng kiến hành vi bắt nạt,
+  em sẽ không cổ vũ hay lan truyền mà tìm cách hỗ trợ phù hợp.
+ </p>
+
+ <div class="quote">
+  “HÃY NGHĨ TRƯỚC KHI ĐĂNG –<br>
+  HÃY TỬ TẾ KHI BÌNH LUẬN –<br>
+  HÃY CÓ TRÁCH NHIỆM KHI CHIA SẺ.”
+ </div>
+
+ <div class="chick">
+  <strong>Thông điệp cuối cùng:</strong>
+  Không gian mạng văn minh bắt đầu từ chính chúng ta.
+  Hãy sử dụng Internet bằng trí tuệ, trách nhiệm và lòng nhân ái!
+ </div>
+</section>
+
+<!-- TÀI LIỆU -->
+<section>
+ <h2>📚 Tài liệu tham khảo</h2>
+ <ul>
+  <li>Luật An ninh mạng năm 2018.</li>
+  <li>Bộ Quy tắc ứng xử trên mạng xã hội năm 2021.</li>
+  <li>Các tài liệu giáo dục kỹ năng số và an toàn Internet.</li>
+ </ul>
+</section>
+
+</main>
+
+<footer>
+ <h2>💙 CẢM ƠN THẦY CÔ VÀ CÁC BẠN ĐÃ THEO DÕI!</h2>
+ <p>NGUYỄN SAO ÁNH TƯỜNG – LỚP 12A11</p>
+ <p>TRƯỜNG THPT ĐẮK MIL</p>
+ <p>🌈 Lan tỏa sự tử tế – Xây dựng cộng đồng mạng văn minh 🌈</p>
+ <a href="#top" style="color:white">↑ Trở về đầu trang</a>
+</footer>
+
+</body>
+</html>
