@@ -1,4 +1,4 @@
-# Học Tin 2026-2027
+﻿# Học Tin 2026-2027
 
 Triển lãm sản phẩm HTML của học sinh các lớp 12A10, 12A11, 12A12, 12A13.
 
@@ -23,4 +23,5 @@ HOCTIN/
 - **12A11**: 10 nhóm  
 - **12A12**: 8 nhóm
 - **12A13**: 9 nhóm
+
 
