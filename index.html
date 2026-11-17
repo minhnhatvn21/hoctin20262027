@@ -23,15 +23,17 @@ background:linear-gradient(135deg,#fff1f8 0%,#eef2ff 40%,#e6fbff 70%,#fffbe6 100
 @keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.15)}}
 .header,.tab-nav,.content-area,.footer{position:relative;z-index:1}
 /* header */
-.header{text-align:center;padding:38px 20px 10px}
-.header h1{font-family:'Baloo 2',cursive;font-size:3em;font-weight:800;line-height:1.15;
-background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue),var(--mint),var(--pink));background-size:300% auto;
--webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rainbow 6s linear infinite}
+.header{text-align:center;padding:34px 16px 10px}
+.header h1{font-family:'Baloo 2',cursive;font-size:clamp(1.45rem,5.2vw,3rem);font-weight:800;line-height:1.2;
+display:inline-flex;align-items:center;justify-content:center;gap:clamp(6px,1.8vw,14px);flex-wrap:nowrap;max-width:100%}
+.header h1 .title-text{background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue),var(--mint),var(--pink));background-size:300% auto;
+-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rainbow 6s linear infinite;white-space:nowrap}
 @keyframes rainbow{to{background-position:300% center}}
-.header h1 .bounce{display:inline-block;-webkit-text-fill-color:initial;animation:bounce 1.6s ease-in-out infinite}
-@keyframes bounce{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-12px) rotate(8deg)}}
-.header p{margin-top:8px;font-weight:700;font-size:1.1em;color:#7a6aa8}
-.header .sub{display:inline-block;margin-top:12px;background:#fff;padding:6px 18px;border-radius:50px;box-shadow:0 4px 14px rgba(167,139,250,.25);font-weight:800;color:var(--purple)}
+.header h1 .bounce{display:inline-flex;align-items:center;justify-content:center;font-size:.9em;line-height:1;flex-shrink:0;animation:bounce 1.6s ease-in-out infinite}
+.header h1 .bounce:last-child{animation-delay:.3s}
+@keyframes bounce{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-8px) rotate(8deg)}}
+.header p{margin:8px auto 0;font-weight:700;font-size:clamp(.88rem,2.8vw,1.1rem);color:#7a6aa8;max-width:92%;line-height:1.45;text-wrap:balance}
+.header .sub{display:inline-block;margin-top:12px;background:#fff;padding:6px 18px;border-radius:50px;box-shadow:0 4px 14px rgba(167,139,250,.25);font-weight:800;font-size:clamp(.85rem,2.5vw,1rem);color:var(--purple)}
 /* tabs */
 .tab-nav{display:flex;justify-content:center;gap:14px;padding:26px 20px 10px;flex-wrap:wrap}
 .tab-btn{border:none;cursor:pointer;font-family:'Baloo 2',cursive;font-size:1.25em;font-weight:700;padding:12px 30px;border-radius:50px;background:#fff;color:var(--ink);
@@ -117,8 +119,10 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 .footer{text-align:center;padding:30px;font-weight:700;color:#9a8fb8}
 .confetti{position:fixed;top:-20px;z-index:3000;pointer-events:none;font-size:22px;animation:fall 2s ease-in forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.8}}
-@media(max-width:768px){.header h1{font-size:2em}.tab-btn{padding:10px 20px;font-size:1.05em}.cards-grid{grid-template-columns:1fr 1fr;gap:14px}.card-header h3{font-size:1.2em}}
-@media(max-width:480px){.cards-grid{grid-template-columns:1fr}}
+.mobile-br{display:none}
+@media(max-width:600px){.mobile-br{display:inline}}
+@media(max-width:768px){.tab-nav{gap:10px;padding:18px 12px 8px}.tab-btn{padding:10px 18px;font-size:1.02em}.cards-grid,.cards-grid.wide{grid-template-columns:1fr 1fr;gap:14px}.card-header h3{font-size:1.2em}.modal-header{flex-wrap:wrap;gap:8px;padding:10px 14px}.modal-header h3{font-size:1.05em}.ro-badge{font-size:.75em;padding:3px 10px;margin:0}}
+@media(max-width:480px){.header{padding:24px 10px 6px}.header h1{font-size:clamp(1.25rem,5.6vw,1.65rem);gap:6px}.cards-grid,.cards-grid.wide{grid-template-columns:1fr}.welcome h2{font-size:1.45em}}
 </style>
 </head>
 <body>
@@ -126,8 +130,8 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
     <div class="bg-float" id="bgFloat"></div>
     <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
     <div class="header">
-        <h1><span class="bounce">🎓</span> Góc Sáng Tạo Học Tin <span class="bounce">💻</span></h1>
-        <p>Nơi tỏa sáng của các bạn học sinh 12A10 · 12A11 · 12A12 · 12A13</p>
+        <h1><span class="bounce">🎓</span><span class="title-text">Góc Sáng Tạo Học Tin</span><span class="bounce">💻</span></h1>
+        <p>Nơi tỏa sáng của các bạn học sinh<br class="mobile-br"> 12A10 · 12A11 · 12A12 · 12A13</p>
         <span class="sub">✨ Năm học 2026 - 2027 ✨</span>
     </div>
 
