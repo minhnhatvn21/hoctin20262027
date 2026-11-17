@@ -670,6 +670,21 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
 
     </div>
 
+    <!-- Modal Mật khẩu -->
+    <div class="pw-overlay" id="pwModal">
+        <div class="pw-box" id="pwBox">
+            <div class="pw-emoji">🔑</div>
+            <h3>Lớp <span id="pwClass"></span></h3>
+            <p>Nhập mật khẩu để vào xem bài nhé!</p>
+            <input type="password" id="pwInput" placeholder="Nhập mật khẩu lớp..." autocomplete="off">
+            <div class="pw-err" id="pwErr"></div>
+            <div class="pw-actions">
+                <button class="pw-ok" onclick="submitPw()">Vào lớp 🚀</button>
+                <button class="pw-cancel" onclick="closePw()">Hủy</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Viewer -->
     <div class="modal-overlay" id="modal">
         <div class="modal-header">
@@ -689,14 +704,21 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
     <script>
 
         const PW_HASH={"12A10": "6776d5dcb2e30add56e4bf237ff8fb28a4a4dfb54cea3735f309c433dff71377", "12A11": "d23488fae163e3ae0dac3d8e7721dd2ace3a83750ec2b983c99141440dd6c3cc", "12A12": "0b669a97311e4627fefd4809f8b9b16b04be36d9cfa301ee8954719b4b6e03f6", "12A13": "d729b1fd566b2dde143cbe3540fe6022f4e2e26ec234a6371dea59e6cdd41f69"};
-        const unlocked=JSON.parse(sessionStorage.getItem('unlocked')||'[]');
+        const PW_CODE={"12A10": "aG9hZGFvMTA=", "12A11": "ZGFpZHVvbmcxMQ==", "12A12": "Y29ib24xMg==", "12A13": "bmdvbmx1YTEz"};
+        let currentUnlockedClass=null;
         let pendingClass=null,pendingAction=null;
-        async function sha(t){
-            const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
-            return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+        async function checkPwMatch(cls,val){
+            try{
+                if(window.crypto&&window.crypto.subtle){
+                    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('hoctin2026:'+val));
+                    const h=Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+                    return h===PW_HASH[cls];
+                }
+            }catch(e){}
+            return btoa(val)===PW_CODE[cls];
         }
         function requireClass(cls,action){
-            if(unlocked.includes(cls)){action();return;}
+            if(currentUnlockedClass===cls){action();return;}
             pendingClass=cls;pendingAction=action;
             document.getElementById('pwClass').textContent=cls;
             document.getElementById('pwInput').value='';
@@ -707,10 +729,8 @@ box-shadow:0 4px 0 rgba(0,0,0,.18);transition:.2s}
         function closePw(){document.getElementById('pwModal').classList.remove('active');pendingClass=null;pendingAction=null;}
         async function submitPw(){
             const v=document.getElementById('pwInput').value.trim().toLowerCase();
-            const h=await sha('hoctin2026:'+v);
-            if(h===PW_HASH[pendingClass]){
-                unlocked.push(pendingClass);
-                sessionStorage.setItem('unlocked',JSON.stringify(unlocked));
+            if(await checkPwMatch(pendingClass,v)){
+                currentUnlockedClass=pendingClass;
                 const act=pendingAction;closePw();confetti();act&&act();
             }else{
                 document.getElementById('pwErr').textContent='Sai mật khẩu rồi, thử lại nhé 🙈';
