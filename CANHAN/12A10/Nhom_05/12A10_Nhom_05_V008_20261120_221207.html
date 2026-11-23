@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trần Hoàng Minh — Lớp 12A10 | Định Hướng Nghề Nghiệp</title>
+    <meta name="description" content="Sản phẩm cá nhân của Trần Hoàng Minh - Lớp 12A10: Giới thiệu bản thân và Kế hoạch định hướng nghề nghiệp khối ngành Kinh tế – Kinh doanh Quốc tế.">
+
+    <!-- Google Fonts: Be Vietnam Pro (Nội dung) & Playfair Display (Trích dẫn & Tiêu đề nhấn) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Cấu hình hệ màu tối giản, hiện đại và font chữ tiếng Việt -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#090F1D',
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155',
+                        },
+                        cream: {
+                            50: '#FAF9F6',
+                            100: '#F3F1EA',
+                        },
+                        amberGold: {
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cream-50 text-navy-900 font-sans antialiased selection:bg-amberGold-600 selection:text-white overflow-x-hidden">
+
+    <!-- ===================================================================== -->
+    <!-- 1. THANH ĐIỀU HƯỚNG CỐ ĐỊNH (STICKY HEADER)                           -->
+    <!-- ===================================================================== -->
+    <header id="navbar" class="sticky top-0 z-50 bg-cream-50/95 backdrop-blur-md border-b border-navy-900/10 transition-shadow duration-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Tên & Lớp bên trái -->
+                <a href="#trang-chu" class="flex items-center gap-2.5 group focus:outline-none">
+                    <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-navy-900 text-amberGold-500 font-serif font-bold text-base shadow-sm group-hover:bg-amberGold-600 group-hover:text-white transition-colors duration-200">
+                        M
+                    </span>
+                    <span class="font-semibold tracking-tight text-navy-900 text-sm sm:text-base">
+                        Trần Hoàng Minh <span class="text-amberGold-600 font-bold mx-1">·</span> 12A10
+                    </span>
+                </a>
+
+                <!-- Liên kết điều hướng màn hình lớn -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Điều hướng chính">
+                    <a href="#gioi-thieu" class="px-3.5 py-2 rounded-xl text-sm font-medium text-navy-700 hover:text-navy-900 hover:bg-navy-900/5 transition-colors">Giới thiệu</a>
+                    <a href="#dinh-huong" class="px-3.5 py-2 rounded-xl text-sm font-medium text-navy-700 hover:text-navy-900 hover:bg-navy-900/5 transition-colors">Định hướng</a>
+                    <a href="#nang-luc" class="px-3.5 py-2 rounded-xl text-sm font-medium text-navy-700 hover:text-navy-900 hover:bg-navy-900/5 transition-colors">Kỹ năng</a>
+                    <a href="#lo-trinh" class="px-3.5 py-2 rounded-xl text-sm font-medium text-navy-700 hover:text-navy-900 hover:bg-navy-900/5 transition-colors">Lộ trình</a>
+                </nav>
+
+                <!-- Nút mở menu trên điện thoại -->
+                <button id="mobile-menu-btn" type="button" class="md:hidden inline-flex items-center justify-center p-2.5 rounded-xl text-navy-800 hover:bg-navy-900/5 focus:outline-none focus:ring-2 focus:ring-amberGold-600 transition-colors" aria-controls="mobile-menu" aria-expanded="false" aria-label="Mở menu điều hướng">
+                    <svg id="icon-menu-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="icon-menu-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu thả xuống trên điện thoại -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-t border-navy-900/10 shadow-lg">
+            <div class="px-4 py-3 space-y-1">
+                <a href="#gioi-thieu" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-navy-800 hover:bg-navy-900/5 hover:text-amberGold-600 transition-colors">Giới thiệu</a>
+                <a href="#dinh-huong" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-navy-800 hover:bg-navy-900/5 hover:text-amberGold-600 transition-colors">Định hướng</a>
+                <a href="#nang-luc" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-navy-800 hover:bg-navy-900/5 hover:text-amberGold-600 transition-colors">Kỹ năng</a>
+                <a href="#lo-trinh" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-navy-800 hover:bg-navy-900/5 hover:text-amberGold-600 transition-colors">Lộ trình</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===================================================================== -->
+        <!-- 2. PHẦN MỞ ĐẦU (HERO BANNER) — ẢNH THẬT 1/6: KHU MINATO & THÁP TOKYO -->
+        <!-- ===================================================================== -->
+        <section id="trang-chu" class="relative min-h-[540px] sm:min-h-[600px] flex flex-col justify-between bg-navy-900 overflow-hidden">
+            <!-- Ảnh chụp thật toàn cảnh khu vực Minato & Tháp Tokyo (Ảnh: Louie Martinez / Unsplash) -->
+            <img
+                src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1400&q=80"
+                alt="Toàn cảnh khu vực Minato và Tháp Tokyo, Nhật Bản về đêm"
+                onerror="this.onerror=null;this.src='https://placehold.co/1400x800/0F172A/FAF9F6.png?text=Minato+%26+Tokyo+Tower';"
+                class="absolute inset-0 w-full h-full object-cover object-center"
+            >
+            <!-- Lớp phủ gradient xanh navy tối trong suốt để chữ trắng nổi bật -->
+            <div class="absolute inset-0 bg-gradient-to-r from-navy-950/92 via-navy-900/82 to-navy-900/60"></div>
+
+            <div class="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14 sm:pt-28 sm:pb-20 my-auto">
+                <div class="max-w-2xl space-y-6">
+                    <!-- Nhãn nhỏ -->
+                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15">
+                        <span class="w-2 h-2 rounded-full bg-amberGold-500"></span>
+                        <span class="text-xs font-semibold tracking-widest uppercase text-amberGold-500">HỒ SƠ CÁ NHÂN · LỚP 12A10</span>
+                    </div>
+
+                    <!-- Tiêu đề chính -->
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+                        Trần Hoàng Minh
+                    </h1>
+
+                    <!-- Mô tả ngắn -->
+                    <p class="text-base sm:text-lg lg:text-xl text-slate-200 leading-relaxed font-light">
+                        Học sinh lớp 12A10 với định hướng theo đuổi khối ngành Kinh tế – Kinh doanh quốc tế và khát vọng hội nhập trong môi trường toàn cầu.
+                    </p>
+
+                    <!-- 2 Nút bấm điều hướng -->
+                    <div class="flex flex-wrap items-center gap-3.5 pt-3">
+                        <a href="#gioi-thieu" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-amberGold-600 text-white text-sm sm:text-base font-semibold shadow-lg shadow-navy-950/30 hover:bg-amberGold-500 transition-colors duration-200">
+                            <span>Tìm hiểu về mình</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <a href="#dinh-huong" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 backdrop-blur-sm text-white border border-white/25 text-sm sm:text-base font-semibold hover:bg-white hover:text-navy-900 transition-colors duration-200">
+                            <span>Kế hoạch nghề nghiệp</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chú thích ảnh địa điểm hiển thị rõ ràng trên mọi thiết bị -->
+            <div class="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-5 flex justify-start sm:justify-end">
+                <p class="inline-flex items-center gap-2 text-xs text-slate-200 bg-navy-950/65 backdrop-blur-sm px-3.5 py-2 rounded-lg border border-white/15">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amberGold-500 shrink-0"></span>
+                    <span><strong class="text-white font-semibold">Khu đô thị Minato &amp; Tháp Tokyo, Nhật Bản</strong> – Nhịp sống hiện đại và kết nối toàn cầu.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+                <!-- Khối trích dẫn Châm ngôn yêu thích (Trang trọng, tinh gọn, không giải thích dài dòng) -->
+                <div class="mt-12 bg-navy-900 text-white rounded-2xl p-8 sm:p-10 lg:p-12 border border-navy-800 shadow-lg">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <span class="inline-block text-xs font-semibold tracking-widest uppercase text-amberGold-500 mb-4">
+                            Châm ngôn yêu thích
+                        </span>
+                        <blockquote class="font-serif text-xl sm:text-2xl lg:text-[26px] font-semibold leading-relaxed text-white">
+                            “Nếu vũ trụ không đặt sẵn một mục đích nào, thì chính chúng ta là người toàn quyền quyết định mục đích của mình.”
+                        </blockquote>
+                        <p class="mt-6 text-xs sm:text-sm font-medium tracking-wider uppercase text-amberGold-500">
+                            — Kurzgesagt – In a Nutshell (Optimistic Nihilism)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 4. PHẦN 2: SỞ THÍCH & ĐỜI SỐNG (#so-thich) — 3 ẢNH THẬT (2, 3, 4/6)  -->
+        <!-- ===================================================================== -->
+        <section id="so-thich" class="scroll-mt-20 py-16 sm:py-24 bg-cream-50 border-b border-navy-900/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Tiêu đề phần -->
+                <div class="max-w-3xl mb-12">
+                    <span class="text-xs font-bold tracking-widest uppercase text-amberGold-600">Phần 02 · Sở thích &amp; Đời sống</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 mt-2">
+                        Những điều tạo nên nguồn cảm hứng mỗi ngày
+                    </h2>
+                    <p class="mt-3 text-base sm:text-lg text-navy-700 leading-relaxed">
+                        Sự cân bằng hài hòa giữa mở rộng hiểu biết văn hóa, rèn luyện thể chất và thư giãn tinh thần.
+                    </p>
+                </div>
+
+                <!-- Lưới 3 cột đều nhau, đồng bộ thiết kế và chiều cao -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Thẻ 1 — Văn hóa Nhật Bản & Toàn cầu -->
+                    <article class="bg-white rounded-2xl overflow-hidden border border-navy-900/10 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        <figure class="m-0">
+                            <div class="aspect-[16/10] w-full overflow-hidden bg-navy-800">
+                                <!-- Ảnh chụp thật: Su San Lee / Unsplash -->
+                                <img
+                                    src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80"
+                                    alt="Khu phố cổ Higashiyama và chùa Yasaka tại Kyoto, Nhật Bản"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/900x562/1E293B/FAF9F6.png?text=Higashiyama+Kyoto';"
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                >
+                            </div>
+                            <figcaption class="px-5 py-3 bg-cream-100/75 border-b border-navy-900/10 text-xs text-navy-700 leading-relaxed">
+                                <span class="font-semibold text-navy-900">Khu phố cổ Higashiyama &amp; Chùa Yasaka, Kyoto</span> – Nét văn hóa truyền thống Nhật Bản truyền cảm hứng khám phá.
+                            </figcaption>
+                        </figure>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-amberGold-600 mb-2">Khám phá văn hóa</span>
+                            <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">
+                                Văn hóa Nhật Bản &amp; Toàn cầu
+                            </h3>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed flex-1">
+                                Đam mê tìm hiểu bản sắc, kỷ luật và chiều sâu của văn hóa Nhật Bản nói riêng cũng như sự đa dạng, giao thoa của văn hóa toàn cầu nói chung.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Thẻ 2 — Thể thao & Rèn luyện -->
+                    <article class="bg-white rounded-2xl overflow-hidden border border-navy-900/10 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        <figure class="m-0">
+                            <div class="aspect-[16/10] w-full overflow-hidden bg-navy-800">
+                                <!-- Ảnh chụp thật: Markus Spiske / Unsplash -->
+                                <img
+                                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=900&q=80"
+                                    alt="Sân bóng rổ ngoài trời rèn luyện thể thao"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/900x562/1E293B/FAF9F6.png?text=The+Thao+%26+Ren+Luyen';"
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                >
+                            </div>
+                            <figcaption class="px-5 py-3 bg-cream-100/75 border-b border-navy-900/10 text-xs text-navy-700 leading-relaxed">
+                                <span class="font-semibold text-navy-900">Sân bóng rổ ngoài trời</span> – Thói quen vận động giúp rèn sức bền, kỷ luật và tinh thần đồng đội.
+                            </figcaption>
+                        </figure>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-amberGold-600 mb-2">Vận động</span>
+                            <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">
+                                Thể thao &amp; Rèn luyện
+                            </h3>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed flex-1">
+                                Duy trì thói quen chơi thể thao đều đặn để nâng cao thể lực, giải tỏa căng thẳng học tập và rèn luyện tinh thần đồng đội, kỷ luật bản thân.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Thẻ 3 — Cân bằng & Thư giãn -->
+                    <article class="bg-white rounded-2xl overflow-hidden border border-navy-900/10 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        <figure class="m-0">
+                            <div class="aspect-[16/10] w-full overflow-hidden bg-navy-800">
+                                <!-- Ảnh chụp thật: Carl Raw / Unsplash -->
+                                <img
+                                    src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80"
+                                    alt="Không gian giải trí với trò chơi điện tử và âm nhạc"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/900x562/1E293B/FAF9F6.png?text=Can+Bang+%26+Thu+Gian';"
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                >
+                            </div>
+                            <figcaption class="px-5 py-3 bg-cream-100/75 border-b border-navy-900/10 text-xs text-navy-700 leading-relaxed">
+                                <span class="font-semibold text-navy-900">Không gian giải trí cá nhân</span> – Xem phim, nghe nhạc và chơi game để tái tạo năng lượng sau giờ học.
+                            </figcaption>
+                        </figure>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-amberGold-600 mb-2">Giải trí hàng ngày</span>
+                            <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">
+                                Cân bằng &amp; Thư giãn
+                            </h3>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed flex-1">
+                                Xem phim, nghe nhạc và chơi game vào thời gian rảnh như bao bạn trẻ khác — cách đơn giản để tái tạo năng lượng và mở rộng góc nhìn giải trí.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 5. PHẦN 3: KẾ HOẠCH ĐỊNH HƯỚNG NGHỀ NGHIỆP (#dinh-huong)              -->
+        <!-- ===================================================================== -->
+        <section id="dinh-huong" class="scroll-mt-20 py-16 sm:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-24">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- TIỂU MỤC 3.1: LĨNH VỰC & NGÀNH HỌC MỤC TIÊU — ẢNH THẬT 5/6         -->
+                <!-- ------------------------------------------------------------------- -->
+                <div>
+                    <div class="max-w-3xl mb-10">
+                        <span class="text-xs font-bold tracking-widest uppercase text-amberGold-600">Phần 03 · Kế hoạch định hướng nghề nghiệp</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 mt-2">
+                            Lĩnh vực &amp; Ngành học mục tiêu
+                        </h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                        <!-- Cột trái: Nội dung định hướng -->
+                        <div class="lg:col-span-6 bg-cream-50 rounded-2xl p-7 sm:p-9 border border-navy-900/10 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amberGold-600/15 text-amberGold-700">
+                                    Tiểu mục 3.1 · Trọng tâm chuyên môn
+                                </span>
+                                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 leading-snug">
+                                    Khối ngành Kinh tế &amp; Kinh doanh Quốc tế
+                                </h3>
+                                <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                    Định hướng học tập và nghề nghiệp của mình tập trung vào các nhóm ngành:
+                                    <strong class="text-navy-900">Kinh doanh quốc tế (International Business)</strong>,
+                                    <strong class="text-navy-900">Quản trị kinh doanh (Business Administration)</strong> và các chuyên ngành liên quan thuộc
+                                    <strong class="text-navy-900">khối Kinh tế</strong>.
+                                </p>
+
+                                <!-- 3 Thẻ điểm nhấn -->
+                                <div class="flex flex-wrap gap-2.5 pt-1">
+                                    <span class="px-3.5 py-2 rounded-xl bg-white border border-navy-900/10 text-xs sm:text-sm font-semibold text-navy-900 shadow-sm">
+                                        Kinh doanh quốc tế
+                                    </span>
+                                    <span class="px-3.5 py-2 rounded-xl bg-white border border-navy-900/10 text-xs sm:text-sm font-semibold text-navy-900 shadow-sm">
+                                        Quản trị kinh doanh
+                                    </span>
+                                    <span class="px-3.5 py-2 rounded-xl bg-amberGold-600/10 border border-amberGold-600/25 text-xs sm:text-sm font-semibold text-amberGold-700">
+                                        Kinh tế &amp; Thương mại toàn cầu
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="pt-5 border-t border-navy-900/10">
+                                <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                    Kết hợp thế mạnh tư duy logic, khả năng giao tiếp cùng niềm yêu thích văn hóa đa quốc gia để hướng tới các vị trí phân tích chiến lược, quản trị và kết nối thương mại xuyên biên giới.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Cột phải: Ảnh chụp thật trung tâm tài chính Sydney CBD, Úc -->
+                        <div class="lg:col-span-6 flex">
+                            <figure class="w-full bg-cream-50 rounded-2xl overflow-hidden border border-navy-900/10 shadow-sm flex flex-col">
+                                <div class="flex-1 min-h-[260px] sm:min-h-[320px] overflow-hidden bg-navy-800">
+                                    <!-- Ảnh chụp thật: Dan Freeman / Unsplash -->
+                                    <img
+                                        src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1100&q=80"
+                                        alt="Toàn cảnh trung tâm tài chính Sydney CBD và cảng Sydney, Úc"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/1100x700/0F172A/FAF9F6.png?text=Sydney+CBD';"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                    >
+                                </div>
+                                <figcaption class="px-5 py-4 bg-white border-t border-navy-900/10 text-xs sm:text-sm text-navy-700 leading-relaxed">
+                                    <span class="font-semibold text-navy-900">Trung tâm tài chính Sydney CBD &amp; Cảng Sydney, Úc</span> – Môi trường kinh doanh quốc tế năng động và hội nhập.
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- TIỂU MỤC 3.2: NỀN TẢNG CHUẨN BỊ — 4 NĂNG LỰC CỐT LÕI (#nang-luc)   -->
+                <!-- (HIỂN THỊ ĐỦ 4 THẺ LƯỚI 2x2, KHÔNG ẢNH THỪA)                        -->
+                <!-- ------------------------------------------------------------------- -->
+                <div id="nang-luc" class="scroll-mt-24 pt-14 border-t border-navy-900/10">
+                    <div class="max-w-3xl mb-10">
+                        <span class="text-xs font-bold tracking-widest uppercase text-amberGold-600">Tiểu mục 3.2 · Nền tảng chuẩn bị</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+                            4 Năng lực cốt lõi đang trau dồi
+                        </h3>
+                        <p class="mt-3 text-base text-navy-700 leading-relaxed">
+                            Bốn trụ cột kỹ năng được rèn luyện song song để xây dựng nền tảng vững chắc cho chặng đường học thuật và sự nghiệp tương lai.
+                        </p>
+                    </div>
+
+                    <!-- Lưới 2x2 đều nhau, đầy đủ cả 4 thẻ 01–04 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Năng lực 01 -->
+                        <article class="bg-cream-50 rounded-2xl p-6 sm:p-8 border border-navy-900/10 hover:border-amberGold-600/50 transition-colors flex flex-col">
+                            <div class="flex items-center justify-between gap-4 mb-4">
+                                <span class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-navy-900 text-amberGold-500 font-serif font-bold text-base">
+                                    01
+                                </span>
+                                <span class="text-xs font-semibold uppercase tracking-wider text-navy-700/60">Nền tảng phân tích</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                Tư duy logic
+                            </h4>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                Rèn luyện khả năng hệ thống hóa thông tin, phân tích dữ liệu khách quan và xây dựng lập luận chặt chẽ làm cơ sở cho mọi quyết định trong học tập và kinh doanh.
+                            </p>
+                        </article>
+
+                        <!-- Năng lực 02 -->
+                        <article class="bg-cream-50 rounded-2xl p-6 sm:p-8 border border-navy-900/10 hover:border-amberGold-600/50 transition-colors flex flex-col">
+                            <div class="flex items-center justify-between gap-4 mb-4">
+                                <span class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-navy-900 text-amberGold-500 font-serif font-bold text-base">
+                                    02
+                                </span>
+                                <span class="text-xs font-semibold uppercase tracking-wider text-navy-700/60">Tư duy thực chiến</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                Tư duy giải quyết vấn đề
+                            </h4>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                Tập trung bóc tách nguyên nhân gốc rễ, đánh giá nhiều phương án và linh hoạt đưa ra giải pháp thực tế khi đối diện với những tình huống phức tạp.
+                            </p>
+                        </article>
+
+                        <!-- Năng lực 03 -->
+                        <article class="bg-cream-50 rounded-2xl p-6 sm:p-8 border border-navy-900/10 hover:border-amberGold-600/50 transition-colors flex flex-col">
+                            <div class="flex items-center justify-between gap-4 mb-4">
+                                <span class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-navy-900 text-amberGold-500 font-serif font-bold text-base">
+                                    03
+                                </span>
+                                <span class="text-xs font-semibold uppercase tracking-wider text-navy-700/60">Kết nối &amp; Hợp tác</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                Giao tiếp &amp; Diễn đạt suy nghĩ
+                            </h4>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                Nâng cao kỹ năng trình bày quan điểm mạch lạc, thuyết phục, đi đôi với việc lắng nghe chủ động để phối hợp và dẫn dắt hiệu quả trong môi trường tập thể.
+                            </p>
+                        </article>
+
+                        <!-- Năng lực 04 -->
+                        <article class="bg-cream-50 rounded-2xl p-6 sm:p-8 border border-navy-900/10 hover:border-amberGold-600/50 transition-colors flex flex-col">
+                            <div class="flex items-center justify-between gap-4 mb-4">
+                                <span class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-navy-900 text-amberGold-500 font-serif font-bold text-base">
+                                    04
+                                </span>
+                                <span class="text-xs font-semibold uppercase tracking-wider text-navy-700/60">Chìa khóa hội nhập</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                Ngoại ngữ
+                            </h4>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                Đầu tư nghiêm túc cho năng lực tiếng Anh và mở rộng ngoại ngữ nhằm đáp ứng điều kiện du học, đọc hiểu tài liệu chuyên ngành quốc tế và làm việc đa văn hóa.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- TIỂU MỤC 3.3: MỤC TIÊU BẬC ĐẠI HỌC (#dai-hoc) — ẢNH THẬT 6/6       -->
+                <!-- ------------------------------------------------------------------- -->
+                <div id="dai-hoc" class="scroll-mt-24 pt-14 border-t border-navy-900/10">
+                    <div class="max-w-3xl mb-10">
+                        <span class="text-xs font-bold tracking-widest uppercase text-amberGold-600">Tiểu mục 3.3 · Mục tiêu bậc Đại học</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+                            Hai phương án môi trường học thuật mục tiêu
+                        </h3>
+                        <p class="mt-3 text-base text-navy-700 leading-relaxed">
+                            Chủ động xây dựng hai định hướng song song để tối ưu cơ hội tiếp cận nền giáo dục kinh tế chất lượng cao.
+                        </p>
+                    </div>
+
+                        <!-- Cột trái: Ảnh chụp thật khuôn viên trường đại học -->
+                        <div class="lg:col-span-5 flex">
+                            <figure class="w-full bg-cream-50 rounded-2xl overflow-hidden border border-navy-900/10 shadow-sm flex flex-col">
+                                <div class="flex-1 min-h-[260px] sm:min-h-[320px] overflow-hidden bg-navy-800">
+                                    <!-- Ảnh chụp thật: Pang Yuhao / Unsplash -->
+                                    <img
+                                        src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1100&q=80"
+                                        alt="Khuôn viên trường đại học với tòa nhà học thuật và thảm cỏ xanh"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/1100x750/0F172A/FAF9F6.png?text=Khuon+Vien+Dai+Hoc';"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                    >
+                                </div>
+                                <figcaption class="px-5 py-4 bg-white border-t border-navy-900/10 text-xs sm:text-sm text-navy-700 leading-relaxed">
+                                    <span class="font-semibold text-navy-900">Khuôn viên Đại học quốc tế (Ảnh chụp thực tế – Pang Yuhao / Unsplash)</span> – Không gian học thuật đa văn hóa, bệ phóng cho chặng đường đại học.
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- Cột phải: 2 Thẻ con xếp chồng gọn gàng, rõ ràng -->
+                        <div class="lg:col-span-7 flex flex-col justify-between gap-6">
+                            <!-- Phương án 1 -->
+                            <article class="flex-1 bg-navy-900 text-white rounded-2xl p-6 sm:p-8 border border-navy-800 shadow-sm flex flex-col justify-center">
+                                <div class="flex flex-wrap items-center gap-3 mb-3">
+                                    <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amberGold-600 text-white">
+                                        Phương án 1
+                                    </span>
+                                    <span class="text-xs font-medium uppercase tracking-wider text-amberGold-500">
+                                        Định hướng quốc tế
+                                    </span>
+                                </div>
+                                <h4 class="font-serif text-xl sm:text-2xl font-bold text-white mb-3">
+                                    Du học Quốc tế (Nhật Bản, Úc,...)
+                                </h4>
+                                <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                                    Hướng đến các chương trình đào tạo kinh doanh bằng tiếng Anh/đa ngôn ngữ tại những nền kinh tế phát triển. Đây là cơ hội để trực tiếp trải nghiệm văn hóa bản địa, rèn luyện bản lĩnh tự lập và tiếp cận chuẩn mực quản trị toàn cầu ngay từ giảng đường.
+                                </p>
+                            </article>
+
+                            <!-- Phương án 2 -->
+                            <article class="flex-1 bg-cream-50 text-navy-900 rounded-2xl p-6 sm:p-8 border border-navy-900/15 shadow-sm flex flex-col justify-center">
+                                <div class="flex flex-wrap items-center gap-3 mb-3">
+                                    <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-navy-900 text-amberGold-500">
+                                        Phương án 2
+                                    </span>
+                                    <span class="text-xs font-medium uppercase tracking-wider text-navy-700/75">
+                                        Đào tạo chất lượng cao trong nước
+                                    </span>
+                                </div>
+                                <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                    Các trường Đại học hàng đầu trong nước (ĐH Ngoại thương – FTU &amp; ĐH Kinh tế - Luật – UEL)
+                                </h4>
+                                <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                    Theo học tại những cơ sở đào tạo khối Kinh tế – Thương mại uy tín bậc nhất Việt Nam, tận dụng môi trường sinh viên năng động, mạng lưới doanh nghiệp đối tác rộng lớn cùng các chương trình liên kết, trao đổi quốc tế.
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- TIỂU MỤC 3.4: LỘ TRÌNH THỰC HIỆN 3 GIAI ĐOẠN (#lo-trinh)           -->
+                <!-- (THUẦN CHỮ & TIMELINE TINH TẾ — TUYỆT ĐỐI KHÔNG CHÈN ẢNH)           -->
+                <!-- ------------------------------------------------------------------- -->
+                <div id="lo-trinh" class="scroll-mt-24 pt-14 border-t border-navy-900/10">
+                    <div class="max-w-3xl mb-10">
+                        <span class="text-xs font-bold tracking-widest uppercase text-amberGold-600">Tiểu mục 3.4 · Kế hoạch hành động</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+                            Lộ trình thực hiện 3 giai đoạn
+                        </h3>
+                        <p class="mt-3 text-base text-navy-700 leading-relaxed">
+                            Các cột mốc cụ thể theo tiến trình thời gian nhằm chuyển hóa mục tiêu thành hành động rõ ràng.
+                        </p>
+                    </div>
+
+                    <!-- Dòng thời gian dọc (Vertical Timeline) thuần chữ & mốc thời gian -->
+                    <div class="max-w-4xl relative pl-7 sm:pl-10 border-l-2 border-navy-900/15 space-y-7">
+                        <!-- Giai đoạn 1 -->
+                        <article class="relative bg-cream-50 rounded-2xl p-6 sm:p-8 border border-navy-900/10 hover:border-amberGold-600/40 transition-colors">
+                            <span class="absolute -left-[37px] sm:-left-[49px] top-7 w-4 h-4 rounded-full bg-amberGold-600 ring-4 ring-white"></span>
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-amberGold-600/15 text-amberGold-700">
+                                    Giai đoạn 1 · 2026 – 2027
+                                </span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                Bứt phá cuối cấp &amp; Chuẩn bị hồ sơ
+                            </h4>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                Hoàn thành xuất sắc chương trình lớp 12 và kỳ thi tốt nghiệp THPT; hoàn thiện chứng chỉ ngoại ngữ và hồ sơ xét tuyển đại học / học bổng du học.
+                            </p>
+                        </article>
+
+                        <!-- Giai đoạn 2 -->
+                        <article class="relative bg-cream-50 rounded-2xl p-6 sm:p-8 border border-navy-900/10 hover:border-amberGold-600/40 transition-colors">
+                            <span class="absolute -left-[37px] sm:-left-[49px] top-7 w-4 h-4 rounded-full bg-navy-900 ring-4 ring-white"></span>
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-navy-900/10 text-navy-900">
+                                    Giai đoạn 2 · 2027 – 2031
+                                </span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                Tích lũy chuyên môn &amp; Va chạm thực tế
+                            </h4>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                Xây dựng nền tảng vững chắc về Kinh doanh quốc tế và Quản trị; chủ động tham gia câu lạc bộ học thuật, dự án thực tế và thực tập sớm tại doanh nghiệp để rèn kỹ năng nghề nghiệp.
+                            </p>
+                        </article>
+
+                        <!-- Giai đoạn 3 -->
+                        <article class="relative bg-cream-50 rounded-2xl p-6 sm:p-8 border border-navy-900/10 hover:border-amberGold-600/40 transition-colors">
+                            <span class="absolute -left-[37px] sm:-left-[49px] top-7 w-4 h-4 rounded-full bg-navy-900 ring-4 ring-white"></span>
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-bold bg-navy-900/10 text-navy-900">
+                                    Giai đoạn 3 · Sau 2031
+                                </span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 mb-3">
+                                Hội nhập &amp; Phát triển sự nghiệp
+                            </h4>
+                            <p class="text-sm sm:text-base text-navy-700 leading-relaxed">
+                                Làm việc trong các tập đoàn đa quốc gia hoặc doanh nghiệp định hướng xuất nhập khẩu – thương mại quốc tế, từng bước đảm nhận vai trò quản lý và tạo ra giá trị bền vững.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- 6. CHÂN TRANG (FOOTER) — TỐI GIẢN, CHỈ CHỮ, TUYỆT ĐỐI KHÔNG HÌNH ẢNH  -->
+    <!-- ===================================================================== -->
+    <footer class="bg-navy-900 text-slate-300 py-12 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-white font-serif font-bold text-lg sm:text-xl">
+                Trần Hoàng Minh — Lớp 12A10
+            </p>
+            <p class="text-sm text-slate-300 mt-2">
+                Sản phẩm cá nhân môn học · Chủ đề: Kế hoạch định hướng nghề nghiệp bản thân
+            </p>
+            <p class="text-xs sm:text-sm text-amberGold-500/90 font-medium mt-2">
+                Ngày hoàn thiện: 15/11/2026
+            </p>
+        </div>
+    </footer>
+
+    <!-- Nút nhỏ "Lên đầu trang" gọn gàng ở góc dưới bên phải khi cuộn xuống -->
+    <button id="back-to-top" type="button" aria-label="Lên đầu trang" class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-900 text-white text-xs sm:text-sm font-medium border border-white/15 shadow-lg opacity-0 pointer-events-none translate-y-2 hover:bg-amberGold-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amberGold-600">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
+        </svg>
+        <span>Lên đầu trang</span>
+    </button>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT: MENU DI ĐỘNG & NÚT LÊN ĐẦU TRANG                          -->
+    <!-- ===================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // 1. Bật/tắt menu điều hướng trên thiết bị di động
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const iconOpen = document.getElementById('icon-menu-open');
+                const iconClose = document.getElementById('icon-menu-close');
+                const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+                const setMobileMenuState = (isOpen) => {
+                    if (!mobileMenu || !mobileMenuBtn || !iconOpen || !iconClose) return;
+                    mobileMenu.classList.toggle('hidden', !isOpen);
+                    iconOpen.classList.toggle('hidden', isOpen);
+                    iconClose.classList.toggle('hidden', !isOpen);
+                    mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+                };
+
+                if (mobileMenuBtn) {
+                    mobileMenuBtn.addEventListener('click', () => {
+                        const isCurrentlyHidden = mobileMenu.classList.contains('hidden');
+                        setMobileMenuState(isCurrentlyHidden);
+                    });
+                }
+
+                mobileLinks.forEach((link) => {
+                    link.addEventListener('click', () => setMobileMenuState(false));
+                });
+
+                // 2. Hiển thị bóng thanh điều hướng & nút "Lên đầu trang" khi cuộn
+                const backToTopBtn = document.getElementById('back-to-top');
+                const navbar = document.getElementById('navbar');
+
+                const handleScroll = () => {
+                    const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+                    if (navbar) {
+                        navbar.classList.toggle('shadow-sm', scrollY > 16);
+                    }
+
+                    if (backToTopBtn) {
+                        const shouldShow = scrollY > 320;
+                        backToTopBtn.classList.toggle('opacity-100', shouldShow);
+                        backToTopBtn.classList.toggle('pointer-events-auto', shouldShow);
+                        backToTopBtn.classList.toggle('translate-y-0', shouldShow);
+                        backToTopBtn.classList.toggle('opacity-0', !shouldShow);
+                        backToTopBtn.classList.toggle('pointer-events-none', !shouldShow);
+                        backToTopBtn.classList.toggle('translate-y-2', !shouldShow);
+                    }
+                };
+
+                window.addEventListener('scroll', handleScroll, { passive: true });
+                handleScroll();
+
+                if (backToTopBtn) {
+                    backToTopBtn.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                }
+            } catch (error) {
+                console.error('Lỗi khởi tạo tương tác trang web:', error);
+            }
+        });
+    </script>
+</body>
+</html>

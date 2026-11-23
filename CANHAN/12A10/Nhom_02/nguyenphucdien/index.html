@@ -1,0 +1,4867 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGUYỄN PHÚC ĐIỀN — Một nét thành số</title>
+  <meta name="description" content="Bạn viết một con số. Mình muốn cho bạn thấy máy tính nhìn thấy gì. Website cá nhân của Nguyễn Phúc Điền — Trường THPT  Dak Mil." />
+
+  <!-- Phông chữ tiếng Việt: Barlow Condensed (tên khổ lớn), Be Vietnam Pro (đọc nội dung), IBM Plex Mono (số liệu & tọa độ) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. HỆ THỐNG MÀU SẮC, CHẤT LIỆU & PHÔNG CHỮ
+       - Vùng đọc, định hướng & thành tích: Giấy sáng #F3F1E9, mực #151C20, đường kẻ #C8CCC5
+       - Vùng thí nghiệm: Nền than #11191C, cam #FF7949 (dữ liệu khách), xanh bạc hà #9DE3C5 (máy tính)
+       ========================================================================== */
+    :root {
+      --paper: #F3F1E9;
+      --paper-card: #FAF9F4;
+      --paper-grid: rgba(21, 28, 32, 0.065);
+      --ink: #151C20;
+      --ink-muted: #4C575D;
+      --rule: #C8CCC5;
+
+      --lab-bg: #11191C;
+      --lab-surface: #182327;
+      --lab-surface-2: #1F2D33;
+      --lab-border: #2C3D44;
+      --lab-text: #EAECE8;
+      --lab-muted: #93A4AC;
+
+      --human: #FF7949;
+      --human-soft: rgba(255, 121, 73, 0.16);
+      --machine: #9DE3C5;
+      --machine-deep: #16654F;
+      --machine-soft: rgba(157, 227, 197, 0.14);
+      --warn: #F4C467;
+
+      --font-display: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+      --font-body: 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    section[id] {
+      scroll-margin-top: 68px;
+    }
+
+    @keyframes targetSectionPulse {
+      0% { box-shadow: inset 0 3px 0 var(--human); }
+      100% { box-shadow: inset 0 3px 0 transparent; }
+    }
+
+    section.is-scroll-target {
+      animation: targetSectionPulse 0.9s var(--ease-out) 1;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--human);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 4vw, 44px);
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    /* Chất liệu giấy ô ly kỹ thuật */
+    .graph-paper-bg {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, var(--paper-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--paper-grid) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Thanh định vị tối giản đầu trang */
+    .top-bar {
+      border-bottom: 1px solid var(--rule);
+      background: rgba(243, 241, 233, 0.94);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 54px;
+      font-size: 0.82rem;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--human);
+      flex-shrink: 0;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.8vw, 22px);
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: var(--ink-muted);
+      font-weight: 600;
+      padding: 6px 2px;
+      transition: color 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a.is-active {
+      color: var(--ink);
+    }
+
+    .top-nav a.is-active {
+      box-shadow: inset 0 -2px 0 var(--human);
+    }
+
+    /* Hệ thống nút bấm */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid currentColor;
+      background: transparent;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.14s var(--ease-out), background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-human {
+      background: var(--human);
+      border-color: var(--human);
+      color: #11191C;
+      font-weight: 700;
+    }
+
+    .btn-human:hover:not(:disabled) {
+      background: #FF8C63;
+      border-color: #FF8C63;
+    }
+
+    .btn-machine {
+      background: var(--machine);
+      border-color: var(--machine);
+      color: #11191C;
+      font-weight: 700;
+    }
+
+    .btn-machine:hover:not(:disabled) {
+      background: #B4ECD4;
+      border-color: #B4ECD4;
+    }
+
+    .btn-ghost-light {
+      border-color: var(--rule);
+      background: var(--paper-card);
+      color: var(--ink);
+    }
+
+    .btn-ghost-light:hover:not(:disabled) {
+      border-color: var(--ink);
+    }
+
+    .btn-ghost-dark {
+      border-color: var(--lab-border);
+      background: var(--lab-surface);
+      color: var(--lab-text);
+    }
+
+    .btn-ghost-dark:hover:not(:disabled) {
+      border-color: var(--lab-muted);
+      background: var(--lab-surface-2);
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .color-legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+    }
+
+    .legend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       2. MÀN HÌNH ĐẦU (HERO) — LƯỚI 12 CỘT, CHÂN DUNG + GIẤY Ô LY VIẾT SỐ
+       ========================================================================== */
+    .hero-section {
+      padding: clamp(28px, 4.5vw, 56px) 0 clamp(44px, 6vw, 72px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: clamp(20px, 3vw, 32px);
+      align-items: start;
+      position: relative;
+    }
+
+    .hero-left {
+      grid-column: 1 / span 6;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: clamp(4px, 1.5vw, 18px);
+      z-index: 2;
+    }
+
+    .hero-opener {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      color: var(--ink-muted);
+      border-left: 3px solid var(--human);
+      padding-left: 12px;
+      max-width: 44ch;
+    }
+
+    .hero-name {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3.15rem, 6.8vw, 5.65rem);
+      font-weight: 800;
+      line-height: 1.08;
+      padding-top: 0.14em;
+      padding-bottom: 0.04em;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: clamp(0.86rem, 1.3vw, 0.98rem);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-greeting {
+      margin: 4px 0 0;
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      color: var(--ink);
+      max-width: 48ch;
+    }
+
+    .school-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--rule);
+      margin-top: 4px;
+    }
+
+    .school-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .school-logo-wrap {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--rule);
+      background: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .school-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .school-logo-fallback {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .school-logo-wrap.is-missing img { display: none; }
+    .school-logo-wrap.is-missing .school-logo-fallback { display: inline; }
+
+    .text-jump-link {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--human);
+      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .text-jump-link:hover {
+      color: #C7491C;
+    }
+
+    .hero-right {
+      grid-column: 7 / span 6;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .portrait-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 580px;
+      background: #DCE0DB;
+      border: 1px solid var(--ink);
+      overflow: hidden;
+    }
+
+    .portrait-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 22%;
+    }
+
+    .portrait-meta-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(17, 25, 28, 0.84);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 4px 9px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .portrait-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px;
+      gap: 8px;
+      background: linear-gradient(150deg, #E7E5DC 0%, #D9DDD6 100%);
+      color: var(--ink);
+    }
+
+    .portrait-card.is-missing img { display: none; }
+    .portrait-card.is-missing .portrait-fallback { display: flex; }
+
+    .pad-slip {
+      grid-column: 1 / span 6;
+      margin-top: -12px;
+      background: var(--paper-card);
+      border: 1.5px solid var(--ink);
+      box-shadow: 8px 8px 0 rgba(21, 28, 32, 0.14);
+      padding: 18px;
+      position: relative;
+      z-index: 4;
+    }
+
+    @media (min-width: 960px) {
+      .hero-grid {
+        grid-template-rows: auto auto;
+      }
+      .hero-left {
+        grid-column: 1 / span 6;
+        grid-row: 1;
+      }
+      .hero-right {
+        grid-column: 7 / span 6;
+        grid-row: 1 / span 2;
+      }
+      .pad-slip {
+        grid-column: 1 / span 7;
+        grid-row: 2;
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+      }
+    }
+
+    .pad-canvas-box {
+      position: relative;
+      width: 224px;
+      height: 224px;
+      margin: 0 auto;
+      background-color: #FFFDF8;
+      background-image:
+        linear-gradient(to right, rgba(21, 28, 32, 0.09) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(21, 28, 32, 0.09) 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 1.5px solid var(--ink);
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .digit-draw-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    .pad-bbox-overlay {
+      position: absolute;
+      border: 2px dashed var(--human);
+      background: rgba(255, 121, 73, 0.07);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    .pad-bbox-overlay.is-visible {
+      opacity: 1;
+    }
+
+    .pad-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      pointer-events: none;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      transition: opacity 0.16s ease;
+    }
+
+    .pad-placeholder.is-hidden {
+      opacity: 0;
+    }
+
+    .pad-controls-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pad-title {
+      margin: 0;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pad-note {
+      margin: 0;
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+    }
+
+    .pad-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 2px;
+    }
+
+    .pad-status-msg {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #B44118;
+      min-height: 1.25em;
+    }
+
+    /* ==========================================================================
+       3. PHÒNG THÍ NGHIỆM 01 — TỪ NÉT TAY ĐẾN DỰ ĐOÁN (k-NN 28×28)
+       ========================================================================== */
+    .lab-section {
+      background-color: var(--lab-bg);
+      color: var(--lab-text);
+      padding: clamp(48px, 7vw, 88px) 0;
+      border-bottom: 1px solid var(--lab-border);
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .lab-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: var(--lab-text);
+    }
+
+    .lab-subtitle {
+      margin: 8px 0 0;
+      color: var(--lab-muted);
+      font-size: 0.96rem;
+      max-width: 60ch;
+    }
+
+    .stale-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244, 196, 103, 0.14);
+      border: 1px solid var(--warn);
+      color: var(--warn);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 6px 11px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+
+    .stale-banner[hidden] {
+      display: none;
+    }
+
+    .ai-stage-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1.05fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .instrument-panel {
+      background: var(--lab-surface);
+      border: 1px solid var(--lab-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--lab-muted);
+      border-bottom: 1px solid var(--lab-border);
+      padding-bottom: 10px;
+    }
+
+    .panel-step-tag {
+      color: var(--human);
+      font-weight: 700;
+    }
+
+    .panel-step-tag.machine {
+      color: var(--machine);
+    }
+
+    .viz-canvas-frame {
+      position: relative;
+      width: 100%;
+      max-width: 290px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      background: #0B1114;
+      border: 1px solid var(--lab-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .viz-canvas-frame canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .view-mode-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mode-tab {
+      min-height: 32px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--lab-border);
+      background: #0F171A;
+      color: var(--lab-muted);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .mode-tab[aria-pressed="true"] {
+      border-color: var(--machine);
+      color: var(--machine);
+      background: var(--machine-soft);
+      font-weight: 600;
+    }
+
+    .pixel-inspector-readout {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--machine);
+      text-align: center;
+      min-height: 1.3em;
+    }
+
+    .pixel-caption {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--lab-muted);
+      line-height: 1.55;
+      border-top: 1px solid var(--lab-border);
+      padding-top: 10px;
+    }
+
+    .neighbors-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .neighbor-card {
+      background: #0F171A;
+      border: 1px solid var(--lab-border);
+      border-radius: 4px;
+      padding: 8px;
+      text-align: center;
+      transition: transform 0.3s var(--ease-out), opacity 0.3s ease;
+    }
+
+    .neighbor-card.is-entering {
+      opacity: 0;
+      transform: translateX(14px);
+    }
+
+    .neighbor-card canvas {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      image-rendering: pixelated;
+      background: #080C0E;
+      border: 1px solid #223036;
+      margin-bottom: 6px;
+    }
+
+    .neighbor-label {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--machine);
+    }
+
+    .neighbor-dist {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--lab-muted);
+    }
+
+    .prediction-readout {
+      background: #0F171A;
+      border: 1px solid var(--lab-border);
+      border-left: 4px solid var(--machine);
+      border-radius: 4px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pred-main-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pred-digit {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--machine);
+    }
+
+    .pred-votes {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--lab-text);
+    }
+
+    .pred-note {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--lab-muted);
+    }
+
+    .feedback-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid var(--lab-border);
+      padding-top: 12px;
+    }
+
+    .feedback-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .digit-picker-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    .digit-picker-grid[hidden] {
+      display: none;
+    }
+
+    .digit-pick-btn {
+      min-height: 36px;
+      border: 1px solid var(--lab-border);
+      border-radius: 3px;
+      background: #0F171A;
+      color: var(--lab-text);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .digit-pick-btn:hover,
+    .digit-pick-btn[aria-pressed="true"] {
+      border-color: var(--human);
+      background: var(--human-soft);
+      color: var(--human);
+    }
+
+    .comparison-badge {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      padding: 8px 10px;
+      border-radius: 4px;
+      background: rgba(255, 121, 73, 0.12);
+      border: 1px solid rgba(255, 121, 73, 0.45);
+      color: var(--lab-text);
+    }
+
+    .comparison-badge[hidden] {
+      display: none;
+    }
+
+    /* ==========================================================================
+       4. TRANG GIỚI THIỆU — NỀN GIẤY SÁNG + BẢN NHÁP THUẬT TOÁN
+       ========================================================================== */
+    .bio-section {
+      padding: clamp(56px, 8vw, 96px) 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+      gap: clamp(28px, 5vw, 60px);
+      align-items: start;
+    }
+
+    .section-title-light {
+      margin: 0 0 22px;
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 4.4vw, 3.35rem);
+      font-weight: 800;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .bio-prose p {
+      margin: 0 0 18px;
+      font-size: clamp(1rem, 1.25vw, 1.08rem);
+      color: var(--ink);
+      max-width: 60ch;
+    }
+
+    .draft-sheet {
+      background: var(--paper-card);
+      border: 1.5px solid var(--ink);
+      padding: 22px;
+      box-shadow: 7px 7px 0 rgba(21, 28, 32, 0.09);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .draft-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      border-bottom: 1px dashed var(--rule);
+      padding-bottom: 8px;
+    }
+
+    .draft-margin-note {
+      margin: 0;
+      padding: 12px 14px;
+      background: rgba(255, 121, 73, 0.11);
+      border-left: 3.5px solid var(--human);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 0.98rem;
+    }
+
+    /* ==========================================================================
+       4B. ĐỊNH HƯỚNG NGHỀ NGHIỆP — AI ENGINEER (BÀI VĂN ~150 CHỮ + LỘ TRÌNH)
+       ========================================================================== */
+    .career-section {
+      padding: clamp(56px, 8vw, 94px) 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .career-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.05fr);
+      gap: clamp(26px, 4.5vw, 54px);
+      align-items: start;
+    }
+
+    .career-lead-card {
+      background: var(--paper-card);
+      border: 1.5px solid var(--ink);
+      padding: clamp(22px, 3vw, 30px);
+      box-shadow: 7px 7px 0 rgba(21, 28, 32, 0.09);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .career-role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      background: var(--ink);
+      color: var(--machine);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 2px;
+    }
+
+    .career-essay p {
+      margin: 0 0 14px;
+      font-size: 0.99rem;
+      color: var(--ink);
+      line-height: 1.74;
+    }
+
+    .career-essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .career-blueprint-box {
+      background: #11191C;
+      color: var(--lab-text);
+      border-radius: var(--radius-sm);
+      padding: 15px 16px;
+      border-left: 4px solid var(--human);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .career-blueprint-title {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--machine);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .career-pipeline-strip {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--lab-text);
+    }
+
+    .pipeline-node {
+      padding: 3px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--lab-border);
+      background: var(--lab-surface);
+    }
+
+    .pipeline-node.is-accent {
+      border-color: var(--human);
+      color: var(--human);
+    }
+
+    .pipeline-node.is-machine {
+      border-color: var(--machine);
+      color: var(--machine);
+    }
+
+    .career-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .career-pillar {
+      background: var(--paper-card);
+      border: 1.5px solid var(--rule);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .career-pillar.is-open {
+      border-color: var(--ink);
+      box-shadow: 5px 5px 0 rgba(21, 28, 32, 0.08);
+    }
+
+    .career-pillar-trigger {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .career-pillar-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .career-pillar-num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--human);
+      min-width: 24px;
+    }
+
+    .career-pillar-title {
+      font-size: 1.04rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .career-pillar-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      flex-shrink: 0;
+      transition: transform 0.32s var(--ease-out), color 0.2s ease;
+    }
+
+    .career-pillar.is-open .career-pillar-arrow {
+      transform: rotate(180deg);
+      color: var(--ink);
+    }
+
+    .career-pillar-panel {
+      overflow: hidden;
+    }
+
+    .career-pillar-panel[hidden] {
+      display: none;
+    }
+
+    .career-pillar-inner {
+      padding: 12px 18px 18px 54px;
+      border-top: 1px dashed var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .career-pillar-desc {
+      margin: 0;
+      font-size: 0.94rem;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .career-pillar-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .career-pillar-link {
+      color: var(--machine-deep);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--machine-deep);
+      padding-bottom: 1px;
+    }
+
+    .career-pillar-link:hover {
+      color: var(--ink);
+      border-color: var(--human);
+    }
+
+    /* ==========================================================================
+       5. MINI GAME THUẬT TOÁN — THAM LAM VS QUY HOẠCH ĐỘNG
+       ========================================================================== */
+    .algo-builder-card {
+      background: var(--lab-surface);
+      border: 1px solid var(--lab-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .problem-statement {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--lab-text);
+      max-width: 74ch;
+    }
+
+    .greedy-hypothesis {
+      margin: 0;
+      padding: 10px 14px;
+      background: #0F171A;
+      border-left: 3px solid var(--human);
+      font-size: 0.9rem;
+      color: var(--lab-muted);
+    }
+
+    .array-editor-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .array-cell-editor {
+      background: #0F171A;
+      border: 1.5px solid var(--lab-border);
+      border-radius: 6px;
+      padding: 8px;
+      width: 84px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cell-idx-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--lab-muted);
+    }
+
+    .cell-val-input {
+      width: 56px;
+      text-align: center;
+      background: var(--lab-surface-2);
+      border: 1px solid var(--lab-border);
+      border-radius: 4px;
+      color: var(--human);
+      font-family: var(--font-mono);
+      font-size: 1.12rem;
+      font-weight: 700;
+      padding: 4px 2px;
+    }
+
+    .cell-stepper {
+      display: flex;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .cell-step-btn {
+      flex: 1;
+      min-height: 28px;
+      border: 1px solid var(--lab-border);
+      background: var(--lab-surface);
+      color: var(--lab-text);
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cell-step-btn:hover {
+      border-color: var(--human);
+      color: var(--human);
+    }
+
+    .algo-actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .algo-btn-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .algo-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .algo-col {
+      background: var(--lab-surface);
+      border: 1px solid var(--lab-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .algo-col-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--lab-border);
+      padding-bottom: 10px;
+    }
+
+    .algo-col-title {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .algo-sum-badge {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .array-viz-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      min-height: 82px;
+    }
+
+    .viz-cell {
+      width: 58px;
+      height: 62px;
+      border-radius: 5px;
+      border: 1.5px solid var(--lab-border);
+      background: #0F171A;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.28s var(--ease-out), border-color 0.25s ease, background-color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .viz-cell-val {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .viz-cell-idx {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--lab-muted);
+    }
+
+    .viz-cell.is-greedy-pick {
+      transform: translateY(-7px);
+      border-color: var(--human);
+      background: var(--human-soft);
+      color: var(--human);
+    }
+
+    .viz-cell.is-greedy-blocked {
+      opacity: 0.45;
+      border-style: dashed;
+    }
+
+    .viz-cell.is-greedy-blocked::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      background: linear-gradient(
+        to top right,
+        transparent calc(50% - 1.2px),
+        var(--human) 50%,
+        transparent calc(50% + 1.2px)
+      );
+      pointer-events: none;
+    }
+
+    .viz-cell.is-dp-pick {
+      transform: translateY(-7px);
+      border-color: var(--machine);
+      background: var(--machine-soft);
+      color: var(--machine);
+    }
+
+    .dp-table-wrap {
+      position: relative;
+      padding-top: 38px;
+      overflow-x: auto;
+    }
+
+    .dp-arcs-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 38px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .dp-row {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .dp-f-btn {
+      width: 58px;
+      min-height: 58px;
+      flex-shrink: 0;
+      border-radius: 5px;
+      border: 1.5px solid var(--lab-border);
+      background: #0F171A;
+      color: var(--lab-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .dp-f-btn:hover,
+    .dp-f-btn.is-inspected {
+      border-color: var(--machine);
+      background: var(--machine-soft);
+    }
+
+    .dp-f-btn.is-pred-win {
+      border-color: var(--machine);
+      box-shadow: 0 0 0 1px var(--machine);
+    }
+
+    .dp-f-btn.is-pred-lose {
+      border-color: var(--lab-muted);
+      opacity: 0.72;
+    }
+
+    .dp-explain-box {
+      background: #0F171A;
+      border: 1px solid var(--lab-border);
+      border-left: 3.5px solid var(--machine);
+      padding: 12px 14px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      color: var(--lab-text);
+      line-height: 1.6;
+    }
+
+    .step-log-list {
+      margin: 0;
+      padding-left: 18px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--lab-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .verdict-bar {
+      margin-top: 20px;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      background: var(--lab-surface);
+      border: 1.5px solid var(--lab-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .verdict-bar.is-counterexample {
+      border-color: var(--machine);
+      background: rgba(157, 227, 197, 0.08);
+    }
+
+    /* ==========================================================================
+       6. THÀNH TÍCH — TRANG HỒ SƠ MÀU GIẤY XƯƠNG, ĐỦ ĐẸP ĐỂ CHỤP LẠI
+       ========================================================================== */
+    .honors-section {
+      padding: clamp(64px, 9vw, 110px) 0;
+      background: linear-gradient(125deg, #F7F5EE 0%, #F3F1E9 55%, #EBE8DD 100%);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .honors-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 22px;
+      border-bottom: 1.5px solid var(--ink);
+      margin-bottom: clamp(28px, 4.5vw, 48px);
+    }
+
+    .honors-owner {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .honors-layout {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: clamp(20px, 3vw, 32px);
+      align-items: stretch;
+    }
+
+    .honor-first {
+      grid-column: 1 / span 12;
+      background: var(--paper-card);
+      border: 1.5px solid var(--ink);
+      padding: clamp(24px, 4vw, 44px);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: clamp(20px, 4vw, 48px);
+      align-items: center;
+      position: relative;
+    }
+
+    .first-rank-word {
+      font-family: var(--font-display);
+      font-size: clamp(4.6rem, 11vw, 8.2rem);
+      font-weight: 800;
+      line-height: 0.98;
+      padding-top: 0.14em;
+      color: var(--ink);
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .first-ink-connector {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .first-ink-line {
+      flex: 0 1 78px;
+      height: 1.5px;
+      background: var(--human);
+      position: relative;
+    }
+
+    .first-ink-line::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--human);
+    }
+
+    .honor-heading {
+      margin: 0 0 8px;
+      font-size: clamp(1.25rem, 2.3vw, 1.75rem);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .honor-sub {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+    }
+
+    .honor-medal-card {
+      grid-column: span 6;
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      padding: clamp(22px, 3.2vw, 34px);
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2.8vw, 28px);
+      transition: border-color 0.2s ease;
+    }
+
+    .honor-medal-card:hover {
+      border-color: var(--ink);
+    }
+
+    .medal-disc-wrap {
+      position: relative;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .medal-disc-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .medal-bronze {
+      background:
+        repeating-linear-gradient(
+          118deg,
+          rgba(255, 224, 196, 0.14) 0px,
+          rgba(255, 224, 196, 0.14) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        radial-gradient(circle at 32% 28%, #C98A5B 0%, #8E5632 58%, #59331B 100%);
+      border: 3px solid #4A2914;
+      box-shadow: inset 0 2px 6px rgba(255, 228, 200, 0.35), inset 0 -6px 12px rgba(42, 22, 10, 0.55), 0 8px 18px rgba(21, 28, 32, 0.12);
+    }
+
+    .medal-bronze::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(56, 30, 14, 0.5);
+    }
+
+    .medal-bronze-text {
+      font-family: var(--font-display);
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: #42220F;
+      text-shadow: 0 1px 0 rgba(255, 220, 190, 0.45);
+      z-index: 2;
+    }
+
+    .medal-gold {
+      background:
+        repeating-radial-gradient(
+          circle at 50% 50%,
+          rgba(255, 250, 224, 0.22) 0px,
+          rgba(255, 250, 224, 0.22) 1.5px,
+          rgba(163, 128, 54, 0.12) 1.5px,
+          rgba(163, 128, 54, 0.12) 5px
+        ),
+        radial-gradient(circle at 35% 30%, #F5E5A8 0%, #D9B762 56%, #9E7B2C 100%);
+      border: 3px solid #7C5E1C;
+      box-shadow: inset 0 2px 8px rgba(255, 252, 232, 0.6), inset 0 -6px 12px rgba(105, 78, 20, 0.4), 0 8px 18px rgba(21, 28, 32, 0.12);
+      cursor: pointer;
+    }
+
+    .medal-gold::before {
+      content: "";
+      position: absolute;
+      inset: 11px;
+      border-radius: 50%;
+      border: 1px dashed rgba(106, 78, 20, 0.45);
+    }
+
+    .medal-gold-text {
+      font-family: var(--font-display);
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #5C4310;
+      text-shadow: 0 1px 0 rgba(255, 250, 226, 0.65);
+      z-index: 2;
+    }
+
+    .gold-sheen {
+      position: absolute;
+      inset: -20%;
+      background: linear-gradient(
+        112deg,
+        transparent 38%,
+        rgba(255, 255, 245, 0.72) 50%,
+        transparent 62%
+      );
+      transform: translateX(-130%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .medal-gold.is-sheening .gold-sheen {
+      animation: goldSheenSweep 0.85s var(--ease-out) 1;
+    }
+
+    @keyframes goldSheenSweep {
+      from { transform: translateX(-130%); }
+      to { transform: translateX(130%); }
+    }
+
+    .honor-extra-meta {
+      margin: 6px 0 0;
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+    }
+
+    /* ==========================================================================
+       7. GÓC AI ENGINEER — MÔ PHỎNG BĂNG CHUYỀN & ĐỘ TRỄ XỬ LÝ
+       ========================================================================== */
+    .conveyor-stage {
+      background: var(--lab-surface);
+      border: 1px solid var(--lab-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .conveyor-canvas-wrap {
+      width: 100%;
+      background: #0C1316;
+      border: 1px solid var(--lab-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    #conveyorCanvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .conveyor-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .latency-control-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      flex: 1 1 320px;
+    }
+
+    .latency-range {
+      flex: 1 1 180px;
+      accent-color: var(--human);
+      cursor: pointer;
+    }
+
+    .conveyor-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric-card {
+      background: #0F171A;
+      border: 1px solid var(--lab-border);
+      border-radius: 4px;
+      padding: 12px 14px;
+    }
+
+    .metric-label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--lab-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--machine);
+    }
+
+    .conveyor-takeaway {
+      margin: 0;
+      padding: 12px 16px;
+      background: rgba(157, 227, 197, 0.08);
+      border-left: 3.5px solid var(--machine);
+      font-size: 0.94rem;
+      color: var(--lab-text);
+    }
+
+    .sim-disclosure {
+      border-top: 1px solid var(--lab-border);
+      padding-top: 12px;
+      font-size: 0.84rem;
+      color: var(--lab-muted);
+    }
+
+    .sim-disclosure summary {
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--lab-text);
+      font-weight: 600;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 4px 0;
+      user-select: none;
+    }
+
+    .sim-disclosure summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .sim-disclosure summary::after {
+      content: "▾";
+      color: var(--machine);
+      font-size: 0.95rem;
+      transition: transform 0.32s var(--ease-out);
+    }
+
+    .sim-disclosure[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .sim-disclosure-body {
+      overflow: hidden;
+    }
+
+    /* ==========================================================================
+       8. ĐOẠN KẾT — POSTER DỌC 1200 × 1600 PX & LỜI KẾT CỦA ĐIỀN
+       ========================================================================== */
+    .poster-section {
+      padding: clamp(56px, 8vw, 96px) 0 clamp(68px, 9vw, 110px);
+      background: var(--paper);
+    }
+
+    .poster-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(28px, 5vw, 56px);
+      align-items: center;
+    }
+
+    .poster-preview-shell {
+      position: relative;
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+      border: 1.5px solid var(--ink);
+      background: #11191C;
+      box-shadow: 12px 12px 0 rgba(21, 28, 32, 0.14);
+    }
+
+    #posterPreviewCanvas {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      display: block;
+    }
+
+    .poster-sample-ribbon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--human);
+      color: #11191C;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .poster-sample-ribbon[hidden] {
+      display: none;
+    }
+
+    .poster-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .poster-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .poster-status-msg {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: #1F6F56;
+      min-height: 1.3em;
+    }
+
+    .closing-letter {
+      margin-top: 16px;
+      padding-top: 22px;
+      border-top: 1.5px solid var(--rule);
+    }
+
+    .closing-quote {
+      margin: 0 0 14px;
+      font-size: clamp(1.02rem, 1.4vw, 1.14rem);
+      color: var(--ink);
+      max-width: 52ch;
+    }
+
+    .closing-sign {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    /* Hộp thoại xem minh chứng chứng nhận */
+    .cert-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(17, 25, 28, 0.86);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .cert-modal[hidden] {
+      display: none;
+    }
+
+    .cert-modal-card {
+      background: var(--paper-card);
+      color: var(--ink);
+      max-width: 780px;
+      width: 100%;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--ink);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cert-modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cert-modal-card img {
+      max-height: 72vh;
+      width: auto;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    /* Nút trượt mượt lên đầu trang */
+    .scroll-top-btn {
+      position: fixed;
+      right: clamp(14px, 3vw, 28px);
+      bottom: clamp(16px, 3vw, 28px);
+      z-index: 50;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--ink);
+      background: var(--paper-card);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 22px rgba(17, 25, 28, 0.2);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(18px);
+      pointer-events: none;
+      transition: opacity 0.28s var(--ease-out), transform 0.32s var(--ease-out), background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .scroll-top-btn.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .scroll-top-btn:hover {
+      background: var(--human);
+      border-color: var(--human);
+      color: #11191C;
+    }
+
+    /* ==========================================================================
+       9. RESPONSIVE CHO MOBILE (320px, 390px) & TABLET
+       ========================================================================== */
+    @media (max-width: 959px) {
+      .hero-left,
+      .hero-right,
+      .pad-slip {
+        grid-column: 1 / -1;
+      }
+
+      .portrait-card {
+        max-height: 440px;
+      }
+
+      .pad-slip {
+        margin-top: -22px;
+        margin-inline: 8px;
+      }
+
+      .ai-stage-grid,
+      .bio-grid,
+      .career-layout,
+      .algo-compare-grid,
+      .poster-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .honor-medal-card {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .top-nav {
+        gap: 10px;
+        font-size: 0.76rem;
+      }
+
+      .pad-canvas-box {
+        width: 212px;
+        height: 212px;
+      }
+
+      .career-pillar-inner {
+        padding-left: 18px;
+      }
+
+      .honor-first {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .honor-medal-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .conveyor-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .viz-cell,
+      .dp-f-btn {
+        width: 48px;
+        height: 54px;
+        min-height: 54px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========================================================================
+       THANH ĐỊNH VỊ GỌN
+       ======================================================================== -->
+  <header class="top-bar">
+    <div class="container top-bar-inner">
+      <a href="#dau-trang" class="brand-mark">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span id="topBrandName">Nguyễn Phúc Điền</span>
+      </a>
+      <nav class="top-nav" aria-label="Điều hướng chính">
+        <a href="#thu-nghiem-ai">Nhận dạng số</a>
+        <a href="#gioi-thieu">Giới thiệu</a>
+        <a href="#dinh-huong">Định hướng</a>
+        <a href="#thuat-toan">Thuật toán</a>
+        <a href="#thanh-tich">Thành tích</a>
+        <a href="#bang-chuyen">Băng chuyền</a>
+        <a href="#poster-cuoi">Poster</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         III. MÀN HÌNH ĐẦU — GẶP ĐIỀN TRƯỚC KHI GẶP THUẬT TOÁN
+         ====================================================================== -->
+    <section id="dau-trang" class="hero-section graph-paper-bg">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <span class="section-eyebrow" style="color: var(--ink-muted);">
+              <span class="brand-dot" aria-hidden="true"></span>
+              Một nét thành số
+            </span>
+
+            <p id="heroOpenerText" class="hero-opener"></p>
+
+            <h1 id="heroFullName" class="hero-name"></h1>
+
+            <p id="heroTagline" class="hero-subtitle"></p>
+
+            <p id="heroGreeting" class="hero-greeting"></p>
+
+            <div class="school-row">
+              <div class="school-badge">
+                <span id="schoolLogoWrap" class="school-logo-wrap">
+                  <img id="schoolLogoImg" src="" alt="Logo Trường THPT DakMil" />
+                  <span class="school-logo-fallback" aria-hidden="true">THD</span>
+                </span>
+                <span id="schoolInfoLine"></span>
+              </div>
+
+              <a href="#thanh-tich" class="text-jump-link">Xem thành tích →</a>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <figure id="portraitCard" class="portrait-card" style="margin:0;">
+              <img id="portraitImg" src="" alt="Chân dung Nguyễn Phúc Điền" />
+              <figcaption class="portrait-meta-tag">CHÂN DUNG · THPT DakMil</figcaption>
+              <div class="portrait-fallback" role="note">
+                <strong style="font-size:1rem;">Chân dung Nguyễn Phúc Điền</strong>
+                <span style="font-size:0.86rem; color:var(--ink-muted);">
+                  Đặt ảnh chân dung thật vào <code class="mono">./assets/dien.jpg</code>
+                </span>
+              </div>
+            </figure>
+          </div>
+
+          <div class="pad-slip" aria-label="Ô giấy ô ly viết chữ số từ 0 đến 9">
+            <div class="pad-canvas-box" id="padCanvasBox">
+              <canvas
+                id="digitDrawCanvas"
+                class="digit-draw-canvas"
+                aria-label="Vùng vẽ một chữ số từ 0 đến 9 bằng chuột hoặc ngón tay"
+              ></canvas>
+              <div id="padBboxOverlay" class="pad-bbox-overlay" aria-hidden="true"></div>
+              <div id="padPlaceholder" class="pad-placeholder">
+                Viết một chữ số từ <strong>0</strong> đến <strong>9</strong>
+              </div>
+            </div>
+
+            <div class="pad-controls-col">
+              <p class="pad-title">Viết một chữ số từ 0 đến 9</p>
+              <p class="pad-note">
+                Hỗ trợ nhiều nét rời (ví dụ số 7 có gạch ngang hoặc số 4 hai nét). Dữ liệu chạy hoàn toàn trên trình duyệt của bạn.
+              </p>
+              <div class="pad-btn-group">
+                <button type="button" id="btnRunAI" class="btn btn-human">Cho máy xem</button>
+                <button type="button" id="btnClearPad" class="btn btn-ghost-light">Xóa nét</button>
+                <button type="button" id="btnUseSample" class="btn btn-ghost-light">Dùng nét mẫu</button>
+              </div>
+              <p id="padStatusMsg" class="pad-status-msg" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         IV. TƯƠNG TÁC CHỮ KÝ — TỪ NÉT TAY ĐẾN DỰ ĐOÁN (k-NN 28×28 THẬT)
+         ====================================================================== -->
+    <section id="thu-nghiem-ai" class="lab-section">
+      <div class="container">
+        <div class="lab-header">
+          <div>
+            <span class="section-eyebrow" style="color: var(--machine);">
+              Thí nghiệm 01 · Bộ nhận dạng theo mẫu · k-NN (k = 5)
+            </span>
+            <h2 class="lab-title">Từ nét tay đến 784 ô sáng tối</h2>
+            <p class="lab-subtitle">
+              Khung nhìn song song: nét bạn vừa viết, đúng 784 giá trị sáng tối sau khi căn giữa, và ba mẫu gần nhất trong tập chuẩn hóa.
+            </p>
+          </div>
+          <div class="color-legend" aria-label="Quy ước màu">
+            <span class="legend-pill">
+              <span class="legend-swatch" style="background: var(--human);"></span>
+              Dữ liệu của bạn
+            </span>
+            <span class="legend-pill">
+              <span class="legend-swatch" style="background: var(--machine);"></span>
+              Kết quả máy tính
+            </span>
+          </div>
+        </div>
+
+        <div id="aiStaleBanner" class="stale-banner" hidden>
+          Nét vẽ vừa thay đổi — bấm “Cho máy xem” để cập nhật dự đoán mới.
+        </div>
+
+        <div class="ai-stage-grid">
+          <div class="instrument-panel">
+            <div class="panel-head">
+              <span class="panel-step-tag">01 · NÉT VIẾT &amp; HỘP BAO</span>
+              <span id="aiBboxCoords">chưa có nét</span>
+            </div>
+            <div class="viz-canvas-frame">
+              <canvas id="aiStrokeCanvas" width="280" height="280" aria-label="Nét tay gốc kèm hộp bao căn giữa"></canvas>
+            </div>
+            <div class="view-mode-tabs" role="group" aria-label="Xem máy đã nhìn gì">
+              <button type="button" class="mode-tab" data-ai-view="raw" aria-pressed="false">Ảnh gốc</button>
+              <button type="button" class="mode-tab" data-ai-view="centered" aria-pressed="false">Đã căn giữa</button>
+              <button type="button" class="mode-tab" data-ai-view="grid" aria-pressed="true">Xem máy đã nhìn gì</button>
+            </div>
+            <p class="pixel-caption" style="margin-top:auto;">
+              Chạm các chế độ phía trên để so sánh nét tự do của bạn với khung chuẩn hóa 20 × 20 đặt giữa lưới 28 × 28.
+            </p>
+          </div>
+
+          <div class="instrument-panel">
+            <div class="panel-head">
+              <span class="panel-step-tag machine">02 · LƯỚI 28 × 28 (784 GIÁ TRỊ)</span>
+              <span id="aiActivePixels">0 / 784 ô sáng</span>
+            </div>
+            <div class="viz-canvas-frame">
+              <canvas id="aiPixelCanvas" width="280" height="280" aria-label="Lưới pixel 28 nhân 28 mà máy tính nhận được"></canvas>
+            </div>
+            <div id="pixelInspectorReadout" class="pixel-inspector-readout">
+              Rê hoặc chạm một ô bất kỳ để xem giá trị độ sáng [0.00 – 1.00]
+            </div>
+            <p class="pixel-caption">
+              “Máy chỉ nhận 784 giá trị sáng tối. Cái gạch ngang bạn vừa thêm cũng phải đi qua 784 ô này.”
+            </p>
+          </div>
+
+          <div class="instrument-panel">
+            <div class="panel-head">
+              <span class="panel-step-tag machine">03 · 3 LÁNG GIỀNG GẦN NHẤT</span>
+              <span>k-NN · k = 5</span>
+            </div>
+
+            <div class="neighbors-row" id="neighborsRow" aria-live="polite">
+              <div class="neighbor-card" data-nb="0">
+                <canvas width="56" height="56"></canvas>
+                <div class="neighbor-label">—</div>
+                <div class="neighbor-dist">d = —</div>
+              </div>
+              <div class="neighbor-card" data-nb="1">
+                <canvas width="56" height="56"></canvas>
+                <div class="neighbor-label">—</div>
+                <div class="neighbor-dist">d = —</div>
+              </div>
+              <div class="neighbor-card" data-nb="2">
+                <canvas width="56" height="56"></canvas>
+                <div class="neighbor-label">—</div>
+                <div class="neighbor-dist">d = —</div>
+              </div>
+            </div>
+
+            <div class="prediction-readout" aria-live="polite">
+              <div class="pred-main-line">
+                <span id="predDigitDisplay" class="pred-digit">—</span>
+                <span id="predVotesDisplay" class="pred-votes">Viết số ở trên hoặc bấm “Dùng nét mẫu”</span>
+              </div>
+              <p id="predNoteDisplay" class="pred-note">
+                Bộ nhận dạng so khớp ảnh 28 × 28 của bạn với 45 biến thể chữ số chuẩn hóa sẵn (gồm số 1 có/không chân, số 4 kín/hở, số 7 có/không gạch ngang).
+              </p>
+            </div>
+
+            <div class="feedback-box">
+              <div class="feedback-btn-row">
+                <button type="button" id="btnConfirmCorrect" class="btn btn-ghost-dark btn-sm" disabled>
+                  Máy đọc đúng
+                </button>
+                <button type="button" id="btnConfirmWrong" class="btn btn-ghost-dark btn-sm" disabled>
+                  Mình viết số khác
+                </button>
+                <a href="#dau-trang" class="btn btn-ghost-dark btn-sm">Thêm nét / sửa</a>
+              </div>
+
+              <div id="wrongDigitPicker" class="digit-picker-grid" hidden role="group" aria-label="Chọn chữ số bạn thực sự viết"></div>
+
+              <div id="comparisonBadge" class="comparison-badge" hidden aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         V. TRANG GIỚI THIỆU — “TẠI SAO MÌNH CỨ MUỐN THỬ THÊM MỘT TEST?”
+         ====================================================================== -->
+    <section id="gioi-thieu" class="bio-section">
+      <div class="container">
+        <div class="bio-grid">
+          <div class="bio-prose">
+            <span class="section-eyebrow" style="color: var(--ink-muted);">
+              Ghi chép cá nhân
+            </span>
+            <h2 class="section-title-light">Tại sao mình cứ muốn thử thêm một test?</h2>
+            <div id="bioParagraphsContainer"></div>
+          </div>
+
+          <aside class="draft-sheet" aria-label="Bản nháp thuật toán trên giấy ô ly">
+            <div class="draft-header">
+              <span>NHÁP #11 · KHÔNG CHỌN 2 Ô KỀ NHAU</span>
+              <span>[4, 5, 4]</span>
+            </div>
+
+            <svg viewBox="0 0 360 190" role="img" aria-label="Minh họa bản nháp thử tham lam trên dãy 4, 5, 4 bị gạch sửa sang quy hoạch động" style="width:100%; height:auto;">
+              <defs>
+                <pattern id="draftGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#151C20" stroke-opacity="0.08" stroke-width="1" />
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="360" height="190" fill="url(#draftGrid)" />
+
+              <text x="14" y="26" font-family="IBM Plex Mono, monospace" font-size="11" fill="#4C575D">Thử tham lam (chọn max trước):</text>
+              <g transform="translate(14, 36)">
+                <rect x="0" y="0" width="54" height="38" fill="#FAF9F4" stroke="#151C20" stroke-width="1.2" opacity="0.55" />
+                <text x="27" y="24" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#4C575D">4</text>
+                <line x1="6" y1="32" x2="48" y2="6" stroke="#FF7949" stroke-width="1.8" />
+
+                <rect x="64" y="-4" width="54" height="38" fill="#FF7949" fill-opacity="0.2" stroke="#FF7949" stroke-width="2" />
+                <text x="91" y="20" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="#151C20">5</text>
+
+                <rect x="128" y="0" width="54" height="38" fill="#FAF9F4" stroke="#151C20" stroke-width="1.2" opacity="0.55" />
+                <text x="155" y="24" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#4C575D">4</text>
+                <line x1="134" y1="32" x2="176" y2="6" stroke="#FF7949" stroke-width="1.8" />
+
+                <text x="202" y="24" font-family="IBM Plex Mono, monospace" font-size="13" fill="#B44118" font-weight="700">→ tổng = 5 (WA!)</text>
+              </g>
+
+              <rect x="184" y="96" width="150" height="22" rx="4" fill="#ECEAE0" opacity="0.9" />
+              <line x1="194" y1="107" x2="318" y2="107" stroke="#4C575D" stroke-width="1" stroke-dasharray="4 3" />
+
+              <text x="14" y="114" font-family="IBM Plex Mono, monospace" font-size="11" fill="#151C20" font-weight="600">Đổi sang DP: F[i] = max(F[i-1], a[i]+F[i-2])</text>
+              <g transform="translate(14, 126)">
+                <rect x="0" y="0" width="54" height="38" fill="#9DE3C5" fill-opacity="0.45" stroke="#151C20" stroke-width="1.8" />
+                <text x="27" y="24" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="#151C20">4</text>
+
+                <rect x="64" y="0" width="54" height="38" fill="#FAF9F4" stroke="#C8CCC5" stroke-width="1.2" />
+                <text x="91" y="24" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#4C575D">5</text>
+
+                <rect x="128" y="0" width="54" height="38" fill="#9DE3C5" fill-opacity="0.45" stroke="#151C20" stroke-width="1.8" />
+                <text x="155" y="24" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="#151C20">4</text>
+
+                <path d="M 27 42 Q 91 58 155 42" fill="none" stroke="#151C20" stroke-width="1.5" stroke-dasharray="3 3" />
+                <text x="202" y="24" font-family="IBM Plex Mono, monospace" font-size="13" fill="#151C20" font-weight="700">→ 4 + 4 = 8 ✓</text>
+              </g>
+            </svg>
+
+            <p class="draft-margin-note">
+              “Khoan tối ưu. Có test nào làm nó sai chưa?”
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         V-B. ĐỊNH HƯỚNG NGHỀ NGHIỆP — AI ENGINEER (BÀI VĂN ~165 CHỮ + 3 TRỤ CỘT)
+         ====================================================================== -->
+    <section id="dinh-huong" class="career-section graph-paper-bg">
+      <div class="container">
+        <span class="section-eyebrow" style="color: var(--ink-muted);">
+          <span class="brand-dot" aria-hidden="true"></span>
+          Định hướng nghề nghiệp
+        </span>
+        <h2 id="careerTitle" class="section-title-light"></h2>
+
+        <div class="career-layout">
+          <div class="career-lead-card">
+            <span id="careerRoleBadge" class="career-role-badge">Định hướng · AI Engineer</span>
+            <div id="careerEssayContainer" class="career-essay"></div>
+
+            <div class="career-blueprint-box">
+              <span class="career-blueprint-title">Một hệ thống AI hoàn chỉnh mình hướng tới</span>
+              <div class="career-pipeline-strip" aria-label="Luồng hệ thống AI từ dữ liệu đến hành động">
+                <span class="pipeline-node is-accent">Dữ liệu thật</span>
+                <span aria-hidden="true">→</span>
+                <span class="pipeline-node">Thuật toán &amp; Mô hình</span>
+                <span aria-hidden="true">→</span>
+                <span class="pipeline-node is-machine">Kiểm thử độ trễ</span>
+                <span aria-hidden="true">→</span>
+                <span class="pipeline-node is-machine">Hành động đúng lúc</span>
+              </div>
+              <p id="careerBlueprintNote" style="margin:4px 0 0; font-size:0.86rem; color:var(--lab-muted); line-height:1.55;"></p>
+            </div>
+          </div>
+
+          <div id="careerPillarsContainer" class="career-pillars" aria-label="Ba trụ cột chuẩn bị cho lộ trình AI Engineer">
+            <!-- Render từ PROFILE_CONFIG.careerDirection.pillars với hiệu ứng trượt mở/đóng mượt -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VI. MINI GAME THUẬT TOÁN — “BẠN BẺ ĐƯỢC LỜI GIẢI NÀY KHÔNG?”
+         ====================================================================== -->
+    <section id="thuat-toan" class="lab-section">
+      <div class="container">
+        <div class="lab-header">
+          <div>
+            <span class="section-eyebrow" style="color: var(--human);">
+              Thí nghiệm 02 · Phản ví dụ thuật toán
+            </span>
+            <h2 class="lab-title">Bạn bẻ được lời giải này không?</h2>
+          </div>
+          <div class="color-legend">
+            <span class="legend-pill">
+              <span class="legend-swatch" style="background: var(--human);"></span>
+              Test bạn nhập / Tham lam
+            </span>
+            <span class="legend-pill">
+              <span class="legend-swatch" style="background: var(--machine);"></span>
+              Quy hoạch động tối ưu
+            </span>
+          </div>
+        </div>
+
+        <div class="algo-builder-card">
+          <p class="problem-statement">
+            <strong>Đề bài:</strong> “Có một hàng ô chứa điểm. Bạn được chọn nhiều ô, miễn là hai ô được chọn không đứng cạnh nhau. Làm sao lấy tổng điểm lớn nhất?”
+          </p>
+          <p class="greedy-hypothesis">
+            <strong>Lời giải thử trên bàn (Tham lam):</strong> “Cứ lấy ô còn lại có giá trị lớn nhất, rồi loại hai ô bên cạnh.”
+            <span class="mono" style="font-size:0.78rem; color:var(--lab-muted);"> (Nếu bằng điểm, chọn ô bên trái trước.)</span>
+          </p>
+
+          <div id="arrayEditorRow" class="array-editor-row" aria-label="Danh sách các ô điểm của bộ test"></div>
+
+          <div class="algo-actions-bar">
+            <div class="algo-btn-cluster">
+              <button type="button" id="btnRunAlgo" class="btn btn-human">Chạy hai lời giải</button>
+              <button type="button" id="btnAlgoStep" class="btn btn-ghost-dark btn-sm">Từng bước</button>
+              <button type="button" id="btnAlgoFast" class="btn btn-ghost-dark btn-sm">Chạy nhanh</button>
+              <button type="button" id="btnAlgoEditFocus" class="btn btn-ghost-dark btn-sm">Sửa test</button>
+            </div>
+            <div class="algo-btn-cluster">
+              <button type="button" id="btnAddCell" class="btn btn-ghost-dark btn-sm">+ Thêm ô</button>
+              <button type="button" id="btnRemoveCell" class="btn btn-ghost-dark btn-sm">− Bớt ô</button>
+              <button type="button" class="btn btn-ghost-dark btn-sm" data-preset="4,5,4">[4, 5, 4]</button>
+              <button type="button" class="btn btn-ghost-dark btn-sm" data-preset="2,2,2">[2, 2, 2]</button>
+              <button type="button" class="btn btn-ghost-dark btn-sm" data-preset="7">[7]</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="algoStaleBanner" class="stale-banner" hidden>
+          Dãy số vừa được chỉnh — bấm “Chạy hai lời giải” để cập nhật kết quả so sánh.
+        </div>
+
+        <div class="algo-compare-grid">
+          <div class="algo-col">
+            <div class="algo-col-head">
+              <h3 class="algo-col-title" style="color: var(--human);">Cột trái · Tham lam</h3>
+              <span id="greedySumBadge" class="algo-sum-badge" style="color: var(--human);">Tổng = —</span>
+            </div>
+
+            <div id="greedyVizStrip" class="array-viz-strip" aria-live="polite"></div>
+
+            <div>
+              <div class="mono" style="font-size:0.75rem; color:var(--lab-muted); margin-bottom:6px;">Các bước chọn:</div>
+              <ol id="greedyStepLog" class="step-log-list"></ol>
+            </div>
+          </div>
+
+          <div class="algo-col">
+            <div class="algo-col-head">
+              <h3 class="algo-col-title" style="color: var(--machine);">Cột phải · Quy hoạch động</h3>
+              <span id="dpSumBadge" class="algo-sum-badge" style="color: var(--machine);">Tổng = —</span>
+            </div>
+
+            <div id="dpVizStrip" class="array-viz-strip" aria-live="polite"></div>
+
+            <div>
+              <div class="mono" style="font-size:0.75rem; color:var(--lab-muted); margin-bottom:4px;">
+                Bảng F[0..n] — Rê hoặc chạm một ô F[i] để xem hai tiền nhiệm:
+              </div>
+              <div class="dp-table-wrap" id="dpTableWrap">
+                <svg id="dpArcsSvg" class="dp-arcs-svg" aria-hidden="true"></svg>
+                <div id="dpRow" class="dp-row"></div>
+              </div>
+            </div>
+
+            <div id="dpExplainBox" class="dp-explain-box" aria-live="polite">
+              Bấm “Chạy hai lời giải” để xem quy hoạch động so sánh hai nhánh tại từng vị trí.
+            </div>
+          </div>
+        </div>
+
+        <div id="algoVerdictBar" class="verdict-bar" aria-live="polite">
+          <div>
+            <strong id="algoVerdictTitle" style="font-size:1rem;">Chưa chạy bộ test này</strong>
+            <div id="algoVerdictDetail" class="mono" style="font-size:0.82rem; color:var(--lab-muted); margin-top:4px;">
+              Thử giữ nguyên [4, 5, 4] hoặc đổi các ô rồi bấm “Chạy hai lời giải”.
+            </div>
+          </div>
+          <a href="#poster-cuoi" id="btnSaveTestToPoster" class="btn btn-machine btn-sm">
+            Đưa test này lên poster ↓
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VII. THÀNH TÍCH — TRANG HỒ SƠ SÁNG, TĨNH, ĐỦ ĐẸP ĐỂ CHỤP LẠI
+         ====================================================================== -->
+    <section id="thanh-tich" class="honors-section">
+      <div class="container">
+        <div class="honors-top">
+          <div>
+            <span class="section-eyebrow" style="color: var(--ink-muted);">Hồ sơ ghi nhận</span>
+            <h2 class="section-title-light" style="margin:0;">Thành tích</h2>
+          </div>
+          <div id="honorsOwnerName" class="honors-owner"></div>
+        </div>
+
+        <div id="honorsLayout" class="honors-layout"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VIII. GÓC AI ENGINEER — “TỪ MỘT DỰ ĐOÁN ĐẾN MỘT HÀNH ĐỘNG”
+         ====================================================================== -->
+    <section id="bang-chuyen" class="lab-section">
+      <div class="container">
+        <div class="lab-header">
+          <div>
+            <span class="section-eyebrow" style="color: var(--machine);">
+              Góc AI Engineer · Mô phỏng trên web (Camera + Cổng gạt)
+            </span>
+            <h2 class="lab-title">Từ một dự đoán đến một hành động</h2>
+            <p class="lab-subtitle">
+              Thời gian vật thể đi từ camera tới cổng gạt là cố định <span class="mono" style="color:var(--lab-text);">800 ms</span>. Hãy thử đổi độ trễ xử lý từ <span class="mono">200 ms</span> sang <span class="mono">1.000 ms</span> để xem cả hệ thống phản ứng thế nào.
+            </p>
+          </div>
+        </div>
+
+        <div class="conveyor-stage">
+          <div class="conveyor-canvas-wrap">
+            <canvas
+              id="conveyorCanvas"
+              width="960"
+              height="360"
+              aria-label="Mô phỏng băng chuyền phân loại khối tròn màu cam và khối vuông màu bạc hà theo độ trễ xử lý"
+            ></canvas>
+          </div>
+
+          <div class="conveyor-controls">
+            <div class="latency-control-group">
+              <label for="latencySlider" class="mono" style="font-size:0.84rem; font-weight:600;">
+                Độ trễ xử lý: <span id="latencyValueLabel" style="color:var(--human);">200 ms</span>
+              </label>
+              <input
+                type="range"
+                id="latencySlider"
+                class="latency-range"
+                min="0"
+                max="1200"
+                step="25"
+                value="200"
+              />
+              <button type="button" class="btn btn-ghost-dark btn-sm" data-latency-preset="200">Thử 200 ms</button>
+              <button type="button" class="btn btn-ghost-dark btn-sm" data-latency-preset="1000">Thử 1.000 ms</button>
+            </div>
+
+            <button type="button" id="btnRunConveyor" class="btn btn-human">
+              Xem một lượt
+            </button>
+          </div>
+
+          <div class="conveyor-metrics" aria-live="polite">
+            <div class="metric-card">
+              <span class="metric-label">MỐC THỜI GIAN TỚI CỔNG GẠT</span>
+              <span id="metricTravelTime" class="metric-value">800 ms (từ lúc qua camera)</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">THỜI ĐIỂM LỆNH TỚI CỔNG Ở LƯỢT NÀY</span>
+              <span id="metricCommandTime" class="metric-value">Đang chờ bấm “Xem một lượt”</span>
+            </div>
+          </div>
+
+          <p id="conveyorTakeaway" class="conveyor-takeaway">
+            “Ở trường hợp này, mình có thể giữ nguyên bộ nhận dạng và sửa phần thời gian.”
+          </p>
+
+          <details id="simDisclosure" class="sim-disclosure">
+            <summary>Cách mô phỏng hoạt động</summary>
+            <div class="sim-disclosure-body">
+              <p style="margin:8px 0 0; line-height:1.6;">
+                Đây là <strong>Mô phỏng trên web</strong> lấy cảm hứng từ hệ thống phân loại vật thể dùng camera + vi điều khiển ESP32. Trong thí nghiệm này, hai vật thể (khối tròn màu cam và khối vuông màu bạc hà) được dán nhãn sẵn để tách riêng yếu tố <em>độ trễ xử lý</em> khỏi độ chính xác nhận dạng. Khi lệnh xử lý đến trễ hơn 800 ms (sau khi vật thể đã trôi qua cổng), hệ thống đánh dấu ID lệnh là quá hạn và bỏ qua để không gạt nhầm vật thể kế tiếp.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         IX. ĐOẠN KẾT — TẤM POSTER 1200 × 1600 PX & LỜI KẾT CỦA ĐIỀN
+         ====================================================================== -->
+    <section id="poster-cuoi" class="poster-section graph-paper-bg">
+      <div class="container">
+        <div class="poster-grid">
+          <div class="poster-preview-shell">
+            <canvas
+              id="posterPreviewCanvas"
+              width="600"
+              height="800"
+              aria-label="Bản xem trước tấm poster dọc 1200 nhân 1600 pixel"
+            ></canvas>
+            <span id="posterSampleRibbon" class="poster-sample-ribbon">Bản mẫu</span>
+          </div>
+
+          <div class="poster-info-col">
+            <div>
+              <span class="section-eyebrow" style="color: var(--ink-muted);">
+                Kỷ niệm lượt ghé · PNG 1200 × 1600 px
+              </span>
+              <h2 class="section-title-light" style="margin-bottom:10px;">
+                Tấm poster của lượt chạy này
+              </h2>
+              <p id="posterDescText" style="margin:0; color:var(--ink-muted); max-width:52ch;">
+                Đầu trang bạn cho máy xem nét viết của mình; cuối trang mình gửi lại bạn cả nét cam ấy, lưới 784 pixel thật và bộ test bạn đã chạy. Ảnh được dựng hoàn toàn nội bộ nên tải được ngay cả khi mất mạng.
+              </p>
+            </div>
+
+            <div class="poster-action-row">
+              <button type="button" id="btnDownloadPoster" class="btn btn-human">
+                Lưu poster PNG
+              </button>
+              <a href="#dau-trang" id="btnPosterBackPad" class="btn btn-ghost-light">
+                Viết một nét của bạn
+              </a>
+              <a href="#thuat-toan" class="btn btn-ghost-light">
+                Đổi test
+              </a>
+            </div>
+
+            <p id="posterStatusMsg" class="poster-status-msg" aria-live="polite"></p>
+
+            <div class="closing-letter">
+              <p id="closingQuoteText" class="closing-quote"></p>
+              <p id="closingSignName" class="closing-sign"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Nút trượt mượt về đầu trang -->
+  <button type="button" id="btnScrollTop" class="scroll-top-btn" aria-label="Trượt lên đầu trang">
+    <span aria-hidden="true">↑</span>
+    <span>Đầu trang</span>
+  </button>
+
+  <!-- Hộp thoại xem ảnh chứng nhận (chỉ dùng khi PROFILE_CONFIG có ảnh chứng nhận thật) -->
+  <div id="certModal" class="cert-modal" hidden role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+    <div class="cert-modal-card">
+      <div class="cert-modal-head">
+        <strong id="certModalTitle">Minh chứng thành tích</strong>
+        <button type="button" id="btnCloseCertModal" class="btn btn-ghost-light btn-sm">Đóng (Esc)</button>
+      </div>
+      <img id="certModalImg" src="" alt="Ảnh chứng nhận thành tích" />
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       1. VÙNG CẤU HÌNH HỒ SƠ (TÁCH HOÀN TOÀN KHỎI LOGIC)
+       - Để điền lớp hiện tại, sửa className: "" -> ví dụ "12A1".
+       - Khi className để trống "", toàn bộ nhãn “Lớp” và dấu phân cách tự ẩn.
+       ========================================================================== */
+    const PROFILE_CONFIG = {
+      fullName: "Nguyễn Phúc Điền",
+      school: "Trường THPT DakMil",
+      className: "",
+      tagline: "Lập trình thuật toán · Trí tuệ nhân tạo",
+      heroOpener: "“Bạn viết một con số. Mình muốn cho bạn thấy máy tính nhìn thấy gì.”",
+      heroGreeting: "Chào bạn, mình là Điền. Mình thích cái lúc một ý tưởng còn nằm trên giấy, rồi vài chục dòng code sau mới biết nó có đúng không. Thử cùng mình một lần nhé?",
+      projectTitle: "Một nét thành số",
+      assets: {
+        portraitPath: "./assets/dien.jpg",
+        portraitFocus: "50% 22%",
+        schoolLogoPath: "./assets/logo-truong.png"
+      },
+      bioParagraphs: [
+        "Mình là Nguyễn Phúc Điền, học sinh Trường THPT DakMil. Mình đến với Tin học qua những bài toán có đầu vào, đầu ra và một hệ thống chấm rất thẳng tính. Có lúc mình tin lời giải của mình đến mức đọc lại đề ba lần, trước khi chịu thử đúng cái trường hợp làm chương trình sai.",
+        "Điều mình thích ở thuật toán là cảm giác tìm ra lý do. Một lời giải chạy đúng trên mười ví dụ vẫn khiến mình tò mò: có ví dụ thứ mười một nào làm nó hỏng không? Sang AI, mình mang nguyên thói quen ấy theo. Nếu máy nhận ra số 7, mình muốn biết thêm một nét, bớt một nét hoặc viết hơi nghiêng thì chuyện gì xảy ra.",
+        "Mình muốn trở thành AI Engineer. Một dự án mình quan tâm là hệ thống phân loại vật thể trên băng chuyền: camera nhìn thấy món đồ, chương trình đưa ra dự đoán, rồi thiết bị phải hành động kịp lúc. Ở đó, một dự đoán chỉ thực sự có ích khi nó đến đúng lúc vật thể còn ở trước mắt."
+      ],
+      careerDirection: {
+        title: "AI Engineer — Từ thuật toán đến hệ thống thật",
+        badge: "Định hướng · AI Engineer",
+        essayParagraphs: [
+          "Mình muốn trở thành một AI Engineer, không phải vì nghe hai chữ “trí tuệ nhân tạo” thật kêu, mà vì mình thích cảm giác tự tay biến một ý tưởng trên giấy ô ly thành hệ thống biết nhìn, biết đoán và kịp phản ứng ngoài đời thật. Sau thời gian gắn bó với lập trình thuật toán, mình nhận ra điều thú vị nhất không nằm ở lúc chương trình vượt qua mười ví dụ quen thuộc, mà là khi đối mặt với trường hợp thứ mười một bất ngờ làm nó sai.",
+          "Với mình, làm kỹ sư AI cũng giữ nguyên tinh thần ấy: một mô hình nhận dạng chính xác trên màn hình sẽ trở nên vô nghĩa nếu đem ra dây chuyền thực tế bị trễ nửa giây hoặc bối rối chỉ vì một nét gạch ngang mới thêm. Vì thế, mình đang rèn song song cả nền tảng thuật toán, thị giác máy tính lẫn cách tối ưu tốc độ trên thiết bị nhỏ như ESP32, để mỗi dự đoán mình viết ra đều có ích đúng lúc."
+        ],
+        blueprintNote: "Thay vì coi AI là một hộp đen, mình tập đi từ nền tảng chắc chắn: dữ liệu sạch, thuật toán rõ ràng và độ trễ đo đếm được trên phần cứng thật.",
+        pillars: [
+          {
+            num: "01",
+            title: "Nền tảng Thuật toán, Cấu trúc dữ liệu & Tư duy phản ví dụ",
+            desc: "Giữ thói quen của người làm lập trình thi đấu: luôn kiểm tra trường hợp biên, tối ưu độ phức tạp thời gian và bộ nhớ trước khi viết hệ thống lớn. Với mình, thuật toán tốt là nền để hiểu rõ bên trong mô hình học máy đang tính toán gì.",
+            focus: "Trọng tâm hiện tại: Quy hoạch động, đồ thị, đại số tuyến tính & xác suất cơ bản",
+            linkHref: "#thuat-toan",
+            linkLabel: "Thử bài toán phản ví dụ ↓"
+          },
+          {
+            num: "02",
+            title: "Học máy & Thị giác máy tính (Computer Vision)",
+            desc: "Đi từ các mô hình dễ kiểm chứng như k-NN trên lưới 28 × 28 lên mạng nơ-ron tích chập (CNN) và bài toán phát hiện vật thể. Mình quan tâm đặc biệt tới cách chuẩn hóa dữ liệu đầu vào và lý do mô hình nhầm lẫn khi nét vẽ hoặc góc nhìn thay đổi.",
+            focus: "Trọng tâm tiếp theo: Python, PyTorch/ONNX, phân tích lỗi dữ liệu thực tế",
+            linkHref: "#thu-nghiem-ai",
+            linkLabel: "Xem thí nghiệm 784 pixel ↑"
+          },
+          {
+            num: "03",
+            title: "Triển khai AI thời gian thực & Kết nối phần cứng (Edge AI)",
+            desc: "Một dự đoán chính xác nhưng đến trễ nửa giây có thể trở nên vô nghĩa trên dây chuyền thật. Mình muốn rèn kỹ năng tối ưu tốc độ suy luận và tích hợp camera với vi điều khiển (như ESP32) để AI tạo ra hành động đúng thời điểm.",
+            focus: "Hướng dự án quan tâm: Camera + ESP32 phân loại vật thể theo thời gian thực",
+            linkHref: "#bang-chuyen",
+            linkLabel: "Chạy thử mô phỏng độ trễ ↓"
+          }
+        ]
+      },
+      achievements: [
+        {
+          id: "hsg-tinh",
+          kind: "first",
+          rankWord: "Nhất",
+          title: "Giải Nhất Học sinh giỏi cấp tỉnh môn Tin học",
+          subtitle: "Năm lớp 11",
+          examFullName: "",
+          year: "",
+          medalImage: "",
+          certificateImage: ""
+        },
+        {
+          id: "olympic-304",
+          kind: "bronze",
+          mark: "30/4",
+          title: "Huy chương Đồng Olympic 30/4",
+          subtitle: "",
+          examFullName: "",
+          year: "",
+          medalImage: "",
+          certificateImage: ""
+        },
+        {
+          id: "giai-233",
+          kind: "gold",
+          mark: "23/3",
+          title: "Huy chương Vàng 23/3",
+          subtitle: "",
+          examFullName: "",
+          year: "",
+          medalImage: "",
+          certificateImage: ""
+        }
+      ],
+      closingQuote: "“Nếu bạn còn nhớ mình qua trang này, mình hy vọng đó là lúc bạn thêm một nét rồi bấm chạy lần nữa. Mình cũng bắt đầu nhiều buổi ngồi máy bằng đúng cái tò mò ấy.”"
+    };
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function formatSchoolLine() {
+      const cls = (PROFILE_CONFIG.className || "").trim();
+      const sch = (PROFILE_CONFIG.school || "").trim();
+      if (cls && sch) return `Lớp ${cls} · ${sch}`;
+      return sch || (cls ? `Lớp ${cls}` : "");
+    }
+
+    /* ==========================================================================
+       2. HIỆU ỨNG TRƯỢT LÊN XUỐNG MƯỢT (CUỘN TRANG & MỞ/ĐÓNG HỘP GẬP)
+       ========================================================================== */
+    let activeScrollRaf = null;
+
+    function cancelActiveSmoothScroll() {
+      if (activeScrollRaf !== null) {
+        cancelAnimationFrame(activeScrollRaf);
+        activeScrollRaf = null;
+      }
+    }
+
+    window.addEventListener("wheel", cancelActiveSmoothScroll, { passive: true });
+    window.addEventListener("touchstart", cancelActiveSmoothScroll, { passive: true });
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollToY(targetY, onComplete) {
+      cancelActiveSmoothScroll();
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const destY = Math.max(0, Math.min(maxScroll, targetY));
+
+      if (prefersReducedMotion) {
+        window.scrollTo(0, destY);
+        if (onComplete) onComplete();
+        return;
+      }
+
+      const startY = window.scrollY;
+      const distance = destY - startY;
+      if (Math.abs(distance) < 2) {
+        if (onComplete) onComplete();
+        return;
+      }
+
+      const duration = Math.min(900, Math.max(460, Math.abs(distance) * 0.48));
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const progress = Math.min(1, (now - startTime) / duration);
+        window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+        if (progress < 1) {
+          activeScrollRaf = requestAnimationFrame(step);
+        } else {
+          activeScrollRaf = null;
+          if (onComplete) onComplete();
+        }
+      };
+
+      activeScrollRaf = requestAnimationFrame(step);
+    }
+
+    function smoothScrollToElement(el) {
+      if (!el) return;
+      const topBar = document.querySelector(".top-bar");
+      const offset = (topBar ? topBar.offsetHeight : 0) + 12;
+      const targetY = el.getBoundingClientRect().top + window.scrollY - offset;
+
+      smoothScrollToY(targetY, () => {
+        if (el.tagName === "SECTION" && !prefersReducedMotion) {
+          el.classList.remove("is-scroll-target");
+          void el.offsetWidth;
+          el.classList.add("is-scroll-target");
+        }
+      });
+    }
+
+    function smoothSlideToggle(el, shouldOpen) {
+      if (!el) return;
+      if (prefersReducedMotion) {
+        el.hidden = !shouldOpen;
+        return;
+      }
+
+      if (el._slideHandler) {
+        el.removeEventListener("transitionend", el._slideHandler);
+        el._slideHandler = null;
+      }
+
+      if (shouldOpen) {
+        if (!el.hidden && !el.style.height) return;
+        el.hidden = false;
+        const targetHeight = el.scrollHeight;
+        el.style.height = "0px";
+        el.style.opacity = "0";
+        el.style.transition = "height 330ms cubic-bezier(0.22, 1, 0.36, 1), opacity 250ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = `${targetHeight}px`;
+          el.style.opacity = "1";
+        });
+        el._slideHandler = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideHandler);
+          el._slideHandler = null;
+        };
+        el.addEventListener("transitionend", el._slideHandler);
+      } else {
+        if (el.hidden) return;
+        el.style.height = `${el.scrollHeight}px`;
+        el.style.opacity = "1";
+        el.style.transition = "height 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = "0px";
+          el.style.opacity = "0";
+        });
+        el._slideHandler = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.hidden = true;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideHandler);
+          el._slideHandler = null;
+        };
+        el.addEventListener("transitionend", el._slideHandler);
+      }
+    }
+
+    /* ==========================================================================
+       3. KHỞI TẠO NỘI DUNG TĨNH, ĐỊNH HƯỚNG AI ENGINEER & THÀNH TÍCH
+       ========================================================================== */
+    function hydrateProfile() {
+      document.getElementById("topBrandName").textContent = PROFILE_CONFIG.fullName;
+      document.getElementById("heroOpenerText").textContent = PROFILE_CONFIG.heroOpener;
+      document.getElementById("heroFullName").textContent = PROFILE_CONFIG.fullName;
+      document.getElementById("heroTagline").textContent = PROFILE_CONFIG.tagline;
+      document.getElementById("heroGreeting").textContent = PROFILE_CONFIG.heroGreeting;
+      document.getElementById("schoolInfoLine").textContent = formatSchoolLine();
+      document.getElementById("honorsOwnerName").textContent = PROFILE_CONFIG.fullName;
+      document.getElementById("closingQuoteText").textContent = PROFILE_CONFIG.closingQuote;
+      document.getElementById("closingSignName").textContent = PROFILE_CONFIG.fullName;
+
+      // Ảnh chân dung thật
+      const portraitCard = document.getElementById("portraitCard");
+      const portraitImg = document.getElementById("portraitImg");
+      portraitImg.style.objectPosition = PROFILE_CONFIG.assets.portraitFocus;
+      portraitImg.addEventListener("error", () => portraitCard.classList.add("is-missing"));
+      portraitImg.addEventListener("load", () => portraitCard.classList.remove("is-missing"));
+      portraitImg.src = PROFILE_CONFIG.assets.portraitPath;
+
+      // Logo trường
+      const logoWrap = document.getElementById("schoolLogoWrap");
+      const logoImg = document.getElementById("schoolLogoImg");
+      logoImg.addEventListener("error", () => logoWrap.classList.add("is-missing"));
+      logoImg.addEventListener("load", () => logoWrap.classList.remove("is-missing"));
+      logoImg.src = PROFILE_CONFIG.assets.schoolLogoPath;
+
+      // Đoạn giới thiệu
+      const bioWrap = document.getElementById("bioParagraphsContainer");
+      bioWrap.innerHTML = "";
+      PROFILE_CONFIG.bioParagraphs.forEach((text) => {
+        const p = document.createElement("p");
+        p.textContent = text;
+        bioWrap.appendChild(p);
+      });
+
+      // Định hướng nghề nghiệp AI Engineer
+      renderCareerDirection();
+
+      // Thành tích
+      renderAchievements();
+    }
+
+    function renderCareerDirection() {
+      const cfg = PROFILE_CONFIG.careerDirection;
+      document.getElementById("careerTitle").textContent = cfg.title;
+      document.getElementById("careerRoleBadge").textContent = cfg.badge;
+      document.getElementById("careerBlueprintNote").textContent = cfg.blueprintNote;
+
+      const essayWrap = document.getElementById("careerEssayContainer");
+      essayWrap.innerHTML = "";
+      cfg.essayParagraphs.forEach((para) => {
+        const p = document.createElement("p");
+        p.textContent = para;
+        essayWrap.appendChild(p);
+      });
+
+      const wrap = document.getElementById("careerPillarsContainer");
+      wrap.innerHTML = "";
+
+      cfg.pillars.forEach((pillar, idx) => {
+        const isDefaultOpen = idx === 0;
+        const item = document.createElement("article");
+        item.className = `career-pillar${isDefaultOpen ? " is-open" : ""}`;
+        const panelId = `careerPillarPanel_${idx}`;
+
+        item.innerHTML = `
+          <button
+            type="button"
+            class="career-pillar-trigger"
+            aria-expanded="${isDefaultOpen ? "true" : "false"}"
+            aria-controls="${panelId}"
+          >
+            <span class="career-pillar-head">
+              <span class="career-pillar-num">${pillar.num}</span>
+              <span class="career-pillar-title">${pillar.title}</span>
+            </span>
+            <span class="career-pillar-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div id="${panelId}" class="career-pillar-panel" ${isDefaultOpen ? "" : "hidden"}>
+            <div class="career-pillar-inner">
+              <p class="career-pillar-desc">${pillar.desc}</p>
+              <div class="career-pillar-meta">
+                <span>${pillar.focus}</span>
+                <a href="${pillar.linkHref}" class="career-pillar-link">${pillar.linkLabel}</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const trigger = item.querySelector(".career-pillar-trigger");
+        const panel = item.querySelector(".career-pillar-panel");
+
+        trigger.addEventListener("click", () => {
+          const opening = panel.hidden;
+          item.classList.toggle("is-open", opening);
+          trigger.setAttribute("aria-expanded", String(opening));
+          smoothSlideToggle(panel, opening);
+        });
+
+        wrap.appendChild(item);
+      });
+    }
+
+    function renderAchievements() {
+      const wrap = document.getElementById("honorsLayout");
+      wrap.innerHTML = "";
+
+      PROFILE_CONFIG.achievements.forEach((item) => {
+        const extraParts = [item.examFullName, item.year].map((v) => (v || "").trim()).filter(Boolean);
+        const extraLine = extraParts.join(" · ");
+        const hasCert = Boolean((item.certificateImage || "").trim());
+        const hasRealMedal = Boolean((item.medalImage || "").trim());
+
+        if (item.kind === "first") {
+          const card = document.createElement("article");
+          card.className = "honor-first";
+          card.innerHTML = `
+            <div class="first-rank-word" aria-hidden="true">${item.rankWord}</div>
+            <div>
+              <div class="first-ink-connector">
+                <span class="first-ink-line" aria-hidden="true"></span>
+                <span>${PROFILE_CONFIG.fullName}</span>
+              </div>
+              <h3 class="honor-heading">${item.title}</h3>
+              ${item.subtitle ? `<p class="honor-sub">${item.subtitle}</p>` : ""}
+              ${extraLine ? `<p class="honor-extra-meta">${extraLine}</p>` : ""}
+              ${hasCert ? `<div style="margin-top:14px;"><button type="button" class="btn btn-ghost-light btn-sm" data-cert-src="${item.certificateImage}" data-cert-title="${item.title}">Xem minh chứng</button></div>` : ""}
+            </div>
+          `;
+          wrap.appendChild(card);
+        } else {
+          const isGold = item.kind === "gold";
+          const card = document.createElement("article");
+          card.className = "honor-medal-card";
+
+          const discHtml = hasRealMedal
+            ? `<div class="medal-disc-wrap"><img src="${item.medalImage}" alt="${item.title}" /></div>`
+            : isGold
+              ? `<div class="medal-disc-wrap medal-gold" data-gold-medal tabindex="0" role="img" aria-label="Huy chương Vàng minh họa có ký hiệu ${item.mark}"><span class="gold-sheen" aria-hidden="true"></span><span class="medal-gold-text">${item.mark}</span></div>`
+              : `<div class="medal-disc-wrap medal-bronze" role="img" aria-label="Huy chương Đồng minh họa có ký hiệu ${item.mark}"><span class="medal-bronze-text">${item.mark}</span></div>`;
+
+          card.innerHTML = `
+            ${discHtml}
+            <div>
+              <h3 class="honor-heading" style="font-size:1.2rem;">${item.title}</h3>
+              ${item.subtitle ? `<p class="honor-sub">${item.subtitle}</p>` : ""}
+              ${extraLine ? `<p class="honor-extra-meta">${extraLine}</p>` : ""}
+              ${hasCert ? `<div style="margin-top:12px;"><button type="button" class="btn btn-ghost-light btn-sm" data-cert-src="${item.certificateImage}" data-cert-title="${item.title}">Xem minh chứng</button></div>` : ""}
+            </div>
+          `;
+          wrap.appendChild(card);
+        }
+      });
+
+      const goldDisc = wrap.querySelector("[data-gold-medal]");
+      if (goldDisc && !prefersReducedMotion) {
+        const triggerSheen = () => {
+          goldDisc.classList.remove("is-sheening");
+          void goldDisc.offsetWidth;
+          goldDisc.classList.add("is-sheening");
+        };
+        goldDisc.addEventListener("pointerenter", triggerSheen);
+        goldDisc.addEventListener("click", triggerSheen);
+      }
+
+      wrap.querySelectorAll("[data-cert-src]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const modal = document.getElementById("certModal");
+          document.getElementById("certModalTitle").textContent = btn.getAttribute("data-cert-title");
+          document.getElementById("certModalImg").src = btn.getAttribute("data-cert-src");
+          modal.hidden = false;
+        });
+      });
+    }
+
+    const certModal = document.getElementById("certModal");
+    document.getElementById("btnCloseCertModal").addEventListener("click", () => { certModal.hidden = true; });
+    certModal.addEventListener("click", (e) => { if (e.target === certModal) certModal.hidden = true; });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape" && !certModal.hidden) certModal.hidden = true; });
+
+    /* ==========================================================================
+       4. BỘ NHẬN DẠNG CHỮ SỐ VIẾT TAY THẬT (28×28 + k-NN, k = 5)
+       ========================================================================== */
+    const RAW_PROTOTYPE_STROKES = [
+      { label: 0, style: "0 tròn", strokes: [[[.5,.12],[.28,.18],[.16,.38],[.16,.64],[.28,.84],[.5,.9],[.72,.84],[.84,.64],[.84,.38],[.72,.18],[.5,.12]]] },
+      { label: 0, style: "0 hẹp", strokes: [[[.5,.1],[.34,.2],[.26,.48],[.34,.8],[.5,.9],[.66,.8],[.74,.48],[.66,.2],[.5,.1]]] },
+      { label: 0, style: "0 nghiêng", strokes: [[[.58,.12],[.36,.22],[.2,.46],[.22,.74],[.42,.88],[.64,.8],[.8,.54],[.78,.24],[.58,.12]]] },
+      { label: 0, style: "0 rộng", strokes: [[[.48,.16],[.22,.26],[.12,.52],[.24,.78],[.52,.86],[.8,.76],[.88,.5],[.76,.24],[.48,.16]]] },
+
+      { label: 1, style: "1 thẳng", strokes: [[[.5,.12],[.5,.5],[.5,.88]]] },
+      { label: 1, style: "1 nghiêng", strokes: [[[.56,.12],[.5,.5],[.44,.88]]] },
+      { label: 1, style: "1 có mũ", strokes: [[[.34,.3],[.52,.12],[.52,.52],[.52,.88]]] },
+      { label: 1, style: "1 có chân", strokes: [[[.34,.28],[.5,.12],[.5,.88]], [[.3,.88],[.72,.88]]] },
+      { label: 1, style: "1 mũ dài", strokes: [[[.28,.34],[.54,.12],[.5,.55],[.48,.88]], [[.32,.88],[.68,.88]]] },
+
+      { label: 2, style: "2 chuẩn", strokes: [[[.24,.3],[.36,.16],[.58,.14],[.74,.24],[.74,.4],[.54,.58],[.24,.86],[.8,.86]]] },
+      { label: 2, style: "2 cong", strokes: [[[.22,.26],[.42,.12],[.68,.16],[.78,.32],[.66,.52],[.4,.7],[.2,.88],[.5,.86],[.82,.88]]] },
+      { label: 2, style: "2 góc", strokes: [[[.26,.28],[.5,.14],[.74,.26],[.66,.46],[.24,.86],[.82,.86]]] },
+      { label: 2, style: "2 vòng đáy", strokes: [[[.26,.28],[.46,.14],[.72,.24],[.68,.46],[.38,.74],[.22,.86],[.38,.8],[.62,.86],[.82,.86]]] },
+
+      { label: 3, style: "3 tròn", strokes: [[[.26,.22],[.48,.12],[.72,.2],[.74,.36],[.58,.47],[.42,.49],[.62,.52],[.78,.66],[.72,.82],[.48,.9],[.24,.82]]] },
+      { label: 3, style: "3 đầu ngang", strokes: [[[.24,.16],[.76,.16],[.46,.46],[.68,.52],[.78,.7],[.66,.86],[.4,.9],[.22,.8]]] },
+      { label: 3, style: "3 hẹp", strokes: [[[.32,.2],[.52,.12],[.68,.24],[.64,.4],[.46,.48],[.68,.58],[.7,.78],[.5,.88],[.3,.82]]] },
+      { label: 3, style: "3 mở rộng", strokes: [[[.22,.24],[.46,.12],[.74,.2],[.72,.38],[.48,.48],[.76,.58],[.8,.78],[.54,.9],[.22,.84]]] },
+
+      { label: 4, style: "4 hở", strokes: [[[.26,.14],[.24,.56],[.8,.56]], [[.66,.14],[.66,.88]]] },
+      { label: 4, style: "4 kín", strokes: [[[.62,.14],[.2,.58],[.82,.58]], [[.62,.14],[.62,.88]]] },
+      { label: 4, style: "4 kín nghiêng", strokes: [[[.66,.12],[.22,.56],[.84,.56]], [[.64,.24],[.58,.88]]] },
+      { label: 4, style: "4 liền nét", strokes: [[[.28,.16],[.26,.54],[.78,.54],[.66,.54],[.66,.14],[.66,.88]]] },
+      { label: 4, style: "4 rộng", strokes: [[[.22,.16],[.2,.54],[.84,.54]], [[.68,.16],[.68,.88]]] },
+
+      { label: 5, style: "5 hai nét", strokes: [[[.28,.16],[.24,.48],[.48,.44],[.72,.52],[.78,.7],[.64,.86],[.38,.9],[.22,.8]], [[.28,.16],[.76,.16]]] },
+      { label: 5, style: "5 một nét", strokes: [[[.76,.16],[.28,.16],[.24,.48],[.52,.44],[.74,.54],[.76,.74],[.58,.88],[.34,.88],[.22,.78]]] },
+      { label: 5, style: "5 bụng tròn", strokes: [[[.74,.14],[.3,.14],[.26,.46],[.54,.44],[.78,.56],[.76,.78],[.52,.9],[.24,.82]]] },
+      { label: 5, style: "5 sắc góc", strokes: [[[.3,.16],[.26,.48],[.62,.48],[.76,.64],[.68,.84],[.42,.88],[.24,.82]], [[.3,.16],[.78,.16]]] },
+      { label: 5, style: "5 nghiêng", strokes: [[[.78,.16],[.34,.16],[.26,.48],[.56,.46],[.74,.6],[.68,.82],[.44,.9],[.22,.82]]] },
+
+      { label: 6, style: "6 chuẩn", strokes: [[[.68,.14],[.44,.22],[.26,.46],[.22,.72],[.36,.88],[.62,.88],[.78,.72],[.72,.54],[.5,.48],[.28,.58]]] },
+      { label: 6, style: "6 lưng thẳng", strokes: [[[.54,.12],[.36,.38],[.24,.68],[.36,.88],[.64,.88],[.76,.7],[.66,.54],[.44,.52],[.26,.64]]] },
+      { label: 6, style: "6 vòng lớn", strokes: [[[.62,.12],[.38,.26],[.2,.56],[.26,.82],[.52,.9],[.78,.78],[.78,.56],[.56,.46],[.28,.56]]] },
+      { label: 6, style: "6 hẹp", strokes: [[[.62,.14],[.42,.3],[.3,.62],[.4,.86],[.62,.86],[.72,.68],[.62,.52],[.38,.56]]] },
+
+      { label: 7, style: "7 không gạch", strokes: [[[.2,.16],[.8,.16],[.62,.48],[.44,.88]]] },
+      { label: 7, style: "7 nghiêng", strokes: [[[.22,.16],[.82,.16],[.54,.54],[.34,.88]]] },
+      { label: 7, style: "7 có gạch ngang", strokes: [[[.22,.16],[.8,.16],[.6,.52],[.42,.88]], [[.34,.52],[.72,.52]]] },
+      { label: 7, style: "7 có mỏ + gạch", strokes: [[[.2,.28],[.22,.16],[.8,.16],[.58,.54],[.4,.88]], [[.36,.52],[.74,.52]]] },
+      { label: 7, style: "7 đứng + gạch", strokes: [[[.24,.16],[.76,.16],[.62,.5],[.5,.88]], [[.36,.5],[.74,.5]]] },
+
+      { label: 8, style: "8 liền nét", strokes: [[[.5,.14],[.28,.22],[.28,.38],[.5,.48],[.74,.6],[.74,.78],[.5,.88],[.26,.78],[.26,.6],[.5,.48],[.72,.38],[.72,.22],[.5,.14]]] },
+      { label: 8, style: "8 hai vòng", strokes: [[[.5,.14],[.3,.24],[.32,.42],[.5,.48],[.68,.42],[.7,.24],[.5,.14]], [[.5,.48],[.26,.6],[.28,.8],[.5,.9],[.72,.8],[.74,.6],[.5,.48]]] },
+      { label: 8, style: "8 hẹp", strokes: [[[.5,.12],[.34,.24],[.36,.4],[.5,.48],[.66,.6],[.66,.8],[.5,.88],[.34,.8],[.34,.6],[.5,.48],[.64,.4],[.66,.24],[.5,.12]]] },
+      { label: 8, style: "8 nghiêng", strokes: [[[.56,.14],[.34,.22],[.34,.38],[.5,.48],[.7,.62],[.66,.8],[.44,.88],[.24,.78],[.28,.6],[.5,.48],[.72,.36],[.74,.22],[.56,.14]]] },
+
+      { label: 9, style: "9 móc đáy", strokes: [[[.74,.32],[.62,.16],[.38,.16],[.24,.32],[.3,.48],[.52,.52],[.74,.36],[.74,.32],[.68,.66],[.56,.86],[.32,.88]]] },
+      { label: 9, style: "9 chân thẳng", strokes: [[[.72,.3],[.58,.14],[.34,.16],[.24,.34],[.34,.5],[.58,.48],[.72,.34],[.68,.64],[.64,.88]]] },
+      { label: 9, style: "9 hai nét", strokes: [[[.5,.14],[.28,.24],[.28,.44],[.5,.5],[.72,.4],[.7,.22],[.5,.14]], [[.72,.28],[.64,.62],[.56,.88]]] },
+      { label: 9, style: "9 đầu rộng", strokes: [[[.76,.32],[.6,.14],[.32,.16],[.2,.34],[.32,.52],[.6,.5],[.76,.34],[.68,.68],[.52,.88],[.32,.86]]] },
+      { label: 9, style: "9 hẹp", strokes: [[[.68,.3],[.54,.14],[.34,.18],[.28,.36],[.38,.48],[.62,.46],[.68,.32],[.6,.64],[.52,.88]]] }
+    ];
+
+    const DEMO_SAMPLES = [
+      { name: "Số 7 có gạch ngang", strokes: [[[.22,.18],[.78,.18],[.58,.52],[.4,.86]], [[.34,.52],[.7,.52]]] },
+      { name: "Số 7 không gạch", strokes: [[[.22,.18],[.78,.18],[.58,.52],[.4,.86]]] },
+      { name: "Số 4 hở hai nét", strokes: [[[.28,.16],[.25,.56],[.78,.56]], [[.64,.16],[.64,.86]]] },
+      { name: "Số 1 có chân", strokes: [[[.35,.3],[.52,.14],[.52,.86]], [[.3,.86],[.72,.86]]] },
+      { name: "Số 3 tròn", strokes: [[[.26,.22],[.48,.13],[.72,.21],[.74,.37],[.56,.48],[.44,.49],[.64,.53],[.78,.68],[.7,.83],[.48,.89],[.25,.81]]] },
+      { name: "Số 8 liền nét", strokes: [[[.5,.14],[.28,.23],[.29,.39],[.5,.48],[.73,.6],[.72,.79],[.5,.88],[.27,.79],[.28,.6],[.5,.48],[.71,.39],[.71,.23],[.5,.14]]] }
+    ];
+
+    function rasterizeStrokesTo28x28(strokes) {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      let totalLen = 0;
+
+      for (const stroke of strokes) {
+        for (let i = 0; i < stroke.length; i++) {
+          const [x, y] = stroke[i];
+          if (x < minX) minX = x;
+          if (y < minY) minY = y;
+          if (x > maxX) maxX = x;
+          if (y > maxY) maxY = y;
+          if (i > 0) {
+            totalLen += Math.hypot(x - stroke[i - 1][0], y - stroke[i - 1][1]);
+          }
+        }
+      }
+
+      if (!isFinite(minX) || totalLen < 0.08) return null;
+
+      const bw = Math.max(0.02, maxX - minX);
+      const bh = Math.max(0.02, maxY - minY);
+      const maxDim = Math.max(bw, bh);
+
+      const targetBox = 20;
+      const scale = targetBox / maxDim;
+      const drawW = bw * scale;
+      const drawH = bh * scale;
+      const offsetX = (28 - drawW) / 2 - minX * scale;
+      const offsetY = (28 - drawH) / 2 - minY * scale;
+
+      const off = document.createElement("canvas");
+      off.width = 28;
+      off.height = 28;
+      const ctx = off.getContext("2d");
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, 28, 28);
+      ctx.strokeStyle = "#FFFFFF";
+      ctx.lineWidth = 2.15;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      for (const stroke of strokes) {
+        if (stroke.length === 0) continue;
+        ctx.beginPath();
+        ctx.moveTo(stroke[0][0] * scale + offsetX, stroke[0][1] * scale + offsetY);
+        for (let i = 1; i < stroke.length; i++) {
+          ctx.lineTo(stroke[i][0] * scale + offsetX, stroke[i][1] * scale + offsetY);
+        }
+        ctx.stroke();
+      }
+
+      const rawData = ctx.getImageData(0, 0, 28, 28).data;
+      const rawGrid = new Float32Array(784);
+      for (let i = 0; i < 784; i++) rawGrid[i] = rawData[i * 4] / 255;
+
+      const grid = new Float32Array(784);
+      const kernel = [1, 2, 1, 2, 4, 2, 1, 2, 1];
+      let maxVal = 0;
+      for (let y = 0; y < 28; y++) {
+        for (let x = 0; x < 28; x++) {
+          let acc = 0, kSum = 0;
+          for (let ky = -1; ky <= 1; ky++) {
+            const ny = y + ky;
+            if (ny < 0 || ny >= 28) continue;
+            for (let kx = -1; kx <= 1; kx++) {
+              const nx = x + kx;
+              if (nx < 0 || nx >= 28) continue;
+              const w = kernel[(ky + 1) * 3 + (kx + 1)];
+              acc += rawGrid[ny * 28 + nx] * w;
+              kSum += w;
+            }
+          }
+          const v = acc / kSum;
+          grid[y * 28 + x] = v;
+          if (v > maxVal) maxVal = v;
+        }
+      }
+
+      let activeCount = 0;
+      let normSq = 0;
+      if (maxVal > 0.001) {
+        for (let i = 0; i < 784; i++) {
+          grid[i] = grid[i] / maxVal;
+          if (grid[i] > 0.08) activeCount++;
+          normSq += grid[i] * grid[i];
+        }
+      }
+
+      return {
+        grid,
+        norm: Math.sqrt(normSq) || 1,
+        activeCount,
+        bbox: { minX, minY, maxX, maxY, bw, bh },
+        transform: { scale, offsetX, offsetY }
+      };
+    }
+
+    const PROTOTYPE_BANK = RAW_PROTOTYPE_STROKES.map((p) => {
+      const processed = rasterizeStrokesTo28x28(p.strokes);
+      return {
+        label: p.label,
+        style: p.style,
+        grid: processed.grid,
+        norm: processed.norm
+      };
+    });
+
+    function classifyWithKNN(processedInput, k = 5) {
+      const a = processedInput.grid;
+      const aNorm = processedInput.norm;
+
+      const scored = PROTOTYPE_BANK.map((proto) => {
+        let sqDist = 0, dot = 0;
+        const b = proto.grid;
+        for (let i = 0; i < 784; i++) {
+          const diff = a[i] - b[i];
+          sqDist += diff * diff;
+          dot += a[i] * b[i];
+        }
+        const euclidean = Math.sqrt(sqDist);
+        const cosineDist = 1 - dot / (aNorm * proto.norm);
+        const combined = euclidean * 0.65 + cosineDist * 8.5;
+        return {
+          label: proto.label,
+          style: proto.style,
+          grid: proto.grid,
+          euclidean,
+          combined
+        };
+      });
+
+      scored.sort((x, y) => x.combined - y.combined);
+      const topK = scored.slice(0, k);
+
+      const votes = new Map();
+      const weightSum = new Map();
+      for (const nb of topK) {
+        votes.set(nb.label, (votes.get(nb.label) || 0) + 1);
+        weightSum.set(nb.label, (weightSum.get(nb.label) || 0) + 1 / (nb.combined + 0.1));
+      }
+
+      const rankedDigits = Array.from(votes.entries()).sort((u, v) => {
+        if (v[1] !== u[1]) return v[1] - u[1];
+        return (weightSum.get(v[0]) || 0) - (weightSum.get(u[0]) || 0);
+      });
+
+      const bestDigit = rankedDigits[0][0];
+      const bestVotes = rankedDigits[0][1];
+      const runnerUp = rankedDigits.length > 1 ? rankedDigits[1] : null;
+      const isUncertain = Boolean(runnerUp && (bestVotes - runnerUp[1] <= 1) && bestVotes <= 3);
+
+      return {
+        predicted: bestDigit,
+        bestVotes,
+        k,
+        runnerUpDigit: runnerUp ? runnerUp[0] : null,
+        runnerUpVotes: runnerUp ? runnerUp[1] : 0,
+        isUncertain,
+        top3: topK.slice(0, 3)
+      };
+    }
+
+    /* ==========================================================================
+       5. TRẠNG THÁI CHUNG CỦA PHIÊN & Ô VẼ CHỮ SỐ
+       ========================================================================== */
+    const appState = {
+      strokes: [],
+      isDrawing: false,
+      sampleCursor: 0,
+      aiViewMode: "grid",
+      aiRunResult: null,
+      aiIsStale: false,
+      aiAnimTimers: [],
+
+      algoArray: [4, 5, 4],
+      algoRunResult: null,
+      algoIsStale: false,
+      algoStepIdx: 0,
+      algoInspectI: null,
+      algoAnimTimer: null,
+
+      conveyorLatencyMs: 200,
+      conveyorRunning: false,
+      conveyorRaf: null
+    };
+
+    const padCanvasBox = document.getElementById("padCanvasBox");
+    const digitDrawCanvas = document.getElementById("digitDrawCanvas");
+    const padBboxOverlay = document.getElementById("padBboxOverlay");
+    const padPlaceholder = document.getElementById("padPlaceholder");
+    const padStatusMsg = document.getElementById("padStatusMsg");
+    const aiStaleBanner = document.getElementById("aiStaleBanner");
+
+    function markAIStaleIfNeeded() {
+      if (appState.aiRunResult) {
+        appState.aiIsStale = true;
+        aiStaleBanner.hidden = false;
+      }
+    }
+
+    function resizeAndRedrawPad() {
+      const rect = padCanvasBox.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.max(200, Math.round(rect.width));
+      const h = Math.max(200, Math.round(rect.height));
+      digitDrawCanvas.width = w * dpr;
+      digitDrawCanvas.height = h * dpr;
+      redrawPadCanvas();
+    }
+
+    function redrawPadCanvas() {
+      const ctx = digitDrawCanvas.getContext("2d");
+      const w = digitDrawCanvas.width;
+      const h = digitDrawCanvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      padPlaceholder.classList.toggle("is-hidden", appState.strokes.length > 0);
+      if (appState.strokes.length === 0) return;
+
+      ctx.save();
+      ctx.strokeStyle = "#FF7949";
+      ctx.lineWidth = Math.max(7, w * 0.044);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      for (const stroke of appState.strokes) {
+        if (stroke.length === 0) continue;
+        ctx.beginPath();
+        ctx.moveTo(stroke[0][0] * w, stroke[0][1] * h);
+        if (stroke.length === 1) {
+          ctx.lineTo(stroke[0][0] * w + 0.5, stroke[0][1] * h + 0.5);
+        } else {
+          for (let i = 1; i < stroke.length; i++) {
+            ctx.lineTo(stroke[i][0] * w, stroke[i][1] * h);
+          }
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function getNormalizedPadPoint(e) {
+      const rect = digitDrawCanvas.getBoundingClientRect();
+      const x = Math.max(0.02, Math.min(0.98, (e.clientX - rect.left) / Math.max(1, rect.width)));
+      const y = Math.max(0.02, Math.min(0.98, (e.clientY - rect.top) / Math.max(1, rect.height)));
+      return [x, y];
+    }
+
+    digitDrawCanvas.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      appState.isDrawing = true;
+      digitDrawCanvas.setPointerCapture(e.pointerId);
+      padBboxOverlay.classList.remove("is-visible");
+      padStatusMsg.textContent = "";
+      appState.strokes.push([getNormalizedPadPoint(e)]);
+      redrawPadCanvas();
+      markAIStaleIfNeeded();
+    });
+
+    digitDrawCanvas.addEventListener("pointermove", (e) => {
+      if (!appState.isDrawing) return;
+      e.preventDefault();
+      const pt = getNormalizedPadPoint(e);
+      const cur = appState.strokes[appState.strokes.length - 1];
+      const prev = cur[cur.length - 1];
+      if (!prev || Math.hypot(pt[0] - prev[0], pt[1] - prev[1]) > 0.006) {
+        cur.push(pt);
+        redrawPadCanvas();
+      }
+    });
+
+    function finishDrawingStroke() {
+      appState.isDrawing = false;
+    }
+
+    digitDrawCanvas.addEventListener("pointerup", finishDrawingStroke);
+    digitDrawCanvas.addEventListener("pointercancel", finishDrawingStroke);
+
+    document.getElementById("btnClearPad").addEventListener("click", () => {
+      clearAIAnimationTimers();
+      appState.strokes = [];
+      padBboxOverlay.classList.remove("is-visible");
+      padStatusMsg.textContent = "";
+      redrawPadCanvas();
+      markAIStaleIfNeeded();
+    });
+
+    document.getElementById("btnUseSample").addEventListener("click", () => {
+      const sample = DEMO_SAMPLES[appState.sampleCursor % DEMO_SAMPLES.length];
+      appState.sampleCursor++;
+      appState.strokes = sample.strokes.map((s) => s.map((pt) => [pt[0], pt[1]]));
+      padBboxOverlay.classList.remove("is-visible");
+      padStatusMsg.textContent = `Đã nạp nét mẫu: ${sample.name}. Bạn có thể sửa thêm nét hoặc bấm “Cho máy xem”.`;
+      redrawPadCanvas();
+      markAIStaleIfNeeded();
+    });
+
+    /* ==========================================================================
+       6. ĐẠO DIỄN CHUYỂN ĐỘNG & HIỂN THỊ PHÒNG THÍ NGHIỆM AI (0–1.100 ms)
+       ========================================================================== */
+    const aiStrokeCanvas = document.getElementById("aiStrokeCanvas");
+    const aiPixelCanvas = document.getElementById("aiPixelCanvas");
+    const aiBboxCoords = document.getElementById("aiBboxCoords");
+    const aiActivePixels = document.getElementById("aiActivePixels");
+    const pixelInspectorReadout = document.getElementById("pixelInspectorReadout");
+    const predDigitDisplay = document.getElementById("predDigitDisplay");
+    const predVotesDisplay = document.getElementById("predVotesDisplay");
+    const predNoteDisplay = document.getElementById("predNoteDisplay");
+    const btnConfirmCorrect = document.getElementById("btnConfirmCorrect");
+    const btnConfirmWrong = document.getElementById("btnConfirmWrong");
+    const wrongDigitPicker = document.getElementById("wrongDigitPicker");
+    const comparisonBadge = document.getElementById("comparisonBadge");
+    const neighborCards = Array.from(document.querySelectorAll(".neighbor-card"));
+
+    function clearAIAnimationTimers() {
+      appState.aiAnimTimers.forEach((id) => clearTimeout(id));
+      appState.aiAnimTimers = [];
+    }
+
+    function drawMiniGrid(canvas, grid, accentHex = "#9DE3C5") {
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const cell = w / 28;
+      ctx.fillStyle = "#080C0E";
+      ctx.fillRect(0, 0, w, h);
+      for (let y = 0; y < 28; y++) {
+        for (let x = 0; x < 28; x++) {
+          const v = grid[y * 28 + x];
+          if (v > 0.03) {
+            ctx.fillStyle = accentHex;
+            ctx.globalAlpha = Math.min(1, v);
+            ctx.fillRect(x * cell, y * cell, Math.ceil(cell), Math.ceil(cell));
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    function renderAIStrokePanel(result, stageMode) {
+      const ctx = aiStrokeCanvas.getContext("2d");
+      const w = aiStrokeCanvas.width;
+      const h = aiStrokeCanvas.height;
+      ctx.fillStyle = "#0B1114";
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = "rgba(157, 227, 197, 0.08)";
+      ctx.lineWidth = 1;
+      for (let i = 1; i < 14; i++) {
+        const p = (w / 14) * i;
+        ctx.beginPath();
+        ctx.moveTo(p, 0); ctx.lineTo(p, h);
+        ctx.moveTo(0, p); ctx.lineTo(w, p);
+        ctx.stroke();
+      }
+
+      if (!result) return;
+      const { strokesSnapshot, processed } = result;
+      const { bbox, transform } = processed;
+      const view = stageMode || appState.aiViewMode;
+
+      ctx.save();
+      ctx.strokeStyle = "#FF7949";
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      if (view === "raw") {
+        ctx.lineWidth = 12;
+        for (const s of strokesSnapshot) {
+          ctx.beginPath();
+          ctx.moveTo(s[0][0] * w, s[0][1] * h);
+          for (let i = 1; i < s.length; i++) ctx.lineTo(s[i][0] * w, s[i][1] * h);
+          ctx.stroke();
+        }
+        ctx.strokeStyle = "#9DE3C5";
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
+        ctx.strokeRect(bbox.minX * w - 6, bbox.minY * h - 6, bbox.bw * w + 12, bbox.bh * h + 12);
+      } else {
+        const factor = w / 28;
+        ctx.strokeStyle = "rgba(157, 227, 197, 0.35)";
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([4, 4]);
+        ctx.strokeRect(4 * factor, 4 * factor, 20 * factor, 20 * factor);
+        ctx.setLineDash([]);
+
+        ctx.strokeStyle = "#FF7949";
+        ctx.lineWidth = 2.15 * factor;
+        for (const s of strokesSnapshot) {
+          ctx.beginPath();
+          ctx.moveTo((s[0][0] * transform.scale + transform.offsetX) * factor, (s[0][1] * transform.scale + transform.offsetY) * factor);
+          for (let i = 1; i < s.length; i++) {
+            ctx.lineTo((s[i][0] * transform.scale + transform.offsetX) * factor, (s[i][1] * transform.scale + transform.offsetY) * factor);
+          }
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+    }
+
+    function renderAIPixelPanel(result, revealRatio = 1, hoverCell = null) {
+      const ctx = aiPixelCanvas.getContext("2d");
+      const w = aiPixelCanvas.width;
+      const h = aiPixelCanvas.height;
+      const cell = w / 28;
+      ctx.fillStyle = "#0B1114";
+      ctx.fillRect(0, 0, w, h);
+
+      if (!result) return;
+      const { processed, strokesSnapshot } = result;
+      const grid = processed.grid;
+
+      if (appState.aiViewMode === "raw") {
+        ctx.strokeStyle = "#FF7949";
+        ctx.lineWidth = 12;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        for (const s of strokesSnapshot) {
+          ctx.beginPath();
+          ctx.moveTo(s[0][0] * w, s[0][1] * h);
+          for (let i = 1; i < s.length; i++) ctx.lineTo(s[i][0] * w, s[i][1] * h);
+          ctx.stroke();
+        }
+        return;
+      }
+
+      if (appState.aiViewMode === "centered") {
+        const factor = w / 28;
+        const { scale, offsetX, offsetY } = processed.transform;
+        ctx.strokeStyle = "#FF7949";
+        ctx.lineWidth = 2.15 * factor;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        for (const s of strokesSnapshot) {
+          ctx.beginPath();
+          ctx.moveTo((s[0][0] * scale + offsetX) * factor, (s[0][1] * scale + offsetY) * factor);
+          for (let i = 1; i < s.length; i++) {
+            ctx.lineTo((s[i][0] * scale + offsetX) * factor, (s[i][1] * scale + offsetY) * factor);
+          }
+          ctx.stroke();
+        }
+        return;
+      }
+
+      const maxRow = Math.ceil(28 * revealRatio);
+      for (let y = 0; y < maxRow; y++) {
+        for (let x = 0; x < 28; x++) {
+          const val = grid[y * 28 + x];
+          if (val > 0.02) {
+            const r = Math.round(157 + (245 - 157) * val);
+            const g = Math.round(227 + (255 - 227) * val);
+            const b = Math.round(197 + (248 - 197) * val);
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.min(1, 0.14 + val * 0.86)})`;
+            ctx.fillRect(x * cell + 0.5, y * cell + 0.5, cell - 1, cell - 1);
+          }
+        }
+      }
+
+      ctx.strokeStyle = "rgba(157, 227, 197, 0.12)";
+      ctx.lineWidth = 0.6;
+      for (let i = 1; i < 28; i++) {
+        const p = i * cell;
+        ctx.beginPath();
+        ctx.moveTo(p, 0); ctx.lineTo(p, h);
+        ctx.moveTo(0, p); ctx.lineTo(w, p);
+        ctx.stroke();
+      }
+
+      if (hoverCell) {
+        ctx.strokeStyle = "#FF7949";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(hoverCell.x * cell, hoverCell.y * cell, cell, cell);
+      }
+    }
+
+    function runAIRecognition() {
+      clearAIAnimationTimers();
+      const processed = rasterizeStrokesTo28x28(appState.strokes);
+      if (!processed) {
+        padStatusMsg.textContent = "Ô vẽ còn trống hoặc mới có một chấm. Hãy viết rõ một chữ số từ 0 đến 9.";
+        return;
+      }
+
+      padStatusMsg.textContent = "";
+      const knn = classifyWithKNN(processed, 5);
+      const strokesSnapshot = appState.strokes.map((s) => s.map((pt) => [pt[0], pt[1]]));
+
+      appState.aiRunResult = {
+        strokesSnapshot,
+        processed,
+        knn,
+        confirmedUserLabel: null,
+        feedbackState: "none"
+      };
+      appState.aiIsStale = false;
+      aiStaleBanner.hidden = true;
+
+      wrongDigitPicker.hidden = true;
+      comparisonBadge.hidden = true;
+      btnConfirmCorrect.disabled = false;
+      btnConfirmWrong.disabled = false;
+
+      const { bbox } = processed;
+      padBboxOverlay.style.left = `${Math.max(0, bbox.minX * 100 - 3)}%`;
+      padBboxOverlay.style.top = `${Math.max(0, bbox.minY * 100 - 3)}%`;
+      padBboxOverlay.style.width = `${Math.min(100, bbox.bw * 100 + 6)}%`;
+      padBboxOverlay.style.height = `${Math.min(100, bbox.bh * 100 + 6)}%`;
+      padBboxOverlay.classList.add("is-visible");
+
+      aiBboxCoords.textContent = `box ${Math.round(bbox.bw * 100)}×${Math.round(bbox.bh * 100)}%`;
+      aiActivePixels.textContent = `${processed.activeCount} / 784 ô sáng`;
+
+      const applyFinalNeighborsAndPrediction = () => {
+        knn.top3.forEach((nb, idx) => {
+          const card = neighborCards[idx];
+          if (!card) return;
+          card.classList.remove("is-entering");
+          drawMiniGrid(card.querySelector("canvas"), nb.grid, "#9DE3C5");
+          card.querySelector(".neighbor-label").textContent = `Mẫu ${nb.label}`;
+          card.querySelector(".neighbor-dist").textContent = `d = ${nb.euclidean.toFixed(2)}`;
+        });
+
+        predDigitDisplay.textContent = String(knn.predicted);
+        predVotesDisplay.textContent = `${knn.bestVotes}/${knn.k} láng giềng chọn ${knn.predicted} · gần nhất d = ${knn.top3[0].euclidean.toFixed(2)}`;
+
+        if (knn.isUncertain && knn.runnerUpDigit !== null) {
+          predNoteDisplay.textContent = `Máy đang phân vân giữa ${knn.predicted} (${knn.bestVotes} phiếu) và ${knn.runnerUpDigit} (${knn.runnerUpVotes} phiếu). Bạn có thể thử thêm một nét nhỏ rồi chạy lại.`;
+        } else {
+          predNoteDisplay.textContent = `Mẫu gần nhất là “${knn.top3[0].style}” (khoảng cách Euclidean d = ${knn.top3[0].euclidean.toFixed(2)}).`;
+        }
+        updatePosterPreview();
+      };
+
+      const labSection = document.getElementById("thu-nghiem-ai");
+      const labRect = labSection.getBoundingClientRect();
+      if (labRect.top > window.innerHeight * 0.72) {
+        smoothScrollToElement(labSection);
+      }
+
+      if (prefersReducedMotion) {
+        renderAIStrokePanel(appState.aiRunResult, "centered");
+        renderAIPixelPanel(appState.aiRunResult, 1);
+        applyFinalNeighborsAndPrediction();
+        return;
+      }
+
+      neighborCards.forEach((c) => c.classList.add("is-entering"));
+      predDigitDisplay.textContent = "…";
+      predVotesDisplay.textContent = "Đang chuẩn hóa hộp bao 20×20…";
+
+      renderAIStrokePanel(appState.aiRunResult, "raw");
+      renderAIPixelPanel(appState.aiRunResult, 0);
+
+      appState.aiAnimTimers.push(setTimeout(() => {
+        renderAIStrokePanel(appState.aiRunResult, "centered");
+      }, 180));
+
+      appState.aiAnimTimers.push(setTimeout(() => {
+        const start = performance.now();
+        const dur = 300;
+        const sweep = (ts) => {
+          const p = Math.min(1, (ts - start) / dur);
+          renderAIPixelPanel(appState.aiRunResult, p);
+          if (p < 1) requestAnimationFrame(sweep);
+        };
+        requestAnimationFrame(sweep);
+      }, 480));
+
+      appState.aiAnimTimers.push(setTimeout(() => {
+        knn.top3.forEach((nb, idx) => {
+          const card = neighborCards[idx];
+          if (!card) return;
+          drawMiniGrid(card.querySelector("canvas"), nb.grid, "#9DE3C5");
+          card.querySelector(".neighbor-label").textContent = `Mẫu ${nb.label}`;
+          card.querySelector(".neighbor-dist").textContent = `d = ${nb.euclidean.toFixed(2)}`;
+          appState.aiAnimTimers.push(setTimeout(() => card.classList.remove("is-entering"), idx * 80));
+        });
+      }, 780));
+
+      appState.aiAnimTimers.push(setTimeout(() => {
+        applyFinalNeighborsAndPrediction();
+      }, 1080));
+    }
+
+    document.getElementById("btnRunAI").addEventListener("click", runAIRecognition);
+
+    document.querySelectorAll("[data-ai-view]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        appState.aiViewMode = btn.getAttribute("data-ai-view");
+        document.querySelectorAll("[data-ai-view]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b === btn));
+        });
+        if (appState.aiRunResult) {
+          renderAIStrokePanel(appState.aiRunResult, appState.aiViewMode === "raw" ? "raw" : "centered");
+          renderAIPixelPanel(appState.aiRunResult, 1);
+        }
+      });
+    });
+
+    function inspectPixelAtPointer(e) {
+      if (!appState.aiRunResult || appState.aiViewMode !== "grid") return;
+      const rect = aiPixelCanvas.getBoundingClientRect();
+      const x = Math.max(0, Math.min(27, Math.floor(((e.clientX - rect.left) / rect.width) * 28)));
+      const y = Math.max(0, Math.min(27, Math.floor(((e.clientY - rect.top) / rect.height) * 28)));
+      const val = appState.aiRunResult.processed.grid[y * 28 + x];
+      pixelInspectorReadout.textContent = `Ô (${x}, ${y}) · Chỉ số #${y * 28 + x} · Độ sáng = ${val.toFixed(2)}`;
+      renderAIPixelPanel(appState.aiRunResult, 1, { x, y });
+    }
+
+    aiPixelCanvas.addEventListener("pointermove", inspectPixelAtPointer);
+    aiPixelCanvas.addEventListener("pointerdown", inspectPixelAtPointer);
+    aiPixelCanvas.addEventListener("pointerleave", () => {
+      if (appState.aiRunResult) renderAIPixelPanel(appState.aiRunResult, 1, null);
+    });
+
+    for (let d = 0; d <= 9; d++) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "digit-pick-btn";
+      b.textContent = String(d);
+      b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", () => {
+        if (!appState.aiRunResult) return;
+        appState.aiRunResult.confirmedUserLabel = d;
+        appState.aiRunResult.feedbackState = d === appState.aiRunResult.knn.predicted ? "correct" : "wrong";
+        wrongDigitPicker.querySelectorAll(".digit-pick-btn").forEach((el) => {
+          el.setAttribute("aria-pressed", String(el === b));
+        });
+        comparisonBadge.hidden = false;
+        comparisonBadge.textContent = `Bạn viết ${d} / Máy đọc ${appState.aiRunResult.knn.predicted} — Đã ghi nhận để đối chiếu trên poster (bộ mẫu k-NN gốc giữ nguyên).`;
+        updatePosterPreview();
+      });
+      wrongDigitPicker.appendChild(b);
+    }
+
+    btnConfirmCorrect.addEventListener("click", () => {
+      if (!appState.aiRunResult) return;
+      appState.aiRunResult.confirmedUserLabel = appState.aiRunResult.knn.predicted;
+      appState.aiRunResult.feedbackState = "correct";
+      smoothSlideToggle(wrongDigitPicker, false);
+      comparisonBadge.hidden = false;
+      comparisonBadge.textContent = `Đã xác nhận: Bạn viết ${appState.aiRunResult.knn.predicted} / Máy đọc ${appState.aiRunResult.knn.predicted}.`;
+      updatePosterPreview();
+    });
+
+    btnConfirmWrong.addEventListener("click", () => {
+      if (!appState.aiRunResult) return;
+      smoothSlideToggle(wrongDigitPicker, wrongDigitPicker.hidden);
+    });
+
+    /* ==========================================================================
+       7. MINI GAME THUẬT TOÁN — THAM LAM VS QUY HOẠCH ĐỘNG (1-INDEXED)
+       ========================================================================== */
+    const arrayEditorRow = document.getElementById("arrayEditorRow");
+    const algoStaleBanner = document.getElementById("algoStaleBanner");
+    const greedyVizStrip = document.getElementById("greedyVizStrip");
+    const greedyStepLog = document.getElementById("greedyStepLog");
+    const greedySumBadge = document.getElementById("greedySumBadge");
+    const dpVizStrip = document.getElementById("dpVizStrip");
+    const dpRow = document.getElementById("dpRow");
+    const dpArcsSvg = document.getElementById("dpArcsSvg");
+    const dpExplainBox = document.getElementById("dpExplainBox");
+    const dpSumBadge = document.getElementById("dpSumBadge");
+    const algoVerdictBar = document.getElementById("algoVerdictBar");
+    const algoVerdictTitle = document.getElementById("algoVerdictTitle");
+    const algoVerdictDetail = document.getElementById("algoVerdictDetail");
+
+    function solveGreedyAndDP(arr) {
+      const n = arr.length;
+      const state = new Array(n).fill("open");
+      const greedySteps = [];
+      const greedyPicks = [];
+      let greedySum = 0;
+
+      while (true) {
+        let bestIdx = -1;
+        let bestVal = -Infinity;
+        for (let i = 0; i < n; i++) {
+          if (state[i] === "open" && arr[i] > bestVal) {
+            bestVal = arr[i];
+            bestIdx = i;
+          }
+        }
+        if (bestIdx === -1) break;
+        state[bestIdx] = "picked";
+        greedyPicks.push(bestIdx);
+        greedySum += arr[bestIdx];
+        const blockedNow = [];
+        if (bestIdx - 1 >= 0 && state[bestIdx - 1] === "open") {
+          state[bestIdx - 1] = "blocked";
+          blockedNow.push(bestIdx - 1);
+        }
+        if (bestIdx + 1 < n && state[bestIdx + 1] === "open") {
+          state[bestIdx + 1] = "blocked";
+          blockedNow.push(bestIdx + 1);
+        }
+        greedySteps.push({
+          picked: bestIdx,
+          val: arr[bestIdx],
+          blocked: blockedNow,
+          stateSnapshot: [...state]
+        });
+      }
+
+      const F = new Array(n + 1).fill(0);
+      const choice = new Array(n + 1).fill("base");
+      if (n >= 1) {
+        F[1] = arr[0];
+        choice[1] = "take";
+      }
+      for (let i = 2; i <= n; i++) {
+        const skipVal = F[i - 1];
+        const takeVal = arr[i - 1] + F[i - 2];
+        if (takeVal > skipVal) {
+          F[i] = takeVal;
+          choice[i] = "take";
+        } else {
+          F[i] = skipVal;
+          choice[i] = "skip";
+        }
+      }
+
+      const dpPicks = [];
+      let cur = n;
+      while (cur >= 1) {
+        if (cur === 1) {
+          dpPicks.push(0);
+          break;
+        }
+        if (choice[cur] === "take") {
+          dpPicks.push(cur - 1);
+          cur -= 2;
+        } else {
+          cur -= 1;
+        }
+      }
+      dpPicks.reverse();
+
+      return {
+        arraySnapshot: [...arr],
+        greedy: { sum: greedySum, picks: greedyPicks, steps: greedySteps },
+        dp: { sum: F[n], F, choice, picks: dpPicks }
+      };
+    }
+
+    function markAlgoStale() {
+      if (appState.algoRunResult) {
+        appState.algoIsStale = true;
+        algoStaleBanner.hidden = false;
+      }
+    }
+
+    function renderArrayEditor() {
+      arrayEditorRow.innerHTML = "";
+      appState.algoArray.forEach((val, idx) => {
+        const box = document.createElement("div");
+        box.className = "array-cell-editor";
+        box.innerHTML = `
+          <span class="cell-idx-tag">a[${idx + 1}]</span>
+          <input
+            type="number"
+            class="cell-val-input"
+            min="1"
+            max="20"
+            value="${val}"
+            aria-label="Giá trị ô a[${idx + 1}]"
+          />
+          <div class="cell-stepper">
+            <button type="button" class="cell-step-btn" data-delta="-1" aria-label="Giảm ô a[${idx + 1}]">−</button>
+            <button type="button" class="cell-step-btn" data-delta="1" aria-label="Tăng ô a[${idx + 1}]">+</button>
+          </div>
+        `;
+        const input = box.querySelector("input");
+        const updateVal = (next) => {
+          const clamped = Math.max(1, Math.min(20, Math.round(Number(next) || 1)));
+          appState.algoArray[idx] = clamped;
+          input.value = String(clamped);
+          markAlgoStale();
+        };
+        input.addEventListener("change", () => updateVal(input.value));
+        box.querySelectorAll(".cell-step-btn").forEach((b) => {
+          b.addEventListener("click", () => updateVal(appState.algoArray[idx] + Number(b.getAttribute("data-delta"))));
+        });
+        arrayEditorRow.appendChild(box);
+      });
+
+      document.getElementById("btnAddCell").disabled = appState.algoArray.length >= 7;
+      document.getElementById("btnRemoveCell").disabled = appState.algoArray.length <= 1;
+    }
+
+    function stopAlgoAnimation() {
+      if (appState.algoAnimTimer) {
+        clearInterval(appState.algoAnimTimer);
+        appState.algoAnimTimer = null;
+      }
+    }
+
+    function drawDPTransitionArcs(i) {
+      dpArcsSvg.innerHTML = "";
+      if (!appState.algoRunResult || i === null || i < 2) return;
+      const btns = dpRow.querySelectorAll(".dp-f-btn");
+      const targetBtn = btns[i];
+      const prev1Btn = btns[i - 1];
+      const prev2Btn = btns[i - 2];
+      if (!targetBtn || !prev1Btn || !prev2Btn) return;
+
+      const wrapRect = dpRow.getBoundingClientRect();
+      const cx = (el) => {
+        const r = el.getBoundingClientRect();
+        return r.left - wrapRect.left + r.width / 2;
+      };
+
+      const xT = cx(targetBtn);
+      const x1 = cx(prev1Btn);
+      const x2 = cx(prev2Btn);
+      const choiceType = appState.algoRunResult.dp.choice[i];
+
+      const makeArc = (xFrom, xTo, height, isWin) => {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const mid = (xFrom + xTo) / 2;
+        path.setAttribute("d", `M ${xFrom} 36 Q ${mid} ${36 - height} ${xTo} 36`);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", isWin ? "#9DE3C5" : "#64767E");
+        path.setAttribute("stroke-width", isWin ? "2.4" : "1.4");
+        if (!isWin) path.setAttribute("stroke-dasharray", "4 3");
+        path.setAttribute("opacity", isWin ? "1" : "0.55");
+        dpArcsSvg.appendChild(path);
+      };
+
+      makeArc(x2, xT, 32, choiceType === "take");
+      makeArc(x1, xT, 18, choiceType === "skip");
+    }
+
+    function inspectDPCell(i) {
+      const res = appState.algoRunResult;
+      if (!res) return;
+      appState.algoInspectI = i;
+
+      const btns = Array.from(dpRow.querySelectorAll(".dp-f-btn"));
+      btns.forEach((b, idx) => {
+        b.classList.remove("is-inspected", "is-pred-win", "is-pred-lose");
+        if (idx === i) b.classList.add("is-inspected");
+      });
+
+      const arr = res.arraySnapshot;
+      const { F, choice } = res.dp;
+
+      if (i === 0) {
+        dpExplainBox.textContent = "F[0] = 0: chưa có ô nào nên tổng điểm bằng 0.";
+        dpArcsSvg.innerHTML = "";
+        return;
+      }
+      if (i === 1) {
+        dpExplainBox.textContent = `F[1] = a[1] = ${arr[0]}: chỉ có ô đầu tiên nên lấy luôn ${arr[0]} điểm.`;
+        dpArcsSvg.innerHTML = "";
+        return;
+      }
+
+      const skipVal = F[i - 1];
+      const takeVal = arr[i - 1] + F[i - 2];
+      const took = choice[i] === "take";
+
+      btns[i - 1].classList.add(took ? "is-pred-lose" : "is-pred-win");
+      btns[i - 2].classList.add(took ? "is-pred-win" : "is-pred-lose");
+      drawDPTransitionArcs(i);
+
+      if (i === arr.length && arr.length === 3 && arr[0] === 4 && arr[1] === 5 && arr[2] === 4) {
+        dpExplainBox.textContent = "Nếu bỏ ô cuối, ta giữ được 5. Nếu lấy ô cuối, ta có 4 điểm ở đây và lấy thêm được 4 điểm từ ô đầu. Vậy chọn 8.";
+      } else {
+        const prevTerm = i === 2 ? "0 điểm trước đó" : `${F[i - 2]} điểm từ F[${i - 2}]`;
+        dpExplainBox.textContent = `Tại ô a[${i}] = ${arr[i - 1]}: Nếu bỏ qua, ta giữ được F[${i - 1}] = ${skipVal}. Nếu lấy ô này, ta có ${arr[i - 1]} + ${prevTerm} = ${takeVal}. Vậy chọn F[${i}] = ${F[i]}.`;
+      }
+    }
+
+    function renderAlgoComparisonAtStep(stepCount) {
+      const res = appState.algoRunResult;
+      if (!res) return;
+      const { arraySnapshot, greedy, dp } = res;
+      const n = arraySnapshot.length;
+      const maxSteps = Math.max(greedy.steps.length, n);
+      const clampedStep = Math.min(stepCount, maxSteps);
+      appState.algoStepIdx = clampedStep;
+
+      const gStepIndex = Math.min(clampedStep, greedy.steps.length);
+      const curState = gStepIndex > 0 ? greedy.steps[gStepIndex - 1].stateSnapshot : new Array(n).fill("open");
+      let partialGreedySum = 0;
+      for (let s = 0; s < gStepIndex; s++) partialGreedySum += greedy.steps[s].val;
+
+      greedySumBadge.textContent = `Tổng = ${partialGreedySum}`;
+      greedyVizStrip.innerHTML = "";
+      arraySnapshot.forEach((v, idx) => {
+        const cell = document.createElement("div");
+        cell.className = "viz-cell";
+        if (curState[idx] === "picked") cell.classList.add("is-greedy-pick");
+        if (curState[idx] === "blocked") cell.classList.add("is-greedy-blocked");
+        cell.innerHTML = `<span class="viz-cell-val">${v}</span><span class="viz-cell-idx">a[${idx + 1}]</span>`;
+        greedyVizStrip.appendChild(cell);
+      });
+
+      greedyStepLog.innerHTML = "";
+      for (let s = 0; s < gStepIndex; s++) {
+        const st = greedy.steps[s];
+        const li = document.createElement("li");
+        const blk = st.blocked.length
+          ? `, loại ${st.blocked.map((b) => `a[${b + 1}]`).join(" và ")}`
+          : ", không còn ô kề cần loại";
+        li.textContent = `Chọn a[${st.picked + 1}] = ${st.val}${blk}.`;
+        greedyStepLog.appendChild(li);
+      }
+
+      const dpVisibleN = Math.min(clampedStep, n);
+      const isFinished = clampedStep >= maxSteps;
+      dpSumBadge.textContent = `Tổng = ${dp.F[dpVisibleN]}`;
+
+      dpVizStrip.innerHTML = "";
+      arraySnapshot.forEach((v, idx) => {
+        const cell = document.createElement("div");
+        cell.className = "viz-cell";
+        if (isFinished && dp.picks.includes(idx)) cell.classList.add("is-dp-pick");
+        cell.innerHTML = `<span class="viz-cell-val">${v}</span><span class="viz-cell-idx">a[${idx + 1}]</span>`;
+        dpVizStrip.appendChild(cell);
+      });
+
+      dpRow.innerHTML = "";
+      for (let i = 0; i <= n; i++) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "dp-f-btn";
+        const unlocked = i <= dpVisibleN;
+        btn.disabled = !unlocked;
+        btn.innerHTML = `
+          <span class="viz-cell-val" style="color:${unlocked ? "var(--machine)" : "var(--lab-muted)"};">${unlocked ? dp.F[i] : "—"}</span>
+          <span class="viz-cell-idx">F[${i}]</span>
+        `;
+        btn.addEventListener("pointerenter", () => unlocked && inspectDPCell(i));
+        btn.addEventListener("click", () => unlocked && inspectDPCell(i));
+        dpRow.appendChild(btn);
+      }
+
+      if (dpVisibleN >= 1) {
+        requestAnimationFrame(() => inspectDPCell(dpVisibleN));
+      }
+
+      if (isFinished) {
+        const isCounter = dp.sum > greedy.sum;
+        algoVerdictBar.classList.toggle("is-counterexample", isCounter);
+        if (isCounter) {
+          algoVerdictTitle.textContent = "Bạn tìm được phản ví dụ";
+          algoVerdictDetail.textContent = `Trên [${arraySnapshot.join(", ")}]: Tham lam chỉ lấy được ${greedy.sum}, còn Quy hoạch động tìm ra ${dp.sum} (hơn ${dp.sum - greedy.sum} điểm).`;
+        } else {
+          algoVerdictTitle.textContent = "Test này chưa bẻ được lời giải. Thử đổi ô giữa xem?";
+          algoVerdictDetail.textContent = `Trên [${arraySnapshot.join(", ")}]: cả Tham lam và Quy hoạch động đều ra tổng ${dp.sum}.`;
+        }
+        updatePosterPreview();
+      } else {
+        algoVerdictBar.classList.remove("is-counterexample");
+        algoVerdictTitle.textContent = `Đang chạy bước ${clampedStep}/${maxSteps}…`;
+        algoVerdictDetail.textContent = "Bấm “Từng bước” để đi tiếp hoặc “Chạy nhanh” để xem kết quả cuối.";
+      }
+    }
+
+    function startAlgoRun(mode = "auto") {
+      stopAlgoAnimation();
+      appState.algoRunResult = solveGreedyAndDP(appState.algoArray);
+      appState.algoIsStale = false;
+      algoStaleBanner.hidden = true;
+
+      const maxSteps = Math.max(appState.algoRunResult.greedy.steps.length, appState.algoRunResult.arraySnapshot.length);
+
+      if (mode === "fast" || prefersReducedMotion) {
+        renderAlgoComparisonAtStep(maxSteps);
+        return;
+      }
+
+      if (mode === "step") {
+        renderAlgoComparisonAtStep(1);
+        return;
+      }
+
+      let cur = 1;
+      renderAlgoComparisonAtStep(cur);
+      if (maxSteps > 1) {
+        appState.algoAnimTimer = setInterval(() => {
+          cur++;
+          renderAlgoComparisonAtStep(cur);
+          if (cur >= maxSteps) stopAlgoAnimation();
+        }, 480);
+      }
+    }
+
+    document.getElementById("btnRunAlgo").addEventListener("click", () => startAlgoRun("auto"));
+    document.getElementById("btnAlgoFast").addEventListener("click", () => startAlgoRun("fast"));
+    document.getElementById("btnAlgoStep").addEventListener("click", () => {
+      stopAlgoAnimation();
+      if (!appState.algoRunResult || appState.algoIsStale) {
+        startAlgoRun("step");
+        return;
+      }
+      const maxSteps = Math.max(appState.algoRunResult.greedy.steps.length, appState.algoRunResult.arraySnapshot.length);
+      const next = appState.algoStepIdx >= maxSteps ? 1 : appState.algoStepIdx + 1;
+      renderAlgoComparisonAtStep(next);
+    });
+
+    document.getElementById("btnAlgoEditFocus").addEventListener("click", () => {
+      const firstInput = arrayEditorRow.querySelector("input");
+      if (firstInput) {
+        firstInput.focus();
+        firstInput.select();
+      }
+    });
+
+    document.getElementById("btnAddCell").addEventListener("click", () => {
+      if (appState.algoArray.length >= 7) return;
+      appState.algoArray.push(Math.max(1, Math.min(20, appState.algoArray[appState.algoArray.length - 1] + 1)));
+      renderArrayEditor();
+      markAlgoStale();
+    });
+
+    document.getElementById("btnRemoveCell").addEventListener("click", () => {
+      if (appState.algoArray.length <= 1) return;
+      appState.algoArray.pop();
+      renderArrayEditor();
+      markAlgoStale();
+    });
+
+    document.querySelectorAll("[data-preset]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        appState.algoArray = btn.getAttribute("data-preset").split(",").map(Number);
+        renderArrayEditor();
+        startAlgoRun("fast");
+      });
+    });
+
+    /* ==========================================================================
+       8. GÓC AI ENGINEER — MÔ PHỎNG BĂNG CHUYỀN & ĐỘ TRỄ XỬ LÝ (800 ms)
+       ========================================================================== */
+    const conveyorCanvas = document.getElementById("conveyorCanvas");
+    const latencySlider = document.getElementById("latencySlider");
+    const latencyValueLabel = document.getElementById("latencyValueLabel");
+    const metricCommandTime = document.getElementById("metricCommandTime");
+    const conveyorTakeaway = document.getElementById("conveyorTakeaway");
+    const btnRunConveyor = document.getElementById("btnRunConveyor");
+
+    const CONVEYOR_CFG = {
+      camX: 250,
+      gateX: 570,
+      beltY: 175,
+      travelMs: 800,
+      speedPxPerMs: (570 - 250) / 800,
+      runDurationMs: 3200
+    };
+
+    let conveyorSim = null;
+
+    function createConveyorRun(latencyMs) {
+      return {
+        latencyMs,
+        elapsedMs: 0,
+        finished: false,
+        gateAngle: 0,
+        gateTarget: 0,
+        gateStatus: "Sẵn sàng",
+        items: [
+          {
+            id: 1,
+            shape: "circle",
+            color: "#FF7949",
+            label: "Khối tròn",
+            x: 80,
+            y: CONVEYOR_CFG.beltY,
+            seenAtMs: null,
+            cmdDueMs: null,
+            cmdHandled: false,
+            outcome: "moving"
+          },
+          {
+            id: 2,
+            shape: "square",
+            color: "#9DE3C5",
+            label: "Khối vuông",
+            x: -240,
+            y: CONVEYOR_CFG.beltY,
+            seenAtMs: null,
+            cmdDueMs: null,
+            cmdHandled: false,
+            outcome: "moving"
+          }
+        ]
+      };
+    }
+
+    function stepConveyorSim(sim, dtMs) {
+      sim.elapsedMs += dtMs;
+      let activeGateTarget = 0;
+
+      for (const item of sim.items) {
+        if (item.outcome === "moving") {
+          item.x += CONVEYOR_CFG.speedPxPerMs * dtMs;
+
+          if (item.seenAtMs === null && item.x >= CONVEYOR_CFG.camX) {
+            item.seenAtMs = sim.elapsedMs;
+            item.cmdDueMs = sim.elapsedMs + sim.latencyMs;
+          }
+
+          if (item.cmdDueMs !== null && !item.cmdHandled && sim.elapsedMs >= item.cmdDueMs) {
+            item.cmdHandled = true;
+            if (sim.latencyMs <= CONVEYOR_CFG.travelMs) {
+              sim.gateStatus = `ID #${item.id}: Đúng hạn (${sim.latencyMs} ms ≤ 800 ms)`;
+            } else {
+              sim.gateStatus = `ID #${item.id}: Lệnh trễ (${sim.latencyMs} ms > 800 ms) · Đã bỏ qua`;
+            }
+          }
+
+          if (item.cmdHandled && sim.latencyMs <= CONVEYOR_CFG.travelMs && item.x > CONVEYOR_CFG.gateX - 70 && item.x < CONVEYOR_CFG.gateX + 45) {
+            activeGateTarget = item.shape === "circle" ? -0.58 : 0.58;
+          }
+
+          if (item.x >= CONVEYOR_CFG.gateX) {
+            if (sim.latencyMs <= CONVEYOR_CFG.travelMs) {
+              item.outcome = item.shape === "circle" ? "sorted_top" : "sorted_bottom";
+            } else {
+              item.outcome = "missed";
+            }
+          }
+        } else if (item.outcome === "sorted_top") {
+          item.x = Math.min(790, item.x + CONVEYOR_CFG.speedPxPerMs * dtMs * 0.85);
+          item.y = Math.max(76, item.y - 0.24 * dtMs);
+        } else if (item.outcome === "sorted_bottom") {
+          item.x = Math.min(790, item.x + CONVEYOR_CFG.speedPxPerMs * dtMs * 0.85);
+          item.y = Math.min(278, item.y + 0.24 * dtMs);
+        } else if (item.outcome === "missed") {
+          item.x = Math.min(865, item.x + CONVEYOR_CFG.speedPxPerMs * dtMs);
+        }
+      }
+
+      sim.gateTarget = activeGateTarget;
+      sim.gateAngle += (sim.gateTarget - sim.gateAngle) * Math.min(1, dtMs * 0.02);
+
+      if (sim.elapsedMs >= CONVEYOR_CFG.runDurationMs) {
+        sim.finished = true;
+      }
+    }
+
+    function drawConveyorScene(sim) {
+      const ctx = conveyorCanvas.getContext("2d");
+      const W = conveyorCanvas.width;
+      const H = conveyorCanvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      ctx.fillStyle = "#0C1316";
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.strokeStyle = "rgba(157, 227, 197, 0.06)";
+      ctx.lineWidth = 1;
+      for (let x = 40; x < W; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let y = 40; y < H; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+
+      const beltTop = CONVEYOR_CFG.beltY - 40;
+      const beltH = 80;
+      ctx.fillStyle = "#172227";
+      ctx.strokeStyle = "#2C3D44";
+      ctx.lineWidth = 2;
+      ctx.fillRect(30, beltTop, 740, beltH);
+      ctx.strokeRect(30, beltTop, 740, beltH);
+
+      const stripeOffset = (sim.elapsedMs * CONVEYOR_CFG.speedPxPerMs) % 44;
+      ctx.strokeStyle = "rgba(234, 236, 232, 0.09)";
+      ctx.lineWidth = 2;
+      for (let sx = 30 + stripeOffset; sx < 765; sx += 44) {
+        ctx.beginPath();
+        ctx.moveTo(sx, beltTop + 6);
+        ctx.lineTo(sx - 10, beltTop + beltH - 6);
+        ctx.stroke();
+      }
+
+      const drawBin = (x, y, w, h, border, title) => {
+        ctx.fillStyle = "#111A1E";
+        ctx.strokeStyle = border;
+        ctx.lineWidth = 1.8;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+        ctx.fillStyle = border;
+        ctx.font = "600 12px 'IBM Plex Mono', monospace";
+        ctx.fillText(title, x + 10, y + 18);
+      };
+
+      drawBin(735, 36, 185, 76, "#FF7949", "KHAY TRÒN (CAM)");
+      drawBin(735, 244, 185, 76, "#9DE3C5", "KHAY VUÔNG (BẠC HÀ)");
+      drawBin(795, 138, 135, 74, "#60727A", "TRÔI QUÁ CỔNG");
+
+      const cx = CONVEYOR_CFG.camX;
+      ctx.fillStyle = "rgba(157, 227, 197, 0.08)";
+      ctx.beginPath();
+      ctx.moveTo(cx, 74);
+      ctx.lineTo(cx - 34, beltTop + beltH);
+      ctx.lineTo(cx + 34, beltTop + beltH);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = "#1F2D33";
+      ctx.strokeStyle = "#9DE3C5";
+      ctx.lineWidth = 2;
+      ctx.fillRect(cx - 34, 34, 68, 36);
+      ctx.strokeRect(cx - 34, 34, 68, 36);
+      ctx.fillStyle = "#9DE3C5";
+      ctx.font = "700 11px 'IBM Plex Mono', monospace";
+      ctx.textAlign = "center";
+      ctx.fillText("CAMERA", cx, 56);
+
+      ctx.strokeStyle = "rgba(234, 236, 232, 0.32)";
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(cx, beltTop + beltH + 22);
+      ctx.lineTo(CONVEYOR_CFG.gateX, beltTop + beltH + 22);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = "#93A4AC";
+      ctx.font = "500 11px 'IBM Plex Mono', monospace";
+      ctx.fillText("thời gian di chuyển = 800 ms", (cx + CONVEYOR_CFG.gateX) / 2, beltTop + beltH + 38);
+
+      const gx = CONVEYOR_CFG.gateX;
+      const gy = CONVEYOR_CFG.beltY;
+      ctx.save();
+      ctx.translate(gx, gy);
+      ctx.rotate(sim.gateAngle);
+      ctx.strokeStyle = "#EAECE8";
+      ctx.lineWidth = 6;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(54, 0);
+      ctx.stroke();
+      ctx.fillStyle = "#FF7949";
+      ctx.beginPath();
+      ctx.arc(0, 0, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.fillStyle = "#EAECE8";
+      ctx.font = "700 11px 'IBM Plex Mono', monospace";
+      ctx.fillText("CỔNG GẠT", gx, beltTop - 12);
+
+      for (const item of sim.items) {
+        if (item.x < 10) continue;
+        ctx.save();
+        if (item.shape === "circle") {
+          ctx.fillStyle = item.color;
+          ctx.beginPath();
+          ctx.arc(item.x, item.y, 20, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = "#11191C";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        } else {
+          ctx.fillStyle = item.color;
+          ctx.fillRect(item.x - 19, item.y - 19, 38, 38);
+          ctx.strokeStyle = "#11191C";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(item.x - 19, item.y - 19, 38, 38);
+        }
+
+        if (item.seenAtMs !== null) {
+          ctx.fillStyle = "#EAECE8";
+          ctx.font = "600 10px 'IBM Plex Mono', monospace";
+          ctx.fillText(`#${item.id}`, item.x, item.y + 4);
+        }
+        ctx.restore();
+      }
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = sim.latencyMs <= CONVEYOR_CFG.travelMs ? "#9DE3C5" : "#F4C467";
+      ctx.font = "600 12px 'IBM Plex Mono', monospace";
+      ctx.fillText(sim.gateStatus, 36, 28);
+    }
+
+    function stopConveyorRun() {
+      if (appState.conveyorRaf) {
+        cancelAnimationFrame(appState.conveyorRaf);
+        appState.conveyorRaf = null;
+      }
+      appState.conveyorRunning = false;
+    }
+
+    function updateConveyorSummaryUI(latencyMs) {
+      const onTime = latencyMs <= CONVEYOR_CFG.travelMs;
+      metricCommandTime.textContent = onTime
+        ? `${latencyMs} ms — Đến kịp trước cổng (${CONVEYOR_CFG.travelMs - latencyMs} ms dư)`
+        : `${latencyMs} ms — Trễ ${latencyMs - CONVEYOR_CFG.travelMs} ms · Bỏ qua lệnh quá hạn`;
+      metricCommandTime.style.color = onTime ? "var(--machine)" : "var(--warn)";
+      conveyorTakeaway.textContent = onTime
+        ? "“Dự đoán đến trước khi vật thể tới cổng gạt, nên cả hai món đều vào đúng khay.”"
+        : "“Ở trường hợp này, mình có thể giữ nguyên bộ nhận dạng và sửa phần thời gian.”";
+    }
+
+    function runConveyorOnce() {
+      stopConveyorRun();
+      const lat = appState.conveyorLatencyMs;
+      conveyorSim = createConveyorRun(lat);
+      updateConveyorSummaryUI(lat);
+
+      if (prefersReducedMotion) {
+        while (!conveyorSim.finished) stepConveyorSim(conveyorSim, 40);
+        drawConveyorScene(conveyorSim);
+        return;
+      }
+
+      appState.conveyorRunning = true;
+      let lastTs = performance.now();
+
+      const loop = (ts) => {
+        if (!appState.conveyorRunning) return;
+        const dt = Math.min(40, ts - lastTs);
+        lastTs = ts;
+        stepConveyorSim(conveyorSim, dt);
+        drawConveyorScene(conveyorSim);
+        if (!conveyorSim.finished) {
+          appState.conveyorRaf = requestAnimationFrame(loop);
+        } else {
+          appState.conveyorRunning = false;
+          appState.conveyorRaf = null;
+        }
+      };
+
+      appState.conveyorRaf = requestAnimationFrame(loop);
+    }
+
+    function setLatencyValue(val) {
+      const clamped = Math.max(0, Math.min(1200, Number(val) || 0));
+      appState.conveyorLatencyMs = clamped;
+      latencySlider.value = String(clamped);
+      latencyValueLabel.textContent = `${clamped.toLocaleString("vi-VN")} ms`;
+    }
+
+    latencySlider.addEventListener("input", () => setLatencyValue(latencySlider.value));
+    document.querySelectorAll("[data-latency-preset]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setLatencyValue(btn.getAttribute("data-latency-preset"));
+        runConveyorOnce();
+      });
+    });
+    btnRunConveyor.addEventListener("click", runConveyorOnce);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopConveyorRun();
+        stopAlgoAnimation();
+      }
+    });
+
+    /* ==========================================================================
+       9. ĐOẠN KẾT — RENDER POSTER DỌC 1200 × 1600 PX NỘI BỘ & XUẤT PNG THẬT
+       ========================================================================== */
+    const posterPreviewCanvas = document.getElementById("posterPreviewCanvas");
+    const posterSampleRibbon = document.getElementById("posterSampleRibbon");
+    const posterStatusMsg = document.getElementById("posterStatusMsg");
+    const btnPosterBackPad = document.getElementById("btnPosterBackPad");
+
+    function renderPosterToCanvas(canvas) {
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      const s = W / 1200;
+
+      const hasAI = Boolean(appState.aiRunResult);
+      const hasAlgo = Boolean(appState.algoRunResult);
+      const isSample = !hasAI && !hasAlgo;
+
+      ctx.fillStyle = "#11191C";
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.strokeStyle = "rgba(157, 227, 197, 0.06)";
+      ctx.lineWidth = Math.max(1, 1.2 * s);
+      const gridStep = 40 * s;
+      for (let x = gridStep; x < W; x += gridStep) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let y = gridStep; y < H; y += gridStep) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+
+      const pad = 64 * s;
+      ctx.strokeStyle = "#2C3D44";
+      ctx.lineWidth = 2 * s;
+      ctx.strokeRect(pad * 0.55, pad * 0.55, W - pad * 1.1, H - pad * 1.1);
+
+      ctx.fillStyle = "#FF7949";
+      ctx.fillRect(pad, pad, 14 * s, 14 * s);
+      ctx.fillStyle = "#93A4AC";
+      ctx.font = `600 ${24 * s}px 'IBM Plex Mono', monospace`;
+      ctx.textAlign = "left";
+      ctx.fillText("MỘT NÉT THÀNH SỐ", pad + 26 * s, pad + 15 * s);
+
+      if (isSample) {
+        ctx.fillStyle = "#FF7949";
+        ctx.font = `700 ${22 * s}px 'IBM Plex Mono', monospace`;
+        ctx.textAlign = "right";
+        ctx.fillText("BẢN MẪU", W - pad, pad + 15 * s);
+      }
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#F3F1E9";
+      ctx.font = `800 ${86 * s}px 'Barlow Condensed', 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(PROFILE_CONFIG.fullName.toUpperCase(), pad, pad + 114 * s);
+
+      ctx.strokeStyle = "#2C3D44";
+      ctx.lineWidth = 2 * s;
+      ctx.beginPath();
+      ctx.moveTo(pad, pad + 142 * s);
+      ctx.lineTo(W - pad, pad + 142 * s);
+      ctx.stroke();
+
+      let aiBlock = appState.aiRunResult;
+      let algoBlock = appState.algoRunResult;
+
+      if (isSample) {
+        const sampleStrokes = DEMO_SAMPLES[0].strokes;
+        const sampleProc = rasterizeStrokesTo28x28(sampleStrokes);
+        aiBlock = {
+          strokesSnapshot: sampleStrokes,
+          processed: sampleProc,
+          knn: classifyWithKNN(sampleProc, 5),
+          confirmedUserLabel: 7
+        };
+        algoBlock = solveGreedyAndDP([4, 5, 4]);
+      }
+
+      const showAI = Boolean(aiBlock);
+      const showAlgo = Boolean(algoBlock);
+      const contentTop = pad + 174 * s;
+      const footerY = H - pad - 34 * s;
+
+      if (showAI) {
+        const boxSize = showAlgo ? 460 * s : 640 * s;
+        const boxX = (W - boxSize) / 2;
+        const boxY = showAlgo ? contentTop + 26 * s : contentTop + 96 * s;
+
+        ctx.fillStyle = "#0A1013";
+        ctx.fillRect(boxX, boxY, boxSize, boxSize);
+        ctx.strokeStyle = "#2C3D44";
+        ctx.lineWidth = 2 * s;
+        ctx.strokeRect(boxX, boxY, boxSize, boxSize);
+
+        const cell = boxSize / 28;
+        const grid = aiBlock.processed.grid;
+        for (let y = 0; y < 28; y++) {
+          for (let x = 0; x < 28; x++) {
+            const v = grid[y * 28 + x];
+            if (v > 0.03) {
+              ctx.fillStyle = `rgba(157, 227, 197, ${Math.min(0.82, 0.1 + v * 0.72)})`;
+              ctx.fillRect(boxX + x * cell + 0.5, boxY + y * cell + 0.5, cell - 1, cell - 1);
+            }
+          }
+        }
+
+        const factor = boxSize / 28;
+        const { scale, offsetX, offsetY } = aiBlock.processed.transform;
+        ctx.save();
+        ctx.strokeStyle = "#FF7949";
+        ctx.lineWidth = 1.65 * factor;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        for (const stroke of aiBlock.strokesSnapshot) {
+          ctx.beginPath();
+          ctx.moveTo(boxX + (stroke[0][0] * scale + offsetX) * factor, boxY + (stroke[0][1] * scale + offsetY) * factor);
+          for (let i = 1; i < stroke.length; i++) {
+            ctx.lineTo(boxX + (stroke[i][0] * scale + offsetX) * factor, boxY + (stroke[i][1] * scale + offsetY) * factor);
+          }
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        const labelY = boxY + boxSize + 44 * s;
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#EAECE8";
+        ctx.font = `700 ${30 * s}px 'IBM Plex Mono', monospace`;
+        const aiLine = aiBlock.confirmedUserLabel !== null
+          ? `Bạn viết ${aiBlock.confirmedUserLabel}  /  Máy đọc ${aiBlock.knn.predicted}`
+          : `Máy đọc ${aiBlock.knn.predicted}  ·  ${aiBlock.knn.bestVotes}/${aiBlock.knn.k} láng giềng k-NN`;
+        ctx.fillText(aiLine, W / 2, labelY);
+
+        ctx.fillStyle = "#93A4AC";
+        ctx.font = `500 ${20 * s}px 'IBM Plex Mono', monospace`;
+        ctx.fillText(`${aiBlock.processed.activeCount} / 784 ô sáng · khoảng cách d = ${aiBlock.knn.top3[0].euclidean.toFixed(2)}`, W / 2, labelY + 34 * s);
+      }
+
+      if (showAlgo) {
+        const arr = algoBlock.arraySnapshot;
+        const blockY = showAI ? contentTop + 628 * s : contentTop + 230 * s;
+        const blockH = showAI ? 380 * s : 520 * s;
+
+        ctx.fillStyle = "#162024";
+        ctx.fillRect(pad, blockY, W - pad * 2, blockH);
+        ctx.strokeStyle = "#2C3D44";
+        ctx.lineWidth = 2 * s;
+        ctx.strokeRect(pad, blockY, W - pad * 2, blockH);
+
+        ctx.textAlign = "left";
+        ctx.fillStyle = "#93A4AC";
+        ctx.font = `600 ${21 * s}px 'IBM Plex Mono', monospace`;
+        ctx.fillText(`TEST THUẬT TOÁN · [${arr.join(", ")}]`, pad + 32 * s, blockY + 46 * s);
+
+        const drawAlgoRowOnPoster = (rowY, label, picks, sumVal, accentColor, isGreedy) => {
+          ctx.fillStyle = accentColor;
+          ctx.font = `700 ${22 * s}px 'IBM Plex Mono', monospace`;
+          ctx.textAlign = "left";
+          ctx.fillText(label, pad + 32 * s, rowY);
+
+          ctx.textAlign = "right";
+          ctx.fillText(`Tổng = ${sumVal}`, W - pad - 32 * s, rowY);
+
+          const availW = W - pad * 2 - 64 * s;
+          const gap = 14 * s;
+          const cellW = Math.min(110 * s, (availW - gap * (arr.length - 1)) / arr.length);
+          const cellH = 74 * s;
+          const startX = pad + 32 * s;
+          const boxTop = rowY + 18 * s;
+
+          arr.forEach((v, idx) => {
+            const x = startX + idx * (cellW + gap);
+            const picked = picks.includes(idx);
+            ctx.fillStyle = picked ? (isGreedy ? "rgba(255,121,73,0.22)" : "rgba(157,227,197,0.22)") : "#0E1518";
+            ctx.strokeStyle = picked ? accentColor : "#2C3D44";
+            ctx.lineWidth = (picked ? 3 : 1.5) * s;
+            ctx.fillRect(x, boxTop, cellW, cellH);
+            ctx.strokeRect(x, boxTop, cellW, cellH);
+
+            ctx.textAlign = "center";
+            ctx.fillStyle = picked ? accentColor : "#93A4AC";
+            ctx.font = `700 ${30 * s}px 'IBM Plex Mono', monospace`;
+            ctx.fillText(String(v), x + cellW / 2, boxTop + 46 * s);
+          });
+        };
+
+        const row1Y = blockY + 104 * s;
+        const row2Y = blockY + 242 * s;
+        drawAlgoRowOnPoster(row1Y, "THAM LAM", algoBlock.greedy.picks, algoBlock.greedy.sum, "#FF7949", true);
+        drawAlgoRowOnPoster(row2Y, "QUY HOẠCH ĐỘNG (TỐI ƯU)", algoBlock.dp.picks, algoBlock.dp.sum, "#9DE3C5", false);
+      }
+
+      ctx.strokeStyle = "#2C3D44";
+      ctx.lineWidth = 2 * s;
+      ctx.beginPath();
+      ctx.moveTo(pad, footerY - 36 * s);
+      ctx.lineTo(W - pad, footerY - 36 * s);
+      ctx.stroke();
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#F3F1E9";
+      ctx.font = `600 ${24 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(`${PROFILE_CONFIG.fullName} · ${PROFILE_CONFIG.school}`, pad, footerY + 6 * s);
+
+      ctx.textAlign = "right";
+      ctx.fillStyle = "#9DE3C5";
+      ctx.font = `600 ${21 * s}px 'IBM Plex Mono', monospace`;
+      ctx.fillText("AI ENGINEER PATH", W - pad, footerY + 6 * s);
+    }
+
+    function updatePosterPreview() {
+      const hasAny = Boolean(appState.aiRunResult || appState.algoRunResult);
+      posterSampleRibbon.hidden = hasAny;
+      btnPosterBackPad.textContent = appState.aiRunResult ? "Sửa nét vẽ" : "Viết một nét của bạn";
+      renderPosterToCanvas(posterPreviewCanvas);
+    }
+
+    document.getElementById("btnDownloadPoster").addEventListener("click", () => {
+      try {
+        const exportCanvas = document.createElement("canvas");
+        exportCanvas.width = 1200;
+        exportCanvas.height = 1600;
+        renderPosterToCanvas(exportCanvas);
+
+        const link = document.createElement("a");
+        link.download = "nguyen-phuc-dien-mot-net-thanh-so.png";
+        link.href = exportCanvas.toDataURL("image/png");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        posterStatusMsg.textContent = "Đã lưu poster PNG sắc nét (1200 × 1600 px) về máy của bạn.";
+      } catch (err) {
+        posterStatusMsg.textContent = "Không thể tự tải xuống trong khung xem hiện tại. Hãy mở trực tiếp file index.html để lưu PNG.";
+      }
+    });
+
+    /* ==========================================================================
+       10. KHỞI TẠO ĐIỀU HƯỚNG TRƯỢT MƯỢT & HỘP GẬP MƯỢT
+       ========================================================================== */
+    function initSmoothInteractions() {
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const hash = link.getAttribute("href");
+          if (!hash || hash === "#") return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          smoothScrollToElement(target);
+          try {
+            history.replaceState(null, "", hash);
+          } catch (_) {}
+        });
+      });
+
+      const btnScrollTop = document.getElementById("btnScrollTop");
+      const navLinks = Array.from(document.querySelectorAll(".top-nav a[href^='#']"));
+      const trackedSections = navLinks
+        .map((a) => ({ link: a, el: document.querySelector(a.getAttribute("href")) }))
+        .filter((item) => item.el);
+
+      btnScrollTop.addEventListener("click", () => smoothScrollToY(0));
+
+      const syncScrollUI = () => {
+        const y = window.scrollY;
+        btnScrollTop.classList.toggle("is-visible", y > 360);
+
+        const probeY = y + 140;
+        let current = null;
+        for (const item of trackedSections) {
+          if (item.el.offsetTop <= probeY) current = item;
+        }
+        navLinks.forEach((a) => a.classList.toggle("is-active", Boolean(current && current.link === a)));
+      };
+
+      window.addEventListener("scroll", syncScrollUI, { passive: true });
+      syncScrollUI();
+
+      const disclosure = document.getElementById("simDisclosure");
+      if (disclosure) {
+        const summary = disclosure.querySelector("summary");
+        const body = disclosure.querySelector(".sim-disclosure-body");
+        let isAnimating = false;
+
+        summary.addEventListener("click", (e) => {
+          if (prefersReducedMotion) return;
+          e.preventDefault();
+          if (isAnimating) return;
+          isAnimating = true;
+
+          if (!disclosure.open) {
+            disclosure.open = true;
+            const fullH = body.scrollHeight;
+            body.style.height = "0px";
+            body.style.opacity = "0";
+            body.style.transition = "height 340ms cubic-bezier(0.22, 1, 0.36, 1), opacity 260ms ease";
+            requestAnimationFrame(() => {
+              body.style.height = `${fullH}px`;
+              body.style.opacity = "1";
+            });
+            const finishOpen = (ev) => {
+              if (ev.propertyName !== "height") return;
+              body.style.height = "";
+              body.style.opacity = "";
+              body.style.transition = "";
+              isAnimating = false;
+              body.removeEventListener("transitionend", finishOpen);
+            };
+            body.addEventListener("transitionend", finishOpen);
+          } else {
+            body.style.height = `${body.scrollHeight}px`;
+            body.style.opacity = "1";
+            body.style.transition = "height 280ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease";
+            requestAnimationFrame(() => {
+              body.style.height = "0px";
+              body.style.opacity = "0";
+            });
+            const finishClose = (ev) => {
+              if (ev.propertyName !== "height") return;
+              disclosure.open = false;
+              body.style.height = "";
+              body.style.opacity = "";
+              body.style.transition = "";
+              isAnimating = false;
+              body.removeEventListener("transitionend", finishClose);
+            };
+            body.addEventListener("transitionend", finishClose);
+          }
+        });
+      }
+    }
+
+    /* ==========================================================================
+       11. KHỞI CHẠY TOÀN TRANG
+       ========================================================================== */
+    window.addEventListener("load", () => {
+      hydrateProfile();
+      resizeAndRedrawPad();
+      renderArrayEditor();
+      initSmoothInteractions();
+
+      conveyorSim = createConveyorRun(200);
+      drawConveyorScene(conveyorSim);
+      updatePosterPreview();
+
+      renderAIStrokePanel(null);
+      renderAIPixelPanel(null);
+    });
+
+    window.addEventListener("resize", () => {
+      resizeAndRedrawPad();
+      if (appState.algoRunResult && appState.algoInspectI !== null) {
+        drawDPTransitionArcs(appState.algoInspectI);
+      }
+    });
+  </script>
+</body>
+</html>

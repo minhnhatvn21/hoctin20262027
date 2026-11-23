@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Khánh Ly - 12A10 | Định Hướng Nghề Kế Toán</title>
+    <style>
+        /* Cài đặt chung */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f3f6fa;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        /* Phần đầu trang (Banner) */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        /* Khung chứa nội dung chính */
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Khung phát nhạc */
+        .music-box {
+            background: white;
+            border-radius: 12px;
+            padding: 18px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .music-box span {
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 1.05em;
+        }
+
+        .music-box audio {
+            height: 40px;
+            max-width: 100%;
+        }
+
+        /* Các thẻ (Card) nội dung */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #1e3a8a;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* Phần 1: Giới thiệu bản thân */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #2563eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .profile-info ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .profile-info li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        /* Phần 2: Kế hoạch nghề nghiệp */
+        .career-banner {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .step-box {
+            background: #eff6ff;
+            border-left: 4px solid #1e3a8a;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .step-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .step-box h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .step-box img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        /* Phần chân trang */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e3a8a;
+            color: white;
+            margin-top: 40px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Phần đầu trang -->
+    <header>
+        <h1>HỒ SƠ CÁ NHÂN & ĐỊNH HƯỚNG NGHỀ KẾ TOÁN</h1>
+        <p>Nguyễn Khánh Ly - Lớp 12A10 - Trường THPT Đăk Mil</p>
+    </header>
+
+    <div class="container">
+
+        <!-- KHUNG PHÁT NHẠC NỀN -->
+        <div class="music-box">
+            <span>🎵 Nhạc nền trang cá nhân (Nhấn Play để nghe)</span>
+            <!-- DÒNG THAY FILE NHẠC CỦA BẠN -->
+            <audio controls loop>
+                <source src="nhac_nen.mp4" type="audio/mpeg">
+                Trình duyệt của bạn không hỗ trợ phát âm thanh.
+            </audio>
+        </div>
+        
+        <!-- PHẦN 1: GIỚI THIỆU BẢN THÂN -->
+        <section class="card">
+            <h2>1. Giới Thiệu Bản Thân</h2>
+            <div class="profile-section">
+                <!-- DÒNG THAY ẢNH ĐẠI DIỆN CỦA BẠN -->
+                <img src="anh_ly.jpg" alt="Ảnh đại diện Nguyễn Khánh Ly" class="avatar">
+                
+                <div class="profile-info">
+                    <p>Xin chào thầy cô và các bạn! Mình là một học sinh cẩn thận, tỉ mỉ, có tinh thần trách nhiệm cao và yêu thích làm việc với các con số, bảng biểu cũng như nguyên tắc quản lý tài chính rõ ràng.</p>
+                    <ul>
+                        <li><strong>Họ và tên:</strong> Nguyễn Khánh Ly</li>
+                        <li><strong>Lớp:</strong> 12A10</li>
+                        <li><strong>Trường:</strong> THPT Đăk Mil</li>
+                        <li><strong>Sở thích:</strong> Tính toán, sắp xếp sổ sách ngăn nắp, tin học văn phòng, đọc sách kinh tế và tham gia hoạt động tập thể.</li>
+                        <li><strong>Châm ngôn sống:</strong> <em>"Sự chính xác và minh bạch là nền tảng của niềm tin."</em></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: CHỦ ĐỀ - KẾ HOẠCH ĐỊNH HƯỚNG NGHỀ NGHIỆP BẢN THÂN -->
+        <section class="card">
+            <h2>2. Kế Hoạch Định Hướng Nghề Nghiệp: Ngành Kế Toán</h2>
+            
+            <!-- Ảnh minh họa chung cho nghề Kế toán -->
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1000&q=80" alt="Định hướng nghề Kế toán" class="career-banner">
+            
+            <p><strong>Mục tiêu nghề nghiệp:</strong> Trở thành một <strong>Kế toán viên / Chuyên viên Tài chính - Kế toán</strong> chuyên nghiệp, trung thực, thành thạo phần mềm kế toán và phân tích số liệu, góp phần giúp doanh nghiệp hoặc tổ chức vận hành hiệu quả và bền vững.</p>
+
+            <div class="timeline">
+                <!-- Giai đoạn 1 -->
+                <div class="step-box">
+                    <h3>Giai đoạn 1: Ngắn hạn (Năm lớp 12)</h3>
+                    <p>Tập trung ôn luyện vững vàng các môn xét tuyển Đại học (như Toán, Văn, Ngoại ngữ/Tin học). Rèn luyện tính kiên nhẫn, sự cẩn trọng và kỹ năng sử dụng Excel, tin học văn phòng.</p>
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500&q=80" alt="Ôn thi lớp 12">
+                </div>
+
+                <!-- Giai đoạn 2 -->
+                <div class="step-box">
+                    <h3>Giai đoạn 2: Trung hạn (2027 - 2031)</h3>
+                    <p>Trúng tuyển ngành Kế toán hoặc Tài chính - Kế toán tại trường Đại học phù hợp. Nắm chắc chuẩn mực kế toán, thuế, luật kinh tế; trau dồi tiếng Anh chuyên ngành và đi thực tập thực tế.</p>
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=500&q=80" alt="Học tập chuyên ngành Kế toán">
+                </div>
+
+                <!-- Giai đoạn 3 -->
+                <div class="step-box">
+                    <h3>Giai đoạn 3: Dài hạn (Sau 2031)</h3>
+                    <p>Tốt nghiệp và có công việc ổn định đúng chuyên ngành Kế toán. Tích lũy kinh nghiệm, thi lấy các chứng chỉ nghiệp vụ nâng cao và hướng tới vị trí Kế toán tổng hợp hoặc Trưởng phòng Kế toán.</p>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" alt="Sự nghiệp Kế toán chuyên nghiệp">
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Chân trang -->
+    <footer>
+        <p>© 2026 Sản phẩm cá nhân được thực hiện bởi Nguyễn Khánh Ly - Lớp 12A10 - THPT Đăk Mil.</p>
+    </footer>
+
+</body>
+</html>

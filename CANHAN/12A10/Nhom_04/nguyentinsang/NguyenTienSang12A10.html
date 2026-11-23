@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGUYỄN TIẾN SANG — Chiếc túi áo blouse 12A10</title>
+  <meta name="description" content="Hồ sơ cá nhân theo concept áo blouse trắng của Nguyễn Tiến Sang — Lớp 12A10, Trường THPT DakMil, định hướng trở thành Bác sĩ." />
+
+  <!-- Phông chữ tiếng Việt: Barlow Condensed (tên khổ lớn), Be Vietnam Pro (đọc nội dung), IBM Plex Mono (chỉ số nhịp tim & đơn thuốc) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. HỆ THỐNG MỸ THUẬT — VẢI ÁO BLOUSE TRẮNG, XANH PHÒNG MỔ, BÌA KẸP HỒ SƠ & MỰC ĐỎ NHỊP TIM
+       ========================================================================== */
+    :root {
+      --coat-white: #F7FAF9;
+      --coat-pure: #FFFFFF;
+      --coat-stitch: #D5E2E1;
+      --scrub: #136B6E;
+      --scrub-deep: #0B4A4D;
+      --scrub-dark: #0B2326;
+      --scrub-soft: rgba(19, 107, 110, 0.1);
+      --manila: #F2ECDE;
+      --manila-card: #FBF8F0;
+      --ink: #162426;
+      --ink-muted: #506265;
+      --pulse-red: #DF4B3B;
+      --pulse-soft: rgba(223, 75, 59, 0.12);
+      --mint-signal: #7EE2C8;
+      --rule: rgba(22, 36, 38, 0.14);
+
+      --font-display: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+      --font-body: 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background-color: var(--coat-white);
+      /* Chất vải dệt chéo rất mảnh giống vải cotton áo blouse */
+      background-image:
+        repeating-linear-gradient(
+          -45deg,
+          rgba(19, 107, 110, 0.025) 0px,
+          rgba(19, 107, 110, 0.025) 1px,
+          transparent 1px,
+          transparent 8px
+        );
+      color: var(--ink);
+      line-height: 1.66;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    section[id] {
+      scroll-margin-top: 64px;
+    }
+
+    @keyframes targetSectionGlow {
+      0% { box-shadow: inset 0 4px 0 var(--pulse-red); }
+      100% { box-shadow: inset 0 4px 0 transparent; }
+    }
+
+    section.is-scroll-target {
+      animation: targetSectionGlow 0.85s var(--ease-out) 1;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--pulse-red);
+      outline-offset: 2px;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 4vw, 44px);
+    }
+
+    /* Dấu thập y khoa khâu chỉ mảnh (biểu tượng nhận diện xuyên suốt) */
+    .med-cross {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      background: var(--pulse-red);
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 0.95rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       THANH ĐIỀU HƯỚNG DẠNG THẺ HỒ SƠ CỐ ĐỊNH
+       ========================================================================== */
+    .clinic-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 250, 249, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1.5px solid var(--coat-stitch);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 54px;
+    }
+
+    .topbar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.8vw, 22px);
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      padding: 6px 2px;
+      transition: color 0.16s ease, box-shadow 0.2s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a.is-active {
+      color: var(--scrub);
+    }
+
+    .top-nav a.is-active {
+      box-shadow: inset 0 -2.5px 0 var(--pulse-red);
+    }
+
+    .sound-toggle-btn {
+      min-height: 32px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1.5px solid var(--coat-stitch);
+      background: var(--coat-pure);
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .sound-toggle-btn[aria-pressed="true"] {
+      border-color: var(--scrub);
+      background: var(--scrub-soft);
+      color: var(--scrub-deep);
+    }
+
+    /* Hệ thống nút bấm */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: 1.5px solid var(--ink);
+      background: var(--coat-pure);
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.14s var(--ease-out), background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px -8px rgba(11, 74, 77, 0.35);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-scrub {
+      background: var(--scrub);
+      border-color: var(--scrub);
+      color: #FFFFFF;
+    }
+
+    .btn-scrub:hover:not(:disabled) {
+      background: var(--scrub-deep);
+      border-color: var(--scrub-deep);
+    }
+
+    .btn-pulse {
+      background: var(--pulse-red);
+      border-color: var(--pulse-red);
+      color: #FFFFFF;
+    }
+
+    .btn-pulse:hover:not(:disabled) {
+      background: #C73C2D;
+      border-color: #C73C2D;
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--scrub);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 4.5vw, 3.35rem);
+      font-weight: 800;
+      line-height: 1.12;
+      padding-top: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    /* ==========================================================================
+       2. HERO — VE ÁO BLOUSE TRẮNG, THẺ TÊN CHÂN DUNG & ỐNG NGHE NHỊP TIM
+       ========================================================================== */
+    .hero-coat-section {
+      position: relative;
+      padding: clamp(26px, 4.5vw, 54px) 0 clamp(44px, 6vw, 76px);
+      border-bottom: 2px solid var(--coat-stitch);
+      overflow: hidden;
+    }
+
+    /* Đường khâu ve áo blouse mảnh chạy dọc nền */
+    .hero-coat-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      border-left: 2px dashed rgba(19, 107, 110, 0.14);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: clamp(24px, 4.5vw, 54px);
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Nhãn thêu tên trên ngực áo blouse */
+    .embroidered-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      align-self: flex-start;
+      padding: 6px 12px;
+      background: var(--coat-pure);
+      border: 1.5px dashed var(--scrub);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--scrub-deep);
+      letter-spacing: 0.04em;
+    }
+
+    /* Chừa khoảng thoáng trên dưới để dấu ở NGUYỄN TIẾN SANG không bị cắt */
+    .hero-name {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3.1rem, 6.5vw, 5.4rem);
+      font-weight: 800;
+      line-height: 1.14;
+      padding-top: 0.16em;
+      padding-bottom: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    .school-strip {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .school-logo-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1.5px solid var(--coat-stitch);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .school-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .school-logo-fallback {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--scrub);
+    }
+
+    .school-logo-wrap.is-missing img { display: none; }
+    .school-logo-wrap.is-missing .school-logo-fallback { display: inline; }
+
+    .hero-greeting {
+      margin: 0;
+      font-size: clamp(1rem, 1.35vw, 1.1rem);
+      color: var(--ink);
+      max-width: 48ch;
+    }
+
+    /* Màn hình đo nhịp EKG nhỏ ngay trong Hero */
+    .hero-ekg-strip {
+      background: var(--scrub-dark);
+      border: 1.5px solid var(--scrub);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: #E7F5F2;
+    }
+
+    .ekg-head-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+    }
+
+    .bpm-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--mint-signal);
+      font-weight: 700;
+    }
+
+    .bpm-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--pulse-red);
+      transition: transform 0.12s ease;
+    }
+
+    .bpm-dot.is-beating {
+      transform: scale(1.6);
+    }
+
+    #heroEkgCanvas {
+      width: 100%;
+      height: 62px;
+      display: block;
+      border-radius: 4px;
+      background: #071719;
+    }
+
+    .hero-vitals-note {
+      margin: 0;
+      font-size: 0.82rem;
+      color: rgba(231, 245, 242, 0.88);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    /* Cột phải: Thẻ chân dung đeo cổ áo blouse (Lanyard ID Card) */
+    .id-badge-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lanyard-strap {
+      width: 46px;
+      height: 36px;
+      background: linear-gradient(90deg, var(--scrub-deep) 0%, var(--scrub) 50%, var(--scrub-deep) 100%);
+      border: 1.5px solid var(--ink);
+      border-bottom: 0;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .lanyard-clip {
+      width: 24px;
+      height: 16px;
+      background: #D6DCDD;
+      border: 1.5px solid var(--ink);
+      border-radius: 3px;
+      transform: translateY(7px);
+      z-index: 3;
+    }
+
+    .id-badge-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--coat-pure);
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 22px 40px -22px rgba(11, 74, 77, 0.42), 8px 8px 0 rgba(19, 107, 110, 0.16);
+      position: relative;
+    }
+
+    .id-badge-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--scrub);
+    }
+
+    .id-portrait-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #E4ECEB;
+      border: 1.5px solid var(--coat-stitch);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .id-portrait-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+    }
+
+    .portrait-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      gap: 8px;
+      background: linear-gradient(155deg, #EAF2F1 0%, #D9E6E5 100%);
+      color: var(--ink);
+    }
+
+    .id-portrait-box.is-missing img { display: none; }
+    .id-portrait-box.is-missing .portrait-fallback { display: flex; }
+
+    /* Con dấu đỏ tròn nghiêng đóng góc thẻ chân dung */
+    .id-red-stamp {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      border: 2.5px solid rgba(223, 75, 59, 0.85);
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--pulse-red);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      line-height: 1.25;
+      transform: rotate(-13deg);
+      pointer-events: none;
+    }
+
+    .id-badge-footer {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+    }
+
+    /* ==========================================================================
+       3. GIỚI THIỆU — KẸP HỒ SƠ “TỦ THUỐC DI ĐỘNG Ở BÀN ÁP CUỐI”
+       ========================================================================== */
+    .chart-section {
+      padding: clamp(54px, 7.5vw, 96px) 0;
+      background: var(--manila);
+      border-bottom: 1.5px solid rgba(22, 36, 38, 0.14);
+    }
+
+    .clipboard-board {
+      max-width: 920px;
+      margin: 0 auto;
+      background: #C7B28E;
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      padding: clamp(14px, 2.4vw, 24px);
+      padding-top: 38px;
+      position: relative;
+      box-shadow: 0 20px 36px -22px rgba(22, 36, 38, 0.42);
+    }
+
+    /* Kẹp sắt ở đầu bảng hồ sơ */
+    .clipboard-metal-clip {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 148px;
+      height: 36px;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #F0F3F4 0%, #B7C1C4 52%, #869397 100%);
+      border: 2px solid var(--ink);
+      box-shadow: 0 4px 0 rgba(22, 36, 38, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clipboard-metal-clip::after {
+      content: "";
+      width: 52px;
+      height: 8px;
+      border-radius: 999px;
+      background: #485457;
+    }
+
+    .chart-paper {
+      background: var(--manila-card);
+      border: 1.5px solid rgba(22, 36, 38, 0.24);
+      padding: clamp(22px, 4vw, 44px);
+    }
+
+    .chart-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--scrub);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--scrub-deep);
+    }
+
+    .chart-prose p {
+      margin: 0 0 17px;
+      font-size: clamp(1rem, 1.25vw, 1.07rem);
+      color: var(--ink);
+      max-width: 64ch;
+    }
+
+    .chart-prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .red-ink-trigger {
+      display: inline;
+      background: transparent;
+      border: 0;
+      padding: 0 2px;
+      font: inherit;
+      font-weight: 700;
+      color: var(--pulse-red);
+      border-bottom: 2px dashed var(--pulse-red);
+      cursor: pointer;
+    }
+
+    .red-ink-trigger:hover {
+      background: var(--pulse-soft);
+    }
+
+    .red-note-drawer {
+      overflow: hidden;
+    }
+
+    .red-note-drawer[hidden] {
+      display: none;
+    }
+
+    .red-note-card {
+      margin-top: 14px;
+      padding: 13px 16px;
+      background: #FFF7F5;
+      border: 1.5px dashed var(--pulse-red);
+      border-left: 4px solid var(--pulse-red);
+      font-style: italic;
+      font-size: 0.94rem;
+      color: var(--ink);
+      max-width: 54ch;
+    }
+
+    /* ==========================================================================
+       4. ĐỊNH HƯỚNG NGHỀ NGHIỆP — BÁC SĨ ĐA KHOA & NỘI KHOA (~175 CHỮ)
+       ========================================================================== */
+    .career-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      background: var(--coat-white);
+      border-bottom: 2px solid var(--coat-stitch);
+    }
+
+    .career-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: clamp(24px, 4.5vw, 52px);
+      align-items: start;
+    }
+
+    .career-blouse-card {
+      background: var(--coat-pure);
+      border: 1.5px solid var(--coat-stitch);
+      border-top: 6px solid var(--scrub);
+      border-radius: 8px;
+      padding: clamp(22px, 3.2vw, 34px);
+      box-shadow: 0 14px 28px -20px rgba(11, 74, 77, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .career-role-tag {
+      align-self: flex-start;
+      background: var(--scrub);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 4px;
+    }
+
+    .career-essay p {
+      margin: 0 0 14px;
+      font-size: 0.98rem;
+      line-height: 1.74;
+      color: var(--ink);
+    }
+
+    .career-essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .career-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .career-step {
+      background: var(--coat-pure);
+      border: 1.5px solid var(--coat-stitch);
+      border-radius: 8px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .career-step.is-open {
+      border-color: var(--scrub);
+      box-shadow: 0 10px 22px -16px rgba(19, 107, 110, 0.35);
+    }
+
+    .career-step-trigger {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .career-step-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .career-step-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--pulse-red);
+    }
+
+    .career-step-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .career-step-arrow {
+      color: var(--scrub);
+      font-weight: 700;
+      transition: transform 0.28s var(--ease-out);
+      flex-shrink: 0;
+    }
+
+    .career-step.is-open .career-step-arrow {
+      transform: rotate(180deg);
+    }
+
+    .career-step-panel {
+      overflow: hidden;
+    }
+
+    .career-step-panel[hidden] {
+      display: none;
+    }
+
+    .career-step-inner {
+      padding: 10px 18px 16px 46px;
+      border-top: 1px dashed var(--coat-stitch);
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.64;
+    }
+
+    /* ==========================================================================
+       5. CHIẾC TÚI ÁO BLOUSE — RÚT 4 MÓN ĐỒ SANG HAY MANG THEO
+       ========================================================================== */
+    .pockets-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      background: #EDF4F3;
+      border-bottom: 2px solid var(--coat-stitch);
+    }
+
+    .blouse-pockets-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .blouse-pocket-btn {
+      position: relative;
+      background: var(--coat-pure);
+      border: 2px solid var(--coat-stitch);
+      border-radius: 6px 6px 26px 26px;
+      padding: 16px 14px 18px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.22s var(--ease-out), box-shadow 0.2s ease;
+    }
+
+    /* Đường chỉ khâu đôi quanh miệng túi áo blouse */
+    .blouse-pocket-btn::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1.5px dashed rgba(19, 107, 110, 0.26);
+      border-radius: 4px 4px 22px 22px;
+      pointer-events: none;
+    }
+
+    .blouse-pocket-btn:hover {
+      border-color: var(--scrub);
+      transform: translateY(-4px);
+    }
+
+    .blouse-pocket-btn[aria-pressed="true"] {
+      border-color: var(--scrub);
+      box-shadow: 0 12px 24px -14px rgba(11, 74, 77, 0.42);
+      background: #FFFFFF;
+    }
+
+    .pocket-item-svg {
+      width: 84px;
+      height: 84px;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .blouse-pocket-btn[aria-pressed="true"] .pocket-item-svg {
+      transform: translateY(-8px) scale(1.06);
+    }
+
+    .pocket-item-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .pocket-item-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--scrub);
+      background: var(--scrub-soft);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .pocket-story-panel {
+      background: var(--coat-pure);
+      border: 2px solid var(--scrub);
+      border-radius: 10px;
+      padding: clamp(18px, 3vw, 28px);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+      box-shadow: 0 14px 28px -20px rgba(11, 74, 77, 0.35);
+    }
+
+    .pocket-story-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--pulse-red);
+    }
+
+    /* ==========================================================================
+       6. MINI GAME — “CA TRỰC 15 PHÚT RA CHƠI” (SƠ CỨU + GIỮ NHỊP THỞ EKG)
+       ========================================================================== */
+    .shift-section {
+      padding: clamp(54px, 7.5vw, 96px) 0;
+      background: var(--scrub-dark);
+      color: #ECF6F4;
+      border-bottom: 1.5px solid rgba(126, 226, 200, 0.16);
+    }
+
+    .shift-console {
+      background: #102D31;
+      border: 1.5px solid rgba(126, 226, 200, 0.24);
+      border-radius: 12px;
+      padding: clamp(18px, 3vw, 30px);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .shift-progress-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(126, 226, 200, 0.18);
+    }
+
+    .case-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .case-pill {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(126, 226, 200, 0.25);
+      color: rgba(236, 246, 244, 0.65);
+    }
+
+    .case-pill.is-active {
+      border-color: var(--mint-signal);
+      background: rgba(126, 226, 200, 0.14);
+      color: var(--mint-signal);
+      font-weight: 700;
+    }
+
+    .case-pill.is-done {
+      border-color: #9EE6A0;
+      color: #9EE6A0;
+    }
+
+    .case-card-box {
+      background: #0A2023;
+      border: 1px solid rgba(126, 226, 200, 0.2);
+      border-radius: 8px;
+      padding: clamp(16px, 2.5vw, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .case-options-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .case-opt-btn {
+      min-height: 58px;
+      padding: 12px 14px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(126, 226, 200, 0.3);
+      background: rgba(16, 45, 49, 0.85);
+      color: #ECF6F4;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .case-opt-btn:hover:not(:disabled) {
+      border-color: var(--mint-signal);
+      background: rgba(126, 226, 200, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .case-opt-btn.is-correct {
+      border-color: #7EE2C8;
+      background: rgba(126, 226, 200, 0.22);
+      color: #FFFFFF;
+    }
+
+    .case-opt-btn.is-wrong {
+      border-color: var(--pulse-red);
+      background: rgba(223, 75, 59, 0.22);
+    }
+
+    /* Ca 3: Giữ nhịp thở bình tĩnh trên màn hình EKG */
+    .breath-canvas-wrap {
+      background: #071618;
+      border: 1px solid rgba(126, 226, 200, 0.26);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    #breathCanvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .shift-feedback-strip {
+      padding: 12px 16px;
+      border-radius: 6px;
+      background: rgba(126, 226, 200, 0.1);
+      border-left: 4px solid var(--mint-signal);
+      font-size: 0.92rem;
+    }
+
+    .shift-feedback-strip[hidden] {
+      display: none;
+    }
+
+    /* ==========================================================================
+       7. QUÀ CUỐI — ĐƠN THUỐC TINH THẦN (XUẤT PNG 1600 × 1000 PX)
+       ========================================================================== */
+    .rx-section {
+      padding: clamp(54px, 7.5vw, 96px) 0 clamp(68px, 9vw, 112px);
+      background: var(--coat-white);
+    }
+
+    .rx-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+    }
+
+    .rx-canvas-shell {
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      background: var(--manila-card);
+      overflow: hidden;
+      box-shadow: 0 20px 36px -22px rgba(22, 36, 38, 0.36);
+    }
+
+    #rxPreviewCanvas {
+      width: 100%;
+      aspect-ratio: 1600 / 1000;
+      display: block;
+    }
+
+    .rx-form-card {
+      background: var(--coat-pure);
+      border: 1.5px solid var(--coat-stitch);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .rx-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 9px 12px;
+      border: 1.5px solid var(--coat-stitch);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .rx-input:focus {
+      border-color: var(--scrub);
+    }
+
+    .symptom-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .symptom-chip {
+      min-height: 38px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1.5px solid var(--coat-stitch);
+      background: var(--coat-white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .symptom-chip[aria-pressed="true"] {
+      border-color: var(--scrub);
+      background: var(--scrub);
+      color: #FFFFFF;
+    }
+
+    .closing-note-box {
+      max-width: 780px;
+      margin: clamp(44px, 6vw, 72px) auto 0;
+      padding: clamp(24px, 4vw, 38px);
+      background: var(--scrub-deep);
+      color: #EFF8F6;
+      border-radius: 10px;
+      border: 2px solid var(--ink);
+      box-shadow: 8px 8px 0 rgba(22, 36, 38, 0.14);
+    }
+
+    .closing-note-box p {
+      margin: 0 0 12px;
+      font-size: clamp(1rem, 1.4vw, 1.12rem);
+      line-height: 1.68;
+    }
+
+    /* Nút trượt mượt lên đầu trang */
+    .scroll-top-btn {
+      position: fixed;
+      right: clamp(14px, 3vw, 26px);
+      bottom: clamp(16px, 3vw, 26px);
+      z-index: 55;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--scrub);
+      background: var(--coat-pure);
+      color: var(--scrub-deep);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 20px rgba(11, 74, 77, 0.22);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.28s var(--ease-out), transform 0.32s var(--ease-out), background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .scroll-top-btn.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .scroll-top-btn:hover {
+      background: var(--scrub);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       8. RESPONSIVE MOBILE (320px, 390px) & TABLET
+       ========================================================================== */
+    @media (max-width: 920px) {
+      .hero-coat-section::before {
+        display: none;
+      }
+
+      .hero-grid,
+      .career-grid,
+      .rx-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blouse-pockets-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .case-options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .top-nav {
+        gap: 8px;
+      }
+
+      .top-nav a {
+        font-size: 0.74rem;
+      }
+
+      .hero-name {
+        font-size: clamp(2.55rem, 11vw, 3.2rem);
+      }
+
+      .pocket-story-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .career-step-inner {
+        padding-left: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========================================================================
+       THANH ĐIỀU HƯỚNG DẠNG THẺ HỒ SƠ
+       ======================================================================== -->
+  <header class="clinic-topbar">
+    <div class="container topbar-inner">
+      <a href="#ao-blouse" class="topbar-brand">
+        <span class="med-cross" aria-hidden="true">+</span>
+        <span>SANG · 12A10</span>
+      </a>
+      <nav class="top-nav" aria-label="Điều hướng chính">
+        <a href="#ho-so">Hồ sơ</a>
+        <a href="#dinh-huong">Định hướng</a>
+        <a href="#tui-ao">Túi áo</a>
+        <a href="#ca-truc">Ca trực</a>
+        <a href="#don-thuoc">Đơn thuốc</a>
+      </nav>
+      <button type="button" id="btnPulseSound" class="sound-toggle-btn" aria-pressed="false">
+        Nhịp tim: Tắt
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         1. HERO — VE ÁO BLOUSE TRẮNG, THẺ TÊN & ỐNG NGHE NHỊP TIM
+         ====================================================================== -->
+    <section id="ao-blouse" class="hero-coat-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <span class="embroidered-badge">
+              <span class="med-cross" style="width:16px; height:16px; font-size:0.75rem;" aria-hidden="true">+</span>
+              BS. SANG (TƯƠNG LAI) · LỚP 12A10
+            </span>
+
+            <h1 id="heroFullName" class="hero-name">Nguyễn Tiến Sang</h1>
+
+            <div class="school-strip">
+              <span id="schoolLogoWrap" class="school-logo-wrap">
+                <img id="schoolLogoImg" src="" alt="Logo Trường THPT DakMil" />
+                <span class="school-logo-fallback" aria-hidden="true">DM</span>
+              </span>
+              <span id="heroClassSchool">Lớp 12A10 · Trường THPT DakMil</span>
+            </div>
+
+            <p id="heroGreeting" class="hero-greeting"></p>
+
+            <!-- Thanh đo nhịp tim EKG tương tác với ống nghe -->
+            <div class="hero-ekg-strip">
+              <div class="ekg-head-row">
+                <span class="bpm-pill">
+                  <span id="bpmDot" class="bpm-dot" aria-hidden="true"></span>
+                  <span id="bpmReadout">72 BPM · NHỊP TĨNH</span>
+                </span>
+                <button type="button" id="btnStethoscopeCheck" class="btn btn-pulse btn-sm" style="min-height:30px; padding:4px 10px; font-size:0.75rem;">
+                  Đặt ống nghe kiểm tra
+                </button>
+              </div>
+              <canvas id="heroEkgCanvas" width="480" height="62" aria-label="Sóng nhịp tim EKG mô phỏng"></canvas>
+              <p id="heroVitalsNote" class="hero-vitals-note" aria-live="polite">
+                Chẩn đoán nhanh: Đang ổn định, vừa thuộc xong vòng tuần hoàn lớn và chuẩn bị uống trà gừng.
+              </p>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#ho-so" class="btn btn-scrub">Mở kẹp hồ sơ ↓</a>
+              <a href="#ca-truc" class="btn">Thử ca trực 15 phút</a>
+            </div>
+          </div>
+
+          <!-- Thẻ đeo chân dung trên ngực áo blouse -->
+          <div class="id-badge-column">
+            <div class="lanyard-strap" aria-hidden="true">
+              <span class="lanyard-clip"></span>
+            </div>
+
+            <div class="id-badge-card">
+              <div class="id-badge-header">
+                <span class="mono" style="font-size:0.74rem; font-weight:700; color:var(--scrub-deep);">
+                  THẺ ĐỊNH DANH · KHỐI B00
+                </span>
+                <span class="med-cross" aria-hidden="true">+</span>
+              </div>
+
+              <div id="portraitBox" class="id-portrait-box">
+                <img id="portraitImg" src="" alt="Chân dung Nguyễn Tiến Sang, lớp 12A10 Trường THPT DakMil" />
+                <div class="portrait-fallback">
+                  <strong>Chân dung Nguyễn Tiến Sang</strong>
+                  <span style="font-size:0.84rem; color:var(--ink-muted);">
+                    Đặt ảnh thật tại <code class="mono">./assets/sang.jpg</code>
+                  </span>
+                </div>
+                <div class="id-red-stamp" aria-hidden="true">
+                  <span>12A10</span>
+                  <span>THPT DAKMIL</span>
+                  <span>Y KHOA</span>
+                </div>
+              </div>
+
+              <div class="id-badge-footer">
+                <span>NGUYỄN TIẾN SANG</span>
+                <span style="color:var(--scrub); font-weight:700;">MÃ: BLOUSE-12A10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. GIỚI THIỆU — KẸP HỒ SƠ “TỦ THUỐC DI ĐỘNG Ở BÀN ÁP CUỐI”
+         ====================================================================== -->
+    <section id="ho-so" class="chart-section">
+      <div class="container">
+        <div class="clipboard-board">
+          <div class="clipboard-metal-clip" aria-hidden="true"></div>
+
+          <article class="chart-paper">
+            <div class="chart-meta-bar">
+              <span>PHIẾU GHI CHÉP BẢN THÂN · SỐ 12A10</span>
+              <span>HỌ TÊN: NGUYỄN TIẾN SANG</span>
+            </div>
+
+            <span class="section-eyebrow">Hồ sơ cá nhân</span>
+            <h2 class="section-title">Tủ thuốc di động ở bàn áp cuối</h2>
+
+            <div id="bioProseWrap" class="chart-prose"></div>
+
+            <!-- Ghi chú mực đỏ mở ra khi bấm "hai cuộn băng cá nhân" -->
+            <div id="redNoteDrawer" class="red-note-drawer" hidden>
+              <div class="red-note-card">
+                <strong>Ghi chú bên lề của Sang:</strong> “Một cuộn mình để dán ngón tay lúc gọt bút chì, cuộn kia cả lớp dùng hết trong đúng hai tuần. Giờ mình mua luôn hộp hai mươi miếng cho chắc.”
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. ĐỊNH HƯỚNG NGHỀ NGHIỆP — BÁC SĨ ĐA KHOA & NỘI KHOA (~175 CHỮ)
+         ====================================================================== -->
+    <section id="dinh-huong" class="career-section">
+      <div class="container">
+        <span class="section-eyebrow">Định hướng nghề nghiệp · Khối B00</span>
+        <h2 id="careerHeading" class="section-title">Bác sĩ Đa khoa — Từ chiếc áo blouse trong tưởng tượng</h2>
+
+        <div class="career-grid">
+          <article class="career-blouse-card">
+            <span id="careerBadge" class="career-role-tag">Định hướng · Bác sĩ (Medical Doctor)</span>
+            <div id="careerEssayWrap" class="career-essay"></div>
+          </article>
+
+          <div id="careerStepsWrap" class="career-accordion" aria-label="Ba bước chuẩn bị cho ước mơ ngành Y của Sang"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. CHIẾC TÚI ÁO BLOUSE — RÚT 4 MÓN ĐỒ SANG HAY MANG THEO
+         ====================================================================== -->
+    <section id="tui-ao" class="pockets-section">
+      <div class="container">
+        <span class="section-eyebrow">Góc cá nhân · 4 chiếc túi khâu tay</span>
+        <h2 class="section-title">Trong túi áo blouse của Sang có gì?</h2>
+        <p style="margin:0 0 22px; color:var(--ink-muted); max-width:58ch;">
+          Chạm vào từng chiếc túi để rút món đồ lên và xem lý do vì sao nó luôn nằm trong cặp đi học của Sang.
+        </p>
+
+        <div id="blousePocketsGrid" class="blouse-pockets-grid" role="group" aria-label="Bốn món đồ trong túi áo blouse của Sang"></div>
+
+        <div id="pocketStoryPanel" class="pocket-story-panel" aria-live="polite">
+          <span id="pocketStoryNum" class="pocket-story-num">01</span>
+          <div>
+            <strong id="pocketStoryTitle" style="display:block; font-size:1.1rem; color:var(--scrub-deep); margin-bottom:4px;"></strong>
+            <p id="pocketStoryText" style="margin:0; font-size:0.96rem; color:var(--ink);"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. MINI GAME — “CA TRỰC 15 PHÚT RA CHƠI” (3 CA HỌC ĐƯỜNG)
+         ====================================================================== -->
+    <section id="ca-truc" class="shift-section">
+      <div class="container">
+        <span class="section-eyebrow" style="color:var(--mint-signal);">Mini game · Thực tập bác sĩ học đường</span>
+        <h2 class="section-title" style="color:#FFFFFF;">Ca trực 15 phút ra chơi</h2>
+        <p style="margin:0 0 22px; color:rgba(236,246,244,0.78); max-width:60ch;">
+          Phụ Sang xử lý hai tình huống sơ cứu nhỏ hay gặp ở lớp 12A10 và một bài giữ nhịp thở bình tĩnh trước giờ trả bài.
+        </p>
+
+        <div class="shift-console">
+          <div class="shift-progress-bar">
+            <div class="case-pills">
+              <span class="case-pill is-active" data-case-pill="0">Ca 01 · Đứt tay nhẹ</span>
+              <span class="case-pill" data-case-pill="1">Ca 02 · Tụt đường huyết</span>
+              <span class="case-pill" data-case-pill="2">Ca 03 · Giữ nhịp thở đều</span>
+            </div>
+            <button type="button" id="btnResetShift" class="btn btn-sm" style="background:transparent; color:#ECF6F4; border-color:rgba(126,226,200,0.4);">
+              Làm lại ca trực
+            </button>
+          </div>
+
+          <div id="caseBodyBox" class="case-card-box"></div>
+
+          <div id="shiftFeedbackStrip" class="shift-feedback-strip" hidden aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. QUÀ CUỐI — “ĐƠN THUỐC TINH THẦN” (XUẤT PNG 1600 × 1000 PX)
+         ====================================================================== -->
+    <section id="don-thuoc" class="rx-section">
+      <div class="container">
+        <span class="section-eyebrow">Quà cuối trang · PNG 1600 × 1000 px</span>
+        <h2 class="section-title">Đơn thuốc tinh thần từ bàn áp cuối</h2>
+        <p style="margin:0 0 24px; color:var(--ink-muted); max-width:60ch;">
+          Chọn “triệu chứng” hôm nay của bạn, nhập tên rồi nhận một phiếu đơn thuốc vui (chỉ gồm nghỉ ngơi, nước ấm và lời chúc tử tế) có đóng dấu tròn của Sang.
+        </p>
+
+        <div class="rx-grid">
+          <div class="rx-canvas-shell">
+            <canvas
+              id="rxPreviewCanvas"
+              width="800"
+              height="500"
+              aria-label="Bản xem trước Đơn thuốc tinh thần do Nguyễn Tiến Sang kê"
+            ></canvas>
+          </div>
+
+          <div class="rx-form-card">
+            <div>
+              <label for="patientNameInput" style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:6px;">
+                Tên người nhận (hỗ trợ tiếng Việt có dấu):
+              </label>
+              <input
+                type="text"
+                id="patientNameInput"
+                class="rx-input"
+                maxlength="34"
+                placeholder="Bạn cùng lớp 12A10"
+              />
+            </div>
+
+            <div>
+              <span style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:8px;">
+                Triệu chứng hôm nay của bạn:
+              </span>
+              <div id="symptomChipsWrap" class="symptom-chips" role="group" aria-label="Chọn triệu chứng hôm nay"></div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; padding-top:4px;">
+              <button type="button" id="btnDownloadRx" class="btn btn-scrub">Lưu Đơn Thuốc PNG</button>
+              <a href="#ca-truc" class="btn btn-sm">Quay lại ca trực ↑</a>
+            </div>
+            <p id="rxStatusMsg" class="mono" style="margin:0; font-size:0.78rem; color:var(--scrub-deep); min-height:1.3em;" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <footer class="closing-note-box">
+          <p id="closingQuoteText"></p>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-top:12px; border-top:1px dashed rgba(239,248,246,0.35); font-family:var(--font-mono); font-size:0.86rem;">
+            <span>Lớp 12A10 · Trường THPT DakMil</span>
+            <strong>— Nguyễn Tiến Sang.</strong>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- Nút trượt mượt lên đầu trang -->
+  <button type="button" id="btnScrollTop" class="scroll-top-btn" aria-label="Trượt lên đầu trang">
+    <span aria-hidden="true">↑</span>
+    <span>Đầu hồ sơ</span>
+  </button>
+
+  <script>
+    /* ==========================================================================
+       1. VÙNG CẤU HÌNH DỄ SỬA (ĐƯỜNG DẪN ẢNH, LỜI GIỚI THIỆU & NỘI DUNG CÁ NHÂN)
+       ========================================================================== */
+    const CONFIG = {
+      fullName: "Nguyễn Tiến Sang",
+      className: "12A10",
+      school: "Trường THPT DakMil",
+      assets: {
+        portrait: "./assets/sang.jpg",
+        portraitFocus: "50% 20%",
+        schoolLogo: "./assets/logo-truong.png"
+      },
+      heroGreeting: "“Chào bạn, mình là Sang. Trong lớp hễ ai nhức đầu, đứt tay hay tụt đường huyết trước giờ kiểm tra 15 phút là tự động quay xuống bàn mình. Nghe thử nhịp tim trang này trước khi đọc nha?”",
+      vitalsChecks: [
+        { bpm: 74, text: "Chẩn đoán #01: Nhịp tim đều 74 BPM. Tình trạng: Vừa thuộc xong cấu tạo tim bốn ngăn, vẫn còn tỉnh táo." },
+        { bpm: 88, text: "Chẩn đoán #02: Nhịp tim hơi tăng 88 BPM. Lý do: Sắp đến giờ cô gọi lên bảng kiểm tra bài cũ môn Sinh." },
+        { bpm: 68, text: "Chẩn đoán #03: Nhịp tĩnh 68 BPM. Khuyến nghị: Uống thêm ngụm nước lọc và giữ bình tĩnh như lúc tập thắt nút chỉ." }
+      ],
+      career: {
+        heading: "Bác sĩ Đa khoa — Từ chiếc áo blouse trong tưởng tượng",
+        badge: "Định hướng · Bác sĩ (Khối B00)",
+        essay: [
+          "Định hướng nghề nghiệp rõ ràng nhất của mình là trở thành một bác sĩ. Ước mơ này không đến từ một bộ phim kịch tính nào cả, mà lớn dần từ những tiết Sinh học năm cấp ba khi mình mê mẩn ngồi vẽ lại từng van tim, nhánh mạch máu và ngạc nhiên vì cơ thể con người vận hành tinh vi đến thế. Ở lớp 12A10, mình cũng quen với cảm giác làm “tủ thuốc di động” cho bạn bè: đưa miếng băng cá nhân khi đứa bàn trên đứt tay vì giấy, hay nhắc cả nhóm hít thở sâu khi ai đó run trước giờ kiểm tra.",
+          "Mình biết con đường vào trường Y dài, nhiều đêm thức trắng học giải phẫu và áp lực thực tập bệnh viện không hề nhẹ. Nhưng càng tìm hiểu, mình càng muốn rèn cho mình một cái đầu tỉnh táo, đôi tay vững vàng và thói quen lắng nghe thật kỹ, để sau này khi khoác lên người chiếc áo blouse trắng thật sự, sự có mặt của mình có thể khiến người bệnh thấy yên tâm hơn một chút."
+        ],
+        steps: [
+          {
+            num: "01",
+            title: "Giữ chắc nền tảng khối B00 (Toán – Hóa – Sinh)",
+            body: "Hệ thống kiến thức Sinh học cơ thể người, di truyền và Hóa sinh bằng sơ đồ tư duy vẽ tay thay vì học thuộc máy móc, để hiểu bản chất từng cơ chế sinh lý."
+          },
+          {
+            num: "02",
+            title: "Rèn sự bình tĩnh và kiến thức sơ cứu chuẩn xác",
+            body: "Học cách giữ nhịp thở đều khi gặp tình huống bất ngờ, nắm rõ những nguyên tắc sơ cứu đúng đắn và biết ranh giới lúc nào cần gọi nhân viên y tế chuyên môn."
+          },
+          {
+            num: "03",
+            title: "Luyện đôi tay khéo léo và khả năng lắng nghe người khác",
+            body: "Từ việc tập buộc nút dây bằng một tay lúc rảnh rỗi đến việc nghe bạn bè kể chuyện mà không vội ngắt lời — vì một bác sĩ giỏi luôn bắt đầu từ việc nghe cho trọn vẹn."
+          }
+        ]
+      },
+      pocketItems: [
+        {
+          id: "pen",
+          num: "01",
+          name: "Bút bi 4 màu",
+          tag: "Sơ đồ tuần hoàn",
+          title: "Cây bút bi 4 màu luôn bấm nhanh nhất lớp",
+          story: "“Mình dùng mực đỏ cho động mạch, mực xanh cho tĩnh mạch, mực đen cho chú thích và mực xanh lá cho mấy câu thầy dặn ‘câu này dễ ra thi’. Hết kỳ là đúng hai ruột mực đỏ và xanh cạn sạch đầu tiên.”",
+          svg: `<svg class="pocket-item-svg" viewBox="0 0 90 90" aria-hidden="true">
+            <rect x="37" y="12" width="16" height="54" rx="5" fill="#FFFFFF" stroke="#162426" stroke-width="2.5"/>
+            <rect x="37" y="24" width="16" height="24" fill="#136B6E"/>
+            <polygon points="37,66 53,66 45,82" fill="#E6EFEF" stroke="#162426" stroke-width="2.2"/>
+            <circle cx="45" cy="81" r="2.2" fill="#DF4B3B"/>
+            <rect x="32" y="18" width="5" height="10" rx="2" fill="#DF4B3B"/>
+            <rect x="53" y="18" width="5" height="10" rx="2" fill="#2A62C9"/>
+          </svg>`
+        },
+        {
+          id: "bandaid",
+          num: "02",
+          name: "Băng cá nhân & Kẹo gừng",
+          tag: "Phòng y tế tổ 3",
+          title: "Bộ đôi cứu nguy quen thuộc ở bàn áp cuối",
+          story: "“Không hiểu sao năm lớp 12 rất hay có hai sự cố: đứt tay vì giấy báo tường và quên ăn sáng lúc tiết 3. Có hai món này trong túi áo là mình cứu được khối pha cho tụi bạn rồi.”",
+          svg: `<svg class="pocket-item-svg" viewBox="0 0 90 90" aria-hidden="true">
+            <rect x="14" y="34" width="62" height="24" rx="12" transform="rotate(-24 45 46)" fill="#F2D0A4" stroke="#162426" stroke-width="2.5"/>
+            <rect x="35" y="36" width="20" height="20" rx="3" transform="rotate(-24 45 46)" fill="#FFFFFF" stroke="#162426" stroke-width="1.8"/>
+            <circle cx="24" cy="54" r="2" fill="#B58958"/><circle cx="66" cy="36" r="2" fill="#B58958"/>
+            <circle cx="64" cy="66" r="11" fill="#DF4B3B" stroke="#162426" stroke-width="2.2"/>
+            <path d="M60 66 H68 M64 62 V70" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>`
+        },
+        {
+          id: "notebook",
+          num: "03",
+          name: "Sổ tay giải phẫu",
+          tag: "Tự vẽ bằng tay",
+          title: "Cuốn sổ nhỏ vẽ xương bàn tay và chu kỳ tim",
+          story: "“Đọc chữ không thì mình hay quên, nhưng tự vẽ lại hình quả tim với mấy mũi tên dòng máu là nhớ dai kinh khủng. Có trang mình vẽ xấu quá, bạn ngồi cạnh nhìn một hồi tưởng cái bánh chưng.”",
+          svg: `<svg class="pocket-item-svg" viewBox="0 0 90 90" aria-hidden="true">
+            <rect x="20" y="14" width="50" height="62" rx="4" fill="#FBF8F0" stroke="#162426" stroke-width="2.5"/>
+            <rect x="20" y="14" width="10" height="62" fill="#136B6E" stroke="#162426" stroke-width="2"/>
+            <path d="M40 44 C40 36 50 36 50 42 C50 36 60 36 60 44 C60 53 50 59 50 59 C50 59 40 53 40 44 Z" fill="#DF4B3B" stroke="#162426" stroke-width="1.8"/>
+            <line x1="38" y1="26" x2="62" y2="26" stroke="#162426" stroke-width="2"/>
+          </svg>`
+        },
+        {
+          id: "knot",
+          num: "04",
+          name: "Dây tập thắt nút",
+          tag: "Luyện tay khéo",
+          title: "Đoạn dây giày cũ tập buộc nút phẫu thuật",
+          story: "“Lần đầu xem clip bác sĩ tập buộc chỉ bằng một tay trên YouTube mình khoái quá, về lấy sợi dây giày dự phòng cột vô chân bàn tập theo. Mất một tuần mới hết tự buộc ngón tay mình lại.”",
+          svg: `<svg class="pocket-item-svg" viewBox="0 0 90 90" aria-hidden="true">
+            <path d="M16 58 C26 24 64 24 74 58" fill="none" stroke="#136B6E" stroke-width="6" stroke-linecap="round"/>
+            <path d="M22 36 C42 64 52 64 70 36" fill="none" stroke="#DF4B3B" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="45" cy="46" r="7" fill="#FFFFFF" stroke="#162426" stroke-width="2.5"/>
+          </svg>`
+        }
+      ],
+      symptoms: [
+        {
+          id: "homework",
+          label: "Hơi mệt vì bài tập",
+          diagnosis: "Quá tải bài tập cuối cấp mức độ nhẹ",
+          dose: "1. Đứng dậy vươn vai đúng 2 phút và nhìn ra cửa sổ xa 6 mét.\n2. Uống một ly nước ấm, tạm cất điện thoại 25 phút rồi làm nốt bài khó nhất.\n3. Ngủ trước 23h30 — não cần ngủ mới nhớ nổi bài hôm nay."
+        },
+        {
+          id: "calm",
+          label: "Cần thêm chút bình tĩnh",
+          diagnosis: "Nhịp tim tăng nhẹ trước giờ kiểm tra / kỳ thi",
+          dose: "1. Hít chậm 4 giây, giữ nhẹ 2 giây, thở ra chậm 6 giây (lặp lại 4 lần).\n2. Đọc đề từ câu dễ nhất để tay quen nhịp viết trước.\n3. Nhớ rằng bạn đã ôn kỹ hơn cảm giác lo lắng hiện tại rất nhiều."
+        },
+        {
+          id: "hungry",
+          label: "Đói bụng giữa tiết 4",
+          diagnosis: "Tụt năng lượng sinh học giờ cận trưa",
+          dose: "1. Xin ngay bàn áp cuối một viên kẹo gừng cầm hơi tới tiếng trống.\n2. Ra chơi đi thẳng xuống căn tin, ưu tiên món ấm bụng thay vì chỉ uống nước đá.\n3. Hôm sau nhớ ăn sáng đầy đủ để não chạy đủ 100% công suất."
+        },
+        {
+          id: "future",
+          label: "Đang phân vân chọn ngành",
+          diagnosis: "Suy nghĩ nhiều về ngã rẽ sau năm lớp 12",
+          dose: "1. Viết ra 3 việc bạn làm lâu mà không thấy chán (dù hơi mệt).\n2. Hỏi thử một anh chị đang làm nghề đó về một ngày bình thường của họ.\n3. Đừng ép bản thân biết hết ngay hôm nay — đi từng bước chắc là đủ."
+        }
+      ],
+      closingQuote: "“Nếu sau này có dịp gặp lại nhau khi mình đã khoác chiếc áo blouse trắng thật sự, hy vọng lần gặp ấy không phải ở phòng cấp cứu mà là một buổi cà phê thong thả kể lại chuyện năm lớp 12A10.”"
+    };
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ==========================================================================
+       2. HIỆU ỨNG TRƯỢT LÊN XUỐNG MƯỢT & ÂM THANH NHỊP TIM LUB-DUB (MẶC ĐỊNH TẮT)
+       ========================================================================== */
+    let activeScrollRaf = null;
+    let soundEnabled = false;
+    let audioCtx = null;
+
+    function stopSmoothScroll() {
+      if (activeScrollRaf !== null) {
+        cancelAnimationFrame(activeScrollRaf);
+        activeScrollRaf = null;
+      }
+    }
+
+    window.addEventListener("wheel", stopSmoothScroll, { passive: true });
+    window.addEventListener("touchstart", stopSmoothScroll, { passive: true });
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollToY(targetY, onDone) {
+      stopSmoothScroll();
+      const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const destY = Math.max(0, Math.min(maxY, targetY));
+
+      if (prefersReducedMotion) {
+        window.scrollTo(0, destY);
+        if (onDone) onDone();
+        return;
+      }
+
+      const startY = window.scrollY;
+      const dist = destY - startY;
+      if (Math.abs(dist) < 2) {
+        if (onDone) onDone();
+        return;
+      }
+
+      const dur = Math.min(860, Math.max(430, Math.abs(dist) * 0.45));
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        window.scrollTo(0, startY + dist * easeInOutCubic(p));
+        if (p < 1) {
+          activeScrollRaf = requestAnimationFrame(step);
+        } else {
+          activeScrollRaf = null;
+          if (onDone) onDone();
+        }
+      };
+      activeScrollRaf = requestAnimationFrame(step);
+    }
+
+    function smoothScrollToElement(el) {
+      if (!el) return;
+      const bar = document.querySelector(".clinic-topbar");
+      const offset = (bar ? bar.offsetHeight : 0) + 12;
+      const targetY = el.getBoundingClientRect().top + window.scrollY - offset;
+
+      smoothScrollToY(targetY, () => {
+        if (el.tagName === "SECTION" && !prefersReducedMotion) {
+          el.classList.remove("is-scroll-target");
+          void el.offsetWidth;
+          el.classList.add("is-scroll-target");
+        }
+      });
+    }
+
+    function smoothSlideToggle(el, open) {
+      if (!el) return;
+      if (prefersReducedMotion) {
+        el.hidden = !open;
+        return;
+      }
+      if (el._slideEnd) {
+        el.removeEventListener("transitionend", el._slideEnd);
+        el._slideEnd = null;
+      }
+      if (open) {
+        el.hidden = false;
+        const h = el.scrollHeight;
+        el.style.height = "0px";
+        el.style.opacity = "0";
+        el.style.transition = "height 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 240ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = `${h}px`;
+          el.style.opacity = "1";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      } else {
+        el.style.height = `${el.scrollHeight}px`;
+        el.style.opacity = "1";
+        el.style.transition = "height 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = "0px";
+          el.style.opacity = "0";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.hidden = true;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      }
+    }
+
+    // Tạo âm thanh nhịp tim "lub-dub" trầm ấm bằng Web Audio (chỉ phát khi khách bật)
+    function playLubDub() {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (AC) audioCtx = new AC();
+        }
+        if (!audioCtx) return;
+        if (audioCtx.state === "suspended") audioCtx.resume();
+
+        const makeThump = (offset, fStart, fEnd, vol) => {
+          const t = audioCtx.currentTime + offset;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(fStart, t);
+          osc.frequency.exponentialRampToValueAtTime(fEnd, t + 0.09);
+          gain.gain.setValueAtTime(vol, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.11);
+          osc.connect(gain).connect(audioCtx.destination);
+          osc.start(t);
+          osc.stop(t + 0.12);
+        };
+        makeThump(0, 95, 38, 0.22);      // lub
+        makeThump(0.16, 112, 46, 0.15);  // dub
+      } catch (_) {}
+    }
+
+    const btnPulseSound = document.getElementById("btnPulseSound");
+    btnPulseSound.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      btnPulseSound.setAttribute("aria-pressed", String(soundEnabled));
+      btnPulseSound.textContent = soundEnabled ? "Nhịp tim: Bật" : "Nhịp tim: Tắt";
+      if (soundEnabled) playLubDub();
+    });
+
+    /* ==========================================================================
+       3. HERO EKG WAVEFORM & ỐNG NGHE TƯƠNG TÁC
+       ========================================================================== */
+    const heroEkgCanvas = document.getElementById("heroEkgCanvas");
+    const heroEkgCtx = heroEkgCanvas.getContext("2d");
+    const bpmReadout = document.getElementById("bpmReadout");
+    const bpmDot = document.getElementById("bpmDot");
+    const heroVitalsNote = document.getElementById("heroVitalsNote");
+
+    let heroBpm = 72;
+    let vitalsIdx = 0;
+    let ekgPhase = 0;
+    let ekgRafId = null;
+
+    // Hàm sóng EKG đơn giản có phức bộ P-QRS-T thật
+    function sampleEkgValue(p) {
+      const m = ((p % 1) + 1) % 1;
+      if (m > 0.12 && m < 0.2) return Math.sin(((m - 0.12) / 0.08) * Math.PI) * 0.18; // P
+      if (m >= 0.25 && m < 0.28) return -0.18;                                         // Q
+      if (m >= 0.28 && m < 0.33) return Math.sin(((m - 0.28) / 0.05) * Math.PI) * 1.0; // R (đỉnh nhọn)
+      if (m >= 0.33 && m < 0.37) return -0.34;                                         // S
+      if (m >= 0.48 && m < 0.64) return Math.sin(((m - 0.48) / 0.16) * Math.PI) * 0.28; // T
+      return 0;
+    }
+
+    function drawHeroEkgFrame(phase) {
+      const W = heroEkgCanvas.width;
+      const H = heroEkgCanvas.height;
+      const ctx = heroEkgCtx;
+      ctx.fillStyle = "#071719";
+      ctx.fillRect(0, 0, W, H);
+
+      // Lưới giấy đo điện tim mảnh
+      ctx.strokeStyle = "rgba(126, 226, 200, 0.09)";
+      ctx.lineWidth = 1;
+      for (let x = 24; x < W; x += 24) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      ctx.beginPath(); ctx.moveTo(0, H * 0.56); ctx.lineTo(W, H * 0.56); ctx.stroke();
+
+      // Đường sóng EKG xanh bạc hà
+      ctx.strokeStyle = "#7EE2C8";
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      const midY = H * 0.58;
+      const amp = H * 0.42;
+      for (let x = 0; x <= W; x += 2) {
+        const p = (x / W) * 2.6 - phase;
+        const y = midY - sampleEkgValue(p) * amp;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    function runHeroEkgPulseBurst() {
+      const check = CONFIG.vitalsChecks[vitalsIdx % CONFIG.vitalsChecks.length];
+      vitalsIdx++;
+      heroBpm = check.bpm;
+      bpmReadout.textContent = `${heroBpm} BPM · ĐANG NGHE`;
+      heroVitalsNote.textContent = check.text;
+
+      bpmDot.classList.add("is-beating");
+      setTimeout(() => bpmDot.classList.remove("is-beating"), 240);
+      playLubDub();
+
+      if (prefersReducedMotion) {
+        ekgPhase += 0.35;
+        drawHeroEkgFrame(ekgPhase);
+        return;
+      }
+
+      if (ekgRafId) cancelAnimationFrame(ekgRafId);
+      const startTime = performance.now();
+      const dur = 2600;
+      let lastTs = startTime;
+
+      const loop = (now) => {
+        const dt = (now - lastTs) / 1000;
+        lastTs = now;
+        ekgPhase += dt * (heroBpm / 60);
+        drawHeroEkgFrame(ekgPhase);
+        if (now - startTime < dur) {
+          ekgRafId = requestAnimationFrame(loop);
+        } else {
+          ekgRafId = null;
+          bpmReadout.textContent = `${heroBpm} BPM · NHỊP TĨNH`;
+        }
+      };
+      ekgRafId = requestAnimationFrame(loop);
+    }
+
+    document.getElementById("btnStethoscopeCheck").addEventListener("click", runHeroEkgPulseBurst);
+
+    /* ==========================================================================
+       4. NẠP DỮ LIỆU CHÍNH, HỒ SƠ CÁ NHÂN, ĐỊNH HƯỚNG BÁC SĨ & 4 TÚI ÁO BLOUSE
+       ========================================================================== */
+    function hydrateContent() {
+      document.getElementById("heroFullName").textContent = CONFIG.fullName;
+      document.getElementById("heroClassSchool").textContent = `Lớp ${CONFIG.className} · ${CONFIG.school}`;
+      document.getElementById("heroGreeting").textContent = CONFIG.heroGreeting;
+      document.getElementById("closingQuoteText").textContent = CONFIG.closingQuote;
+
+      const pBox = document.getElementById("portraitBox");
+      const pImg = document.getElementById("portraitImg");
+      pImg.style.objectPosition = CONFIG.assets.portraitFocus;
+      pImg.addEventListener("error", () => pBox.classList.add("is-missing"));
+      pImg.addEventListener("load", () => pBox.classList.remove("is-missing"));
+      pImg.src = CONFIG.assets.portrait;
+
+      const logoWrap = document.getElementById("schoolLogoWrap");
+      const logoImg = document.getElementById("schoolLogoImg");
+      logoImg.addEventListener("error", () => logoWrap.classList.add("is-missing"));
+      logoImg.addEventListener("load", () => logoWrap.classList.remove("is-missing"));
+      logoImg.src = CONFIG.assets.schoolLogo;
+
+      // Bài tự giới thiệu cá tính trên kẹp hồ sơ + ghi chú mực đỏ trượt mở
+      const bioWrap = document.getElementById("bioProseWrap");
+      bioWrap.innerHTML = `
+        <p>Mình là Nguyễn Tiến Sang, học sinh lớp 12A10, Trường THPT DakMil. Trong lớp, mình ít khi ồn ào nhưng ngăn bàn lúc nào cũng trông như một góc phòng y tế thu nhỏ: có dầu gió, kẹo gừng và <button type="button" id="btnRedNote" class="red-ink-trigger" aria-expanded="false" aria-controls="redNoteDrawer">hai cuộn băng cá nhân</button>.</p>
+        <p>Mình thích môn Sinh học nhất, đặc biệt là những bài về hệ tuần hoàn và thần kinh. Bạn bè hay chọc mình vì mỗi lúc rảnh là mình lôi sợi dây giày dự phòng ra tập buộc nút chỉ bằng một tay, hoặc ngồi vẽ sơ đồ quả tim bằng cây bút bi bốn màu cho tới khi thuộc lòng hướng máu chảy.</p>
+        <p>Lúc mới gặp mình hơi trầm, nhưng nếu bạn đang rối trước giờ kiểm tra hay cần một người bình tĩnh ngồi nghe chuyện, cứ quay xuống bàn áp cuối. Mình không hứa sẽ giải hết bài tập giúp bạn, nhưng hứa sẽ không để bạn cuống thêm.</p>
+      `;
+
+      const btnRedNote = document.getElementById("btnRedNote");
+      const redNoteDrawer = document.getElementById("redNoteDrawer");
+      btnRedNote.addEventListener("click", () => {
+        const opening = redNoteDrawer.hidden;
+        btnRedNote.setAttribute("aria-expanded", String(opening));
+        smoothSlideToggle(redNoteDrawer, opening);
+      });
+
+      // Định hướng nghề nghiệp (~175 chữ + 3 mục trượt mở/đóng mượt)
+      document.getElementById("careerHeading").textContent = CONFIG.career.heading;
+      document.getElementById("careerBadge").textContent = CONFIG.career.badge;
+
+      const essayWrap = document.getElementById("careerEssayWrap");
+      essayWrap.innerHTML = "";
+      CONFIG.career.essay.forEach((txt) => {
+        const p = document.createElement("p");
+        p.textContent = txt;
+        essayWrap.appendChild(p);
+      });
+
+      const stepsWrap = document.getElementById("careerStepsWrap");
+      stepsWrap.innerHTML = "";
+      CONFIG.career.steps.forEach((st, idx) => {
+        const openInit = idx === 0;
+        const card = document.createElement("article");
+        card.className = `career-step${openInit ? " is-open" : ""}`;
+        const panelId = `careerStepPanel_${idx}`;
+        card.innerHTML = `
+          <button type="button" class="career-step-trigger" aria-expanded="${openInit}" aria-controls="${panelId}">
+            <span class="career-step-head">
+              <span class="career-step-num">${st.num}</span>
+              <span class="career-step-title">${st.title}</span>
+            </span>
+            <span class="career-step-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div id="${panelId}" class="career-step-panel" ${openInit ? "" : "hidden"}>
+            <div class="career-step-inner">${st.body}</div>
+          </div>
+        `;
+        const trig = card.querySelector(".career-step-trigger");
+        const panel = card.querySelector(".career-step-panel");
+        trig.addEventListener("click", () => {
+          const opening = panel.hidden;
+          card.classList.toggle("is-open", opening);
+          trig.setAttribute("aria-expanded", String(opening));
+          smoothSlideToggle(panel, opening);
+        });
+        stepsWrap.appendChild(card);
+      });
+
+      // 4 chiếc túi áo blouse
+      const pocketsGrid = document.getElementById("blousePocketsGrid");
+      pocketsGrid.innerHTML = "";
+      CONFIG.pocketItems.forEach((item, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "blouse-pocket-btn";
+        btn.setAttribute("aria-pressed", String(idx === 0));
+        btn.innerHTML = `
+          ${item.svg}
+          <span class="pocket-item-name">${item.name}</span>
+          <span class="pocket-item-tag">${item.tag}</span>
+        `;
+        btn.addEventListener("click", () => {
+          pocketsGrid.querySelectorAll(".blouse-pocket-btn").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+          showPocketItem(item);
+        });
+        pocketsGrid.appendChild(btn);
+      });
+      showPocketItem(CONFIG.pocketItems[0]);
+    }
+
+    function showPocketItem(item) {
+      document.getElementById("pocketStoryNum").textContent = item.num;
+      document.getElementById("pocketStoryTitle").textContent = item.title;
+      document.getElementById("pocketStoryText").textContent = item.story;
+    }
+
+    /* ==========================================================================
+       5. MINI GAME — “CA TRỰC 15 PHÚT RA CHƠI” (2 CA SƠ CỨU + 1 CA NHỊP THỞ EKG)
+       ========================================================================== */
+    const caseBodyBox = document.getElementById("caseBodyBox");
+    const shiftFeedbackStrip = document.getElementById("shiftFeedbackStrip");
+
+    const shiftState = {
+      step: 0, // 0, 1, 2, 3 (done)
+      correctCount: 0,
+      breathHits: 0,
+      breathTarget: 4,
+      breathRunning: false,
+      breathPos: 0, // 0 -> 1
+      breathDir: 1,
+      breathRaf: null,
+      lastBreathTs: 0
+    };
+
+    const TRIAGE_CASES = [
+      {
+        title: "Ca 01 · Bạn cùng bàn bị xước nhẹ ngón tay lúc cắt giấy báo tường",
+        desc: "Vết xước nông, chỉ rỉ một chút máu nhỏ. Bước ĐẦU TIÊN nên làm trước khi dán băng cá nhân là gì?",
+        options: [
+          { text: "Dán thẳng băng cá nhân luôn cho khỏi chảy máu", ok: false, note: "Chưa nên dán ngay — bụi giấy còn bám trên vết xước có thể làm rát. Rửa sạch dưới vòi nước trước nha!" },
+          { text: "Rửa nhẹ dưới vòi nước sạch rồi thấm khô bằng gạc/khăn sạch", ok: true, note: "Chuẩn bài! Rửa trôi bụi giấy dưới nước sạch, thấm khô nhẹ rồi mới dán băng cá nhân." },
+          { text: "Bôi dầu gió trực tiếp lên vết xước", ok: false, note: "Ối, dầu gió bôi vào vết thương hở xót lắm! Chỉ dùng nước sạch hoặc nước muối sinh lý thôi." }
+        ]
+      },
+      {
+        title: "Ca 02 · Đứa bàn trên quên ăn sáng, đứng dậy thấy hoa mắt chóng mặt",
+        desc: "Mặt bạn hơi tái, tay hơi run do hạ đường huyết nhẹ giữa tiết 4. Cách xử lý hợp lý nhất ngay lúc này là gì?",
+        options: [
+          { text: "Cho bạn ngồi/nằm nghỉ chỗ thoáng, uống chút nước đường ấm hoặc kẹo ngọt", ok: true, note: "Đúng rồi! Cho ngồi nghỉ ngay tránh ngã, bổ sung đường nhanh và theo dõi — nếu chưa đỡ thì báo cô đưa xuống phòng y tế." },
+          { text: "Kêu bạn đi bộ vài vòng ngoài hành lang cho tỉnh", ok: false, note: "Không nên để người đang chóng mặt đi lại vì rất dễ té ngã. Hãy cho ngồi xuống nghỉ ngay trước đã." },
+          { text: "Đứng vây kín xung quanh quạt tay thật mạnh", ok: false, note: "Vây kín càng làm thiếu không khí thoáng. Nên giãn ra cho thoáng và bổ sung chút nước ngọt/kẹo gừng." }
+        ]
+      }
+    ];
+
+    function stopBreathLoop() {
+      if (shiftState.breathRaf !== null) {
+        cancelAnimationFrame(shiftState.breathRaf);
+        shiftState.breathRaf = null;
+      }
+      shiftState.breathRunning = false;
+    }
+
+    function updateCasePills() {
+      document.querySelectorAll("[data-case-pill]").forEach((pill, idx) => {
+        pill.classList.toggle("is-active", idx === shiftState.step);
+        pill.classList.toggle("is-done", idx < shiftState.step);
+      });
+    }
+
+    function renderShiftStep() {
+      stopBreathLoop();
+      updateCasePills();
+      shiftFeedbackStrip.hidden = true;
+
+      if (shiftState.step < 2) {
+        const c = TRIAGE_CASES[shiftState.step];
+        caseBodyBox.innerHTML = `
+          <strong style="font-size:1.05rem; color:var(--mint-signal);">${c.title}</strong>
+          <p style="margin:0; font-size:0.94rem; color:rgba(236,246,244,0.88);">${c.desc}</p>
+          <div class="case-options-grid" id="caseOptsGrid"></div>
+        `;
+        const grid = document.getElementById("caseOptsGrid");
+        let solvedThisCase = false;
+
+        c.options.forEach((opt) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "case-opt-btn";
+          b.textContent = opt.text;
+          b.addEventListener("click", () => {
+            if (solvedThisCase) return;
+            shiftFeedbackStrip.hidden = false;
+            if (opt.ok) {
+              solvedThisCase = true;
+              shiftState.correctCount++;
+              b.classList.add("is-correct");
+              shiftFeedbackStrip.innerHTML = `
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+                  <span><strong>Sang gật đầu:</strong> ${opt.note}</span>
+                  <button type="button" id="btnNextCase" class="btn btn-scrub btn-sm">Sang ca tiếp theo →</button>
+                </div>
+              `;
+              document.getElementById("btnNextCase").addEventListener("click", () => {
+                shiftState.step++;
+                renderShiftStep();
+              });
+            } else {
+              b.classList.add("is-wrong");
+              shiftFeedbackStrip.innerHTML = `<strong>Sang nhắc nhẹ:</strong> ${opt.note}`;
+            }
+          });
+          grid.appendChild(b);
+        });
+        return;
+      }
+
+      if (shiftState.step === 2) {
+        // Ca 3: Giữ nhịp thở bình tĩnh trước giờ trả bài (Canvas 2D)
+        shiftState.breathHits = 0;
+        shiftState.breathPos = 0.12;
+        shiftState.breathDir = 1;
+
+        caseBodyBox.innerHTML = `
+          <strong style="font-size:1.05rem; color:var(--mint-signal);">Ca 03 · Giữ nhịp thở đều trước giờ trả bài</strong>
+          <p style="margin:0; font-size:0.94rem; color:rgba(236,246,244,0.88);">
+            Bấm <strong>“Thở đều”</strong> đúng lúc chấm nhịp tim đi vào vùng xanh giữa màn hình (4 lần) để hạ nhịp tim từ 104 BPM về mức bình tĩnh 72 BPM.
+          </p>
+          <div class="breath-canvas-wrap">
+            <canvas id="breathCanvas" width="760" height="150" aria-label="Thanh nhịp thở ổn định tim mạch"></canvas>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+            <span id="breathStatusText" class="mono" style="font-size:0.84rem; color:var(--mint-signal);">Nhịp đều: 0 / 4 · 104 BPM</span>
+            <button type="button" id="btnTapBreath" class="btn btn-pulse">Thở đều (chạm vùng xanh)</button>
+          </div>
+        `;
+
+        const bCanvas = document.getElementById("breathCanvas");
+        const bCtx = bCanvas.getContext("2d");
+        const breathStatusText = document.getElementById("breathStatusText");
+        const btnTapBreath = document.getElementById("btnTapBreath");
+
+        const drawBreathBar = () => {
+          const W = bCanvas.width;
+          const H = bCanvas.height;
+          bCtx.fillStyle = "#071618";
+          bCtx.fillRect(0, 0, W, H);
+
+          // Vùng mục tiêu xanh ở giữa (0.38 -> 0.62)
+          const zStart = W * 0.37;
+          const zW = W * 0.26;
+          bCtx.fillStyle = "rgba(126, 226, 200, 0.22)";
+          bCtx.fillRect(zStart, 22, zW, H - 44);
+          bCtx.strokeStyle = "#7EE2C8";
+          bCtx.lineWidth = 2;
+          bCtx.strokeRect(zStart, 22, zW, H - 44);
+
+          bCtx.fillStyle = "#7EE2C8";
+          bCtx.font = "600 13px 'IBM Plex Mono', monospace";
+          bCtx.textAlign = "center";
+          bCtx.fillText("VÙNG NHỊP THỞ ÊM", W / 2, 42);
+
+          // Đường dẫn ngang
+          bCtx.strokeStyle = "rgba(236, 246, 244, 0.25)";
+          bCtx.lineWidth = 3;
+          bCtx.beginPath();
+          bCtx.moveTo(40, H / 2 + 8);
+          bCtx.lineTo(W - 40, H / 2 + 8);
+          bCtx.stroke();
+
+          // Chấm nhịp tim di chuyển mượt
+          const px = 40 + shiftState.breathPos * (W - 80);
+          const inZone = shiftState.breathPos >= 0.37 && shiftState.breathPos <= 0.63;
+          bCtx.fillStyle = inZone ? "#7EE2C8" : "#DF4B3B";
+          bCtx.beginPath();
+          bCtx.arc(px, H / 2 + 8, 16, 0, Math.PI * 2);
+          bCtx.fill();
+          bCtx.strokeStyle = "#FFFFFF";
+          bCtx.lineWidth = 3;
+          bCtx.stroke();
+        };
+
+        if (!prefersReducedMotion) {
+          shiftState.breathRunning = true;
+          shiftState.lastBreathTs = performance.now();
+          const loop = (now) => {
+            if (!shiftState.breathRunning) return;
+            const dt = Math.min(0.04, (now - shiftState.lastBreathTs) / 1000);
+            shiftState.lastBreathTs = now;
+            shiftState.breathPos += shiftState.breathDir * dt * 0.62;
+            if (shiftState.breathPos >= 1) { shiftState.breathPos = 1; shiftState.breathDir = -1; }
+            if (shiftState.breathPos <= 0) { shiftState.breathPos = 0; shiftState.breathDir = 1; }
+            drawBreathBar();
+            shiftState.breathRaf = requestAnimationFrame(loop);
+          };
+          shiftState.breathRaf = requestAnimationFrame(loop);
+        } else {
+          // Khi bật giảm chuyển động: đặt sẵn trong vùng xanh để bấm nhịp êm
+          shiftState.breathPos = 0.5;
+          drawBreathBar();
+        }
+
+        btnTapBreath.addEventListener("click", () => {
+          const inZone = prefersReducedMotion || (shiftState.breathPos >= 0.35 && shiftState.breathPos <= 0.65);
+          if (inZone) {
+            shiftState.breathHits++;
+            playLubDub();
+            const curBpm = 104 - shiftState.breathHits * 8;
+            breathStatusText.textContent = `Nhịp đều: ${shiftState.breathHits} / ${shiftState.breathTarget} · ${curBpm} BPM`;
+            shiftFeedbackStrip.hidden = false;
+            shiftFeedbackStrip.textContent = `Tốt lắm! Nhịp tim vừa dịu xuống còn ${curBpm} BPM.`;
+
+            if (shiftState.breathHits >= shiftState.breathTarget) {
+              stopBreathLoop();
+              shiftState.correctCount++;
+              shiftState.step = 3;
+              renderShiftStep();
+            }
+          } else {
+            shiftFeedbackStrip.hidden = false;
+            shiftFeedbackStrip.textContent = "Hơi vội một chút — đợi chấm tròn đi vào ô xanh ở giữa rồi bấm lại nhé.";
+          }
+        });
+        return;
+      }
+
+      // Hoàn thành cả 3 ca trực
+      caseBodyBox.innerHTML = `
+        <strong style="font-size:1.2rem; color:var(--mint-signal);">Hoàn thành ca trực 15 phút ra chơi!</strong>
+        <p style="margin:0; font-size:0.96rem; color:#ECF6F4;">
+          Bạn đã cùng Sang xử lý gọn cả 3 ca học đường và đưa nhịp tim của cả nhóm trở về mức bình tĩnh <strong>72 BPM</strong>. Đủ tiêu chuẩn nhận phiếu <strong>Đơn thuốc tinh thần</strong> bên dưới rồi đó!
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="#don-thuoc" class="btn btn-scrub btn-sm">Nhận Đơn thuốc tinh thần ↓</a>
+        </div>
+      `;
+    }
+
+    document.getElementById("btnResetShift").addEventListener("click", () => {
+      shiftState.step = 0;
+      shiftState.correctCount = 0;
+      renderShiftStep();
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopBreathLoop();
+        if (ekgRafId) { cancelAnimationFrame(ekgRafId); ekgRafId = null; }
+      }
+    });
+
+    /* ==========================================================================
+       6. QUÀ CUỐI — ĐƠN THUỐC TINH THẦN (VẼ CANVAS NỘI BỘ 1600 × 1000 PX)
+       ========================================================================== */
+    const rxPreviewCanvas = document.getElementById("rxPreviewCanvas");
+    const patientNameInput = document.getElementById("patientNameInput");
+    const symptomChipsWrap = document.getElementById("symptomChipsWrap");
+    const rxStatusMsg = document.getElementById("rxStatusMsg");
+
+    let selectedSymptomId = CONFIG.symptoms[0].id;
+
+    function getSelectedSymptom() {
+      return CONFIG.symptoms.find((s) => s.id === selectedSymptomId) || CONFIG.symptoms[0];
+    }
+
+    function wrapCanvasLines(ctx, text, maxW) {
+      const words = text.split(/\s+/);
+      const lines = [];
+      let line = "";
+      for (const w of words) {
+        const test = line ? `${line} ${w}` : w;
+        if (ctx.measureText(test).width > maxW && line) {
+          lines.push(line);
+          line = w;
+        } else {
+          line = test;
+        }
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    function renderPrescriptionCanvas(canvas) {
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      const s = W / 1600;
+
+      const patient = (patientNameInput.value || "").trim() || "Bạn cùng lớp 12A10";
+      const sym = getSelectedSymptom();
+      const today = new Date().toLocaleDateString("vi-VN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+
+      // Nền giấy phiếu khám màu kem ngà sạch sẽ
+      ctx.fillStyle = "#FBF8F0";
+      ctx.fillRect(0, 0, W, H);
+
+      // Viền khung chính
+      const pad = 54 * s;
+      ctx.strokeStyle = "#162426";
+      ctx.lineWidth = 4 * s;
+      ctx.strokeRect(pad, pad, W - pad * 2, H - pad * 2);
+
+      // Dải đầu phiếu màu xanh phòng mổ
+      ctx.fillStyle = "#136B6E";
+      ctx.fillRect(pad, pad, W - pad * 2, 134 * s);
+
+      // Dấu thập đỏ trên góc trái
+      ctx.fillStyle = "#DF4B3B";
+      ctx.fillRect(pad + 36 * s, pad + 36 * s, 62 * s, 62 * s);
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(pad + 60 * s, pad + 48 * s, 14 * s, 38 * s);
+      ctx.fillRect(pad + 48 * s, pad + 60 * s, 38 * s, 14 * s);
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = `800 ${52 * s}px 'Barlow Condensed', 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText("ĐƠN THUỐC TINH THẦN · PHÒNG Y TẾ BÀN ÁP CUỐI", pad + 124 * s, pad + 72 * s);
+
+      ctx.font = `500 ${24 * s}px 'IBM Plex Mono', monospace`;
+      ctx.fillStyle = "#D5F2EC";
+      ctx.fillText(`LỚP ${CONFIG.className} · ${CONFIG.school.toUpperCase()} · NGÀY ${today}`, pad + 124 * s, pad + 112 * s);
+
+      // Ký hiệu Rx lớn
+      ctx.fillStyle = "#136B6E";
+      ctx.font = `800 ${86 * s}px 'Barlow Condensed', Georgia, serif`;
+      ctx.fillText("Rx", pad + 42 * s, pad + 242 * s);
+
+      // Thông tin người nhận & chẩn đoán
+      ctx.fillStyle = "#162426";
+      ctx.font = `700 ${34 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(`Người nhận: ${patient}`, pad + 158 * s, pad + 216 * s, W - pad * 2 - 200 * s);
+
+      ctx.fillStyle = "#506265";
+      ctx.font = `600 ${26 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(`Chẩn đoán vui: ${sym.diagnosis}`, pad + 158 * s, pad + 262 * s, W - pad * 2 - 200 * s);
+
+      // Đường kẻ mảnh kèm sóng EKG ở giữa
+      const divY = pad + 306 * s;
+      ctx.strokeStyle = "#136B6E";
+      ctx.lineWidth = 2.5 * s;
+      ctx.beginPath();
+      ctx.moveTo(pad + 36 * s, divY);
+      ctx.lineTo(W / 2 - 70 * s, divY);
+      ctx.lineTo(W / 2 - 48 * s, divY - 28 * s);
+      ctx.lineTo(W / 2 - 28 * s, divY + 22 * s);
+      ctx.lineTo(W / 2 - 6 * s, divY - 40 * s);
+      ctx.lineTo(W / 2 + 16 * s, divY + 18 * s);
+      ctx.lineTo(W / 2 + 34 * s, divY);
+      ctx.lineTo(W - pad - 36 * s, divY);
+      ctx.stroke();
+
+      // Nội dung chỉ định (liều dùng)
+      ctx.fillStyle = "#DF4B3B";
+      ctx.font = `700 ${24 * s}px 'IBM Plex Mono', monospace`;
+      ctx.fillText("CHỈ ĐỊNH SỬ DỤNG TRONG NGÀY:", pad + 44 * s, divY + 62 * s);
+
+      ctx.fillStyle = "#162426";
+      ctx.font = `500 ${29 * s}px 'Be Vietnam Pro', sans-serif`;
+      const rawSteps = sym.dose.split("\n");
+      let curY = divY + 118 * s;
+      rawSteps.forEach((stepTxt) => {
+        const lines = wrapCanvasLines(ctx, stepTxt, W - pad * 2 - 110 * s);
+        lines.forEach((ln) => {
+          ctx.fillText(ln, pad + 44 * s, curY);
+          curY += 44 * s;
+        });
+        curY += 16 * s;
+      });
+
+      // Con dấu đỏ tròn nghiêng ở góc phải dưới
+      ctx.save();
+      ctx.translate(W - pad - 210 * s, H - pad - 150 * s);
+      ctx.rotate(-0.2);
+      ctx.strokeStyle = "rgba(223, 75, 59, 0.85)";
+      ctx.lineWidth = 5 * s;
+      ctx.beginPath(); ctx.arc(0, 0, 98 * s, 0, Math.PI * 2); ctx.stroke();
+      ctx.lineWidth = 2 * s;
+      ctx.beginPath(); ctx.arc(0, 0, 82 * s, 0, Math.PI * 2); ctx.stroke();
+
+      ctx.fillStyle = "rgba(223, 75, 59, 0.9)";
+      ctx.textAlign = "center";
+      ctx.font = `700 ${22 * s}px 'IBM Plex Mono', monospace`;
+      ctx.fillText("ĐÃ KHÁM", 0, -24 * s);
+      ctx.font = `800 ${26 * s}px 'Barlow Condensed', sans-serif`;
+      ctx.fillText("BS. SANG (TƯƠNG LAI)", 0, 10 * s);
+      ctx.font = `600 ${19 * s}px 'IBM Plex Mono', monospace`;
+      ctx.fillText("12A10 · DAKMIL", 0, 40 * s);
+      ctx.restore();
+
+      // Chân phiếu
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#506265";
+      ctx.font = `italic 500 ${22 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText("* Lưu ý: Đây là phiếu động viên tinh thần, không thay thế tư vấn y tế thật.", pad + 44 * s, H - pad - 34 * s);
+    }
+
+    function initRxControls() {
+      symptomChipsWrap.innerHTML = "";
+      CONFIG.symptoms.forEach((sym) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "symptom-chip";
+        btn.textContent = sym.label;
+        btn.setAttribute("aria-pressed", String(sym.id === selectedSymptomId));
+        btn.addEventListener("click", () => {
+          selectedSymptomId = sym.id;
+          symptomChipsWrap.querySelectorAll(".symptom-chip").forEach((b) => {
+            b.setAttribute("aria-pressed", String(b === btn));
+          });
+          renderPrescriptionCanvas(rxPreviewCanvas);
+        });
+        symptomChipsWrap.appendChild(btn);
+      });
+
+      patientNameInput.addEventListener("input", () => renderPrescriptionCanvas(rxPreviewCanvas));
+
+      document.getElementById("btnDownloadRx").addEventListener("click", () => {
+        try {
+          const exp = document.createElement("canvas");
+          exp.width = 1600;
+          exp.height = 1000;
+          renderPrescriptionCanvas(exp);
+
+          const a = document.createElement("a");
+          a.download = "don-thuoc-tinh-than-nguyen-tien-sang-12a10.png";
+          a.href = exp.toDataURL("image/png");
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          rxStatusMsg.textContent = "Đã lưu Đơn thuốc tinh thần PNG (1600 × 1000 px) về máy của bạn!";
+        } catch (err) {
+          rxStatusMsg.textContent = "Không thể tự tải PNG trong khung xem này. Hãy mở trực tiếp file HTML để tải.";
+        }
+      });
+    }
+
+    /* ==========================================================================
+       7. ĐIỀU HƯỚNG TRƯỢT MƯỢT & KHỞI CHẠY TOÀN TRANG
+       ========================================================================== */
+    function initSmoothNav() {
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const hash = link.getAttribute("href");
+          if (!hash || hash === "#") return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          smoothScrollToElement(target);
+          try { history.replaceState(null, "", hash); } catch (_) {}
+        });
+      });
+
+      const btnTop = document.getElementById("btnScrollTop");
+      const navLinks = Array.from(document.querySelectorAll(".top-nav a[href^='#']"));
+      const sections = navLinks
+        .map((a) => ({ a, el: document.querySelector(a.getAttribute("href")) }))
+        .filter((x) => x.el);
+
+      btnTop.addEventListener("click", () => smoothScrollToY(0));
+
+      const onScroll = () => {
+        const y = window.scrollY;
+        btnTop.classList.toggle("is-visible", y > 340);
+        const probe = y + 140;
+        let current = null;
+        for (const s of sections) {
+          if (s.el.offsetTop <= probe) current = s;
+        }
+        navLinks.forEach((a) => a.classList.toggle("is-active", Boolean(current && current.a === a)));
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    window.addEventListener("load", () => {
+      hydrateContent();
+      drawHeroEkgFrame(0);
+      renderShiftStep();
+      initRxControls();
+      renderPrescriptionCanvas(rxPreviewCanvas);
+      initSmoothNav();
+    });
+  </script>
+</body>
+</html>

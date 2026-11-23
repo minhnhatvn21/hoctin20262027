@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sản Phẩm Cá Nhân - Lê Đình Khôi (12A10)</title>
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-light: #1e6fb8;
+      --accent: #0d9488;
+      --warm: #f59e0b;
+      --danger: #dc2626;
+      --success: #15803d;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 4px 10px -6px rgba(15, 23, 42, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    /* Hero Section */
+    header.hero {
+      background: linear-gradient(135deg, #0f172a 0%, #0f4c81 55%, #0d9488 100%);
+      color: #ffffff;
+      padding: 56px 20px 68px;
+    }
+
+    .hero-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(125, 211, 252, 0.45);
+      color: #e0f2fe;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      color: #e2e8f0;
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: #f59e0b;
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-image-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1080px;
+      margin: -28px auto 60px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    section.card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+      border-left: 5px solid var(--primary);
+      padding-left: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 1.65rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    /* Profile Grid & Table */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    table.info-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    table.info-table th,
+    table.info-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.96rem;
+    }
+
+    table.info-table th {
+      background: #f8fafc;
+      color: var(--primary);
+      width: 38%;
+      font-weight: 700;
+    }
+
+    table.info-table tr:last-child th,
+    table.info-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .bio-box {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 22px;
+      border: 1px solid var(--border);
+    }
+
+    .bio-box h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.18rem;
+    }
+
+    .bio-box p {
+      margin-bottom: 12px;
+    }
+
+    .trait-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    /* Hobbies Gallery */
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    figure.hobby-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    figure.hobby-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+    }
+
+    figure.hobby-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    figure.hobby-card figcaption {
+      padding: 16px 18px;
+    }
+
+    figure.hobby-card figcaption h3 {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    figure.hobby-card figcaption p {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    /* Topic Banner */
+    .topic-figure {
+      margin: 0 0 26px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0f172a;
+    }
+
+    .topic-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .topic-figure figcaption {
+      background: #f8fafc;
+      color: var(--muted);
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Do / Don't Columns */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin: 22px 0 28px;
+    }
+
+    .rule-box {
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .rule-do {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .rule-do h3 {
+      color: var(--success);
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .rule-dont {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+
+    .rule-dont h3 {
+      color: var(--danger);
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .rule-box ul {
+      padding-left: 20px;
+    }
+
+    .rule-box li {
+      margin-bottom: 9px;
+      font-size: 0.95rem;
+    }
+
+    /* T.H.I.N.K Cards */
+    .think-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .think-item {
+      background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+
+    .think-letter {
+      width: 44px;
+      height: 44px;
+      line-height: 44px;
+      margin: 0 auto 10px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+
+    .think-item h4 {
+      font-size: 0.96rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .think-item p {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Interactive Quiz & Pledge */
+    .quiz-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .quiz-question:last-of-type {
+      border-bottom: none;
+    }
+
+    .quiz-question p {
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .quiz-option {
+      display: block;
+      padding: 9px 12px;
+      margin-bottom: 6px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.94rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--primary-light);
+      background: #eff6ff;
+    }
+
+    .quiz-result {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .pledge-bar {
+      margin-top: 26px;
+      background: linear-gradient(135deg, #0f4c81, #0d9488);
+      color: #ffffff;
+      padding: 24px;
+      border-radius: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .pledge-bar p {
+      max-width: 650px;
+      font-size: 0.98rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.92rem;
+    }
+
+    footer strong {
+      color: #ffffff;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero-container,
+      .profile-grid,
+      .hobby-grid,
+      .rules-grid {
+        grid-template-columns: 1fr;
+      }
+      .think-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Thanh điều hướng -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#top" class="brand">Lê Đình Khôi <span>• 12A10</span></a>
+      <ul class="nav-links">
+        <li><a href="#gioi-thieu">Giới thiệu bản thân</a></li>
+        <li><a href="#so-thich">Sở thích</a></li>
+        <li><a href="#ung-xu-mang">Ứng xử trên không gian mạng</a></li>
+        <li><a href="#trac-nghiem">Trắc nghiệm nhanh</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Phần mở đầu (Hero) -->
+  <header id="top" class="hero">
+    <div class="hero-container">
+      <div>
+        <span class="hero-badge">Sản phẩm cá nhân • Lớp 12A10</span>
+        <h1>Xin chào! Mình là Lê Đình Khôi</h1>
+        <p>
+          Học sinh lớp <strong>12A10 – Trường Phân hiệu THPT Đắk Mil</strong>, quê gốc tại mảnh đất
+          <strong>Thanh Hóa</strong>. Một chàng trai yêu thể thao, đam mê bóng đá, thích khám phá ẩm thực và say mê những khung cảnh thiên nhiên tươi đẹp.
+        </p>
+        <div class="hero-actions">
+          <a href="#gioi-thieu" class="btn btn-primary">Khám phá về mình</a>
+          <a href="#ung-xu-mang" class="btn btn-outline">Chủ đề: Ứng xử trên mạng</a>
+        </div>
+      </div>
+      <div class="hero-image-card">
+        <!-- Bạn có thể thay đường dẫn src bên dưới bằng ảnh thật của bản thân nếu muốn -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDgwIiB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ4MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InNreSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGYyOTQyIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNDUlIiBzdG9wLWNvbG9yPSIjMWU2MDkxIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNzglIiBzdG9wLWNvbG9yPSIjZjRhMjYxIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZDE2NiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0ic3VuR2xvdyIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZjhkNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNDAlIiBzdG9wLWNvbG9yPSIjZmZkMTY2IiBzdG9wLW9wYWNpdHk9IjAuOCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNGEyNjEiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iaGlsbDEiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzJhOWQ4ZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxYjQzMzIiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImhpbGwyIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM0MDkxNmMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDgxYzE1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJqZXJzZXkiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNzdiNiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMjNlOGEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0gU2t5IC0tPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDgwIiBmaWxsPSJ1cmwoI3NreSkiLz4KICA8IS0tIFN1biAtLT4KICA8Y2lyY2xlIGN4PSI1OTAiIGN5PSIxODAiIHI9IjExNSIgZmlsbD0idXJsKCNzdW5HbG93KSIvPgogIDxjaXJjbGUgY3g9IjU5MCIgY3k9IjE4MCIgcj0iNDYiIGZpbGw9IiNmZmYzYjAiLz4KICA8IS0tIFNvZnQgQ2xvdWRzIC0tPgogIDxnIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMjIiPgogICAgPGVsbGlwc2UgY3g9IjE2MCIgY3k9Ijk1IiByeD0iNjgiIHJ5PSIyMCIvPgogICAgPGVsbGlwc2UgY3g9IjIwNSIgY3k9Ijg4IiByeD0iNDUiIHJ5PSIxOCIvPgogICAgPGVsbGlwc2UgY3g9IjQ0MCIgY3k9IjcwIiByeD0iNzUiIHJ5PSIxOCIvPgogICAgPGVsbGlwc2UgY3g9IjQ5MCIgY3k9IjY0IiByeD0iNDgiIHJ5PSIxNCIvPgogIDwvZz4KICA8IS0tIERpc3RhbnQgTW91bnRhaW5zIC0tPgogIDxwYXRoIGQ9Ik0wIDMwMCBRMTMwIDIxMCAyNzAgMjcwIFQ1NjAgMjQ1IFQ4MDAgMjgwIEw4MDAgNDgwIEwwIDQ4MCBaIiBmaWxsPSIjMWQ0ZTY4IiBvcGFjaXR5PSIwLjc1Ii8+CiAgPCEtLSBNaWQgSGlsbHMgLS0+CiAgPHBhdGggZD0iTTAgMzQwIFExODAgMjYwIDM4MCAzMjAgVDgwMCAzMDAgTDgwMCA0ODAgTDAgNDgwIFoiIGZpbGw9InVybCgjaGlsbDEpIi8+CiAgPCEtLSBGb3JlZ3JvdW5kIEhpbGwgLS0+CiAgPHBhdGggZD0iTTAgMzkwIFEyNDAgMzMwIDQ4MCAzODUgVDgwMCAzNjUgTDgwMCA0ODAgTDAgNDgwIFoiIGZpbGw9InVybCgjaGlsbDIpIi8+CiAgPCEtLSBQaW5lIFRyZWVzIG9uIHJpZ2h0IC0tPgogIDxnIGZpbGw9IiMxMjM3MmEiIG9wYWNpdHk9IjAuODUiPgogICAgPHBvbHlnb24gcG9pbnRzPSI2NzAsMzIwIDY1MCwzNzUgNjkwLDM3NSIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI2NzAsMjk1IDY1NCwzNDAgNjg2LDM0MCIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI3MTUsMzA1IDY5MiwzNzAgNzM4LDM3MCIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI3MTUsMjc4IDY5NywzMzAgNzMzLDMzMCIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI3NTgsMzI1IDc0MCwzNzggNzc2LDM3OCIvPgogIDwvZz4KICA8IS0tIEZseWluZyBCaXJkcyAtLT4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZDM1NTciIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyI+CiAgICA8cGF0aCBkPSJNNDcwIDEzNSBRNDc4IDEyNyA0ODYgMTM1IFE0OTQgMTI3IDUwMiAxMzUiLz4KICAgIDxwYXRoIGQ9Ik01MTUgMTE1IFE1MjEgMTA5IDUyNyAxMTUgUTUzMyAxMDkgNTM5IDExNSIvPgogICAgPHBhdGggZD0iTTQzMCAxNTUgUTQzNiAxNDkgNDQyIDE1NSBRNDQ4IDE0OSA0NTQgMTU1Ii8+CiAgPC9nPgogIDwhLS0gQ2hhcmFjdGVyOiBTcG9ydHkgVmlldG5hbWVzZSBIaWdoIFNjaG9vbCBCb3kgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTg1LCAxMzApIj4KICAgIDwhLS0gU2hhZG93IC0tPgogICAgPGVsbGlwc2UgY3g9Ijk1IiBjeT0iMzAwIiByeD0iNzAiIHJ5PSIxNCIgZmlsbD0iIzA1MTQwZSIgb3BhY2l0eT0iMC40NSIvPgogICAgPCEtLSBMZWdzIC0tPgogICAgPHJlY3QgeD0iNjUiIHk9IjIxOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjcyIiByeD0iMTAiIGZpbGw9IiNmMWMyN2QiLz4KICAgIDxyZWN0IHg9IjEwMyIgeT0iMjE4IiB3aWR0aD0iMjQiIGhlaWdodD0iNzIiIHJ4PSIxMCIgZmlsbD0iI2YxYzI3ZCIvPgogICAgPCEtLSBTb2NrcyAtLT4KICAgIDxyZWN0IHg9IjY1IiB5PSIyNTUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIzNSIgcng9IjYiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDxyZWN0IHg9IjEwMyIgeT0iMjU1IiB3aWR0aD0iMjQiIGhlaWdodD0iMzUiIHJ4PSI2IiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8cmVjdCB4PSI2NSIgeT0iMjYyIiB3aWR0aD0iMjQiIGhlaWdodD0iNSIgZmlsbD0iIzAwNzdiNiIvPgogICAgPHJlY3QgeD0iMTAzIiB5PSIyNjIiIHdpZHRoPSIyNCIgaGVpZ2h0PSI1IiBmaWxsPSIjMDA3N2I2Ii8+CiAgICA8IS0tIFNuZWFrZXJzIC0tPgogICAgPHBhdGggZD0iTTYwIDI4NiBRNzYgMjgwIDk0IDI5MiBMOTQgMzAwIEw1OCAzMDAgWiIgZmlsbD0iI2U2Mzk0NiIvPgogICAgPHBhdGggZD0iTTk5IDI4NiBRMTE4IDI4MCAxMzYgMjkyIEwxMzYgMzAwIEw5OSAzMDAgWiIgZmlsbD0iI2U2Mzk0NiIvPgogICAgPCEtLSBTaG9ydHMgLS0+CiAgICA8cGF0aCBkPSJNNTYgMTgyIEwxMzYgMTgyIEwxNDIgMjMyIEwxMDIgMjMyIEw5NiAyMDggTDkwIDIzMiBMNTAgMjMyIFoiIGZpbGw9IiMxZDM1NTciLz4KICAgIDwhLS0gVG9yc28gLyBKZXJzZXkgLS0+CiAgICA8cGF0aCBkPSJNNTQgOTYgUTk2IDgyIDEzOCA5NiBMMTQ2IDE4NiBMNDYgMTg2IFoiIGZpbGw9InVybCgjamVyc2V5KSIvPgogICAgPCEtLSBKZXJzZXkgU3RyaXBlcyAmIE51bWJlciAxMCAtLT4KICAgIDxwYXRoIGQ9Ik03MiA5MiBMNzIgMTg2IE0xMjAgOTIgTDEyMCAxODYiIHN0cm9rZT0iIzQ4Y2FlNCIgc3Ryb2tlLXdpZHRoPSI1IiBvcGFjaXR5PSIwLjYiLz4KICAgIDx0ZXh0IHg9Ijk2IiB5PSIxNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjgwMCIgZm9udC1zaXplPSIzNCIgZmlsbD0iI2ZmZmZmZiI+MTA8L3RleHQ+CiAgICA8IS0tIExlZnQgQXJtIChXYXZpbmcgLyBDb25maWRlbnQpIC0tPgogICAgPHBhdGggZD0iTTU0IDEwMiBRMjYgMTI1IDMyIDE2MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjFjMjdkIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik01NCAxMDIgTDQwIDEyNCIgc3Ryb2tlPSIjMDA3N2I2IiBzdHJva2Utd2lkdGg9IjIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gUmlnaHQgQXJtIEhvbGRpbmcgU29jY2VyIEJhbGwgLS0+CiAgICA8cGF0aCBkPSJNMTM4IDEwMiBRMTY1IDEzMCAxNDggMTY0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmMWMyN2QiIHN0cm9rZS13aWR0aD0iMTgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTEzOCAxMDIgTDE1MiAxMjQiIHN0cm9rZT0iIzAwNzdiNiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8IS0tIE5lY2sgJiBIZWFkIC0tPgogICAgPHJlY3QgeD0iODUiIHk9Ijc0IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIHJ4PSI4IiBmaWxsPSIjZTBhYzY5Ii8+CiAgICA8Y2lyY2xlIGN4PSI5NiIgY3k9IjUyIiByPSIzNCIgZmlsbD0iI2YxYzI3ZCIvPgogICAgPCEtLSBIYWlyIC0tPgogICAgPHBhdGggZD0iTTYyIDUwIFE2MiAxMiA5NiAxNCBRMTMwIDE0IDEzMiA0OCBRMTIyIDMwIDk2IDMwIFE3MiAzMCA2MiA1MCBaIiBmaWxsPSIjMWIyNjNiIi8+CiAgICA8cGF0aCBkPSJNNzIgMjIgUTkyIDggMTE4IDIyIiBmaWxsPSIjMWIyNjNiIi8+CiAgICA8IS0tIEV5ZXMgJiBGcmllbmRseSBTbWlsZSAtLT4KICAgIDxjaXJjbGUgY3g9Ijg0IiBjeT0iNTIiIHI9IjMuNSIgZmlsbD0iIzFiMjYzYiIvPgogICAgPGNpcmNsZSBjeD0iMTA4IiBjeT0iNTIiIHI9IjMuNSIgZmlsbD0iIzFiMjYzYiIvPgogICAgPHBhdGggZD0iTTg0IDY0IFE5NiA3NCAxMDggNjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhkNTUyNCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gU29jY2VyIEJhbGwgdW5kZXIgcmlnaHQgYXJtIC0tPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTU1LCAxNjUpIj4KICAgICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjI4IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZDM1NTciIHN0cm9rZS13aWR0aD0iMi41Ii8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtMTAgMTAsLTMgNiw5IC02LDkgLTEwLC0zIiBmaWxsPSIjMWQzNTU3Ii8+CiAgICAgIDxsaW5lIHgxPSIwIiB5MT0iLTEwIiB4Mj0iMCIgeTI9Ii0yOCIgc3Ryb2tlPSIjMWQzNTU3IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgICAgPGxpbmUgeDE9IjEwIiB5MT0iLTMiIHgyPSIyNiIgeTI9Ii04IiBzdHJva2U9IiMxZDM1NTciIHN0cm9rZS13aWR0aD0iMiIvPgogICAgICA8bGluZSB4MT0iLTEwIiB5MT0iLTMiIHgyPSItMjYiIHkyPSItOCIgc3Ryb2tlPSIjMWQzNTU3IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgICAgPGxpbmUgeDE9IjYiIHkxPSI5IiB4Mj0iMTgiIHkyPSIyMSIgc3Ryb2tlPSIjMWQzNTU3IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgICAgPGxpbmUgeDE9Ii02IiB5MT0iOSIgeDI9Ii0xOCIgeTI9IjIxIiBzdHJva2U9IiMxZDM1NTciIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPC9nPgogIDwvZz4KICA8IS0tIEJhZGdlIE92ZXJsYXkgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDY1LCAzNjUpIj4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyOTUiIGhlaWdodD0iNzYiIHJ4PSIxOCIgZmlsbD0iIzBmMTcyYSIgb3BhY2l0eT0iMC43OCIvPgogICAgPHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjI5MSIgaGVpZ2h0PSI3MiIgcng9IjE2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmQxNjYiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC44Ii8+CiAgICA8dGV4dCB4PSIxNDgiIHk9IjM0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjIwIiBmaWxsPSIjZmZmZmZmIj5Mw4ogxJDDjE5IIEtIw5RJIOKAoiAxMkExMDwvdGV4dD4KICAgIDx0ZXh0IHg9IjE0OCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTZWdvZSBVSSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI1MDAiIGZvbnQtc2l6ZT0iMTMuNSIgZmlsbD0iI2ZmZDE2NiI+UGjDom4gaGnhu4d1IFRIUFQgxJDhuq9rIE1pbCDigKIgVGhhbmggSMOzYTwvdGV4dD4KICA8L2c+Cjwvc3ZnPg==" alt="Minh họa giới thiệu Lê Đình Khôi - Lớp 12A10 Trường Phân hiệu THPT Đắk Mil" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- PHẦN 1: GIỚI THIỆU BẢN THÂN -->
+    <section id="gioi-thieu" class="card">
+      <div class="section-header">
+        <h2>1. Giới Thiệu Về Bản Thân</h2>
+        <p>Thông tin cơ bản và đôi nét về tính cách của mình</p>
+      </div>
+
+      <div class="profile-grid">
+        <table class="info-table">
+          <tr>
+            <th>Họ và tên</th>
+            <td><strong>Lê Đình Khôi</strong></td>
+          </tr>
+          <tr>
+            <th>Giới tính</th>
+            <td>Nam</td>
+          </tr>
+          <tr>
+            <th>Lớp</th>
+            <td>12A10</td>
+          </tr>
+          <tr>
+            <th>Trường</th>
+            <td>Trường Phân hiệu THPT Đắk Mil</td>
+          </tr>
+          <tr>
+            <th>Quê quán</th>
+            <td>Thanh Hóa</td>
+          </tr>
+          <tr>
+            <th>Chủ đề lựa chọn</th>
+            <td>Ứng xử trên không gian mạng</td>
+          </tr>
+        </table>
+
+        <div class="bio-box">
+          <h3>Đôi lời tự giới thiệu</h3>
+          <p>
+            Chào thầy cô và các bạn! Mình là <strong>Lê Đình Khôi</strong>, hiện đang là học sinh cuối cấp lớp <strong>12A10</strong> tại <strong>Trường Phân hiệu THPT Đắk Mil</strong>. Sinh ra với quê gốc ở <strong>Thanh Hóa</strong>, mình luôn tự hào về sự chân chất, nhiệt tình và tinh thần ham học hỏi của con người nơi đây.
+          </p>
+          <p>
+            Trong cuộc sống hằng ngày, mình là người năng động, thân thiện và sống lạc quan. Sau những giờ học căng thẳng của năm lớp 12, mình thường dành thời gian ra sân đá bóng cùng bạn bè, thưởng thức những món ăn ngon và tận hưởng không khí trong lành giữa thiên nhiên.
+          </p>
+          <div class="trait-tags">
+            <span class="tag">#ĐáBóng</span>
+            <span class="tag">#ThểThao</span>
+            <span class="tag">#ẨmThực</span>
+            <span class="tag">#ThiênNhiên</span>
+            <span class="tag">#NăngĐộng</span>
+            <span class="tag">#HòaĐồng</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hình ảnh minh họa sở thích -->
+      <div id="so-thich" class="hobby-grid">
+        <figure class="hobby-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMzgwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjM4MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InBpdGNoIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyZDZhNGYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWI0MzMyIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJzdGFkaXVtU2t5IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwYjEzMmIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMyNTQxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJsaWdodEJlYW0iIGN4PSI1MCUiIGN5PSIwJSIgcj0iODUlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlZmFlMCIgc3RvcC1vcGFjaXR5PSIwLjQ1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZlZmFlMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjE5MCIgZmlsbD0idXJsKCNzdGFkaXVtU2t5KSIvPgogIDwhLS0gU3RhZGl1bSBGbG9vZGxpZ2h0cyAtLT4KICA8cG9seWdvbiBwb2ludHM9IjkwLDMwIDEwLDIyMCAyMjAsMjIwIiBmaWxsPSJ1cmwoI2xpZ2h0QmVhbSkiLz4KICA8cG9seWdvbiBwb2ludHM9IjUxMCwzMCAzODAsMjIwIDU5MCwyMjAiIGZpbGw9InVybCgjbGlnaHRCZWFtKSIvPgogIDxyZWN0IHg9Ijc2IiB5PSIyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjE0IiByeD0iNCIgZmlsbD0iI2ZmZjNiMCIvPgogIDxyZWN0IHg9IjQ5NiIgeT0iMjAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIxNCIgcng9IjQiIGZpbGw9IiNmZmYzYjAiLz4KICA8IS0tIEdyYXNzIFBpdGNoIC0tPgogIDxyZWN0IHk9IjE3NSIgd2lkdGg9IjYwMCIgaGVpZ2h0PSIyMDUiIGZpbGw9InVybCgjcGl0Y2gpIi8+CiAgPCEtLSBQaXRjaCBTdHJpcGVzIC0tPgogIDxnIGZpbGw9IiM0MDkxNmMiIG9wYWNpdHk9IjAuMzUiPgogICAgPHJlY3QgeD0iMCIgeT0iMTc1IiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjI4Ii8+CiAgICA8cmVjdCB4PSIwIiB5PSIyMzIiIHdpZHRoPSI2MDAiIGhlaWdodD0iMzQiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjMwMiIgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MCIvPgogIDwvZz4KICA8IS0tIEZpZWxkIExpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMjEwIiB4Mj0iNjAwIiB5Mj0iMjEwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC43Ii8+CiAgPGVsbGlwc2UgY3g9IjMwMCIgY3k9IjMwMCIgcng9IjE0NSIgcnk9IjQyIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC42NSIvPgogIDwhLS0gR29hbCBQb3N0IC0tPgogIDxnIHN0cm9rZT0iI2ZmZmZmZiIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC45Ij4KICAgIDxyZWN0IHg9IjIwMCIgeT0iMTEwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgICA8IS0tIE5ldCBsaW5lcyAtLT4KICAgIDxnIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjQ1Ij4KICAgICAgPGxpbmUgeDE9IjIyMCIgeTE9IjExMCIgeDI9IjIyMCIgeTI9IjIxMCIvPjxsaW5lIHgxPSIyNDAiIHkxPSIxMTAiIHgyPSIyNDAiIHkyPSIyMTAiLz4KICAgICAgPGxpbmUgeDE9IjI2MCIgeTE9IjExMCIgeDI9IjI2MCIgeTI9IjIxMCIvPjxsaW5lIHgxPSIyODAiIHkxPSIxMTAiIHgyPSIyODAiIHkyPSIyMTAiLz4KICAgICAgPGxpbmUgeDE9IjMwMCIgeTE9IjExMCIgeDI9IjMwMCIgeTI9IjIxMCIvPjxsaW5lIHgxPSIzMjAiIHkxPSIxMTAiIHgyPSIzMjAiIHkyPSIyMTAiLz4KICAgICAgPGxpbmUgeDE9IjM0MCIgeTE9IjExMCIgeDI9IjM0MCIgeTI9IjIxMCIvPjxsaW5lIHgxPSIzNjAiIHkxPSIxMTAiIHgyPSIzNjAiIHkyPSIyMTAiLz4KICAgICAgPGxpbmUgeDE9IjM4MCIgeTE9IjExMCIgeDI9IjM4MCIgeTI9IjIxMCIvPgogICAgICA8bGluZSB4MT0iMjAwIiB5MT0iMTMwIiB4Mj0iNDAwIiB5Mj0iMTMwIi8+PGxpbmUgeDE9IjIwMCIgeTE9IjE1MCIgeDI9IjQwMCIgeTI9IjE1MCIvPgogICAgICA8bGluZSB4MT0iMjAwIiB5MT0iMTcwIiB4Mj0iNDAwIiB5Mj0iMTcwIi8+PGxpbmUgeDE9IjIwMCIgeTE9IjE5MCIgeDI9IjQwMCIgeTI9IjE5MCIvPgogICAgPC9nPgogIDwvZz4KICA8IS0tIER5bmFtaWMgTW90aW9uIFRyYWlsIC0tPgogIDxwYXRoIGQ9Ik0xMTAgMzIwIFEyMDAgMjgwIDI4NSAyNTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDE2NiIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNjUiLz4KICA8cGF0aCBkPSJNMTM1IDMzNSBRMjE1IDMwMCAyOTAgMjcyIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz4KICA8IS0tIEJpZyBEZXRhaWxlZCBTb2NjZXIgQmFsbCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMTAsIDI2MCkiPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSI1NiIgcng9IjQ4IiByeT0iMTIiIGZpbGw9IiMwODFjMTUiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjUyIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZDM1NTciIHN0cm9rZS13aWR0aD0iMyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIwLC0xOSAxOCwtNiAxMSwxNSAtMTEsMTUgLTE4LC02IiBmaWxsPSIjMWQzNTU3Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjAsLTUyIDE0LC00MSAtMTQsLTQxIiBmaWxsPSIjMWQzNTU3Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjQ4LC0xOCAzNSwtMTYgMzksMiA1MSwtMiIgZmlsbD0iIzFkMzU1NyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSItNDgsLTE4IC0zNSwtMTYgLTM5LDIgLTUxLC0yIiBmaWxsPSIjMWQzNTU3Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjI4LDQ0IDIwLDI4IDM2LDI0IDQ0LDMyIiBmaWxsPSIjMWQzNTU3Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9Ii0yOCw0NCAtMjAsMjggLTM2LDI0IC00NCwzMiIgZmlsbD0iIzFkMzU1NyIvPgogICAgPGcgc3Ryb2tlPSIjMWQzNTU3IiBzdHJva2Utd2lkdGg9IjIuNSI+CiAgICAgIDxsaW5lIHgxPSIwIiB5MT0iLTE5IiB4Mj0iMCIgeTI9Ii00MSIvPgogICAgICA8bGluZSB4MT0iMTgiIHkxPSItNiIgeDI9IjM2IiB5Mj0iLTEyIi8+CiAgICAgIDxsaW5lIHgxPSItMTgiIHkxPSItNiIgeDI9Ii0zNiIgeTI9Ii0xMiIvPgogICAgICA8bGluZSB4MT0iMTEiIHkxPSIxNSIgeDI9IjIzIiB5Mj0iMjgiLz4KICAgICAgPGxpbmUgeDE9Ii0xMSIgeTE9IjE1IiB4Mj0iLTIzIiB5Mj0iMjgiLz4KICAgIDwvZz4KICAgIDwhLS0gU2hpbmUgLS0+CiAgICA8ZWxsaXBzZSBjeD0iLTE4IiBjeT0iLTIyIiByeD0iMTIiIHJ5PSI3IiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgLTE4IC0yMikiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuNjUiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Minh họa niềm đam mê đá bóng và thể thao của Lê Đình Khôi" />
+          <figcaption>
+            <h3>Đá bóng &amp; Thể thao</h3>
+            <p>
+              Trái bóng tròn giúp mình rèn luyện thể lực, giải tỏa áp lực học tập và kết nối tinh thần đồng đội bền chặt cùng anh em, bạn bè.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure class="hobby-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMzgwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjM4MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9Im5hdFNreSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzhiZGY4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iNjAlIiBzdG9wLWNvbG9yPSIjYmFlNmZkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZlZjNjNyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGFrZSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDI4NGM3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAzNjlhMSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYm93bEdyYWQiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RjMjYyNiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM5OTFiMWIiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0gQmFja2dyb3VuZCBOYXR1cmUgTGFuZHNjYXBlIC0tPgogIDxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iMzgwIiBmaWxsPSJ1cmwoI25hdFNreSkiLz4KICA8Y2lyY2xlIGN4PSI0ODUiIGN5PSI3OCIgcj0iMzQiIGZpbGw9IiNmZGUwNDciLz4KICA8IS0tIE1vdW50YWlucyAtLT4KICA8cGF0aCBkPSJNMCAyMjAgTDExMCAxMTUgTDIxMCAxOTUgTDM0MCA5NSBMNDcwIDE5MCBMNjAwIDEyMCBMNjAwIDI4MCBMMCAyODAgWiIgZmlsbD0iIzBmNzY2ZSIgb3BhY2l0eT0iMC42NSIvPgogIDxwYXRoIGQ9Ik0wIDI0NSBRMTYwIDE3NSAzMjAgMjM1IFQ2MDAgMjEwIEw2MDAgMzgwIEwwIDM4MCBaIiBmaWxsPSIjMTU4MDNkIi8+CiAgPCEtLSBSaXZlciAvIExha2UgLS0+CiAgPHBhdGggZD0iTTI0MCAyNDUgUTM0MCAyNzAgMzAwIDMyMCBRMjcwIDM1NSA0MzAgMzgwIEw2MDAgMzgwIEw2MDAgMjYwIFE0NTAgMjQ1IDM2MCAyMzUgWiIgZmlsbD0idXJsKCNsYWtlKSIgb3BhY2l0eT0iMC44OCIvPgogIDwhLS0gV29vZGVuIFBpY25pYyBUYWJsZSBGb3JlZ3JvdW5kIExlZnQgLS0+CiAgPHJlY3QgeD0iMCIgeT0iMjg1IiB3aWR0aD0iMzIwIiBoZWlnaHQ9Ijk1IiByeD0iOCIgZmlsbD0iIzkyNDAwZSIvPgogIDxyZWN0IHg9IjAiIHk9IjI4NSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxNiIgZmlsbD0iI2I0NTMwOSIvPgogIDwhLS0gU3RlYW1pbmcgQm93bCBvZiBWaWV0bmFtZXNlIFBobyAvIE5vb2RsZSBTb3VwIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1NSwgMjUwKSI+CiAgICA8IS0tIFN0ZWFtIHdhdmVzIC0tPgogICAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC44NSI+CiAgICAgIDxwYXRoIGQ9Ik0tMzIgLTUyIFEtNDIgLTcyIC0zMCAtOTIgUS0xOCAtMTEyIC0zMCAtMTI4Ii8+CiAgICAgIDxwYXRoIGQ9Ik0wIC01OCBRLTEwIC04MCAyIC0xMDAgUTE0IC0xMjAgMiAtMTM4Ii8+CiAgICAgIDxwYXRoIGQ9Ik0zMiAtNTIgUTIyIC03MiAzNCAtOTIgUTQ2IC0xMTIgMzQgLTEyOCIvPgogICAgPC9nPgogICAgPCEtLSBDaG9wc3RpY2tzIC0tPgogICAgPGxpbmUgeDE9IjI1IiB5MT0iLTIyIiB4Mj0iMTEyIiB5Mj0iLTY4IiBzdHJva2U9IiNmZGU2OGEiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iMjgiIHkxPSItMTIiIHgyPSIxMTYiIHkyPSItNDYiIHN0cm9rZT0iI2Y1OWUwYiIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gQm93bCBSaW0gJiBCcm90aCAtLT4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iLTE2IiByeD0iODgiIHJ5PSIyNiIgZmlsbD0iI2ZlZjNjNyIgc3Ryb2tlPSIjYjkxYzFjIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iLTE0IiByeD0iNzgiIHJ5PSIyMCIgZmlsbD0iI2Q5NzcwNiIvPgogICAgPCEtLSBOb29kbGVzICYgSGVyYnMgLS0+CiAgICA8cGF0aCBkPSJNLTUwIC0xNCBRLTIwIC0yNiAxMCAtMTIgVDU1IC0xNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmVmOWMzIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTS00MCAtNiBRLTEwIC0xOCAyNSAtNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmVmOWMzIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGVsbGlwc2UgY3g9Ii0yNiIgY3k9Ii0xOCIgcng9IjE2IiByeT0iOCIgZmlsbD0iIzdjMmQxMiIvPgogICAgPGVsbGlwc2UgY3g9IjIyIiBjeT0iLTE2IiByeD0iMTUiIHJ5PSI3IiBmaWxsPSIjN2MyZDEyIi8+CiAgICA8Y2lyY2xlIGN4PSItNCIgY3k9Ii0xNCIgcj0iNSIgZmlsbD0iIzIyYzU1ZSIvPgogICAgPGNpcmNsZSBjeD0iMTAiIGN5PSItMjIiIHI9IjQiIGZpbGw9IiMyMmM1NWUiLz4KICAgIDxjaXJjbGUgY3g9Ii0xOCIgY3k9Ii04IiByPSI0IiBmaWxsPSIjZWY0NDQ0Ii8+CiAgICA8Y2lyY2xlIGN4PSIzOCIgY3k9Ii0xMiIgcj0iNCIgZmlsbD0iIzIyYzU1ZSIvPgogICAgPCEtLSBCb3dsIEJvZHkgLS0+CiAgICA8cGF0aCBkPSJNLTg4IC0xNiBDLTg1IDUyLCAtNDUgNjgsIDAgNjggQzQ1IDY4LCA4NSA1MiwgODggLTE2IFoiIGZpbGw9InVybCgjYm93bEdyYWQpIi8+CiAgICA8cGF0aCBkPSJNLTc0IDYgUTAgMjQgNzQgNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmNkMzRkIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuOCIvPgogICAgPHJlY3QgeD0iLTM4IiB5PSI2NCIgd2lkdGg9Ijc2IiBoZWlnaHQ9IjEwIiByeD0iNCIgZmlsbD0iIzdmMWQxZCIvPgogIDwvZz4KICA8IS0tIENhbWVyYSBJY29uIC8gTmF0dXJlIFRyYXZlbCBCYWRnZSBSaWdodCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MjUsIDI3NSkiPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjE0MiIgaGVpZ2h0PSI3MiIgcng9IjE0IiBmaWxsPSIjMGYxNzJhIiBvcGFjaXR5PSIwLjcyIi8+CiAgICA8Y2lyY2xlIGN4PSIzNCIgY3k9IjM2IiByPSIxOCIgZmlsbD0iIzEwYjk4MSIvPgogICAgPHBhdGggZD0iTTI1IDQxIEwzMiAzMCBMMzggMzggTDQyIDMzIEw0NiA0MSBaIiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8dGV4dCB4PSI2MiIgeT0iMzMiIGZvbnQtZmFtaWx5PSJTZWdvZSBVSSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMTMiIGZpbGw9IiNmZmZmZmYiPuG6qG0gdGjhu7FjICZhbXA7PC90ZXh0PgogICAgPHRleHQgeD0iNjIiIHk9IjUxIiBmb250LWZhbWlseT0iU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjEzIiBmaWxsPSIjNmVlN2I3Ij5UaGnDqm4gbmhpw6puPC90ZXh0PgogIDwvZz4KPC9zdmc+" alt="Minh họa sở thích ăn uống và ngắm cảnh đẹp thiên nhiên" />
+          <figcaption>
+            <h3>Ẩm thực &amp; Cảnh đẹp thiên nhiên</h3>
+            <p>
+              Mình yêu thích khám phá hương vị ẩm thực phong phú và tìm thấy sự bình yên khi ngắm nhìn núi đồi, sông hồ và ánh hoàng hôn rực rỡ.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- PHẦN 2: CHỦ ĐỀ ỨNG XỬ TRÊN KHÔNG GIAN MẠNG -->
+    <section id="ung-xu-mang" class="card">
+      <div class="section-header">
+        <h2>2. Chủ Đề: Ứng Xử Văn Minh Trên Không Gian Mạng</h2>
+        <p>Góc nhìn và trách nhiệm của học sinh lớp 12 trong kỷ nguyên số</p>
+      </div>
+
+      <figure class="topic-figure">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDIwIiB3aWR0aD0iODAwIiBoZWlnaHQ9IjQyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImN5YmVyQmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjU1JSIgc3RvcC1jb2xvcj0iIzFlM2E4YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZDk0ODgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InNoaWVsZEdyYWQiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM4YmRmOCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMjg0YzciLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDIwIiByeD0iMjAiIGZpbGw9InVybCgjY3liZXJCZykiLz4KICA8IS0tIE5ldHdvcmsgQ29ubmVjdGlvbiBHcmlkIC0tPgogIDxnIHN0cm9rZT0iIzM4YmRmOCIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMjIiPgogICAgPGxpbmUgeDE9IjEyMCIgeTE9IjkwIiB4Mj0iNDAwIiB5Mj0iMjEwIi8+CiAgICA8bGluZSB4MT0iNjgwIiB5MT0iOTAiIHgyPSI0MDAiIHkyPSIyMTAiLz4KICAgIDxsaW5lIHgxPSIxNDAiIHkxPSIzMzAiIHgyPSI0MDAiIHkyPSIyMTAiLz4KICAgIDxsaW5lIHgxPSI2NjAiIHkxPSIzMzAiIHgyPSI0MDAiIHkyPSIyMTAiLz4KICAgIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjIxMCIgcj0iMTQ1IiBmaWxsPSJub25lIiBzdHJva2UtZGFzaGFycmF5PSI4IDgiLz4KICAgIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjIxMCIgcj0iMjEwIiBmaWxsPSJub25lIiBzdHJva2UtZGFzaGFycmF5PSI0IDEwIi8+CiAgPC9nPgogIDwhLS0gQ2VudGVyIEdsb3dpbmcgU2hpZWxkIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwgMjA1KSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iOTUiIGZpbGw9IiMzOGJkZjgiIG9wYWNpdHk9IjAuMTYiLz4KICAgIDxwYXRoIGQ9Ik0wIC04OCBMNzIgLTU2IEw2NiAxOCBDNjIgNjIsIDI0IDg4LCAwIDEwMCBDLTI0IDg4LCAtNjIgNjIsIC02NiAxOCBMLTcyIC01NiBaIiBmaWxsPSJ1cmwoI3NoaWVsZEdyYWQpIiBzdHJva2U9IiNlMGYyZmUiIHN0cm9rZS13aWR0aD0iNCIvPgogICAgPHBhdGggZD0iTS0yOCA0IEwtNiAyNiBMMzQgLTIyIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMTEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDwvZz4KICA8IS0tIFRvcC1MZWZ0IE5vZGU6IEtp4buDbSBjaOG7qW5nIHRow7RuZyB0aW4gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjUsIDU1KSI+CiAgICA8cmVjdCB3aWR0aD0iMjA1IiBoZWlnaHQ9IjgyIiByeD0iMTYiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMTMiLz4KICAgIDxyZWN0IHdpZHRoPSIyMDUiIGhlaWdodD0iODIiIHJ4PSIxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2RkM2ZjIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzOCIgY3k9IjQxIiByPSIyMCIgZmlsbD0iIzBlYTVlOSIvPgogICAgPGNpcmNsZSBjeD0iMzYiIGN5PSIzOSIgcj0iOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMiLz4KICAgIDxsaW5lIHgxPSI0MiIgeTE9IjQ1IiB4Mj0iNDkiIHkyPSI1MiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPHRleHQgeD0iNzAiIHk9IjM2IiBmb250LWZhbWlseT0iU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZmZmZmZmIj5LaeG7g20gY2jhu6luZzwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSI1NSIgZm9udC1mYW1pbHk9IlNlZ29lIFVJLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMi41IiBmaWxsPSIjYmFlNmZkIj5Ow7NpIGtow7RuZyB24bubaSB0aW4gZ2nhuqM8L3RleHQ+CiAgPC9nPgogIDwhLS0gVG9wLVJpZ2h0IE5vZGU6IEdpYW8gdGnhur9wIHbEg24gbWluaCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MzAsIDU1KSI+CiAgICA8cmVjdCB3aWR0aD0iMjA1IiBoZWlnaHQ9IjgyIiByeD0iMTYiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMTMiLz4KICAgIDxyZWN0IHdpZHRoPSIyMDUiIGhlaWdodD0iODIiIHJ4PSIxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNWVlYWQ0IiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzOCIgY3k9IjQxIiByPSIyMCIgZmlsbD0iIzE0YjhhNiIvPgogICAgPHBhdGggZD0iTTI4IDM4IEMyOCAzMSwgMzggMzAsIDM4IDM2IEMzOCAzMCwgNDggMzEsIDQ4IDM4IEM0OCA0NSwgMzggNTEsIDM4IDUxIEMzOCA1MSwgMjggNDUsIDI4IDM4IFoiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDx0ZXh0IHg9IjcwIiB5PSIzNiIgZm9udC1mYW1pbHk9IlNlZ29lIFVJLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZmZmZiI+VMO0biB0cuG7jW5nPC90ZXh0PgogICAgPHRleHQgeD0iNzAiIHk9IjU1IiBmb250LWZhbWlseT0iU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyLjUiIGZpbGw9IiNjY2ZiZjEiPk5nw7RuIHThu6sgdMOtY2ggY+G7sWM8L3RleHQ+CiAgPC9nPgogIDwhLS0gQm90dG9tLUxlZnQgTm9kZTogQuG6o28gbeG6rXQgdGjDtG5nIHRpbiAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2NSwgMjgwKSI+CiAgICA8cmVjdCB3aWR0aD0iMjA1IiBoZWlnaHQ9IjgyIiByeD0iMTYiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMTMiLz4KICAgIDxyZWN0IHdpZHRoPSIyMDUiIGhlaWdodD0iODIiIHJ4PSIxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmRlMDQ3IiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzOCIgY3k9IjQxIiByPSIyMCIgZmlsbD0iI2Y1OWUwYiIvPgogICAgPHJlY3QgeD0iMzAiIHk9IjM5IiB3aWR0aD0iMTYiIGhlaWdodD0iMTMiIHJ4PSIzIiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8cGF0aCBkPSJNMzMgMzkgVjM0IEE1IDUgMCAwIDEgNDMgMzQgVjM5IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgPHRleHQgeD0iNzAiIHk9IjM2IiBmb250LWZhbWlseT0iU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZmZmZmZmIj5C4bqjbyBt4bqtdDwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSI1NSIgZm9udC1mYW1pbHk9IlNlZ29lIFVJLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMi41IiBmaWxsPSIjZmVmM2M3Ij5HaeG7ryBhbiB0b8OgbiBk4buvIGxp4buHdTwvdGV4dD4KICA8L2c+CiAgPCEtLSBCb3R0b20tUmlnaHQgTm9kZTogU+G7kW5nIGPDom4gYuG6sW5nIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUzMCwgMjgwKSI+CiAgICA8cmVjdCB3aWR0aD0iMjA1IiBoZWlnaHQ9IjgyIiByeD0iMTYiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMTMiLz4KICAgIDxyZWN0IHdpZHRoPSIyMDUiIGhlaWdodD0iODIiIHJ4PSIxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTdmM2QwIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzOCIgY3k9IjQxIiByPSIyMCIgZmlsbD0iIzEwYjk4MSIvPgogICAgPGNpcmNsZSBjeD0iMzgiIGN5PSI0MSIgcj0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICAgIDxsaW5lIHgxPSIzOCIgeTE9IjQxIiB4Mj0iMzgiIHkyPSIzNSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iMzgiIHkxPSI0MSIgeDI9IjQzIiB5Mj0iNDQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPHRleHQgeD0iNzAiIHk9IjM2IiBmb250LWZhbWlseT0iU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZmZmZmZmIj5Dw6JuIGLhurFuZzwvdGV4dD4KICAgIDx0ZXh0IHg9IjcwIiB5PSI1NSIgZm9udC1mYW1pbHk9IlNlZ29lIFVJLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMi41IiBmaWxsPSIjZDFmYWU1Ij5I4buNYyB04bqtcCAmYW1wOyBUaOG7gyB0aGFvPC90ZXh0PgogIDwvZz4KICA8IS0tIEJvdHRvbSBDYXB0aW9uIFBpbGwgLS0+CiAgPHJlY3QgeD0iMjQ1IiB5PSIzNTUiIHdpZHRoPSIzMTAiIGhlaWdodD0iMzYiIHJ4PSIxOCIgZmlsbD0iIzBmMTcyYSIgb3BhY2l0eT0iMC43MiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iU2Vnb2UgVUksIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE0LjUiIGZpbGw9IiNlMGYyZmUiPuG7qE5HIFjhu6wgVsSCTiBNSU5IIFRSw4pOIEtIw5RORyBHSUFOIE3huqBORzwvdGV4dD4KPC9zdmc+" alt="Minh họa ứng xử văn minh, an toàn và trách nhiệm trên không gian mạng" />
+        <figcaption>Hình minh họa: Chung tay xây dựng không gian mạng an toàn, văn minh và lành mạnh.</figcaption>
+      </figure>
+
+      <p style="margin-bottom: 14px;">
+        <strong>Không gian mạng</strong> (Internet, mạng xã hội, diễn đàn học tập...) đã trở thành một phần quen thuộc giúp học sinh THPT tiếp cận tri thức nhanh chóng, trao đổi bài vở và kết nối bạn bè khắp nơi. Tuy nhiên, bên cạnh những lợi ích to lớn, môi trường mạng cũng tiềm ẩn nhiều rủi ro như <em>tin giả (fake news), bạo lực ngôn từ, lừa đảo trực tuyến</em> và <em>lộ lọt thông tin cá nhân</em>.
+      </p>
+      <p>
+        Là thế hệ trẻ lớn lên cùng công nghệ, mỗi chúng ta cần trang bị cho mình văn hóa ứng xử đúng mực để trở thành một <strong>công dân số văn minh</strong>.
+      </p>
+
+      <!-- Quy tắc 5 NÊN - 5 KHÔNG -->
+      <div class="rules-grid">
+        <div class="rule-box rule-do">
+          <h3>5 ĐIỀU NÊN LÀM</h3>
+          <ul>
+            <li><strong>Kiểm chứng thông tin:</strong> Đọc từ nguồn chính thống trước khi tin tưởng hay nhấn nút chia sẻ.</li>
+            <li><strong>Giao tiếp lịch sự:</strong> Sử dụng ngôn từ văn minh, tôn trọng sự khác biệt và cảm xúc của người khác.</li>
+            <li><strong>Bảo mật tài khoản:</strong> Đặt mật khẩu mạnh, bật xác thực hai lớp và giữ kín thông tin riêng tư.</li>
+            <li><strong>Lan tỏa năng lượng tích cực:</strong> Chia sẻ kiến thức học tập, hình ảnh đẹp về thể thao, thiên nhiên và những câu chuyện nhân văn.</li>
+            <li><strong>Cân bằng cuộc sống:</strong> Sử dụng mạng hợp lý, dành thời gian cho gia đình, việc học và vận động thể chất ngoài trời.</li>
+          </ul>
+        </div>
+
+        <div class="rule-box rule-dont">
+          <h3>5 ĐIỀU KHÔNG NÊN LÀM</h3>
+          <ul>
+            <li><strong>Không phát tán tin giả:</strong> Tuyệt đối không câu view, thêu dệt hay chia sẻ thông tin chưa được xác thực.</li>
+            <li><strong>Không bắt nạt qua mạng:</strong> Không chê bai ngoại hình, xúc phạm danh dự hay hùa theo công kích người khác.</li>
+            <li><strong>Không bấm vào liên kết lạ:</strong> Cảnh giác trước các đường link trúng thưởng, vay tiền hay yêu cầu nhập mã OTP.</li>
+            <li><strong>Không xâm phạm quyền riêng tư:</strong> Không đăng ảnh, video hoặc tin nhắn cá nhân của người khác khi chưa được đồng ý.</li>
+            <li><strong>Không sa đà tranh cãi tiêu cực:</strong> Biết dừng lại đúng lúc, sử dụng nút báo cáo (Report) với nội dung xấu độc.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quy tắc T.H.I.N.K -->
+      <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 6px;">
+        Quy tắc "T.H.I.N.K" trước khi đăng bài hoặc bình luận
+      </h3>
+      <p style="color: var(--muted); font-size: 0.95rem;">
+        Trước khi nhấn nút <strong>Đăng</strong> hay <strong>Gửi</strong>, hãy tự đặt 5 câu hỏi ngắn sau:
+      </p>
+
+      <div class="think-grid">
+        <div class="think-item">
+          <div class="think-letter">T</div>
+          <h4>True</h4>
+          <p>Thông tin này có đúng sự thật và đã kiểm chứng chưa?</p>
+        </div>
+        <div class="think-item">
+          <div class="think-letter">H</div>
+          <h4>Helpful</h4>
+          <p>Nội dung này có mang lại giá trị hữu ích cho người đọc không?</p>
+        </div>
+        <div class="think-item">
+          <div class="think-letter">I</div>
+          <h4>Inspiring</h4>
+          <p>Nó có lan tỏa cảm hứng sống tích cực, lành mạnh không?</p>
+        </div>
+        <div class="think-item">
+          <div class="think-letter">N</div>
+          <h4>Necessary</h4>
+          <p>Việc đăng tải hoặc bình luận lúc này có thực sự cần thiết không?</p>
+        </div>
+        <div class="think-item">
+          <div class="think-letter">K</div>
+          <h4>Kind</h4>
+          <p>Lời nói của mình có tử tế và tôn trọng người khác không?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 3: TRẮC NGHIỆM TƯƠNG TÁC -->
+    <section id="trac-nghiem" class="card">
+      <div class="section-header">
+        <h2>3. Thử Thách Nhanh: Ứng Xử Tình Huống Trên Mạng</h2>
+        <p>Chọn phương án đúng nhất để kiểm tra kỹ năng công dân số của bạn</p>
+      </div>
+
+      <div class="quiz-box">
+        <div class="quiz-question">
+          <p>Câu 1: Bạn thấy một bài đăng giật gân về lịch thi tốt nghiệp THPT nhưng từ một trang cá nhân không rõ nguồn gốc. Bạn nên làm gì?</p>
+          <label class="quiz-option"><input type="radio" name="q1" value="a" /> Chia sẻ ngay vào nhóm lớp để mọi người cùng biết.</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="b" /> Kiểm tra lại trên cổng thông tin của Bộ GD&amp;ĐT hoặc báo chí chính thống trước khi tin.</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="c" /> Bình luận hoang mang dưới bài viết.</label>
+        </div>
+
+        <div class="quiz-question">
+          <p>Câu 2: Trong nhóm chat có bạn đăng ảnh dìm hàng và trêu chọc quá mức một bạn khác cùng trường. Cách ứng xử văn minh là gì?</p>
+          <label class="quiz-option"><input type="radio" name="q2" value="a" /> Hùa theo cười đùa cho vui vì chỉ là trên mạng.</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="b" /> Lưu ảnh về gửi sang nhóm khác.</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="c" /> Không tham gia hùa theo, nhẹ nhàng nhắc nhở tôn trọng bạn và động viên người bị trêu chọc.</label>
+        </div>
+
+        <div class="quiz-question">
+          <p>Câu 3: Một tài khoản lạ nhắn tin báo bạn trúng điện thoại mới và gửi đường link yêu cầu đăng nhập tài khoản Facebook để nhận quà. Bạn sẽ làm gì?</p>
+          <label class="quiz-option"><input type="radio" name="q3" value="a" /> Tuyệt đối không bấm vào link, không cung cấp mật khẩu và chặn/báo cáo tài khoản lừa đảo.</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="b" /> Bấm thử xem có trúng thật không.</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="c" /> Gửi link đó cho bạn bè cùng thử.</label>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="checkQuiz()">Kiểm tra kết quả</button>
+        <div id="quizResult" class="quiz-result"></div>
+      </div>
+
+      <div class="pledge-bar">
+        <div>
+          <h3 style="margin-bottom: 4px;">Thông điệp của Lê Đình Khôi</h3>
+          <p>
+            "Hãy để mỗi cú click chuột là một hành động văn minh, để không gian mạng trở thành nơi lan tỏa tri thức, niềm vui và những giá trị tốt đẹp!"
+          </p>
+        </div>
+        <button type="button" id="pledgeBtn" class="btn btn-primary" onclick="signPledge()">Tôi đồng ý cam kết</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Sản phẩm cá nhân:</strong> Lê Đình Khôi — Lớp 12A10 — Trường Phân hiệu THPT Đắk Mil</p>
+    <p style="margin-top: 6px; font-size: 0.85rem; color: #94a3b8;">
+      Chủ đề: Ứng xử trên không gian mạng • Định dạng: le_dinh_khoi_12a10.html
+    </p>
+  </footer>
+
+  <script>
+    function checkQuiz() {
+      const answers = { q1: 'b', q2: 'c', q3: 'a' };
+      let score = 0;
+      let answered = 0;
+
+      for (const key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected) {
+          answered++;
+          if (selected.value === answers[key]) {
+            score++;
+          }
+        }
+      }
+
+      const resultBox = document.getElementById('quizResult');
+      resultBox.style.display = 'block';
+
+      if (answered < 3) {
+        resultBox.style.background = '#fef3c7';
+        resultBox.style.color = '#92400e';
+        resultBox.textContent = 'Bạn hãy chọn đủ cả 3 câu hỏi trước khi kiểm tra nhé!';
+        return;
+      }
+
+      if (score === 3) {
+        resultBox.style.background = '#dcfce7';
+        resultBox.style.color = '#166534';
+        resultBox.textContent = 'Xuất sắc (3/3)! Bạn là một công dân số cực kỳ tỉnh táo và văn minh!';
+      } else {
+        resultBox.style.background = '#e0f2fe';
+        resultBox.style.color = '#075985';
+        resultBox.textContent = `Bạn trả lời đúng ${score}/3 câu. Hãy xem lại quy tắc 5 NÊN - 5 KHÔNG để hoàn thiện thêm kỹ năng nhé!`;
+      }
+    }
+
+    function signPledge() {
+      const btn = document.getElementById('pledgeBtn');
+      btn.textContent = 'Đã cam kết ứng xử văn minh!';
+      btn.style.background = '#22c55e';
+      btn.style.color = '#ffffff';
+    }
+  </script>
+</body>
+</html>

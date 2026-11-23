@@ -1,0 +1,219 @@
+Hãy đóng vai trò art director, frontend engineer và người thiết kế tương tác. Trực tiếp thiết kế rồi lập trình hoàn chỉnh một website HTML giới thiệu cá nhân cho Nguyễn Phúc Điền. Tôi muốn một tác phẩm có chất lượng như portfolio của một người làm creative coding, đồng thời vẫn giữ được giọng của một học sinh yêu Tin học ở Việt Nam.
+
+TÊN TÁC PHẨM
+
+NGUYỄN PHÚC ĐIỀN
+Một nét thành số
+
+Câu mở trang:
+“Bạn viết một con số. Mình muốn cho bạn thấy máy tính nhìn thấy gì.”
+
+Nếu môi trường có Canvas hoặc preview, hãy dựng website để tôi tương tác ngay. Khi bàn giao, xuất toàn bộ mã nguồn chạy được. Tất cả nội dung người xem đọc đều viết bằng tiếng Việt tự nhiên.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+I. DỮ LIỆU VỀ NHÂN VẬT
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Họ tên: Nguyễn Phúc Điền.
+Trường: Trường THPT Trần Hưng Đạo.
+Lớp hiện tại: đặt trong trường cấu hình để trống. Khi trống, tự ẩn toàn bộ nhãn lớp và dấu phân cách.
+Đam mê: công nghệ thông tin, lập trình thuật toán, trí tuệ nhân tạo.
+Định hướng: trở thành AI Engineer, xây được các hệ thống AI hữu ích ngoài đời.
+
+Ba thành tích dùng trên website:
+1. Giải Nhất Học sinh giỏi cấp tỉnh môn Tin học, đạt năm lớp 11.
+2. Huy chương Đồng Olympic 30/4.
+3. Huy chương Vàng 23/3.
+
+Giữ nguyên tên thành tích như trên. Dành sẵn chỗ trong cấu hình cho tên đầy đủ kỳ thi, năm và ảnh chứng nhận để tôi tự bổ sung. Website chỉ hiển thị trường dữ liệu đã có. Không suy diễn năm đạt huy chương, đơn vị tổ chức, thứ hạng tuyệt đối hoặc tên các giải khác từ dấu ba chấm.
+
+Tư liệu cá nhân: chân dung thật của Điền và logo trường do tôi cung cấp. Nếu có thêm ảnh giấy chứng nhận, tôi có thể bổ sung sau. Hãy thiết kế đẹp ngay cả khi chỉ có đúng hai ảnh đầu vào.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+II. CHỈ ĐẠO MỸ THUẬT — MỘT PHÒNG THÍ NGHIỆM CÓ NÉT CHỮ CỦA CHỦ NHÂN
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Hãy lấy cảm hứng từ ba vật liệu cụ thể: giấy ô ly của người học thuật toán, bản in kỹ thuật có chú thích bên lề, và mặt kính của một thiết bị đo trong phòng máy. Một nét bút cam là chi tiết liên kết toàn bộ trải nghiệm. Nó bắt đầu dưới ngón tay người xem, trở thành pixel trong phần AI, rồi xuất hiện nguyên dạng trên tấm poster cuối trang.
+
+Bảng màu có hai chế độ bố cục:
+• Khu vực đọc và trưng thành tích dùng nền giấy sáng #F3F1E9, mực đen xanh #151C20, đường kẻ mảnh #C8CCC5.
+• Khu vực thử nghiệm dùng nền than #11191C, nét bút cam #FF7949, tín hiệu xanh bạc hà #9DE3C5. Cam dành cho dữ liệu do khách tạo. Xanh dành cho kết quả máy tính tạo. Dùng quy ước này nhất quán để nhìn màu đã phân biệt được hai phía.
+
+Chữ: dùng Barlow Condensed hoặc Archivo Narrow cho tên khổ lớn, Be Vietnam Pro cho nội dung, IBM Plex Mono cho số liệu, mã ngắn và tọa độ. Chừa đủ chiều cao cho dấu ở “NGUYỄN PHÚC ĐIỀN”. Không dùng font monospace cho cả bài tự giới thiệu.
+
+Bố cục có ba khoảng thật khác nhau:
+• Mở đầu giống một bìa tạp chí công nghệ với chân dung lớn và một ô thí nghiệm nhỏ khiến người xem muốn chạm.
+• Giữa trang giống bàn làm việc đang có hai thí nghiệm chạy thật.
+• Phần huy chương sáng, tĩnh và rộng như một trang lưu niệm được in đẹp.
+
+Tránh mưa code, quả địa cầu bằng hạt, bộ não neon, cửa sổ terminal gõ “Initializing genius…” hay các thanh phần trăm tự chấm kỹ năng. Những con số trên màn hình phải đến từ một phép tính, một thao tác hoặc một dữ kiện có thật trong nội dung.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+III. MÀN HÌNH ĐẦU — GẶP ĐIỀN TRƯỚC KHI GẶP THUẬT TOÁN
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Desktop: dùng lưới 12 cột. Nửa trái chứa tên và lời chào. Nửa phải đặt chân dung thật, cắt cúp táo bạo nhưng giữ mắt và đường nét gương mặt. Gắn ô viết số ở góc dưới giữa hai phần, giống một mẩu giấy ô ly Điền vừa đẩy qua bàn cho khách. Ô này có nền sáng hơn ảnh, đủ lớn để viết bằng chuột, chừa khoảng trống quanh gương mặt.
+
+Tiêu đề lớn:
+“Nguyễn Phúc Điền”
+
+Dòng ngắn ngay dưới:
+“Lập trình thuật toán · Trí tuệ nhân tạo”
+
+Lời chào:
+“Chào bạn, mình là Điền. Mình thích cái lúc một ý tưởng còn nằm trên giấy, rồi vài chục dòng code sau mới biết nó có đúng không. Thử cùng mình một lần nhé?”
+
+Trên ô viết có lời mời “Viết một chữ số từ 0 đến 9”.
+Dưới ô có ba điều khiển: “Cho máy xem”, “Xóa nét”, “Dùng nét mẫu”. Để thao tác chính nổi bật nhất. Cạnh tên trường có logo thật và liên kết chữ “Xem thành tích” đưa thẳng tới phần giải thưởng. Khách muốn xem hồ sơ có thể đến ngay, không cần hoàn thành trò chơi.
+
+Mobile: tên → một câu giới thiệu → chân dung và ô viết → phần còn lại. Có thể đặt ô viết sát mép dưới của chân dung như một tờ giấy gài vào khung. Dành vùng vẽ tối thiểu khoảng 200 × 200 px khi đủ chỗ. Chỉ khóa thao tác cuộn khi ngón tay thực sự bắt đầu vẽ bên trong ô.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+IV. TƯƠNG TÁC CHỮ KÝ — TỪ NÉT TAY ĐẾN DỰ ĐOÁN
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Đây là tính năng quan trọng nhất. Phải xây dựng một bộ nhận dạng thực sự chạy ngay trong trình duyệt. Kết quả phải phụ thuộc vào ảnh người dùng vừa vẽ.
+
+Phương án khả thi cho một file HTML: nhúng một bộ mẫu chữ số nhỏ, có nhiều kiểu viết cho mỗi chữ số; chuẩn hóa cùng một cách cho cả mẫu và dữ liệu đầu vào; dùng k láng giềng gần nhất để nhận dạng. Ưu tiên đưa nhiều biến thể có chủ đích, đặc biệt là số 1 có chân/không chân, số 4 kín/hở, số 7 có gạch ngang/không gạch. Nếu dùng phương pháp này, giao diện gọi đúng tên “Bộ nhận dạng theo mẫu · k-NN”. Nếu thực sự có mô hình huấn luyện sẵn và trọng số khả dụng thì có thể dùng mô hình đó, ghi đúng kiến trúc. Không cần API, tài khoản hay dữ liệu gửi ra ngoài.
+
+Quy trình xử lý:
+1. Lưu các nét vẽ ở hệ tọa độ chuẩn để đổi kích thước màn hình không làm mất nét.
+2. Lấy hộp bao quanh toàn bộ chữ số, giữ tỉ lệ, căn giữa và chuyển thành ảnh xám 28 × 28. Giữ được nét rời như gạch ngang của số 7.
+3. So sánh với bộ mẫu và trả về các ứng viên. Với k-NN, hiển thị số phiếu trong k láng giềng hoặc khoảng cách thực. Không tự biến khoảng cách thành “độ tin cậy 99,9%”.
+4. Ô trống hoặc chỉ có một chấm thì nhắc viết thêm. Trường hợp các mẫu gần nhất bất đồng, giao diện có thể nói “Máy đang phân vân giữa 1 và 7” nếu số liệu đúng như vậy.
+
+Đạo diễn chuyển động sau khi bấm “Cho máy xem”:
+• 0–180 ms: khung ô ly thu sáng nhẹ; một nét viền ôm vừa sát chữ số thật.
+• 180–480 ms: hiện hộp bao, phần lề dư lùi đi. Cho thấy chữ số được thu về giữa ô mà vẫn giữ nguyên hình dạng.
+• 480–780 ms: vùng ảnh mượt chuyển thành đúng 28 × 28 ô sáng tối. Pixel nào sáng phải khớp dữ liệu thật, không phát ngẫu nhiên.
+• 780–1.100 ms: ba mẫu gần nhất trượt vào bên cạnh. Hiện nhãn từng mẫu, sau đó mới hiện kết quả dự đoán.
+• Sau đó để màn hình đứng yên. Khách có đủ thời gian so sánh nét của mình với các mẫu.
+
+Cho khách chọn “Máy đọc đúng” hoặc “Mình viết số khác”. Nếu chọn số khác, hiển thị cạnh nhau “Bạn viết 7 / Máy đọc 1” theo đúng dữ liệu. Cho sửa thêm nét rồi chạy lại. Đừng nói mô hình đã học từ lần sửa nếu chương trình chỉ đang nhận phản hồi.
+
+Chi tiết để người hiểu AI cũng muốn thử: nút “Xem máy đã nhìn gì” chuyển qua lại giữa ảnh gốc, ảnh đã căn giữa và lưới pixel. Kèm đúng một dòng giải thích: “Máy chỉ nhận 784 giá trị sáng tối. Cái gạch ngang bạn vừa thêm cũng phải đi qua 784 ô này.”
+
+Nếu người xem bỏ qua phần vẽ, toàn bộ website vẫn đọc được.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+V. TRANG GIỚI THIỆU — “TẠI SAO MÌNH CỨ MUỐN THỬ THÊM MỘT TEST?”
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Đặt phần này trên nền giấy sáng để mắt được nghỉ. Chân dung ở đầu trang đã đủ lớn; ở đây dùng một bản nháp thuật toán có ô bị tẩy, nét gạch và chú thích của Điền. Bản nháp nên liên quan trực tiếp tới bài toán ở phần tiếp theo.
+
+Dùng lời tự giới thiệu sau. Đây là nội dung nháp cho chủ website chỉnh sửa được:
+
+“Mình là Nguyễn Phúc Điền, học sinh Trường THPT Trần Hưng Đạo. Mình đến với Tin học qua những bài toán có đầu vào, đầu ra và một hệ thống chấm rất thẳng tính. Có lúc mình tin lời giải của mình đến mức đọc lại đề ba lần, trước khi chịu thử đúng cái trường hợp làm chương trình sai.
+
+Điều mình thích ở thuật toán là cảm giác tìm ra lý do. Một lời giải chạy đúng trên mười ví dụ vẫn khiến mình tò mò: có ví dụ thứ mười một nào làm nó hỏng không? Sang AI, mình mang nguyên thói quen ấy theo. Nếu máy nhận ra số 7, mình muốn biết thêm một nét, bớt một nét hoặc viết hơi nghiêng thì chuyện gì xảy ra.
+
+Mình muốn trở thành AI Engineer. Một dự án mình quan tâm là hệ thống phân loại vật thể trên băng chuyền: camera nhìn thấy món đồ, chương trình đưa ra dự đoán, rồi thiết bị phải hành động kịp lúc. Ở đó, một dự đoán chỉ thực sự có ích khi nó đến đúng lúc vật thể còn ở trước mắt.”
+
+Ở lề có một câu viết tay, dùng như ghi chú nối sang thí nghiệm:
+“Khoan tối ưu. Có test nào làm nó sai chưa?”
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+VI. MINI GAME THUẬT TOÁN — “BẠN BẺ ĐƯỢC LỜI GIẢI NÀY KHÔNG?”
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tạo một bài toán đủ dễ hiểu để bạn cùng lớp chơi được và đủ chính xác để người biết lập trình thấy đáng thử.
+
+Đề bài:
+“Có một hàng ô chứa điểm. Bạn được chọn nhiều ô, miễn là hai ô được chọn không đứng cạnh nhau. Làm sao lấy tổng điểm lớn nhất?”
+
+Lời giải thử trên bàn:
+“Cứ lấy ô còn lại có giá trị lớn nhất, rồi loại hai ô bên cạnh.”
+
+Mời khách tạo một phản ví dụ. Ban đầu cho ba ô [4, 5, 4]. Ở mỗi ô có thể bấm +/− hoặc nhập giá trị từ 1 đến 20. Có thể thêm ô, tối đa bảy ô. Dưới mỗi ô hiện chỉ số nhỏ để giải thích kết quả, kể cả khi nhiều ô có giá trị bằng nhau. Nếu bằng điểm, thuật toán tham lam chọn ô bên trái trước để kết quả nhất quán.
+
+Nút chính: “Chạy hai lời giải”.
+
+Cột trái — THAM LAM
+Trên [4, 5, 4], ô 5 nhấc lên nhẹ; hai ô 4 bên cạnh bị gạch chéo. Tổng cuối là 5. Hiển thị từng bước chọn, mỗi bước tô đúng các ô bị loại.
+
+Cột phải — QUY HOẠCH ĐỘNG
+Dùng dãy F với F[0] = 0, F[1] = a[1]. Ở mỗi vị trí i ≥ 2, so sánh bỏ qua ô i với lấy ô i cộng kết quả tốt nhất của i−2. Với [4, 5, 4], hàng F là [0, 4, 5, 8]; truy vết để tô lại hai ô đầu và cuối. Tổng là 8. Dùng cùng hệ chỉ số từ đầu đến cuối.
+
+Khách chưa biết quy hoạch động có thể chạm ô cuối để đọc:
+“Nếu bỏ ô cuối, ta giữ được 5. Nếu lấy ô cuối, ta có 4 điểm ở đây và lấy thêm được 4 điểm từ ô đầu. Vậy chọn 8.”
+
+Nếu tham lam thua, hiện “Bạn tìm được phản ví dụ” cùng phép so sánh thật của lượt đó. Nếu hai đáp án bằng nhau, hiện “Test này chưa bẻ được lời giải. Thử đổi ô giữa xem?”. Cho lưu lại test đang chơi để đưa lên poster cuối trang.
+
+Animation phải giúp hiểu thuật toán. Khi người dùng rê hoặc chạm một ô F[i], làm sáng hai ô tiền nhiệm liên quan; đường nối nào thắng thì giữ màu, đường còn lại dịu đi. Có “Từng bước”, “Chạy nhanh” và “Sửa test”. So sánh hai cách làm ngay trên một hàng số thống nhất. Trên điện thoại, xếp hai lời giải theo chiều dọc, vẫn giữ các ô cùng kích thước.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+VII. THÀNH TÍCH — MỘT TRANG HỒ SƠ ĐỦ ĐẸP ĐỂ CHỤP LẠI
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Chuyển sang nền giấy màu xương, ánh sáng xiên nhẹ. Đầu phần chỉ ghi “Thành tích” và tên Nguyễn Phúc Điền. Bố cục như một trang kỷ yếu có giám tuyển, mỗi thành tích có bản sắc riêng:
+
+• GIẢI NHẤT là tiêu điểm. Đặt chữ “Nhất” cỡ lớn, cạnh đó ghi đầy đủ “Học sinh giỏi cấp tỉnh môn Tin học” và dòng “Năm lớp 11”. Dùng một đường mực cam mảnh nối chữ “Nhất” với tên Điền như nét chú giải trên giấy thi.
+
+• HUY CHƯƠNG ĐỒNG OLYMPIC 30/4. Dùng một đĩa kim loại đồng xước cách điệu, chữ “30/4” khắc chìm có chiều sâu. Sắc đồng nâu ấm, giữ viền tối. Ghi tên đầy đủ của thành tích bằng chữ HTML rõ nét ở bên cạnh.
+
+• HUY CHƯƠNG VÀNG 23/3. Thiết kế một đĩa vàng champagne với các đường khắc đồng tâm và ký hiệu “23/3”. Hướng vân và bố cục khắc cần khác huy chương Đồng. Khi người xem dịch chuột hoặc chạm, một dải sáng hẹp lướt qua phần kim loại một lần.
+
+Hai huy chương minh họa là tác phẩm đồ họa cho giao diện, không vẽ giả giấy chứng nhận, số hiệu, con dấu hay chữ ký của ban tổ chức. Nếu tôi cung cấp ảnh huy chương thật, ưu tiên ảnh thật. Nếu có ảnh chứng nhận, cho bấm “Xem minh chứng” và mở ảnh đủ lớn. Nếu chưa có ảnh, bỏ nút đó.
+
+Trên mobile, cả ba thành tích phải đọc được trực tiếp bằng cuộn dọc. Đừng giấu tên giải trong tooltip hoặc carousel. Thiết kế phần này sao cho người dùng chỉ chụp một màn hình vẫn có thể hiểu chủ nhân và các thành tích chính.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+VIII. GÓC AI ENGINEER — “TỪ MỘT DỰ ĐOÁN ĐẾN MỘT HÀNH ĐỘNG”
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Làm một mô phỏng nhỏ về băng chuyền phân loại, lấy cảm hứng từ hướng dự án camera + ESP32. Gọi đúng là “Mô phỏng trên web”. Đây là phần cho khách thấy AI liên quan thế nào tới một vật đang chuyển động.
+
+Dựng hình nhìn chếch nhẹ từ trên xuống. Trên băng có một khối tròn màu cam và một khối vuông màu bạc hà. Một camera nằm cố định phía trên, một cổng gạt nằm ở phía sau. Cho phép bật “Xem một lượt”. Camera đánh dấu đúng món đi qua nó; khi món tới cổng, cổng gạt chuyển nó sang khay tương ứng. Các món không được đổi danh tính giữa chừng.
+
+Cho một thanh điều chỉnh “Độ trễ xử lý” từ 0 đến 1.200 ms. Đặt thời gian di chuyển từ camera tới cổng gạt là 800 ms. Cho khách chạy thử ở 200 ms và 1.000 ms:
+• Ở 200 ms, dự đoán đến kịp. Cổng nhận lệnh, món vào đúng khay.
+• Ở 1.000 ms, dự đoán vẫn đúng nhưng món đã đi qua cổng. Lệnh đến muộn được đánh dấu và bỏ qua, không gạt nhầm món kế tiếp.
+• Dưới mô phỏng hiển thị hai mốc thời gian thật của lượt chạy. Câu giải thích của Điền: “Ở trường hợp này, mình có thể giữ nguyên bộ nhận dạng và sửa phần thời gian.”
+
+Mô phỏng này chỉ cần một lượt khoảng ba giây và không tự lặp lúc khách đang đọc. Đầu vào được dán nhãn sẵn cho thí nghiệm độ trễ. Ghi rõ điều đó trong phần “Cách mô phỏng hoạt động”. Trọng tâm là hành vi của cả hệ thống khi một kết quả đến trễ.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+IX. ĐOẠN KẾT — TẤM POSTER THẬT SỰ THUỘC VỀ LƯỢT GHÉ NÀY
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cuối trang quay lại nét mực cam ban đầu. Đầu trang khách cho máy xem nét của mình. Cuối trang Điền trả cho họ cả nét ấy và những gì máy đã làm với nó.
+
+Thiết kế một tấm poster dọc 1200 × 1600 px:
+• Trên cùng là “Một nét thành số” nhỏ, tiếp theo là tên Nguyễn Phúc Điền đủ nổi bật.
+• Nửa trên đặt chữ số khách thực sự viết, phía sau lồng lưới pixel 28 × 28 của chính nét đó. Cạnh dưới ghi “Bạn viết … / Máy đọc …” nếu khách đã xác nhận nhãn. Nếu chưa xác nhận, chỉ ghi điều chương trình thực sự biết.
+• Nửa dưới là hàng số của test khách đã chạy, tô phương án tham lam và phương án tối ưu cùng hai tổng điểm.
+• Nếu khách chỉ làm một thí nghiệm, tự bố cục lại để một kết quả duy nhất vẫn đẹp. Nếu khách chưa thử gì, cho xem bản mẫu có ghi “Bản mẫu” và nút “Viết một nét của bạn”.
+• Chân poster ghi “Nguyễn Phúc Điền · Trường THPT Trần Hưng Đạo”. Dùng hình nét vẽ, dữ liệu và typography nội bộ để PNG tải được dù ảnh cá nhân hoặc font mạng không tải được.
+
+Nút “Lưu poster PNG” phải xuất file thật. Đặt ngay bên cạnh lựa chọn “Sửa nét vẽ” hoặc “Đổi test”. Khi quay lại cuối trang, bản xem trước phải cập nhật.
+
+Lời kết của Điền:
+“Nếu bạn còn nhớ mình qua trang này, mình hy vọng đó là lúc bạn thêm một nét rồi bấm chạy lần nữa. Mình cũng bắt đầu nhiều buổi ngồi máy bằng đúng cái tò mò ấy.”
+Ký tên: Nguyễn Phúc Điền.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+X. TIÊU CHÍ TRIỂN KHAI VÀ NGHIỆM THU
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. HTML5, CSS, JavaScript thuần. Ưu tiên một index.html với CSS/JS nội tuyến, mở trực tiếp được. Chân dung và logo dùng ./assets/dien.jpg, ./assets/logo-truong.png nếu môi trường không gắn được ảnh đính kèm. Đặt đường dẫn và điểm lấy nét ảnh ở một chỗ dễ sửa. Có font dự phòng hỗ trợ tiếng Việt.
+
+2. Tách dữ liệu hồ sơ khỏi logic: tên, lớp, trường, giải thưởng, đường dẫn chứng nhận, đoạn tiểu sử, tên dự án. Kiểm tra mọi trường tùy chọn rỗng. Không hiện nhãn trống, dấu chấm đứng một mình hoặc chữ “undefined”.
+
+3. Mobile là thiết kế chính thức. Kiểm tra ở 320px, 390px, tablet và desktop. Khu vẽ, bảng DP và tên đầy đủ phải dùng được trên màn hình hẹp. Vùng kéo chỉ chặn cuộn khi bắt đầu thao tác trong đúng vùng. Các tính năng đều có phương án dùng bàn phím. “Dùng nét mẫu” phải thật sự nạp một nét để người không dùng chuột vẫn thử được.
+
+4. Animation có nguyên nhân rõ ràng và thời điểm dừng. Ưu tiên chuyển động của dữ liệu từ nét tay sang pixel, của đường truy vết DP và của vật thể đi qua cổng gạt. Với prefers-reduced-motion, hiển thị các trạng thái cuối hoặc cho chuyển từng bước. Dừng vòng lặp khi mô phỏng kết thúc hoặc tab ở nền.
+
+5. Giữ trạng thái khi người dùng đổi kích thước màn hình, cuộn đi hoặc chỉnh một phần khác. Khi khách sửa nét hoặc sửa test, đánh dấu kết quả cũ cần chạy lại. Poster chỉ lấy dữ liệu và kết quả thuộc cùng một lượt.
+
+6. Chạy thử tối thiểu:
+   • Ô vẽ trống, chữ số có hai nét, dùng nét mẫu, xóa rồi vẽ lại.
+   • Test [4,5,4] ra tham lam = 5, tối ưu = 8.
+   • Test [2,2,2] cho tổng tối ưu = 4. Test một ô [7] ra 7.
+   • Băng chuyền ở 200 ms và 1.000 ms cho hai hành vi khác nhau.
+   • Dữ liệu lớp để trống vẫn hiển thị đúng tên trường.
+   • Cả ba thành tích hiển thị đúng nguyên văn.
+   • PNG tải được, không cắt dấu tiếng Việt, không lấy chữ số hoặc test cũ.
+
+7. Khi bàn giao, nêu ngắn cách đặt hai ảnh, cách điền lớp và phần nào đã thực sự chạy thử. Nếu phải thu gọn vì giới hạn đầu ra, giản lược trang trí và số lượng hiệu ứng trước. Giữ nguyên chất lượng chân dung, độ chính xác của thí nghiệm, ba thành tích và khả năng xuất poster.
+
+Hãy bắt đầu bằng việc dựng sản phẩm. Khung hình quyết định chất lượng của cả trang là lúc người xem có thể nhìn cùng lúc ba thứ: nét số 7 mình vừa viết, đúng 784 ô mà máy nhận được, và một kết quả mà mình có thể thử thách bằng cách thêm đúng một nét.

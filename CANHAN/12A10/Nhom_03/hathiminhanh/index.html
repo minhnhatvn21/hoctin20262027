@@ -1,0 +1,3642 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MINH ANH — Mặt B của 12A10</title>
+  <meta name="description" content="Chiếc album vật lý năm lớp 12 của Hà Thị Minh Anh — Lớp 12A10, Trường THPT DakMil." />
+
+  <!-- Phông chữ tiếng Việt: Barlow Condensed (tên trên bìa), Be Vietnam Pro (phần đọc & ghi chú) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. HỆ THỐNG MỸ THUẬT — BÌA XANH COBALT, GIẤY NGÀ, ĐĨA BẠC, MỰC QUÝT
+       ========================================================================== */
+    :root {
+      --cobalt: #263ECC;
+      --cobalt-deep: #1B2D9B;
+      --cobalt-dark: #131F6B;
+      --paper: #F5F1E6;
+      --paper-warm: #EDE6D5;
+      --paper-card: #FAF7EE;
+      --ink: #202126;
+      --ink-muted: #555866;
+      --tangerine: #FF794C;
+      --tangerine-soft: rgba(255, 121, 76, 0.14);
+      --desk: #E7E2D4;
+      --line: rgba(32, 33, 38, 0.14);
+      --studio-floor: #192440;
+
+      --font-display: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+      --font-body: 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background-color: var(--desk);
+      background-image:
+        radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.55) 0%, transparent 45%),
+        radial-gradient(circle at 86% 24%, rgba(38, 62, 204, 0.06) 0%, transparent 42%);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    section[id] {
+      scroll-margin-top: 66px;
+    }
+
+    @keyframes sectionTargetFlash {
+      0% { box-shadow: inset 0 3px 0 var(--tangerine); }
+      100% { box-shadow: inset 0 3px 0 transparent; }
+    }
+
+    section.is-scroll-target {
+      animation: sectionTargetFlash 0.85s var(--ease-out) 1;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--tangerine);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 4vw, 42px);
+    }
+
+    .hand-note {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .owner-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--cobalt);
+      letter-spacing: 0.02em;
+    }
+
+    /* Ngôi sao 4 cánh vẽ bằng bút cam có 1 cánh dài hơn 3 cánh kia */
+    .ma-star {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    /* Thanh điều hướng gọn cố định trên cùng */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      background: rgba(245, 241, 230, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 54px;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.84rem;
+      flex-shrink: 0;
+    }
+
+    .spine-chip {
+      background: var(--cobalt);
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 2px;
+      line-height: 1.2;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.8vw, 22px);
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      padding: 6px 2px;
+      transition: color 0.16s ease, box-shadow 0.2s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a.is-active {
+      color: var(--cobalt);
+    }
+
+    .top-nav a.is-active {
+      box-shadow: inset 0 -2px 0 var(--tangerine);
+    }
+
+    /* Hệ thống nút bấm */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s var(--ease-out), background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-cobalt {
+      background: var(--cobalt);
+      border-color: var(--cobalt);
+      color: var(--paper);
+    }
+
+    .btn-cobalt:hover:not(:disabled) {
+      background: var(--cobalt-deep);
+      border-color: var(--cobalt-deep);
+    }
+
+    .btn-paper {
+      background: var(--paper-card);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .btn-paper:hover:not(:disabled) {
+      background: var(--paper);
+      border-color: var(--cobalt);
+      color: var(--cobalt);
+    }
+
+    .btn-tangerine {
+      background: var(--tangerine);
+      border-color: var(--tangerine);
+      color: #1B1C22;
+      font-weight: 700;
+    }
+
+    .btn-tangerine:hover:not(:disabled) {
+      background: #FF8C63;
+      border-color: #FF8C63;
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+    }
+
+    /* ==========================================================================
+       2. MỞ TRANG — CHIẾC HỘP ALBUM MỞ HÉ + ĐĨA BẠC TƯƠNG TÁC
+       ========================================================================== */
+    .hero-section {
+      padding: clamp(26px, 4.5vw, 54px) 0 clamp(44px, 6vw, 76px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-table {
+      display: grid;
+      grid-template-columns: minmax(0, 1.24fr) minmax(0, 0.96fr);
+      gap: clamp(24px, 4vw, 52px);
+      align-items: center;
+    }
+
+    /* Hộp album + Đĩa CD trượt phía sau bên phải */
+    .album-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-right: clamp(56px, 10vw, 120px);
+      padding-bottom: 14px;
+    }
+
+    .album-sleeve {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 470px;
+      background: var(--cobalt);
+      border-radius: 3px;
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      overflow: hidden;
+      box-shadow:
+        0 22px 38px -18px rgba(19, 31, 107, 0.45),
+        0 6px 12px -4px rgba(32, 33, 38, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    /* Gáy album 12A10 có đường chỉ khâu */
+    .album-spine {
+      background: var(--cobalt-deep);
+      border-right: 1.5px dashed rgba(245, 241, 230, 0.48);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 4px;
+      color: var(--paper);
+      user-select: none;
+    }
+
+    .spine-code {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+    }
+
+    .spine-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--tangerine);
+    }
+
+    .album-cover-face {
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: linear-gradient(160deg, #2C46DA 0%, #263ECC 58%, #2034B2 100%);
+    }
+
+    .cover-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--paper);
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+    }
+
+    .cover-owner {
+      font-style: italic;
+      opacity: 0.92;
+    }
+
+    .portrait-window {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #D9D5C7;
+      border: 2px solid var(--paper);
+      overflow: hidden;
+    }
+
+    .portrait-window img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+    }
+
+    .portrait-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      gap: 8px;
+      background: linear-gradient(150deg, #EBE5D4 0%, #DDD7C5 100%);
+      color: var(--ink);
+    }
+
+    .portrait-window.is-missing img { display: none; }
+    .portrait-window.is-missing .portrait-fallback { display: flex; }
+
+    .cover-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--paper);
+      padding-top: 2px;
+    }
+
+    .cover-cat {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Chiếc đĩa CD bạc lộ 1/3 bên phải */
+    .cd-trigger {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%) translateX(0) rotate(-18deg);
+      width: clamp(210px, 28vw, 316px);
+      height: clamp(210px, 28vw, 316px);
+      border-radius: 50%;
+      border: 1.5px solid rgba(32, 33, 38, 0.28);
+      padding: 0;
+      z-index: 2;
+      cursor: pointer;
+      background:
+        conic-gradient(
+          from 35deg,
+          #DFE3E8 0deg,
+          #F8FAFC 42deg,
+          #C2CCD8 86deg,
+          rgba(167, 224, 255, 0.85) 110deg,
+          rgba(255, 228, 179, 0.85) 126deg,
+          rgba(230, 198, 255, 0.82) 140deg,
+          #E9EDF2 170deg,
+          #BFC7D2 230deg,
+          #F4F6F9 292deg,
+          rgba(181, 240, 222, 0.82) 318deg,
+          #DFE3E8 360deg
+        );
+      box-shadow:
+        0 16px 30px -14px rgba(32, 33, 38, 0.4),
+        inset 0 0 0 12px rgba(255, 255, 255, 0.16),
+        inset 0 0 26px rgba(32, 33, 38, 0.16);
+      transition: transform 0.72s var(--ease-out), box-shadow 0.4s ease;
+    }
+
+    .cd-trigger::before {
+      content: "";
+      position: absolute;
+      inset: 28%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #E2E5EB 0%, #CFD4DC 65%, rgba(255, 255, 255, 0.5) 100%);
+      border: 1.5px solid rgba(32, 33, 38, 0.22);
+    }
+
+    /* Lỗ tâm đĩa */
+    .cd-trigger::after {
+      content: "";
+      position: absolute;
+      inset: 42%;
+      border-radius: 50%;
+      background: var(--desk);
+      border: 2px solid rgba(32, 33, 38, 0.25);
+      box-shadow: inset 0 2px 5px rgba(32, 33, 38, 0.22);
+    }
+
+    .cd-trigger:hover {
+      transform: translateY(-50%) translateX(12px) rotate(-6deg);
+    }
+
+    .cd-trigger.is-side-b {
+      transform: translateY(-50%) translateX(26px) rotate(118deg);
+      box-shadow:
+        0 20px 36px -14px rgba(38, 62, 204, 0.36),
+        inset 0 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Nhãn cam nhỏ ghi "B" trên bề mặt đĩa */
+    .cd-label-b {
+      position: absolute;
+      right: 11%;
+      top: 40%;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--tangerine);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 8px rgba(32, 33, 38, 0.22);
+      z-index: 3;
+      transition: transform 0.72s var(--ease-out);
+    }
+
+    .cd-trigger.is-side-b .cd-label-b {
+      transform: rotate(-118deg);
+    }
+
+    .cd-hint-tag {
+      position: absolute;
+      right: 8px;
+      bottom: -8px;
+      z-index: 4;
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-size: 0.76rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      box-shadow: 0 4px 10px rgba(32, 33, 38, 0.08);
+    }
+
+    /* Trang nhan đề album bên phải */
+    .hero-title-sheet {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .album-edition-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--cobalt);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* Chừa đủ khoảng thở phía trên và dưới cho dấu nặng & dấu huyền ở HÀ THỊ MINH ANH */
+    .hero-name {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6.2vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.14;
+      padding-top: 0.16em;
+      padding-bottom: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    .school-meta {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--ink);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .school-logo-wrap {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .school-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .school-logo-fallback {
+      display: none;
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--cobalt);
+    }
+
+    .school-logo-wrap.is-missing img { display: none; }
+    .school-logo-wrap.is-missing .school-logo-fallback { display: inline; }
+
+    .hero-greeting {
+      margin: 4px 0 0;
+      font-size: clamp(1rem, 1.35vw, 1.1rem);
+      color: var(--ink);
+      max-width: 44ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 6px;
+    }
+
+    .hero-cd-status {
+      margin: 0;
+      font-size: 0.84rem;
+      font-style: italic;
+      color: var(--cobalt);
+      min-height: 1.4em;
+    }
+
+    /* ==========================================================================
+       3. BOOKLET MẶT A / MẶT B — CUỐN SỔ GIẤY NGÀ CÓ 2 TAI GIẤY & MẨU GIẤY GẤP
+       ========================================================================== */
+    .booklet-section {
+      padding: clamp(50px, 7vw, 88px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      padding-top: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .booklet-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr) auto;
+      background: var(--paper);
+      border: 1.5px solid var(--ink);
+      box-shadow: 0 16px 32px -20px rgba(32, 33, 38, 0.32), 7px 7px 0 rgba(38, 62, 204, 0.14);
+    }
+
+    /* Gáy xanh cobalt + đường chỉ khâu nối liền từ bìa album */
+    .booklet-spine {
+      background: var(--cobalt);
+      border-right: 1.5px dashed rgba(245, 241, 230, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 2px;
+      color: var(--paper);
+    }
+
+    .booklet-spine span {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: var(--font-display);
+      font-size: 0.96rem;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+
+    .booklet-body {
+      padding: clamp(22px, 4vw, 44px);
+    }
+
+    .booklet-tabs-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 24px 0 24px 0;
+      background: var(--desk);
+      border-left: 1.5px solid var(--ink);
+    }
+
+    .paper-tab {
+      min-width: 118px;
+      min-height: 48px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--ink);
+      border-left: 0;
+      border-radius: 0 6px 6px 0;
+      background: var(--paper-warm);
+      color: var(--ink-muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      left: -1.5px;
+      transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s var(--ease-out);
+    }
+
+    .paper-tab[aria-selected="true"] {
+      background: var(--paper);
+      color: var(--cobalt);
+      border-right: 4px solid var(--tangerine);
+      transform: translateX(4px);
+    }
+
+    .booklet-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+      gap: clamp(20px, 3.6vw, 40px);
+      align-items: start;
+    }
+
+    .booklet-panel[hidden] {
+      display: none;
+    }
+
+    .booklet-side-heading {
+      margin: 0 0 14px;
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      font-weight: 700;
+      color: var(--cobalt);
+    }
+
+    .booklet-story p {
+      margin: 0 0 16px;
+      font-size: clamp(0.98rem, 1.25vw, 1.06rem);
+      color: var(--ink);
+      max-width: 56ch;
+    }
+
+    .booklet-story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .margin-doodle-card {
+      background: var(--paper-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--tangerine);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .margin-doodle-svg {
+      width: 100%;
+      max-width: 190px;
+      height: auto;
+    }
+
+    /* Mẩu giấy gấp ở đáy booklet */
+    .folded-note-wrap {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(32, 33, 38, 0.22);
+    }
+
+    .folded-note-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--paper-warm);
+      border: 1.5px solid var(--ink);
+      border-radius: 3px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .folded-note-trigger:hover {
+      border-color: var(--cobalt);
+      color: var(--cobalt);
+    }
+
+    .folded-arrow {
+      color: var(--tangerine);
+      font-weight: 800;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .folded-note-trigger[aria-expanded="true"] .folded-arrow {
+      transform: rotate(180deg);
+    }
+
+    .folded-note-body {
+      overflow: hidden;
+    }
+
+    .folded-note-body[hidden] {
+      display: none;
+    }
+
+    .folded-note-paper {
+      margin-top: 12px;
+      padding: 16px 20px;
+      background: #FFFDF7;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--cobalt);
+      font-size: 0.98rem;
+      color: var(--ink);
+      max-width: 60ch;
+      box-shadow: 4px 4px 0 rgba(32, 33, 38, 0.08);
+    }
+
+    /* ==========================================================================
+       4. ĐỊNH HƯỚNG NGHỀ NGHIỆP — TỜ INSERT TRONG ALBUM (~165 CHỮ)
+       ========================================================================== */
+    .career-section {
+      padding: clamp(50px, 7vw, 88px) 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .career-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: clamp(24px, 4.5vw, 52px);
+      align-items: start;
+    }
+
+    .career-insert-card {
+      background: var(--paper-card);
+      border: 1.5px solid var(--ink);
+      border-left: 8px solid var(--cobalt);
+      padding: clamp(22px, 3.4vw, 34px);
+      box-shadow: 7px 7px 0 rgba(32, 33, 38, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .career-role-tag {
+      align-self: flex-start;
+      background: var(--cobalt);
+      color: var(--paper);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 2px;
+    }
+
+    .career-essay p {
+      margin: 0 0 14px;
+      font-size: 0.98rem;
+      line-height: 1.72;
+      color: var(--ink);
+    }
+
+    .career-essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .career-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .career-step {
+      background: var(--paper-card);
+      border: 1.5px solid rgba(32, 33, 38, 0.22);
+      border-radius: 4px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .career-step.is-open {
+      border-color: var(--cobalt);
+      box-shadow: 5px 5px 0 rgba(38, 62, 204, 0.1);
+    }
+
+    .career-step-trigger {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .career-step-title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .career-step-num {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--tangerine);
+    }
+
+    .career-step-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .career-step-arrow {
+      color: var(--cobalt);
+      font-weight: 700;
+      transition: transform 0.3s var(--ease-out);
+      flex-shrink: 0;
+    }
+
+    .career-step.is-open .career-step-arrow {
+      transform: rotate(180deg);
+    }
+
+    .career-step-panel {
+      overflow: hidden;
+    }
+
+    .career-step-panel[hidden] {
+      display: none;
+    }
+
+    .career-step-inner {
+      padding: 10px 18px 16px 44px;
+      border-top: 1px dashed var(--line);
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.62;
+    }
+
+    /* ==========================================================================
+       5. BINDER CORTIS — 4 TẤM ẢNH THẬT, LÁ NHỰA TRONG 2×2, KHÉP / MỞ BINDER
+       ========================================================================== */
+    .binder-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .binder-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    /* Trạng thái ĐANG MỞ của cuốn binder */
+    .binder-open-book {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) 36px minmax(0, 1.85fr);
+      background: #2235B5;
+      padding: clamp(14px, 2vw, 22px);
+      border-radius: 6px;
+      border: 2px solid var(--ink);
+      box-shadow: 0 22px 40px -22px rgba(19, 31, 107, 0.52);
+    }
+
+    .binder-open-book[hidden] {
+      display: none;
+    }
+
+    .binder-left-page {
+      background: var(--paper);
+      border: 1px solid rgba(32, 33, 38, 0.2);
+      padding: clamp(18px, 2.6vw, 28px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      position: relative;
+    }
+
+    .binder-memo-slip {
+      background: #FFFDF7;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--tangerine);
+      padding: 16px;
+      transform: rotate(-1.2deg);
+      box-shadow: 3px 4px 10px rgba(32, 33, 38, 0.08);
+    }
+
+    .binder-rings-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 24px 0;
+      position: relative;
+    }
+
+    .binder-ring {
+      width: 34px;
+      height: 16px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #F6F7F9 0%, #B3BAC6 48%, #7F8794 75%, #E7EAEE 100%);
+      border: 1px solid #4E5460;
+      box-shadow: 0 3px 6px rgba(19, 31, 107, 0.42);
+      z-index: 3;
+    }
+
+    /* Trang lá nhựa trong 2 × 2 */
+    .binder-plastic-sheet {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.09) 48%, rgba(255, 255, 255, 0.18) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.42);
+      border-radius: 4px;
+      padding: clamp(12px, 2vw, 18px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(10px, 1.8vw, 16px);
+      position: relative;
+    }
+
+    /* Từng túi nhựa trong có miệng mở trên + 2 đường ép nhiệt mảnh + vệt phản sáng ngoài mặt */
+    .card-pocket {
+      position: relative;
+      background: rgba(245, 241, 230, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-top: 2px solid rgba(255, 255, 255, 0.72);
+      border-radius: 3px;
+      padding: 10px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    /* Đường ép nhiệt mảnh hai bên túi */
+    .card-pocket::before,
+    .card-pocket::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      border-left: 1px dotted rgba(255, 255, 255, 0.42);
+      pointer-events: none;
+    }
+
+    .card-pocket::before { left: 4px; }
+    .card-pocket::after { right: 4px; }
+
+    .pocket-mouth-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 0.74rem;
+      color: var(--paper);
+      font-weight: 600;
+      padding-inline: 2px;
+    }
+
+    .pocket-card-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: var(--paper);
+      border: 1px solid rgba(32, 33, 38, 0.25);
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.28s var(--ease-out), box-shadow 0.28s ease;
+    }
+
+    .pocket-card-stage:hover,
+    .pocket-card-stage:focus-visible {
+      transform: translateY(-7px);
+      box-shadow: 0 12px 18px -10px rgba(19, 31, 107, 0.65);
+    }
+
+    .pocket-card-stage.is-pulling {
+      transform: translateY(-20px);
+    }
+
+    /* Vệt phản sáng nhựa mảnh ở góc dưới-phải, tránh vùng gương mặt */
+    .plastic-glare {
+      position: absolute;
+      right: -14%;
+      bottom: 8%;
+      width: 48%;
+      height: 16px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+      transform: rotate(-32deg);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .pocket-card-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: var(--paper-warm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .pocket-img-fallback {
+      position: absolute;
+      inset: 6px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+      padding: 12px;
+      background: var(--paper-warm);
+      color: var(--ink);
+      font-size: 0.8rem;
+      z-index: 2;
+    }
+
+    .pocket-card-stage.is-broken img { display: none; }
+    .pocket-card-stage.is-broken .pocket-img-fallback { display: flex; }
+
+    /* Mặt sau ghi chú khi bấm "Lật xem ghi chú" */
+    .pocket-note-back {
+      position: absolute;
+      inset: 0;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      z-index: 4;
+      border: 2px solid var(--cobalt);
+    }
+
+    .pocket-note-back[hidden] {
+      display: none;
+    }
+
+    .pocket-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pocket-btn {
+      flex: 1 1 auto;
+      min-height: 34px;
+      padding: 5px 8px;
+      border-radius: 3px;
+      border: 1px solid rgba(245, 241, 230, 0.55);
+      background: rgba(19, 31, 107, 0.55);
+      color: var(--paper);
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .pocket-btn:hover {
+      background: rgba(19, 31, 107, 0.85);
+      border-color: var(--paper);
+    }
+
+    .pocket-btn.is-cover-selected {
+      background: var(--tangerine);
+      border-color: var(--tangerine);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* Trạng thái ĐÃ KHÉP BINDER — có cửa sổ nhỏ hiện ảnh được chọn */
+    .binder-closed-cover {
+      max-width: 440px;
+      margin: 0 auto;
+      background: linear-gradient(155deg, #2B45D6 0%, #263ECC 60%, #1C2FA6 100%);
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      padding: 26px 26px 24px 44px;
+      position: relative;
+      box-shadow: 0 22px 42px -18px rgba(19, 31, 107, 0.55);
+      cursor: pointer;
+      text-align: center;
+      color: var(--paper);
+      transition: transform 0.24s var(--ease-out);
+    }
+
+    .binder-closed-cover:hover {
+      transform: translateY(-4px);
+    }
+
+    .binder-closed-cover[hidden] {
+      display: none;
+    }
+
+    .closed-cover-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background: var(--cobalt-deep);
+      border-right: 1.5px dashed rgba(245, 241, 230, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      letter-spacing: 0.12em;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .cover-window-frame {
+      width: 210px;
+      height: 256px;
+      margin: 16px auto;
+      background: var(--paper);
+      border: 5px solid var(--paper);
+      box-shadow: inset 0 4px 12px rgba(32, 33, 38, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cover-window-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: var(--paper-warm);
+    }
+
+    .binder-source-footer {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .binder-source-footer a {
+      color: var(--cobalt);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Lightbox trình xem ảnh lớn */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 95;
+      background: rgba(20, 22, 32, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .lightbox-modal[hidden] {
+      display: none;
+    }
+
+    .lightbox-dialog {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      max-width: 780px;
+      width: 100%;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .lightbox-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper-card);
+    }
+
+    .lightbox-stage {
+      padding: 16px;
+      background: #1C2030;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 260px;
+      max-height: 62vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lightbox-stage img {
+      max-width: 100%;
+      max-height: 58vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox-foot {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ==========================================================================
+       6. MINI GAME — “GIỮ NHỊP CHO MINH ANH”
+       ========================================================================== */
+    .game-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      background: var(--studio-floor);
+      color: var(--paper);
+      border-bottom: 1px solid rgba(245, 241, 230, 0.14);
+    }
+
+    .game-shell {
+      background: #121B32;
+      border: 1.5px solid rgba(245, 241, 230, 0.24);
+      border-radius: 6px;
+      padding: clamp(16px, 2.6vw, 26px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .game-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .beat-lamps {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .beat-lamp {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: rgba(245, 241, 230, 0.2);
+      border: 1px solid rgba(245, 241, 230, 0.38);
+      transition: background-color 0.08s ease, transform 0.08s ease;
+    }
+
+    .beat-lamp.is-lit {
+      background: var(--tangerine);
+      border-color: var(--tangerine);
+      transform: scale(1.18);
+    }
+
+    .game-controls-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .game-btn-dark {
+      min-height: 38px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(245, 241, 230, 0.35);
+      background: rgba(245, 241, 230, 0.08);
+      color: var(--paper);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .game-btn-dark[aria-pressed="true"] {
+      background: var(--tangerine);
+      border-color: var(--tangerine);
+      color: var(--ink);
+    }
+
+    .game-canvas-wrap {
+      width: 100%;
+      background: #10192E;
+      border: 1.5px solid rgba(245, 241, 230, 0.22);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #rhythmCanvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .lane-pads-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .lane-pad-btn {
+      min-height: 68px;
+      border-radius: 6px;
+      border: 2px solid rgba(245, 241, 230, 0.45);
+      background: #1C294A;
+      color: var(--paper);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      user-select: none;
+      touch-action: manipulation;
+      transition: transform 0.08s ease, background-color 0.1s ease, border-color 0.1s ease;
+    }
+
+    .lane-pad-btn small {
+      font-size: 0.74rem;
+      opacity: 0.78;
+      font-weight: 500;
+    }
+
+    .lane-pad-btn.is-pressed,
+    .lane-pad-btn:active {
+      transform: scale(0.98);
+      background: var(--tangerine);
+      border-color: var(--tangerine);
+      color: var(--ink);
+    }
+
+    .game-result-box {
+      background: rgba(245, 241, 230, 0.08);
+      border: 1.5px solid rgba(255, 121, 76, 0.65);
+      border-radius: 4px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .game-result-box[hidden] {
+      display: none;
+    }
+
+    /* ==========================================================================
+       7. QUÀ CUỐI — VÉ ENCORE CỦA HAI ĐỨA (CANVAS 1600 × 720 PX) & NẮP HỘP CUỐI
+       ========================================================================== */
+    .ticket-section {
+      padding: clamp(54px, 7.5vw, 96px) 0 clamp(64px, 9vw, 108px);
+      background: var(--paper);
+    }
+
+    .ticket-stage {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ticket-canvas-frame {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      filter: drop-shadow(0 16px 26px rgba(32, 33, 38, 0.16));
+    }
+
+    #ticketPreviewCanvas {
+      width: 100%;
+      aspect-ratio: 1600 / 720;
+      display: block;
+    }
+
+    .ticket-controls-bar {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: var(--paper-card);
+      border: 1.5px solid var(--ink);
+      padding: 16px 18px;
+    }
+
+    .guest-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1 1 230px;
+    }
+
+    .guest-input-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .guest-input-group input {
+      min-height: 42px;
+      padding: 8px 12px;
+      border: 1.5px solid rgba(32, 33, 38, 0.35);
+      border-radius: 3px;
+      background: #FFFFFF;
+      font-size: 0.94rem;
+    }
+
+    .guest-input-group input:focus {
+      border-color: var(--cobalt);
+    }
+
+    /* Nắp hộp cuối trang */
+    .album-lid-closing {
+      max-width: 760px;
+      margin: clamp(44px, 6vw, 72px) auto 0;
+      padding: clamp(24px, 4vw, 38px);
+      background: var(--cobalt);
+      color: var(--paper);
+      border: 2px solid var(--ink);
+      position: relative;
+      box-shadow: 8px 8px 0 rgba(32, 33, 38, 0.16);
+    }
+
+    .album-lid-closing p {
+      margin: 0 0 14px;
+      font-size: clamp(1rem, 1.45vw, 1.15rem);
+      line-height: 1.65;
+    }
+
+    .closing-signature {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(245, 241, 230, 0.45);
+      font-weight: 700;
+    }
+
+    /* Nút trượt lên đầu trang */
+    .scroll-top-btn {
+      position: fixed;
+      right: clamp(14px, 3vw, 26px);
+      bottom: clamp(16px, 3vw, 26px);
+      z-index: 50;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--ink);
+      background: var(--paper-card);
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 20px rgba(32, 33, 38, 0.2);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.28s var(--ease-out), transform 0.32s var(--ease-out), background-color 0.16s ease;
+    }
+
+    .scroll-top-btn.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .scroll-top-btn:hover {
+      background: var(--cobalt);
+      border-color: var(--cobalt);
+      color: var(--paper);
+    }
+
+    /* ==========================================================================
+       8. RESPONSIVE CHO MOBILE (320px, 390px) & TABLET
+       ========================================================================== */
+    @media (max-width: 920px) {
+      .hero-table {
+        grid-template-columns: 1fr;
+      }
+
+      /* Trên mobile, ưu tiên tên, lớp, gương mặt hiện ngay trước khi cuộn */
+      .hero-title-sheet {
+        order: 1;
+      }
+
+      .album-stage {
+        order: 2;
+        max-width: 440px;
+        margin: 0 auto;
+        width: 100%;
+        padding-right: clamp(46px, 14vw, 88px);
+      }
+
+      .booklet-shell {
+        grid-template-columns: 18px minmax(0, 1fr);
+      }
+
+      .booklet-tabs-col {
+        grid-column: 1 / -1;
+        order: -1;
+        flex-direction: row;
+        padding: 12px 12px 0;
+        border-left: 0;
+        border-bottom: 1.5px solid var(--ink);
+      }
+
+      .paper-tab {
+        flex: 1;
+        min-width: 0;
+        border: 1.5px solid var(--ink);
+        border-bottom: 0;
+        border-radius: 6px 6px 0 0;
+        left: 0;
+        text-align: center;
+      }
+
+      .paper-tab[aria-selected="true"] {
+        border-right: 1.5px solid var(--ink);
+        border-top: 4px solid var(--tangerine);
+        transform: translateY(1.5px);
+      }
+
+      .booklet-panel,
+      .career-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .binder-open-book {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .binder-rings-col {
+        flex-direction: row;
+        padding: 2px 0;
+      }
+
+      .binder-ring {
+        width: 16px;
+        height: 28px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .top-nav {
+        gap: 9px;
+      }
+
+      .top-nav a {
+        font-size: 0.76rem;
+      }
+
+      .hero-name {
+        font-size: clamp(2.55rem, 11vw, 3.2rem);
+      }
+
+      .album-sleeve {
+        grid-template-columns: 28px minmax(0, 1fr);
+      }
+
+      .cd-trigger {
+        width: 174px;
+        height: 174px;
+      }
+
+      .cd-label-b {
+        width: 34px;
+        height: 34px;
+        font-size: 1.25rem;
+      }
+
+      .binder-plastic-sheet {
+        /* Giữ đúng bố cục 2 × 2 trên mobile */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 8px;
+      }
+
+      .card-pocket {
+        padding: 7px 6px 8px;
+      }
+
+      .pocket-btn {
+        font-size: 0.69rem;
+        padding: 5px 4px;
+      }
+
+      .career-step-inner {
+        padding-left: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========================================================================
+       THANH ĐIỀU HƯỚNG GỌN
+       ======================================================================== -->
+  <header class="top-bar">
+    <div class="container top-bar-inner">
+      <a href="#bia-album" class="brand-pill">
+        <span class="spine-chip">12A10</span>
+        <span>Minh Anh · Mặt B</span>
+      </a>
+      <nav class="top-nav" aria-label="Điều hướng chính">
+        <a href="#booklet">Mặt A / B</a>
+        <a href="#dinh-huong">Định hướng</a>
+        <a href="#binder-cortis">Binder CORTIS</a>
+        <a href="#giu-nhip">Giữ nhịp</a>
+        <a href="#ve-encore">Vé Encore</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         2. MỞ TRANG — MINH ANH TRÊN BÌA ALBUM XANH COBALT + ĐĨA BẠC
+         ====================================================================== -->
+    <section id="bia-album" class="hero-section">
+      <div class="container">
+        <div class="hero-table">
+          <!-- Chiếc hộp album đang mở hé + Đĩa bạc lộ 1/3 -->
+          <div class="album-stage">
+            <div class="album-sleeve">
+              <div class="album-spine" aria-hidden="true">
+                <span class="spine-dot"></span>
+                <span class="spine-code">12A10</span>
+                <span class="spine-dot"></span>
+              </div>
+
+              <div class="album-cover-face">
+                <div class="cover-top-bar">
+                  <span class="cover-owner">Bản của Minh Anh</span>
+                  <svg class="ma-star" width="22" height="22" viewBox="0 0 28 28" aria-hidden="true">
+                    <path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="#FF794C" />
+                  </svg>
+                </div>
+
+                <div id="portraitWindow" class="portrait-window">
+                  <img id="portraitImg" src="" alt="Chân dung Hà Thị Minh Anh, lớp 12A10 Trường THPT DakMil" />
+                  <div class="portrait-fallback">
+                    <strong>Chân dung Hà Thị Minh Anh</strong>
+                    <span style="font-size:0.82rem; color:var(--ink-muted);">
+                      Đặt ảnh thật tại <code>assets/minh-anh.jpg</code>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="cover-footer">
+                  <span class="cover-cat">MẶT B CỦA 12A10</span>
+                  <span style="font-size:0.74rem; opacity:0.86;">SIDE A / B</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chiếc đĩa CD bạc lộ 1/3 — chạm trực tiếp để mở Mặt B -->
+            <button
+              type="button"
+              id="cdDiscTrigger"
+              class="cd-trigger"
+              aria-pressed="false"
+              aria-label="Chạm vào chiếc đĩa bạc để mở Mặt B của Minh Anh"
+            >
+              <span class="cd-label-b" aria-hidden="true">B</span>
+            </button>
+            <span class="cd-hint-tag">Chạm đĩa để mở Mặt B ↗</span>
+          </div>
+
+          <!-- Trang nhan đề của album -->
+          <div class="hero-title-sheet">
+            <div class="album-edition-line">
+              <svg class="ma-star" width="18" height="18" viewBox="0 0 28 28" aria-hidden="true">
+                <path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="#FF794C" />
+              </svg>
+              <span>MINH ANH — Mặt B của 12A10</span>
+            </div>
+
+            <h1 id="heroName" class="hero-name">Hà Thị Minh Anh</h1>
+
+            <div class="school-meta">
+              <span id="schoolLogoWrap" class="school-logo-wrap">
+                <img id="schoolLogoImg" src="" alt="Logo Trường THPT DakMil" />
+                <span class="school-logo-fallback" aria-hidden="true">DM</span>
+              </span>
+              <span id="heroClassSchool">Lớp 12A10 · Trường THPT DakMil</span>
+            </div>
+
+            <p id="heroGreeting" class="hero-greeting">
+              “Bạn đến đúng lúc ghê. Mình vừa xếp xong bốn tấm card, còn chiếc đĩa thì chưa biết nên mở mặt nào trước.”
+            </p>
+
+            <div class="hero-actions">
+              <a href="#booklet" id="btnOpenSideA" class="btn btn-cobalt">Mở mặt A</a>
+              <a href="#binder-cortis" class="btn btn-paper">Xem binder CORTIS</a>
+            </div>
+
+            <p id="heroCdStatus" class="hero-cd-status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. MẶT A / MẶT B — BOOKLET GIỚI THIỆU MINH ANH BẰNG HAI GÓC NHÌN
+         ====================================================================== -->
+    <section id="booklet" class="booklet-section">
+      <div class="container">
+        <div class="section-head-row">
+          <div>
+            <span class="section-kicker">Booklet · Hai góc nhìn</span>
+            <h2 class="section-title">Lật trang trong chiếc hộp</h2>
+          </div>
+          <span class="owner-stamp">
+            <svg class="ma-star" width="15" height="15" viewBox="0 0 28 28" aria-hidden="true">
+              <path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="#FF794C" />
+            </svg>
+            Bản của Minh Anh
+          </span>
+        </div>
+
+        <div class="booklet-shell">
+          <div class="booklet-spine" aria-hidden="true">
+            <span>12A10</span>
+            <span>SIDE A · B</span>
+          </div>
+
+          <div class="booklet-body">
+            <!-- MẶT A -->
+            <div id="panelSideA" class="booklet-panel" role="tabpanel" aria-labelledby="tabSideA">
+              <div class="booklet-story">
+                <h3 class="booklet-side-heading">Mặt A — “Minh Anh mà lớp 12A10 hay gặp”</h3>
+                <div id="sideAParagraphs"></div>
+              </div>
+
+              <aside class="margin-doodle-card" aria-label="Ghi chú ngoài lề Mặt A">
+                <svg class="margin-doodle-svg" viewBox="0 0 180 68" role="img" aria-label="Hình vẽ cây bút cam mất nắp">
+                  <!-- Thân bút cam vẽ tay -->
+                  <path d="M18 42 L126 24 L131 38 L23 55 Z" fill="#FF794C" stroke="#202126" stroke-width="2" />
+                  <path d="M126 24 L148 27 L131 38 Z" fill="#F5F1E6" stroke="#202126" stroke-width="2" />
+                  <circle cx="149" cy="27" r="2.2" fill="#202126" />
+                  <path d="M155 24 Q165 18 172 25" fill="none" stroke="#263ECC" stroke-width="2" stroke-dasharray="3 3" />
+                  <text x="18" y="16" font-family="Be Vietnam Pro, sans-serif" font-size="10" fill="#555866" font-style="italic">nắp đâu rồi nhỉ?</text>
+                </svg>
+                <p id="sideANote" class="hand-note" style="margin:0;"></p>
+              </aside>
+            </div>
+
+            <!-- MẶT B -->
+            <div id="panelSideB" class="booklet-panel" role="tabpanel" aria-labelledby="tabSideB" hidden>
+              <div class="booklet-story">
+                <h3 class="booklet-side-heading">Mặt B — “Minh Anh sau tiếng trống”</h3>
+                <div id="sideBParagraphs"></div>
+              </div>
+
+              <aside class="margin-doodle-card" aria-label="Ghi chú ngoài lề Mặt B">
+                <svg class="margin-doodle-svg" viewBox="0 0 190 88" role="img" aria-label="Hình hai dấu chân tập nhảy quay nhầm hướng ở nhịp thứ chín">
+                  <!-- Dấu chân trái -->
+                  <ellipse cx="52" cy="48" rx="14" ry="22" transform="rotate(-10 52 48)" fill="none" stroke="#263ECC" stroke-width="2.2" />
+                  <circle cx="54" cy="74" r="5" fill="#263ECC" opacity="0.28" />
+                  <!-- Dấu chân phải quay nhầm ra cửa -->
+                  <ellipse cx="122" cy="44" rx="14" ry="22" transform="rotate(42 122 44)" fill="rgba(255,121,76,0.2)" stroke="#FF794C" stroke-width="2.4" />
+                  <path d="M98 16 Q132 10 148 30" fill="none" stroke="#FF794C" stroke-width="2" stroke-dasharray="4 3" />
+                  <path d="M142 29 L150 32 L147 22" fill="none" stroke="#FF794C" stroke-width="2" />
+                  <text x="14" y="18" font-family="Be Vietnam Pro, sans-serif" font-size="10" fill="#263ECC" font-weight="700">1..8 ✓</text>
+                  <text x="150" y="54" font-family="Be Vietnam Pro, sans-serif" font-size="10" fill="#FF794C" font-weight="700">9?!</text>
+                </svg>
+                <p id="sideBNote" class="hand-note" style="margin:0;"></p>
+              </aside>
+            </div>
+
+            <!-- Mẩu giấy gấp ở đáy booklet -->
+            <div class="folded-note-wrap">
+              <button
+                type="button"
+                id="btnFoldedNote"
+                class="folded-note-trigger"
+                aria-expanded="false"
+                aria-controls="foldedNoteBody"
+              >
+                <span>Một điều mình muốn thử</span>
+                <span class="folded-arrow" aria-hidden="true">▾</span>
+              </button>
+
+              <div id="foldedNoteBody" class="folded-note-body" hidden>
+                <div id="foldedNoteText" class="folded-note-paper"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hai tai giấy ở cạnh trang -->
+          <div class="booklet-tabs-col" role="tablist" aria-label="Chọn Mặt A hoặc Mặt B">
+            <button
+              type="button"
+              id="tabSideA"
+              class="paper-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="panelSideA"
+            >
+              Ở lớp
+            </button>
+            <button
+              type="button"
+              id="tabSideB"
+              class="paper-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panelSideB"
+            >
+              Tan học
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. ĐỊNH HƯỚNG NGHỀ NGHIỆP — TỜ INSERT TRONG HỘP ALBUM (~165 CHỮ)
+         ====================================================================== -->
+    <section id="dinh-huong" class="career-section">
+      <div class="container">
+        <div class="section-head-row">
+          <div>
+            <span class="section-kicker">Tờ phụ lục trong hộp · Định hướng nghề nghiệp</span>
+            <h2 id="careerHeading" class="section-title">Truyền thông Sáng tạo &amp; Sản xuất Nội dung</h2>
+          </div>
+          <span class="hand-note">Gấp gọn sau trang booklet, để mai này lật ra đối chiếu.</span>
+        </div>
+
+        <div class="career-grid">
+          <article class="career-insert-card">
+            <span id="careerBadge" class="career-role-tag">Creative Producer · Giải trí &amp; Truyền thông</span>
+            <div id="careerEssayWrap" class="career-essay"></div>
+          </article>
+
+          <div id="careerStepsWrap" class="career-accordion" aria-label="Ba điều Minh Anh đang tự rèn từ năm lớp 12"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. BINDER CORTIS — ĐÚNG 4 TẤM ẢNH THẬT
+         ====================================================================== -->
+    <section id="binder-cortis" class="binder-section">
+      <div class="container">
+        <div class="binder-toolbar">
+          <div>
+            <span class="section-kicker">Bộ sưu tập · 4 ngăn nhựa</span>
+            <h2 class="section-title">CORTIS, trang mình hay lật lại</h2>
+            <p style="margin:6px 0 0; color:var(--ink-muted);">
+              Bốn ngăn thôi. Vì có bốn ngăn nên chọn tấm nào cũng phải nghĩ.
+            </p>
+          </div>
+          <button type="button" id="btnToggleBinder" class="btn btn-cobalt">Khép binder</button>
+        </div>
+
+        <!-- Trạng thái BINDER MỞ -->
+        <div id="binderOpenBook" class="binder-open-book">
+          <aside class="binder-left-page">
+            <div class="binder-memo-slip">
+              <span class="owner-stamp" style="margin-bottom:8px;">
+                <svg class="ma-star" width="14" height="14" viewBox="0 0 28 28" aria-hidden="true">
+                  <path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="#FF794C" />
+                </svg>
+                Bản của Minh Anh
+              </span>
+              <p class="hand-note" style="margin:0; color:var(--ink);">
+                Chạm ảnh để rút lên khỏi túi và xem trọn khung hình. Muốn xem mình ghi gì ở mặt sau thì bấm “Lật xem ghi chú”, hoặc đánh ngôi sao để chọn ảnh nằm ở cửa sổ bìa ngoài.
+              </p>
+            </div>
+
+            <div style="font-size:0.82rem; color:var(--ink-muted); border-top:1px dashed var(--line); padding-top:12px;">
+              <div><strong>Ảnh bìa đang chọn:</strong> <span id="selectedCoverName" style="color:var(--cobalt);">Ô 01 · Scene 1 · Khung 01</span></div>
+              <div style="margin-top:4px;">Lựa chọn được tự động nhớ trên trình duyệt của bạn.</div>
+            </div>
+          </aside>
+
+          <!-- 3 khoen kim loại dọc gáy -->
+          <div class="binder-rings-col" aria-hidden="true">
+            <span class="binder-ring"></span>
+            <span class="binder-ring"></span>
+            <span class="binder-ring"></span>
+          </div>
+
+          <!-- Lá nhựa trong 4 túi 2 × 2 -->
+          <div id="binderPocketGrid" class="binder-plastic-sheet" aria-label="Trang lá nhựa 4 túi ảnh CORTIS"></div>
+        </div>
+
+        <!-- Trạng thái BINDER KHÉP -->
+        <div
+          id="binderClosedCover"
+          class="binder-closed-cover"
+          hidden
+          role="button"
+          tabindex="0"
+          aria-label="Bìa binder đang khép, bấm để mở lại bốn túi ảnh CORTIS"
+        >
+          <span class="closed-cover-spine" aria-hidden="true">12A10 · CORTIS</span>
+          <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.78rem;">
+            <span style="font-style:italic;">Bản của Minh Anh</span>
+            <svg class="ma-star" width="18" height="18" viewBox="0 0 28 28" aria-hidden="true">
+              <path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="#FF794C" />
+            </svg>
+          </div>
+          <div class="cover-window-frame">
+            <img id="closedCoverImg" src="" alt="Ảnh bìa binder đang chọn" />
+          </div>
+          <div style="font-family:var(--font-display); font-size:1.45rem; letter-spacing:0.06em;">CORTIS · BINDER 12A10</div>
+          <div id="closedCoverCaption" style="font-size:0.82rem; opacity:0.9; margin-top:4px;"></div>
+          <div style="margin-top:14px; font-size:0.84rem; text-decoration:underline;">Bấm lên bìa để mở lại bốn túi →</div>
+        </div>
+
+        <div class="binder-source-footer">
+          <span>Nguồn: <strong>BIGHIT MUSIC · CORTIS · COLOR OUTSIDE THE LINES</strong></span>
+          <a href="https://ibighit.com/legacy/cortis/color-outside-the-lines-ko.html" target="_blank" rel="noopener noreferrer">
+            Trang nguồn chính thức ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. MINI GAME — “GIỮ NHỊP CHO MINH ANH”
+         ====================================================================== -->
+    <section id="giu-nhip" class="game-section">
+      <div class="container">
+        <div class="section-head-row">
+          <div>
+            <span class="section-kicker" style="color:var(--tangerine);">Mini game · Sàn tập sau giờ học</span>
+            <h2 class="section-title" style="color:var(--paper);">Giữ nhịp cho Minh Anh</h2>
+            <p style="margin:6px 0 0; color:rgba(245,241,230,0.78); max-width:60ch;">
+              Tám nhịp đầu đổi bên đều tay, sau đó nghỉ một nhịp rồi bước vào <strong>nhịp thứ 9</strong> quyết định. Dùng hai nút cảm ứng hoặc phím <strong>D</strong> (Trái) / <strong>K</strong> (Phải).
+            </p>
+          </div>
+        </div>
+
+        <div class="game-shell">
+          <div class="game-top-bar">
+            <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+              <div class="beat-lamps" aria-label="Đèn đếm nhịp 4 phách">
+                <span class="beat-lamp" data-lamp="0"></span>
+                <span class="beat-lamp" data-lamp="1"></span>
+                <span class="beat-lamp" data-lamp="2"></span>
+                <span class="beat-lamp" data-lamp="3"></span>
+              </div>
+              <span id="gameHudText" style="font-size:0.86rem; font-weight:600; color:rgba(245,241,230,0.9);">
+                Sẵn sàng · 4 nhịp đếm vào · 16 nốt (~20 giây)
+              </span>
+            </div>
+
+            <div class="game-controls-row">
+              <button type="button" id="btnSlowMode" class="game-btn-dark" aria-pressed="false">Tập chậm: Tắt</button>
+              <button type="button" id="btnSoundToggle" class="game-btn-dark" aria-pressed="false">Âm thanh: Tắt</button>
+              <button type="button" id="btnStartGame" class="btn btn-tangerine btn-sm">Bắt đầu đếm nhịp</button>
+            </div>
+          </div>
+
+          <div class="game-canvas-wrap">
+            <canvas
+              id="rhythmCanvas"
+              width="920"
+              height="380"
+              aria-label="Sân tập nhảy và đường nhịp hai làn Trái và Phải"
+            ></canvas>
+          </div>
+
+          <div class="lane-pads-row">
+            <button type="button" id="btnLaneLeft" class="lane-pad-btn" aria-label="Nhịp làn Trái (phím D)">
+              <span>TRÁI</span>
+              <small>Chạm hoặc bấm D</small>
+            </button>
+            <button type="button" id="btnLaneRight" class="lane-pad-btn" aria-label="Nhịp làn Phải (phím K)">
+              <span>PHẢI</span>
+              <small>Chạm hoặc bấm K</small>
+            </button>
+          </div>
+
+          <div id="gameResultBox" class="game-result-box" hidden aria-live="polite">
+            <div>
+              <strong id="gameScoreHeadline" style="font-size:1.08rem; color:var(--tangerine);"></strong>
+              <p id="gameFeedbackLine" style="margin:4px 0 0; font-size:0.94rem; color:var(--paper);"></p>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button type="button" id="btnReplayGame" class="btn btn-tangerine btn-sm">Tập lại lượt nữa</button>
+              <a href="#ve-encore" class="game-btn-dark" style="text-decoration:none; display:inline-flex; align-items:center;">Nhận vé Encore ↓</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         7. QUÀ CUỐI — VÉ ENCORE CỦA HAI ĐỨA (CANVAS 1600 × 720 PX) & NẮP HỘP
+         ====================================================================== -->
+    <section id="ve-encore" class="ticket-section">
+      <div class="container">
+        <div class="section-head-row">
+          <div>
+            <span class="section-kicker">Quà cuối ở đáy hộp · 1600 × 720 px</span>
+            <h2 class="section-title">Vé Encore của hai đứa</h2>
+            <p id="ticketModeNote" style="margin:6px 0 0; color:var(--ink-muted);">
+              Bạn chưa chơi thử nhịp nên đây là <strong>Vé khách ghé chơi</strong>. Chơi xong một lượt, đôi giày trên vé sẽ lưu đúng tư thế cuối cùng của bạn.
+            </p>
+          </div>
+        </div>
+
+        <div class="ticket-stage">
+          <div class="ticket-canvas-frame">
+            <canvas
+              id="ticketPreviewCanvas"
+              width="800"
+              height="360"
+              aria-label="Bản xem trước Vé Encore sau giờ học của Hà Thị Minh Anh"
+            ></canvas>
+          </div>
+
+          <div class="ticket-controls-bar">
+            <div class="guest-input-group">
+              <label for="guestNameInput">Tên của bạn in trên vé (hỗ trợ tiếng Việt có dấu)</label>
+              <input
+                type="text"
+                id="guestNameInput"
+                maxlength="32"
+                placeholder="Bạn cùng bàn"
+                value=""
+              />
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button type="button" id="btnDownloadTicket" class="btn btn-cobalt">Lưu vé PNG</button>
+              <a href="#giu-nhip" class="btn btn-paper">Chơi giữ nhịp ↑</a>
+            </div>
+          </div>
+          <p id="ticketStatusMsg" class="hand-note" style="text-align:center; margin:0; color:var(--cobalt);" aria-live="polite"></p>
+        </div>
+
+        <!-- Lời cuối dưới nắp hộp album -->
+        <footer class="album-lid-closing">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.9;">
+            <svg class="ma-star" width="16" height="16" viewBox="0 0 28 28" aria-hidden="true">
+              <path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="#FF794C" />
+            </svg>
+            <span>Dưới nắp hộp album · 12A10</span>
+          </div>
+          <p id="closingLidText"></p>
+          <div class="closing-signature">
+            <span style="font-style:italic; font-weight:500;">Bản của Minh Anh</span>
+            <span>— Minh Anh.</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- Nút trượt mượt lên đầu trang -->
+  <button type="button" id="btnScrollTop" class="scroll-top-btn" aria-label="Trượt lên đầu trang">
+    <span aria-hidden="true">↑</span>
+    <span>Lên đầu trang</span>
+  </button>
+
+  <!-- Trình xem ảnh CORTIS lớn (Lightbox) -->
+  <div id="lightboxModal" class="lightbox-modal" hidden role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+    <div class="lightbox-dialog">
+      <div class="lightbox-head">
+        <strong id="lightboxTitle" style="font-size:0.95rem;">Ô 01</strong>
+        <button type="button" id="btnCloseLightbox" class="btn btn-paper btn-sm">Đóng (Esc)</button>
+      </div>
+      <div class="lightbox-stage">
+        <img id="lightboxImg" src="" alt="" />
+        <div id="lightboxBrokenBox" style="display:none; text-align:center; color:var(--paper); padding:24px;">
+          <p id="lightboxBrokenName" style="margin:0 0 10px; font-weight:700;"></p>
+          <a id="lightboxOriginalLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-tangerine btn-sm">Mở ảnh gốc ↗</a>
+        </div>
+      </div>
+      <div class="lightbox-foot">
+        <p id="lightboxNote" class="hand-note" style="margin:0; max-width:52ch; color:var(--ink);"></p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" id="btnPrevCard" class="btn btn-paper btn-sm">← Ảnh trước</button>
+          <button type="button" id="btnNextCard" class="btn btn-paper btn-sm">Ảnh sau →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       1. VÙNG CẤU HÌNH DỄ SỬA (ĐƯỜNG DẪN ẢNH, GHI CHÚ & NỘI DUNG CÁ NHÂN)
+       ========================================================================== */
+    const CONFIG = {
+      fullName: "Hà Thị Minh Anh",
+      className: "12A10",
+      school: "Trường THPT DakMil",
+      assets: {
+        portrait: "assets/minh-anh.jpg",
+        portraitFocus: "50% 20%",
+        schoolLogo: "assets/logo-truong.png"
+      },
+      heroGreeting: "“Bạn đến đúng lúc ghê. Mình vừa xếp xong bốn tấm card, còn chiếc đĩa thì chưa biết nên mở mặt nào trước.”",
+      booklet: {
+        sideA: [
+          "Mình là Hà Thị Minh Anh. Trong lớp, mình hay được giao phần nghĩ tên cho bài thuyết trình. Có lần nhóm đã làm xong gần hết nội dung mà mình vẫn đang cân nhắc hai cái tiêu đề. Cuối cùng cả nhóm chọn cái đầu tiên. Chuyện này xảy ra hơi nhiều lần rồi.",
+          "Mình thích ngồi cạnh những bạn kể chuyện có đầu có cuối, dù chính mình kể tới giữa lại hay chen câu ‘à khoan, phải kể từ hôm qua’. Một ngày đi học vui với mình thường có một tiết làm việc nhóm ăn ý và một quãng đường xuống căn tin đủ dài để nghe hết câu chuyện."
+        ],
+        sideANote: "“Có thể cho mượn bút. Nhớ trả nắp. Mình đã có đủ ba cây mất nắp rồi.”",
+        sideB: [
+          "Tan học, mình thường nhét một bên tai nghe vào tai, bên còn lại để dành phòng khi bạn đi cạnh muốn nghe chung. Mình thích K-pop từ những chuyện rất nhỏ: một nhịp trống làm mình quay lại nghe lần hai, một màu áo hợp với màu của cả sân khấu, hay cái cảm giác hai đứa cùng quay đầu nhìn nhau vì nhận ra bài ngay từ đoạn mở đầu.",
+          "Còn CORTIS thì có hẳn một trang riêng trong binder của mình. Mình đã thử đổi thứ tự bốn tấm ít nhất năm lần. Lần nào xếp xong cũng tuyên bố đây là bản cuối."
+        ],
+        sideBNote: "“Tám nhịp đầu: ổn. Nhịp thứ chín: tại sao mình lại quay ra cửa?”",
+        foldedNote: "“Trước khi hết năm lớp 12, mình muốn tự dựng một đoạn nhảy ngắn với mấy đứa bạn. Chỉ cần xem lại mà nhớ được hôm tập cả nhóm cười ở đoạn nào là đủ.”"
+      },
+      career: {
+        heading: "Truyền thông Sáng tạo & Sản xuất Nội dung Giải trí",
+        badge: "Định hướng · Creative Producer",
+        essay: [
+          "Nếu được chọn một công việc cho những năm sau này, mình muốn theo đuổi ngành Truyền thông Sáng tạo và Sản xuất Nội dung Giải trí. Mọi thứ bắt đầu từ những thói quen rất nhỏ thời cấp ba: mình hay ngồi nghĩ tên thật kêu cho bài thuyết trình của nhóm, loay hoay xếp đi xếp lại bốn tấm ảnh CORTIS trong binder sao cho thuận mắt, rồi tưởng tượng cả năm lớp 12 của mình như một chiếc album vật lý có đủ mặt A, mặt B.",
+          "Mình nhận ra bản thân không chỉ thích làm khán giả đứng dưới cổ vũ, mà còn muốn đứng sau cánh gà góp phần tạo nên câu chuyện, màu sắc và nhịp điệu cho một sản phẩm nghệ thuật. Dù bây giờ tập nhảy đến nhịp thứ chín vẫn còn hay quay nhầm bên, mình tin sự tỉ mỉ với từng chi tiết nhỏ sẽ giúp mình làm ra những dự án truyền thông thật gần gũi, vui vẻ và mang dấu ấn riêng."
+        ],
+        steps: [
+          {
+            num: "01",
+            title: "Kể chuyện bằng concept, tên gọi và bố cục thị giác",
+            body: "Tập đặt tiêu đề ngắn gọn nhưng gợi được đúng không khí của bài thuyết trình, poster hay một dự án nhỏ. Giữ thói quen để ý bảng màu, tỉ lệ và thứ tự xuất hiện của từng khung hình."
+          },
+          {
+            num: "02",
+            title: "Cảm nhịp âm nhạc và tổ chức sản phẩm giải trí",
+            body: "Từ sở thích nghe K-pop và tập nhảy cùng bạn bè, mình học cách nhận ra vì sao một đoạn mở đầu, một lần đổi đội hình hay màu trang phục lại khiến khán giả nhớ mãi."
+          },
+          {
+            num: "03",
+            title: "Làm việc nhóm ăn ý và biến ý tưởng thành sản phẩm thật",
+            body: "Rèn khả năng lên kế hoạch, phân vai và giữ tinh thần thoải mái cho cả nhóm — bắt đầu từ những dự án nhỏ ngay trong năm lớp 12 ở Trường THPT DakMil."
+          }
+        ]
+      },
+      cortisCards: [
+        {
+          id: "cortis-01",
+          slot: "Ô 01",
+          title: "Scene 1 · Khung 01",
+          url: "https://ibighit.com/public/cor/images/cor/discography/cor/color-outside-the-lines/photo/image_01.jpg",
+          note: "“Tấm mình đặt vào đầu tiên, nên dù đổi thứ tự mấy lần nó vẫn hay quay về ô này.”"
+        },
+        {
+          id: "cortis-02",
+          slot: "Ô 02",
+          title: "Scene 1 · Khung 02",
+          url: "https://ibighit.com/public/cor/images/cor/discography/cor/color-outside-the-lines/photo/image_02.jpg",
+          note: "“Hôm định dọn thư mục ảnh, mình dừng ở đây lâu đến mức quên luôn đang dọn.”"
+        },
+        {
+          id: "cortis-03",
+          slot: "Ô 03",
+          title: "Scene 2 · Khung 01",
+          url: "https://ibighit.com/public/cor/images/cor/discography/cor/color-outside-the-lines/photo2/image_01.jpg",
+          note: "“Tấm này mình sẽ đưa bạn xem đầu tiên nếu bạn hỏi binder có gì hay.”"
+        },
+        {
+          id: "cortis-04",
+          slot: "Ô 04",
+          title: "Scene 3 · Khung 01",
+          url: "https://ibighit.com/public/cor/images/cor/discography/cor/color-outside-the-lines/photo3/image_01.jpg",
+          note: "“Ô cuối từng được chừa để dành. Ừ thì mình đã dành được đúng một buổi.”"
+        }
+      ],
+      closingLidText: "“Nếu mai gặp mình ở hành lang mà chưa biết chào gì, cứ hỏi: ‘Ê, nhịp thứ chín sao rồi?’ Mình biết ngay bạn đã ghé đây.”"
+    };
+
+    const STORAGE_COVER_KEY = "minhAnh_cortis_cover_id_v1";
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ==========================================================================
+       2. HIỆU ỨNG TRƯỢT LÊN XUỐNG MƯỢT (CUỘN TRANG & MỞ/ĐÓNG MẨU GIẤY)
+       ========================================================================== */
+    let activeScrollRaf = null;
+
+    function stopSmoothScroll() {
+      if (activeScrollRaf !== null) {
+        cancelAnimationFrame(activeScrollRaf);
+        activeScrollRaf = null;
+      }
+    }
+
+    window.addEventListener("wheel", stopSmoothScroll, { passive: true });
+    window.addEventListener("touchstart", stopSmoothScroll, { passive: true });
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollToY(targetY, onDone) {
+      stopSmoothScroll();
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const destY = Math.max(0, Math.min(maxScroll, targetY));
+
+      if (prefersReducedMotion) {
+        window.scrollTo(0, destY);
+        if (onDone) onDone();
+        return;
+      }
+
+      const startY = window.scrollY;
+      const dist = destY - startY;
+      if (Math.abs(dist) < 2) {
+        if (onDone) onDone();
+        return;
+      }
+
+      const dur = Math.min(880, Math.max(440, Math.abs(dist) * 0.46));
+      const t0 = performance.now();
+
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        window.scrollTo(0, startY + dist * easeInOutCubic(p));
+        if (p < 1) {
+          activeScrollRaf = requestAnimationFrame(step);
+        } else {
+          activeScrollRaf = null;
+          if (onDone) onDone();
+        }
+      };
+
+      activeScrollRaf = requestAnimationFrame(step);
+    }
+
+    function smoothScrollToElement(el) {
+      if (!el) return;
+      const bar = document.querySelector(".top-bar");
+      const offset = (bar ? bar.offsetHeight : 0) + 12;
+      const targetY = el.getBoundingClientRect().top + window.scrollY - offset;
+
+      smoothScrollToY(targetY, () => {
+        if (el.tagName === "SECTION" && !prefersReducedMotion) {
+          el.classList.remove("is-scroll-target");
+          void el.offsetWidth;
+          el.classList.add("is-scroll-target");
+        }
+      });
+    }
+
+    function smoothSlideToggle(el, open) {
+      if (!el) return;
+      if (prefersReducedMotion) {
+        el.hidden = !open;
+        return;
+      }
+      if (el._slideEnd) {
+        el.removeEventListener("transitionend", el._slideEnd);
+        el._slideEnd = null;
+      }
+      if (open) {
+        el.hidden = false;
+        const h = el.scrollHeight;
+        el.style.height = "0px";
+        el.style.opacity = "0";
+        el.style.transition = "height 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 240ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = `${h}px`;
+          el.style.opacity = "1";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      } else {
+        el.style.height = `${el.scrollHeight}px`;
+        el.style.opacity = "1";
+        el.style.transition = "height 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = "0px";
+          el.style.opacity = "0";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.hidden = true;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      }
+    }
+
+    /* ==========================================================================
+       3. NẠP DỮ LIỆU CHÍNH, BOOKLET & ĐỊNH HƯỚNG NGHỀ NGHIỆP
+       ========================================================================== */
+    function hydrateStaticContent() {
+      document.getElementById("heroName").textContent = CONFIG.fullName;
+      document.getElementById("heroClassSchool").textContent = `Lớp ${CONFIG.className} · ${CONFIG.school}`;
+      document.getElementById("heroGreeting").textContent = CONFIG.heroGreeting;
+      document.getElementById("closingLidText").textContent = CONFIG.closingLidText;
+
+      const pWin = document.getElementById("portraitWindow");
+      const pImg = document.getElementById("portraitImg");
+      pImg.style.objectPosition = CONFIG.assets.portraitFocus;
+      pImg.addEventListener("error", () => pWin.classList.add("is-missing"));
+      pImg.addEventListener("load", () => pWin.classList.remove("is-missing"));
+      pImg.src = CONFIG.assets.portrait;
+
+      const logoWrap = document.getElementById("schoolLogoWrap");
+      const logoImg = document.getElementById("schoolLogoImg");
+      logoImg.addEventListener("error", () => logoWrap.classList.add("is-missing"));
+      logoImg.addEventListener("load", () => logoWrap.classList.remove("is-missing"));
+      logoImg.src = CONFIG.assets.schoolLogo;
+
+      const fillParas = (id, list) => {
+        const el = document.getElementById(id);
+        el.innerHTML = "";
+        list.forEach((t) => {
+          const p = document.createElement("p");
+          p.textContent = t;
+          el.appendChild(p);
+        });
+      };
+
+      fillParas("sideAParagraphs", CONFIG.booklet.sideA);
+      fillParas("sideBParagraphs", CONFIG.booklet.sideB);
+      document.getElementById("sideANote").textContent = CONFIG.booklet.sideANote;
+      document.getElementById("sideBNote").textContent = CONFIG.booklet.sideBNote;
+      document.getElementById("foldedNoteText").textContent = CONFIG.booklet.foldedNote;
+
+      // Định hướng nghề nghiệp (~165 chữ + 3 mục accordion trượt mượt)
+      document.getElementById("careerHeading").textContent = CONFIG.career.heading;
+      document.getElementById("careerBadge").textContent = CONFIG.career.badge;
+      fillParas("careerEssayWrap", CONFIG.career.essay);
+
+      const stepsWrap = document.getElementById("careerStepsWrap");
+      stepsWrap.innerHTML = "";
+      CONFIG.career.steps.forEach((st, idx) => {
+        const openInit = idx === 0;
+        const card = document.createElement("article");
+        card.className = `career-step${openInit ? " is-open" : ""}`;
+        const panelId = `careerStepPanel_${idx}`;
+        card.innerHTML = `
+          <button type="button" class="career-step-trigger" aria-expanded="${openInit}" aria-controls="${panelId}">
+            <span class="career-step-title-wrap">
+              <span class="career-step-num">${st.num}</span>
+              <span class="career-step-title">${st.title}</span>
+            </span>
+            <span class="career-step-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div id="${panelId}" class="career-step-panel" ${openInit ? "" : "hidden"}>
+            <div class="career-step-inner">${st.body}</div>
+          </div>
+        `;
+        const trig = card.querySelector(".career-step-trigger");
+        const panel = card.querySelector(".career-step-panel");
+        trig.addEventListener("click", () => {
+          const opening = panel.hidden;
+          card.classList.toggle("is-open", opening);
+          trig.setAttribute("aria-expanded", String(opening));
+          smoothSlideToggle(panel, opening);
+        });
+        stepsWrap.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       4. TƯƠNG TÁC ĐĨA BẠC & TAI GIẤY BOOKLET (MẶT A / MẶT B)
+       ========================================================================== */
+    const cdDiscTrigger = document.getElementById("cdDiscTrigger");
+    const heroCdStatus = document.getElementById("heroCdStatus");
+    const tabSideA = document.getElementById("tabSideA");
+    const tabSideB = document.getElementById("tabSideB");
+    const panelSideA = document.getElementById("panelSideA");
+    const panelSideB = document.getElementById("panelSideB");
+
+    function selectBookletSide(side) {
+      const isB = side === "B";
+      tabSideA.setAttribute("aria-selected", String(!isB));
+      tabSideB.setAttribute("aria-selected", String(isB));
+      panelSideA.hidden = isB;
+      panelSideB.hidden = !isB;
+      cdDiscTrigger.classList.toggle("is-side-b", isB);
+      cdDiscTrigger.setAttribute("aria-pressed", String(isB));
+    }
+
+    cdDiscTrigger.addEventListener("click", () => {
+      const openingB = !cdDiscTrigger.classList.contains("is-side-b");
+      selectBookletSide(openingB ? "B" : "A");
+      if (openingB) {
+        heroCdStatus.textContent = "Đĩa đã dừng ở chữ B — đang lật sang “Minh Anh sau tiếng trống”…";
+        setTimeout(() => {
+          smoothScrollToElement(document.getElementById("booklet"));
+        }, prefersReducedMotion ? 0 : 480);
+      } else {
+        heroCdStatus.textContent = "Đĩa đã trượt về lại bìa. Bạn có thể mở Mặt A hoặc chạm đĩa lần nữa.";
+      }
+    });
+
+    document.getElementById("btnOpenSideA").addEventListener("click", () => {
+      selectBookletSide("A");
+    });
+
+    tabSideA.addEventListener("click", () => selectBookletSide("A"));
+    tabSideB.addEventListener("click", () => selectBookletSide("B"));
+
+    [tabSideA, tabSideB].forEach((tab) => {
+      tab.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+          e.preventDefault();
+          selectBookletSide("B");
+          tabSideB.focus();
+        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+          e.preventDefault();
+          selectBookletSide("A");
+          tabSideA.focus();
+        }
+      });
+    });
+
+    const btnFoldedNote = document.getElementById("btnFoldedNote");
+    const foldedNoteBody = document.getElementById("foldedNoteBody");
+    btnFoldedNote.addEventListener("click", () => {
+      const opening = foldedNoteBody.hidden;
+      btnFoldedNote.setAttribute("aria-expanded", String(opening));
+      smoothSlideToggle(foldedNoteBody, opening);
+    });
+
+    /* ==========================================================================
+       5. BINDER CORTIS — 4 ẢNH THẬT, LẬT GHI CHÚ, LIGHTBOX, CHỌN BÌA & LOCALSTORAGE
+       ========================================================================== */
+    let selectedCoverId = CONFIG.cortisCards[0].id;
+    try {
+      const saved = localStorage.getItem(STORAGE_COVER_KEY);
+      if (saved && CONFIG.cortisCards.some((c) => c.id === saved)) {
+        selectedCoverId = saved;
+      }
+    } catch (_) {}
+
+    let isBinderClosed = false;
+    let activeLightboxIdx = 0;
+    let lastFocusedPocketEl = null;
+
+    const binderPocketGrid = document.getElementById("binderPocketGrid");
+    const binderOpenBook = document.getElementById("binderOpenBook");
+    const binderClosedCover = document.getElementById("binderClosedCover");
+    const btnToggleBinder = document.getElementById("btnToggleBinder");
+    const selectedCoverNameEl = document.getElementById("selectedCoverName");
+    const closedCoverImg = document.getElementById("closedCoverImg");
+    const closedCoverCaption = document.getElementById("closedCoverCaption");
+
+    const starSvgSmall = `<svg class="ma-star" width="14" height="14" viewBox="0 0 28 28" aria-hidden="true"><path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="currentColor" /></svg>`;
+
+    function syncSelectedCoverUI() {
+      const card = CONFIG.cortisCards.find((c) => c.id === selectedCoverId) || CONFIG.cortisCards[0];
+      selectedCoverNameEl.textContent = `${card.slot} · ${card.title}`;
+      closedCoverImg.src = card.url;
+      closedCoverImg.alt = `${card.slot} — ${card.title}`;
+      closedCoverCaption.textContent = `${card.slot} · ${card.title}`;
+
+      binderPocketGrid.querySelectorAll("[data-cover-btn]").forEach((btn) => {
+        const isSel = btn.getAttribute("data-cover-btn") === selectedCoverId;
+        btn.classList.toggle("is-cover-selected", isSel);
+        btn.setAttribute("aria-pressed", String(isSel));
+        btn.innerHTML = `${starSvgSmall}<span>${isSel ? "Đang làm bìa" : "Chọn làm bìa binder"}</span>`;
+      });
+
+      binderPocketGrid.querySelectorAll("[data-pocket-star]").forEach((badge) => {
+        badge.hidden = badge.getAttribute("data-pocket-star") !== selectedCoverId;
+      });
+    }
+
+    function renderBinderPockets() {
+      binderPocketGrid.innerHTML = "";
+      CONFIG.cortisCards.forEach((card, idx) => {
+        const pocket = document.createElement("article");
+        pocket.className = "card-pocket";
+
+        pocket.innerHTML = `
+          <div class="pocket-mouth-label">
+            <span>${card.slot} · ${card.title}</span>
+            <span data-pocket-star="${card.id}" hidden title="Ảnh bìa đang chọn" style="color:var(--tangerine);">
+              <svg class="ma-star" width="16" height="16" viewBox="0 0 28 28" aria-hidden="true">
+                <path d="M13 2 L15.5 11.2 L26 13.5 L15.5 15.8 L13 22 L10.8 15.8 L4 13.5 L10.8 11.2 Z" fill="#FF794C" />
+              </svg>
+            </span>
+          </div>
+
+          <div class="pocket-card-stage" tabindex="0" role="button" aria-label="Rút ${card.slot} ${card.title} để xem ảnh lớn">
+            <img src="${card.url}" alt="CORTIS — ${card.slot} ${card.title}" loading="lazy" />
+            <span class="plastic-glare" aria-hidden="true"></span>
+
+            <div class="pocket-img-fallback">
+              <strong>${card.slot} · ${card.title}</strong>
+              <span style="font-size:0.74rem; color:var(--ink-muted);">Không tải được ảnh (kiểm tra mạng).</span>
+              <a href="${card.url}" target="_blank" rel="noopener noreferrer" class="btn btn-paper btn-sm" style="min-height:30px; font-size:0.74rem;">Mở ảnh gốc ↗</a>
+            </div>
+
+            <div class="pocket-note-back" hidden>
+              <div>
+                <div style="font-size:0.72rem; font-weight:700; color:var(--cobalt); margin-bottom:6px;">MẶT SAU · ${card.slot}</div>
+                <p class="hand-note" style="margin:0; color:var(--ink); font-size:0.86rem;">${card.note}</p>
+              </div>
+              <span style="font-size:0.72rem; font-style:italic; color:var(--ink-muted);">— Minh Anh</span>
+            </div>
+          </div>
+
+          <div class="pocket-actions">
+            <button type="button" class="pocket-btn" data-flip-btn aria-pressed="false">Lật xem ghi chú</button>
+            <button type="button" class="pocket-btn" data-cover-btn="${card.id}" aria-pressed="false"></button>
+          </div>
+        `;
+
+        const stage = pocket.querySelector(".pocket-card-stage");
+        const img = stage.querySelector("img");
+        const noteBack = stage.querySelector(".pocket-note-back");
+        const flipBtn = pocket.querySelector("[data-flip-btn]");
+        const coverBtn = pocket.querySelector("[data-cover-btn]");
+
+        img.addEventListener("error", () => stage.classList.add("is-broken"));
+        img.addEventListener("load", () => stage.classList.remove("is-broken"));
+
+        const pullAndOpenLightbox = () => {
+          if (!noteBack.hidden) {
+            noteBack.hidden = true;
+            flipBtn.setAttribute("aria-pressed", "false");
+            flipBtn.textContent = "Lật xem ghi chú";
+            return;
+          }
+          lastFocusedPocketEl = stage;
+          stage.classList.add("is-pulling");
+          setTimeout(() => {
+            stage.classList.remove("is-pulling");
+            openLightbox(idx);
+          }, prefersReducedMotion ? 0 : 180);
+        };
+
+        stage.addEventListener("click", (e) => {
+          if (e.target.closest("a")) return;
+          pullAndOpenLightbox();
+        });
+
+        stage.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            pullAndOpenLightbox();
+          }
+        });
+
+        flipBtn.addEventListener("click", () => {
+          const showingBack = noteBack.hidden;
+          noteBack.hidden = !showingBack;
+          flipBtn.setAttribute("aria-pressed", String(showingBack));
+          flipBtn.textContent = showingBack ? "Xem mặt trước" : "Lật xem ghi chú";
+        });
+
+        coverBtn.addEventListener("click", () => {
+          selectedCoverId = card.id;
+          try {
+            localStorage.setItem(STORAGE_COVER_KEY, selectedCoverId);
+          } catch (_) {}
+          syncSelectedCoverUI();
+        });
+
+        binderPocketGrid.appendChild(pocket);
+      });
+
+      syncSelectedCoverUI();
+    }
+
+    function setBinderClosed(closed) {
+      isBinderClosed = closed;
+      binderOpenBook.hidden = closed;
+      binderClosedCover.hidden = !closed;
+      btnToggleBinder.textContent = closed ? "Mở binder" : "Khép binder";
+    }
+
+    btnToggleBinder.addEventListener("click", () => setBinderClosed(!isBinderClosed));
+    binderClosedCover.addEventListener("click", () => setBinderClosed(false));
+    binderClosedCover.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setBinderClosed(false);
+      }
+    });
+
+    // Lightbox trình xem lớn
+    const lightboxModal = document.getElementById("lightboxModal");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxNote = document.getElementById("lightboxNote");
+    const lightboxBrokenBox = document.getElementById("lightboxBrokenBox");
+    const lightboxBrokenName = document.getElementById("lightboxBrokenName");
+    const lightboxOriginalLink = document.getElementById("lightboxOriginalLink");
+
+    function showLightboxCard(index) {
+      activeLightboxIdx = (index + CONFIG.cortisCards.length) % CONFIG.cortisCards.length;
+      const card = CONFIG.cortisCards[activeLightboxIdx];
+      lightboxTitle.textContent = `${card.slot} — ${card.title}`;
+      lightboxNote.textContent = card.note;
+      lightboxBrokenBox.style.display = "none";
+      lightboxImg.style.display = "block";
+      lightboxImg.alt = `CORTIS ${card.slot} ${card.title}`;
+      lightboxBrokenName.textContent = `${card.slot} · ${card.title}`;
+      lightboxOriginalLink.href = card.url;
+
+      lightboxImg.onerror = () => {
+        lightboxImg.style.display = "none";
+        lightboxBrokenBox.style.display = "block";
+      };
+      lightboxImg.src = card.url;
+    }
+
+    function openLightbox(index) {
+      showLightboxCard(index);
+      lightboxModal.hidden = false;
+      document.getElementById("btnCloseLightbox").focus();
+    }
+
+    function closeLightbox() {
+      lightboxModal.hidden = true;
+      if (lastFocusedPocketEl) lastFocusedPocketEl.focus();
+    }
+
+    document.getElementById("btnCloseLightbox").addEventListener("click", closeLightbox);
+    document.getElementById("btnPrevCard").addEventListener("click", () => showLightboxCard(activeLightboxIdx - 1));
+    document.getElementById("btnNextCard").addEventListener("click", () => showLightboxCard(activeLightboxIdx + 1));
+    lightboxModal.addEventListener("click", (e) => { if (e.target === lightboxModal) closeLightbox(); });
+
+    window.addEventListener("keydown", (e) => {
+      if (lightboxModal.hidden) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showLightboxCard(activeLightboxIdx - 1);
+      if (e.key === "ArrowRight") showLightboxCard(activeLightboxIdx + 1);
+    });
+
+    /* ==========================================================================
+       6. MINI GAME — “GIỮ NHỊP CHO MINH ANH” (WEB AUDIO + NHỊP THỨ 9 ĐẶC BIỆT)
+       ========================================================================== */
+    const rhythmCanvas = document.getElementById("rhythmCanvas");
+    const rCtx = rhythmCanvas.getContext("2d");
+    const beatLamps = Array.from(document.querySelectorAll(".beat-lamp"));
+    const gameHudText = document.getElementById("gameHudText");
+    const btnSlowMode = document.getElementById("btnSlowMode");
+    const btnSoundToggle = document.getElementById("btnSoundToggle");
+    const btnStartGame = document.getElementById("btnStartGame");
+    const btnLaneLeft = document.getElementById("btnLaneLeft");
+    const btnLaneRight = document.getElementById("btnLaneRight");
+    const gameResultBox = document.getElementById("gameResultBox");
+    const gameScoreHeadline = document.getElementById("gameScoreHeadline");
+    const gameFeedbackLine = document.getElementById("gameFeedbackLine");
+
+    // Mẫu nhịp có chủ ý: 4 nhịp đếm vào (beat 0..3), 8 nhịp đầu đổi bên đều (beat 4..11),
+    // khoảng nghỉ rõ ràng (beat 12..13), rồi NHỊP THỨ 9 đặc biệt (beat 14) và cụm kết (beat 15..21).
+    const CHART_TEMPLATE = [
+      { beat: 4, lane: 0, stepType: "left" },
+      { beat: 5, lane: 1, stepType: "right" },
+      { beat: 6, lane: 0, stepType: "left" },
+      { beat: 7, lane: 1, stepType: "right" },
+      { beat: 8, lane: 0, stepType: "forward" },
+      { beat: 9, lane: 1, stepType: "forward" },
+      { beat: 10, lane: 0, stepType: "left" },
+      { beat: 11, lane: 1, stepType: "right" },
+      // Nghỉ 2 phách (12, 13) trước khi đổi hướng ở nhịp thứ 9
+      { beat: 14, lane: 0, stepType: "turn9", isNinth: true },
+      { beat: 15, lane: 0, stepType: "left" },
+      { beat: 16, lane: 1, stepType: "right" },
+      { beat: 17, lane: 0, stepType: "forward" },
+      { beat: 18, lane: 1, stepType: "right" },
+      { beat: 19, lane: 0, stepType: "left" },
+      { beat: 20, lane: 1, stepType: "forward" },
+      { beat: 21, lane: 1, stepType: "finish" }
+    ];
+
+    const REST_BEATS = [12, 13];
+
+    const gameState = {
+      phase: "idle", // idle | running | paused | finished
+      slowMode: false,
+      soundEnabled: false,
+      audioCtx: null,
+      bpm: 86,
+      startTimeSec: 0,
+      pausedAtBeat: 0,
+      lastScheduledBeat: -1,
+      notes: [],
+      hits: 0,
+      total: CHART_TEMPLATE.length,
+      ninthOutcome: "pending", // pending | hit | miss
+      shoePose: { x: 0, y: 0, angle: 0, leftOffset: 0, rightOffset: 0, slipTimer: 0, label: "Đứng sẵn sàng" },
+      finalShoePose: { angle: 0, leftOffset: 0, rightOffset: 0, ninthHit: false, played: false, hits: 0, total: CHART_TEMPLATE.length },
+      calloutText: "",
+      calloutUntil: 0,
+      laneFlash: [0, 0],
+      rafId: null
+    };
+
+    function ensureAudioCtx() {
+      if (!gameState.audioCtx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (AC) gameState.audioCtx = new AC();
+      }
+      if (gameState.audioCtx && gameState.audioCtx.state === "suspended") {
+        gameState.audioCtx.resume();
+      }
+    }
+
+    function playDrumSound(kind, when) {
+      if (!gameState.soundEnabled || !gameState.audioCtx) return;
+      const ctx = gameState.audioCtx;
+      const t = when || ctx.currentTime;
+
+      if (kind === "kick") {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(145, t);
+        osc.frequency.exponentialRampToValueAtTime(44, t + 0.12);
+        gain.gain.setValueAtTime(0.42, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.15);
+      } else if (kind === "clap") {
+        const bufferSize = Math.floor(ctx.sampleRate * 0.08);
+        const buf = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.35));
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        const filter = ctx.createBiquadFilter();
+        filter.type = "bandpass";
+        filter.frequency.value = 1400;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.24, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+        src.connect(filter).connect(gain).connect(ctx.destination);
+        src.start(t);
+      } else if (kind === "hihat") {
+        const bufferSize = Math.floor(ctx.sampleRate * 0.035);
+        const buf = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.25));
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        const hp = ctx.createBiquadFilter();
+        hp.type = "highpass";
+        hp.frequency.value = 6500;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.14, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.035);
+        src.connect(hp).connect(gain).connect(ctx.destination);
+        src.start(t);
+      } else if (kind === "tick") {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(760, t);
+        gain.gain.setValueAtTime(0.15, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.06);
+      }
+    }
+
+    function getCurrentClockSec() {
+      if (gameState.soundEnabled && gameState.audioCtx) return gameState.audioCtx.currentTime;
+      return performance.now() / 1000;
+    }
+
+    function getBeatDurationSec() {
+      return 60 / (gameState.slowMode ? 64 : 86);
+    }
+
+    function applyShoeStep(stepType, isHit) {
+      const p = gameState.shoePose;
+      if (stepType === "turn9") {
+        if (isHit) {
+          p.angle = -Math.PI / 2;
+          p.x = -12;
+          p.y = -6;
+          p.leftOffset = -6;
+          p.rightOffset = 6;
+          p.slipTimer = 0;
+          p.label = "Xoay đúng hướng!";
+          gameState.ninthOutcome = "hit";
+          gameState.calloutText = "Lần này đúng bên rồi!";
+          gameState.calloutUntil = performance.now() + 2100;
+        } else {
+          // Hụt nhịp 9: một chiếc giày lỡ xoay sang bên kia rồi trở về
+          p.angle = 0.2;
+          p.slipTimer = 1.0;
+          p.label = "Lỡ quay ra cửa…";
+          gameState.ninthOutcome = "miss";
+          gameState.calloutText = "Ối, chiếc giày phải vừa quay nhầm bên!";
+          gameState.calloutUntil = performance.now() + 1700;
+        }
+        return;
+      }
+
+      if (!isHit) return;
+      if (stepType === "left") {
+        p.x = -26; p.y = 0; p.leftOffset = -10; p.rightOffset = 6; p.angle = -0.14; p.label = "Bước trái";
+      } else if (stepType === "right") {
+        p.x = 26; p.y = 0; p.leftOffset = 6; p.rightOffset = -10; p.angle = 0.14; p.label = "Bước phải";
+      } else if (stepType === "forward") {
+        p.x = 0; p.y = -20; p.leftOffset = -8; p.rightOffset = 8; p.angle = 0; p.label = "Bước tiến";
+      } else if (stepType === "finish") {
+        p.x = 0; p.y = -8; p.leftOffset = -10; p.rightOffset = 10; p.angle = -0.22; p.label = "Tư thế kết bài";
+      }
+    }
+
+    function drawTopDownShoes(ctx, cx, cy, scale, pose) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(scale, scale);
+      ctx.rotate(pose.angle || 0);
+
+      const drawOneShoe = (ox, oy, extraAngle, accent) => {
+        ctx.save();
+        ctx.translate(ox, oy);
+        ctx.rotate(extraAngle);
+        // Đế giày nhìn từ trên xuống
+        ctx.fillStyle = "#F5F1E6";
+        ctx.strokeStyle = "#202126";
+        ctx.lineWidth = 2.4;
+        ctx.beginPath();
+        ctx.roundRect(-13, -28, 26, 56, [13, 13, 10, 10]);
+        ctx.fill();
+        ctx.stroke();
+
+        // Mũi giày xanh cobalt & dây giày cam
+        ctx.fillStyle = accent;
+        ctx.beginPath();
+        ctx.roundRect(-9, -24, 18, 18, [9, 9, 4, 4]);
+        ctx.fill();
+
+        ctx.strokeStyle = "#FF794C";
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        ctx.moveTo(-6, -2); ctx.lineTo(6, 2);
+        ctx.moveTo(6, -2); ctx.lineTo(-6, 2);
+        ctx.moveTo(-6, 6); ctx.lineTo(6, 10);
+        ctx.stroke();
+        ctx.restore();
+      };
+
+      const slipAngle = pose.slipTimer > 0 ? Math.sin(pose.slipTimer * Math.PI) * 1.15 : 0;
+      drawOneShoe(-22, pose.leftOffset || 0, -0.05, "#263ECC");
+      drawOneShoe(22, pose.rightOffset || 0, 0.05 + slipAngle, "#263ECC");
+      ctx.restore();
+    }
+
+    function drawRhythmStage(currentBeat) {
+      const W = rhythmCanvas.width;
+      const H = rhythmCanvas.height;
+      rCtx.clearRect(0, 0, W, H);
+
+      // Nền sàn tập xanh mực
+      rCtx.fillStyle = "#141F3A";
+      rCtx.fillRect(0, 0, W, H);
+
+      // Nửa trái: Sàn tập + vạch băng dính màu kem + đôi giày nhìn từ trên xuống
+      const floorW = 370;
+      rCtx.strokeStyle = "rgba(245, 241, 230, 0.12)";
+      rCtx.lineWidth = 1;
+      for (let x = 28; x < floorW; x += 36) {
+        rCtx.beginPath(); rCtx.moveTo(x, 18); rCtx.lineTo(x, H - 18); rCtx.stroke();
+      }
+      for (let y = 28; y < H; y += 36) {
+        rCtx.beginPath(); rCtx.moveTo(18, y); rCtx.lineTo(floorW - 18, y); rCtx.stroke();
+      }
+
+      // Vạch băng dính chữ T màu kem ở sàn tập
+      const cx = floorW / 2;
+      const cy = H / 2 + 10;
+      rCtx.fillStyle = "#F5F1E6";
+      rCtx.fillRect(cx - 56, cy + 44, 112, 8);
+      rCtx.fillRect(cx - 4, cy - 58, 8, 106);
+
+      // Mũi tên hướng xoay đúng ở nhịp thứ 9 (quay sang trái)
+      rCtx.strokeStyle = "rgba(255, 121, 76, 0.65)";
+      rCtx.lineWidth = 2;
+      rCtx.setLineDash([5, 4]);
+      rCtx.beginPath();
+      rCtx.arc(cx, cy, 78, -Math.PI * 0.25, -Math.PI * 0.85, true);
+      rCtx.stroke();
+      rCtx.setLineDash([]);
+      rCtx.fillStyle = "rgba(245, 241, 230, 0.72)";
+      rCtx.font = "600 12px 'Be Vietnam Pro', sans-serif";
+      rCtx.textAlign = "center";
+      rCtx.fillText("Hướng quay nhịp 9 ←", cx, 42);
+
+      // Vẽ đôi giày Minh Anh
+      const pose = gameState.shoePose;
+      drawTopDownShoes(rCtx, cx + pose.x, cy + pose.y, 1.05, pose);
+
+      // Nhãn bước chân hiện tại
+      rCtx.fillStyle = "rgba(245, 241, 230, 0.85)";
+      rCtx.font = "600 13px 'Be Vietnam Pro', sans-serif";
+      rCtx.fillText(pose.label, cx, H - 22);
+
+      // Nét bút cam cho khoảnh khắc nhịp thứ 9
+      if (performance.now() < gameState.calloutUntil && gameState.calloutText) {
+        rCtx.save();
+        rCtx.fillStyle = "#FF794C";
+        rCtx.font = "italic 700 18px 'Be Vietnam Pro', sans-serif";
+        rCtx.fillText(gameState.calloutText, cx, 72);
+        rCtx.restore();
+      }
+
+      // Vách ngăn sàn tập & đường nhịp
+      rCtx.strokeStyle = "rgba(245, 241, 230, 0.22)";
+      rCtx.lineWidth = 1.5;
+      rCtx.beginPath();
+      rCtx.moveTo(floorW, 18);
+      rCtx.lineTo(floorW, H - 18);
+      rCtx.stroke();
+
+      // Nửa phải: Hai làn Trái / Phải chạy từ trên xuống vạch cố định
+      const trackX = floorW + 40;
+      const trackW = W - trackX - 36;
+      const laneW = trackW / 2;
+      const hitY = H - 72;
+      const pxPerBeat = 86;
+
+      // Nền hai làn
+      for (let l = 0; l < 2; l++) {
+        const lx = trackX + l * laneW;
+        rCtx.fillStyle = gameState.laneFlash[l] > 0 ? "rgba(255, 121, 76, 0.16)" : "rgba(245, 241, 230, 0.04)";
+        rCtx.fillRect(lx + 6, 20, laneW - 12, H - 40);
+        rCtx.strokeStyle = "rgba(245, 241, 230, 0.16)";
+        rCtx.strokeRect(lx + 6, 20, laneW - 12, H - 40);
+
+        rCtx.fillStyle = "rgba(245, 241, 230, 0.65)";
+        rCtx.font = "700 13px 'Be Vietnam Pro', sans-serif";
+        rCtx.textAlign = "center";
+        rCtx.fillText(l === 0 ? "LÀN TRÁI (D)" : "LÀN PHẢI (K)", lx + laneW / 2, 42);
+      }
+
+      // Biểu diễn rõ khoảng nghỉ (beat 12..13) trên đường nhịp
+      const restBottomY = hitY - (REST_BEATS[0] - 0.35 - currentBeat) * pxPerBeat;
+      const restTopY = hitY - (REST_BEATS[1] + 0.35 - currentBeat) * pxPerBeat;
+      if (restBottomY > 20 && restTopY < H - 20) {
+        rCtx.save();
+        rCtx.beginPath();
+        rCtx.rect(trackX + 6, 20, trackW - 12, H - 40);
+        rCtx.clip();
+        rCtx.fillStyle = "rgba(245, 241, 230, 0.09)";
+        rCtx.fillRect(trackX + 8, restTopY, trackW - 16, restBottomY - restTopY);
+        rCtx.strokeStyle = "rgba(245, 241, 230, 0.45)";
+        rCtx.setLineDash([6, 5]);
+        rCtx.strokeRect(trackX + 8, restTopY, trackW - 16, restBottomY - restTopY);
+        rCtx.setLineDash([]);
+        rCtx.fillStyle = "#F5F1E6";
+        rCtx.font = "italic 600 13px 'Be Vietnam Pro', sans-serif";
+        rCtx.textAlign = "center";
+        rCtx.fillText("— KHOẢNG NGHỈ · CHUẨN BỊ ĐỔI HƯỚNG —", trackX + trackW / 2, (restTopY + restBottomY) / 2 + 5);
+        rCtx.restore();
+      }
+
+      // Vạch đánh dấu nhịp cố định màu cam quýt
+      rCtx.fillStyle = "#FF794C";
+      rCtx.fillRect(trackX + 4, hitY - 3, trackW - 8, 6);
+      rCtx.fillStyle = "#F5F1E6";
+      rCtx.font = "600 11px 'Be Vietnam Pro', sans-serif";
+      rCtx.textAlign = "right";
+      rCtx.fillText("CHẠM KHI TÂM QUA VẠCH", trackX + trackW - 10, hitY + 22);
+
+      // Các nốt nhịp
+      rCtx.save();
+      rCtx.beginPath();
+      rCtx.rect(trackX, 20, trackW, H - 40);
+      rCtx.clip();
+
+      for (const note of gameState.notes) {
+        if (note.judged && note.result === "hit") continue;
+        const y = hitY - (note.beat - currentBeat) * pxPerBeat;
+        if (y < 0 || y > H + 30) continue;
+
+        const nx = trackX + note.lane * laneW + laneW / 2;
+        const isNinth = Boolean(note.isNinth);
+
+        rCtx.fillStyle = note.result === "miss"
+          ? "rgba(245, 241, 230, 0.22)"
+          : isNinth
+            ? "#FF794C"
+            : "#F5F1E6";
+        rCtx.strokeStyle = isNinth ? "#F5F1E6" : "#263ECC";
+        rCtx.lineWidth = isNinth ? 3 : 2.5;
+
+        rCtx.beginPath();
+        rCtx.roundRect(nx - 46, y - 16, 92, 32, 6);
+        rCtx.fill();
+        rCtx.stroke();
+
+        rCtx.fillStyle = "#202126";
+        rCtx.font = "700 12px 'Be Vietnam Pro', sans-serif";
+        rCtx.textAlign = "center";
+        rCtx.fillText(isNinth ? "NHỊP 9 ★" : (note.lane === 0 ? "TRÁI" : "PHẢI"), nx, y + 4);
+      }
+      rCtx.restore();
+
+      // Đếm vào 4 nhịp hoặc trạng thái tạm dừng
+      if (gameState.phase === "running" && currentBeat < 4) {
+        const countNum = Math.min(4, Math.floor(Math.max(0, currentBeat)) + 1);
+        rCtx.fillStyle = "rgba(18, 27, 50, 0.62)";
+        rCtx.fillRect(trackX + 20, 110, trackW - 40, 100);
+        rCtx.fillStyle = "#FF794C";
+        rCtx.font = "800 54px 'Barlow Condensed', sans-serif";
+        rCtx.textAlign = "center";
+        rCtx.fillText(String(countNum), trackX + trackW / 2, 168);
+        rCtx.fillStyle = "#F5F1E6";
+        rCtx.font = "600 13px 'Be Vietnam Pro', sans-serif";
+        rCtx.fillText("Đếm vào 4 nhịp…", trackX + trackW / 2, 196);
+      } else if (gameState.phase === "paused") {
+        rCtx.fillStyle = "rgba(18, 27, 50, 0.84)";
+        rCtx.fillRect(0, 0, W, H);
+        rCtx.fillStyle = "#F5F1E6";
+        rCtx.font = "700 22px 'Be Vietnam Pro', sans-serif";
+        rCtx.textAlign = "center";
+        rCtx.fillText("Đã tạm dừng khi chuyển tab", W / 2, H / 2 - 8);
+        rCtx.fillStyle = "#FF794C";
+        rCtx.font = "600 14px 'Be Vietnam Pro', sans-serif";
+        rCtx.fillText("Bấm “Tiếp tục (đếm vào 4 nhịp)” để tập tiếp", W / 2, H / 2 + 22);
+      }
+    }
+
+    function stopGameLoop() {
+      if (gameState.rafId !== null) {
+        cancelAnimationFrame(gameState.rafId);
+        gameState.rafId = null;
+      }
+    }
+
+    function finishGame() {
+      stopGameLoop();
+      gameState.phase = "finished";
+      btnStartGame.textContent = "Tập lại lượt nữa";
+
+      const ratio = gameState.hits / gameState.total;
+      let comment = "“Mình cũng quay nhầm bên suốt. Chơi chậm lại một lượt nhé?”";
+      if (ratio >= 0.78) {
+        comment = "“Mai tập tiếp nha. Lần này mình dám đứng hàng đầu rồi.”";
+      } else if (ratio >= 0.45) {
+        comment = "“Khúc đổi bên hơi cuống, nhưng tụi mình vào lại được.”";
+      }
+
+      gameScoreHeadline.textContent = `Giữ đúng ${gameState.hits} / ${gameState.total} nhịp`;
+      gameFeedbackLine.textContent = comment;
+      gameResultBox.hidden = false;
+      gameHudText.textContent = `Hoàn thành · ${gameState.hits}/${gameState.total} nhịp chính xác`;
+
+      // Lưu tư thế cuối cùng của đôi giày lên Vé Encore
+      gameState.finalShoePose = {
+        angle: gameState.shoePose.angle,
+        leftOffset: gameState.shoePose.leftOffset,
+        rightOffset: gameState.shoePose.rightOffset,
+        ninthHit: gameState.ninthOutcome === "hit",
+        played: true,
+        hits: gameState.hits,
+        total: gameState.total
+      };
+      document.getElementById("ticketModeNote").innerHTML =
+        `Vé đã cập nhật theo lượt vừa chơi: <strong>${gameState.hits}/${gameState.total} nhịp</strong> cùng đúng tư thế đôi giày ở bước cuối cùng.`;
+      renderEncoreTicket(document.getElementById("ticketPreviewCanvas"));
+    }
+
+    function startOrResumeGame(isResume = false) {
+      stopGameLoop();
+      if (gameState.soundEnabled) ensureAudioCtx();
+
+      const beatSec = getBeatDurationSec();
+      if (!isResume) {
+        gameState.notes = CHART_TEMPLATE.map((n) => ({ ...n, judged: false, result: null }));
+        gameState.hits = 0;
+        gameState.ninthOutcome = "pending";
+        gameState.lastScheduledBeat = -1;
+        gameState.shoePose = { x: 0, y: 0, angle: 0, leftOffset: 0, rightOffset: 0, slipTimer: 0, label: "Đếm vào…" };
+        gameState.calloutText = "";
+        gameResultBox.hidden = true;
+        gameState.startTimeSec = getCurrentClockSec();
+      } else {
+        // Đếm vào lại 4 nhịp trước điểm dừng
+        const resumeFrom = Math.max(0, gameState.pausedAtBeat - 4);
+        gameState.startTimeSec = getCurrentClockSec() - resumeFrom * beatSec;
+        gameState.lastScheduledBeat = Math.floor(resumeFrom) - 1;
+      }
+
+      gameState.phase = "running";
+      btnStartGame.textContent = "Đang tập…";
+
+      let lastFrame = performance.now();
+      const tick = (now) => {
+        if (gameState.phase !== "running") return;
+        const dt = (now - lastFrame) / 1000;
+        lastFrame = now;
+
+        const beatSecNow = getBeatDurationSec();
+        const curBeat = (getCurrentClockSec() - gameState.startTimeSec) / beatSecNow;
+
+        // Giảm dần hiệu ứng trượt giày và nháy làn
+        if (gameState.shoePose.slipTimer > 0) {
+          gameState.shoePose.slipTimer = Math.max(0, gameState.shoePose.slipTimer - dt * 1.4);
+        }
+        gameState.laneFlash[0] = Math.max(0, gameState.laneFlash[0] - dt * 4);
+        gameState.laneFlash[1] = Math.max(0, gameState.laneFlash[1] - dt * 4);
+
+        // Đèn đếm nhịp & tạo beat gốc bằng Web Audio đồng bộ cùng đồng hồ
+        const intBeat = Math.floor(curBeat);
+        if (intBeat >= 0 && intBeat > gameState.lastScheduledBeat) {
+          gameState.lastScheduledBeat = intBeat;
+          const lampIdx = intBeat % 4;
+          beatLamps.forEach((l, i) => l.classList.toggle("is-lit", i === lampIdx));
+
+          if (intBeat < 4) {
+            playDrumSound("tick");
+          } else {
+            if (lampIdx === 0 || lampIdx === 2) playDrumSound("kick");
+            if (lampIdx === 1 || lampIdx === 3) playDrumSound("clap");
+            playDrumSound("hihat");
+          }
+        }
+
+        // Chấm trượt nếu nốt đi quá cửa sổ
+        const missWindowBeats = 0.42;
+        for (const note of gameState.notes) {
+          if (!note.judged && curBeat - note.beat > missWindowBeats) {
+            note.judged = true;
+            note.result = "miss";
+            if (note.isNinth) applyShoeStep("turn9", false);
+          }
+        }
+
+        gameHudText.textContent = curBeat < 4
+          ? `Đếm vào nhịp ${Math.min(4, Math.floor(Math.max(0, curBeat)) + 1)}/4`
+          : `Đúng ${gameState.hits}/${gameState.total} nhịp`;
+
+        drawRhythmStage(curBeat);
+
+        if (curBeat >= 22.8) {
+          finishGame();
+          return;
+        }
+        gameState.rafId = requestAnimationFrame(tick);
+      };
+
+      gameState.rafId = requestAnimationFrame(tick);
+    }
+
+    function handleLaneHit(lane) {
+      if (gameState.phase !== "running") return;
+      gameState.laneFlash[lane] = 1;
+
+      const curBeat = (getCurrentClockSec() - gameState.startTimeSec) / getBeatDurationSec();
+      const hitWindow = gameState.slowMode ? 0.44 : 0.38;
+
+      let target = null;
+      let bestDiff = Infinity;
+      for (const note of gameState.notes) {
+        if (note.judged || note.lane !== lane) continue;
+        const diff = Math.abs(curBeat - note.beat);
+        if (diff <= hitWindow && diff < bestDiff) {
+          bestDiff = diff;
+          target = note;
+        }
+      }
+
+      if (target) {
+        target.judged = true;
+        target.result = "hit";
+        gameState.hits++;
+        applyShoeStep(target.stepType, true);
+      }
+    }
+
+    btnStartGame.addEventListener("click", () => {
+      if (gameState.phase === "paused") {
+        startOrResumeGame(true);
+      } else {
+        startOrResumeGame(false);
+      }
+    });
+
+    document.getElementById("btnReplayGame").addEventListener("click", () => startOrResumeGame(false));
+
+    btnSlowMode.addEventListener("click", () => {
+      gameState.slowMode = !gameState.slowMode;
+      btnSlowMode.setAttribute("aria-pressed", String(gameState.slowMode));
+      btnSlowMode.textContent = gameState.slowMode ? "Tập chậm: Bật" : "Tập chậm: Tắt";
+      if (gameState.phase === "running") startOrResumeGame(false);
+    });
+
+    btnSoundToggle.addEventListener("click", () => {
+      gameState.soundEnabled = !gameState.soundEnabled;
+      btnSoundToggle.setAttribute("aria-pressed", String(gameState.soundEnabled));
+      btnSoundToggle.textContent = gameState.soundEnabled ? "Âm thanh: Bật" : "Âm thanh: Tắt";
+      if (gameState.soundEnabled) ensureAudioCtx();
+    });
+
+    const bindPad = (btn, lane) => {
+      btn.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        btn.classList.add("is-pressed");
+        handleLaneHit(lane);
+      });
+      const release = () => btn.classList.remove("is-pressed");
+      btn.addEventListener("pointerup", release);
+      btn.addEventListener("pointerleave", release);
+      btn.addEventListener("pointercancel", release);
+    };
+    bindPad(btnLaneLeft, 0);
+    bindPad(btnLaneRight, 1);
+
+    // Chỉ bắt phím D / K khi game đang chạy và chống giữ phím (e.repeat)
+    window.addEventListener("keydown", (e) => {
+      if (gameState.phase !== "running" || e.repeat) return;
+      const tag = (document.activeElement && document.activeElement.tagName) || "";
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      const key = e.key.toLowerCase();
+      if (key === "d") {
+        btnLaneLeft.classList.add("is-pressed");
+        handleLaneHit(0);
+      } else if (key === "k") {
+        btnLaneRight.classList.add("is-pressed");
+        handleLaneHit(1);
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      const key = e.key.toLowerCase();
+      if (key === "d") btnLaneLeft.classList.remove("is-pressed");
+      if (key === "k") btnLaneRight.classList.remove("is-pressed");
+    });
+
+    // Tự tạm dừng khi chuyển tab và cho đếm vào lại trước khi tiếp tục
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && gameState.phase === "running") {
+        stopGameLoop();
+        gameState.pausedAtBeat = (getCurrentClockSec() - gameState.startTimeSec) / getBeatDurationSec();
+        gameState.phase = "paused";
+        btnStartGame.textContent = "Tiếp tục (đếm vào 4 nhịp)";
+        drawRhythmStage(gameState.pausedAtBeat);
+      }
+    });
+
+    /* ==========================================================================
+       7. QUÀ CUỐI — VÉ ENCORE CỦA HAI ĐỨA (VẼ CANVAS NỘI BỘ 1600 × 720 PX)
+       ========================================================================== */
+    const guestNameInput = document.getElementById("guestNameInput");
+    const ticketPreviewCanvas = document.getElementById("ticketPreviewCanvas");
+    const ticketStatusMsg = document.getElementById("ticketStatusMsg");
+
+    function drawFourPointSkewStar(ctx, x, y, r, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      // Một cánh phải dài hơn 3 cánh kia (dấu hiệu nhận diện của Minh Anh)
+      ctx.moveTo(0, -r);
+      ctx.lineTo(r * 0.22, -r * 0.22);
+      ctx.lineTo(r * 1.48, 0);
+      ctx.lineTo(r * 0.22, r * 0.22);
+      ctx.lineTo(0, r * 0.92);
+      ctx.lineTo(-r * 0.22, r * 0.22);
+      ctx.lineTo(-r * 0.88, 0);
+      ctx.lineTo(-r * 0.22, -r * 0.22);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function renderEncoreTicket(canvas) {
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      const s = W / 1600;
+
+      const guestRaw = (guestNameInput.value || "").trim();
+      const guestName = guestRaw || "Bạn cùng bàn";
+      const fp = gameState.finalShoePose;
+      const todayStr = new Date().toLocaleDateString("vi-VN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Thân vé giấy ngà có hai khuyết bán nguyệt ở đường xé
+      const stubX = 1150 * s;
+      const notchR = 28 * s;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(24 * s, 24 * s);
+      ctx.lineTo(stubX - notchR, 24 * s);
+      ctx.arc(stubX, 24 * s, notchR, Math.PI, 0, true);
+      ctx.lineTo(W - 24 * s, 24 * s);
+      ctx.lineTo(W - 24 * s, H - 24 * s);
+      ctx.lineTo(stubX + notchR, H - 24 * s);
+      ctx.arc(stubX, H - 24 * s, notchR, 0, Math.PI, true);
+      ctx.lineTo(24 * s, H - 24 * s);
+      ctx.closePath();
+      ctx.fillStyle = "#F5F1E6";
+      ctx.fill();
+      ctx.lineWidth = 4 * s;
+      ctx.strokeStyle = "#202126";
+      ctx.stroke();
+      ctx.clip();
+
+      // Dải gáy xanh cobalt bên trái (mã 12A10)
+      ctx.fillStyle = "#263ECC";
+      ctx.fillRect(24 * s, 24 * s, 118 * s, H - 48 * s);
+      ctx.strokeStyle = "rgba(245, 241, 230, 0.55)";
+      ctx.lineWidth = 3 * s;
+      ctx.setLineDash([10 * s, 10 * s]);
+      ctx.beginPath();
+      ctx.moveTo(142 * s, 24 * s);
+      ctx.lineTo(142 * s, H - 24 * s);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.save();
+      ctx.translate(84 * s, H / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillStyle = "#F5F1E6";
+      ctx.font = `800 ${48 * s}px 'Barlow Condensed', sans-serif`;
+      ctx.textAlign = "center";
+      ctx.fillText("12A10 · SIDE B", 0, 16 * s);
+      ctx.restore();
+
+      // Đường xé màu cam quýt
+      ctx.strokeStyle = "#FF794C";
+      ctx.lineWidth = 4 * s;
+      ctx.setLineDash([14 * s, 12 * s]);
+      ctx.beginPath();
+      ctx.moveTo(stubX, 58 * s);
+      ctx.lineTo(stubX, H - 58 * s);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Nội dung chính trên thân vé
+      const leftX = 190 * s;
+      ctx.fillStyle = "#263ECC";
+      ctx.font = `700 ${26 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.textAlign = "left";
+      ctx.fillText(fp.played ? "ENCORE SAU GIỜ HỌC" : "VÉ KHÁCH GHÉ CHƠI · ENCORE SAU GIỜ HỌC", leftX, 110 * s);
+
+      // Ngôi sao 4 cánh vẽ lệch bằng bút cam
+      drawFourPointSkewStar(ctx, 1068 * s, 114 * s, 32 * s, "#FF794C");
+
+      // Tên hai người
+      ctx.fillStyle = "#202126";
+      ctx.font = `800 ${70 * s}px 'Barlow Condensed', 'Be Vietnam Pro', sans-serif`;
+      const pairText = `HÀ THỊ MINH ANH  ×  ${guestName.toUpperCase()}`;
+      ctx.fillText(pairText, leftX, 224 * s, 910 * s);
+
+      // Dòng lớp & trường
+      ctx.fillStyle = "#555866";
+      ctx.font = `600 ${28 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(`Lớp ${CONFIG.className} · ${CONFIG.school}`, leftX, 286 * s);
+
+      // Đường kẻ mảnh
+      ctx.strokeStyle = "rgba(32, 33, 38, 0.2)";
+      ctx.lineWidth = 2 * s;
+      ctx.beginPath();
+      ctx.moveTo(leftX, 330 * s);
+      ctx.lineTo(stubX - 50 * s, 330 * s);
+      ctx.stroke();
+
+      // Số nhịp đã giữ hoặc lời nhắn khách ghé chơi
+      ctx.fillStyle = "#202126";
+      ctx.font = `700 ${34 * s}px 'Be Vietnam Pro', sans-serif`;
+      if (fp.played) {
+        ctx.fillText(`Nhịp đã giữ được: ${fp.hits} / ${fp.total} nhịp`, leftX, 405 * s);
+        ctx.fillStyle = "#263ECC";
+        ctx.font = `italic 500 ${26 * s}px 'Be Vietnam Pro', sans-serif`;
+        ctx.fillText(
+          fp.ninthHit
+            ? "“Nhịp thứ chín lần này quay đúng hướng rồi nhé!”"
+            : "“Hẹn mai tập thêm một lượt nữa cho nhịp thứ chín thật gọn.”",
+          leftX,
+          462 * s,
+          900 * s
+        );
+      } else {
+        ctx.fillText("Vé dành riêng cho bạn vừa ghé mở chiếc album này", leftX, 405 * s);
+        ctx.fillStyle = "#263ECC";
+        ctx.font = `italic 500 ${26 * s}px 'Be Vietnam Pro', sans-serif`;
+        ctx.fillText("“Lúc nào rảnh quay lại giữ nhịp thứ chín cùng Minh Anh nha.”", leftX, 462 * s, 900 * s);
+      }
+
+      // Chân vé: Ngày địa phương + Bản của Minh Anh
+      ctx.fillStyle = "#555866";
+      ctx.font = `600 ${24 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(`Ngày phát hành: ${todayStr}`, leftX, 622 * s);
+
+      ctx.fillStyle = "#263ECC";
+      ctx.font = `italic 600 ${25 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.textAlign = "right";
+      ctx.fillText("Bản của Minh Anh", stubX - 50 * s, 622 * s);
+
+      // Phần cuống vé bên phải: Đôi giày tí hon ở đúng tư thế cuối cùng của lượt vừa chơi
+      const stubCenterX = stubX + (W - 24 * s - stubX) / 2;
+      ctx.fillStyle = "#EDE6D5";
+      ctx.fillRect(stubX + 4 * s, 24 * s, W - 28 * s - stubX, H - 48 * s);
+
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#263ECC";
+      ctx.font = `700 ${22 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText("TƯ THẾ CUỐI", stubCenterX, 120 * s);
+
+      // Sàn tập tròn nhỏ trên cuống vé
+      ctx.fillStyle = "#192440";
+      ctx.beginPath();
+      ctx.arc(stubCenterX, 330 * s, 128 * s, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#FF794C";
+      ctx.lineWidth = 4 * s;
+      ctx.stroke();
+
+      // Vẽ đôi giày tí hon đúng tư thế cuối
+      drawTopDownShoes(ctx, stubCenterX, 330 * s, 1.85 * s, {
+        angle: fp.played ? fp.angle : -0.15,
+        leftOffset: fp.played ? fp.leftOffset : -6,
+        rightOffset: fp.played ? fp.rightOffset : 6,
+        slipTimer: 0
+      });
+
+      ctx.fillStyle = "#202126";
+      ctx.font = `700 ${24 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(fp.played ? `${fp.hits}/${fp.total} NHỊP` : "KHÁCH GHÉ CHƠI", stubCenterX, 535 * s);
+      ctx.fillStyle = "#555866";
+      ctx.font = `600 ${20 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText("THPT DAKMIL · 12A10", stubCenterX, 578 * s);
+
+      ctx.restore();
+    }
+
+    guestNameInput.addEventListener("input", () => renderEncoreTicket(ticketPreviewCanvas));
+
+    document.getElementById("btnDownloadTicket").addEventListener("click", () => {
+      try {
+        const exp = document.createElement("canvas");
+        exp.width = 1600;
+        exp.height = 720;
+        renderEncoreTicket(exp);
+
+        const a = document.createElement("a");
+        a.download = "ve-encore-minh-anh-12a10.png";
+        a.href = exp.toDataURL("image/png");
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        ticketStatusMsg.textContent = "Đã lưu Vé Encore PNG sắc nét (1600 × 720 px) về máy của bạn!";
+      } catch (err) {
+        ticketStatusMsg.textContent = "Không thể tự tải PNG trong khung xem này. Hãy mở trực tiếp file HTML để tải.";
+      }
+    });
+
+    /* ==========================================================================
+       8. KHỞI TẠO ĐIỀU HƯỚNG TRƯỢT MƯỢT & CHẠY TOÀN TRANG
+       ========================================================================== */
+    function initSmoothNav() {
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const hash = link.getAttribute("href");
+          if (!hash || hash === "#") return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          smoothScrollToElement(target);
+          try { history.replaceState(null, "", hash); } catch (_) {}
+        });
+      });
+
+      const btnTop = document.getElementById("btnScrollTop");
+      const navLinks = Array.from(document.querySelectorAll(".top-nav a[href^='#']"));
+      const sections = navLinks
+        .map((a) => ({ a, el: document.querySelector(a.getAttribute("href")) }))
+        .filter((x) => x.el);
+
+      btnTop.addEventListener("click", () => smoothScrollToY(0));
+
+      const onScroll = () => {
+        const y = window.scrollY;
+        btnTop.classList.toggle("is-visible", y > 340);
+        const probe = y + 140;
+        let current = null;
+        for (const s of sections) {
+          if (s.el.offsetTop <= probe) current = s;
+        }
+        navLinks.forEach((a) => a.classList.toggle("is-active", Boolean(current && current.a === a)));
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    window.addEventListener("load", () => {
+      hydrateStaticContent();
+      renderBinderPockets();
+      drawRhythmStage(0);
+      renderEncoreTicket(ticketPreviewCanvas);
+      initSmoothNav();
+    });
+  </script>
+</body>
+</html>

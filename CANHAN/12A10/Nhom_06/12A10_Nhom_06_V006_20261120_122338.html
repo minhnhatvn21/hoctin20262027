@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Trang giới thiệu bản thân và định hướng nghề nghiệp của Vũ Thị Hà Vy, lớp 12A10.">
+<title>Vũ Thị Hà Vy | Giới thiệu bản thân</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --aquaduIce:#6C9B76; --aroma:#97C49E; --winter:#CDE8D4;
+  --tarragon:#BAD17A; --moss:#80A32F; --chalet:#657E47;
+  --ink:#314b37; --paper:#f8fbf4; --white:#fffefa;
+  --shadow:0 18px 45px rgba(48,77,51,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{width:min(1100px,calc(100% - 40px));margin:auto}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(248,251,244,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(101,126,71,.15)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px}
+.brand{font-family:"Cormorant Garamond",serif;font-size:25px;font-weight:700;letter-spacing:.04em}
+.navlinks{display:flex;gap:24px;align-items:center;font-size:13px;font-weight:700}
+.navlinks a:hover{color:var(--moss)}
+.edit-hint{font-size:11px;color:#60745a;background:var(--winter);padding:7px 12px;border-radius:30px}
+.hero{padding:66px 0 76px;position:relative;overflow:hidden;background:linear-gradient(115deg,rgba(205,232,212,.88),rgba(248,251,244,.78)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=85') center/cover}
+.hero:after{content:"";position:absolute;width:370px;height:370px;border:1px solid rgba(101,126,71,.2);border-radius:50%;right:-110px;top:-150px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;position:relative;z-index:1}
+.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:700;color:var(--chalet)}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;line-height:1.08}
+h1{font-size:clamp(48px,7vw,82px);font-weight:600;margin:12px 0 8px;color:#36583d}
+.script{font-family:Allura,cursive;color:var(--moss);font-size:clamp(30px,4vw,43px);margin:0 0 18px}
+.hero-copy{max-width:560px;color:#425a45;font-size:15px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.btn{display:inline-block;padding:11px 19px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:.04em;border:1px solid var(--chalet);transition:.2s}
+.btn.primary{background:var(--chalet);color:white}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.hero-photo{padding:13px;background:rgba(255,255,255,.58);border-radius:48% 48% 22px 22px;box-shadow:var(--shadow);transform:rotate(2deg)}
+.hero-photo img{width:100%;height:390px;object-fit:cover;border-radius:48% 48% 15px 15px}
+.photo-caption{text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;padding:10px 0 2px}
+section{padding:76px 0}
+.section-head{text-align:center;margin-bottom:38px}
+.section-head .eyebrow{margin-bottom:8px}
+h2{font-size:clamp(36px,5vw,52px);margin:0;color:#3d6044}
+.section-sub{max-width:610px;margin:12px auto 0;color:#71806d;font-size:14px}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:stretch}
+.about-image{min-height:350px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.about-image img{width:100%;height:100%;object-fit:cover}
+.paper-card{background:var(--white);padding:32px;border-radius:18px;box-shadow:var(--shadow);border:1px solid rgba(101,126,71,.12)}
+.paper-card h3{font-size:30px;margin:0 0 14px;color:var(--chalet)}
+.paper-card p{font-size:14px;color:#596b55;margin:0 0 13px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+.fact{background:#f0f6eb;border-radius:12px;padding:13px 15px}
+.fact small{display:block;color:#819276;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.fact strong{font-size:13px}
+.values{background:linear-gradient(180deg,#eef6e9,#f8fbf4)}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.value-card{background:rgba(255,255,255,.8);padding:25px;border-radius:16px;border:1px solid #e1ecd9}
+.value-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--winter);font-size:20px;margin-bottom:15px}
+.value-card h3{font-size:25px;margin:0 0 8px}
+.value-card p{font-size:13px;color:#687864;margin:0}
+.career{background:#fffefa}
+.career-banner{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;background:#e9f2e4;box-shadow:var(--shadow);margin-bottom:28px}
+.career-banner img{width:100%;height:330px;object-fit:cover}
+.career-text{padding:35px;align-self:center}
+.career-text h3{font-size:34px;margin:0 0 12px}
+.career-text p{font-size:14px;color:#5f705b}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.tag{font-size:11px;font-weight:700;padding:7px 11px;border-radius:30px;background:#d5e8d2;color:#45664a}
+.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.path-card{border-top:4px solid var(--aroma);padding:22px;background:#f6f9f1;border-radius:0 0 14px 14px}
+.path-card:nth-child(2){border-color:var(--tarragon)}
+.path-card:nth-child(3){border-color:var(--moss)}
+.path-card .number{font-family:"Cormorant Garamond",serif;font-size:35px;color:var(--moss)}
+.path-card h3{font-size:24px;margin:2px 0 8px}
+.path-card p,.path-card li{font-size:12px;color:#687864}
+.path-card ul{padding-left:18px;margin-bottom:0}
+.quote{padding:62px 20px;text-align:center;background:linear-gradient(120deg,#6C9B76,#657E47);color:white}
+.quote blockquote{font-family:"Cormorant Garamond",serif;font-size:clamp(27px,4vw,40px);max-width:820px;margin:0 auto;line-height:1.25}
+.quote p{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.8;margin:18px 0 0}
+.contact{padding:65px 0}
+.contact-card{text-align:center;background:#edf5e9;border-radius:20px;padding:38px 20px}
+.contact-card h2{font-size:42px}
+.contact-card p{font-size:14px;color:#687864}
+footer{text-align:center;padding:22px;color:#82917b;font-size:11px;border-top:1px solid #e5eddf}
+[contenteditable="true"]:focus{outline:2px dashed var(--moss);outline-offset:4px;border-radius:4px}
+@media(max-width:760px){
+ .nav{padding:12px 0;align-items:flex-start}.navlinks{gap:12px;flex-wrap:wrap;justify-content:flex-end;font-size:11px}.edit-hint{display:none}
+ .hero{padding:48px 0}.hero-grid,.about-grid,.career-banner{grid-template-columns:1fr}
+ .hero-photo{max-width:390px;margin:10px auto 0}.hero-photo img{height:300px}
+ section{padding:55px 0}.value-grid,.path-grid{grid-template-columns:1fr}
+ .career-banner img{height:240px}.career-text{padding:26px}
+}
+@media print{.topbar{position:static}.btn{display:none}body{background:white}.hero{print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="container nav">
+  <a class="brand" href="#home">Hà Vy <span style="color:var(--moss)">✿</span></a>
+  <nav class="navlinks" aria-label="Điều hướng">
+   <a href="#about">Bản thân</a><a href="#values">Điểm mạnh</a><a href="#career">Định hướng</a><a href="#contact">Thông điệp</a>
+  </nav>
+  <span class="edit-hint">Có thể nhấn vào chữ để chỉnh sửa</span>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="container hero-grid">
+  <div>
+   <div class="eyebrow" contenteditable="true">My personal profile · 12A10</div>
+   <h1 contenteditable="true">Vũ Thị<br>Hà Vy</h1>
+   <p class="script" contenteditable="true">A little progress every day</p>
+   <p class="hero-copy" contenteditable="true">Xin chào! Mình là Hà Vy, học sinh lớp 12A10. Mình yêu thích việc khám phá kiến thức mới, tìm hiểu thế giới xung quanh và thử thách bản thân qua những mục tiêu nhỏ. Mình tin rằng mỗi trải nghiệm đều có thể trở thành một bước đệm để trưởng thành.</p>
+   <div class="hero-actions"><a class="btn primary" href="#about">Khám phá về mình</a><a class="btn" href="#career">Kế hoạch tương lai</a></div>
+  </div>
+  <div class="hero-photo">
+   <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=85" alt="Ánh nắng xuyên qua những tán lá xanh">
+   <div class="photo-caption" contenteditable="true">Growing at my own pace</div>
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">01 · About me</div><h2>Đôi nét về bản thân</h2><p class="section-sub">Một vài điều tạo nên con người mình hôm nay và cũng là nền tảng cho hành trình phía trước.</p></div>
+  <div class="about-grid">
+   <div class="about-image"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=85" onerror="this.src='https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=85'" alt="Sổ tay và bút trên bàn học"></div>
+   <article class="paper-card">
+    <h3 contenteditable="true">Mình là người như thế nào?</h3>
+    <p contenteditable="true">Mình là người ham học hỏi, có tinh thần trách nhiệm và luôn cố gắng hoàn thành những việc đã đặt ra. Mình thích những môn học giúp mở rộng góc nhìn, đặc biệt là các kiến thức liên quan đến kinh tế, xã hội và sự vận hành của thế giới.</p>
+    <p contenteditable="true">Bên cạnh việc học, mình quan tâm đến ngoại ngữ, đọc tin tức và tìm hiểu các nền văn hóa khác nhau. Mình cũng hiểu rằng bản thân vẫn còn nhiều điều cần cải thiện, vì vậy mình xem góp ý và những thử thách là cơ hội để tiến bộ.</p>
+    <div class="facts">
+     <div class="fact"><small>Họ và tên</small><strong contenteditable="true">Vũ Thị Hà Vy</strong></div>
+     <div class="fact"><small>Lớp</small><strong contenteditable="true">12A10</strong></div>
+     <div class="fact"><small>Quan tâm</small><strong contenteditable="true">Kinh tế · Tài chính</strong></div>
+     <div class="fact"><small>Mục tiêu</small><strong contenteditable="true">Học tập và phát triển</strong></div>
+    </div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="values" id="values">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">02 · My qualities</div><h2>Giá trị mình theo đuổi</h2><p class="section-sub">Những phẩm chất mình muốn rèn luyện để học tập tốt hơn và sẵn sàng cho môi trường nghề nghiệp tương lai.</p></div>
+  <div class="value-grid">
+   <article class="value-card"><div class="value-icon">✦</div><h3 contenteditable="true">Chủ động học hỏi</h3><p contenteditable="true">Không ngại tìm hiểu vấn đề mới, đặt câu hỏi và tự bổ sung kiến thức ngoài sách giáo khoa.</p></article>
+   <article class="value-card"><div class="value-icon">◎</div><h3 contenteditable="true">Tư duy logic</h3><p contenteditable="true">Cố gắng nhìn nhận vấn đề từ nhiều phía, phân tích thông tin và đưa ra lựa chọn có cơ sở.</p></article>
+   <article class="value-card"><div class="value-icon">❀</div><h3 contenteditable="true">Kiên trì, trách nhiệm</h3><p contenteditable="true">Chia mục tiêu lớn thành những việc nhỏ, duy trì thói quen và chịu trách nhiệm với quyết định của mình.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="career" id="career">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">03 · My future direction</div><h2>Định hướng nghề nghiệp</h2><p class="section-sub">Mục tiêu mình đang hướng tới là lĩnh vực kinh tế đối ngoại và tài chính quốc tế — nơi kiến thức kinh tế kết nối với thương mại và dòng vốn toàn cầu.</p></div>
+  <div class="career-banner">
+   <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1100&q=85" alt="Đồng tiền và hoạt động tài chính">
+   <div class="career-text">
+    <div class="eyebrow">My career goal</div>
+    <h3 contenteditable="true">Kinh tế đối ngoại &amp; Tài chính quốc tế</h3>
+    <p contenteditable="true">Mình mong muốn theo học ngành Kinh tế đối ngoại hoặc một chuyên ngành phù hợp thuộc lĩnh vực Tài chính quốc tế. Mình hứng thú với hoạt động thương mại giữa các quốc gia, thị trường ngoại hối, đầu tư xuyên biên giới và cách các nền kinh tế tác động lẫn nhau.</p>
+    <div class="tags"><span class="tag">International Trade</span><span class="tag">Global Finance</span><span class="tag">Economics</span></div>
+   </div>
+  </div>
+  <div class="path-grid">
+   <article class="path-card"><div class="number">01</div><h3 contenteditable="true">Trong năm lớp 12</h3><p contenteditable="true">Tập trung hoàn thành chương trình phổ thông và chuẩn bị hồ sơ xét tuyển.</p><ul><li>Củng cố Toán, tiếng Anh và kiến thức xã hội.</li><li>Duy trì luyện IELTS và kỹ năng đọc hiểu.</li><li>Tìm hiểu chương trình đào tạo, tổ hợp xét tuyển và yêu cầu đầu vào.</li></ul></article>
+   <article class="path-card"><div class="number">02</div><h3 contenteditable="true">Khi học đại học</h3><p contenteditable="true">Xây dựng nền tảng chuyên môn và trải nghiệm thực tế.</p><ul><li>Học kinh tế vi mô, vĩ mô, thương mại và tài chính.</li><li>Phát triển ngoại ngữ, tin học và kỹ năng phân tích dữ liệu.</li><li>Tham gia câu lạc bộ, dự án và hoạt động thực tập.</li></ul></article>
+   <article class="path-card"><div class="number">03</div><h3 contenteditable="true">Trong tương lai</h3><p contenteditable="true">Từng bước tìm kiếm vị trí phù hợp trong môi trường kinh tế quốc tế.</p><ul><li>Ứng tuyển vào doanh nghiệp xuất nhập khẩu, ngân hàng hoặc tổ chức tài chính.</li><li>Tiếp tục học hỏi về thị trường và quy định quốc tế.</li><li>Hướng đến tác phong chuyên nghiệp, trung thực và có trách nhiệm.</li></ul></article>
+  </div>
+ </div>
+</section>
+
+<section class="quote">
+ <blockquote contenteditable="true">“Thành công không đến từ một bước nhảy vọt, mà được tạo nên bởi những nỗ lực nhỏ được duy trì mỗi ngày.”</blockquote>
+ <p>My reminder · Keep learning, keep growing</p>
+</section>
+
+<section class="contact" id="contact">
+ <div class="container contact-card">
+  <div class="eyebrow">A note to myself</div>
+  <h2 contenteditable="true">Không ngừng tiến về phía trước</h2>
+  <p contenteditable="true">Mình biết con đường phía trước sẽ có thử thách, nhưng mình tin rằng sự chuẩn bị nghiêm túc, tinh thần cầu tiến và lòng kiên trì sẽ giúp mình đến gần hơn với mục tiêu.</p>
+  <p class="script" contenteditable="true">Thank you for visiting my page!</p>
+ </div>
+</section>
+</main>
+<footer>© 2026 · Vũ Thị Hà Vy · 12A10 <span> | </span> Personal introduction &amp; career orientation</footer>
+</body>
+</html>

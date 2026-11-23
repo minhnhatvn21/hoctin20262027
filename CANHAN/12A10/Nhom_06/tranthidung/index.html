@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRẦN THỊ DUNG — Bàn vẽ nắng của 12A10</title>
+  <meta name="description" content="Website giới thiệu cá nhân theo concept Bàn vẽ Kiến trúc & Giấy can đón nắng của Trần Thị Dung — Lớp 12A10, Trường THPT DakMil." />
+
+  <!-- Phông chữ tiếng Việt: Barlow Condensed (tiêu đề kiến trúc), Be Vietnam Pro (nội dung đọc), IBM Plex Mono (tỉ lệ bản vẽ & kích thước) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. HỆ THỐNG MỸ THUẬT — GIẤY CAN MỜ, BẢN IN BLUEPRINT, ĐẤT NUNG & NẮNG CHIỀU
+       ========================================================================== */
+    :root {
+      --vellum: #F6F0E4;
+      --vellum-card: #FCF9F2;
+      --vellum-deep: #EAE0CC;
+      --blueprint: #1D3557;
+      --blueprint-dark: #13243C;
+      --blueprint-grid: rgba(29, 53, 87, 0.085);
+      --terracotta: #C85A32;
+      --terracotta-soft: rgba(200, 90, 50, 0.13);
+      --olive: #4A6B53;
+      --sun-gold: #E8B44C;
+      --graphite: #22272B;
+      --graphite-muted: #586067;
+      --rule: rgba(29, 53, 87, 0.18);
+
+      --font-display: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+      --font-body: 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background-color: var(--vellum);
+      /* Lưới tọa độ bản vẽ kiến trúc mảnh trên nền giấy can ấm */
+      background-image:
+        linear-gradient(to right, var(--blueprint-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--graphite);
+      line-height: 1.66;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    section[id] {
+      scroll-margin-top: 64px;
+    }
+
+    @keyframes sectionTargetFlash {
+      0% { box-shadow: inset 0 4px 0 var(--terracotta); }
+      100% { box-shadow: inset 0 4px 0 transparent; }
+    }
+
+    section.is-scroll-target {
+      animation: sectionTargetFlash 0.85s var(--ease-out) 1;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--terracotta);
+      outline-offset: 2px;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 4vw, 44px);
+    }
+
+    /* Ký hiệu trục kiến trúc (dấu hiệu nhận diện xuyên suốt trang) */
+    .axis-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.8px solid var(--blueprint);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--blueprint);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       THANH THƯỚC ĐIỀU HƯỚNG CỐ ĐỊNH TRÊN CÙNG
+       ========================================================================== */
+    .draft-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246, 240, 228, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1.5px solid var(--blueprint);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 54px;
+    }
+
+    .topbar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      color: var(--blueprint);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.8vw, 22px);
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--graphite-muted);
+      padding: 6px 2px;
+      transition: color 0.16s ease, box-shadow 0.2s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a.is-active {
+      color: var(--blueprint);
+    }
+
+    .top-nav a.is-active {
+      box-shadow: inset 0 -2.5px 0 var(--terracotta);
+    }
+
+    /* Hệ thống nút bấm */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 3px;
+      border: 1.5px solid var(--blueprint);
+      background: var(--vellum-card);
+      color: var(--blueprint);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.14s var(--ease-out), background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 4px 4px 0 rgba(29, 53, 87, 0.18);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-blueprint {
+      background: var(--blueprint);
+      border-color: var(--blueprint);
+      color: var(--vellum-card);
+    }
+
+    .btn-blueprint:hover:not(:disabled) {
+      background: var(--blueprint-dark);
+      border-color: var(--blueprint-dark);
+    }
+
+    .btn-terracotta {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #FFFFFF;
+    }
+
+    .btn-terracotta:hover:not(:disabled) {
+      background: #B34D28;
+      border-color: #B34D28;
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 4.5vw, 3.35rem);
+      font-weight: 800;
+      line-height: 1.12;
+      padding-top: 0.08em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+    }
+
+    /* ==========================================================================
+       2. HERO — BÀN VẼ NẮNG, CHÂN DUNG DÁN BĂNG KEO GIẤY & LỚP GIẤY CAN MỜ
+       ========================================================================== */
+    .hero-draft-section {
+      position: relative;
+      padding: clamp(26px, 4.5vw, 54px) 0 clamp(46px, 6.5vw, 78px);
+      border-bottom: 2px solid var(--blueprint);
+      overflow: hidden;
+    }
+
+    /* Vệt nắng xiên đổi góc theo thanh trượt Giờ nắng */
+    .hero-sun-beam {
+      position: absolute;
+      inset: -10%;
+      pointer-events: none;
+      background: linear-gradient(
+        var(--sun-angle, 118deg),
+        transparent 44%,
+        rgba(232, 180, 76, 0.16) 56%,
+        rgba(232, 180, 76, 0.06) 66%,
+        transparent 74%
+      );
+      transition: background 0.15s linear;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: clamp(26px, 4.5vw, 56px);
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .scale-spec-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      align-self: flex-start;
+      padding: 5px 12px;
+      background: var(--vellum-card);
+      border: 1.5px solid var(--blueprint);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--blueprint);
+    }
+
+    /* Chừa khoảng thở trên dưới để dấu huyền/nặng ở TRẦN THỊ DUNG luôn sắc nét */
+    .hero-name {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3.15rem, 6.6vw, 5.45rem);
+      font-weight: 800;
+      line-height: 1.14;
+      padding-top: 0.16em;
+      padding-bottom: 0.1em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+      letter-spacing: 0.01em;
+    }
+
+    .school-strip {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--graphite);
+    }
+
+    .school-logo-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1.5px solid var(--blueprint);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .school-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .school-logo-fallback {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--blueprint);
+    }
+
+    .school-logo-wrap.is-missing img { display: none; }
+    .school-logo-wrap.is-missing .school-logo-fallback { display: inline; }
+
+    .hero-greeting {
+      margin: 0;
+      font-size: clamp(1rem, 1.35vw, 1.1rem);
+      color: var(--graphite);
+      max-width: 48ch;
+    }
+
+    /* Bảng điều khiển Giờ nắng & Tờ giấy can ngay trong Hero */
+    .sun-control-card {
+      background: var(--vellum-card);
+      border: 1.5px solid var(--blueprint);
+      padding: 14px 16px;
+      box-shadow: 5px 5px 0 rgba(29, 53, 87, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sun-control-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--blueprint);
+    }
+
+    .sun-slider {
+      width: 100%;
+      accent-color: var(--terracotta);
+      cursor: pointer;
+    }
+
+    .sun-note-text {
+      margin: 0;
+      font-size: 0.86rem;
+      font-style: italic;
+      color: var(--graphite-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    /* Cột phải: Bảng vẽ dán băng keo giấy giữ chân dung + lớp giấy can mờ lật lên được */
+    .drafting-portrait-board {
+      position: relative;
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+      background: var(--vellum-card);
+      border: 2px solid var(--blueprint);
+      padding: 18px 18px 16px;
+      box-shadow: 10px 10px 0 rgba(29, 53, 87, 0.16);
+    }
+
+    /* 2 miếng băng keo giấy dán góc trên */
+    .masking-tape {
+      position: absolute;
+      width: 68px;
+      height: 22px;
+      background: rgba(232, 180, 76, 0.52);
+      border: 1px solid rgba(29, 53, 87, 0.16);
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    .tape-left { top: -10px; left: 16px; transform: rotate(-16deg); }
+    .tape-right { top: -10px; right: 16px; transform: rotate(14deg); }
+
+    .portrait-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--vellum-deep);
+      border: 1.5px solid var(--blueprint);
+      overflow: hidden;
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+    }
+
+    .portrait-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      gap: 8px;
+      background: linear-gradient(155deg, #EFE7D6 0%, #E1D5BE 100%);
+      color: var(--blueprint);
+    }
+
+    .portrait-frame.is-missing img { display: none; }
+    .portrait-frame.is-missing .portrait-fallback { display: flex; }
+
+    /* Lớp giấy can mờ vẽ lưới đo kiến trúc phủ nhẹ lên chân dung (nhấc ra bằng 1 bấm) */
+    .tracing-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(252, 249, 242, 0.56);
+      backdrop-filter: blur(1px);
+      z-index: 4;
+      pointer-events: none;
+      transform-origin: top center;
+      transition: transform 0.55s var(--ease-out), opacity 0.4s ease;
+    }
+
+    .tracing-overlay.is-lifted {
+      opacity: 0;
+      transform: translateY(-28px) rotate(-2deg);
+    }
+
+    .tracing-overlay svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .portrait-board-footer {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--blueprint);
+    }
+
+    /* ==========================================================================
+       3. GIỚI THIỆU — TỜ GHI CHÚ ĐO ĐẠC “NGƯỜI HAY ĐO KHOẢNG CÁCH BẰNG GANG TAY”
+       ========================================================================== */
+    .bio-section {
+      padding: clamp(54px, 7.5vw, 96px) 0;
+      background: var(--vellum-card);
+      border-bottom: 1.5px solid var(--rule);
+    }
+
+    .spec-sheet {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--vellum);
+      border: 2px solid var(--blueprint);
+      padding: clamp(22px, 4.2vw, 46px);
+      box-shadow: 8px 8px 0 rgba(29, 53, 87, 0.14);
+      position: relative;
+    }
+
+    .spec-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--blueprint);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--blueprint);
+    }
+
+    .bio-prose p {
+      margin: 0 0 17px;
+      font-size: clamp(1rem, 1.25vw, 1.07rem);
+      color: var(--graphite);
+      max-width: 64ch;
+    }
+
+    .bio-prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .pencil-link-btn {
+      display: inline;
+      background: transparent;
+      border: 0;
+      padding: 0 2px;
+      font: inherit;
+      font-weight: 700;
+      color: var(--terracotta);
+      border-bottom: 2px dashed var(--terracotta);
+      cursor: pointer;
+    }
+
+    .pencil-link-btn:hover {
+      background: var(--terracotta-soft);
+    }
+
+    .margin-note-drawer {
+      overflow: hidden;
+    }
+
+    .margin-note-drawer[hidden] {
+      display: none;
+    }
+
+    .margin-note-box {
+      margin-top: 14px;
+      padding: 13px 16px;
+      background: #FFFBF2;
+      border: 1.5px dashed var(--terracotta);
+      border-left: 4px solid var(--terracotta);
+      font-style: italic;
+      font-size: 0.94rem;
+      color: var(--graphite);
+      max-width: 56ch;
+    }
+
+    /* ==========================================================================
+       4. ĐỊNH HƯỚNG NGHỀ NGHIỆP — KIẾN TRÚC SƯ KHÔNG GIAN & CẢNH QUAN (~170 CHỮ)
+       ========================================================================== */
+    .career-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      border-bottom: 2px solid var(--blueprint);
+    }
+
+    .career-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: clamp(24px, 4.5vw, 52px);
+      align-items: start;
+    }
+
+    .career-folio-card {
+      background: var(--vellum-card);
+      border: 2px solid var(--blueprint);
+      border-top: 7px solid var(--terracotta);
+      padding: clamp(22px, 3.2vw, 34px);
+      box-shadow: 7px 7px 0 rgba(29, 53, 87, 0.14);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .career-role-tag {
+      align-self: flex-start;
+      background: var(--blueprint);
+      color: var(--vellum-card);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 11px;
+    }
+
+    .career-essay p {
+      margin: 0 0 14px;
+      font-size: 0.98rem;
+      line-height: 1.74;
+      color: var(--graphite);
+    }
+
+    .career-essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .career-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .career-step {
+      background: var(--vellum-card);
+      border: 1.5px solid var(--rule);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .career-step.is-open {
+      border-color: var(--blueprint);
+      box-shadow: 5px 5px 0 rgba(29, 53, 87, 0.14);
+    }
+
+    .career-step-trigger {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .career-step-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .career-step-num {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--terracotta);
+    }
+
+    .career-step-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--blueprint);
+    }
+
+    .career-step-arrow {
+      color: var(--blueprint);
+      font-weight: 700;
+      transition: transform 0.28s var(--ease-out);
+      flex-shrink: 0;
+    }
+
+    .career-step.is-open .career-step-arrow {
+      transform: rotate(180deg);
+    }
+
+    .career-step-panel {
+      overflow: hidden;
+    }
+
+    .career-step-panel[hidden] {
+      display: none;
+    }
+
+    .career-step-inner {
+      padding: 10px 18px 16px 46px;
+      border-top: 1px dashed var(--rule);
+      font-size: 0.92rem;
+      color: var(--graphite-muted);
+      line-height: 1.64;
+    }
+
+    /* ==========================================================================
+       5. BỘ SƯU TẬP 4 GÓC TRƯỜNG DUNG HAY VẼ (CHUYỂN NÉT BLUEPRINT / NẮNG CHIỀU)
+       ========================================================================== */
+    .sketches-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      background: var(--vellum-deep);
+      border-bottom: 2px solid var(--blueprint);
+    }
+
+    .sketch-toolbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .sketch-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .sketch-thumb-btn {
+      background: var(--vellum-card);
+      border: 2px solid var(--rule);
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.18s ease, transform 0.18s var(--ease-out), box-shadow 0.18s ease;
+    }
+
+    .sketch-thumb-btn:hover {
+      border-color: var(--blueprint);
+      transform: translateY(-3px);
+    }
+
+    .sketch-thumb-btn[aria-pressed="true"] {
+      border-color: var(--blueprint);
+      box-shadow: 5px 5px 0 var(--terracotta);
+    }
+
+    .sketch-stage-frame {
+      background: var(--vellum-card);
+      border: 2px solid var(--blueprint);
+      box-shadow: 8px 8px 0 rgba(29, 53, 87, 0.18);
+      overflow: hidden;
+      transition: background-color 0.25s ease;
+    }
+
+    .sketch-stage-frame.is-blueprint {
+      background: var(--blueprint);
+      color: #EDF3FA;
+    }
+
+    .sketch-stage-svg-wrap {
+      width: 100%;
+      border-bottom: 1.5px solid var(--rule);
+    }
+
+    .sketch-stage-svg-wrap svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .sketch-stage-caption {
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       6. MINI GAME — “XẾP GÓC HỌC ĐÓN NẮNG” (CANVAS 2D + PHÂN TÍCH ÁNH SÁNG THẬT)
+       ========================================================================== */
+    .planner-section {
+      padding: clamp(54px, 7.5vw, 96px) 0;
+      background: var(--blueprint-dark);
+      color: #F4EFE4;
+      border-bottom: 2px solid rgba(244, 239, 228, 0.16);
+    }
+
+    .planner-board {
+      background: var(--blueprint);
+      border: 1.5px solid rgba(244, 239, 228, 0.28);
+      padding: clamp(16px, 2.8vw, 28px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+      gap: clamp(18px, 3vw, 32px);
+      align-items: start;
+    }
+
+    .planner-canvas-box {
+      background: #102036;
+      border: 1.5px solid rgba(244, 239, 228, 0.3);
+      overflow: hidden;
+    }
+
+    #roomPlannerCanvas {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      display: block;
+      cursor: pointer;
+    }
+
+    .planner-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .furn-palette {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .furn-btn {
+      min-height: 52px;
+      padding: 8px 10px;
+      border: 1.5px solid rgba(244, 239, 228, 0.34);
+      background: rgba(16, 32, 54, 0.65);
+      color: #F4EFE4;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .furn-btn small {
+      font-size: 0.72rem;
+      font-weight: 500;
+      opacity: 0.78;
+    }
+
+    .furn-btn[aria-pressed="true"] {
+      border-color: var(--sun-gold);
+      background: rgba(232, 180, 76, 0.18);
+      color: var(--sun-gold);
+    }
+
+    .planner-critique-box {
+      padding: 13px 15px;
+      background: rgba(16, 32, 54, 0.85);
+      border-left: 4px solid var(--sun-gold);
+      font-size: 0.9rem;
+      line-height: 1.58;
+    }
+
+    /* ==========================================================================
+       7. QUÀ CUỐI — BẢN VẼ GÓC NHỎ CỦA BẠN (XUẤT PNG 1600 × 1000 PX)
+       ========================================================================== */
+    .export-section {
+      padding: clamp(54px, 7.5vw, 96px) 0 clamp(68px, 9vw, 112px);
+      background: var(--vellum);
+    }
+
+    .export-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+    }
+
+    .export-canvas-shell {
+      border: 2px solid var(--blueprint);
+      background: var(--vellum-card);
+      box-shadow: 10px 10px 0 rgba(29, 53, 87, 0.16);
+      overflow: hidden;
+    }
+
+    #blueprintPreviewCanvas {
+      width: 100%;
+      aspect-ratio: 1600 / 1000;
+      display: block;
+    }
+
+    .export-form-card {
+      background: var(--vellum-card);
+      border: 2px solid var(--blueprint);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .export-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 9px 12px;
+      border: 1.5px solid var(--blueprint);
+      background: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .closing-letter-box {
+      max-width: 780px;
+      margin: clamp(44px, 6vw, 72px) auto 0;
+      padding: clamp(24px, 4vw, 38px);
+      background: var(--blueprint);
+      color: #F6F0E4;
+      border: 2px solid var(--blueprint-dark);
+      box-shadow: 8px 8px 0 rgba(200, 90, 50, 0.35);
+    }
+
+    .closing-letter-box p {
+      margin: 0 0 12px;
+      font-size: clamp(1rem, 1.4vw, 1.12rem);
+      line-height: 1.68;
+    }
+
+    /* Nút trượt mượt lên đầu trang */
+    .scroll-top-btn {
+      position: fixed;
+      right: clamp(14px, 3vw, 26px);
+      bottom: clamp(16px, 3vw, 26px);
+      z-index: 55;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--blueprint);
+      background: var(--vellum-card);
+      color: var(--blueprint);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 20px rgba(29, 53, 87, 0.22);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.28s var(--ease-out), transform 0.32s var(--ease-out), background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .scroll-top-btn.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .scroll-top-btn:hover {
+      background: var(--blueprint);
+      color: var(--vellum-card);
+    }
+
+    /* ==========================================================================
+       8. RESPONSIVE CHO MOBILE (320px, 390px) & TABLET
+       ========================================================================== */
+    @media (max-width: 920px) {
+      .hero-grid,
+      .career-grid,
+      .planner-board,
+      .export-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sketch-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .top-nav {
+        gap: 8px;
+      }
+
+      .top-nav a {
+        font-size: 0.74rem;
+      }
+
+      .hero-name {
+        font-size: clamp(2.55rem, 11vw, 3.2rem);
+      }
+
+      .furn-palette {
+        grid-template-columns: 1fr;
+      }
+
+      .career-step-inner {
+        padding-left: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========================================================================
+       THANH THƯỚC ĐIỀU HƯỚNG CỐ ĐỊNH
+       ======================================================================== -->
+  <header class="draft-topbar">
+    <div class="container topbar-inner">
+      <a href="#ban-ve" class="topbar-brand">
+        <span class="axis-mark" aria-hidden="true">D</span>
+        <span>DUNG · 1:50 · 12A10</span>
+      </a>
+      <nav class="top-nav" aria-label="Điều hướng chính">
+        <a href="#gioi-thieu">Giới thiệu</a>
+        <a href="#dinh-huong">Định hướng</a>
+        <a href="#bon-goc-truong">4 góc trường</a>
+        <a href="#xep-goc-nang">Xếp góc nắng</a>
+        <a href="#ban-ve-cuoi">Bản vẽ PNG</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         1. HERO — BÀN VẼ NẮNG, CHÂN DUNG DÁN BĂNG KEO & LỚP GIẤY CAN MỜ
+         ====================================================================== -->
+    <section id="ban-ve" class="hero-draft-section">
+      <div id="heroSunBeam" class="hero-sun-beam" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <span class="scale-spec-line">
+              <span>BẢN VẼ SỐ 12A10</span>
+              <span>·</span>
+              <span>TỈ LỆ 1:50</span>
+            </span>
+
+            <h1 id="heroFullName" class="hero-name">Trần Thị Dung</h1>
+
+            <div class="school-strip">
+              <span id="schoolLogoWrap" class="school-logo-wrap">
+                <img id="schoolLogoImg" src="" alt="Logo Trường THPT DakMil" />
+                <span class="school-logo-fallback" aria-hidden="true">DM</span>
+              </span>
+              <span id="heroClassSchool">Lớp 12A10 · Trường THPT DakMil</span>
+            </div>
+
+            <p id="heroGreeting" class="hero-greeting"></p>
+
+            <!-- Tương tác Hero: Kéo góc nắng trong ngày + Nhấc lớp giấy can mờ -->
+            <div class="sun-control-card">
+              <div class="sun-control-top">
+                <label for="heroSunSlider">Hướng nắng qua cửa sổ: <span id="heroTimeLabel" style="color:var(--terracotta);">15:30 chiều</span></label>
+                <button type="button" id="btnToggleTracing" class="btn btn-sm" aria-pressed="false" style="min-height:30px; padding:3px 10px; font-size:0.75rem;">
+                  Nhấc tờ giấy can
+                </button>
+              </div>
+              <input type="range" id="heroSunSlider" class="sun-slider" min="7" max="17" step="0.5" value="15.5" />
+              <p id="heroSunNote" class="sun-note-text" aria-live="polite">
+                15:30 — Vệt nắng xiên đúng góc bàn thứ ba, vừa đủ sáng để phác chì mà không bị chói mắt.
+              </p>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#gioi-thieu" class="btn btn-blueprint">Đọc ghi chú đo đạc ↓</a>
+              <a href="#xep-goc-nang" class="btn btn-terracotta">Thử xếp góc đón nắng</a>
+            </div>
+          </div>
+
+          <!-- Bảng vẽ dán băng keo giấy giữ chân dung thật + lớp giấy can mờ -->
+          <div class="drafting-portrait-board">
+            <span class="masking-tape tape-left" aria-hidden="true"></span>
+            <span class="masking-tape tape-right" aria-hidden="true"></span>
+
+            <div id="portraitFrame" class="portrait-frame">
+              <img id="portraitImg" src="" alt="Chân dung Trần Thị Dung, lớp 12A10 Trường THPT DakMil" />
+              <div class="portrait-fallback">
+                <strong>Chân dung Trần Thị Dung</strong>
+                <span style="font-size:0.84rem; color:var(--graphite-muted);">
+                  Đặt ảnh thật tại <code class="mono">./assets/dung.jpg</code>
+                </span>
+              </div>
+
+              <!-- Lớp giấy can vẽ ký hiệu kiến trúc nhẹ phủ bên trên (chạm nút để nhấc ra) -->
+              <div id="tracingOverlay" class="tracing-overlay" aria-hidden="true">
+                <svg viewBox="0 0 400 500">
+                  <g stroke="#1D3557" stroke-opacity="0.55" fill="none">
+                    <!-- Đường dóng thước & kích thước kiến trúc -->
+                    <line x1="26" y1="24" x2="26" y2="476" stroke-width="1.2" />
+                    <line x1="20" y1="24" x2="32" y2="24" stroke-width="1.2" />
+                    <line x1="20" y1="476" x2="32" y2="476" stroke-width="1.2" />
+                    <line x1="26" y1="476" x2="376" y2="476" stroke-width="1.2" />
+                    <!-- Vòng cung mở cửa ký hiệu mặt bằng -->
+                    <path d="M290 476 A90 90 0 0 1 380 386" stroke-dasharray="5 4" stroke-width="1.4" />
+                    <line x1="380" y1="476" x2="380" y2="386" stroke-width="1.6" />
+                    <!-- La bàn chỉ hướng Bắc ở góc trên phải -->
+                    <circle cx="352" cy="52" r="22" stroke-width="1.4" />
+                    <polygon points="352,32 346,56 352,51 358,56" fill="#C85A32" stroke="none" />
+                    <text x="352" y="24" text-anchor="middle" fill="#1D3557" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700">B</text>
+                  </g>
+                  <text x="40" y="466" fill="#1D3557" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700">GIẤY CAN · PHÁC NÉT TỈ LỆ</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="portrait-board-footer">
+              <span>TRẦN THỊ DUNG · 12A10</span>
+              <span style="color:var(--terracotta); font-weight:700;">MẶT ĐỨNG CHÍNH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. GIỚI THIỆU — “NGƯỜI HAY ĐO KHOẢNG CÁCH BẰNG GANG TAY”
+         ====================================================================== -->
+    <section id="gioi-thieu" class="bio-section">
+      <div class="container">
+        <article class="spec-sheet">
+          <div class="spec-meta-bar">
+            <span>HỒ SƠ GHI CHÚ · SỐ 12A10-KTS</span>
+            <span>TÁC GIẢ: TRẦN THỊ DUNG</span>
+          </div>
+
+          <span class="section-eyebrow">Ghi chú cá nhân</span>
+          <h2 class="section-title">Người hay đo khoảng cách bằng gang tay</h2>
+
+          <div id="bioProseWrap" class="bio-prose"></div>
+
+          <!-- Ghi chú bút chì trượt mở mượt -->
+          <div id="marginNoteDrawer" class="margin-note-drawer" hidden>
+            <div class="margin-note-box">
+              <strong>Chú thích bên lề của Dung:</strong> “Hôm đó mình đo xong kết luận ghế ở giữa mát nhất từ 9h đến 10h30, thế là cả nhóm giành nhau ngồi đúng cái ghế đó hết cả học kỳ hai.”
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. ĐỊNH HƯỚNG NGHỀ NGHIỆP — KIẾN TRÚC SƯ KHÔNG GIAN & CẢNH QUAN (~170 CHỮ)
+         ====================================================================== -->
+    <section id="dinh-huong" class="career-section">
+      <div class="container">
+        <span class="section-eyebrow">Định hướng nghề nghiệp · Khối V00 / H00</span>
+        <h2 id="careerHeading" class="section-title">Kiến trúc sư Không gian &amp; Cảnh quan</h2>
+
+        <div class="career-grid">
+          <article class="career-folio-card">
+            <span id="careerBadge" class="career-role-tag">Định hướng · Architect</span>
+            <div id="careerEssayWrap" class="career-essay"></div>
+          </article>
+
+          <div id="careerStepsWrap" class="career-accordion" aria-label="Ba mũi nhọn chuẩn bị cho ngành Kiến trúc của Dung"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. 4 GÓC NHỎ DUNG HAY NGỒI VẼ Ở TRƯỜNG (BLUEPRINT / NẮNG CHIỀU)
+         ====================================================================== -->
+    <section id="bon-goc-truong" class="sketches-section">
+      <div class="container">
+        <div class="sketch-toolbar">
+          <div>
+            <span class="section-eyebrow">Tập ký họa · 4 góc quen thuộc</span>
+            <h2 class="section-title" style="margin-bottom:6px;">Bốn góc nhỏ Dung hay ngồi vẽ</h2>
+            <p style="margin:0; color:var(--graphite-muted); max-width:56ch;">
+              Chọn từng góc trường để xem nét ký họa, rồi thử chuyển qua lại giữa chế độ <strong>Phối cảnh nắng chiều</strong> và <strong>Bản in xanh Blueprint</strong>.
+            </p>
+          </div>
+
+          <button type="button" id="btnToggleBlueprintMode" class="btn btn-blueprint btn-sm" aria-pressed="false">
+            Xem nét Blueprint xanh
+          </button>
+        </div>
+
+        <div id="sketchCardsGrid" class="sketch-cards-grid" role="group" aria-label="Chọn một trong bốn góc trường Dung hay vẽ"></div>
+
+        <div id="sketchStageFrame" class="sketch-stage-frame" aria-live="polite">
+          <div id="sketchStageSvgWrap" class="sketch-stage-svg-wrap"></div>
+          <div class="sketch-stage-caption">
+            <div>
+              <strong id="sketchStageTitle" style="display:block; font-size:1.08rem; margin-bottom:4px;"></strong>
+              <p id="sketchStageNote" style="margin:0; font-size:0.94rem; opacity:0.88; max-width:62ch;"></p>
+            </div>
+            <span id="sketchStageScale" class="mono" style="font-size:0.78rem; font-weight:700; opacity:0.82;"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. MINI GAME — “XẾP GÓC HỌC ĐÓN NẮNG” (MẶT BẰNG 2D + LUỒNG NẮNG THẬT)
+         ========================================================================== -->
+    <section id="xep-goc-nang" class="planner-section">
+      <div class="container">
+        <span class="section-eyebrow" style="color:var(--sun-gold);">Mini game · Thiết kế mặt bằng 1:25</span>
+        <h2 class="section-title" style="color:#FCF9F2;">Xếp góc học đón nắng cho Dung</h2>
+        <p style="margin:0 0 22px; color:rgba(244,239,228,0.8); max-width:62ch;">
+          Chọn món đồ bên phải rồi chạm vào ô lưới (4 × 3) để đặt lại vị trí. Mục tiêu: để <strong>Bàn học</strong> và <strong>Chậu cây</strong> đón được tia nắng qua cửa sổ mà không bị <strong>Kệ sách cao</strong> chắn mất ánh sáng.
+        </p>
+
+        <div class="planner-board">
+          <div class="planner-canvas-box">
+            <canvas
+              id="roomPlannerCanvas"
+              width="680"
+              height="425"
+              aria-label="Mặt bằng phòng học thu nhỏ 4 cột 3 hàng với luồng nắng chiều đi qua cửa sổ"
+            ></canvas>
+          </div>
+
+          <div class="planner-sidebar">
+            <div>
+              <span class="mono" style="display:block; font-size:0.74rem; color:var(--sun-gold); margin-bottom:8px;">
+                1. CHỌN MÓN ĐỒ RỒI CHẠM Ô LƯỚI ĐỂ ĐẶT:
+              </span>
+              <div id="furnPalette" class="furn-palette" role="group" aria-label="Chọn đồ nội thất để đặt lên mặt bằng"></div>
+            </div>
+
+            <div>
+              <label for="plannerSunSlider" class="mono" style="display:flex; justify-content:space-between; font-size:0.76rem; margin-bottom:6px;">
+                <span>2. GÓC NẮNG CHIỀU:</span>
+                <span id="plannerSunReadout" style="color:var(--sun-gold);">15:30 · Xiên vừa</span>
+              </label>
+              <input type="range" id="plannerSunSlider" class="sun-slider" min="-32" max="32" step="4" value="12" />
+            </div>
+
+            <div id="plannerCritiqueBox" class="planner-critique-box" aria-live="polite"></div>
+
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button type="button" id="btnResetRoom" class="btn btn-sm" style="background:transparent; color:#F4EFE4; border-color:rgba(244,239,228,0.4);">
+                Xếp lại mặc định
+              </button>
+              <a href="#ban-ve-cuoi" class="btn btn-terracotta btn-sm">Xuất bản vẽ góc này ↓</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. QUÀ CUỐI — BẢN VẼ GÓC NHỎ CỦA BẠN (XUẤT PNG 1600 × 1000 PX)
+         ====================================================================== -->
+    <section id="ban-ve-cuoi" class="export-section">
+      <div class="container">
+        <span class="section-eyebrow">Quà cuối trang · PNG 1600 × 1000 px</span>
+        <h2 class="section-title">Khung tên bản vẽ của bạn &amp; Dung</h2>
+        <p style="margin:0 0 24px; color:var(--graphite-muted); max-width:60ch;">
+          Mặt bằng bạn vừa xếp ở trên được đưa thẳng vào tờ bản vẽ kiến trúc có khung tên, tỉ lệ <code class="mono">1:25</code> và mũi tên hướng Bắc. Bạn có thể chọn in trên <strong>giấy can kem</strong> hoặc <strong>bản in xanh Blueprint</strong>.
+        </p>
+
+        <div class="export-grid">
+          <div class="export-canvas-shell">
+            <canvas
+              id="blueprintPreviewCanvas"
+              width="800"
+              height="500"
+              aria-label="Bản xem trước tờ bản vẽ kiến trúc lưu niệm 1600 nhân 1000 pixel"
+            ></canvas>
+          </div>
+
+          <div class="export-form-card">
+            <div>
+              <label for="architectGuestInput" style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:6px;">
+                Tên đồng tác giả trên khung tên (hỗ trợ tiếng Việt có dấu):
+              </label>
+              <input
+                type="text"
+                id="architectGuestInput"
+                class="export-input"
+                maxlength="32"
+                placeholder="Bạn cùng lớp 12A10"
+              />
+            </div>
+
+            <div>
+              <span style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:8px;">
+                Chọn chất liệu giấy xuất PNG:
+              </span>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" id="btnThemeVellum" class="btn btn-sm btn-blueprint" aria-pressed="true">Giấy can kem</button>
+                <button type="button" id="btnThemeBlueprint" class="btn btn-sm" aria-pressed="false">Bản in Blueprint xanh</button>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; padding-top:4px;">
+              <button type="button" id="btnDownloadBlueprint" class="btn btn-terracotta">Lưu Bản Vẽ PNG</button>
+              <a href="#xep-goc-nang" class="btn btn-sm">Sửa lại mặt bằng ↑</a>
+            </div>
+            <p id="exportStatusMsg" class="mono" style="margin:0; font-size:0.78rem; color:var(--blueprint); min-height:1.3em;" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <footer class="closing-letter-box">
+          <p id="closingQuoteText"></p>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-top:12px; border-top:1px dashed rgba(246,240,228,0.35); font-family:var(--font-mono); font-size:0.86rem;">
+            <span>Lớp 12A10 · Trường THPT DakMil</span>
+            <strong>— Trần Thị Dung.</strong>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- Nút trượt mượt lên đầu trang -->
+  <button type="button" id="btnScrollTop" class="scroll-top-btn" aria-label="Trượt lên đầu bàn vẽ">
+    <span aria-hidden="true">↑</span>
+    <span>Đầu bàn vẽ</span>
+  </button>
+
+  <script>
+    /* ==========================================================================
+       1. VÙNG CẤU HÌNH DỄ SỬA (ĐƯỜNG DẪN ẢNH, LẤY NÉT & NỘI DUNG CỦA DUNG)
+       ========================================================================== */
+    const CONFIG = {
+      fullName: "Trần Thị Dung",
+      className: "12A10",
+      school: "Trường THPT DakMil",
+      assets: {
+        portrait: "./assets/dung.jpg",
+        portraitFocus: "50% 20%",
+        schoolLogo: "./assets/logo-truong.png"
+      },
+      heroGreeting: "“Chào bạn, mình là Dung. Mình hay có tật bước vào một căn phòng hay quán quen là nhìn ngay xem cửa sổ quay hướng nào và chiều nắng rọi tới đâu. Thử kéo thanh giờ nắng bên dưới xem bàn vẽ này đổi bóng ra sao nha.”",
+      career: {
+        heading: "Kiến trúc sư Không gian & Cảnh quan",
+        badge: "Định hướng · Architect (Khối V00 / H00)",
+        essay: [
+          "Định hướng nghề nghiệp mình chọn là trở thành một kiến trúc sư chuyên về không gian sống và cảnh quan gần gũi với tự nhiên. Mọi thứ bắt đầu rất tình cờ từ những buổi học ở lớp 12A10: mình hay để ý xem nắng ba giờ chiều chiếu tới mép bàn nào, gió từ hành lang lùa qua cửa sổ ra sao, hay vì sao cùng một khoảng sân mà có góc đứng rất dễ chịu còn góc kia lại bí bách. Từ đó, mỗi lần rảnh mình lại lấy giấy can và bút chì 2B vẽ lại mặt bằng những căn phòng nhỏ có nhiều ánh sáng tự nhiên.",
+          "Mình biết theo ngành Kiến trúc sẽ có nhiều đêm thức làm đồ án, cắt mô hình giấy và chỉnh đi chỉnh lại từng centimet tỉ lệ. Nhưng mình tin một không gian được thiết kế tử tế có thể làm dịu tâm trạng của người ở trong đó mỗi ngày — và mình muốn tự tay tạo ra những góc nhỏ yên bình như thế."
+        ],
+        steps: [
+          {
+            num: "01",
+            title: "Luyện vẽ mỹ thuật đầu tượng, bố cục & Toán hình không gian",
+            body: "Duy trì lịch vẽ chì đều đặn mỗi tuần để cảm nhận sáng tối, tỉ lệ khối và trục đối xứng, song song với việc giữ vững nền tảng Toán hình học không gian cho khối V00."
+          },
+          {
+            num: "02",
+            title: "Tập quan sát ánh sáng, hướng gió và thói quen sinh hoạt thật",
+            body: "Ghi chép lại những góc học tập, hành lang, quán cà phê có không khí dễ chịu để hiểu vì sao một khung cửa mở đúng chỗ lại khiến căn phòng nhỏ bỗng thoáng hẳn ra."
+          },
+          {
+            num: "03",
+            title: "Làm quen tư duy mặt bằng và mô hình giấy thủ công",
+            body: "Từ việc đo đạc góc học tập ở nhà bằng thước dây, tập vẽ mặt bằng tỉ lệ 1:25 đến tự dựng vài mô hình bìa cứng nhỏ để kiểm chứng ánh sáng qua khe cửa."
+          }
+        ]
+      },
+      schoolCorners: [
+        {
+          id: "corridor",
+          code: "GÓC 01",
+          name: "Hành lang tầng 2",
+          scale: "TỈ LỆ 1:50 · MẶT CẮT HÀNH LANG",
+          note: "“Mình thích hàng lan can song sắt ở đây nhất lúc 4 giờ chiều — bóng nắng đổ xuống nền gạch thành những sọc dài thẳng tắp như kẻ bằng thước.”"
+        },
+        {
+          id: "window",
+          code: "GÓC 02",
+          name: "Cửa sổ cuối lớp 12A10",
+          scale: "TỈ LỆ 1:25 · CHI TIẾT KHUNG CỬA",
+          note: "“Khung cửa gỗ sơn xanh mở ra tán cây ngoài sân. Mấy hôm ôn bài căng, chỉ cần nhìn ra ngoài khoảng cửa này hai phút là thấy đầu nhẹ hẳn.”"
+        },
+        {
+          id: "bench",
+          code: "GÓC 03",
+          name: "Ghế đá dưới tán cây sân trường",
+          scale: "TỈ LỆ 1:100 · MẶT BẰNG CẢNH QUAN",
+          note: "“Tán cây che nắng cực khéo vào giờ ra chơi sáng. Mình từng lấy gang tay đo thử khoảng cách giữa ba chiếc ghế để tìm chỗ ngồi gió mát nhất.”"
+        },
+        {
+          id: "desk",
+          code: "GÓC 04",
+          name: "Góc bàn vẽ ở nhà",
+          scale: "TỈ LỆ 1:20 · NỘI THẤT GÓC NHỎ",
+          note: "“Chỉ có chiếc bàn gỗ thông, một đèn kẹp ánh vàng, chậu trầu bà nhỏ và cuốn sổ vẽ giấy dày. Đơn giản vậy mà ngồi phác thảo cả buổi tối không chán.”"
+        }
+      ],
+      closingQuote: "“Nếu sau này bạn cần ai đó xem giùm xem cái bàn học nên kê sát cửa sổ hay quay lưng vào tường cho đỡ chói, cứ nhắn Dung. Bản vẽ đầu tiên cho bạn cùng lớp 12A10 lúc nào cũng miễn phí.”"
+    };
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ==========================================================================
+       2. HIỆU ỨNG TRƯỢT LÊN XUỐNG MƯỢT (CUỘN TRANG & MỞ/ĐÓNG HỘP GẬP)
+       ========================================================================== */
+    let activeScrollRaf = null;
+
+    function stopSmoothScroll() {
+      if (activeScrollRaf !== null) {
+        cancelAnimationFrame(activeScrollRaf);
+        activeScrollRaf = null;
+      }
+    }
+
+    window.addEventListener("wheel", stopSmoothScroll, { passive: true });
+    window.addEventListener("touchstart", stopSmoothScroll, { passive: true });
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollToY(targetY, onDone) {
+      stopSmoothScroll();
+      const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const destY = Math.max(0, Math.min(maxY, targetY));
+
+      if (prefersReducedMotion) {
+        window.scrollTo(0, destY);
+        if (onDone) onDone();
+        return;
+      }
+
+      const startY = window.scrollY;
+      const dist = destY - startY;
+      if (Math.abs(dist) < 2) {
+        if (onDone) onDone();
+        return;
+      }
+
+      const dur = Math.min(860, Math.max(430, Math.abs(dist) * 0.45));
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        window.scrollTo(0, startY + dist * easeInOutCubic(p));
+        if (p < 1) {
+          activeScrollRaf = requestAnimationFrame(step);
+        } else {
+          activeScrollRaf = null;
+          if (onDone) onDone();
+        }
+      };
+      activeScrollRaf = requestAnimationFrame(step);
+    }
+
+    function smoothScrollToElement(el) {
+      if (!el) return;
+      const bar = document.querySelector(".draft-topbar");
+      const offset = (bar ? bar.offsetHeight : 0) + 12;
+      const targetY = el.getBoundingClientRect().top + window.scrollY - offset;
+
+      smoothScrollToY(targetY, () => {
+        if (el.tagName === "SECTION" && !prefersReducedMotion) {
+          el.classList.remove("is-scroll-target");
+          void el.offsetWidth;
+          el.classList.add("is-scroll-target");
+        }
+      });
+    }
+
+    function smoothSlideToggle(el, open) {
+      if (!el) return;
+      if (prefersReducedMotion) {
+        el.hidden = !open;
+        return;
+      }
+      if (el._slideEnd) {
+        el.removeEventListener("transitionend", el._slideEnd);
+        el._slideEnd = null;
+      }
+      if (open) {
+        el.hidden = false;
+        const h = el.scrollHeight;
+        el.style.height = "0px";
+        el.style.opacity = "0";
+        el.style.transition = "height 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 240ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = `${h}px`;
+          el.style.opacity = "1";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      } else {
+        el.style.height = `${el.scrollHeight}px`;
+        el.style.opacity = "1";
+        el.style.transition = "height 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = "0px";
+          el.style.opacity = "0";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.hidden = true;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      }
+    }
+
+    /* ==========================================================================
+       3. HERO — TƯƠNG TÁC GÓC NẮNG TRONG NGÀY & NHẤC TỜ GIẤY CAN MỜ
+       ========================================================================== */
+    const heroSunSlider = document.getElementById("heroSunSlider");
+    const heroSunBeam = document.getElementById("heroSunBeam");
+    const heroTimeLabel = document.getElementById("heroTimeLabel");
+    const heroSunNote = document.getElementById("heroSunNote");
+    const btnToggleTracing = document.getElementById("btnToggleTracing");
+    const tracingOverlay = document.getElementById("tracingOverlay");
+
+    function updateHeroSun(hourVal) {
+      const h = Number(hourVal);
+      const hrs = Math.floor(h);
+      const mins = h % 1 === 0.5 ? "30" : "00";
+      const period = h < 11.5 ? "sáng" : h < 13.5 ? "trưa" : "chiều";
+      heroTimeLabel.textContent = `${String(hrs).padStart(2, "0")}:${mins} ${period}`;
+
+      // Đổi góc vệt nắng từ 62deg (7h sáng) sang 136deg (17h chiều)
+      const angle = 62 + ((h - 7) / 10) * 74;
+      heroSunBeam.style.setProperty("--sun-angle", `${angle.toFixed(1)}deg`);
+
+      if (h < 9.5) {
+        heroSunNote.textContent = `${hrs}:${mins} — Nắng sớm còn dịu, rọi nghiêng nhẹ qua hành lang vào dãy bàn đầu.`;
+      } else if (h < 13.5) {
+        heroSunNote.textContent = `${hrs}:${mins} — Nắng đứng bóng, mái hiên trường chắn bớt nóng cho cả phòng học.`;
+      } else if (h < 16) {
+        heroSunNote.textContent = `${hrs}:${mins} — Vệt nắng xiên đúng góc bàn thứ ba, vừa đủ sáng để phác chì mà không bị chói mắt.`;
+      } else {
+        heroSunNote.textContent = `${hrs}:${mins} — Nắng vàng cam cuối ngày trải dài lên tường, đúng giờ Dung hay ở lại vẽ nốt một góc sân.`;
+      }
+    }
+
+    heroSunSlider.addEventListener("input", () => updateHeroSun(heroSunSlider.value));
+
+    btnToggleTracing.addEventListener("click", () => {
+      const lifted = tracingOverlay.classList.toggle("is-lifted");
+      btnToggleTracing.setAttribute("aria-pressed", String(lifted));
+      btnToggleTracing.textContent = lifted ? "Đặt lại giấy can" : "Nhấc tờ giấy can";
+    });
+
+    /* ==========================================================================
+       4. NẠP DỮ LIỆU CHÍNH, GIỚI THIỆU & ĐỊNH HƯỚNG KIẾN TRÚC SƯ
+       ========================================================================== */
+    function hydrateContent() {
+      document.getElementById("heroFullName").textContent = CONFIG.fullName;
+      document.getElementById("heroClassSchool").textContent = `Lớp ${CONFIG.className} · ${CONFIG.school}`;
+      document.getElementById("heroGreeting").textContent = CONFIG.heroGreeting;
+      document.getElementById("closingQuoteText").textContent = CONFIG.closingQuote;
+
+      const pFrame = document.getElementById("portraitFrame");
+      const pImg = document.getElementById("portraitImg");
+      pImg.style.objectPosition = CONFIG.assets.portraitFocus;
+      pImg.addEventListener("error", () => pFrame.classList.add("is-missing"));
+      pImg.addEventListener("load", () => pFrame.classList.remove("is-missing"));
+      pImg.src = CONFIG.assets.portrait;
+
+      const logoWrap = document.getElementById("schoolLogoWrap");
+      const logoImg = document.getElementById("schoolLogoImg");
+      logoImg.addEventListener("error", () => logoWrap.classList.add("is-missing"));
+      logoImg.addEventListener("load", () => logoWrap.classList.remove("is-missing"));
+      logoImg.src = CONFIG.assets.schoolLogo;
+
+      // Bài tự giới thiệu cá tính + nút bút chì mở ghi chú trượt mượt
+      const bioWrap = document.getElementById("bioProseWrap");
+      bioWrap.innerHTML = `
+        <p>Mình là Trần Thị Dung, học sinh lớp 12A10, Trường THPT DakMil. Bạn bè hay trêu mình có “bệnh nghề nghiệp từ sớm” vì cứ ngồi đâu lâu quá năm phút là mình lại lôi thước kẻ ra ước lượng chiều ngang cái bàn, hoặc đo thử <button type="button" id="btnMarginPencil" class="pencil-link-btn" aria-expanded="false" aria-controls="marginNoteDrawer">ba cái ghế đá dưới gốc phượng</button> bằng gang tay.</p>
+        <p>Mình thích vẽ chì, cắt mô hình giấy nhỏ và sưu tầm mấy tấm ảnh cửa sổ đón nắng đẹp. Trong nhóm làm bài, mình thường nhận phần dựng bố cục slide hoặc vẽ sơ đồ cho dễ nhìn. Thỉnh thoảng mình hơi kỹ tính khi chỉnh một khung chữ lệch đúng hai milimet, nhưng bù lại nhìn tổng thể lúc nào cũng gọn gàng.</p>
+        <p>Ngoài giờ học, mình hay đi dạo quanh trường lúc nắng chiều sắp tắt để ngắm bóng đổ của mái ngói và hàng cây. Với mình, một căn phòng hay một góc sân đẹp không cần quá cầu kỳ — chỉ cần bước vào thấy thoáng, sáng và có chỗ cho người ta thở chậm lại.</p>
+      `;
+
+      const btnMarginPencil = document.getElementById("btnMarginPencil");
+      const marginNoteDrawer = document.getElementById("marginNoteDrawer");
+      btnMarginPencil.addEventListener("click", () => {
+        const opening = marginNoteDrawer.hidden;
+        btnMarginPencil.setAttribute("aria-expanded", String(opening));
+        smoothSlideToggle(marginNoteDrawer, opening);
+      });
+
+      // Định hướng nghề nghiệp (~170 chữ + 3 mục accordion trượt mở/đóng mượt)
+      document.getElementById("careerHeading").textContent = CONFIG.career.heading;
+      document.getElementById("careerBadge").textContent = CONFIG.career.badge;
+
+      const essayWrap = document.getElementById("careerEssayWrap");
+      essayWrap.innerHTML = "";
+      CONFIG.career.essay.forEach((txt) => {
+        const p = document.createElement("p");
+        p.textContent = txt;
+        essayWrap.appendChild(p);
+      });
+
+      const stepsWrap = document.getElementById("careerStepsWrap");
+      stepsWrap.innerHTML = "";
+      CONFIG.career.steps.forEach((st, idx) => {
+        const openInit = idx === 0;
+        const card = document.createElement("article");
+        card.className = `career-step${openInit ? " is-open" : ""}`;
+        const panelId = `careerStepPanel_${idx}`;
+        card.innerHTML = `
+          <button type="button" class="career-step-trigger" aria-expanded="${openInit}" aria-controls="${panelId}">
+            <span class="career-step-head">
+              <span class="career-step-num">${st.num}</span>
+              <span class="career-step-title">${st.title}</span>
+            </span>
+            <span class="career-step-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div id="${panelId}" class="career-step-panel" ${openInit ? "" : "hidden"}>
+            <div class="career-step-inner">${st.body}</div>
+          </div>
+        `;
+        const trig = card.querySelector(".career-step-trigger");
+        const panel = card.querySelector(".career-step-panel");
+        trig.addEventListener("click", () => {
+          const opening = panel.hidden;
+          card.classList.toggle("is-open", opening);
+          trig.setAttribute("aria-expanded", String(opening));
+          smoothSlideToggle(panel, opening);
+        });
+        stepsWrap.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       5. 4 GÓC TRƯỜNG DUNG HAY VẼ — SVG ĐỔI CHẾ ĐỘ NẮNG CHIỀU / BLUEPRINT XANH
+       ========================================================================== */
+    let activeCornerIdx = 0;
+    let blueprintMode = false;
+
+    const sketchCardsGrid = document.getElementById("sketchCardsGrid");
+    const sketchStageFrame = document.getElementById("sketchStageFrame");
+    const sketchStageSvgWrap = document.getElementById("sketchStageSvgWrap");
+    const sketchStageTitle = document.getElementById("sketchStageTitle");
+    const sketchStageNote = document.getElementById("sketchStageNote");
+    const sketchStageScale = document.getElementById("sketchStageScale");
+    const btnToggleBlueprintMode = document.getElementById("btnToggleBlueprintMode");
+
+    function buildCornerSvg(cornerId, isBp) {
+      const bg = isBp ? "#1D3557" : "#FCF9F2";
+      const stroke = isBp ? "#E5F0FF" : "#1D3557";
+      const fillWarm = isBp ? "rgba(229,240,255,0.12)" : "#EAE0CC";
+      const accent = isBp ? "#9CC7F7" : "#C85A32";
+      const leaf = isBp ? "rgba(156,199,247,0.3)" : "#4A6B53";
+      const sun = isBp ? "rgba(232,180,76,0.14)" : "rgba(232,180,76,0.28)";
+
+      let art = "";
+      if (cornerId === "corridor") {
+        art = `
+          <rect width="920" height="380" fill="${bg}" />
+          <!-- Phối cảnh hành lang tầng 2 & hàng cột -->
+          <polygon points="0,380 280,220 920,220 920,380" fill="${fillWarm}" stroke="${stroke}" stroke-width="2" />
+          <polygon points="280,220 920,220 920,295 140,380" fill="${sun}" />
+          <rect x="0" y="34" width="920" height="36" fill="${fillWarm}" stroke="${stroke}" stroke-width="2" />
+          <line x1="280" y1="70" x2="280" y2="220" stroke="${stroke}" stroke-width="4" />
+          <line x1="510" y1="70" x2="510" y2="220" stroke="${stroke}" stroke-width="3.5" />
+          <line x1="740" y1="70" x2="740" y2="220" stroke="${stroke}" stroke-width="3" />
+          <!-- Lan can song sắt -->
+          <line x1="280" y1="152" x2="920" y2="152" stroke="${accent}" stroke-width="4" />
+          ${[315,350,385,420,455,545,580,615,650,685,775,810,845,880].map((x) => `<line x1="${x}" y1="152" x2="${x}" y2="220" stroke="${stroke}" stroke-width="1.8" />`).join("")}
+          <!-- Cửa lớp bên trái -->
+          <rect x="64" y="96" width="128" height="218" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.5" />
+          <rect x="82" y="114" width="92" height="80" fill="${bg}" stroke="${stroke}" stroke-width="1.8" />
+        `;
+      } else if (cornerId === "window") {
+        art = `
+          <rect width="920" height="380" fill="${bg}" />
+          <!-- Cửa sổ cuối lớp mở ra tán cây -->
+          <rect x="240" y="42" width="440" height="250" fill="${sun}" stroke="${stroke}" stroke-width="3.5" />
+          <circle cx="370" cy="145" r="76" fill="${leaf}" />
+          <circle cx="490" cy="128" r="90" fill="${leaf}" opacity="0.82" />
+          <circle cx="600" cy="175" r="64" fill="${leaf}" opacity="0.7" />
+          <!-- Hai cánh cửa gỗ mở ra ngoài -->
+          <polygon points="240,42 150,70 150,264 240,292" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.8" />
+          <polygon points="680,42 770,70 770,264 680,292" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.8" />
+          <!-- Song cửa sổ & bệ cửa có cuốn sổ vẽ -->
+          <line x1="460" y1="42" x2="460" y2="292" stroke="${stroke}" stroke-width="2.8" />
+          <line x1="240" y1="168" x2="680" y2="168" stroke="${stroke}" stroke-width="2.8" />
+          <rect x="210" y="292" width="500" height="20" fill="${accent}" opacity="0.85" stroke="${stroke}" stroke-width="2.2" />
+          <rect x="305" y="276" width="96" height="16" fill="${bg}" stroke="${stroke}" stroke-width="2" />
+        `;
+      } else if (cornerId === "bench") {
+        art = `
+          <rect width="920" height="380" fill="${bg}" />
+          <!-- Mặt bằng sân trường & tán cây tròn lớn che 3 chiếc ghế đá -->
+          <circle cx="460" cy="190" r="142" fill="${leaf}" fill-opacity="0.28" stroke="${leaf}" stroke-width="2.5" stroke-dasharray="10 6" />
+          <circle cx="460" cy="190" r="24" fill="${accent}" stroke="${stroke}" stroke-width="2.5" />
+          <!-- 3 chiếc ghế đá xung quanh gốc cây -->
+          <rect x="200" y="160" width="96" height="44" rx="4" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.6" />
+          <rect x="412" y="274" width="112" height="44" rx="4" fill="${accent}" fill-opacity="0.32" stroke="${accent}" stroke-width="3" />
+          <rect x="626" y="160" width="96" height="44" rx="4" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.6" />
+          <!-- Đường đo kích thước bằng gang tay -->
+          <line x1="296" y1="296" x2="412" y2="296" stroke="${stroke}" stroke-width="1.6" stroke-dasharray="4 4" />
+          <text x="468" y="301" text-anchor="middle" fill="${stroke}" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700">GHẾ MÁT NHẤT</text>
+        `;
+      } else {
+        art = `
+          <rect width="920" height="380" fill="${bg}" />
+          <!-- Mặt đứng góc bàn học ở nhà -->
+          <rect x="190" y="218" width="540" height="20" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.8" />
+          <rect x="215" y="238" width="18" height="110" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.4" />
+          <rect x="687" y="238" width="18" height="110" fill="${fillWarm}" stroke="${stroke}" stroke-width="2.4" />
+          <!-- Đèn kẹp ánh sáng vàng -->
+          <path d="M250 218 L280 120 L352 142" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round" />
+          <polygon points="338,136 376,148 358,170 330,158" fill="${accent}" stroke="${stroke}" stroke-width="2.2" />
+          <polygon points="330,158 376,148 450,218 270,218" fill="${sun}" />
+          <!-- Cuốn sổ vẽ mở trên bàn & chậu cây trầu bà -->
+          <rect x="348" y="202" width="146" height="16" fill="${bg}" stroke="${stroke}" stroke-width="2.2" />
+          <rect x="592" y="166" width="58" height="52" rx="4" fill="${accent}" fill-opacity="0.7" stroke="${stroke}" stroke-width="2.2" />
+          <ellipse cx="606" cy="146" rx="22" ry="12" transform="rotate(-28 606 146)" fill="${leaf}" />
+          <ellipse cx="638" cy="146" rx="22" ry="12" transform="rotate(28 638 146)" fill="${leaf}" />
+        `;
+      }
+
+      // Ký hiệu lưới thước nhẹ ở viền dưới bản vẽ
+      return `<svg viewBox="0 0 920 380" role="img" aria-label="Bản vẽ kiến trúc góc trường">${art}<line x1="24" y1="358" x2="896" y2="358" stroke="${stroke}" stroke-opacity="0.35" stroke-width="1.2" /></svg>`;
+    }
+
+    function renderActiveCorner() {
+      const c = CONFIG.schoolCorners[activeCornerIdx];
+      sketchStageFrame.classList.toggle("is-blueprint", blueprintMode);
+      sketchStageSvgWrap.innerHTML = buildCornerSvg(c.id, blueprintMode);
+      sketchStageTitle.textContent = `${c.code} · ${c.name}`;
+      sketchStageNote.textContent = c.note;
+      sketchStageScale.textContent = c.scale;
+
+      sketchCardsGrid.querySelectorAll(".sketch-thumb-btn").forEach((b, idx) => {
+        b.setAttribute("aria-pressed", String(idx === activeCornerIdx));
+      });
+    }
+
+    function initSchoolCorners() {
+      sketchCardsGrid.innerHTML = "";
+      CONFIG.schoolCorners.forEach((c, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "sketch-thumb-btn";
+        b.setAttribute("aria-pressed", String(idx === 0));
+        b.innerHTML = `
+          <span class="mono" style="font-size:0.72rem; font-weight:700; color:var(--terracotta);">${c.code}</span>
+          <strong style="font-size:0.95rem; color:var(--blueprint);">${c.name}</strong>
+          <span style="font-size:0.78rem; color:var(--graphite-muted);">${c.scale.split("·")[0].trim()}</span>
+        `;
+        b.addEventListener("click", () => {
+          activeCornerIdx = idx;
+          renderActiveCorner();
+        });
+        sketchCardsGrid.appendChild(b);
+      });
+
+      btnToggleBlueprintMode.addEventListener("click", () => {
+        blueprintMode = !blueprintMode;
+        btnToggleBlueprintMode.setAttribute("aria-pressed", String(blueprintMode));
+        btnToggleBlueprintMode.textContent = blueprintMode ? "Xem phối cảnh nắng chiều" : "Xem nét Blueprint xanh";
+        renderActiveCorner();
+      });
+
+      renderActiveCorner();
+    }
+
+    /* ==========================================================================
+       6. MINI GAME — “XẾP GÓC HỌC ĐÓN NẮNG” (LƯỚI 4×3 + RAYCAST ÁNH SÁNG THẬT)
+       ========================================================================== */
+    const roomPlannerCanvas = document.getElementById("roomPlannerCanvas");
+    const furnPalette = document.getElementById("furnPalette");
+    const plannerSunSlider = document.getElementById("plannerSunSlider");
+    const plannerSunReadout = document.getElementById("plannerSunReadout");
+    const plannerCritiqueBox = document.getElementById("plannerCritiqueBox");
+
+    const FURNITURE_META = [
+      { id: "desk", name: "Bàn học gỗ", note: "Cần đón nắng dịu", color: "#E8B44C", tall: false },
+      { id: "plant", name: "Chậu cây bàng", note: "Thích sáng tự nhiên", color: "#5FA36E", tall: false },
+      { id: "shelf", name: "Kệ sách cao", note: "Chắn tia nắng sau nó!", color: "#C85A32", tall: true },
+      { id: "chair", name: "Ghế lười đọc sách", note: "Góc nghỉ giữa giờ", color: "#7AAAD8", tall: false }
+    ];
+
+    const plannerState = {
+      cols: 4,
+      rows: 3,
+      selectedItem: "desk",
+      sunTiltDeg: 12, // Góc nắng đi từ cửa sổ ở tường trên (cột 1 & 2) xuống dưới
+      // Tọa độ ban đầu cố ý đặt kệ sách hơi chắn nắng để khách tự thử đổi chỗ!
+      positions: {
+        shelf: { c: 1, r: 0 },
+        desk: { c: 1, r: 1 },
+        plant: { c: 2, r: 2 },
+        chair: { c: 3, r: 1 }
+      }
+    };
+
+    // Tính các ô nhận được nắng đi qua cửa sổ (ở tường trên cột 1 & 2, xiên theo sunTiltDeg)
+    function computeSunlitCells() {
+      const sunlit = new Set();
+      const shelfPos = plannerState.positions.shelf;
+      const shiftPerRow = plannerState.sunTiltDeg / 36; // lệch nhẹ sang trái/phải theo góc nắng
+
+      // Hai luồng nắng xuất phát từ 2 cánh cửa sổ ở tường trên (col 1 và col 2)
+      const windowCols = [1, 2];
+      for (const startCol of windowCols) {
+        let blocked = false;
+        for (let r = 0; r < plannerState.rows; r++) {
+          const c = Math.max(0, Math.min(plannerState.cols - 1, Math.round(startCol + r * shiftPerRow)));
+          if (!blocked) {
+            sunlit.add(`${c},${r}`);
+            // Nếu ô này đặt Kệ sách cao thì tia nắng đi qua ô này sẽ bị chặn ở các hàng phía sau!
+            if (shelfPos.c === c && shelfPos.r === r) {
+              blocked = true;
+            }
+          }
+        }
+      }
+      return sunlit;
+    }
+
+    function evaluateRoomLayout() {
+      const sunlit = computeSunlitCells();
+      const deskLit = sunlit.has(`${plannerState.positions.desk.c},${plannerState.positions.desk.r}`);
+      const plantLit = sunlit.has(`${plannerState.positions.plant.c},${plannerState.positions.plant.r}`);
+      const shelfBlocksWin = plannerState.positions.shelf.r === 0 && (plannerState.positions.shelf.c === 1 || plannerState.positions.shelf.c === 2);
+
+      if (shelfBlocksWin) {
+        return {
+          status: "blocked",
+          text: "Dung góp ý: “Kệ sách cao đang đứng chắn ngay cửa sổ rồi! Thử chọn Kệ sách rồi bấm sang góc tường trái hoặc phải để nắng ùa vào phòng nha.”"
+        };
+      }
+      if (deskLit && plantLit) {
+        return {
+          status: "perfect",
+          text: "Dung gật gù: “Chuẩn kiến trúc rồi đó! Cả bàn học lẫn chậu cây đều hứng trọn nắng chiều, kệ sách áp tường gọn gàng — góc này ngồi vẽ cả chiều cũng không chán.”"
+        };
+      }
+      if (deskLit) {
+        return {
+          status: "good",
+          text: "Dung nhận xét: “Bàn học đủ sáng rồi! Kéo thêm Chậu cây bàng vào vệt nắng vàng là góc phòng tươi hẳn lên luôn.”"
+        };
+      }
+      return {
+        status: "try",
+        text: "Dung gợi ý: “Bàn học đang hơi khuất bóng. Chạm vào Bàn học rồi chuyển nó vào vùng vệt nắng vàng giữa phòng thử xem!”"
+      };
+    }
+
+    // Hàm vẽ mặt bằng phòng dùng chung cho cả Mini game (dark blueprint) và Bản vẽ xuất PNG (vellum hoặc blueprint)
+    function drawRoomPlanOnCanvas(ctx, x0, y0, boxW, boxH, theme = "dark") {
+      const isDark = theme === "dark" || theme === "blueprint";
+      const bg = theme === "vellum" ? "#FCF9F2" : (theme === "blueprint" ? "#1D3557" : "#102036");
+      const gridLine = isDark ? "rgba(244, 239, 228, 0.16)" : "rgba(29, 53, 87, 0.16)";
+      const wallCol = isDark ? "#F4EFE4" : "#1D3557";
+      const sunFill = isDark ? "rgba(232, 180, 76, 0.24)" : "rgba(232, 180, 76, 0.32)";
+
+      const pad = Math.min(boxW, boxH) * 0.11;
+      const roomX = x0 + pad;
+      const roomY = y0 + pad;
+      const roomW = boxW - pad * 2;
+      const roomH = boxH - pad * 2;
+      const cellW = roomW / plannerState.cols;
+      const cellH = roomH / plannerState.rows;
+
+      ctx.save();
+      ctx.fillStyle = bg;
+      ctx.fillRect(x0, y0, boxW, boxH);
+
+      // Lưới ô 4×3
+      ctx.strokeStyle = gridLine;
+      ctx.lineWidth = 1.2;
+      for (let c = 0; c <= plannerState.cols; c++) {
+        ctx.beginPath();
+        ctx.moveTo(roomX + c * cellW, roomY);
+        ctx.lineTo(roomX + c * cellW, roomY + roomH);
+        ctx.stroke();
+      }
+      for (let r = 0; r <= plannerState.rows; r++) {
+        ctx.beginPath();
+        ctx.moveTo(roomX, roomY + r * cellH);
+        ctx.lineTo(roomX + roomW, roomY + r * cellH);
+        ctx.stroke();
+      }
+
+      // Tô sáng các ô thực sự nhận được nắng (raycast qua kệ sách cao)
+      const sunlit = computeSunlitCells();
+      sunlit.forEach((key) => {
+        const [c, r] = key.split(",").map(Number);
+        ctx.fillStyle = sunFill;
+        ctx.fillRect(roomX + c * cellW + 2, roomY + r * cellH + 2, cellW - 4, cellH - 4);
+      });
+
+      // Tường bao phòng + khe cửa sổ kính ở tường trên (cột 1 & 2)
+      ctx.strokeStyle = wallCol;
+      ctx.lineWidth = Math.max(4, boxW * 0.01);
+      ctx.strokeRect(roomX, roomY, roomW, roomH);
+
+      // Đánh dấu cửa sổ đón nắng trên tường Bắc
+      const winX = roomX + cellW;
+      const winW = cellW * 2;
+      ctx.strokeStyle = "#E8B44C";
+      ctx.lineWidth = Math.max(6, boxW * 0.014);
+      ctx.beginPath();
+      ctx.moveTo(winX + 4, roomY);
+      ctx.lineTo(winX + winW - 4, roomY);
+      ctx.stroke();
+
+      ctx.fillStyle = "#E8B44C";
+      ctx.font = `700 ${Math.max(11, boxW * 0.02)}px 'IBM Plex Mono', monospace`;
+      ctx.textAlign = "center";
+      ctx.fillText("CỬA SỔ ĐÓN NẮNG", winX + winW / 2, roomY - 10);
+
+      // Ký hiệu cánh cửa mở vào ở góc dưới phải
+      const doorR = cellW * 0.42;
+      ctx.strokeStyle = wallCol;
+      ctx.lineWidth = 1.8;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.arc(roomX + roomW, roomY + roomH, doorR, Math.PI, Math.PI * 1.5);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Vẽ 4 món đồ nội thất ký hiệu mặt bằng kiến trúc
+      FURNITURE_META.forEach((item) => {
+        const pos = plannerState.positions[item.id];
+        const cx = roomX + (pos.c + 0.5) * cellW;
+        const cy = roomY + (pos.r + 0.5) * cellH;
+        const isSel = theme === "dark" && plannerState.selectedItem === item.id;
+
+        ctx.save();
+        if (isSel) {
+          ctx.strokeStyle = "#E8B44C";
+          ctx.lineWidth = 2.5;
+          ctx.setLineDash([5, 4]);
+          ctx.strokeRect(roomX + pos.c * cellW + 5, roomY + pos.r * cellH + 5, cellW - 10, cellH - 10);
+          ctx.setLineDash([]);
+        }
+
+        const fw = cellW * 0.68;
+        const fh = cellH * 0.58;
+        if (item.id === "desk") {
+          ctx.fillStyle = item.color;
+          ctx.strokeStyle = wallCol;
+          ctx.lineWidth = 2;
+          ctx.fillRect(cx - fw / 2, cy - fh / 2, fw, fh);
+          ctx.strokeRect(cx - fw / 2, cy - fh / 2, fw, fh);
+          // Tờ giấy vẽ nhỏ trên bàn
+          ctx.fillStyle = "#FCF9F2";
+          ctx.fillRect(cx - fw * 0.24, cy - fh * 0.25, fw * 0.48, fh * 0.5);
+        } else if (item.id === "plant") {
+          ctx.fillStyle = item.color;
+          ctx.strokeStyle = wallCol;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(cx, cy, Math.min(fw, fh) * 0.48, 0, Math.PI * 2);
+          ctx.fill(); ctx.stroke();
+          // Nét lá xuyên tâm kiểu mặt bằng cây xanh
+          ctx.beginPath();
+          ctx.moveTo(cx - 10, cy - 10); ctx.lineTo(cx + 10, cy + 10);
+          ctx.moveTo(cx + 10, cy - 10); ctx.lineTo(cx - 10, cy + 10);
+          ctx.stroke();
+        } else if (item.id === "shelf") {
+          ctx.fillStyle = item.color;
+          ctx.strokeStyle = wallCol;
+          ctx.lineWidth = 2.2;
+          ctx.fillRect(cx - fw / 2, cy - fh * 0.44, fw, fh * 0.88);
+          ctx.strokeRect(cx - fw / 2, cy - fh * 0.44, fw, fh * 0.88);
+          // Gạch chéo ký hiệu tủ cao chắn sáng
+          ctx.beginPath();
+          ctx.moveTo(cx - fw / 2, cy - fh * 0.44); ctx.lineTo(cx + fw / 2, cy + fh * 0.44);
+          ctx.moveTo(cx + fw / 2, cy - fh * 0.44); ctx.lineTo(cx - fw / 2, cy + fh * 0.44);
+          ctx.stroke();
+        } else {
+          ctx.fillStyle = item.color;
+          ctx.strokeStyle = wallCol;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.roundRect(cx - fw * 0.4, cy - fh * 0.44, fw * 0.8, fh * 0.88, 12);
+          ctx.fill(); ctx.stroke();
+        }
+
+        // Nhãn nhỏ dưới từng món đồ
+        ctx.fillStyle = wallCol;
+        ctx.font = `700 ${Math.max(10, boxW * 0.017)}px 'Be Vietnam Pro', sans-serif`;
+        ctx.textAlign = "center";
+        ctx.fillText(item.name.split(" ")[0] + " " + item.name.split(" ")[1], cx, roomY + (pos.r + 1) * cellH - 8);
+        ctx.restore();
+      });
+
+      ctx.restore();
+      return { roomX, roomY, roomW, roomH, cellW, cellH };
+    }
+
+    function refreshRoomPlanner() {
+      const ctx = roomPlannerCanvas.getContext("2d");
+      drawRoomPlanOnCanvas(ctx, 0, 0, roomPlannerCanvas.width, roomPlannerCanvas.height, "dark");
+      const verdict = evaluateRoomLayout();
+      plannerCritiqueBox.textContent = verdict.text;
+      renderExportCanvas(document.getElementById("blueprintPreviewCanvas"));
+    }
+
+    function initRoomPlanner() {
+      furnPalette.innerHTML = "";
+      FURNITURE_META.forEach((item) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "furn-btn";
+        b.setAttribute("data-furn-id", item.id);
+        b.setAttribute("aria-pressed", String(item.id === plannerState.selectedItem));
+        b.innerHTML = `<span>${item.name}</span><small>${item.note}</small>`;
+        b.addEventListener("click", () => {
+          plannerState.selectedItem = item.id;
+          furnPalette.querySelectorAll(".furn-btn").forEach((el) => {
+            el.setAttribute("aria-pressed", String(el === b));
+          });
+          refreshRoomPlanner();
+        });
+        furnPalette.appendChild(b);
+      });
+
+      roomPlannerCanvas.addEventListener("click", (e) => {
+        const rect = roomPlannerCanvas.getBoundingClientRect();
+        const px = ((e.clientX - rect.left) / rect.width) * roomPlannerCanvas.width;
+        const py = ((e.clientY - rect.top) / rect.height) * roomPlannerCanvas.height;
+
+        const pad = Math.min(roomPlannerCanvas.width, roomPlannerCanvas.height) * 0.11;
+        const roomW = roomPlannerCanvas.width - pad * 2;
+        const roomH = roomPlannerCanvas.height - pad * 2;
+        const c = Math.floor((px - pad) / (roomW / plannerState.cols));
+        const r = Math.floor((py - pad) / (roomH / plannerState.rows));
+
+        if (c < 0 || c >= plannerState.cols || r < 0 || r >= plannerState.rows) return;
+
+        // Nếu ô đích đã có món đồ khác, hoán đổi vị trí hai món cho tiện
+        const curPos = plannerState.positions[plannerState.selectedItem];
+        const occupantId = Object.keys(plannerState.positions).find(
+          (id) => id !== plannerState.selectedItem && plannerState.positions[id].c === c && plannerState.positions[id].r === r
+        );
+        if (occupantId) {
+          plannerState.positions[occupantId] = { c: curPos.c, r: curPos.r };
+        }
+        plannerState.positions[plannerState.selectedItem] = { c, r };
+        refreshRoomPlanner();
+      });
+
+      plannerSunSlider.addEventListener("input", () => {
+        plannerState.sunTiltDeg = Number(plannerSunSlider.value);
+        const tilt = plannerState.sunTiltDeg;
+        plannerSunReadout.textContent = tilt < -8 ? "14:00 · Xiên trái" : tilt > 8 ? "16:15 · Xiên phải" : "15:00 · Thẳng cửa sổ";
+        refreshRoomPlanner();
+      });
+
+      document.getElementById("btnResetRoom").addEventListener("click", () => {
+        plannerState.positions = {
+          shelf: { c: 1, r: 0 },
+          desk: { c: 1, r: 1 },
+          plant: { c: 2, r: 2 },
+          chair: { c: 3, r: 1 }
+        };
+        plannerState.sunTiltDeg = 12;
+        plannerSunSlider.value = "12";
+        plannerSunReadout.textContent = "15:30 · Xiên vừa";
+        refreshRoomPlanner();
+      });
+    }
+
+    /* ==========================================================================
+       7. QUÀ CUỐI — XUẤT BẢN VẼ KIẾN TRÚC PNG 1600 × 1000 PX (VẼ NỘI BỘ 100%)
+       ========================================================================== */
+    const blueprintPreviewCanvas = document.getElementById("blueprintPreviewCanvas");
+    const architectGuestInput = document.getElementById("architectGuestInput");
+    const btnThemeVellum = document.getElementById("btnThemeVellum");
+    const btnThemeBlueprint = document.getElementById("btnThemeBlueprint");
+    const exportStatusMsg = document.getElementById("exportStatusMsg");
+
+    let exportTheme = "vellum"; // vellum | blueprint
+
+    function renderExportCanvas(canvas) {
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      const s = W / 1600;
+      const isBp = exportTheme === "blueprint";
+
+      const bg = isBp ? "#1D3557" : "#F6F0E4";
+      const fg = isBp ? "#F4EFE4" : "#1D3557";
+      const accent = isBp ? "#E8B44C" : "#C85A32";
+      const guest = (architectGuestInput.value || "").trim() || "Bạn cùng lớp 12A10";
+      const today = new Date().toLocaleDateString("vi-VN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // Lưới tọa độ kiến trúc nền
+      ctx.strokeStyle = isBp ? "rgba(244,239,228,0.08)" : "rgba(29,53,87,0.08)";
+      ctx.lineWidth = 1 * s;
+      for (let x = 40 * s; x < W; x += 40 * s) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let y = 40 * s; y < H; y += 40 * s) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+
+      // Khung viền đôi tiêu chuẩn bản vẽ kỹ thuật
+      const pad = 48 * s;
+      ctx.strokeStyle = fg;
+      ctx.lineWidth = 4 * s;
+      ctx.strokeRect(pad, pad, W - pad * 2, H - pad * 2);
+      ctx.lineWidth = 1.6 * s;
+      ctx.strokeRect(pad + 10 * s, pad + 10 * s, W - (pad + 10 * s) * 2, H - (pad + 10 * s) * 2);
+
+      // Khu vực mặt bằng bên trái (chiếm 66% bề ngang)
+      const planX = pad + 34 * s;
+      const planY = pad + 92 * s;
+      const planW = 940 * s;
+      const planH = 680 * s;
+
+      ctx.fillStyle = fg;
+      ctx.font = `800 ${42 * s}px 'Barlow Condensed', 'Be Vietnam Pro', sans-serif`;
+      ctx.textAlign = "left";
+      ctx.fillText("MẶT BẰNG GÓC HỌC ĐÓN NẮNG · TỈ LỆ 1:25", planX, pad + 68 * s);
+
+      drawRoomPlanOnCanvas(ctx, planX, planY, planW, planH, exportTheme);
+      ctx.strokeStyle = fg;
+      ctx.lineWidth = 2 * s;
+      ctx.strokeRect(planX, planY, planW, planH);
+
+      // Cột Khung Tên Bản Vẽ (Title Block) chuẩn kiến trúc ở bên phải
+      const tbX = planX + planW + 32 * s;
+      const tbY = planY;
+      const tbW = W - pad - 34 * s - tbX;
+      const tbH = planH;
+
+      ctx.strokeStyle = fg;
+      ctx.lineWidth = 2.5 * s;
+      ctx.strokeRect(tbX, tbY, tbW, tbH);
+
+      // La bàn hướng Bắc ở đầu khung tên
+      const compX = tbX + tbW / 2;
+      const compY = tbY + 110 * s;
+      ctx.beginPath(); ctx.arc(compX, compY, 54 * s, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = accent;
+      ctx.beginPath();
+      ctx.moveTo(compX, compY - 46 * s);
+      ctx.lineTo(compX - 16 * s, compY + 12 * s);
+      ctx.lineTo(compX, compY);
+      ctx.lineTo(compX + 16 * s, compY + 12 * s);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = fg;
+      ctx.font = `700 ${24 * s}px 'IBM Plex Mono', monospace`;
+      ctx.textAlign = "center";
+      ctx.fillText("B", compX, compY - 62 * s);
+
+      // Các dòng thông số khung tên
+      const drawTitleBlockRow = (ry, label, val) => {
+        ctx.strokeStyle = fg;
+        ctx.lineWidth = 1.6 * s;
+        ctx.beginPath(); ctx.moveTo(tbX, ry); ctx.lineTo(tbX + tbW, ry); ctx.stroke();
+        ctx.textAlign = "left";
+        ctx.fillStyle = accent;
+        ctx.font = `700 ${18 * s}px 'IBM Plex Mono', monospace`;
+        ctx.fillText(label, tbX + 20 * s, ry + 32 * s);
+        ctx.fillStyle = fg;
+        ctx.font = `700 ${26 * s}px 'Be Vietnam Pro', sans-serif`;
+        ctx.fillText(val, tbX + 20 * s, ry + 70 * s, tbW - 40 * s);
+      };
+
+      drawTitleBlockRow(tbY + 210 * s, "ĐỒNG TÁC GIẢ", guest);
+      drawTitleBlockRow(tbY + 314 * s, "KTS. TƯƠNG LAI", CONFIG.fullName);
+      drawTitleBlockRow(tbY + 418 * s, "ĐƠN VỊ", `Lớp ${CONFIG.className} · ${CONFIG.school}`);
+      drawTitleBlockRow(tbY + 522 * s, "NGÀY LẬP BẢN VẼ", `${today} · TỈ LỆ 1:25`);
+
+      // Dòng ghi chú đánh giá ánh sáng ở chân bản vẽ
+      const verdict = evaluateRoomLayout();
+      ctx.textAlign = "left";
+      ctx.fillStyle = fg;
+      ctx.font = `italic 500 ${23 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(verdict.text.slice(0, 96) + (verdict.text.length > 96 ? "…" : ""), planX, H - pad - 34 * s, W - pad * 2 - 68 * s);
+    }
+
+    function initExportControls() {
+      architectGuestInput.addEventListener("input", () => renderExportCanvas(blueprintPreviewCanvas));
+
+      btnThemeVellum.addEventListener("click", () => {
+        exportTheme = "vellum";
+        btnThemeVellum.classList.add("btn-blueprint");
+        btnThemeBlueprint.classList.remove("btn-blueprint");
+        btnThemeVellum.setAttribute("aria-pressed", "true");
+        btnThemeBlueprint.setAttribute("aria-pressed", "false");
+        renderExportCanvas(blueprintPreviewCanvas);
+      });
+
+      btnThemeBlueprint.addEventListener("click", () => {
+        exportTheme = "blueprint";
+        btnThemeBlueprint.classList.add("btn-blueprint");
+        btnThemeVellum.classList.remove("btn-blueprint");
+        btnThemeBlueprint.setAttribute("aria-pressed", "true");
+        btnThemeVellum.setAttribute("aria-pressed", "false");
+        renderExportCanvas(blueprintPreviewCanvas);
+      });
+
+      document.getElementById("btnDownloadBlueprint").addEventListener("click", () => {
+        try {
+          const exp = document.createElement("canvas");
+          exp.width = 1600;
+          exp.height = 1000;
+          renderExportCanvas(exp);
+
+          const a = document.createElement("a");
+          a.download = `ban-ve-goc-nang-tran-thi-dung-12a10-${exportTheme}.png`;
+          a.href = exp.toDataURL("image/png");
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          exportStatusMsg.textContent = "Đã lưu Bản vẽ PNG sắc nét (1600 × 1000 px) về máy của bạn!";
+        } catch (err) {
+          exportStatusMsg.textContent = "Không thể tự tải PNG trong khung xem này. Hãy mở trực tiếp file HTML để tải.";
+        }
+      });
+    }
+
+    /* ==========================================================================
+       8. ĐIỀU HƯỚNG TRƯỢT MƯỢT & KHỞI CHẠY TOÀN TRANG
+       ========================================================================== */
+    function initSmoothNav() {
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const hash = link.getAttribute("href");
+          if (!hash || hash === "#") return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          smoothScrollToElement(target);
+          try { history.replaceState(null, "", hash); } catch (_) {}
+        });
+      });
+
+      const btnTop = document.getElementById("btnScrollTop");
+      const navLinks = Array.from(document.querySelectorAll(".top-nav a[href^='#']"));
+      const sections = navLinks
+        .map((a) => ({ a, el: document.querySelector(a.getAttribute("href")) }))
+        .filter((x) => x.el);
+
+      btnTop.addEventListener("click", () => smoothScrollToY(0));
+
+      const onScroll = () => {
+        const y = window.scrollY;
+        btnTop.classList.toggle("is-visible", y > 340);
+        const probe = y + 140;
+        let current = null;
+        for (const s of sections) {
+          if (s.el.offsetTop <= probe) current = s;
+        }
+        navLinks.forEach((a) => a.classList.toggle("is-active", Boolean(current && current.a === a)));
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    window.addEventListener("load", () => {
+      hydrateContent();
+      updateHeroSun(15.5);
+      initSchoolCorners();
+      renderActiveCorner();
+      initRoomPlanner();
+      refreshRoomPlanner();
+      initExportControls();
+      renderExportCanvas(blueprintPreviewCanvas);
+      initSmoothNav();
+    });
+  </script>
+</body>
+</html>

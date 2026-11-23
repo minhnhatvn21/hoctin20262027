@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật Ký Ước Mơ & Hướng Nghiệp - Nguyễn Anh Thư | 12A10 THPT Đắk Mil</title>
+    
+    <!-- Nhúng Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Nhúng Google Fonts chuẩn phong cách Vintage Việt Nam -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome cho các biểu tượng cổ điển -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Cấu hình bảng màu và font chữ Vintage trong Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: {
+                            light: '#FAF5EB',
+                            DEFAULT: '#F4EBD9',
+                            dark: '#E6D7BC',
+                            aged: '#D8C39E'
+                        },
+                        ink: {
+                            dark: '#2C1E16',
+                            brown: '#4A3525',
+                            muted: '#6E5541'
+                        },
+                        phoenix: {
+                            red: '#B83A2D',
+                            dark: '#8E281E',
+                            light: '#D9534F'
+                        },
+                        chalkboard: {
+                            green: '#263B32',
+                            border: '#5C3A21'
+                        },
+                        gold: {
+                            antique: '#B58938'
+                        }
+                    },
+                    fontFamily: {
+                        serifDisplay: ['"Playfair Display"', 'serif'],
+                        serifBody: ['"Lora"', 'serif'],
+                        serifElegant: ['"Cormorant Garamond"', 'serif'],
+                        handwriting: ['"Dancing Script"', 'cursive']
+                    },
+                    boxShadow: {
+                        'vintage': '0 10px 25px -5px rgba(44, 30, 22, 0.15), 0 8px 10px -6px rgba(44, 30, 22, 0.1)',
+                        'polaroid': '0 12px 24px rgba(44, 30, 22, 0.25), 0 2px 6px rgba(44, 30, 22, 0.15)',
+                        'inner-paper': 'inset 0 0 60px rgba(139, 105, 65, 0.18)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hiệu ứng vân giấy cũ cổ điển toàn trang */
+        body {
+            background-color: #F4EBD9;
+            background-image: 
+                radial-gradient(rgba(139, 105, 65, 0.08) 1px, transparent 0),
+                radial-gradient(rgba(184, 58, 45, 0.04) 1px, transparent 0),
+                linear-gradient(to bottom, rgba(250, 245, 235, 0.6), rgba(230, 215, 188, 0.4));
+            background-size: 32px 32px, 48px 48px, 100% 100%;
+            background-position: 0 0, 16px 16px, 0 0;
+            color: #2C1E16;
+            overflow-x: hidden;
+        }
+
+        /* Viền trang trí hoa văn cổ điển */
+        .vintage-frame {
+            border: 2px solid #8C6D46;
+            position: relative;
+        }
+        .vintage-frame::before {
+            content: '';
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border: 1px dashed #B58938;
+            pointer-events: none;
+        }
+
+        /* Băng dính giấy Washi tape cho khung ảnh Polaroid */
+        .washi-tape {
+            background-color: rgba(216, 195, 158, 0.85);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            backdrop-filter: blur(2px);
+            border-left: 2px dotted rgba(255,255,255,0.5);
+            border-right: 2px dotted rgba(255,255,255,0.5);
+        }
+
+        /* Hiệu ứng đĩa than quay chậm khi phát nhạc mô phỏng */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .vinyl-spinning {
+            animation: spin-slow 12s linear infinite;
+        }
+        .vinyl-paused {
+            animation-play-state: paused;
+        }
+
+        /* Canvas hoa phượng rơi phủ toàn màn hình nhưng không cản trở thao tác chuột */
+        #phoenix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 40;
+        }
+
+        /* Hiệu ứng dòng kẻ vở học sinh cổ điển */
+        .lined-paper {
+            background-image: linear-gradient(transparent 95%, rgba(140, 109, 70, 0.25) 95%);
+            background-size: 100% 2rem;
+            line-height: 2rem;
+        }
+
+        /* Bảng đen phấn trắng */
+        .chalk-text {
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="font-serifBody antialiased selection:bg-phoenix-red selection:text-paper-light">
+
+    <!-- Canvas hiệu ứng cánh hoa phượng đỏ rơi -->
+    <canvas id="phoenix-canvas"></canvas>
+
+    <!-- Thanh điều hướng cố định phong cách cổ điển -->
+    <header class="sticky top-0 z-50 bg-paper-light/95 backdrop-blur-md border-b-2 border-paper-aged shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- Logo / Chữ ký tên -->
+            <a href="#top" class="flex items-center gap-2 group">
+                <span class="w-9 h-9 rounded-full bg-phoenix-red text-paper-light flex items-center justify-center font-serifDisplay font-bold text-lg shadow-sm group-hover:scale-105 transition">
+                    AT
+                </span>
+                <div>
+                    <span class="font-handwriting text-2xl sm:text-3xl text-ink-dark font-bold tracking-wide">Nguyễn Anh Thư</span>
+                    <span class="hidden sm:inline-block text-xs uppercase tracking-widest text-ink-muted ml-2 border-l border-paper-aged pl-2">12A10 • THPT Đắk Mil</span>
+                </div>
+            </a>
+
+            <!-- Menu điều hướng -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold tracking-wide text-ink-brown">
+                <a href="#gioi-thieu" class="hover:text-phoenix-red transition">Bản Thân</a>
+                <a href="#goc-am-nhac" class="hover:text-phoenix-red transition">Góc Âm Nhạc</a>
+                <a href="#uoc-mo-su-pham" class="hover:text-phoenix-red transition">Ước Mơ Sư Phạm</a>
+                <a href="#lo-trinh" class="hover:text-phoenix-red transition">Hành Trình Hướng Nghiệp</a>
+            </nav>
+
+            <!-- Nút bật/tắt hiệu ứng hoa phượng rơi -->
+            <div class="flex items-center gap-2">
+                <button id="toggle-petals-btn" onclick="togglePetals()" class="px-3 py-1.5 rounded-full bg-phoenix-red/10 hover:bg-phoenix-red text-phoenix-dark hover:text-paper-light border border-phoenix-red/40 text-xs sm:text-sm font-medium transition flex items-center gap-1.5 shadow-sm" title="Bật hoặc tắt hiệu ứng cánh hoa phượng rơi">
+                    <i class="fa-solid fa-leaf text-phoenix-red group-hover:text-white"></i>
+                    <span id="petals-btn-text">Tắt hoa phượng rơi</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PHẦN 1: HERO & HỒ SƠ CÁ NHÂN + KHUNG AVATAR POLAROID -->
+    <main id="top" class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 pb-16 space-y-20 relative z-10">
+        
+        <section id="gioi-thieu" class="bg-paper-light/90 rounded-2xl p-6 sm:p-10 md:p-12 shadow-vintage shadow-inner-paper vintage-frame">
+            <!-- Dấu mộc bưu điện trang trí góc trên -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-paper-aged pb-4 mb-8 gap-2">
+                <div class="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-ink-muted font-semibold">
+                    <i class="fa-solid fa-feather-pointed text-phoenix-red"></i>
+                    <span>Trang Lưu Bút Tuổi 18 • Niên Khóa 2024 - 2027</span>
+                </div>
+                <div class="px-3 py-1 border border-phoenix-red/50 rounded text-xs font-serifDisplay font-bold text-phoenix-red tracking-wider uppercase rotate-1">
+                    Tổ Hợp Khối A00 • Toán - Lí - Hóa
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Cột Trái: Khung Ảnh Đại Diện Polaroid (Chỗ dán link ảnh của Nguyễn Anh Thư) -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="relative bg-white p-4 pb-12 rounded-sm shadow-polaroid border border-stone-200 transform -rotate-2 hover:rotate-0 transition duration-500 max-w-xs w-full">
+                        <!-- Miếng băng dính Washi Tape trang trí -->
+                        <div class="washi-tape w-28 h-7 absolute -top-3.5 left-1/2 -translate-x-1/2 transform rotate-2 z-20"></div>
+                        
+                        <!-- ===================================================================== -->
+                        <!-- ẢNH ĐẠI DIỆN CỦA NGUYỄN ANH THƯ (Đường dẫn: images/anh5.jpg)          -->
+                        <!-- ===================================================================== -->
+                        <div class="relative aspect-[4/5] w-full overflow-hidden bg-paper-dark border border-stone-300 group">
+                            <img 
+                                id="avatar-image"
+                                src="images/anh5.jpg" 
+                                alt="Ảnh đại diện Nguyễn Anh Thư - Lớp 12A10 THPT Đắk Mil" 
+                                onerror="this.onerror=null; this.src='https://placehold.co/400x500/E6D7BC/4A3525?text=Nguy%E1%BB%85n+Anh+Th%C6%B0%0A(images%2Fanh5.jpg)'; document.getElementById('local-image-notice').classList.remove('hidden');"
+                                class="w-full h-full object-cover sepia-[0.15] contrast-[1.03] transition duration-500 group-hover:scale-105"
+                            >
+                            <!-- Lớp phủ hướng dẫn thay ảnh nhanh trực tiếp trên web -->
+                            <button onclick="openAvatarModal()" class="absolute bottom-2 right-2 bg-ink-dark/80 hover:bg-phoenix-red text-paper-light text-xs px-3 py-1.5 rounded-full backdrop-blur-sm transition flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-camera"></i>
+                                <span>Đổi ảnh khác</span>
+                            </button>
+                        </div>
+
+                        <!-- Chú thích viết tay dưới khung Polaroid -->
+                        <div class="mt-4 text-center">
+                            <p class="font-handwriting text-2xl sm:text-3xl text-ink-dark font-bold">Nguyễn Anh Thư</p>
+                            <p class="text-xs text-ink-muted font-serifDisplay italic mt-0.5">Lớp 12A10 • THPT Đắk Mil</p>
+                        </div>
+                    </div>
+
+                    <!-- Thông báo nhỏ chỉ hiện ra khi xem trước trên trình duyệt online chưa có thư mục images/anh5.jpg -->
+                    <p id="local-image-notice" class="hidden mt-4 text-xs text-center text-ink-brown bg-phoenix-red/10 px-3 py-2 rounded-lg border border-phoenix-red/30 max-w-xs">
+                        <i class="fa-solid fa-folder-open text-phoenix-red mr-1"></i>
+                        Đã liên kết tới <code class="bg-paper-light px-1 rounded font-bold text-phoenix-dark">images/anh5.jpg</code>. Khi bạn lưu file HTML này vào thư mục máy tính cùng cấp với thư mục <strong>images</strong>, ảnh của bạn sẽ tự động hiển thị!
+                    </p>
+
+                    <!-- Ghi chú trạng thái đường dẫn ảnh -->
+                    <p class="mt-3 text-xs text-center text-ink-muted italic max-w-xs bg-paper-dark/60 px-3 py-2 rounded-lg border border-paper-aged">
+                        <i class="fa-solid fa-check-circle text-chalkboard-green mr-1"></i>
+                        Ảnh mặc định đang trỏ tới: <code class="bg-paper-light px-1 rounded text-phoenix-dark">images/anh5.jpg</code>
+                    </p>
+                </div>
+
+                <!-- Cột Phải: Lời Tự Bạch & Thông Tin Cá Nhân -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <p class="font-handwriting text-2xl sm:text-3xl text-phoenix-red mb-1">Xin chào, mình là...</p>
+                        <h1 class="font-serifDisplay text-4xl sm:text-5xl md:text-6xl font-bold text-ink-dark leading-tight">
+                            Nguyễn Anh Thư
+                        </h1>
+                        <p class="text-lg sm:text-xl font-serifElegant italic text-ink-brown mt-2">
+                            "Mang giai điệu của âm nhạc hòa vào nhịp đập logic của những con số, để một ngày được đứng trên bục giảng gieo mầm tri thức."
+                        </p>
+                    </div>
+
+                    <!-- Bảng thông tin tóm tắt kiểu thẻ thư viện cổ điển -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="bg-paper/80 p-4 rounded-xl border border-paper-aged flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-phoenix-red/15 text-phoenix-red flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-school text-lg"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-ink-muted block">Mái trường thân yêu</span>
+                                <strong class="font-serifDisplay text-base sm:text-lg text-ink-dark">Lớp 12A10 - THPT Đắk Mil</strong>
+                                <span class="text-xs text-ink-muted block">Đắk Mil, Đắk Nông</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-paper/80 p-4 rounded-xl border border-paper-aged flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-chalkboard-green/15 text-chalkboard-green flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-square-root-variable text-lg"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-ink-muted block">Tổ hợp xét tuyển</span>
+                                <strong class="font-serifDisplay text-base sm:text-lg text-ink-dark">Khối A00</strong>
+                                <span class="text-xs text-ink-muted block">Toán học • Vật Lí • Hóa Học</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-paper/80 p-4 rounded-xl border border-paper-aged flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-gold-antique/20 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-music text-lg"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-ink-muted block">Sở thích & Đam mê</span>
+                                <strong class="font-serifDisplay text-base sm:text-lg text-ink-dark">Ca hát & Nghe nhạc</strong>
+                                <span class="text-xs text-ink-muted block">Nuôi dưỡng tâm hồn bay bổng</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-paper/80 p-4 rounded-xl border border-paper-aged flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-phoenix-red/15 text-phoenix-red flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-chalkboard-user text-lg"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-ink-muted block">Ước mơ nghề nghiệp</span>
+                                <strong class="font-serifDisplay text-base sm:text-lg text-ink-dark">Giáo Viên Dạy Toán</strong>
+                                <span class="text-xs text-ink-muted block">Người truyền lửa tri thức</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lời giới thiệu tâm tình -->
+                    <div class="lined-paper pt-2 text-ink-brown text-base sm:text-lg text-justify">
+                        Giữa những ngày tháng cuối cấp rực rỡ sắc hoa phượng đỏ tại mái trường <strong>THPT Đắk Mil</strong>, mình đang từng ngày nỗ lực cùng tập thể lớp <strong>12A10</strong> ôn luyện kiến thức khối <strong>A00</strong>. Với mình, Toán học không hề khô khan mà ẩn chứa vẻ đẹp chặt chẽ, kỳ diệu tựa như những nốt nhạc trong một bản giao hưởng.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: GÓC ÂM NHẠC VINTAGE & GIAO THOA TOÁN HỌC -->
+        <section id="goc-am-nhac" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <!-- Máy nghe nhạc đĩa than cổ điển tương tác -->
+            <div class="lg:col-span-5 bg-ink-dark text-paper-light rounded-2xl p-6 sm:p-8 shadow-vintage border-2 border-gold-antique/60 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+                    <i class="fa-solid fa-record-vinyl text-[180px]"></i>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between border-b border-paper-aged/20 pb-3 mb-5">
+                        <span class="text-xs uppercase tracking-[0.2em] text-gold-antique font-semibold">
+                            <i class="fa-solid fa-compact-disc mr-1.5"></i>Góc Giai Điệu Của Thư
+                        </span>
+                        <span id="music-status-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-phoenix-red/30 text-paper-light border border-phoenix-red/50">
+                            Đang phát giai điệu
+                        </span>
+                    </div>
+
+                    <!-- Đĩa than Vinyl minh họa -->
+                    <div class="flex flex-col items-center my-4">
+                        <div class="relative w-44 h-44 sm:w-48 sm:h-48 flex items-center justify-center">
+                            <!-- Đĩa than xoay -->
+                            <div id="vinyl-disc" class="w-full h-full rounded-full bg-stone-900 border-4 border-stone-700 shadow-2xl flex items-center justify-center vinyl-spinning relative">
+                                <!-- Các rãnh đĩa than -->
+                                <div class="w-36 h-36 rounded-full border border-stone-700/70 flex items-center justify-center">
+                                    <div class="w-28 h-28 rounded-full border border-stone-700/70 flex items-center justify-center">
+                                        <!-- Nhãn giữa đĩa than -->
+                                        <div class="w-16 h-16 rounded-full bg-phoenix-red border-2 border-paper-light flex flex-col items-center justify-center text-center p-1">
+                                            <span class="font-handwriting text-xs text-paper-light leading-none">Anh Thư</span>
+                                            <span class="text-[8px] uppercase tracking-tighter text-paper-dark mt-0.5">12A10</span>
+                                            <div class="w-2.5 h-2.5 rounded-full bg-stone-900 mt-1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-serifDisplay text-xl font-bold text-paper-light mt-5 text-center">
+                            Bản Nhạc Mùa Hạ & Những Con Số
+                        </h3>
+                        <p class="text-xs text-paper-aged italic mt-1 text-center">
+                            "Ca hát giúp mình giải tỏa căng thẳng sau những giờ giải đề Toán - Lí - Hóa"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Nút điều khiển phát giai điệu êm dịu (sử dụng Web Audio API nhẹ nhàng không cần file ngoài) -->
+                <div class="pt-4 border-t border-paper-aged/20 flex items-center justify-center gap-4">
+                    <button id="play-music-btn" onclick="toggleMusicVibe()" class="px-5 py-2.5 rounded-full bg-gold-antique hover:bg-amber-600 text-ink-dark font-semibold text-sm transition flex items-center gap-2 shadow-md">
+                        <i id="music-icon" class="fa-solid fa-pause"></i>
+                        <span id="music-btn-label">Tạm dừng đĩa than</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Trích dẫn & Tranh minh họa SVG Trường Lớp - Bảng Đen - Hoa Phượng -->
+            <div class="lg:col-span-7 bg-paper-light/90 rounded-2xl p-6 sm:p-8 shadow-vintage vintage-frame flex flex-col justify-between">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.2em] text-phoenix-red font-semibold block mb-2">
+                        <i class="fa-solid fa-quote-left mr-1.5"></i>Triết Lý Nhỏ Của Cô Giáo Tương Lai
+                    </span>
+                    <h2 class="font-serifDisplay text-2xl sm:text-3xl font-bold text-ink-dark mb-4">
+                        Khi Âm Nhạc Gặp Gỡ Toán Học
+                    </h2>
+                    <blockquote class="border-l-4 border-phoenix-red pl-4 italic text-ink-brown text-base sm:text-lg mb-6 bg-paper/60 py-3 pr-3 rounded-r-lg">
+                        "Âm nhạc là niềm vui khi tâm hồn con người đếm mà không biết rằng mình đang đếm." — <strong>Gottfried Wilhelm Leibniz</strong>
+                    </blockquote>
+                    <p class="text-ink-brown text-sm sm:text-base leading-relaxed mb-6">
+                        Nhiều người nghĩ dân khối A00 thường khô khan, nhưng với Anh Thư, ca hát và nghe nhạc chính là chiếc chìa khóa mở ra sự sáng tạo. Mình tin rằng một người giáo viên dạy Toán biết yêu nghệ thuật và âm nhạc sẽ biết cách biến những công thức, định lý trở nên mềm mại, gần gũi và chạm đến trái tim học trò hơn.
+                    </p>
+                </div>
+
+                <!-- Tranh minh họa SVG Nghệ Thuật: Bảng đen lớp học, Cành hoa phượng đỏ và Hình ảnh cô giáo -->
+                <div class="w-full rounded-xl overflow-hidden border-2 border-chalkboard-border shadow-md bg-chalkboard-green p-4 relative">
+                    <svg viewBox="0 0 600 180" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Nền bảng xanh cổ điển -->
+                        <rect x="0" y="0" width="600" height="180" rx="8" fill="#263B32"/>
+                        <rect x="6" y="6" width="588" height="168" rx="4" fill="none" stroke="#4D6B5E" stroke-width="1.5" stroke-dasharray="6,4"/>
+                        
+                        <!-- Công thức Toán học viết phấn trắng bên trái -->
+                        <text x="28" y="42" fill="#F4EBD9" opacity="0.85" font-family="serif" font-style="italic" font-size="16">∫ f(x)dx = F(b) - F(a)</text>
+                        <text x="32" y="72" fill="#F4EBD9" opacity="0.7" font-family="serif" font-size="14">sin²α + cos²α = 1</text>
+                        <text x="28" y="102" fill="#E6D7BC" opacity="0.75" font-family="serif" font-style="italic" font-size="14">lim (1 + 1/n)ⁿ = e</text>
+                        <!-- Hình học không gian minh họa -->
+                        <polygon points="65,120 35,160 95,160" fill="none" stroke="#F4EBD9" stroke-width="1.2" opacity="0.7"/>
+                        <line x1="65" y1="120" x2="65" y2="160" stroke="#F4EBD9" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+
+                        <!-- Hình ảnh minh họa Cô giáo đứng bên bục giảng ở giữa -->
+                        <g transform="translate(235, 22)">
+                            <!-- Búi tóc & Mái tóc cô giáo -->
+                            <circle cx="45" cy="36" r="18" fill="#1C1410"/>
+                            <circle cx="45" cy="18" r="9" fill="#1C1410"/>
+                            <!-- Khuôn mặt dịu dàng -->
+                            <circle cx="45" cy="38" r="14" fill="#F5D5B8"/>
+                            <!-- Áo dài truyền thống màu kem/trắng -->
+                            <path d="M25,138 L31,56 Q45,50 59,56 L65,138 Z" fill="#FAF5EB"/>
+                            <path d="M31,56 L45,74 L59,56" fill="none" stroke="#B83A2D" stroke-width="1.5"/>
+                            <!-- Tay cầm thước/phấn chỉ lên bảng -->
+                            <path d="M58,64 L92,42" stroke="#F5D5B8" stroke-width="4" stroke-linecap="round"/>
+                            <line x1="88" y1="45" x2="125" y2="20" stroke="#E6D7BC" stroke-width="2.5" stroke-linecap="round"/>
+                            <!-- Quyển sách giáo án trên tay trái -->
+                            <rect x="18" y="76" width="22" height="16" rx="2" fill="#B83A2D" transform="rotate(-10 18 76)"/>
+                        </g>
+
+                        <!-- Chữ viết phấn nắn nót bên phải -->
+                        <text x="395" y="55" fill="#FAF5EB" font-family="'Dancing Script', cursive" font-size="24">Ước Mơ Bục Giảng</text>
+                        <text x="405" y="82" fill="#E6D7BC" font-family="serif" font-size="13">THPT Đắk Mil • 12A10</text>
+                        
+                        <!-- Cành hoa phượng đỏ rực rỡ góc phải -->
+                        <g transform="translate(470, 95)">
+                            <path d="M0,65 Q35,35 95,15" fill="none" stroke="#6E4730" stroke-width="3" stroke-linecap="round"/>
+                            <!-- Lá phượng xanh -->
+                            <ellipse cx="30" cy="40" rx="12" ry="4" fill="#4A7C59" transform="rotate(-25 30 40)"/>
+                            <ellipse cx="55" cy="25" rx="12" ry="4" fill="#4A7C59" transform="rotate(-20 55 25)"/>
+                            <!-- Bông hoa phượng 5 cánh đỏ -->
+                            <g transform="translate(75, 22)">
+                                <circle cx="0" cy="-10" r="7" fill="#D9534F"/>
+                                <circle cx="10" cy="-3" r="7" fill="#B83A2D"/>
+                                <circle cx="6" cy="9" r="7" fill="#D9534F"/>
+                                <circle cx="-6" cy="9" r="7" fill="#B83A2D"/>
+                                <circle cx="-10" cy="-3" r="7" fill="#FAF5EB" stroke="#B83A2D" stroke-width="1.5"/>
+                                <circle cx="0" cy="0" r="3" fill="#F0AD4E"/>
+                            </g>
+                            <g transform="translate(42, 48) scale(0.8)">
+                                <circle cx="0" cy="-10" r="7" fill="#B83A2D"/>
+                                <circle cx="10" cy="-3" r="7" fill="#D9534F"/>
+                                <circle cx="6" cy="9" r="7" fill="#B83A2D"/>
+                                <circle cx="-6" cy="9" r="7" fill="#D9534F"/>
+                                <circle cx="-10" cy="-3" r="7" fill="#FAF5EB" stroke="#B83A2D" stroke-width="1.5"/>
+                                <circle cx="0" cy="0" r="3" fill="#F0AD4E"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 3: ƯỚC MƠ & ĐỊNH HƯỚNG SƯ PHẠM TOÁN HỌC -->
+        <section id="uoc-mo-su-pham" class="bg-paper-light/95 rounded-2xl p-6 sm:p-10 shadow-vintage vintage-frame">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="inline-block px-4 py-1 rounded-full bg-phoenix-red/10 text-phoenix-red text-xs font-bold uppercase tracking-widest mb-3">
+                    Khát Vọng Nghề Nghiệp
+                </span>
+                <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-ink-dark">
+                    Giấc Mơ Đứng Trên Bục Giảng & Viết Tiếp Những Mùa Phượng
+                </h2>
+                <div class="w-24 h-1 bg-phoenix-red mx-auto my-4 rounded-full"></div>
+                <p class="text-ink-brown text-base sm:text-lg leading-relaxed">
+                    Dưới mái trường <strong>THPT Đắk Mil</strong>, hình ảnh những thầy cô tận tụy bên trang giáo án và từng nét phấn trắng đã gieo vào lòng mình tình yêu sâu sắc với nghề giáo. Mình chọn theo đuổi <strong>Khối A00</strong> không chỉ để chinh phục những bài toán khó, mà để chuẩn bị hành trang vững chắc nhất cho ước mơ trở thành một <strong>Cô giáo dạy Toán</strong>.
+                </p>
+            </div>
+
+            <!-- 3 Giá trị cốt lõi của cô giáo Toán tương lai -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-paper p-6 rounded-xl border border-paper-aged shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-phoenix-red text-paper-light flex items-center justify-center text-xl mb-4 shadow">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <h3 class="font-serifDisplay text-xl font-bold text-ink-dark mb-2">Tư Duy Logic & Chuẩn Xác</h3>
+                    <p class="text-sm text-ink-brown leading-relaxed">
+                        Rèn luyện phương pháp phân tích vấn đề từ gốc rễ qua các môn Toán, Vật Lí, Hóa Học của khối A00, giúp học sinh hiểu bản chất thay vì học thuộc công thức máy móc.
+                    </p>
+                </div>
+
+                <div class="bg-paper p-6 rounded-xl border border-paper-aged shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-chalkboard-green text-paper-light flex items-center justify-center text-xl mb-4 shadow">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="font-serifDisplay text-xl font-bold text-ink-dark mb-2">Sự Kiên Nhẫn & Thấu Cảm</h3>
+                    <p class="text-sm text-ink-brown leading-relaxed">
+                        Mỗi học sinh có một nhịp độ tiếp thu riêng. Mình mong muốn trở thành người cô luôn biết lắng nghe, kiên nhẫn đồng hành để không một bạn nhỏ nào cảm thấy sợ hãi môn Toán.
+                    </p>
+                </div>
+
+                <div class="bg-paper p-6 rounded-xl border border-paper-aged shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-gold-antique text-paper-light flex items-center justify-center text-xl mb-4 shadow">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-serifDisplay text-xl font-bold text-ink-dark mb-2">Bài Giảng Giàu Cảm Hứng</h3>
+                    <p class="text-sm text-ink-brown leading-relaxed">
+                        Kết hợp sự bay bổng của âm nhạc, những câu chuyện thực tế và công nghệ dạy học hiện đại để mỗi tiết học Toán đều là một hành trình khám phá đầy niềm vui.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 4: LỘ TRÌNH HƯỚNG NGHIỆP CHI TIẾT (CAREER ROADMAP TIMELINE) -->
+        <section id="lo-trinh" class="space-y-10">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="font-handwriting text-3xl text-phoenix-red block">Bản Đồ Tương Lai</span>
+                <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-ink-dark mt-1">
+                    Hành Trình Chinh Phục Ước Mơ Giáo Viên Toán
+                </h2>
+                <p class="text-sm sm:text-base text-ink-muted mt-2">
+                    Từng bước đi vững chắc từ ghế nhà trường THPT Đắk Mil đến bục giảng tương lai
+                </p>
+            </div>
+
+            <!-- Dòng thời gian (Timeline) phong cách cổ điển -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Trục dọc giữa màn hình (Desktop) / Bên trái (Mobile) -->
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-phoenix-red via-gold-antique to-chalkboard-green transform md:-translate-x-1/2 rounded-full"></div>
+
+                <div class="space-y-12">
+                    <!-- GIAI ĐOẠN 1 -->
+                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+                        <div class="md:w-5/12 md:text-right pl-16 md:pl-0 md:pr-10">
+                            <span class="inline-block px-3 py-1 rounded bg-phoenix-red text-paper-light text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
+                                Giai Đoạn 1 • Hiện Tại
+                            </span>
+                            <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold text-ink-dark">
+                                Lớp 12A10 - THPT Đắk Mil
+                            </h3>
+                            <p class="text-xs font-semibold text-phoenix-dark uppercase tracking-wide mt-0.5 mb-2">
+                                Chinh Phục Kỳ Thi Tốt Nghiệp THPT Khối A00
+                            </p>
+                            <p class="text-sm text-ink-brown leading-relaxed bg-paper-light/90 p-4 rounded-xl border border-paper-aged shadow-sm text-left md:text-right">
+                                Tập trung cao độ ôn luyện chuyên sâu ba môn <strong>Toán - Vật Lí - Hóa Học</strong>. Rèn luyện kỹ năng giải đề, quản lý thời gian và giữ vững tinh thần lạc quan qua những giai điệu âm nhạc yêu thích để đạt điểm số cao nhất vào nguyện vọng Sư phạm.
+                            </p>
+                        </div>
+
+                        <!-- Điểm nút trên trục thời gian -->
+                        <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-phoenix-red border-4 border-paper-light text-paper-light flex items-center justify-center font-bold shadow-md z-10">
+                            1
+                        </div>
+
+                        <div class="hidden md:block md:w-5/12 pl-10">
+                            <div class="p-4 rounded-xl border border-dashed border-phoenix-red/40 bg-phoenix-red/5 text-ink-brown text-sm italic">
+                                <i class="fa-solid fa-bullseye text-phoenix-red mr-1.5"></i>
+                                Mục tiêu trọng tâm: Nắm chắc kiến thức nền tảng, bứt phá điểm số môn Toán khối A00.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GIAI ĐOẠN 2 -->
+                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+                        <div class="hidden md:block md:w-5/12 pr-10 text-right">
+                            <div class="p-4 rounded-xl border border-dashed border-gold-antique/60 bg-gold-antique/10 text-ink-brown text-sm italic">
+                                <i class="fa-solid fa-graduation-cap text-amber-800 mr-1.5"></i>
+                                Ngôi trường mơ ước: ĐH Sư phạm TP.HCM, ĐH Sư phạm Hà Nội hoặc ĐH Tây Nguyên.
+                            </div>
+                        </div>
+
+                        <!-- Điểm nút -->
+                        <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-gold-antique border-4 border-paper-light text-paper-light flex items-center justify-center font-bold shadow-md z-10">
+                            2
+                        </div>
+
+                        <div class="md:w-5/12 pl-16 md:pl-10">
+                            <span class="inline-block px-3 py-1 rounded bg-gold-antique text-paper-light text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
+                                Giai Đoạn 2 • Giảng Đường Đại Học
+                            </span>
+                            <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold text-ink-dark">
+                                Sinh Viên Ngành Sư Phạm Toán Học
+                            </h3>
+                            <p class="text-xs font-semibold text-amber-800 uppercase tracking-wide mt-0.5 mb-2">
+                                Trở Thành Tân Sinh Viên Sư Phạm
+                            </p>
+                            <p class="text-sm text-ink-brown leading-relaxed bg-paper-light/90 p-4 rounded-xl border border-paper-aged shadow-sm">
+                                Nghiên cứu sâu về Toán cao cấp, Đại số, Giải tích, Hình học và Tâm lý học lứa tuổi. Tích cực tham gia các câu lạc bộ học thuật và văn nghệ sinh viên để trau dồi cả chuyên môn lẫn sự tự tin trước đám đông.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- GIAI ĐOẠN 3 -->
+                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+                        <div class="md:w-5/12 md:text-right pl-16 md:pl-0 md:pr-10">
+                            <span class="inline-block px-3 py-1 rounded bg-ink-brown text-paper-light text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
+                                Giai Đoạn 3 • Rèn Nghiệp Vụ
+                            </span>
+                            <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold text-ink-dark">
+                                Kiến Tập & Thực Tập Sư Phạm
+                            </h3>
+                            <p class="text-xs font-semibold text-ink-muted uppercase tracking-wide mt-0.5 mb-2">
+                                Nghiệp Vụ Đứng Lớp & Sáng Tạo Bài Giảng
+                            </p>
+                            <p class="text-sm text-ink-brown leading-relaxed bg-paper-light/90 p-4 rounded-xl border border-paper-aged shadow-sm text-left md:text-right">
+                                Trực tiếp soạn giáo án, tập giảng và bước vào các đợt thực tập tại trường phổ thông. Ứng dụng công nghệ số, trực quan hóa hình học và lồng ghép sự dí dỏm, âm nhạc giúp giờ học Toán luôn sôi nổi, lôi cuốn.
+                            </p>
+                        </div>
+
+                        <!-- Điểm nút -->
+                        <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-ink-brown border-4 border-paper-light text-paper-light flex items-center justify-center font-bold shadow-md z-10">
+                            3
+                        </div>
+
+                        <div class="hidden md:block md:w-5/12 pl-10">
+                            <div class="p-4 rounded-xl border border-dashed border-ink-brown/40 bg-paper-dark/40 text-ink-brown text-sm italic">
+                                <i class="fa-solid fa-chalkboard text-ink-brown mr-1.5"></i>
+                                Rèn luyện: Kỹ năng sư phạm, thiết kế học liệu số và phương pháp dạy học tích cực.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GIAI ĐOẠN 4 -->
+                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+                        <div class="hidden md:block md:w-5/12 pr-10 text-right">
+                            <div class="p-4 rounded-xl border border-dashed border-chalkboard-green/50 bg-chalkboard-green/10 text-ink-brown text-sm italic">
+                                <i class="fa-solid fa-seedling text-chalkboard-green mr-1.5"></i>
+                                Sứ mệnh: Tiếp nối ngọn lửa yêu thương từ mái trường THPT Đắk Mil thân yêu.
+                            </div>
+                        </div>
+
+                        <!-- Điểm nút -->
+                        <div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-chalkboard-green border-4 border-paper-light text-paper-light flex items-center justify-center font-bold shadow-md z-10">
+                            <i class="fa-solid fa-star text-xs"></i>
+                        </div>
+
+                        <div class="md:w-5/12 pl-16 md:pl-10">
+                            <span class="inline-block px-3 py-1 rounded bg-chalkboard-green text-paper-light text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
+                                Giai Đoạn 4 • Tương Lai Tỏa Sáng
+                            </span>
+                            <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold text-ink-dark">
+                                Cô Giáo Dạy Toán Tận Tâm
+                            </h3>
+                            <p class="text-xs font-semibold text-chalkboard-green uppercase tracking-wide mt-0.5 mb-2">
+                                Người Lái Đò Thầm Lặng & Truyền Cảm Hứng
+                            </p>
+                            <p class="text-sm text-ink-brown leading-relaxed bg-paper-light/90 p-4 rounded-xl border border-paper-aged shadow-sm">
+                                Chính thức đứng trên bục giảng với tà áo dài thướt tha, trở thành người cô giáo dạy Toán mẫu mực, truyền ngọn lửa đam mê tri thức và đồng hành cùng nhiều thế hệ học trò chạm tới ước mơ.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 5: LỜI NHẮN GỬI & LƯU BÚT MÙA HẠ -->
+        <section class="bg-chalkboard-green text-paper-light rounded-2xl p-6 sm:p-10 shadow-vintage border-4 border-chalkboard-border relative overflow-hidden">
+            <div class="max-w-3xl mx-auto text-center space-y-4 relative z-10">
+                <i class="fa-solid fa-feather text-3xl text-gold-antique"></i>
+                <h2 class="font-handwriting text-3xl sm:text-4xl text-paper-light chalk-text">
+                    "Mỗi cánh phượng rơi là một lời nhắc nhở về ước mơ tuổi 18..."
+                </h2>
+                <p class="text-sm sm:text-base text-paper-dark/90 font-serifElegant italic leading-relaxed">
+                    Cảm ơn mái trường THPT Đắk Mil, cảm ơn thầy cô và những người bạn 12A10 đã là một phần thanh xuân rực rỡ nhất. Dù mai này đi đâu, mình vẫn luôn tự hào là học sinh Đắk Mil và nỗ lực hết mình để trở thành một giáo viên dạy Toán xứng đáng với niềm tin yêu của mọi người.
+                </p>
+                <div class="pt-4">
+                    <span class="font-handwriting text-2xl text-gold-antique">— Nguyễn Anh Thư —</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER CỔ ĐIỂN -->
+    <footer class="bg-ink-dark text-paper-aged py-8 border-t-4 border-phoenix-red relative z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="font-serifDisplay font-bold text-paper-light text-lg">Nguyễn Anh Thư • Lớp 12A10</p>
+                <p class="text-xs text-paper-aged/80">Trường Trung học Phổ thông Đắk Mil • Định hướng Sư phạm Toán (Khối A00)</p>
+            </div>
+            <div class="text-xs text-paper-aged/80">
+                Thiết kế phong cách Vintage • Lưu giữ kỷ niệm tuổi học trò & Hành trình hướng nghiệp
+            </div>
+        </div>
+    </footer>
+
+    <!-- HỘP THOẠI TÙY CHỈNH THAY ẢNH ĐẠI DIỆN NHANH (Không dùng alert/prompt) -->
+    <div id="avatar-modal" class="fixed inset-0 bg-ink-dark/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-paper-light rounded-2xl max-w-md w-full p-6 shadow-2xl border-2 border-gold-antique space-y-4">
+            <div class="flex items-center justify-between border-b border-paper-aged pb-3">
+                <h3 class="font-serifDisplay text-xl font-bold text-ink-dark">
+                    <i class="fa-solid fa-image text-phoenix-red mr-2"></i>Cập Nhật Ảnh Đại Diện
+                </h3>
+                <button onclick="closeAvatarModal()" class="text-ink-muted hover:text-phoenix-red text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <p class="text-sm text-ink-brown">
+                Dán đường dẫn (URL) hình ảnh của bạn vào ô bên dưới hoặc chọn tệp ảnh từ máy tính để xem trước ngay trên khung Polaroid:
+            </p>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-ink-muted mb-1">Cách 1: Dán link ảnh (URL)</label>
+                    <input type="text" id="avatar-url-input" placeholder="https://example.com/anh-cua-thu.jpg" class="w-full px-3 py-2 rounded-lg bg-white border border-paper-aged text-sm text-ink-dark focus:outline-none focus:border-phoenix-red">
+                </div>
+
+                <div class="text-center text-xs text-ink-muted">— hoặc —</div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-ink-muted mb-1">Cách 2: Chọn ảnh từ thiết bị của bạn</label>
+                    <input type="file" id="avatar-file-input" accept="image/*" onchange="handleFileUpload(event)" class="w-full text-xs text-ink-brown file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-phoenix-red/15 file:text-phoenix-dark hover:file:bg-phoenix-red/25">
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-2 pt-3 border-t border-paper-aged">
+                <button onclick="closeAvatarModal()" class="px-4 py-2 rounded-lg text-sm text-ink-muted hover:bg-paper-dark transition">Hủy</button>
+                <button onclick="applyAvatarUrl()" class="px-4 py-2 rounded-lg text-sm bg-phoenix-red hover:bg-phoenix-dark text-paper-light font-semibold shadow transition">Áp dụng ảnh</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: HIỆU ỨNG HOA PHƯỢNG RƠI, TƯƠNG TÁC AVATAR & ÂM THANH VINTAGE -->
+    <script>
+        /* =========================================================================
+           1. HIỆU ỨNG CÁNH HOA PHƯỢNG ĐỎ RƠI LÃNG MẠN (HTML5 CANVAS)
+           ========================================================================= */
+        const canvas = document.getElementById('phoenix-canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+        let isPetalsActive = true;
+        let animationFrameId;
+
+        // Tự động điều chỉnh kích thước canvas theo màn hình
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Lớp mô phỏng từng cánh hoa phượng đỏ vĩ
+        class FlamboyantPetal {
+            constructor() {
+                this.reset(true);
+            }
+
+            reset(initial = false) {
+                this.x = Math.random() * canvas.width;
+                this.y = initial ? Math.random() * canvas.height : -20;
+                this.size = Math.random() * 8 + 7; // Kích thước cánh hoa (7px - 15px)
+                this.speedY = Math.random() * 1.1 + 0.6; // Tốc độ rơi nhẹ nhàng
+                this.speedX = Math.random() * 0.8 - 0.4; // Gió thổi ngang
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = (Math.random() - 0.5) * 0.03;
+                this.swayAmplitude = Math.random() * 1.2 + 0.5;
+                this.swayFrequency = Math.random() * 0.02 + 0.01;
+                this.step = Math.random() * 100;
+
+                // Bảng màu cánh hoa phượng đỏ thắm, đỏ cam và cánh trắng viền đỏ đặc trưng
+                const colors = [
+                    '#B83A2D', // Đỏ phượng vĩ trầm vintage
+                    '#D94136', // Đỏ tươi hoa phượng
+                    '#C93B2B', // Đỏ gạch ấm
+                    '#E05A47', // Đỏ cam rực rỡ
+                    '#A32A1F'  // Đỏ sẫm hoài cổ
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.hasWhiteAccent = Math.random() < 0.2; // 20% cánh hoa có đốm trắng đặc trưng của hoa phượng
+            }
+
+            update() {
+                this.step += this.swayFrequency;
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.step) * this.swayAmplitude;
+                this.angle += this.spin;
+
+                // Khi chạm đáy hoặc bay ra ngoài lề thì tái tạo ở phía trên
+                if (this.y > canvas.height + 20 || this.x < -30 || this.x > canvas.width + 30) {
+                    this.reset(false);
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+
+                // Vẽ hình dáng cánh hoa phượng thuôn dài có cuống nhỏ
+                ctx.beginPath();
+                ctx.moveTo(0, 0); // Cuống cánh hoa
+                ctx.bezierCurveTo(
+                    -this.size * 0.6, -this.size * 0.4,
+                    -this.size * 0.8, -this.size * 1.3,
+                    0, -this.size * 1.6
+                );
+                ctx.bezierCurveTo(
+                    this.size * 0.8, -this.size * 1.3,
+                    this.size * 0.6, -this.size * 0.4,
+                    0, 0
+                );
+                ctx.closePath();
+
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = 0.85;
+                ctx.fill();
+
+                // Vẽ điểm nhấn trắng/kem nhẹ cho cánh cờ hoa phượng
+                if (this.hasWhiteAccent) {
+                    ctx.beginPath();
+                    ctx.arc(0, -this.size * 1.1, this.size * 0.25, 0, Math.PI * 2);
+                    ctx.fillStyle = '#FAF5EB';
+                    ctx.globalAlpha = 0.65;
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Khởi tạo số lượng cánh hoa phù hợp với kích thước màn hình
+        function initPetals() {
+            const petalCount = window.innerWidth < 640 ? 22 : 38;
+            petals = [];
+            for (let i = 0; i < petalCount; i++) {
+                petals.push(new FlamboyantPetal());
+            }
+        }
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (isPetalsActive) {
+                for (let petal of petals) {
+                    petal.update();
+                    petal.draw();
+                }
+            }
+            animationFrameId = requestAnimationFrame(animatePetals);
+        }
+
+        // Bật / tắt hiệu ứng hoa phượng rơi
+        function togglePetals() {
+            isPetalsActive = !isPetalsActive;
+            const btnText = document.getElementById('petals-btn-text');
+            if (isPetalsActive) {
+                btnText.textContent = 'Tắt hoa phượng rơi';
+            } else {
+                btnText.textContent = 'Bật hoa phượng rơi';
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        /* =========================================================================
+           2. XỬ LÝ HỘP THOẠI CẬP NHẬT ẢNH ĐẠI DIỆN (AVATAR)
+           ========================================================================= */
+        function openAvatarModal() {
+            const modal = document.getElementById('avatar-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAvatarModal() {
+            const modal = document.getElementById('avatar-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function applyAvatarUrl() {
+            const urlInput = document.getElementById('avatar-url-input').value.trim();
+            if (urlInput) {
+                document.getElementById('avatar-image').src = urlInput;
+            }
+            closeAvatarModal();
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatar-image').src = e.target.result;
+                    closeAvatarModal();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        /* =========================================================================
+           3. ĐIỀU KHIỂN HIỆU ỨNG ĐĨA THAN GÓC ÂM NHẠC
+           ========================================================================= */
+        let isSpinning = true;
+        function toggleMusicVibe() {
+            const disc = document.getElementById('vinyl-disc');
+            const icon = document.getElementById('music-icon');
+            const label = document.getElementById('music-btn-label');
+            const badge = document.getElementById('music-status-badge');
+
+            isSpinning = !isSpinning;
+            if (isSpinning) {
+                disc.classList.remove('vinyl-paused');
+                icon.className = 'fa-solid fa-pause';
+                label.textContent = 'Tạm dừng đĩa than';
+                badge.textContent = 'Đang phát giai điệu';
+            } else {
+                disc.classList.add('vinyl-paused');
+                icon.className = 'fa-solid fa-play';
+                label.textContent = 'Tiếp tục xoay đĩa';
+                badge.textContent = 'Đang tạm dừng';
+            }
+        }
+
+        // Khởi chạy toàn bộ hiệu ứng sau khi trang tải xong
+        window.onload = function() {
+            initPetals();
+            animatePetals();
+        };
+    </script>
+</body>
+</html>

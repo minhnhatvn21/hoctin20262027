@@ -1,0 +1,2724 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RA CHƠI! — Nguyễn Thùy Tiên · Biên tập viên giờ ra chơi (12A10)</title>
+  <meta name="description" content="Tờ báo RA CHƠI! của Nguyễn Thùy Tiên — Lớp 12A10, Trường THPT DakMil." />
+
+  <!-- Phông chữ tiếng Việt: Archivo Black (manchette RA CHƠI!), Playfair Display (tiêu đề bài báo), Be Vietnam Pro (thân bài) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,700;0,800;1,600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. HỆ THỐNG MỸ THUẬT BÁO IN ĐỘC LẬP — GIẤY BƠ, MỰC TÍM THAN, ĐỎ CÀ CHUA, XANH HỒ BƠI
+       ========================================================================== */
+    :root {
+      --paper: #FFF2CF;
+      --paper-light: #FFF8E6;
+      --paper-warm: #F5E3B3;
+      --ink: #29243C;
+      --ink-muted: #58506E;
+      --red: #ED4938;
+      --red-soft: rgba(237, 73, 56, 0.12);
+      --pool: #46B9BF;
+      --pool-deep: #247E84;
+      --pool-soft: rgba(70, 185, 191, 0.16);
+      --rule: rgba(41, 36, 60, 0.24);
+
+      --font-masthead: 'Archivo Black', Impact, 'Arial Black', sans-serif;
+      --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background-color: var(--paper);
+      /* Chất giấy in zine có hạt tram rất mảnh */
+      background-image: radial-gradient(rgba(41, 36, 60, 0.055) 1px, transparent 1px);
+      background-size: 16px 16px;
+      color: var(--ink);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    section[id] {
+      scroll-margin-top: 64px;
+    }
+
+    @keyframes targetSectionHighlight {
+      0% { box-shadow: inset 0 4px 0 var(--red); }
+      100% { box-shadow: inset 0 4px 0 transparent; }
+    }
+
+    section.is-scroll-target {
+      animation: targetSectionHighlight 0.85s var(--ease-out) 1;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--red);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 4.2vw, 48px);
+    }
+
+    .hand-note {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Thanh mục lục tòa soạn cố định gọn */
+    .zine-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 242, 207, 0.95);
+      backdrop-filter: blur(6px);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 50px;
+    }
+
+    .topbar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: var(--font-masthead);
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .topbar-issue {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--red);
+      color: #FFF8E6;
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.8vw, 22px);
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+      padding: 5px 2px;
+      transition: color 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a.is-active {
+      color: var(--ink);
+    }
+
+    .top-nav a.is-active {
+      box-shadow: inset 0 -2.5px 0 var(--red);
+    }
+
+    /* Hệ thống nút kiểu in ấn độc lập */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 18px;
+      border: 2px solid var(--ink);
+      border-radius: 2px;
+      background: var(--paper-light);
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.13s var(--ease-out), box-shadow 0.13s var(--ease-out), background-color 0.16s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: #FFF8E6;
+    }
+
+    .btn-pool {
+      background: var(--pool);
+      color: var(--ink);
+    }
+
+    .btn-ink {
+      background: var(--ink);
+      color: var(--paper-light);
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    /* ==========================================================================
+       2. TRANG NHẤT — MANCHETTE “RA CHƠI!” & KÉO ĐỂ THỬ MÀU CHÂN DUNG
+       ========================================================================== */
+    .frontpage-section {
+      padding: clamp(18px, 3vw, 32px) 0 clamp(46px, 6vw, 76px);
+      border-bottom: 3px double var(--ink);
+    }
+
+    .masthead-wrap {
+      border-top: 4px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      padding: 8px 0 6px;
+      margin-bottom: clamp(20px, 3.2vw, 34px);
+      position: relative;
+    }
+
+    .masthead-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--rule);
+      flex-wrap: wrap;
+    }
+
+    /* Manchette RA CHƠI! chiếm gần hết chiều ngang với bóng in lệch màu nhẹ */
+    .masthead-word {
+      margin: 4px 0 0;
+      font-family: var(--font-masthead);
+      font-size: clamp(3.1rem, 13.8vw, 9.6rem);
+      line-height: 1.06;
+      padding-top: 0.1em;
+      letter-spacing: -0.02em;
+      text-align: center;
+      color: var(--ink);
+      text-shadow: 4px 3px 0 var(--pool), -3px -2px 0 rgba(237, 73, 56, 0.35);
+      user-select: none;
+    }
+
+    /* Bố cục bất đối xứng dưới manchette: tên xuống 2 dòng cột trái, chân dung khổ lớn cột phải */
+    .frontpage-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: clamp(24px, 4.2vw, 52px);
+      align-items: start;
+    }
+
+    .frontpage-left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: clamp(4px, 1.5vw, 18px);
+    }
+
+    .editor-kicker {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--pool);
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1.5px solid var(--ink);
+      transform: rotate(-1deg);
+    }
+
+    /* Chừa đủ khoảng thở để không bao giờ cắt dấu ở "Nguyễn Thùy Tiên" */
+    .hero-name {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5.4vw, 4.35rem);
+      font-weight: 800;
+      line-height: 1.18;
+      padding-top: 0.14em;
+      padding-bottom: 0.08em;
+      color: var(--ink);
+    }
+
+    .hero-name span {
+      display: block;
+    }
+
+    .school-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .school-logo-wrap {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1.5px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .school-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .school-logo-fallback {
+      display: none;
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .school-logo-wrap.is-missing img { display: none; }
+    .school-logo-wrap.is-missing .school-logo-fallback { display: inline; }
+
+    .cover-deck {
+      margin: 0;
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      color: var(--ink);
+      max-width: 40ch;
+      border-left: 4px solid var(--red);
+      padding-left: 14px;
+    }
+
+    .cover-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 6px;
+    }
+
+    /* Khung ảnh chân dung kéo in màu — hai lớp ảnh dùng chung khung & object-position tuyệt đối */
+    .color-proof-shell {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .portrait-print-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 600px;
+      background: var(--paper-warm);
+      border: 2.5px solid var(--ink);
+      box-shadow: 9px 9px 0 var(--pool), 11px 11px 0 var(--ink);
+      overflow: hidden;
+      --wipe: 34%;
+    }
+
+    .portrait-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .portrait-layer img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 22%;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Lớp nền đơn sắc kiểu báo in hạt tram */
+    .portrait-layer-mono img {
+      filter: grayscale(1) contrast(1.12) sepia(0.16);
+    }
+
+    .portrait-layer-mono::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(41, 36, 60, 0.22) 1px, transparent 1px);
+      background-size: 5px 5px;
+      pointer-events: none;
+    }
+
+    /* Lớp ảnh màu thật cắt theo đúng vị trí thanh kéo --wipe */
+    .portrait-layer-color {
+      clip-path: inset(0 calc(100% - var(--wipe)) 0 0);
+      z-index: 2;
+    }
+
+    /* Ranh giới in màu + 2 vệt mực đỏ và xanh lệch 2–3px khi đang kéo, khớp lại khi thả */
+    .wipe-seam {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--wipe);
+      width: 2px;
+      background: var(--ink);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .wipe-seam::before,
+    .wipe-seam::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      left: -0.5px;
+      opacity: 0;
+      transition: transform 0.22s var(--ease-out), opacity 0.22s ease;
+    }
+
+    .wipe-seam::before {
+      background: var(--red);
+    }
+
+    .wipe-seam::after {
+      background: var(--pool);
+    }
+
+    .portrait-print-frame.is-dragging .wipe-seam::before {
+      opacity: 0.92;
+      transform: translateX(-3px);
+    }
+
+    .portrait-print-frame.is-dragging .wipe-seam::after {
+      opacity: 0.92;
+      transform: translateX(3px);
+    }
+
+    /* Tay cầm kéo thử màu (chỉ chặn cuộn khi chạm đúng tay cầm) */
+    .wipe-handle-btn {
+      position: absolute;
+      top: 50%;
+      left: var(--wipe);
+      transform: translate(-50%, -50%);
+      z-index: 7;
+      min-width: 48px;
+      min-height: 48px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 2.5px solid var(--ink);
+      background: var(--red);
+      color: #FFF8E6;
+      font-size: 0.76rem;
+      font-weight: 800;
+      white-space: nowrap;
+      cursor: ew-resize;
+      box-shadow: 3px 3px 0 var(--ink);
+      touch-action: none;
+      user-select: none;
+    }
+
+    .portrait-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      gap: 8px;
+      background: linear-gradient(155deg, #F8EAC4 0%, #EAD8AA 100%);
+      color: var(--ink);
+    }
+
+    .portrait-print-frame.is-missing .portrait-fallback {
+      display: flex;
+    }
+
+    .proof-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.84rem;
+    }
+
+    /* ==========================================================================
+       3. CHÂN DUNG PHỎNG VẤN — “NGƯỜI HAY HỎI: RỒI SAO NỮA?”
+       ========================================================================== */
+    .editorial-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+
+    .section-serif-title {
+      margin: 0 0 22px;
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.18;
+      padding-top: 0.08em;
+      color: var(--ink);
+    }
+
+    .interview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+      gap: clamp(24px, 4.5vw, 54px);
+      align-items: start;
+    }
+
+    .interview-prose p {
+      margin: 0 0 18px;
+      font-size: clamp(1rem, 1.25vw, 1.08rem);
+      max-width: 58ch;
+    }
+
+    .interview-prose p:first-child::first-letter {
+      float: left;
+      font-family: var(--font-serif);
+      font-size: 3.4rem;
+      line-height: 0.85;
+      padding: 6px 10px 0 0;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    /* Mép bản thảo có chữ sửa tay bằng bút đỏ */
+    .manuscript-margin {
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      border-left: 6px solid var(--red);
+      padding: 22px;
+      box-shadow: 6px 6px 0 rgba(41, 36, 60, 0.14);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .margin-label {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+    }
+
+    .draft-strike-btn {
+      background: transparent;
+      border: 1.5px dashed var(--red);
+      border-radius: 3px;
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background-color 0.16s ease;
+    }
+
+    .draft-strike-btn:hover {
+      background: var(--red-soft);
+    }
+
+    .draft-original-text {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    /* Nét gạch đỏ chạy ngang khi bấm sửa */
+    .draft-original-text::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      top: 52%;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0) rotate(-1.5deg);
+      transform-origin: left center;
+      transition: transform 0.34s var(--ease-out);
+    }
+
+    .draft-strike-btn[aria-expanded="true"] .draft-original-text::after {
+      transform: scaleX(1) rotate(-1.5deg);
+    }
+
+    .red-edit-slip {
+      overflow: hidden;
+    }
+
+    .red-edit-slip[hidden] {
+      display: none;
+    }
+
+    .red-edit-card {
+      background: #FFFDF5;
+      border: 1.5px solid var(--red);
+      padding: 14px 16px;
+      transform: rotate(-0.8deg);
+      box-shadow: 4px 4px 0 rgba(237, 73, 56, 0.22);
+    }
+
+    /* ==========================================================================
+       3B. ĐỊNH HƯỚNG NGHỀ NGHIỆP — BÁO CHÍ & BIÊN TẬP NỘI DUNG SÁNG TẠO (~165 CHỮ)
+       ========================================================================== */
+    .career-section {
+      padding: clamp(54px, 7.5vw, 92px) 0;
+      background: var(--paper-light);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .career-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: clamp(24px, 4.5vw, 52px);
+      align-items: start;
+    }
+
+    .career-column-box {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-top: 7px solid var(--pool);
+      padding: clamp(22px, 3.2vw, 34px);
+      box-shadow: 7px 7px 0 var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .career-badge {
+      align-self: flex-start;
+      background: var(--ink);
+      color: var(--paper-light);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+    }
+
+    .career-essay p {
+      margin: 0 0 14px;
+      font-size: 0.98rem;
+      line-height: 1.74;
+    }
+
+    .career-essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .career-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .career-step {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      transition: box-shadow 0.18s ease;
+    }
+
+    .career-step.is-open {
+      background: #FFFDF7;
+      box-shadow: 5px 5px 0 var(--pool);
+    }
+
+    .career-step-trigger {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .career-step-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .career-step-num {
+      font-family: var(--font-masthead);
+      font-size: 1rem;
+      color: var(--red);
+    }
+
+    .career-step-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .career-step-arrow {
+      font-weight: 800;
+      color: var(--pool-deep);
+      transition: transform 0.28s var(--ease-out);
+      flex-shrink: 0;
+    }
+
+    .career-step.is-open .career-step-arrow {
+      transform: rotate(180deg);
+    }
+
+    .career-step-panel {
+      overflow: hidden;
+    }
+
+    .career-step-panel[hidden] {
+      display: none;
+    }
+
+    .career-step-inner {
+      padding: 10px 18px 16px 46px;
+      border-top: 1.5px dashed var(--rule);
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.64;
+    }
+
+    /* ==========================================================================
+       4. BÀI ĐIỀU TRA GIỜ RA CHƠI — “AI GIỮ NẮP BÚT?” (SƠ ĐỒ 4 BÀN HỌC)
+       ========================================================================== */
+    .investigation-section {
+      padding: clamp(54px, 7.5vw, 94px) 0;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .map-stage {
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      box-shadow: 7px 7px 0 var(--ink);
+      padding: clamp(14px, 2.5vw, 24px);
+    }
+
+    .classroom-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .desk-hotspot {
+      cursor: pointer;
+      transition: transform 0.16s var(--ease-out);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .desk-hotspot:hover {
+      transform: scale(1.03);
+    }
+
+    /* Đường mực xanh vẽ dần bằng stroke-dashoffset */
+    .ink-trail-seg {
+      stroke-dasharray: 420;
+      stroke-dashoffset: 420;
+      transition: stroke-dashoffset 0.72s var(--ease-out);
+    }
+
+    .ink-trail-seg.is-drawn {
+      stroke-dashoffset: 0;
+    }
+
+    .ink-smudge-group {
+      opacity: 0;
+      transition: opacity 0.45s ease 0.25s;
+    }
+
+    .ink-smudge-group.is-visible {
+      opacity: 1;
+    }
+
+    .testimony-panel {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .testimony-slot {
+      background: var(--paper);
+      border: 1.5px solid var(--ink);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.16s ease, transform 0.15s ease;
+    }
+
+    .testimony-slot:hover {
+      background: #FFFDF7;
+    }
+
+    .testimony-slot.is-opened {
+      background: #FFFDF7;
+      border-left: 5px solid var(--pool);
+    }
+
+    .transcript-wrap {
+      overflow: hidden;
+    }
+
+    .transcript-wrap[hidden] {
+      display: none;
+    }
+
+    .transcript-box {
+      margin-top: 14px;
+      padding: 18px 20px;
+      background: var(--paper);
+      border: 1.5px dashed var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.94rem;
+    }
+
+    .investigation-epilogue {
+      margin-top: 18px;
+      padding: 16px 20px;
+      background: var(--pool-soft);
+      border: 2px solid var(--ink);
+      border-left: 6px solid var(--red);
+      font-size: 0.98rem;
+      font-weight: 500;
+    }
+
+    .investigation-epilogue[hidden] {
+      display: none;
+    }
+
+    /* ==========================================================================
+       5. MINI GAME — “CÒN MỘT Ô TRÊN TRANG NHẤT” & CON LĂN MỰC IN BÁO
+       ========================================================================== */
+    .press-section {
+      padding: clamp(54px, 7.5vw, 96px) 0;
+      background: #F6E6BC;
+      border-bottom: 3px double var(--ink);
+    }
+
+    .press-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+
+    .editor-steps-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .step-block {
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      padding: 18px;
+      box-shadow: 5px 5px 0 var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--red);
+    }
+
+    .angle-option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1.5px solid var(--ink);
+      background: var(--paper);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      transition: background-color 0.14s ease, transform 0.12s ease;
+    }
+
+    .choice-btn[aria-pressed="true"] {
+      background: var(--pool);
+      color: var(--ink);
+      font-weight: 700;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .choice-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid var(--ink);
+      background: var(--paper-light);
+      font-size: 0.78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .penname-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 8px 12px;
+      border: 2px solid var(--ink);
+      background: #FFFFFF;
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
+
+    /* Bàn in bản thử với CON LĂN MỰC tương tác thật */
+    .proof-desk-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .proof-sheet-stage {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 3 / 4;
+      background: var(--paper-light);
+      border: 2.5px solid var(--ink);
+      box-shadow: 10px 10px 0 rgba(41, 36, 60, 0.22);
+      overflow: visible;
+      --roll: 0%;
+    }
+
+    /* Giấy ngà còn trắng ở phía trước con lăn */
+    .proof-blank-paper {
+      position: absolute;
+      inset: 0;
+      background: var(--paper-light);
+      background-image: radial-gradient(rgba(41, 36, 60, 0.06) 1px, transparent 1px);
+      background-size: 14px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px;
+      color: var(--ink-muted);
+      pointer-events: none;
+    }
+
+    /* Lớp báo in hiện dần ngay sau mép tiếp xúc của con lăn */
+    .proof-printed-layer {
+      position: absolute;
+      inset: 0;
+      clip-path: inset(0 0 calc(100% - var(--roll)) 0);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    #frontPagePreviewCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Hiệu ứng góc giấy dính nhẹ theo con lăn vài pixel rồi rơi xuống lần đầu nhấc mực */
+    @keyframes paperCornerStick {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      45% { transform: translate(-4px, -7px) rotate(-1.1deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    .proof-sheet-stage.is-corner-sticking {
+      animation: paperCornerStick 0.42s var(--ease-out) 1;
+    }
+
+    /* Con lăn mực có tay cầm đỏ, bóng đổ mảnh và vân lăn xoay theo quãng đường */
+    .ink-roller-bar {
+      position: absolute;
+      left: -14px;
+      right: -14px;
+      top: calc(var(--roll) - 16px);
+      height: 32px;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      cursor: ns-resize;
+      touch-action: none;
+      user-select: none;
+      transition: opacity 0.28s ease, transform 0.28s var(--ease-out);
+    }
+
+    .ink-roller-bar.is-lifted {
+      opacity: 0;
+      transform: translateY(14px) scale(0.96);
+      pointer-events: none;
+    }
+
+    .roller-cylinder {
+      flex: 1;
+      height: 26px;
+      border-radius: 999px;
+      border: 2.5px solid var(--ink);
+      background-color: #2C2640;
+      background-image: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.16) 0px,
+        rgba(255, 255, 255, 0.16) 4px,
+        transparent 4px,
+        transparent 11px
+      );
+      background-position: 0 var(--roller-spin, 0px);
+      box-shadow: 0 7px 12px -4px rgba(41, 36, 60, 0.48);
+    }
+
+    .roller-red-handle {
+      width: 66px;
+      height: 22px;
+      margin-left: 6px;
+      border-radius: 3px 10px 10px 3px;
+      border: 2.5px solid var(--ink);
+      background: var(--red);
+      box-shadow: 3px 3px 0 var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF8E6;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .tien-editor-reaction {
+      width: 100%;
+      max-width: 480px;
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      border-left: 6px solid var(--red);
+      padding: 14px 16px;
+      font-size: 0.94rem;
+    }
+
+    .tien-editor-reaction[hidden] {
+      display: none;
+    }
+
+    /* ==========================================================================
+       6. ĐOẠN KẾT — MỤC ĐÍNH CHÍNH (NHIỀU KHOẢNG TRẮNG, ĐỨNG MỘT MÌNH)
+       ========================================================================== */
+    .corrigendum-section {
+      padding: clamp(72px, 11vw, 132px) 0 clamp(84px, 12vw, 148px);
+      background: var(--paper);
+    }
+
+    .corrigendum-box {
+      max-width: 580px;
+      margin: 0 auto;
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      padding: clamp(26px, 4.5vw, 44px);
+      box-shadow: 6px 6px 0 var(--ink);
+      position: relative;
+    }
+
+    .corrigendum-box::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid var(--rule);
+      pointer-events: none;
+    }
+
+    .corrigendum-title {
+      margin: 0 0 14px;
+      font-family: var(--font-serif);
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+      font-weight: 800;
+      color: var(--red);
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 8px;
+    }
+
+    .corrigendum-text {
+      margin: 0 0 22px;
+      font-size: 1.02rem;
+      line-height: 1.72;
+    }
+
+    .editorial-signatures {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px dashed var(--rule);
+      font-family: var(--font-serif);
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
+
+    /* Nút trượt mượt lên trang nhất */
+    .scroll-top-btn {
+      position: fixed;
+      right: clamp(14px, 3vw, 26px);
+      bottom: clamp(16px, 3vw, 26px);
+      z-index: 55;
+      min-height: 44px;
+      padding: 0 14px;
+      border: 2px solid var(--ink);
+      border-radius: 2px;
+      background: var(--paper-light);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 4px 4px 0 var(--ink);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(18px);
+      pointer-events: none;
+      transition: opacity 0.28s var(--ease-out), transform 0.32s var(--ease-out), background-color 0.16s ease;
+    }
+
+    .scroll-top-btn.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .scroll-top-btn:hover {
+      background: var(--red);
+      color: #FFF8E6;
+    }
+
+    /* ==========================================================================
+       7. RESPONSIVE CHO MOBILE (320px, 390px) & TABLET
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .frontpage-grid,
+      .interview-grid,
+      .career-grid,
+      .press-workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .testimony-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-print-frame {
+        max-height: 460px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .top-nav {
+        gap: 8px;
+      }
+
+      .top-nav a {
+        font-size: 0.74rem;
+      }
+
+      .hero-name {
+        font-size: clamp(2.2rem, 10.5vw, 2.9rem);
+      }
+
+      .ink-roller-bar {
+        left: -6px;
+        right: -6px;
+      }
+
+      .roller-red-handle {
+        width: 54px;
+      }
+
+      .career-step-inner {
+        padding-left: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========================================================================
+       THANH MỤC LỤC TÒA SOẠN GỌN
+       ======================================================================== -->
+  <header class="zine-topbar">
+    <div class="container topbar-inner">
+      <a href="#trang-nhat" class="topbar-brand">
+        <span>RA CHƠI!</span>
+        <span class="topbar-issue">12A10</span>
+      </a>
+      <nav class="top-nav" aria-label="Điều hướng tờ báo">
+        <a href="#chan-dung">Chân dung</a>
+        <a href="#dinh-huong">Định hướng</a>
+        <a href="#dieu-tra">Điều tra</a>
+        <a href="#toa-soan">Làm trang nhất</a>
+        <a href="#dinh-chinh">Đính chính</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         1. TRANG NHẤT — MANCHETTE “RA CHƠI!” & KÉO ĐỂ THỬ MÀU LÊN CHÂN DUNG
+         ====================================================================== -->
+    <section id="trang-nhat" class="frontpage-section">
+      <div class="container">
+        <div class="masthead-wrap">
+          <div class="masthead-meta">
+            <span>Tờ báo giờ ra chơi · Số đặc biệt lớp 12A10</span>
+            <span>Biên tập viên: Nguyễn Thùy Tiên</span>
+            <span>Trường THPT DakMil</span>
+          </div>
+          <h1 class="masthead-word">RA CHƠI!</h1>
+        </div>
+
+        <div class="frontpage-grid">
+          <!-- CỘT TRÁI: TÊN NGUYỄN THÙY TIÊN XUỐNG 2 DÒNG + LỜI DẪN + 2 LỐI VÀO -->
+          <div class="frontpage-left">
+            <span class="editor-kicker">Biên tập viên giờ ra chơi</span>
+
+            <h2 class="hero-name" aria-label="Nguyễn Thùy Tiên">
+              <span>Nguyễn</span>
+              <span>Thùy Tiên</span>
+            </h2>
+
+            <div class="school-line">
+              <span id="schoolLogoWrap" class="school-logo-wrap">
+                <img id="schoolLogoImg" src="" alt="Logo Trường THPT DakMil" />
+                <span class="school-logo-fallback" aria-hidden="true">DM</span>
+              </span>
+              <span id="heroClassSchool">Lớp 12A10 · Trường THPT DakMil</span>
+            </div>
+
+            <p id="coverDeckText" class="cover-deck">
+              “Chào, mình là Tiên. Lớp mình có những chuyện chỉ kéo dài đúng một giờ ra chơi. Mình làm tờ báo này vì tiếc.”
+            </p>
+
+            <div class="cover-links-row">
+              <a href="#chan-dung" class="btn btn-red">Đọc vài dòng về Tiên</a>
+              <a href="#toa-soan" class="btn btn-pool">Làm thử một trang báo</a>
+            </div>
+          </div>
+
+          <!-- CỘT PHẢI: CHÂN DUNG KHỔ LỚN KÉO ĐỂ THỬ MÀU -->
+          <div class="color-proof-shell">
+            <div id="portraitPrintFrame" class="portrait-print-frame">
+              <!-- Lớp nền đơn sắc hạt tram -->
+              <div class="portrait-layer portrait-layer-mono" aria-hidden="true">
+                <img id="portraitImgMono" src="" alt="" />
+              </div>
+
+              <!-- Lớp ảnh màu thật dùng chung khung và điểm lấy nét tuyệt đối -->
+              <div class="portrait-layer portrait-layer-color">
+                <img id="portraitImgColor" src="" alt="Chân dung Nguyễn Thùy Tiên, lớp 12A10 Trường THPT DakMil" />
+              </div>
+
+              <!-- Đường ranh giới + 2 vệt mực đỏ/xanh lệch 3px khi kéo -->
+              <div class="wipe-seam" aria-hidden="true"></div>
+
+              <!-- Tay cầm kéo thử màu -->
+              <button
+                type="button"
+                id="wipeHandleBtn"
+                class="wipe-handle-btn"
+                role="slider"
+                aria-label="Kéo để thử màu lên chân dung Nguyễn Thùy Tiên"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="34"
+              >
+                ◂ Kéo màu ▸
+              </button>
+
+              <!-- Fallback khi chưa đặt ảnh -->
+              <div class="portrait-fallback">
+                <strong>Chân dung Nguyễn Thùy Tiên</strong>
+                <span style="font-size:0.84rem; color:var(--ink-muted);">
+                  Đặt ảnh thật tại <code>./assets/tien.jpg</code>
+                </span>
+              </div>
+            </div>
+
+            <div class="proof-controls-bar">
+              <span class="hand-note" id="wipeStatusLabel">Đang phủ màu 34% — kéo nút đỏ để thử mực in.</span>
+              <button type="button" id="btnToggleFullColor" class="btn btn-sm">Xem ảnh màu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. CHÂN DUNG — “NGƯỜI HAY HỎI: RỒI SAO NỮA?”
+         ====================================================================== -->
+    <section id="chan-dung" class="editorial-section">
+      <div class="container">
+        <span class="section-kicker">Phỏng vấn ngắn · Trang 02</span>
+        <h2 class="section-serif-title">“Người hay hỏi: Rồi sao nữa?”</h2>
+
+        <div class="interview-grid">
+          <div id="bioProseWrap" class="interview-prose"></div>
+
+          <!-- Mép bản thảo có chữ sửa tay bằng bút đỏ -->
+          <aside class="manuscript-margin" aria-label="Mép bản thảo có nét bút đỏ sửa tay của Tiên">
+            <span class="margin-label">Mép bản thảo · Bút đỏ biên tập</span>
+
+            <button
+              type="button"
+              id="btnRedStrikeEdit"
+              class="draft-strike-btn"
+              aria-expanded="false"
+              aria-controls="redEditSlip"
+            >
+              <span class="draft-original-text">Sở trường: quan sát tinh tế.</span>
+              <span style="font-size:0.78rem; font-weight:700; color:var(--red);">
+                ✎ Bấm để gạch câu này &amp; xem Tiên sửa lại
+              </span>
+            </button>
+
+            <div id="redEditSlip" class="red-edit-slip" hidden>
+              <div class="red-edit-card">
+                <div style="font-size:0.74rem; font-weight:800; color:var(--red); margin-bottom:4px;">BẢN TIÊN VIẾT LẠI:</div>
+                <p style="margin:0; font-style:italic; font-weight:600;">
+                  “Mình thường phát hiện đứa bạn vừa cắt mái trước khi nó kịp hỏi.”
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2B. ĐỊNH HƯỚNG NGHỀ NGHIỆP — BÁO CHÍ & BIÊN TẬP NỘI DUNG (~165 CHỮ)
+         ====================================================================== -->
+    <section id="dinh-huong" class="career-section">
+      <div class="container">
+        <span class="section-kicker">Chuyên mục tương lai · Định hướng nghề nghiệp</span>
+        <h2 id="careerHeading" class="section-serif-title">Báo chí &amp; Biên tập Nội dung Sáng tạo</h2>
+
+        <div class="career-grid">
+          <article class="career-column-box">
+            <span id="careerBadge" class="career-badge">Journalist &amp; Creative Editor</span>
+            <div id="careerEssayWrap" class="career-essay"></div>
+          </article>
+
+          <div id="careerStepsWrap" class="career-accordion" aria-label="Ba thói quen làm nghề Tiên đang tự rèn"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. BÀI ĐIỀU TRA GIỜ RA CHƠI — “AI GIỮ NẮP BÚT?”
+         ====================================================================== -->
+    <section id="dieu-tra" class="investigation-section">
+      <div class="container">
+        <span class="section-kicker">Phóng sự điều tra giờ ra chơi · 4 chiếc bàn</span>
+        <h2 class="section-serif-title">“Ai giữ nắp bút?”</h2>
+        <p style="margin:0 0 20px; color:var(--ink-muted); max-width:60ch;">
+          Chạm vào từng chiếc bàn (hoặc thẻ lời kể bên dưới) theo thứ tự bất kỳ để vẽ đường mực xanh truy tìm chiếc nắp bút.
+        </p>
+
+        <div class="map-stage">
+          <!-- Tranh minh họa lớp học từ trên xuống với 4 bàn khác biệt rõ rệt -->
+          <svg class="classroom-svg" viewBox="0 0 920 420" role="img" aria-label="Sơ đồ lớp học từ trên xuống gồm bốn bàn: vở ô ly, thước êke, giấy nháp gấp tư và quyển truyện úp xuống">
+            <!-- Sàn lớp ngả ấm -->
+            <rect width="920" height="420" fill="#FFF8E6" />
+            <g stroke="#29243C" stroke-opacity="0.06" stroke-width="1">
+              <line x1="0" y1="105" x2="920" y2="105" />
+              <line x1="0" y1="210" x2="920" y2="210" />
+              <line x1="0" y1="315" x2="920" y2="315" />
+              <line x1="230" y1="0" x2="230" y2="420" />
+              <line x1="460" y1="0" x2="460" y2="420" />
+              <line x1="690" y1="0" x2="690" y2="420" />
+            </g>
+
+            <!-- Đường mực xanh nối 4 bàn (vẽ thêm dần mỗi khi mở lời kể) -->
+            <!-- Đoạn 1: từ bàn 1 (vở ô ly) sang bàn 2 (thước êke) -->
+            <path id="trailSeg0" class="ink-trail-seg" d="M235 125 C340 86 430 92 545 125" fill="none" stroke="#2659B8" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="10 6" />
+            <!-- Đoạn 2: từ bàn 2 sang bàn 3 (giấy nháp) -->
+            <path id="trailSeg1" class="ink-trail-seg" d="M680 175 C730 230 715 268 655 292" fill="none" stroke="#2659B8" stroke-width="4.5" stroke-linecap="round" />
+            <!-- Đoạn 3: từ bàn 3 qua bàn 4 (quyển truyện) vòng về bàn 1 -->
+            <path id="trailSeg2" class="ink-trail-seg" d="M535 315 C415 352 310 342 225 305 C142 268 130 218 162 172" fill="none" stroke="#2659B8" stroke-width="4.5" stroke-linecap="round" />
+
+            <!-- Vệt mực hơi lem ở ngã rẽ về bàn đầu tiên (Tiên dừng bút nghe câu "À khoan") -->
+            <g id="inkSmudgeGroup" class="ink-smudge-group">
+              <circle cx="152" cy="224" r="14" fill="#2659B8" opacity="0.28" />
+              <circle cx="155" cy="221" r="7" fill="#2659B8" opacity="0.62" />
+              <circle cx="141" cy="233" r="4" fill="#2659B8" opacity="0.45" />
+              <text x="58" y="218" font-family="Be Vietnam Pro, sans-serif" font-size="11.5" font-style="italic" font-weight="700" fill="#ED4938">“À khoan…”</text>
+              <text x="48" y="233" font-family="Be Vietnam Pro, sans-serif" font-size="10.5" font-style="italic" fill="#58506E">(vệt mực dừng bút)</text>
+            </g>
+
+            <!-- BÀN 1: VỞ Ô LY (chạm được) -->
+            <g class="desk-hotspot" data-desk-trigger="0" tabindex="0" role="button" aria-label="Mở lời kể ở bàn có vở ô ly">
+              <rect x="92" y="54" width="188" height="114" rx="4" fill="#E8C994" stroke="#29243C" stroke-width="3" />
+              <!-- Quyển vở ô ly mở đôi -->
+              <rect x="118" y="72" width="106" height="76" fill="#FFFDF7" stroke="#29243C" stroke-width="2" />
+              <line x1="171" y1="72" x2="171" y2="148" stroke="#29243C" stroke-width="1.5" />
+              <g stroke="#46B9BF" stroke-width="0.9" opacity="0.6">
+                <line x1="126" y1="88" x2="165" y2="88" /><line x1="126" y1="102" x2="165" y2="102" /><line x1="126" y1="116" x2="165" y2="116" />
+                <line x1="178" y1="88" x2="216" y2="88" /><line x1="178" y1="102" x2="216" y2="102" /><line x1="178" y1="116" x2="216" y2="116" />
+              </g>
+              <circle cx="256" cy="76" r="14" fill="#ED4938" stroke="#29243C" stroke-width="2" />
+              <text x="256" y="81" text-anchor="middle" fill="#FFF8E6" font-family="Be Vietnam Pro, sans-serif" font-size="12" font-weight="800">1</text>
+              <text x="186" y="186" text-anchor="middle" fill="#29243C" font-family="Be Vietnam Pro, sans-serif" font-size="13" font-weight="700">Bàn có vở ô ly</text>
+            </g>
+
+            <!-- BÀN 2: THƯỚC ÊKE (chạm được) -->
+            <g class="desk-hotspot" data-desk-trigger="1" tabindex="0" role="button" aria-label="Mở lời kể ở bàn có thước êke">
+              <rect x="556" y="54" width="188" height="114" rx="4" fill="#E8C994" stroke="#29243C" stroke-width="3" />
+              <!-- Thước êke trong suốt -->
+              <polygon points="588,144 686,144 588,72" fill="#46B9BF" fill-opacity="0.45" stroke="#29243C" stroke-width="2.2" />
+              <polygon points="604,132 646,132 604,100" fill="#E8C994" stroke="#29243C" stroke-width="1.6" />
+              <circle cx="720" cy="76" r="14" fill="#ED4938" stroke="#29243C" stroke-width="2" />
+              <text x="720" y="81" text-anchor="middle" fill="#FFF8E6" font-family="Be Vietnam Pro, sans-serif" font-size="12" font-weight="800">2</text>
+              <text x="650" y="186" text-anchor="middle" fill="#29243C" font-family="Be Vietnam Pro, sans-serif" font-size="13" font-weight="700">Bàn có thước êke</text>
+            </g>
+
+            <!-- BÀN 3: GIẤY NHÁP GẤP TƯ (chạm được) -->
+            <g class="desk-hotspot" data-desk-trigger="2" tabindex="0" role="button" aria-label="Mở lời kể ở bàn có giấy nháp gấp tư">
+              <rect x="556" y="256" width="188" height="114" rx="4" fill="#E8C994" stroke="#29243C" stroke-width="3" />
+              <!-- Tờ giấy nháp gấp tư + chiếc nắp bút đen -->
+              <rect x="598" y="280" width="76" height="66" transform="rotate(-6 636 313)" fill="#FFFDF7" stroke="#29243C" stroke-width="2" />
+              <line x1="598" y1="312" x2="674" y2="306" stroke="#29243C" stroke-width="1" stroke-dasharray="4 3" />
+              <line x1="634" y1="278" x2="640" y2="346" stroke="#29243C" stroke-width="1" stroke-dasharray="4 3" />
+              <!-- Chiếc nắp bút màu đen -->
+              <rect x="688" y="304" width="26" height="11" rx="3" transform="rotate(24 701 309)" fill="#29243C" />
+              <circle cx="720" cy="278" r="14" fill="#ED4938" stroke="#29243C" stroke-width="2" />
+              <text x="720" y="283" text-anchor="middle" fill="#FFF8E6" font-family="Be Vietnam Pro, sans-serif" font-size="12" font-weight="800">3</text>
+              <text x="650" y="390" text-anchor="middle" fill="#29243C" font-family="Be Vietnam Pro, sans-serif" font-size="13" font-weight="700">Bàn có giấy nháp gấp tư</text>
+            </g>
+
+            <!-- BÀN 4: QUYỂN TRUYỆN ÚP XUỐNG (chủ nhân mới đổi chỗ / điểm kết hành trình) -->
+            <g>
+              <rect x="192" y="256" width="188" height="114" rx="4" fill="#E8C994" stroke="#29243C" stroke-width="3" />
+              <!-- Quyển truyện úp mở như mái nhà -->
+              <polygon points="234,334 284,284 342,318 292,352" fill="#ED4938" stroke="#29243C" stroke-width="2.2" />
+              <polygon points="234,334 284,284 268,274 220,322" fill="#FFF2CF" stroke="#29243C" stroke-width="2" />
+              <text x="286" y="390" text-anchor="middle" fill="#58506E" font-family="Be Vietnam Pro, sans-serif" font-size="12.5" font-weight="700">Bàn có quyển truyện úp xuống</text>
+            </g>
+          </svg>
+
+          <!-- 3 ô lời kể tương ứng 3 bàn -->
+          <div class="testimony-panel" id="testimonyPanel">
+            <button type="button" class="testimony-slot" data-desk-trigger="0">
+              <strong style="font-size:0.86rem; color:var(--red);">1. Bàn có vở ô ly</strong>
+              <span class="slot-body" style="font-size:0.88rem; color:var(--ink-muted);">Chạm để nghe lời kể…</span>
+            </button>
+            <button type="button" class="testimony-slot" data-desk-trigger="1">
+              <strong style="font-size:0.86rem; color:var(--red);">2. Bàn có thước êke</strong>
+              <span class="slot-body" style="font-size:0.88rem; color:var(--ink-muted);">Chạm để nghe lời kể…</span>
+            </button>
+            <button type="button" class="testimony-slot" data-desk-trigger="2">
+              <strong style="font-size:0.86rem; color:var(--red);">3. Bàn có giấy nháp gấp tư</strong>
+              <span class="slot-body" style="font-size:0.88rem; color:var(--ink-muted);">Chạm để nghe lời kể…</span>
+            </button>
+          </div>
+
+          <div style="margin-top:14px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+            <span id="investigationProgress" class="hand-note">Đã ghi chép 0 / 3 lời kể.</span>
+            <button type="button" id="btnToggleTranscript" class="btn btn-sm" aria-expanded="false" aria-controls="transcriptWrap">
+              Đọc bản chép lời
+            </button>
+          </div>
+
+          <!-- Bản chép lời liền mạch (trượt mở/đóng mượt) -->
+          <div id="transcriptWrap" class="transcript-wrap" hidden>
+            <div class="transcript-box">
+              <div><strong>• Bàn có vở ô ly:</strong> “Bạn mới hỏi mượn bút để ghi thời khóa biểu. Mình đưa cả cây, nhớ rõ vì lúc đó còn đang ngậm cái nắp… À khoan.”</div>
+              <div><strong>• Bàn có thước êke:</strong> “Tới chỗ mình cây bút đã mất nắp rồi. Mình đưa sang bàn sau vì tưởng bạn ấy là chủ.”</div>
+              <div><strong>• Bàn có giấy nháp gấp tư:</strong> “Mình còn dư cái nắp đen. Lắp thử vừa khít nên cho luôn.”</div>
+            </div>
+          </div>
+
+          <!-- Ghi chú ngoài lề của Tiên mở ra sau khi đủ 3 lời kể -->
+          <div id="investigationEpilogue" class="investigation-epilogue" hidden aria-live="polite">
+            <strong>Ghi ngoài lề của Tiên:</strong> “Đến cuối buổi, bút về đúng chủ. Nắp cũng tìm được. Còn bạn mới thuộc tên cả bốn đứa. Mình phân vân mãi xem tin chính là chuyện nào.”
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4 & 5. MINI GAME — “CÒN MỘT Ô TRÊN TRANG NHẤT” & CON LĂN MỰC IN BÁO
+         ====================================================================== -->
+    <section id="toa-soan" class="press-section">
+      <div class="container">
+        <span class="section-kicker">Mini game biên tập · 30–45 giây</span>
+        <h2 class="section-serif-title">“Còn một ô trên trang nhất”</h2>
+        <p style="margin:0 0 24px; font-size:1.02rem; max-width:58ch;">
+          <strong>Tiên nhắn:</strong> “Mình có đủ lời kể rồi. Bạn chốt trang nhất giúp mình nha?”
+        </p>
+
+        <div class="press-workspace">
+          <!-- CỘT TRÁI: 3 BƯỚC BIÊN TẬP (GÓC KỂ, CHI TIẾT ĐẮT, KÝ TÊN) -->
+          <div class="editor-steps-col">
+            <!-- Bước 1: Chọn góc kể (A / B / C đổi dàn trang thật) -->
+            <div class="step-block">
+              <h3 class="step-title">Bước 1 · Chọn góc kể (dàn trang sẽ đổi thật)</h3>
+              <div class="angle-option-list" role="group" aria-label="Chọn góc kể trang nhất">
+                <button type="button" class="choice-btn" data-angle="A" aria-pressed="true">
+                  <span class="choice-letter">A</span>
+                  <span>“Bút xanh trở về với chiếc nắp đen”</span>
+                </button>
+                <button type="button" class="choice-btn" data-angle="B" aria-pressed="false">
+                  <span class="choice-letter">B</span>
+                  <span>“Bốn bàn học và một vụ mất nắp”</span>
+                </button>
+                <button type="button" class="choice-btn" data-angle="C" aria-pressed="false">
+                  <span class="choice-letter">C</span>
+                  <span>“Ngày đầu đổi chỗ, quen luôn bốn người”</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Bước 2: Chọn một chi tiết đắt để khoanh bút đỏ -->
+            <div class="step-block">
+              <h3 class="step-title">Bước 2 · Chọn một chi tiết đắt (khoanh bút đỏ)</h3>
+              <div class="angle-option-list" role="group" aria-label="Chọn chi tiết để khoanh bút đỏ">
+                <button type="button" class="choice-btn" data-detail="cap" aria-pressed="true">
+                  <span class="choice-letter">1</span>
+                  <span>Chiếc nắp khác màu — <em>“Nắp khác màu nhưng vừa khít.”</em></span>
+                </button>
+                <button type="button" class="choice-btn" data-detail="smudge" aria-pressed="false">
+                  <span class="choice-letter">2</span>
+                  <span>Vệt mực ở ngã rẽ — <em>“Đường đi ngắn nhất đã không xảy ra.”</em></span>
+                </button>
+                <button type="button" class="choice-btn" data-detail="timetable" aria-pressed="false">
+                  <span class="choice-letter">3</span>
+                  <span>Tờ thời khóa biểu viết dở — <em>“Lý do đầu tiên chỉ là muốn chép kịp thời khóa biểu.”</em></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Bước 3: Ký tên tòa soạn & Kéo bản in -->
+            <div class="step-block">
+              <h3 class="step-title">Bước 3 · Ký tên &amp; Kéo con lăn mực in báo</h3>
+              <label for="penNameInput" style="font-size:0.84rem; font-weight:600;">
+                Bút danh của bạn (để trống mặc định ghi “Bạn cùng bàn”):
+              </label>
+              <input
+                type="text"
+                id="penNameInput"
+                class="penname-input"
+                maxlength="34"
+                placeholder="Bạn cùng bàn"
+              />
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
+                <button type="button" id="btnAutoRoll" class="btn btn-red">In một bản</button>
+                <button type="button" id="btnResetPress" class="btn btn-sm">Lăn lại bản mới</button>
+                <button type="button" id="btnDownloadNewspaper" class="btn btn-pool" disabled>
+                  Tải trang báo PNG (1200×1600)
+                </button>
+              </div>
+              <p id="pressStatusMsg" class="hand-note" style="margin:0; color:var(--pool-deep);" aria-live="polite">
+                Kéo tay cầm màu đỏ của con lăn mực xuống đáy trang giấy, hoặc bấm “In một bản”.
+              </p>
+            </div>
+          </div>
+
+          <!-- CỘT PHẢI: BẢN IN THỬ & CON LĂN MỰC TƯƠNG TÁC -->
+          <div class="proof-desk-col">
+            <div id="proofSheetStage" class="proof-sheet-stage">
+              <!-- Giấy ngà còn trắng trước con lăn -->
+              <div class="proof-blank-paper" aria-hidden="true">
+                <strong style="font-family:var(--font-serif); font-size:1.25rem; color:var(--ink);">Bản giấy ngà chờ mực in</strong>
+                <span style="font-size:0.85rem; margin-top:6px;">
+                  Kéo con lăn mực từ mép trên xuống để in trang nhất <strong>RA CHƠI!</strong> của bạn.
+                </span>
+              </div>
+
+              <!-- Lớp bản báo đã in hiện dần ngay sau mép con lăn -->
+              <div class="proof-printed-layer">
+                <canvas
+                  id="frontPagePreviewCanvas"
+                  width="600"
+                  height="800"
+                  aria-label="Bản xem trước trang nhất tờ báo RA CHƠI! do bạn biên tập"
+                ></canvas>
+              </div>
+
+              <!-- Con lăn mực nằm sát mép trên với tay cầm đỏ -->
+              <div
+                id="inkRollerBar"
+                class="ink-roller-bar"
+                role="slider"
+                tabindex="0"
+                aria-label="Con lăn mực in báo — kéo xuống để in bản báo"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+              >
+                <div class="roller-cylinder" aria-hidden="true"></div>
+                <div class="roller-red-handle">KÉO ↓</div>
+              </div>
+            </div>
+
+            <!-- Nhận xét riêng của Tiên khớp đúng góc kể A/B/C sau khi in xong -->
+            <div id="tienEditorReaction" class="tien-editor-reaction" hidden aria-live="polite">
+              <strong style="color:var(--red); display:block; margin-bottom:4px;">Tiên xem bản in xong bảo:</strong>
+              <span id="tienReactionQuote"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. ĐOẠN KẾT — MỤC ĐÍNH CHÍNH (ĐIỂM KẾT YÊN TĨNH, NHIỀU KHOẢNG TRẮNG)
+         ====================================================================== -->
+    <section id="dinh-chinh" class="corrigendum-section">
+      <div class="container">
+        <article class="corrigendum-box">
+          <h2 class="corrigendum-title">Đính chính</h2>
+          <p id="corrigendumText" class="corrigendum-text">
+            “Hôm nay có thêm một người đọc tới tận mục đính chính. Mai có tin gì hay, nhớ kể Tiên nghe.”
+          </p>
+          <div id="editorialSignatures" class="editorial-signatures">
+            <span>Nguyễn Thùy Tiên</span>
+            <span id="guestSignatureSpan" style="color:var(--ink-muted); font-weight:600; font-family:var(--font-body); font-size:0.88rem;">
+              Tòa soạn giờ ra chơi · 12A10
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Nút trượt mượt lên đầu trang nhất -->
+  <button type="button" id="btnScrollTop" class="scroll-top-btn" aria-label="Trượt lên Trang nhất">
+    <span aria-hidden="true">↑</span>
+    <span>Trang nhất</span>
+  </button>
+
+  <script>
+    /* ==========================================================================
+       1. VÙNG CẤU HÌNH DỄ SỬA (ẢNH, VỊ TRÍ LẤY NÉT, MÀU SẮC & LỜI KỂ)
+       ========================================================================== */
+    const CONFIG = {
+      fullName: "Nguyễn Thùy Tiên",
+      className: "12A10",
+      school: "Trường THPT DakMil",
+      assets: {
+        portrait: "./assets/tien.jpg",
+        portraitFocus: "50% 22%",
+        schoolLogo: "./assets/logo-truong.png"
+      },
+      bioParagraphs: [
+        "Mình là Nguyễn Thùy Tiên, học lớp 12A10 ở Trường THPT DakMil. Mình có một thói quen hơi phiền: ai kể chuyện tới đoạn ‘rồi thôi’ là mình hỏi tiếp ‘rồi sao nữa?’. Nhiều khi đoạn sau chữ ‘thôi’ mới là đoạn đáng nghe nhất.",
+        "Mình thích đọc truyện ngắn, vẽ mấy gương mặt bằng ba bốn nét và đặt tiêu đề cho những chuyện bình thường. Một lần lớp đổi chỗ ngồi, mình ghi vào vở là ‘Cuộc di cư lớn từ bàn ba xuống bàn năm’. Bạn ngồi bên đọc được, cười tới mức cô quay xuống nhìn. Từ đó mình biết chữ viết cũng gây ồn.",
+        "Mình khá tự tin lúc cầm bút đỏ sửa một câu quá dài. Tới lượt tự giới thiệu trước lớp thì câu nào mình nói cũng dài. Nên nếu muốn biết mình là người thế nào, bạn cứ đọc tiếp. Viết thì mình đỡ run hơn."
+      ],
+      career: {
+        heading: "Báo chí & Biên tập Nội dung Sáng tạo",
+        badge: "Định hướng · Journalist & Creative Editor",
+        essay: [
+          "Mình mong muốn theo đuổi ngành Báo chí và Biên tập Nội dung Sáng tạo. Tính mình có một thói quen khá rõ: cứ nghe ai kể chuyện tới chữ “rồi thôi” là mình lập tức hỏi tiếp “rồi sao nữa?”, vì mình tin phần thú vị nhất thường nằm ở phía sau những chi tiết bị lướt qua. Từ lúc tập viết mấy mẩu tin vui về chuyện đổi chỗ hay vụ thất lạc nắp bút trong giờ ra chơi của lớp 12A10, mình nhận ra câu chữ có một sức nặng rất đặc biệt: chỉ cần đổi góc nhìn và đặt lại tiêu đề, một buổi chiều bình thường bỗng trở thành kỷ niệm mà ai có mặt hôm đó cũng muốn đọc lại.",
+          "Đứng trước lớp tự giới thiệu thì mình còn hơi run, nhưng khi cầm bút đỏ biên tập một trang bài, mình thấy rất tự tin. Sau này, mình muốn làm những ấn phẩm và chuyên mục kể chuyện đời thường thật tử tế, sắc sảo và gần gũi với người trẻ."
+        ],
+        steps: [
+          {
+            num: "01",
+            title: "Giữ thói quen quan sát chi tiết nhỏ và hỏi tiếp “rồi sao nữa?”",
+            body: "Ghi chép lại những mẩu chuyện ngắn quanh lớp học, những câu thoại vu vơ giờ ra chơi và tìm ra lát cắt đáng nhớ nhất thay vì kể dàn trải."
+          },
+          {
+            num: "02",
+            title: "Rèn tay bút đỏ biên tập tiêu đề và cấu trúc trang bài",
+            body: "Thử đặt ba tiêu đề khác nhau cho cùng một sự việc để hiểu mỗi góc nhìn sẽ kéo sự chú ý của người đọc đi theo một hướng khác hẳn."
+          },
+          {
+            num: "03",
+            title: "Kết hợp chữ viết với minh họa tay và dàn trang báo độc lập",
+            body: "Tự dựng những trang ấn phẩm nhỏ có khoảng thở, có chú thích lề và mục đính chính — để bài viết không chỉ đọc được mà còn muốn giữ lại."
+          }
+        ]
+      },
+      testimonies: [
+        "“Bạn mới hỏi mượn bút để ghi thời khóa biểu. Mình đưa cả cây, nhớ rõ vì lúc đó còn đang ngậm cái nắp… À khoan.”",
+        "“Tới chỗ mình cây bút đã mất nắp rồi. Mình đưa sang bàn sau vì tưởng bạn ấy là chủ.”",
+        "“Mình còn dư cái nắp đen. Lắp thử vừa khít nên cho luôn.”"
+      ],
+      angles: {
+        A: {
+          headline: "Bút xanh trở về với chiếc nắp đen",
+          kicker: "GÓC KỂ A · CHIẾC BÚT Ở TRUNG TÂM",
+          reaction: "“Cắt sát vào cây bút thế này nhìn duyên ghê — nắp đen lắp vào bút xanh mà hợp như sinh ra cho nhau.”"
+        },
+        B: {
+          headline: "Bốn bàn học và một vụ mất nắp",
+          kicker: "GÓC KỂ B · SƠ ĐỒ PHÁ ÁN GIỜ RA CHƠI",
+          reaction: "“Để sơ đồ bốn bàn lên trang nhất trông y như hồ sơ điều tra thật. Bạn nào ngồi bàn hai đọc chắc giật mình.”"
+        },
+        C: {
+          headline: "Ngày đầu đổi chỗ, quen luôn bốn người",
+          kicker: "GÓC KỂ C · CHUYỆN ĐẰNG SAU CHIẾC NẮP BÚT",
+          reaction: "“Mình cũng suýt bỏ sót chuyện này vì cứ mải đi tìm cái nắp.”"
+        }
+      },
+      details: {
+        cap: { caption: "Nắp khác màu nhưng vừa khít." },
+        smudge: { caption: "Đường đi ngắn nhất đã không xảy ra." },
+        timetable: { caption: "Lý do đầu tiên chỉ là muốn chép kịp thời khóa biểu." }
+      }
+    };
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ==========================================================================
+       2. HIỆU ỨNG TRƯỢT LÊN XUỐNG MƯỢT (CUỘN TRANG & MỞ/ĐÓNG HỘP GẬP)
+       ========================================================================== */
+    let activeScrollRaf = null;
+
+    function stopSmoothScroll() {
+      if (activeScrollRaf !== null) {
+        cancelAnimationFrame(activeScrollRaf);
+        activeScrollRaf = null;
+      }
+    }
+
+    window.addEventListener("wheel", stopSmoothScroll, { passive: true });
+    window.addEventListener("touchstart", stopSmoothScroll, { passive: true });
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollToY(targetY, onDone) {
+      stopSmoothScroll();
+      const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const destY = Math.max(0, Math.min(maxY, targetY));
+
+      if (prefersReducedMotion) {
+        window.scrollTo(0, destY);
+        if (onDone) onDone();
+        return;
+      }
+
+      const startY = window.scrollY;
+      const dist = destY - startY;
+      if (Math.abs(dist) < 2) {
+        if (onDone) onDone();
+        return;
+      }
+
+      const dur = Math.min(860, Math.max(430, Math.abs(dist) * 0.45));
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        window.scrollTo(0, startY + dist * easeInOutCubic(p));
+        if (p < 1) {
+          activeScrollRaf = requestAnimationFrame(step);
+        } else {
+          activeScrollRaf = null;
+          if (onDone) onDone();
+        }
+      };
+      activeScrollRaf = requestAnimationFrame(step);
+    }
+
+    function smoothScrollToElement(el) {
+      if (!el) return;
+      const bar = document.querySelector(".zine-topbar");
+      const offset = (bar ? bar.offsetHeight : 0) + 12;
+      const targetY = el.getBoundingClientRect().top + window.scrollY - offset;
+
+      smoothScrollToY(targetY, () => {
+        if (el.tagName === "SECTION" && !prefersReducedMotion) {
+          el.classList.remove("is-scroll-target");
+          void el.offsetWidth;
+          el.classList.add("is-scroll-target");
+        }
+      });
+    }
+
+    function smoothSlideToggle(el, open) {
+      if (!el) return;
+      if (prefersReducedMotion) {
+        el.hidden = !open;
+        return;
+      }
+      if (el._slideEnd) {
+        el.removeEventListener("transitionend", el._slideEnd);
+        el._slideEnd = null;
+      }
+      if (open) {
+        el.hidden = false;
+        const h = el.scrollHeight;
+        el.style.height = "0px";
+        el.style.opacity = "0";
+        el.style.transition = "height 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 240ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = `${h}px`;
+          el.style.opacity = "1";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      } else {
+        el.style.height = `${el.scrollHeight}px`;
+        el.style.opacity = "1";
+        el.style.transition = "height 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease";
+        requestAnimationFrame(() => {
+          el.style.height = "0px";
+          el.style.opacity = "0";
+        });
+        el._slideEnd = (ev) => {
+          if (ev.propertyName !== "height") return;
+          el.hidden = true;
+          el.style.height = "";
+          el.style.opacity = "";
+          el.style.transition = "";
+          el.removeEventListener("transitionend", el._slideEnd);
+          el._slideEnd = null;
+        };
+        el.addEventListener("transitionend", el._slideEnd);
+      }
+    }
+
+    /* ==========================================================================
+       3. TRANG NHẤT — KÉO ĐỂ THỬ MÀU CHÂN DUNG (LỆCH MỰC 3PX KHI KÉO, KHỚP KHI THẢ)
+       ========================================================================== */
+    const portraitPrintFrame = document.getElementById("portraitPrintFrame");
+    const wipeHandleBtn = document.getElementById("wipeHandleBtn");
+    const wipeStatusLabel = document.getElementById("wipeStatusLabel");
+    const btnToggleFullColor = document.getElementById("btnToggleFullColor");
+
+    let wipePercent = 34;
+    let isDraggingWipe = false;
+
+    function setWipePercent(pct) {
+      wipePercent = Math.max(0, Math.min(100, Math.round(pct)));
+      portraitPrintFrame.style.setProperty("--wipe", `${wipePercent}%`);
+      wipeHandleBtn.setAttribute("aria-valuenow", String(wipePercent));
+      wipeStatusLabel.textContent = wipePercent >= 99
+        ? "Ảnh màu đầy đủ 100% — bạn vẫn có thể kéo ngược lại để xem lớp tram."
+        : `Đang phủ màu ${wipePercent}% — kéo nút đỏ để thử mực in.`;
+      btnToggleFullColor.textContent = wipePercent >= 99 ? "Về bản thử 1/3" : "Xem ảnh màu";
+    }
+
+    function updateWipeFromClientX(clientX) {
+      const rect = portraitPrintFrame.getBoundingClientRect();
+      const pct = ((clientX - rect.left) / Math.max(1, rect.width)) * 100;
+      setWipePercent(pct);
+    }
+
+    // Chỉ bắt sự kiện kéo khi chạm đúng tay cầm để không cản cuộn dọc trên mobile
+    wipeHandleBtn.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      isDraggingWipe = true;
+      portraitPrintFrame.classList.add("is-dragging");
+      wipeHandleBtn.setPointerCapture(e.pointerId);
+    });
+
+    wipeHandleBtn.addEventListener("pointermove", (e) => {
+      if (!isDraggingWipe) return;
+      e.preventDefault();
+      updateWipeFromClientX(e.clientX);
+    });
+
+    function releaseWipeDrag() {
+      if (!isDraggingWipe) return;
+      isDraggingWipe = false;
+      portraitPrintFrame.classList.remove("is-dragging");
+    }
+
+    wipeHandleBtn.addEventListener("pointerup", releaseWipeDrag);
+    wipeHandleBtn.addEventListener("pointercancel", releaseWipeDrag);
+
+    wipeHandleBtn.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { e.preventDefault(); setWipePercent(wipePercent - 6); }
+      else if (e.key === "ArrowRight") { e.preventDefault(); setWipePercent(wipePercent + 6); }
+    });
+
+    btnToggleFullColor.addEventListener("click", () => {
+      setWipePercent(wipePercent >= 99 ? 34 : 100);
+    });
+
+    /* ==========================================================================
+       4. NẠP DỮ LIỆU CHÍNH, PHỎNG VẤN BÚT ĐỎ & ĐỊNH HƯỚNG NGHỀ NGHIỆP
+       ========================================================================== */
+    function hydrateContent() {
+      document.getElementById("heroClassSchool").textContent = `Lớp ${CONFIG.className} · ${CONFIG.school}`;
+
+      // Hai lớp ảnh dùng chung 1 đường dẫn & 1 object-position để mắt không bao giờ nhảy
+      const imgMono = document.getElementById("portraitImgMono");
+      const imgColor = document.getElementById("portraitImgColor");
+      imgMono.style.objectPosition = CONFIG.assets.portraitFocus;
+      imgColor.style.objectPosition = CONFIG.assets.portraitFocus;
+      imgColor.addEventListener("error", () => portraitPrintFrame.classList.add("is-missing"));
+      imgColor.addEventListener("load", () => portraitPrintFrame.classList.remove("is-missing"));
+      imgMono.src = CONFIG.assets.portrait;
+      imgColor.src = CONFIG.assets.portrait;
+
+      const logoWrap = document.getElementById("schoolLogoWrap");
+      const logoImg = document.getElementById("schoolLogoImg");
+      logoImg.addEventListener("error", () => logoWrap.classList.add("is-missing"));
+      logoImg.addEventListener("load", () => logoWrap.classList.remove("is-missing"));
+      logoImg.src = CONFIG.assets.schoolLogo;
+
+      // Bài phỏng vấn
+      const bioWrap = document.getElementById("bioProseWrap");
+      bioWrap.innerHTML = "";
+      CONFIG.bioParagraphs.forEach((txt) => {
+        const p = document.createElement("p");
+        p.textContent = txt;
+        bioWrap.appendChild(p);
+      });
+
+      // Nét gạch đỏ ở mép bản thảo
+      const btnStrike = document.getElementById("btnRedStrikeEdit");
+      const redSlip = document.getElementById("redEditSlip");
+      btnStrike.addEventListener("click", () => {
+        const opening = redSlip.hidden;
+        btnStrike.setAttribute("aria-expanded", String(opening));
+        smoothSlideToggle(redSlip, opening);
+      });
+
+      // Định hướng nghề nghiệp (~165 chữ + 3 mục trượt mở/đóng mượt)
+      document.getElementById("careerHeading").textContent = CONFIG.career.heading;
+      document.getElementById("careerBadge").textContent = CONFIG.career.badge;
+
+      const essayWrap = document.getElementById("careerEssayWrap");
+      essayWrap.innerHTML = "";
+      CONFIG.career.essay.forEach((txt) => {
+        const p = document.createElement("p");
+        p.textContent = txt;
+        essayWrap.appendChild(p);
+      });
+
+      const stepsWrap = document.getElementById("careerStepsWrap");
+      stepsWrap.innerHTML = "";
+      CONFIG.career.steps.forEach((st, idx) => {
+        const openInit = idx === 0;
+        const card = document.createElement("article");
+        card.className = `career-step${openInit ? " is-open" : ""}`;
+        const panelId = `careerStepPanel_${idx}`;
+        card.innerHTML = `
+          <button type="button" class="career-step-trigger" aria-expanded="${openInit}" aria-controls="${panelId}">
+            <span class="career-step-head">
+              <span class="career-step-num">${st.num}</span>
+              <span class="career-step-title">${st.title}</span>
+            </span>
+            <span class="career-step-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div id="${panelId}" class="career-step-panel" ${openInit ? "" : "hidden"}>
+            <div class="career-step-inner">${st.body}</div>
+          </div>
+        `;
+        const trig = card.querySelector(".career-step-trigger");
+        const panel = card.querySelector(".career-step-panel");
+        trig.addEventListener("click", () => {
+          const opening = panel.hidden;
+          card.classList.toggle("is-open", opening);
+          trig.setAttribute("aria-expanded", String(opening));
+          smoothSlideToggle(panel, opening);
+        });
+        stepsWrap.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       5. BÀI ĐIỀU TRA GIỜ RA CHƠI — “AI GIỮ NẮP BÚT?”
+       ========================================================================== */
+    const openedDesks = new Set();
+    const investigationProgress = document.getElementById("investigationProgress");
+    const investigationEpilogue = document.getElementById("investigationEpilogue");
+    const inkSmudgeGroup = document.getElementById("inkSmudgeGroup");
+
+    function revealDeskTestimony(idx) {
+      openedDesks.add(idx);
+
+      // Vẽ thêm đoạn đường mực xanh dẫn tới chiếc bàn đó
+      const seg = document.getElementById(`trailSeg${idx}`);
+      if (seg) seg.classList.add("is-drawn");
+
+      // Khi mở bàn 1 hoặc mở đủ 3 bàn, hiện vệt mực lem ở ngã rẽ về bàn đầu tiên
+      if (idx === 0 || openedDesks.size === 3) {
+        inkSmudgeGroup.classList.add("is-visible");
+      }
+
+      // Cập nhật thẻ lời kể tương ứng
+      const slot = document.querySelector(`.testimony-slot[data-desk-trigger="${idx}"]`);
+      if (slot) {
+        slot.classList.add("is-opened");
+        const body = slot.querySelector(".slot-body");
+        body.textContent = CONFIG.testimonies[idx];
+        body.style.color = "var(--ink)";
+      }
+
+      investigationProgress.textContent = `Đã ghi chép ${openedDesks.size} / 3 lời kể.`;
+
+      if (openedDesks.size === 3 && investigationEpilogue.hidden) {
+        smoothSlideToggle(investigationEpilogue, true);
+      }
+    }
+
+    document.querySelectorAll("[data-desk-trigger]").forEach((el) => {
+      const idx = Number(el.getAttribute("data-desk-trigger"));
+      el.addEventListener("click", () => revealDeskTestimony(idx));
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          revealDeskTestimony(idx);
+        }
+      });
+    });
+
+    const btnToggleTranscript = document.getElementById("btnToggleTranscript");
+    const transcriptWrap = document.getElementById("transcriptWrap");
+    btnToggleTranscript.addEventListener("click", () => {
+      const opening = transcriptWrap.hidden;
+      btnToggleTranscript.setAttribute("aria-expanded", String(opening));
+      btnToggleTranscript.textContent = opening ? "Ẩn bản chép lời" : "Đọc bản chép lời";
+      smoothSlideToggle(transcriptWrap, opening);
+    });
+
+    /* ==========================================================================
+       6. MINI GAME BIÊN TẬP TRANG NHẤT + CON LĂN MỰC + XUẤT PNG 1200 × 1600 PX
+       ========================================================================== */
+    const pressState = {
+      angle: "A", // A | B | C
+      detail: "cap", // cap | smudge | timetable
+      penName: "",
+      rollProgress: 0, // 0 -> 1
+      hasPrintedAtLeastOnce: false,
+      isDraggingRoller: false,
+      isAutoRolling: false,
+      autoRollRaf: null
+    };
+
+    const proofSheetStage = document.getElementById("proofSheetStage");
+    const frontPagePreviewCanvas = document.getElementById("frontPagePreviewCanvas");
+    const inkRollerBar = document.getElementById("inkRollerBar");
+    const penNameInput = document.getElementById("penNameInput");
+    const btnAutoRoll = document.getElementById("btnAutoRoll");
+    const btnResetPress = document.getElementById("btnResetPress");
+    const btnDownloadNewspaper = document.getElementById("btnDownloadNewspaper");
+    const pressStatusMsg = document.getElementById("pressStatusMsg");
+    const tienEditorReaction = document.getElementById("tienEditorReaction");
+    const tienReactionQuote = document.getElementById("tienReactionQuote");
+    const corrigendumText = document.getElementById("corrigendumText");
+    const guestSignatureSpan = document.getElementById("guestSignatureSpan");
+
+    function getEffectivePenName() {
+      const clean = (pressState.penName || "").trim();
+      return clean || "Bạn cùng bàn";
+    }
+
+    // Tiện ích xuống dòng chữ tiếng Việt trên Canvas không cắt dấu hay tràn mép
+    function wrapCanvasLines(ctx, text, maxWidth) {
+      const words = text.split(/\s+/);
+      const lines = [];
+      let line = "";
+      for (const word of words) {
+        const test = line ? `${line} ${word}` : word;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines.push(line);
+          line = word;
+        } else {
+          line = test;
+        }
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    // Vẽ vòng tròn bút đỏ hơi méo như nét khoanh tay thật
+    function drawHandRedCircle(ctx, cx, cy, rx, ry, s) {
+      ctx.save();
+      ctx.strokeStyle = "#ED4938";
+      ctx.lineWidth = 7 * s;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      const steps = 42;
+      for (let i = 0; i <= steps; i++) {
+        const a = (i / steps) * Math.PI * 2.12 - 0.3;
+        const wobble = 1 + Math.sin(a * 3) * 0.05 + Math.cos(a * 2) * 0.03;
+        const px = cx + Math.cos(a) * rx * wobble;
+        const py = cy + Math.sin(a) * ry * wobble;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Hàm dùng chung dựng bản xem trước (600×800) và bản xuất PNG (1200×1600)
+    function renderFrontPageToCanvas(canvas) {
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      const s = W / 1200;
+
+      const angleCfg = CONFIG.angles[pressState.angle];
+      const detailCfg = CONFIG.details[pressState.detail];
+      const penName = getEffectivePenName();
+
+      // 1. Nền giấy bơ nhạt + hạt tram mảnh
+      ctx.fillStyle = "#FFF2CF";
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.fillStyle = "rgba(41, 36, 60, 0.055)";
+      const dotGap = 24 * s;
+      for (let y = dotGap; y < H; y += dotGap) {
+        for (let x = dotGap; x < W; x += dotGap) {
+          ctx.fillRect(x, y, 2 * s, 2 * s);
+        }
+      }
+
+      const pad = 64 * s;
+
+      // Khung viền đôi kiểu báo in độc lập
+      ctx.strokeStyle = "#29243C";
+      ctx.lineWidth = 4 * s;
+      ctx.strokeRect(pad * 0.55, pad * 0.55, W - pad * 1.1, H - pad * 1.1);
+      ctx.lineWidth = 1.6 * s;
+      ctx.strokeRect(pad * 0.68, pad * 0.68, W - pad * 1.36, H - pad * 1.36);
+
+      // 2. ĐẦU TRANG: “RA CHƠI! · 12A10”
+      ctx.fillStyle = "#29243C";
+      ctx.font = `700 ${24 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.textAlign = "left";
+      ctx.fillText("RA CHƠI! · 12A10", pad, pad + 32 * s);
+
+      ctx.textAlign = "right";
+      ctx.fillStyle = "#ED4938";
+      ctx.fillText(angleCfg.kicker, W - pad, pad + 32 * s);
+
+      // Đường kẻ đậm dưới masthead
+      ctx.fillStyle = "#29243C";
+      ctx.fillRect(pad, pad + 52 * s, W - pad * 2, 7 * s);
+      ctx.fillRect(pad, pad + 64 * s, W - pad * 2, 2 * s);
+
+      // 3. TIÊU ĐỀ BÀI BÁO LỚN (tự xuống dòng, chừa khoảng cho dấu tiếng Việt)
+      ctx.fillStyle = "#29243C";
+      ctx.font = `800 ${74 * s}px 'Playfair Display', Georgia, serif`;
+      ctx.textAlign = "left";
+      const headlineLines = wrapCanvasLines(ctx, angleCfg.headline, W - pad * 2);
+      let headY = pad + 148 * s;
+      headlineLines.forEach((ln) => {
+        ctx.fillText(ln, pad, headY);
+        headY += 86 * s;
+      });
+
+      // 4. KHUNG TRANH MINH HỌA THAY ĐỔI DÀN TRANG THỰC SỰ THEO A / B / C
+      const artX = pad;
+      const artY = headY + 12 * s;
+      const artW = W - pad * 2;
+      const artH = 680 * s;
+
+      ctx.save();
+      ctx.fillStyle = "#FFF8E6";
+      ctx.fillRect(artX, artY, artW, artH);
+      ctx.strokeStyle = "#29243C";
+      ctx.lineWidth = 3.5 * s;
+      ctx.strokeRect(artX, artY, artW, artH);
+      ctx.beginPath();
+      ctx.rect(artX, artY, artW, artH);
+      ctx.clip();
+
+      // Mảng màu in hơi lệch kiểu risograph
+      ctx.fillStyle = "rgba(70, 185, 191, 0.2)";
+      ctx.fillRect(artX + 26 * s, artY + 26 * s, artW - 52 * s, artH - 52 * s);
+
+      // Lưu tọa độ 3 chi tiết đắt riêng cho từng bố cục A / B / C
+      let spots = {};
+
+      if (pressState.angle === "A") {
+        // BỐ CỤC A: CÂY BÚT BI XANH THẬT LỚN NẰM NGANG TRANG
+        // Tờ thời khóa biểu viết dở nằm chéo góc dưới trái
+        ctx.save();
+        ctx.translate(artX + 185 * s, artY + 515 * s);
+        ctx.rotate(-0.14);
+        ctx.fillStyle = "#FFFDF7";
+        ctx.strokeStyle = "#29243C";
+        ctx.lineWidth = 3 * s;
+        ctx.fillRect(-115 * s, -72 * s, 230 * s, 144 * s);
+        ctx.strokeRect(-115 * s, -72 * s, 230 * s, 144 * s);
+        ctx.fillStyle = "#29243C";
+        ctx.font = `700 ${20 * s}px 'Be Vietnam Pro', sans-serif`;
+        ctx.fillText("TKB · THỨ 4", -90 * s, -36 * s);
+        ctx.strokeStyle = "#2659B8";
+        ctx.lineWidth = 3 * s;
+        ctx.beginPath();
+        ctx.moveTo(-90 * s, -6 * s); ctx.lineTo(70 * s, -6 * s);
+        ctx.moveTo(-90 * s, 26 * s); ctx.lineTo(24 * s, 26 * s);
+        ctx.stroke();
+        ctx.restore();
+
+        // Vệt mực xanh ở ngã rẽ góc trên trái
+        ctx.fillStyle = "rgba(38, 89, 184, 0.34)";
+        ctx.beginPath(); ctx.arc(artX + 240 * s, artY + 150 * s, 38 * s, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#2659B8";
+        ctx.beginPath(); ctx.arc(artX + 245 * s, artY + 146 * s, 18 * s, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = "#2659B8";
+        ctx.lineWidth = 5 * s;
+        ctx.beginPath();
+        ctx.moveTo(artX + 120 * s, artY + 185 * s);
+        ctx.quadraticCurveTo(artX + 240 * s, artY + 140 * s, artX + 350 * s, artY + 215 * s);
+        ctx.stroke();
+
+        // CÂY BÚT XANH CỠ LỚN NẰM NGANG TRANG
+        const penY = artY + 325 * s;
+        // Thân bút màu xanh hồ bơi đậm
+        ctx.fillStyle = "#46B9BF";
+        ctx.strokeStyle = "#29243C";
+        ctx.lineWidth = 5 * s;
+        ctx.beginPath();
+        ctx.roundRect(artX + 165 * s, penY - 38 * s, 540 * s, 76 * s, 16 * s);
+        ctx.fill();
+        ctx.stroke();
+        // Ngòi bút bên trái
+        ctx.fillStyle = "#FFF8E6";
+        ctx.beginPath();
+        ctx.moveTo(artX + 165 * s, penY - 36 * s);
+        ctx.lineTo(artX + 76 * s, penY);
+        ctx.lineTo(artX + 165 * s, penY + 36 * s);
+        ctx.closePath();
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#29243C";
+        ctx.beginPath();
+        ctx.moveTo(artX + 102 * s, penY - 10 * s);
+        ctx.lineTo(artX + 74 * s, penY);
+        ctx.lineTo(artX + 102 * s, penY + 10 * s);
+        ctx.closePath();
+        ctx.fill();
+
+        // CHIẾC NẮP ĐEN KHÁC MÀU ĐANG LẮP VÀO ĐUÔI BÚT (bên phải)
+        ctx.fillStyle = "#29243C";
+        ctx.beginPath();
+        ctx.roundRect(artX + 712 * s, penY - 44 * s, 250 * s, 88 * s, [8 * s, 32 * s, 32 * s, 8 * s]);
+        ctx.fill();
+        // Gài túi áo trên nắp đen
+        ctx.fillStyle = "#ED4938";
+        ctx.fillRect(artX + 752 * s, penY - 62 * s, 165 * s, 18 * s);
+        ctx.strokeRect(artX + 752 * s, penY - 62 * s, 165 * s, 18 * s);
+
+        spots = {
+          cap: { x: artX + 835 * s, y: penY, rx: 145 * s, ry: 82 * s },
+          smudge: { x: artX + 240 * s, y: artY + 152 * s, rx: 76 * s, ry: 62 * s },
+          timetable: { x: artX + 185 * s, y: artY + 515 * s, rx: 136 * s, ry: 92 * s }
+        };
+      } else if (pressState.angle === "B") {
+        // BỐ CỤC B: SƠ ĐỒ ĐƯỜNG ĐI QUA BỐN BÀN HỌC
+        const drawMiniDesk = (dx, dy, label) => {
+          ctx.fillStyle = "#E8C994";
+          ctx.strokeStyle = "#29243C";
+          ctx.lineWidth = 4 * s;
+          ctx.fillRect(dx, dy, 250 * s, 145 * s);
+          ctx.strokeRect(dx, dy, 250 * s, 145 * s);
+          ctx.fillStyle = "#29243C";
+          ctx.font = `700 ${21 * s}px 'Be Vietnam Pro', sans-serif`;
+          ctx.textAlign = "center";
+          ctx.fillText(label, dx + 125 * s, dy + 178 * s);
+        };
+
+        // Đường đi mực xanh nối 4 bàn
+        ctx.strokeStyle = "#2659B8";
+        ctx.lineWidth = 7 * s;
+        ctx.setLineDash([16 * s, 10 * s]);
+        ctx.beginPath();
+        ctx.moveTo(artX + 260 * s, artY + 150 * s);
+        ctx.bezierCurveTo(artX + 460 * s, artY + 70 * s, artX + 600 * s, artY + 90 * s, artX + 720 * s, artY + 150 * s);
+        ctx.bezierCurveTo(artX + 890 * s, artY + 250 * s, artX + 890 * s, artY + 410 * s, artX + 760 * s, artY + 485 * s);
+        ctx.bezierCurveTo(artX + 540 * s, artY + 590 * s, artX + 230 * s, artY + 560 * s, artX + 185 * s, artY + 340 * s);
+        ctx.lineTo(artX + 185 * s, artY + 235 * s);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        drawMiniDesk(artX + 95 * s, artY + 86 * s, "1. Bàn vở ô ly");
+        drawMiniDesk(artX + 675 * s, artY + 86 * s, "2. Bàn thước êke");
+        drawMiniDesk(artX + 675 * s, artY + 410 * s, "3. Bàn giấy nháp");
+        drawMiniDesk(artX + 155 * s, artY + 410 * s, "4. Bàn quyển truyện");
+
+        // Tờ thời khóa biểu trên bàn 1
+        ctx.fillStyle = "#FFFDF7";
+        ctx.strokeStyle = "#29243C";
+        ctx.lineWidth = 2.5 * s;
+        ctx.fillRect(artX + 145 * s, artY + 112 * s, 128 * s, 88 * s);
+        ctx.strokeRect(artX + 145 * s, artY + 112 * s, 128 * s, 88 * s);
+        ctx.fillStyle = "#29243C";
+        ctx.font = `700 ${17 * s}px 'Be Vietnam Pro', sans-serif`;
+        ctx.fillText("TKB", artX + 209 * s, artY + 152 * s);
+
+        // Vệt mực lem ở ngã rẽ về bàn 1
+        ctx.fillStyle = "rgba(38, 89, 184, 0.34)";
+        ctx.beginPath(); ctx.arc(artX + 185 * s, artY + 320 * s, 44 * s, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#2659B8";
+        ctx.beginPath(); ctx.arc(artX + 188 * s, artY + 318 * s, 20 * s, 0, Math.PI * 2); ctx.fill();
+
+        // Chiếc nắp đen trên bàn 3
+        ctx.fillStyle = "#29243C";
+        ctx.beginPath();
+        ctx.roundRect(artX + 762 * s, artY + 462 * s, 88 * s, 32 * s, 8 * s);
+        ctx.fill();
+        ctx.fillStyle = "#ED4938";
+        ctx.fillRect(artX + 782 * s, artY + 454 * s, 52 * s, 8 * s);
+
+        spots = {
+          cap: { x: artX + 806 * s, y: artY + 478 * s, rx: 86 * s, ry: 58 * s },
+          smudge: { x: artX + 185 * s, y: artY + 320 * s, rx: 74 * s, ry: 66 * s },
+          timetable: { x: artX + 209 * s, y: artY + 156 * s, rx: 94 * s, ry: 68 * s }
+        };
+      } else {
+        // BỐ CỤC C: BỐN MẨU GIẤY GHI TÊN XẾP CẠNH NHAU, CHÍNH GIỮA LÀ CÂY BÚT LÀM SỢI DÂY LIÊN KẾT
+        const slips = [
+          { x: artX + 75 * s, y: artY + 95 * s, rot: -0.05, name: "Bàn 1", note: "Chủ cây bút xanh" },
+          { x: artX + 565 * s, y: artY + 86 * s, rot: 0.04, name: "Bàn 2", note: "Người chuyền tiếp" },
+          { x: artX + 85 * s, y: artY + 412 * s, rot: 0.03, name: "Bàn 3", note: "Tặng chiếc nắp đen" },
+          { x: artX + 575 * s, y: artY + 402 * s, rot: -0.04, name: "Bàn 4", note: "Bạn mới đổi chỗ" }
+        ];
+
+        slips.forEach((sl) => {
+          ctx.save();
+          ctx.translate(sl.x + 205 * s, sl.y + 92 * s);
+          ctx.rotate(sl.rot);
+          ctx.fillStyle = "#FFFDF7";
+          ctx.strokeStyle = "#29243C";
+          ctx.lineWidth = 3.5 * s;
+          ctx.fillRect(-205 * s, -92 * s, 410 * s, 184 * s);
+          ctx.strokeRect(-205 * s, -92 * s, 410 * s, 184 * s);
+          // Băng dính màu xanh hồ bơi dán góc trên
+          ctx.fillStyle = "rgba(70, 185, 191, 0.55)";
+          ctx.fillRect(-45 * s, -104 * s, 90 * s, 26 * s);
+
+          ctx.fillStyle = "#ED4938";
+          ctx.font = `800 ${30 * s}px 'Playfair Display', Georgia, serif`;
+          ctx.textAlign = "left";
+          ctx.fillText(sl.name, -172 * s, -22 * s);
+
+          ctx.fillStyle = "#29243C";
+          ctx.font = `600 ${24 * s}px 'Be Vietnam Pro', sans-serif`;
+          ctx.fillText(sl.note, -172 * s, 28 * s);
+          ctx.restore();
+        });
+
+        // Tờ thời khóa biểu viết dở trên mẩu giấy 4 (bên phải dưới)
+        ctx.fillStyle = "#FFF2CF";
+        ctx.strokeStyle = "#29243C";
+        ctx.lineWidth = 2.5 * s;
+        ctx.fillRect(artX + 820 * s, artY + 435 * s, 128 * s, 98 * s);
+        ctx.strokeRect(artX + 820 * s, artY + 435 * s, 128 * s, 98 * s);
+        ctx.fillStyle = "#29243C";
+        ctx.font = `700 ${18 * s}px 'Be Vietnam Pro', sans-serif`;
+        ctx.textAlign = "center";
+        ctx.fillText("TKB 12A10", artX + 884 * s, artY + 476 * s);
+
+        // Vệt mực xanh nhỏ ở giữa kết nối
+        ctx.fillStyle = "rgba(38, 89, 184, 0.34)";
+        ctx.beginPath(); ctx.arc(artX + 295 * s, artY + 340 * s, 32 * s, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#2659B8";
+        ctx.beginPath(); ctx.arc(artX + 298 * s, artY + 338 * s, 14 * s, 0, Math.PI * 2); ctx.fill();
+
+        // Cây bút xanh nằm ngang chính giữa nối cả 4 mẩu giấy + nắp đen
+        const midY = artY + 338 * s;
+        ctx.fillStyle = "#46B9BF";
+        ctx.strokeStyle = "#29243C";
+        ctx.lineWidth = 4 * s;
+        ctx.beginPath();
+        ctx.roundRect(artX + 335 * s, midY - 22 * s, 330 * s, 44 * s, 10 * s);
+        ctx.fill(); ctx.stroke();
+
+        ctx.fillStyle = "#29243C";
+        ctx.beginPath();
+        ctx.roundRect(artX + 668 * s, midY - 26 * s, 130 * s, 52 * s, 14 * s);
+        ctx.fill();
+
+        spots = {
+          cap: { x: artX + 732 * s, y: midY, rx: 92 * s, ry: 54 * s },
+          smudge: { x: artX + 295 * s, y: artY + 340 * s, rx: 64 * s, ry: 54 * s },
+          timetable: { x: artX + 884 * s, y: artY + 484 * s, rx: 92 * s, ry: 72 * s }
+        };
+      }
+
+      // Khoanh bút đỏ hơi méo vào đúng chi tiết đắt khách chọn
+      const activeSpot = spots[pressState.detail];
+      if (activeSpot) {
+        drawHandRedCircle(ctx, activeSpot.x, activeSpot.y, activeSpot.rx, activeSpot.ry, s);
+      }
+
+      ctx.restore();
+
+      // 5. CHÚ THÍCH DƯỚI ẢNH (TỰ ĐỔI THEO CHI TIẾT ĐẮT)
+      const capY = artY + artH + 46 * s;
+      ctx.fillStyle = "#ED4938";
+      ctx.fillRect(pad, capY - 24 * s, 12 * s, 30 * s);
+
+      ctx.fillStyle = "#29243C";
+      ctx.font = `italic 600 ${30 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.textAlign = "left";
+      const capLines = wrapCanvasLines(ctx, `“${detailCfg.caption}”`, W - pad * 2 - 28 * s);
+      capLines.forEach((ln, idx) => {
+        ctx.fillText(ln, pad + 26 * s, capY + idx * 38 * s);
+      });
+
+      // 6. CHÂN TRANG: BÚT DANH & “CÙNG THỰC HIỆN VỚI NGUYỄN THÙY TIÊN”
+      const footY = H - pad - 18 * s;
+      ctx.strokeStyle = "#29243C";
+      ctx.lineWidth = 2.5 * s;
+      ctx.beginPath();
+      ctx.moveTo(pad, footY - 68 * s);
+      ctx.lineTo(W - pad, footY - 68 * s);
+      ctx.stroke();
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#29243C";
+      ctx.font = `700 ${26 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText(`Biên tập trang nhất: ${penName}`, pad, footY - 24 * s, W - pad * 2);
+
+      ctx.fillStyle = "#58506E";
+      ctx.font = `600 ${23 * s}px 'Be Vietnam Pro', sans-serif`;
+      ctx.fillText("Cùng thực hiện với Nguyễn Thùy Tiên · Trường THPT DakMil", pad, footY + 14 * s, W - pad * 2);
+    }
+
+    function updateCorrigendumSection() {
+      if (!pressState.hasPrintedAtLeastOnce) return;
+      const pen = getEffectivePenName();
+      corrigendumText.textContent =
+        "“Ở đầu trang, mình nhận là tờ báo này do một người làm. Giờ phải sửa lại. Có người vừa chọn tiêu đề, khoanh ảnh và đứng in với mình.”";
+      guestSignatureSpan.style.color = "var(--red)";
+      guestSignatureSpan.style.fontFamily = "var(--font-serif)";
+      guestSignatureSpan.style.fontSize = "1.06rem";
+      guestSignatureSpan.textContent = pen;
+    }
+
+    function setRollProgress(p, triggerFinishEffects = true) {
+      const clamped = Math.max(0, Math.min(1, p));
+      pressState.rollProgress = clamped;
+      const pct = Math.round(clamped * 100);
+      proofSheetStage.style.setProperty("--roll", `${pct}%`);
+      inkRollerBar.style.setProperty("--roller-spin", `${Math.round(clamped * 280)}px`);
+      inkRollerBar.setAttribute("aria-valuenow", String(pct));
+
+      if (clamped >= 0.995) {
+        const isFreshFinish = !inkRollerBar.classList.contains("is-lifted");
+        inkRollerBar.classList.add("is-lifted");
+        btnDownloadNewspaper.disabled = false;
+
+        if (isFreshFinish && triggerFinishEffects) {
+          // Lần đầu nhấc con lăn: góc giấy dính nhẹ lên vài pixel rồi rơi xuống
+          if (!prefersReducedMotion) {
+            proofSheetStage.classList.remove("is-corner-sticking");
+            void proofSheetStage.offsetWidth;
+            proofSheetStage.classList.add("is-corner-sticking");
+          }
+          pressState.hasPrintedAtLeastOnce = true;
+          tienReactionQuote.textContent = CONFIG.angles[pressState.angle].reaction;
+          tienEditorReaction.hidden = false;
+          pressStatusMsg.textContent = "Bản in vừa ra lò! Bạn có thể tải PNG (1200 × 1600 px) hoặc đổi góc kể để in thêm bản khác.";
+          updateCorrigendumSection();
+        }
+      } else {
+        inkRollerBar.classList.remove("is-lifted");
+        if (clamped > 0.02) {
+          pressStatusMsg.textContent = `Đang lăn mực được ${pct}% — kéo tiếp xuống đáy giấy hoặc bấm “In một bản” để in nốt.`;
+        }
+      }
+    }
+
+    function stopAutoRoll() {
+      if (pressState.autoRollRaf !== null) {
+        cancelAnimationFrame(pressState.autoRollRaf);
+        pressState.autoRollRaf = null;
+      }
+      pressState.isAutoRolling = false;
+    }
+
+    function animateRollToFull() {
+      stopAutoRoll();
+      // Nếu bản hiện tại đã in xong rồi mà bấm in lại lần hai -> đặt lại con lăn lên đầu và lăn bản mới
+      if (pressState.rollProgress >= 0.995) {
+        setRollProgress(0, false);
+      }
+
+      if (prefersReducedMotion) {
+        setRollProgress(1, true);
+        return;
+      }
+
+      pressState.isAutoRolling = true;
+      const startP = pressState.rollProgress;
+      const dur = Math.max(380, (1 - startP) * 980);
+      const t0 = performance.now();
+
+      const frame = (now) => {
+        if (!pressState.isAutoRolling) return;
+        const k = Math.min(1, (now - t0) / dur);
+        const eased = 1 - Math.pow(1 - k, 2.2);
+        setRollProgress(startP + (1 - startP) * eased, true);
+        if (k < 1) {
+          pressState.autoRollRaf = requestAnimationFrame(frame);
+        } else {
+          pressState.isAutoRolling = false;
+          pressState.autoRollRaf = null;
+        }
+      };
+
+      pressState.autoRollRaf = requestAnimationFrame(frame);
+    }
+
+    // Kéo con lăn mực trực tiếp (chỉ chặn cuộn khi chạm đúng thanh con lăn)
+    inkRollerBar.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      stopAutoRoll();
+      pressState.isDraggingRoller = true;
+      inkRollerBar.setPointerCapture(e.pointerId);
+    });
+
+    inkRollerBar.addEventListener("pointermove", (e) => {
+      if (!pressState.isDraggingRoller) return;
+      e.preventDefault();
+      const rect = proofSheetStage.getBoundingClientRect();
+      const p = (e.clientY - rect.top) / Math.max(1, rect.height);
+      setRollProgress(p, true);
+    });
+
+    function releaseRollerDrag() {
+      pressState.isDraggingRoller = false;
+    }
+
+    inkRollerBar.addEventListener("pointerup", releaseRollerDrag);
+    inkRollerBar.addEventListener("pointercancel", releaseRollerDrag);
+
+    inkRollerBar.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); setRollProgress(pressState.rollProgress + 0.12, true); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); setRollProgress(pressState.rollProgress - 0.12, false); }
+      else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); animateRollToFull(); }
+    });
+
+    btnAutoRoll.addEventListener("click", animateRollToFull);
+
+    btnResetPress.addEventListener("click", () => {
+      stopAutoRoll();
+      setRollProgress(0, false);
+      btnDownloadNewspaper.disabled = true;
+      pressStatusMsg.textContent = "Đã đặt tờ giấy ngà mới. Kéo con lăn xuống hoặc bấm “In một bản”.";
+    });
+
+    // Chọn góc kể A / B / C & Chi tiết đắt & Bút danh
+    document.querySelectorAll("[data-angle]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        pressState.angle = btn.getAttribute("data-angle");
+        document.querySelectorAll("[data-angle]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b === btn));
+        });
+        renderFrontPageToCanvas(frontPagePreviewCanvas);
+        if (pressState.rollProgress >= 0.995) {
+          tienReactionQuote.textContent = CONFIG.angles[pressState.angle].reaction;
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-detail]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        pressState.detail = btn.getAttribute("data-detail");
+        document.querySelectorAll("[data-detail]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b === btn));
+        });
+        renderFrontPageToCanvas(frontPagePreviewCanvas);
+      });
+    });
+
+    penNameInput.addEventListener("input", () => {
+      pressState.penName = penNameInput.value;
+      renderFrontPageToCanvas(frontPagePreviewCanvas);
+      if (pressState.hasPrintedAtLeastOnce) updateCorrigendumSection();
+    });
+
+    // Tải trang báo PNG 1200 × 1600 px dùng đúng dữ liệu dàn trang
+    btnDownloadNewspaper.addEventListener("click", () => {
+      try {
+        const exp = document.createElement("canvas");
+        exp.width = 1200;
+        exp.height = 1600;
+        renderFrontPageToCanvas(exp);
+
+        const a = document.createElement("a");
+        a.download = `ra-choi-12a10-goc-${pressState.angle.toLowerCase()}.png`;
+        a.href = exp.toDataURL("image/png");
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        pressStatusMsg.textContent = `Đã tải trang báo RA CHƠI! (1200 × 1600 px · Góc kể ${pressState.angle}) về máy của bạn.`;
+      } catch (err) {
+        pressStatusMsg.textContent = "Không thể tự tải PNG trong khung xem này. Hãy mở trực tiếp file HTML để tải.";
+      }
+    });
+
+    /* ==========================================================================
+       7. ĐIỀU HƯỚNG TRƯỢT MƯỢT & KHỞI CHẠY TOÀN TRANG
+       ========================================================================== */
+    function initSmoothNav() {
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const hash = link.getAttribute("href");
+          if (!hash || hash === "#") return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          smoothScrollToElement(target);
+          try { history.replaceState(null, "", hash); } catch (_) {}
+        });
+      });
+
+      const btnTop = document.getElementById("btnScrollTop");
+      const navLinks = Array.from(document.querySelectorAll(".top-nav a[href^='#']"));
+      const sections = navLinks
+        .map((a) => ({ a, el: document.querySelector(a.getAttribute("href")) }))
+        .filter((x) => x.el);
+
+      btnTop.addEventListener("click", () => smoothScrollToY(0));
+
+      const onScroll = () => {
+        const y = window.scrollY;
+        btnTop.classList.toggle("is-visible", y > 340);
+        const probe = y + 140;
+        let current = null;
+        for (const s of sections) {
+          if (s.el.offsetTop <= probe) current = s;
+        }
+        navLinks.forEach((a) => a.classList.toggle("is-active", Boolean(current && current.a === a)));
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    window.addEventListener("load", () => {
+      hydrateContent();
+      setWipePercent(34);
+      renderFrontPageToCanvas(frontPagePreviewCanvas);
+      setRollProgress(0, false);
+      initSmoothNav();
+    });
+  </script>
+</body>
+</html>
